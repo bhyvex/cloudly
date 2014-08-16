@@ -73,8 +73,40 @@ def cloud_software_add_new(request):
 
 	return render_to_response('cloud_software_add_new.html', {}, context_instance=RequestContext(request))
 
-def cloud_software_view_tag(request):
-	return HttpResponse("working on this currently")
+def cloud_software_view_tag(request, tag_slug):
+
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	profile = userprofile.objects.get(user=request.user)
+	secret = profile.secret
+
+	packages = []
+	tag = Tag.objects.get(name_slug=tag_slug)
+
+	if(tag_slug=='all'):
+
+		packages_ = os_with_packages.objects.all().order_by('-pk')
+
+		for os_package in packages_:
+			packages.append(os_package)
+
+	else:
+
+		packages_ = Tags.objects.filter(tag=tag)
+
+		for os_package in packages_: 
+			packages.append(os_package.os_with_package)
+			print os_package
+
+
+	tags = Tag.objects.all()
+
+	active_tab = "Store"
+
+	return render_to_response('store_tags.html', {"active_tab":active_tab,"tag":tag,"tags":tags,"packages":packages,}, context_instance=RequestContext(request))
+
+
 
 def cloud_software(request):
 
