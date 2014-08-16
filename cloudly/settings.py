@@ -39,6 +39,7 @@ INSTALLED_APPS = (
 	'support',
 	'userprofile',
 	'cloud_software',
+	'private_servers',
 	# temporarily view during the development phase
 	'devel',
 )
