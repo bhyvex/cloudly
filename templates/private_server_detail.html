@@ -3,7 +3,7 @@
 <h2>{{uuid|upper}}</h2>
 
 
-<p class="well">
+<p>
 	<strong>Agent</strong> v{{server|dict_get:"agent_version"}}<br/>
 	<strong>ID</strong> {{server|dict_get:"_id"}}<br/>
 	<strong>UUID</strong> {{server|dict_get:"uuid"}}<br/>
@@ -21,7 +21,7 @@
 </p>
 
 <p>
-	<h4>Graphs</h4>
+	<h3>Graphs</h3>
 	<strong>Server Load Average:</strong>
 	{% for l in loadavg %}
 		{{l}}
@@ -46,7 +46,7 @@
 	{% endfor %}
 </p>
 
-<p class="well">
+<p>
 	<strong>Server Activities:</strong><br/>
 	{% for activity in activity %}	
 		{{activity|dict_get:"date_created"}}
