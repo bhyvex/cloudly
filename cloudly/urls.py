@@ -26,8 +26,7 @@ urlpatterns = patterns('',
 
 	# private servers
 	url(r'^servers/$', 'private_servers.views.servers', name='servers'),
-	#url(r'^server/add/$', 'servers.views.server_add', name='server_add'),	
-	#url(r'^server/(?P<uuid>[\w\-\.]+)/$', 'servers.views.server', name='server'),
+	url(r'^server/(?P<uuid>[\w\-\.]+)/$', 'private_servers.views.server_detail', name='server_detail'),
 	
 	# cloud stuff
 	url(r'^cloud/software/$', 'cloud_software.views.cloud_software', name='cloud_software'),

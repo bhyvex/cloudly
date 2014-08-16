@@ -26,6 +26,31 @@ client = MongoClient('localhost', 27017)
 
 mongo = client.cloudly
 
+def server_detail(request, uuid):
+	
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	print '-- server detail:'
+	print request.user, 'server', uuid
+	
+	uuid = uuid.replace('-',':')
+	server = mongo.servers.find_one({'uuid':uuid,})
+
+	print 'uuid', uuid
+	print 'server', server
+	
+	if not server:
+		return HttpResponse("access denied")
+		
+	loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(10)
+	mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(10)
+	disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(10)
+	cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(10)
+	activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(5)
+
+	return render_to_response('private_server_detail.html', {"uuid":uuid,"server":server,"loadavg":loadavg,"mem_usage":mem_usage, "cpu_usage":cpu_usage, "disks_usage":disks_usage, "activity":activity,}, context_instance=RequestContext(request))
+
 def servers(request):
 		
 	if not request.user.is_authenticated():
