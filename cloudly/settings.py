@@ -28,6 +28,7 @@ INSTALLED_APPS = (
 	'django.contrib.humanize',
 	# views
 	'dashboard',
+	'invoices',
 	'support',
 	'userprofile',
 	# temporarily view during the development phase

@@ -8,8 +8,7 @@ try:
 except:
 	import pickle
 
-from invoices.models import Invoice
-	
+from invoices.models import Invoice	
 
 class SerializedDataField(models.TextField):
 	__metaclass__ = models.SubfieldBase

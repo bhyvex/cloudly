@@ -17,9 +17,9 @@ from django.shortcuts import redirect, render
 logger = logging.getLogger(__name__)
 
 
-def support(request):
+def invoices(request):
 
-	print '-- support:'
+	print '-- invoices:'
 
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/")
@@ -30,4 +30,4 @@ def support(request):
 
 	print request.user
 
-	return render_to_response('support.html', {'user':user,'profile':profile,}, context_instance=RequestContext(request))
+	return render_to_response('invoices.html', {'user':user,'profile':profile,}, context_instance=RequestContext(request))
