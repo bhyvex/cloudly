@@ -147,3 +147,19 @@ def auth(request):
 	
 	return render_to_response('login.html', {}, context_instance=RequestContext(request))
 
+
+def account_settings(request):
+
+	print '-- account settings:'
+
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	secret = profile.secret
+
+	print request.user
+
+	return render_to_response('account.html', {'user':user,'profile':profile,}, context_instance=RequestContext(request))
+
