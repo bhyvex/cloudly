@@ -302,7 +302,6 @@ if __name__=="__main__":
 	os.system("clear")
 		
 	print "AGENT: v"+AGENT_VERSION
-	print "(c) ReCloud s.r.o.",
 	print "Written By: jparicka"
 
 	api_call = "/v10/activity/"
