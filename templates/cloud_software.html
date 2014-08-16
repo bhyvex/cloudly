@@ -1,5 +1,15 @@
 cloud_software
 
-<br/>
-packages {{packages}}<br/>
-tags {{tags}}<br/>
+<hr/>
+{% for package in packages %}
+Package: {{package.title}}<br/>
+Tags: <br/>
+<hr/>
+{% endfor %}
+
+All Tags:
+{% for tag in tags %}
+{{tag}}
+{% endfor %}
+
+
