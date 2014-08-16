@@ -56,7 +56,7 @@ class Tag(models.Model):
 		super(Tag, self).save(*args, **kwargs)
 
 
-class os_with_packages(models.Model):
+class packages(models.Model):
 	
 	title = models.CharField(max_length=250)
 	description = models.TextField()
@@ -69,4 +69,4 @@ class os_with_packages(models.Model):
 class tags(models.Model):
 	
 	tag = models.ForeignKey(Tag)
-	os_with_package = models.ForeignKey(os_with_packages)
+	package = models.ForeignKey(packages)
