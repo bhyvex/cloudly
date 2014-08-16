@@ -24,6 +24,56 @@ from cloud_software.models import tags as Tags
 from cloud_software.models import Tag
 
 def cloud_software_add_new(request):
+
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	if not request.user.is_superuser:
+		return HttpResponse("access denied")
+
+	print '-- store add new:'
+	print request.user
+
+	if request.POST:
+
+		print request.POST
+
+		icon = request.POST['icon']
+		title = request.POST['title']
+		description = request.POST['description']
+		os_name = request.POST['os_name']
+		os_link = request.POST['os_link']
+		comma_separated_tags = request.POST['comma_separated_tags']
+
+		print 'icon_url', icon
+		print 'title', title
+		print 'description', description
+		print 'on_name', os_name
+		print 'os_link', os_link
+		print 'comma_separated_tags', comma_separated_tags
+
+		os_with_package = os_with_packages.objects.create(
+			title = title,
+			os_name = os_name,
+			description = description,
+			icon = icon,
+			os_link = os_link,
+			)
+
+		print 'os_with_package', os_with_package
+
+		print 'Adding tags..'
+
+		for tag_ in comma_separated_tags.split(','):
+
+			tag_ = Tag.objects.get_or_create(name=tag_)
+			tag_asociated = Tags.objects.get_or_create(tag=tag_[0],os_with_package=os_with_package)
+
+			print '\ttag', tag_
+			print '\ttag_asociated', tag_asociated
+
+			return HttpResponseRedirect("/store/")
+
 	return render_to_response('cloud_software_add_new.html', {}, context_instance=RequestContext(request))
 
 def cloud_software(request):
