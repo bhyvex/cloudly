@@ -17,15 +17,22 @@ TEMPLATE_DIRS = (
 	os.path.abspath(os.path.join(BASE_DIR, '..', 'templates')),
 )
 
+TEMPLATE_LOADERS = (
+	'django.template.loaders.filesystem.Loader', 'django.template.loaders.app_directories.Loader'
+)
+
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+	'django.contrib.auth',
+	'django.contrib.contenttypes',
+	'django.contrib.sessions',
+	'django.contrib.sites',
+	'django.contrib.messages',
+	'django.contrib.staticfiles',
 	'django.contrib.humanize',
+	# templatetags
+	'cloudly',
 	# views
 	'dashboard',
 	'invoices',

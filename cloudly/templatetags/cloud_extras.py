@@ -14,6 +14,9 @@ client = MongoClient('localhost', 27017)
 
 mongo = client.recloud
 
+from cloud_software.models import Packages, Tags
+from cloud_software.models import Tag
+
 
 def _seconds_since_epoch(d):
 
@@ -23,15 +26,19 @@ def _seconds_since_epoch(d):
 
 	return seconds_since_epoch
 
-
 @register.filter(name='dict_get')
 def dict_get(h, key):
 
-	try: 
+	try:
 		return h[key]
 	except: pass
 		
 	return None
+
+@register.filter(name='get_tags')
+def get_tags(package):
+	return Tags.objects.filter(package=package)
+
 
 @register.filter(name='replace_dots')
 def replace_dots(text):

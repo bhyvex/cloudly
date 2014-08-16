@@ -5,7 +5,7 @@ cloud_software
 <hr/>
 {% for package in packages %}
 Package: {{package.title}}<br/>
-Tags: <br/>
+Tags: {{package|get_tags}}<br/>
 <hr/>
 {% endfor %}
 
@@ -13,5 +13,3 @@ All Tags:
 {% for tag in tags %}
 {{tag}}
 {% endfor %}
-
-
