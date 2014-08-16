@@ -5,7 +5,10 @@
 <hr/>
 {% for package in packages %}
 Package: {{package.title}}<br/>
-Tags: {{package|get_tags}}<br/>
+Tags: 
+{% for tag in package|get_tags %}
+	{{tag.tag}}
+{% endfor %}
 <hr/>
 {% endfor %}
 
