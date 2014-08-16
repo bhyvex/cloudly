@@ -19,10 +19,10 @@ urlpatterns = patterns('',
 	# invoices
 	url(r'^invoices/$', 'invoices.views.invoices', name='invoices'),
 	#url(r'^invoice/177212(?P<id>\d+)s/$', 'invoices.views.invoice', name='invoice'),
-	# cloud
-	url(r'^cloud/software/$', 'invoices.views.cloud_software', name='cloud_software'),
-	#url(r'^cloud/backups/$', 'invoices.views.cloud_backups', name='cloud_backups'),
-	#url(r'^cloud/storage/$', 'invoices.views.cloud_storage', name='cloud_storage'),
+	# cloud stuff
+	url(r'^cloud/software/$', 'cloud_software.views.cloud_software', name='cloud_software'),
+	#url(r'^cloud/backups/$', 'cloud_backups.views.cloud_backups', name='cloud_backups'),
+	#url(r'^cloud/storage/$', 'cloud_storage.views.cloud_storage', name='cloud_storage'),
 )
 
 urlpatterns += patterns('',
