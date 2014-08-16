@@ -1,0 +1,25 @@
+
+<h2>Add A New Server Image</h2>
+
+<form action="/store/add/new/" method='POST' id="store_add_new">
+
+	{% csrf_token %}
+
+	Title <input type="text" placeholder="title" required name="title" size="100"><br/><br/>
+	Description <input type="text" placeholder="description" required name="description" size="92"><br/><br/>
+	Package Name <small></small> <input type="text" placeholder="package_name" required name="package_name" default=""><br/><br/>
+	Package Link <input type="text" placeholder="package_link" required name="package_link" size="97"><br/><br/>
+	Package AMI <input type="text" placeholder="package_ami" required name="package_ami" size="97"><br/><br/>
+	Icon <input type="text" placeholder="icon" required name="icon"><br/><br/>
+	
+	Comma-separated Tags <input type="text" placeholder="comma_separated_tags" required name="comma_separated_tags">
+
+	<br/>
+	<br/>
+	<button>Send</button>
+
+	<br/>
+	<br/>
+
+</form>
+

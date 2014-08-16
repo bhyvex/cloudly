@@ -59,8 +59,8 @@ class Tag(models.Model):
 class os_with_packages(models.Model):
 	
 	title = models.CharField(max_length=250)
-	os_name = models.CharField(max_length=250)
 	description = models.TextField()
+	package_name = models.CharField(max_length=250)
 	package_link = models.URLField()
 	package_ami = models.CharField(max_length=20)
 	icon = models.URLField()

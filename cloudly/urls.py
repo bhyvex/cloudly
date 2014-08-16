@@ -21,6 +21,7 @@ urlpatterns = patterns('',
 	#url(r'^invoice/177212(?P<id>\d+)s/$', 'invoices.views.invoice', name='invoice'),
 	# cloud stuff
 	url(r'^cloud/software/$', 'cloud_software.views.cloud_software', name='cloud_software'),
+	url(r'^cloud/software/add/new/$', 'cloud_software.views.cloud_software_add_new', name='cloud_software_add_new'),
 	#url(r'^cloud/backups/$', 'cloud_backups.views.cloud_backups', name='cloud_backups'),
 	#url(r'^cloud/storage/$', 'cloud_storage.views.cloud_storage', name='cloud_storage'),
 )

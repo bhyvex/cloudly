@@ -23,6 +23,9 @@ from cloud_software.models import os_with_packages
 from cloud_software.models import tags as Tags
 from cloud_software.models import Tag
 
+def cloud_software_add_new(request):
+	return render_to_response('cloud_software_add_new.html', {}, context_instance=RequestContext(request))
+
 def cloud_software(request):
 
 	print '-- cloud_software:'
