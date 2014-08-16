@@ -28,7 +28,7 @@ def home(request):
 	print '--  dashboard:'
 	print 'anonymous'
 	
-	return render_to_response('dashboard.html', {'active_tab':active_tab,}, context_instance=RequestContext(request))
+	return render_to_response('dashboard.html', {}, context_instance=RequestContext(request))
 
 
 def welcome(request):
