@@ -1,0 +1,39 @@
+import time
+import datetime
+
+from django import template
+register = template.Library()
+
+from django.contrib.auth.models import User
+from userprofile.models import Profile as userprofile
+
+import pymongo
+from pymongo import MongoClient
+from pymongo import ASCENDING, DESCENDING
+client = MongoClient('localhost', 27017)
+
+mongo = client.recloud
+
+
+def _seconds_since_epoch(d):
+
+	date_time = d.isoformat().split('.')[0].replace('T',' ')
+	pattern = '%Y-%m-%d %H:%M:%S'
+	seconds_since_epoch = int(time.mktime(time.strptime(date_time, pattern)))
+
+	return seconds_since_epoch
+
+
+@register.filter(name='dict_get')
+def dict_get(h, key):
+
+	try: 
+		return h[key]
+	except: pass
+		
+	return None
+
+@register.filter(name='replace_dots')
+def replace_dots(text):
+	return text.replace(':','-')
+
