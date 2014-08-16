@@ -14,9 +14,9 @@ import urllib2
 import requests
 import subprocess
 
-AGENT_VERSION = "1.0"
+AGENT_VERSION = "0.1"
 
-SECRET = "225-KHHM-68996"
+SECRET = "588-R2G9-13809"
 API_SERVER = "127.0.0.1:5000"
 
 HWADDR = subprocess.Popen(["ifconfig","eth0"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
