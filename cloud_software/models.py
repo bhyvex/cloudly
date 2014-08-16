@@ -56,7 +56,7 @@ class Tag(models.Model):
 		super(Tag, self).save(*args, **kwargs)
 
 
-class packages(models.Model):
+class Packages(models.Model):
 	
 	title = models.CharField(max_length=250)
 	description = models.TextField()
@@ -66,7 +66,7 @@ class packages(models.Model):
 	icon = models.URLField()
 
 
-class tags(models.Model):
+class Tags(models.Model):
 	
 	tag = models.ForeignKey(Tag)
-	package = models.ForeignKey(packages)
+	package = models.ForeignKey(Packages)

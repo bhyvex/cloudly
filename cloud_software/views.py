@@ -19,8 +19,8 @@ logger = logging.getLogger(__name__)
 from django.contrib.auth.models import User
 from userprofile.models import Profile as userprofile
 
-from cloud_software.models import os_with_packages
-from cloud_software.models import tags as Tags
+from cloud_software.models import Packages
+from cloud_software.models import Tags
 from cloud_software.models import Tag
 
 def cloud_software_add_new(request):
@@ -52,7 +52,7 @@ def cloud_software_add_new(request):
 		print 'os_link', os_link
 		print 'comma_separated_tags', comma_separated_tags
 
-		os_with_package = os_with_packages.objects.create(
+		package = Packages.objects.create(
 			title = title,
 			os_name = os_name,
 			description = description,
@@ -60,14 +60,14 @@ def cloud_software_add_new(request):
 			os_link = os_link,
 			)
 
-		print 'os_with_package', os_with_package
+		print 'package', package
 
 		print 'Adding tags..'
 
 		for tag_ in comma_separated_tags.split(','):
 
 			tag_ = Tag.objects.get_or_create(name=tag_)
-			tag_asociated = Tags.objects.get_or_create(tag=tag_[0],os_with_package=os_with_package)
+			tag_asociated = Tags.objects.get_or_create(tag=tag_[0],package=package)
 
 			print '\ttag', tag_
 			print '\ttag_asociated', tag_asociated
@@ -87,7 +87,7 @@ def cloud_software(request):
 	profile = userprofile.objects.get(user=request.user)
 	secret = profile.secret
 
-	packages = os_with_packages.objects.all().order_by('-pk')
+	packages = Packages.objects.all().order_by('-pk')
 	tags = Tag.objects.all()
 
 	print request.user
