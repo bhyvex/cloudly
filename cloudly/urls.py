@@ -12,6 +12,10 @@ urlpatterns = patterns('',
 	url(r'^register/$', 'userprofile.views.register', name='login'),
 	url(r'^logout/$', 'userprofile.views.user_logout', name='logout'),
 	url(r'^account/settings/$', 'userprofile.views.account_settings', name='account_settings'),
+	# support
+	url(r'^support/$', 'support.views.support', name='support'),
+	#url(r'^support/new/$', 'support.views.support_add_new', name='support_add_new'),
+	#url(r'^support/ticket/(?P<ticket_id>\d+)/$', 'support.views.support_view_ticket', name='support_view_ticket'),
 )
 
 urlpatterns += patterns('',

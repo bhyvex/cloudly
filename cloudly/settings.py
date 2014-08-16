@@ -26,6 +26,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 	'django.contrib.humanize',
+	# views
+	'dashboard',
+	'support',
 	'userprofile',
 	# temporarily view during the development phase
 	'devel',
