@@ -16,6 +16,9 @@ from django.shortcuts import redirect, render
 
 logger = logging.getLogger(__name__)
 
+from django.contrib.auth.models import User
+from userprofile.models import Profile as userprofile
+
 
 def support(request):
 
