@@ -46,4 +46,4 @@ def servers(request):
 	print 'servers', servers
 	print 'servers_count', servers_count
 
-	return render_to_response('private_servers.html', {'profile':profile, 'servers':servers,'servers_count':servers_count,}, context_instance=RequestContext(request))
+	return render_to_response('private_servers.html', {'servers':servers,'servers_count':servers_count,}, context_instance=RequestContext(request))

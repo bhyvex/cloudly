@@ -46,6 +46,7 @@ def replace_dots(text):
 def get_tags(package):
 	return Tags.objects.filter(package=package)
 
+
 @register.filter(name='get_server_activities')
 def get_server_activities(server_uuid):
 
