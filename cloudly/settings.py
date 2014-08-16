@@ -31,6 +31,7 @@ INSTALLED_APPS = (
 	'invoices',
 	'support',
 	'userprofile',
+	'cloud',
 	# temporarily view during the development phase
 	'devel',
 )
