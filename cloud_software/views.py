@@ -73,6 +73,9 @@ def cloud_software_add_new(request):
 
 	return render_to_response('cloud_software_add_new.html', {}, context_instance=RequestContext(request))
 
+def cloud_software_view_tag(request):
+	return HttpResponse("working on this currently")
+
 def cloud_software(request):
 
 	print '-- cloud_software:'

@@ -7,12 +7,12 @@
 Package: {{package.title}}<br/>
 Tags: 
 {% for tag in package|get_tags %}
-	{{tag.tag}}
+	<a href="/cloud/software/tag/{{tag.tag.name_slug}}/">{{tag.tag}}</a>
 {% endfor %}
 <hr/>
 {% endfor %}
 
 All Tags:
 {% for tag in tags %}
-{{tag}}
+<a href="/cloud/software/tag/{{tag.name_slug}}/">{{tag}}</a>
 {% endfor %}
