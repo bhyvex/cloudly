@@ -1,1 +1,24 @@
-cloud_software_view_tag
+{% load cloud_extras %}
+
+<h2>cloud_software_view_tag</h2>
+
+Tag: <b>{{tag}}</b><br/>
+<br/>
+
+<hr/>
+{% for package in packages %}
+Package: {{package.title}}<br/>
+Tags: 
+{% for tag in package|get_tags %}
+	<a href="/cloud/software/tag/{{tag.tag.name_slug}}/">{{tag.tag}}</a>
+{% endfor %}
+<hr/>
+{% endfor %}
+
+
+<br/>
+
+Tags: <a href="/cloud/software/tag/all">all</a>
+{% for tag in tags %}
+<a href="/cloud/software/tag/{{tag.name_slug}}/">{{tag}}</a>
+{% endfor %}
