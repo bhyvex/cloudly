@@ -336,7 +336,7 @@ if __name__=="__main__":
 				
 		if(command):
 
-			# Using QEMU!
+			# Using virsh!
 			
 			# install (w/autostart)
 			# start
