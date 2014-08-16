@@ -34,6 +34,9 @@ def cloud_software(request):
 	profile = userprofile.objects.get(user=request.user)
 	secret = profile.secret
 
+	packages = os_with_packages.objects.all().order_by('-pk')
+	tags = Tag.objects.all()
+
 	print request.user
 
-	return render_to_response('cloud_software.html', {'user':user,'profile':profile,}, context_instance=RequestContext(request))
+	return render_to_response('cloud_software.html', {'user':user,'profile':profile,'packages':packages,'tags':tags,}, context_instance=RequestContext(request))
