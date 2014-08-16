@@ -12,11 +12,13 @@ from pymongo import MongoClient
 from pymongo import ASCENDING, DESCENDING
 client = MongoClient('localhost', 27017)
 
-mongo = client.recloud
+mongo = client.cloudly
 
-from cloud_software.models import Packages, Tags
-from cloud_software.models import Tag
+from django.contrib.auth.models import User
+from userprofile.models import Profile as userprofile
 
+from cloud_software.models import Packages
+from cloud_software.models import Tags, Tag
 
 def _seconds_since_epoch(d):
 
@@ -35,12 +37,12 @@ def dict_get(h, key):
 		
 	return None
 
-@register.filter(name='get_tags')
-def get_tags(package):
-	return Tags.objects.filter(package=package)
-
-
 @register.filter(name='replace_dots')
 def replace_dots(text):
 	return text.replace(':','-')
+
+
+@register.filter(name='get_tags')
+def get_tags(package):
+	return Tags.objects.filter(package=package)
 

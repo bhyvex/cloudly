@@ -20,8 +20,7 @@ from django.contrib.auth.models import User
 from userprofile.models import Profile as userprofile
 
 from cloud_software.models import Packages
-from cloud_software.models import Tags
-from cloud_software.models import Tag
+from cloud_software.models import Tags, Tag
 
 def cloud_software_add_new(request):
 
