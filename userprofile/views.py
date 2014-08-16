@@ -93,12 +93,11 @@ def register(request):
 
 					username = _remove_accents(username)
 
-					userprofile.objects.get_or_create(user=user,secret=secret,name=username,country="CZ")
+					userprofile.objects.get_or_create(user=user,secret=secret,name=username,language="EN")
 					login(request, user)
 
 					request.session['language'] = "us"
 					
-					# XXX
 					send_mail('New user has registered.', 'New user ' + request.user.email + ' has registered.', 'admin@cloud306.com', ['jparicka@gmail.com'], fail_silently=True)
 
 					print 'new user registered'
