@@ -14,7 +14,7 @@ from pymongo import MongoClient
 from pymongo import ASCENDING, DESCENDING
 client = MongoClient('localhost', 27017)
 
-mongo = client.fuckmecloudly
+mongo = client.cloudly
 
 
 @app.route('/test/', methods = ['GET'])

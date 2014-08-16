@@ -1,1 +1,52 @@
+{% load cloud_extras %}
+
 <h2>Private Servers</h2>
+
+{{profile.secret}}
+
+{% if servers_count = 0 %}
+    <p>
+		There are no servers installed.<br/>
+	</p>
+	<p>
+		Please <a href="/server/add/">add one</a>.
+	</p>
+{% else %}
+
+	{% for server in servers %}
+    <p>
+
+		<a href="/server/{{server.uuid|replace_dots}}/"><strong><font size="5">Server #{{forloop.counter}}</font></strong></font></a>
+
+		<br/>
+		
+		<strong>Agent</strong> v{{server|dict_get:"agent_version"}}<br/>
+		<strong>ID</strong> {{server|dict_get:"_id"}}<br/>
+		<strong>UUID</strong> {{server|dict_get:"uuid"}}<br/>
+		<strong>Uptime</strong> {{server|dict_get:"uptime"}}<br/>
+		<strong>IP address</strong> {{server|dict_get:"ip"}}<br/>
+		<strong>Public IP address</strong> {{server|dict_get:"ip_remote"}}<br/>
+		<strong>Load Average</strong> {{server|dict_get:"loadavg"}}<br/>
+		<strong>Current CPU Usage</strong> {{server|dict_get:"cpu_usage"}}<br/>
+		<strong>Current Memory Usage</strong> {{server|dict_get:"memory_usage"}}<br/>
+		<strong>Current Physical Disks</strong> {{server|dict_get:"physical_disks"}}<br/>
+		<strong>Current Disks Usage</strong> {{server|dict_get:"disks_usage"}}<br/>
+		<strong>CPU Virtualization</strong> {{server|dict_get:"cpu_virtualization"}}<br/>
+		<strong>CPU Info</strong> {{server|dict_get:"cpu_info"}}<br/>
+		<strong>Last Seen</strong> {{server|dict_get:"last_seen"}}<br/>
+		
+
+		<br/>
+		<br/>
+		<strong>Activities:</strong><br/>
+
+		{% for activity in server|dict_get:"uuid"|get_server_activities %}
+			{% if forloop.counter < 5 %}
+				{{activity}}<br/>
+			{% endif %}
+		{% endfor %}
+
+	</p>
+	{% endfor %}
+
+{% endif %}						

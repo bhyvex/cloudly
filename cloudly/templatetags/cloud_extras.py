@@ -46,3 +46,10 @@ def replace_dots(text):
 def get_tags(package):
 	return Tags.objects.filter(package=package)
 
+@register.filter(name='get_server_activities')
+def get_server_activities(server_uuid):
+
+	activities = mongo.activity.find({'uuid':server_uuid,}).sort('_id',-1)
+
+	return activities
+
