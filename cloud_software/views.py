@@ -19,6 +19,9 @@ logger = logging.getLogger(__name__)
 from django.contrib.auth.models import User
 from userprofile.models import Profile as userprofile
 
+from cloud_software.models import os_with_packages
+from cloud_software.models import tags as Tags
+from cloud_software.models import Tag
 
 def cloud_software(request):
 
