@@ -31,7 +31,7 @@ def cloud_software_add_new(request):
 	if not request.user.is_superuser:
 		return HttpResponse("access denied")
 
-	print '-- store add new:'
+	print '-- cloud software add new:'
 	print request.user
 
 	if request.POST:
@@ -41,28 +41,23 @@ def cloud_software_add_new(request):
 		icon = request.POST['icon']
 		title = request.POST['title']
 		description = request.POST['description']
-		os_name = request.POST['os_name']
-		os_link = request.POST['os_link']
-		comma_separated_tags = request.POST['comma_separated_tags']
-
-		print 'icon_url', icon
-		print 'title', title
-		print 'description', description
-		print 'on_name', os_name
-		print 'os_link', os_link
-		print 'comma_separated_tags', comma_separated_tags
+		package_name = request.POST['package_name']
+		package_link = request.POST['package_link']
+		package_ami = request.POST['package_ami']
 
 		package = Packages.objects.create(
-			title = title,
-			os_name = os_name,
-			description = description,
 			icon = icon,
-			os_link = os_link,
+			title = title,
+			description = description,
+			package_name = package_name,
+			package_link = package_link,
+			package_ami = package_ami,
 			)
 
 		print 'package', package
-
 		print 'Adding tags..'
+
+		comma_separated_tags = request.POST['comma_separated_tags']
 
 		for tag_ in comma_separated_tags.split(','):
 
@@ -72,7 +67,8 @@ def cloud_software_add_new(request):
 			print '\ttag', tag_
 			print '\ttag_asociated', tag_asociated
 
-			return HttpResponseRedirect("/store/")
+			return HttpResponseRedirect("/cloud/software/")
+
 
 	return render_to_response('cloud_software_add_new.html', {}, context_instance=RequestContext(request))
 
