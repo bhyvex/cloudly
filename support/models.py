@@ -28,7 +28,7 @@ class Messages(models.Model):
 	
 	owner = models.ForeignKey(User,related_name="owner")	
 	ticket_title = models.CharField(max_length=400, blank=True, db_index=True)
-	ticket_text = models.TextField(blank=True, db_index=True)
+	ticket_text = models.CharField(blank=True,max_length=1024)
 	
 	pay_amount = models.IntegerField(default=0)
 	paid = models.BooleanField(default=False)
@@ -80,6 +80,6 @@ class Messages(models.Model):
 class Answers(models.Model):
 
 	user = models.ForeignKey(User)
-	answer_text = models.TextField(blank=True, db_index=True)
+	answer_text = models.CharField(max_length=2048)
 	related_message = models.ForeignKey(Messages)
 	date_added = models.DateTimeField(auto_now_add=True)
