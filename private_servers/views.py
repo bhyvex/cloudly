@@ -36,7 +36,6 @@ def server_add(request):
 
 	return render_to_response('private_server_add_new.html', {}, context_instance=RequestContext(request))
 
-
 def server_detail(request, uuid):
 	
 	if not request.user.is_authenticated():
