@@ -29,3 +29,19 @@ def home(request):
 	print 'anonymous'
 	
 	return render_to_response('dashboard.html', {'active_tab':active_tab,}, context_instance=RequestContext(request))
+
+
+def welcome(request):
+
+	print '--  welcome page:'
+
+	if not request.user.is_authenticated():
+
+		print 'anonymous'
+
+		return HttpResponseRedirect("/")
+
+
+	print request.user
+
+	return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))

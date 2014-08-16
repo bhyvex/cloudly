@@ -25,6 +25,9 @@ from django.contrib.auth import logout
 
 logger = logging.getLogger(__name__)
 
+from django.core.mail import send_mail
+
+
 def _remove_accents(data):
     return ''.join(x for x in unicodedata.normalize('NFKD', data) if x in string.ascii_letters).lower()
 
@@ -35,23 +38,11 @@ def user_logout(request):
 	try:
 		logout(request)
 	except:
-		print 'ooooooops...'
+		pass
 		
 	print request.user
 	
 	return HttpResponseRedirect("/")
-
-
-def account(request):
-
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect("/")
-
-	print '-- account:'
-	print request.user
-
-	return render_to_response('account.html', {}, context_instance=RequestContext(request))
-
 
 
 def register(request):
@@ -108,7 +99,7 @@ def register(request):
 					request.session['language'] = "us"
 					
 					# XXX
-					#send_mail('New user has registered.', 'New user ' + request.user.email + ' has registered.', 'admin@cloud306.com', ['jparicka@gmail.com'], fail_silently=True)
+					send_mail('New user has registered.', 'New user ' + request.user.email + ' has registered.', 'admin@cloud306.com', ['jparicka@gmail.com'], fail_silently=True)
 
 					print 'new user registered'
 					print username
@@ -117,24 +108,6 @@ def register(request):
 
 
 	return render_to_response('register.html', {'err':err,}, context_instance=RequestContext(request))
-
-
-def account_settings(request):
-	
-	print '-- account settings:'
-
-	if not request.user.is_authenticated():
-		return render_to_response('web.html', locals(), context_instance=RequestContext(request))
-	
-	user = request.user
-	profile = userprofile.objects.get(user=request.user)
-	secret = profile.secret
-
-	print request.user
-	
-	active_tab = "Account Settings"
-	
-	return render_to_response('account.html', {'active_tab':active_tab,'user':user,'profile':profile,}, context_instance=RequestContext(request))
 
 
 def auth(request):
