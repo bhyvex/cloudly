@@ -36,12 +36,32 @@ def welcome(request):
 	print '--  welcome page:'
 
 	if not request.user.is_authenticated():
-
 		print 'anonymous'
-
 		return HttpResponseRedirect("/")
 
+	print request.user
+	return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
+	
+def help(request):
+
+	print '--  help page:'
+
+	if not request.user.is_authenticated():
+		print 'anonymous'
+		return HttpResponseRedirect("/")
 
 	print request.user
+	return render_to_response('help.html', locals(), context_instance=RequestContext(request))
 
-	return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
+def security(request):
+
+	print '--  security page:'
+
+	if not request.user.is_authenticated():
+		print 'anonymous'
+		return HttpResponseRedirect("/")
+
+	print request.user
+	return render_to_response('security.html', locals(), context_instance=RequestContext(request))
+
+
