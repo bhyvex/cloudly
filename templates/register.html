@@ -1,0 +1,17 @@
+<form action="/register/" method='POST' class='form-validate' id="register">{% csrf_token %}
+
+	<input type="text" placeholder="name" required name="username">
+	<br/>
+	<br/>
+	<input type="text" placeholder="email address" required name="email">
+	<br/>
+	<br/>
+	<input type="password1" placeholder="password1" required name="password1">
+	<br/>
+	<br/>
+	<input type="password2" placeholder="password2" required name="password2">
+	<br/>
+	<br/>
+	<button>Register</button>
+
+</form>

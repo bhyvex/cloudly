@@ -1,0 +1,13 @@
+<form action="/login/" method='POST' class='form-validate' id="login">{% csrf_token %}
+
+	<input type="text" placeholder="e-mail" required name="username">
+	<br/>
+	<br/>
+	<input type="password" placeholder="password" required name="password">
+
+	<br/>
+	<br/>
+
+	<button>Sign in</button>
+
+</form>
