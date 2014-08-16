@@ -59,6 +59,8 @@ def cloud_software_add_new(request):
 
 		comma_separated_tags = request.POST['comma_separated_tags']
 
+		print 'comma_separated_tags', comma_separated_tags
+
 		for tag_ in comma_separated_tags.split(','):
 
 			tag_ = Tag.objects.get_or_create(name=tag_)
@@ -67,7 +69,7 @@ def cloud_software_add_new(request):
 			print '\ttag', tag_
 			print '\ttag_asociated', tag_asociated
 
-			return HttpResponseRedirect("/cloud/software/")
+		return HttpResponseRedirect("/cloud/software/")
 
 
 	return render_to_response('cloud_software_add_new.html', {}, context_instance=RequestContext(request))
