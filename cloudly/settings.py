@@ -39,13 +39,13 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'recloud.urls'
-WSGI_APPLICATION = 'recloud.wsgi.application'
+ROOT_URLCONF = 'cloudly.urls'
+WSGI_APPLICATION = 'cloudly.wsgi.application'
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'recloud',
+        'NAME': 'cloudly',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '',                      
