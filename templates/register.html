@@ -1,3 +1,10 @@
+
+{% if err %}
+
+	Error: {{err}}
+
+{% endif %}
+
 <form action="/register/" method='POST' class='form-validate' id="register">{% csrf_token %}
 
 	<input type="text" placeholder="name" required name="username">
