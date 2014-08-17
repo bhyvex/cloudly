@@ -29,5 +29,9 @@
 </p>
 <p>
 	<h3>aws_virtual_machines</h3>
-	{{aws_virtual_machines}}
+	{% for virtual_machine in aws_virtual_machines %}
+		<b>{{virtual_machine}}</b><br/>
+		<i>{{aws_virtual_machines|dict_get:virtual_machine|dict_get:"instance"}}</i><br/>
+		{{aws_virtual_machines|dict_get:virtual_machine}}
+	{% endfor %}
 </p>

@@ -68,7 +68,7 @@ def home(request):
 					
 					instance_metrics = {}
 					
-					#pprint(instance.__dict__)
+					pprint(instance.__dict__)
 					
 					print '-'*70
 					
@@ -125,7 +125,7 @@ def home(request):
 					networkout_datapoints = metric.query(start, end, 'Average', '')
 					instance_metrics['networkout_datapoints'] = networkout_datapoints
 
-					instance_metrics['instance'] = instance
+					instance_metrics['instance'] = instance.__dict__
 					aws_virtual_machines[instance.id] = instance_metrics
 										
 		print '-'*70
