@@ -22,6 +22,7 @@ import boto.ec2.cloudwatch
 from django.contrib.auth.models import User
 from userprofile.models import Profile as userprofile
 
+from amazon import funcs as aws_func
 
 def home(request):
 		
@@ -49,9 +50,11 @@ def home(request):
 	virtual_machines = {}
 	
 	if aws_is_verified:
+		
 		ec2_regions = boto.ec2.regions()
 		for ec2_region in ec2_regions:
-			print 'region:', ec2_region.name
+			
+			print '- querying region:', ec2_region.name
 	
 	
 	return render_to_response('dashboard.html', {}, context_instance=RequestContext(request))
