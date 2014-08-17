@@ -28,6 +28,16 @@ from amazon import s3_funcs
 from amazon import s3_funcs_shortcuts
 
 def cloud_storage(request):
-	return HttpResponse("working on this currently")
 
+	print '-- cloud_storage:'
 
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	secret = profile.secret
+
+	print request.user
+
+	return render_to_response('cloud_storage.html', {'user':user,'profile':profile,}, context_instance=RequestContext(request))
