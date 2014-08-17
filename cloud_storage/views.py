@@ -47,7 +47,7 @@ def cloud_storage(request):
 	if request.method == 'POST':
 		form = UploadFileForm(request.POST, request.FILES)
 		if form.is_valid():
-			new_file = UploadedFiles(file = request.FILES['file'])
+			new_file = UploadedFiles(file=request.FILES['file'], user=request.user)
 			new_file.save()
   
 	# XXX batch upload to the cloud
