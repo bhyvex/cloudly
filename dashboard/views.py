@@ -77,9 +77,10 @@ def home(request):
 						try:
 							ec2conn.monitor_instance(str(instance.id))
 						except:
-							print instance.id, 'instance not in a monitorable state!'
+							print instance.id, 'instance not in a monitorable state!'.upper()
 							print instance.id, 'state:', instance.state
-							print instance.id, 'state reason:', instance.state_reason['message']
+							print instance.id, 'reason:', instance.state_reason['message']
+							continue
 					
 					end = datetime.datetime.utcnow()
 					start = end - datetime.timedelta(hours=1)
@@ -87,7 +88,6 @@ def home(request):
 					# ['Minimum', 'Maximum', 'Sum', 'Average', 'SampleCount']
 					# ['Seconds', 'Percent', 'Bytes', 'Bits', 'Count', 'Bytes/Second', 'Bits/Second', 'Count/Second']
 					
-					"""
 					# CPUUtilization
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="CPUUtilization")[0]
 					cpu_utilization_datapoints = metric.query(start, end, 'Average', 'Percent')
@@ -115,9 +115,8 @@ def home(request):
 					# NetworkOut
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="NetworkOut")[0]
 					networkout_datapoints = metric.query(start, end, 'Average', '')
-					"""
 										
-		print '*'*40
+		print '-'*70
 		
 	
 	return render_to_response('dashboard.html', {}, context_instance=RequestContext(request))
