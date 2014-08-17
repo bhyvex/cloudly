@@ -68,10 +68,8 @@ def home(request):
 					
 					instance_metrics = {}
 					
-					pprint(instance.__dict__)
-					
-					print '-'*70
-					
+					#pprint(instance.__dict__)
+										
 					print '** name', instance.id
 					print '** monitoring', instance.monitoring_state
 					
@@ -127,9 +125,7 @@ def home(request):
 
 					instance_metrics['instance'] = instance.__dict__
 					aws_virtual_machines[instance.id] = instance_metrics
-										
-		print '-'*70
-		
+
 	
 	return render_to_response('dashboard.html', {'aws_virtual_machines':aws_virtual_machines,}, context_instance=RequestContext(request))
 
