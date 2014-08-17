@@ -7,6 +7,6 @@ class Files(models.Model):
 	
 class Uploaded_Files(models.Model):
 	
-	user = models.OneToOneField(User)
+	user = models.ForeignKey(User)
 	file = models.ForeignKey(Files)
 	is_deployed = models.BooleanField(default=False)
