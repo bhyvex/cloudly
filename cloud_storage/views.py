@@ -25,4 +25,9 @@ from django.contrib.auth.models import User
 from userprofile.models import Profile as userprofile
 
 from amazon import s3_funcs
+from amazon import s3_funcs_shortcuts
+
+def cloud_storage(request):
+	return HttpResponse("working on this currently")
+
 
