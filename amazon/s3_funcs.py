@@ -12,7 +12,6 @@ from tempfile import TemporaryFile
 from boto import connect_s3
 from boto.s3.connection import Location
 from boto.exception import S3CreateError, S3ResponseError
-from django_boto import settings
 
 logger = logging.getLogger(__name__)
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.core.files import File
-from amazon.s3_funcs.storage import S3Storage
+from amazon.s3_funcs import S3Storage
 
 
 def upload(filename, name=None, prefix=False, bucket_name=False, key=None,
