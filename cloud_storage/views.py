@@ -50,4 +50,8 @@ def cloud_storage(request):
 			new_file = UploadedFiles(file = request.FILES['file'])
 			new_file.save()
   
-	return render_to_response('cloud_storage.html', {'user':user,'profile':profile,}, context_instance=RequestContext(request))
+	# XXX batch upload to the cloud
+	
+	uploaded_files = UploadedFiles.objects.all().order_by('-pk')
+
+	return render_to_response('cloud_storage.html', {'uploaded_files':uploaded_files,'user':user,'profile':profile,}, context_instance=RequestContext(request))

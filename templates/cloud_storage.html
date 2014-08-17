@@ -19,6 +19,14 @@
         </button>
 		{% endcomment %}
  
+
+		<br/>
+		Uploaded files:<br/>
+		{% for f in uploaded_files %}
+			{{f.file}}<br/>
+		{% endfor %}
+
+
         <script src="/static/js/dropzone.js"></script>
         <script type="text/javascript">
             Dropzone.options.myDropzone = {
