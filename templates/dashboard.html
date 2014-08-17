@@ -21,12 +21,17 @@
 <a href="/logout/">Logout</a>
 <hr/>
 
+
+{% if not aws_virtual_machines and not private_virtual_machines %}
 <p>
 	There are no Virtual Machines installed.<br/>
 </p>
 <p>
 	Please <a href="/cloud/software/">add one</a>.
 </p>
+{% endif %}
+
+
 <p>
 	<h3>aws_virtual_machines</h3>
 	{% for virtual_machine in aws_virtual_machines %}

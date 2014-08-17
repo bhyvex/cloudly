@@ -126,8 +126,9 @@ def home(request):
 
 					aws_virtual_machines[instance.id] = instance_metrics
 
+	private_virtual_machines = {}
 	
-	return render_to_response('dashboard.html', {'aws_virtual_machines':aws_virtual_machines,}, context_instance=RequestContext(request))
+	return render_to_response('dashboard.html', {'private_virtual_machines':private_virtual_machines, 'aws_virtual_machines':aws_virtual_machines,}, context_instance=RequestContext(request))
 
 
 def welcome(request):
