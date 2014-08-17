@@ -29,7 +29,8 @@ from amazon import s3_funcs_shortcuts
 
 from django import forms
 from forms import UploadFileForm
-from cloud_storage.models import UploadedFiles
+from cloud_storage.models import Files
+from cloud_storage.models import Uploaded_Files
 
 def cloud_storage(request):
 
@@ -47,11 +48,10 @@ def cloud_storage(request):
 	if request.method == 'POST':
 		form = UploadFileForm(request.POST, request.FILES)
 		if form.is_valid():
-			new_file = UploadedFiles(file=request.FILES['file'], user=request.user)
+			new_file = Files(file=request.FILES['file'])
 			new_file.save()
+			Uploaded_Files.objects.create(file=new_file,user=request.user)
   
-	# XXX batch upload to the cloud
-	
-	uploaded_files = UploadedFiles.objects.all().order_by('-pk')
+	uploaded_files = Uploaded_Files.objects.all().order_by('-pk')
 
 	return render_to_response('cloud_storage.html', {'uploaded_files':uploaded_files,'user':user,'profile':profile,}, context_instance=RequestContext(request))
