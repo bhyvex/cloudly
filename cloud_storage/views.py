@@ -24,4 +24,5 @@ import boto.ec2.cloudwatch
 from django.contrib.auth.models import User
 from userprofile.models import Profile as userprofile
 
-from amazon import funcs as aws_func
+from amazon import s3_funcs
+
