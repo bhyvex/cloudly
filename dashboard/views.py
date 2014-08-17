@@ -16,6 +16,10 @@ from django.shortcuts import redirect, render
 
 logger = logging.getLogger(__name__)
 
+import boto.ec2
+import boto.ec2.cloudwatch
+
+
 def home(request):
 		
 	if not request.user.is_authenticated():
@@ -27,6 +31,10 @@ def home(request):
 
 	print '--  dashboard:'
 	print request.user
+	
+	
+	
+	
 	
 	return render_to_response('dashboard.html', {}, context_instance=RequestContext(request))
 
