@@ -66,6 +66,8 @@ def home(request):
 
 				for instance in instances:
 					
+					instance_metrics = {}
+					
 					#pprint(instance.__dict__)
 					
 					print '-'*70
@@ -91,35 +93,45 @@ def home(request):
 					# CPUUtilization
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="CPUUtilization")[0]
 					cpu_utilization_datapoints = metric.query(start, end, 'Average', 'Percent')
+					instance_metrics['cpu_utilization_datapoints'] = cpu_utilization_datapoints
 
 					# DiskReadOps
 					#metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskReadOps")[0]
 					#disk_readops_datapoints = metric.query(start, end, 'Average', '')
+					#instance_metrics['disk_readops_datapoints'] = disk_readops_datapoints
 
 					# DiskWriteOps
 					#metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskWriteOps")[0]
 					#disk_writeops_datapoints = metric.query(start, end, 'Average', '')
+					#instance_metrics['disk_writeops_datapoints'] = disk_writeops_datapoints
 
 					# DiskReadBytes
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskReadBytes")[0]
 					disk_readbytes_datapoints = metric.query(start, end, 'Average', '')
+					instance_metrics['disk_readbytes_datapoints'] = disk_readbytes_datapoints
 
 					# DiskWriteBytes
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskWriteBytes")[0]
 					disk_writebytes_datapoints = metric.query(start, end, 'Average', '')
-
+					instance_metrics['disk_writebytes_datapoints'] = disk_writebytes_datapoints
+					
 					# NetworkIn
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="NetworkIn")[0]
 					networkin_datapoints = metric.query(start, end, 'Average', '')
-
+					instance_metrics['networkin_datapoints'] = networkin_datapoints
+					
 					# NetworkOut
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="NetworkOut")[0]
 					networkout_datapoints = metric.query(start, end, 'Average', '')
+					instance_metrics['networkout_datapoints'] = networkout_datapoints
+
+					instance_metrics['instance'] = instance
+					aws_virtual_machines[instance.id] = instance_metrics
 										
 		print '-'*70
 		
 	
-	return render_to_response('dashboard.html', {}, context_instance=RequestContext(request))
+	return render_to_response('dashboard.html', {'aws_virtual_machines':aws_virtual_machines,}, context_instance=RequestContext(request))
 
 
 def welcome(request):
