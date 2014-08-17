@@ -46,6 +46,8 @@ def home(request):
 	
 	print 'aws_is_verified', aws_is_verified
 	
+	virtual_machines = {}
+	
 	if aws_is_verified:
 		ec2_regions = boto.ec2.regions()
 		for ec2_region in ec2_regions:
