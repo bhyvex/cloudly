@@ -31,7 +31,11 @@
 	<h3>aws_virtual_machines</h3>
 	{% for virtual_machine in aws_virtual_machines %}
 		<b>{{virtual_machine}}</b><br/>
-		<i>{{aws_virtual_machines|dict_get:virtual_machine|dict_get:"instance"}}</i><br/>
-		{{aws_virtual_machines|dict_get:virtual_machine}}
+		<i><b>Instance:</b> {{aws_virtual_machines|dict_get:virtual_machine|dict_get:"instance"}}</i><br/>
+		<b>cpu_utilization_datapoints</b> {{aws_virtual_machines|dict_get:virtual_machine|dict_get:"cpu_utilization_datapoints"}}<br/>
+		<b>disk_readbytes_datapoints</b> {{aws_virtual_machines|dict_get:virtual_machine|dict_get:"disk_readbytes_datapoints"}}<br/>
+		<b>disk_writebytes_datapoints</b> {{aws_virtual_machines|dict_get:virtual_machine|dict_get:"disk_writebytes_datapoints"}}<br/>
+		<b>networkin_datapoints</b> {{aws_virtual_machines|dict_get:virtual_machine|dict_get:"networkin_datapoints"}}<br/>
+		<b>networkout_datapoints</b> {{aws_virtual_machines|dict_get:virtual_machine|dict_get:"networkout_datapoints"}}<br/>
 	{% endfor %}
 </p>
