@@ -50,37 +50,34 @@ def home(request):
 	aws_virtual_machines = {}
 	
 	if aws_is_verified:
+					
+		print 'AWS regions', profile.aws_enabled_regions
 		
-		ec2_regions = boto.ec2.regions()
-		for ec2_region in ec2_regions:
-			
-			print '- querying ec2 region:', ec2_region.name
-			
-			try:
-				aws_conn = boto.ec2.connect_to_region(ec2_region.name,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
-				reservations = aws_conn.get_all_reservations()
-			except:
-				continue
+		"""
+		try:
+			aws_conn = boto.ec2.connect_to_region(ec2_region.name,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
+			reservations = aws_conn.get_all_reservations()
+		except:
+			continue
 
-			print 'reservations', reservations
-			
-			"""
-			cloudwatch = None
-			try:
-				cloudwatch = boto.connect_cloudwatch()
-			except: pass
-			
-			metrics = None
-			try:
-				metrics = cloudwatch.list_metrics()	
-			except: pass
-			
-			print 'cloudwatch', cloudwatch
-			print 'metrics', metrics
-			"""
-			print '*'*40
-			
-	
+		print 'reservations', reservations
+		
+		cloudwatch = None
+		try:
+			cloudwatch = boto.connect_cloudwatch()
+		except: pass
+		
+		metrics = None
+		try:
+			metrics = cloudwatch.list_metrics()	
+		except: pass
+		
+		print 'cloudwatch', cloudwatch
+		print 'metrics', metrics
+		"""
+		print '*'*40
+		
+
 	
 	return render_to_response('dashboard.html', {}, context_instance=RequestContext(request))
 

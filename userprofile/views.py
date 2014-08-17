@@ -161,5 +161,10 @@ def account_settings(request):
 
 	print request.user
 
+	# this is how to get the list of all available aws regions..
+	#ec2_regions = boto.ec2.regions()
+	#for ec2_region in ec2_regions:
+	#	print '- ec2 region:', ec2_region.name
+
 	return render_to_response('account.html', {'user':user,'profile':profile,}, context_instance=RequestContext(request))
 
