@@ -6,6 +6,8 @@ import pickle
 import logging
 import datetime
 
+from pprint import pprint
+
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
@@ -44,40 +46,79 @@ def home(request):
 	aws_access_key = profile.aws_access_key
 	aws_secret_key = profile.aws_secret_key
 	aws_is_verified = profile.aws_is_verified
-	
-	print 'aws_is_verified', aws_is_verified
-	
+		
 	aws_virtual_machines = {}
 	
 	if aws_is_verified:
 					
-		print 'AWS regions', profile.aws_enabled_regions
+		aws_regions = profile.aws_enabled_regions.split(',')
+		print 'AWS regions', aws_regions
 		
-		"""
-		try:
-			aws_conn = boto.ec2.connect_to_region(ec2_region.name,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
-			reservations = aws_conn.get_all_reservations()
-		except:
-			continue
+		for ec2_region in aws_regions:
+			
+			if(ec2_region):
 
-		print 'reservations', reservations
-		
-		cloudwatch = None
-		try:
-			cloudwatch = boto.connect_cloudwatch()
-		except: pass
-		
-		metrics = None
-		try:
-			metrics = cloudwatch.list_metrics()	
-		except: pass
-		
-		print 'cloudwatch', cloudwatch
-		print 'metrics', metrics
-		"""
+				ec2conn = boto.ec2.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
+				cloudwatch = boto.ec2.cloudwatch.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
+
+				reservations = ec2conn.get_all_instances()
+				instances = [i for r in reservations for i in r.instances]
+
+				for instance in instances:
+					
+					#pprint(instance.__dict__)
+					
+					print '-'*70
+					
+					print '** name', instance.id
+					print '** monitoring', instance.monitoring_state
+					
+					if(instance.monitoring_state=="disabled"):
+						try:
+							ec2conn.monitor_instance(str(instance.id))
+						except:
+							print instance.id, 'instance not in a monitorable state!'
+							print instance.id, 'state:', instance.state
+							print instance.id, 'state reason:', instance.state_reason['message']
+					
+					end = datetime.datetime.utcnow()
+					start = end - datetime.timedelta(hours=1)
+				
+					# ['Minimum', 'Maximum', 'Sum', 'Average', 'SampleCount']
+					# ['Seconds', 'Percent', 'Bytes', 'Bits', 'Count', 'Bytes/Second', 'Bits/Second', 'Count/Second']
+					
+					"""
+					# CPUUtilization
+					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="CPUUtilization")[0]
+					cpu_utilization_datapoints = metric.query(start, end, 'Average', 'Percent')
+
+					# DiskReadOps
+					#metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskReadOps")[0]
+					#disk_readops_datapoints = metric.query(start, end, 'Average', '')
+
+					# DiskWriteOps
+					#metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskWriteOps")[0]
+					#disk_writeops_datapoints = metric.query(start, end, 'Average', '')
+
+					# DiskReadBytes
+					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskReadBytes")[0]
+					disk_readbytes_datapoints = metric.query(start, end, 'Average', '')
+
+					# DiskWriteBytes
+					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskWriteBytes")[0]
+					disk_writebytes_datapoints = metric.query(start, end, 'Average', '')
+
+					# NetworkIn
+					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="NetworkIn")[0]
+					networkin_datapoints = metric.query(start, end, 'Average', '')
+
+					# NetworkOut
+					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="NetworkOut")[0]
+					networkout_datapoints = metric.query(start, end, 'Average', '')
+					"""
+										
 		print '*'*40
 		
-
 	
 	return render_to_response('dashboard.html', {}, context_instance=RequestContext(request))
 
