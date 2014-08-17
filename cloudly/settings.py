@@ -34,6 +34,7 @@ INSTALLED_APPS = (
 	# global templatetags
 	'cloudly',
 	# views
+	'amazon',
 	'dashboard',
 	'invoices',
 	'support',
