@@ -97,7 +97,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
-MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, '..', 'media'))
+MEDIA_ROOT = 'media'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 

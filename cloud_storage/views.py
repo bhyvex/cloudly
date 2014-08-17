@@ -27,6 +27,10 @@ from userprofile.models import Profile as userprofile
 from amazon import s3_funcs
 from amazon import s3_funcs_shortcuts
 
+from django import forms
+from forms import UploadFileForm
+from cloud_storage.models import UploadedFiles
+
 def cloud_storage(request):
 
 	print '-- cloud_storage:'
@@ -40,4 +44,10 @@ def cloud_storage(request):
 
 	print request.user
 
+	if request.method == 'POST':
+		form = UploadFileForm(request.POST, request.FILES)
+		if form.is_valid():
+			new_file = UploadedFiles(file = request.FILES['file'])
+			new_file.save()
+  
 	return render_to_response('cloud_storage.html', {'user':user,'profile':profile,}, context_instance=RequestContext(request))
