@@ -52,6 +52,8 @@ def cloud_storage(request):
 			new_file.save()
 			Uploaded_Files.objects.create(file=new_file,user=request.user)
   
-	uploaded_files = Uploaded_Files.objects.all().order_by('-pk')
+	uploaded_files = Uploaded_Files.objects.filter(user=request.user).order_by('-pk')
+
+	# XXX batch sync files to the S3.....
 
 	return render_to_response('cloud_storage.html', {'uploaded_files':uploaded_files,'user':user,'profile':profile,}, context_instance=RequestContext(request))
