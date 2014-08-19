@@ -53,7 +53,7 @@ def register(request):
 
 	if request.POST:
 
-		username = request.POST[u'username']
+		name = request.POST[u'username']
 		email = request.POST[u'email']
 		username = email
 
@@ -93,7 +93,7 @@ def register(request):
 
 					username = _remove_accents(username)
 
-					userprofile.objects.get_or_create(user=user,secret=secret,name=username,language="EN")
+					userprofile.objects.get_or_create(user=user,secret=secret,name=name,language="EN")
 					login(request, user)
 
 					request.session['language'] = "us"
