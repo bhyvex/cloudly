@@ -1,9 +1,12 @@
+{% extends "base.html" %}
+
 {% load cloud_extras %}
-
-{% include "header.html" %}
-
-{% include "sidebar_menu.html" %}
 						
+{% block title %}Cloud306 News{% endblock %}
+
+{% block page_content %}
+
+
 			<!-- start: Content -->
 			<div class="col-md-10 col-sm-11 main ">
 			
@@ -55,5 +58,5 @@
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 
-{% include "footer.html" %}
+{% endblock page_content %}
 
