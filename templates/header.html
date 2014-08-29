@@ -1,21 +1,19 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
     	<meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <meta name="description" content="Cloud Management">
-		<meta name="author" content="Jan Paricka">
-		<meta name="keyword" content="cloud,cloud management,aws">
+	    <meta name="description" content="CleverAdmin - Bootstrap Admin Template">
+		<meta name="author" content="Łukasz Holeczek">
+		<meta name="keyword" content="CleverAdmin, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 	    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/admin-assets/ico/apple-touch-icon-144-precomposed.png">
 		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/admin-assets/ico/apple-touch-icon-114-precomposed.png">
 		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/admin-assets/ico/apple-touch-icon-72-precomposed.png">
 		<link rel="apple-touch-icon-precomposed" sizes="57x57" href="/static/admin-assets/ico/apple-touch-icon-57-precomposed.png">
 		<link rel="shortcut icon" href="/static/admin-assets/ico/favicon.png">
 
-	    <title>Cloudly</title>
+	    <title>cleverAdmin - Bootstrap Admin Template</title>
 
 	    <!-- Bootstrap core CSS -->
 	    <link href="/static/admin-assets/css/bootstrap.min.css" rel="stylesheet">
@@ -23,7 +21,10 @@
 		<!-- page css files -->
 		<link href="/static/admin-assets/css/font-awesome.min.css" rel="stylesheet">
 		<link href="/static/admin-assets/css/jquery-ui.min.css" rel="stylesheet">
-		<link href="/static/admin-assets/css/social.css" rel="stylesheet">		
+		<link href="/static/admin-assets/css/fullcalendar.css" rel="stylesheet">
+		<link href="/static/admin-assets/css/morris.css" rel="stylesheet">
+		<link href="/static/admin-assets/css/jquery-jvectormap-1.2.2.css" rel="stylesheet">
+		<link href="/static/admin-assets/css/climacons-font.css" rel="stylesheet">
 
 	    <!-- Custom styles for this template -->
 	    <link href="/static/admin-assets/css/style.min.css" rel="stylesheet">
@@ -47,14 +48,14 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="icons-social.html#"><img src="/static/admin-assets/img/logo.png"> cleverAdmin</a>
+				<a class="navbar-brand" href="index.html#"><img src="/static/admin-assets/img/logo.png"> cleverAdmin</a>
 	        </div>
 			<ul class="nav navbar-nav navbar-actions navbar-left">
-				<li><a href="icons-social.html#" id="main-menu-toggle"><i class="fa fa-bars"></i></a></li>
+				<li><a href="index.html#" id="main-menu-toggle"><i class="fa fa-bars"></i></a></li>
 			</ul>
 	        <ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
-	        		<a href="icons-social.html#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-comments-o"></i><span class="badge">4</span></a>
+	        		<a href="index.html#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-comments-o"></i><span class="badge">4</span></a>
 	        		<ul class="dropdown-menu">
 						<li class="dropdown-menu-header">
 							<strong>Messages</strong>
@@ -65,79 +66,79 @@
 							</div>
 						</li>
 						<li class="avatar">
-							<a href="icons-social.html#">
-								<img src="http://musingsofaminx.com/wp-content/uploads/2013/10/IMG-1712b-vagina-cartoon.jpg">
+							<a href="index.html#">
+								<img src="/static/admin-assets/img/avatar.jpg">
 								<div>New message</div>
 								<small>1 minute ago</small>
 								<span class="label label-info">NEW</span>
 							</a>
 						</li>
 						<li class="avatar">
-							<a href="icons-social.html#">
-								<img src="http://musingsofaminx.com/wp-content/uploads/2013/10/IMG-1712b-vagina-cartoon.jpg">
+							<a href="index.html#">
+								<img src="/static/admin-assets/img/avatar.jpg">
 								<div>New message</div>
 								<small>1 minute ago</small>
 								<span class="label label-info">NEW</span>
 							</a>
 						</li>
 						<li class="avatar">
-							<a href="icons-social.html#">
-								<img src="http://musingsofaminx.com/wp-content/uploads/2013/10/IMG-1712b-vagina-cartoon.jpg">
+							<a href="index.html#">
+								<img src="/static/admin-assets/img/avatar.jpg">
 								<div>New message</div>
 								<small>1 minute ago</small>
 							</a>
 						</li>
 						<li class="avatar">
-							<a href="icons-social.html#">
-								<img src="http://musingsofaminx.com/wp-content/uploads/2013/10/IMG-1712b-vagina-cartoon.jpg">
+							<a href="index.html#">
+								<img src="/static/admin-assets/img/avatar.jpg">
 								<div>New message</div>
 								<small>1 minute ago</small>
 							</a>
 						</li>
 						<li class="avatar">
-							<a href="icons-social.html#">
-								<img src="http://musingsofaminx.com/wp-content/uploads/2013/10/IMG-1712b-vagina-cartoon.jpg">
+							<a href="index.html#">
+								<img src="/static/admin-assets/img/avatar.jpg">
 								<div>New message</div>
 								<small>1 minute ago</small>
 							</a>
 						</li>
 						<li class="avatar">
-							<a href="icons-social.html#">
-								<img src="http://musingsofaminx.com/wp-content/uploads/2013/10/IMG-1712b-vagina-cartoon.jpg">
+							<a href="index.html#">
+								<img src="/static/admin-assets/img/avatar.jpg">
 								<div>New message</div>
 								<small>1 minute ago</small>
 							</a>
 						</li>
 						<li class="dropdown-menu-footer text-center">
-							<a href="icons-social.html#">View all messages</a>
+							<a href="index.html#">View all messages</a>
 						</li>	
 	        		</ul>
 	      		</li>
-				<li><a href="icons-social.html#"><i class="fa fa-cog"></i></a></li>
-				<li><a href="icons-social.html#"><i class="fa fa-power-off"></i></a></li>
+				<li><a href="index.html#"><i class="fa fa-cog"></i></a></li>
+				<li><a href="index.html#"><i class="fa fa-power-off"></i></a></li>
 				<li class="dropdown">
-	        		<a href="icons-social.html#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="http://musingsofaminx.com/wp-content/uploads/2013/10/IMG-1712b-vagina-cartoon.jpg"><span class="badge">9</span></a>
+	        		<a href="index.html#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="/static/admin-assets/img/avatar.jpg"><span class="badge">9</span></a>
 	        		<ul class="dropdown-menu">
 						<li class="dropdown-menu-header text-center">
 							<strong>Account</strong>
 						</li>
-						<li><a href="icons-social.html#"><i class="fa fa-bell-o"></i> Updates <span class="label label-info">42</span></a></li>
-						<li><a href="icons-social.html#"><i class="fa fa-envelope-o"></i> Messages <span class="label label-success">42</span></a></li>
-						<li><a href="icons-social.html#"><i class="fa fa-tasks"></i> Tasks <span class="label label-danger">42</span></a></li>
-						<li><a href="icons-social.html#"><i class="fa fa-comments"></i> Comments <span class="label label-warning">42</span></a></li>
+						<li><a href="index.html#"><i class="fa fa-bell-o"></i> Updates <span class="label label-info">42</span></a></li>
+						<li><a href="index.html#"><i class="fa fa-envelope-o"></i> Messages <span class="label label-success">42</span></a></li>
+						<li><a href="index.html#"><i class="fa fa-tasks"></i> Tasks <span class="label label-danger">42</span></a></li>
+						<li><a href="index.html#"><i class="fa fa-comments"></i> Comments <span class="label label-warning">42</span></a></li>
 						<li class="dropdown-menu-header text-center">
 							<strong>Settings</strong>
 						</li>
-						<li><a href="icons-social.html#"><i class="fa fa-user"></i> Profile</a></li>
-						<li><a href="icons-social.html#"><i class="fa fa-wrench"></i> Settings</a></li>
-						<li><a href="icons-social.html#"><i class="fa fa-usd"></i> Payments <span class="label label-default">42</span></a></li>
-						<li><a href="icons-social.html#"><i class="fa fa-file"></i> Projects <span class="label label-primary">42</span></a></li>
+						<li><a href="index.html#"><i class="fa fa-user"></i> Profile</a></li>
+						<li><a href="index.html#"><i class="fa fa-wrench"></i> Settings</a></li>
+						<li><a href="index.html#"><i class="fa fa-usd"></i> Payments <span class="label label-default">42</span></a></li>
+						<li><a href="index.html#"><i class="fa fa-file"></i> Projects <span class="label label-primary">42</span></a></li>
 						<li class="divider"></li>
-						<li><a href="icons-social.html#"><i class="fa fa-shield"></i> Lock Profile</a></li>
-						<li><a href="icons-social.html#"><i class="fa fa-lock"></i> Logout</a></li>	
+						<li><a href="index.html#"><i class="fa fa-shield"></i> Lock Profile</a></li>
+						<li><a href="index.html#"><i class="fa fa-lock"></i> Logout</a></li>	
 	        		</ul>
 	      		</li>
-				<li><a href="icons-social.html#"><i class="fa fa-bars"></i></a></li>
+				<li><a href="index.html#"><i class="fa fa-bars"></i></a></li>
 			</ul>
 			<form class="navbar-form navbar-left">
 				<i class="fa fa-search"></i>
