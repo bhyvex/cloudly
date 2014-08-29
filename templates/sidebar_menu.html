@@ -10,22 +10,15 @@
 			<div class="nav-sidebar title"><span>Cloud</span></div>
 			
 			<ul class="nav nav-sidebar">
-				<li ><a href="/" class="active"><i class="fa fa-cloud"></i><span class="hidden-sm text"> 
+				<li ><a href="/"><i class="fa fa-cloud"></i><span class="hidden-sm text"> 
 					Virtual Servers</span></a></li>
-			</ul>
-
-			
-			<ul class="nav nav-sidebar">
-				
-				<li><a href="/cloud/storage/"><i class="fa fa-folder-open-o"></i><span class="hidden-sm text"> Cloud Storage</span> <span class="chevron closed"></span></a></li>
+				<li><a href="/cloud/storage/" {% if active_tab = "cloud_storage" %}class="active">{% endif %}<i class="fa fa-folder-open-o"></i><span class="hidden-sm text"> Cloud Storage</span> <span class="chevron closed"></span></a></li>
 				<li><a href="/cloud/backups/"><i class="fa fa-database"></i><span class="hidden-sm text"> Cloud Backups</span> <span class="chevron closed"></span></a></li>
 				<li><a href="/cloud/software/"><i class="fa fa-archive"></i><span class="hidden-sm text"> Cloud Software</span> <span class="chevron closed"></span></a></li>
 				
 			</ul>
-				
 			
 			<div class="nav-sidebar title"><span>Private Cloud</span></div>
-			
 			<ul class="nav nav-sidebar">
 				
 				<li><a href="/private/storage/"><i class="fa fa-folder-open"></i><span class="hidden-sm text"> Private Storage</span> <span class="chevron closed"></span></a></li>
