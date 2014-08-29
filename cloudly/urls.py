@@ -35,6 +35,9 @@ urlpatterns = patterns('',
 	url(r'^cloud/software/tag/(?P<tag_slug>[\w\-\.]+)/$', 'cloud_software.views.cloud_software_view_tag', name='cloud_software_view_tag'),
 	#url(r'^cloud/backups/$', 'cloud_backups.views.cloud_backups', name='cloud_backups'),
 	url(r'^cloud/storage/$', 'cloud_storage.views.cloud_storage', name='cloud_storage'),
+
+	# devel
+	url(r'^devel/$', 'devel.views.devel', name='devel'),	
 	
 )
 
