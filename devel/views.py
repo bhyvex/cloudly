@@ -36,5 +36,8 @@ def devel(request):
 		return HttpResponseRedirect("/")
 
 	print request.user
-	return render_to_response('devel.html', locals(), context_instance=RequestContext(request))
+	
+	active_tab = "devel"
+	
+	return render_to_response('devel.html', {'active_tab':active_tab,}, context_instance=RequestContext(request))
 

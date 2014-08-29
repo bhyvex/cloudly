@@ -544,7 +544,9 @@ blockquote.pull-right {
   font-size: 18px;
 }
 .sidebar ul.nav.nav-sidebar li a.active,
-.sidebar ul.nav.nav-sidebar li a:hover {
+.sidebar ul.nav.nav-sidebar li a:hover,
+.sidebar ul.nav.nav-sidebar li.active a
+ {
   background: #2c3334;
   color: white;
 }
@@ -598,21 +600,21 @@ blockquote.pull-right {
 .sidebar.minified ul.nav.nav-sidebar > li > ul {
   display: none !important;
 }
-.sidebar.minified ul.nav.nav-sidebar > li:hover {
+.sidebar.minified ul.nav.nav-sidebar > li:hover, .sidebar.minified ul.nav.nav-sidebar > li.active {
   background: #2c3334;
 }
-.sidebar.minified ul.nav.nav-sidebar > li:hover > a {
+.sidebar.minified ul.nav.nav-sidebar > li:hover > a, .sidebar.minified ul.nav.nav-sidebar > li.active > a {
   position: relative;
   cursor: pointer;
 }
-.sidebar.minified ul.nav.nav-sidebar > li:hover > a .chevron {
+.sidebar.minified ul.nav.nav-sidebar > li:hover > a .chevron, .sidebar.minified ul.nav.nav-sidebar > li.active > a .chevron {
   display: inline-block;
 }
-.sidebar.minified ul.nav.nav-sidebar > li:hover > a .text {
+.sidebar.minified ul.nav.nav-sidebar > li:hover > a .text, .sidebar.minified ul.nav.nav-sidebar > li.active > a .text {
   width: 200px;
   display: block !important;
 }
-.sidebar.minified ul.nav.nav-sidebar > li:hover > ul {
+.sidebar.minified ul.nav.nav-sidebar > li:hover > ul, .sidebar.minified ul.nav.nav-sidebar > li.active > ul {
   display: block !important;
   position: absolute;
   top: 40px;
@@ -624,10 +626,10 @@ blockquote.pull-right {
   padding: 0;
   margin: 0;
 }
-.sidebar.minified ul.nav.nav-sidebar > li:hover > ul > li {
+.sidebar.minified ul.nav.nav-sidebar > li:hover > ul > li, .sidebar.minified ul.nav.nav-sidebar > li.active > ul > li {
   padding: 0;
 }
-.sidebar.minified ul.nav.nav-sidebar > li:hover > ul > li > a {
+.sidebar.minified ul.nav.nav-sidebar > li:hover > ul > li > a, .sidebar.minified ul.nav.nav-sidebar > li.active > ul > li > a {
   display: block;
   width: 100%;
   line-height: 40px;
