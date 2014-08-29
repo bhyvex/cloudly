@@ -1,150 +1,7 @@
+{% load cloud_extras %}
 
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-    	<meta charset="utf-8">
-	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <meta name="description" content="Cloud Management">
-		<meta name="author" content="Jan Paricka">
-		<meta name="keyword" content="cloud,cloud management,aws">
-	    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/admin-assets/ico/apple-touch-icon-144-precomposed.png">
-		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/admin-assets/ico/apple-touch-icon-114-precomposed.png">
-		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/admin-assets/ico/apple-touch-icon-72-precomposed.png">
-		<link rel="apple-touch-icon-precomposed" sizes="57x57" href="/static/admin-assets/ico/apple-touch-icon-57-precomposed.png">
-		<link rel="shortcut icon" href="/static/admin-assets/ico/favicon.png">
+{% include "header.html" %}
 
-	    <title>Cloudly</title>
-
-	    <!-- Bootstrap core CSS -->
-	    <link href="/static/admin-assets/css/bootstrap.min.css" rel="stylesheet">
-		
-		<!-- page css files -->
-		<link href="/static/admin-assets/css/font-awesome.min.css" rel="stylesheet">
-		<link href="/static/admin-assets/css/jquery-ui.min.css" rel="stylesheet">
-		<link href="/static/admin-assets/css/social.css" rel="stylesheet">		
-
-	    <!-- Custom styles for this template -->
-	    <link href="/static/admin-assets/css/style.min.css" rel="stylesheet">
-
-	    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	    <!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-	    <![endif]-->
-	</head>
-</head>
-
-<body>
-		<!-- start: Header -->
-	<div class="navbar" role="navigation">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar">a</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="icons-social.html#"><img src="/static/admin-assets/img/logo.png"> cleverAdmin</a>
-	        </div>
-			<ul class="nav navbar-nav navbar-actions navbar-left">
-				<li><a href="icons-social.html#" id="main-menu-toggle"><i class="fa fa-bars"></i></a></li>
-			</ul>
-	        <ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-	        		<a href="icons-social.html#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-comments-o"></i><span class="badge">4</span></a>
-	        		<ul class="dropdown-menu">
-						<li class="dropdown-menu-header">
-							<strong>Messages</strong>
-							<div class="progress thin">
-							  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-							    <span class="sr-only">40% Complete (success)</span>
-							  </div>
-							</div>
-						</li>
-						<li class="avatar">
-							<a href="icons-social.html#">
-								<img src="http://musingsofaminx.com/wp-content/uploads/2013/10/IMG-1712b-vagina-cartoon.jpg">
-								<div>New message</div>
-								<small>1 minute ago</small>
-								<span class="label label-info">NEW</span>
-							</a>
-						</li>
-						<li class="avatar">
-							<a href="icons-social.html#">
-								<img src="http://musingsofaminx.com/wp-content/uploads/2013/10/IMG-1712b-vagina-cartoon.jpg">
-								<div>New message</div>
-								<small>1 minute ago</small>
-								<span class="label label-info">NEW</span>
-							</a>
-						</li>
-						<li class="avatar">
-							<a href="icons-social.html#">
-								<img src="http://musingsofaminx.com/wp-content/uploads/2013/10/IMG-1712b-vagina-cartoon.jpg">
-								<div>New message</div>
-								<small>1 minute ago</small>
-							</a>
-						</li>
-						<li class="avatar">
-							<a href="icons-social.html#">
-								<img src="http://musingsofaminx.com/wp-content/uploads/2013/10/IMG-1712b-vagina-cartoon.jpg">
-								<div>New message</div>
-								<small>1 minute ago</small>
-							</a>
-						</li>
-						<li class="avatar">
-							<a href="icons-social.html#">
-								<img src="http://musingsofaminx.com/wp-content/uploads/2013/10/IMG-1712b-vagina-cartoon.jpg">
-								<div>New message</div>
-								<small>1 minute ago</small>
-							</a>
-						</li>
-						<li class="avatar">
-							<a href="icons-social.html#">
-								<img src="http://musingsofaminx.com/wp-content/uploads/2013/10/IMG-1712b-vagina-cartoon.jpg">
-								<div>New message</div>
-								<small>1 minute ago</small>
-							</a>
-						</li>
-						<li class="dropdown-menu-footer text-center">
-							<a href="icons-social.html#">View all messages</a>
-						</li>	
-	        		</ul>
-	      		</li>
-				<li><a href="icons-social.html#"><i class="fa fa-cog"></i></a></li>
-				<li><a href="icons-social.html#"><i class="fa fa-power-off"></i></a></li>
-				<li class="dropdown">
-	        		<a href="icons-social.html#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="http://musingsofaminx.com/wp-content/uploads/2013/10/IMG-1712b-vagina-cartoon.jpg"><span class="badge">9</span></a>
-	        		<ul class="dropdown-menu">
-						<li class="dropdown-menu-header text-center">
-							<strong>Account</strong>
-						</li>
-						<li><a href="icons-social.html#"><i class="fa fa-bell-o"></i> Updates <span class="label label-info">42</span></a></li>
-						<li><a href="icons-social.html#"><i class="fa fa-envelope-o"></i> Messages <span class="label label-success">42</span></a></li>
-						<li><a href="icons-social.html#"><i class="fa fa-tasks"></i> Tasks <span class="label label-danger">42</span></a></li>
-						<li><a href="icons-social.html#"><i class="fa fa-comments"></i> Comments <span class="label label-warning">42</span></a></li>
-						<li class="dropdown-menu-header text-center">
-							<strong>Settings</strong>
-						</li>
-						<li><a href="icons-social.html#"><i class="fa fa-user"></i> Profile</a></li>
-						<li><a href="icons-social.html#"><i class="fa fa-wrench"></i> Settings</a></li>
-						<li><a href="icons-social.html#"><i class="fa fa-usd"></i> Payments <span class="label label-default">42</span></a></li>
-						<li><a href="icons-social.html#"><i class="fa fa-file"></i> Projects <span class="label label-primary">42</span></a></li>
-						<li class="divider"></li>
-						<li><a href="icons-social.html#"><i class="fa fa-shield"></i> Lock Profile</a></li>
-						<li><a href="icons-social.html#"><i class="fa fa-lock"></i> Logout</a></li>	
-	        		</ul>
-	      		</li>
-				<li><a href="icons-social.html#"><i class="fa fa-bars"></i></a></li>
-			</ul>
-			<form class="navbar-form navbar-left">
-				<i class="fa fa-search"></i>
-				<input type="text" class="form-control" placeholder="Search...">
-			</form>
-		</div>
-	</div>
-	<!-- end: Header -->
 	
 		<div class="container-fluid content">
 		<div class="row">
@@ -167,9 +24,9 @@
 					
 					<ul class="nav nav-sidebar">
 						
-						<li><a href="/cloud/storage/"><i class="fa fa-folder"></i><span class="hidden-sm text"> Cloud Storage</span> <span class="chevron closed"></span></a></li>
+						<li><a href="/cloud/storage/"><i class="fa fa-folder-open-o"></i><span class="hidden-sm text"> Cloud Storage</span> <span class="chevron closed"></span></a></li>
 						<li><a href="/cloud/backups/"><i class="fa fa-database"></i><span class="hidden-sm text"> Cloud Backups</span> <span class="chevron closed"></span></a></li>
-						<li><a href="/cloud/software/"><i class="fa fa-bar-chart-o"></i><span class="hidden-sm text"> Cloud Software</span> <span class="chevron closed"></span></a></li>
+						<li><a href="/cloud/software/"><i class="fa fa-archive"></i><span class="hidden-sm text"> Cloud Software</span> <span class="chevron closed"></span></a></li>
 						
 					</ul>
 						
@@ -178,9 +35,9 @@
 					
 					<ul class="nav nav-sidebar">
 						
-						<li><a href="/private/storage/"><i class="fa fa-cube"></i><span class="hidden-sm text"> Private Storage</span> <span class="chevron closed"></span></a></li>
+						<li><a href="/private/storage/"><i class="fa fa-folder-open"></i><span class="hidden-sm text"> Private Storage</span> <span class="chevron closed"></span></a></li>
 
-						<li><a href="/private/servers/"><i class="fa fa-gamepad"></i><span class="hidden-sm text"> Private Servers</span> <span class="chevron closed"></span></a></li>
+						<li><a href="/private/servers/"><i class="fa fa-gears"></i><span class="hidden-sm text"> Private Servers</span> <span class="chevron closed"></span></a></li>
 
 
 					</ul>
@@ -192,11 +49,11 @@
 					
 					<ul class="nav nav-sidebar">
 						
-						<li><a href="/help/"><i class="fa fa-folder-o"></i><span class="hidden-sm text"> Help</span> <span class="chevron closed"></span></a></li>
+						<li><a href="/help/"><i class="fa fa-slideshare"></i><span class="hidden-sm text"> Help</span> <span class="chevron closed"></span></a></li>
 
 						<li><a href="/security/"><i class="fa fa-key"></i><span class="hidden-sm text"> Security</span> <span class="chevron closed"></span></a></li>
 
-						<li><a href="/support/"><i class="fa fa-slideshare"></i><span class="hidden-sm text"> Paid Support</span> <span class="chevron closed"></span></a></li>
+						<li><a href="/support/"><i class="fa fa-umbrella"></i><span class="hidden-sm text"> Paid Support</span> <span class="chevron closed"></span></a></li>
 
 
 					</ul>
@@ -206,9 +63,9 @@
 					
 					<ul class="nav nav-sidebar">
 						
-						<li><a href="/account/"><i class="fa fa-key"></i><span class="hidden-sm text"> Account Settings</span> <span class="chevron closed"></span></a></li>
+						<li><a href="/account/"><i class="fa fa-user"></i><span class="hidden-sm text"> Account Settings</span> <span class="chevron closed"></span></a></li>
 
-						<li><a href="/invoices/"><i class="fa fa-credit-card"></i><span class="hidden-sm text"> Invoices</span> <span class="chevron closed"></span></a></li>
+						<li><a href="/invoices/"><i class="fa fa-bank"></i><span class="hidden-sm text"> Invoices</span> <span class="chevron closed"></span></a></li>
 						<li><a href="/logout/"><i class="fa fa-power-off"></i><span class="hidden-sm text"> Logout</span> <span class="chevron closed"></span></a></li>
 						
 
@@ -217,7 +74,7 @@
 
 
 				</div>
-									<a href="icons-social.html#" id="main-menu-min" class="full visible-md visible-lg"><i class="fa fa-angle-double-left"></i></a>
+									<a href="#" id="main-menu-min" class="full visible-md visible-lg"><i class="fa fa-angle-double-left"></i></a>
 							</div>
 			<!-- end: Main Menu -->
 						
