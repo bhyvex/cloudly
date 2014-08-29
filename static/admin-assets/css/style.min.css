@@ -544,7 +544,8 @@ blockquote.pull-right {
   font-size: 18px;
 }
 .sidebar ul.nav.nav-sidebar li a.active,
-.sidebar ul.nav.nav-sidebar li a:hover {
+.sidebar ul.nav.nav-sidebar li a:hover
+{
   background: #2c3334;
   color: white;
 }
