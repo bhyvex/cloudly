@@ -2,8 +2,10 @@
 
 {% block content %}
 
-{% block page_content %}{% endblock %}
+<title>{% block title %}{% endblock title %}</title>
 
+{% block page_content %}{% endblock %}
 {% endblock content %}
+
 
 {% include "footer.html" %}
