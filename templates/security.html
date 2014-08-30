@@ -25,10 +25,130 @@
 				</div>
 				<div class="panel-body">
 					  <div class="page-header">
-						  <h1>Security <small>is a major major thing.</small></h1>
+						  <h1>Security <small>Security is a major major thing.</small></h1>
 					  </div>     
 					  <div class="row">            
 						<div class="col-xs-12">
+							
+							
+							
+							
+							                        <p class="lead">
+															Security is why you've chosen a private cloud solution in the first place.
+															<br/>
+															<h3>Automatic Security Updates</h3>
+
+															<p><span>We install the latest security updates over the network for you:</span></p>
+
+															<ol>
+																<li>The first time you boot a new appliance deployment (you can choose to skip this)</li>
+																<li>Every night, around 4 AM.</li>
+															</ol>
+
+															<p>Usually automatically updating software is considered to be a risky practice since updates may occasionally break existing functionality (e.g., changes to file formats, software interfaces, or expected behavior).</p>
+
+															<p>Debian mitigate this risk by <a href="http://www.debian.org/security/faq#version" rel="nofollow" target="_blank">carefully backporting security fixes</a> so that security updates change as little as possible, minimizing the likelyhood that things will break.</p>
+
+															<p>In practice we've found it is very rare for a security update to break something, so we believe it is beneficial to&nbsp; configure software appliances to auto-update security fixes by default. Advanced users can always disable this mechanism and apply security fixes manually if they want.</p>
+
+															<h3>Installing security updates</h3>
+															<p>In a root shell, run the following command:</p>
+
+															<pre>install-security-updates</pre>
+															<h5>Caution: This isn't 100% full-proof. Make sure we can reach you.</h5>
+															<p>Unfortunately, we can't fix everything automatically so it's still very important that we be able to contact you when necessary.<br>
+															<br>
+															Otherwise you may not know that a problem requires your attention until it's too late. Sure, thanks to automatic security updates we <em>usually</em> don't need to bother you regarding security issues, but there are occasional exceptions...</p>
+
+															<ol>
+																<li><strong>Not everything can be updated automatically</strong>: automatic security updates only work for supported software that is maintained using the package management system. Not all software is installed through the package management system. Not all software installed through the package management is supported.&nbsp; See the limitations section below for details.<br>
+																&nbsp;</li>
+																<li><strong>Some bugs can break automatic updates</strong>: even though security updates change as little as possible and are exceptionally well tested, mistakes can still happen. Usually these can be caught and fixed with another automatic update, but manual intervention is still required for bugs that break the auto-updates mechanism or one of its dependencies.</li>
+															</ol>
+
+															<h4>How it works</h4>
+															<p>Users who wish to tweak the auto-update mechanism may find it helpful to understand how it is set up.</p>
+
+															<p>1) A cron job is configured to run <em>cron-apt</em> daily.<em> </em></p>
+
+														<pre>
+							$ cat /etc/cron.d/cron-apt
+							# Regular cron jobs for the cron-apt package
+							# Every night at 4 o'clock.
+							0 4     * * *   root    test -x /usr/sbin/cron-apt &amp;&amp; /usr/sbin/cron-apt
+														</pre>
+
+															<p>2)<em> cron-apt</em> is configured to only update from the security sources list.</p>
+
+														<pre>
+							$ cat /etc/apt/sources.list.d/security.sources.list
+							deb <a href="http://archive.turnkeylinux.org/ubuntu" title="http://archive.turnkeylinux.org/ubuntu" rel="nofollow">http://archive.turnkeylinux.org/ubuntu</a> lucid-security main
+							deb <a href="http://archive.turnkeylinux.org/ubuntu" title="http://archive.turnkeylinux.org/ubuntu" rel="nofollow">http://archive.turnkeylinux.org/ubuntu</a> lucid-security universe
+							deb <a href="http://archive.ubuntu.com/ubuntu" title="http://archive.ubuntu.com/ubuntu" rel="nofollow">http://archive.ubuntu.com/ubuntu</a> lucid-security main
+							deb <a href="http://archive.ubuntu.com/ubuntu" title="http://archive.ubuntu.com/ubuntu" rel="nofollow">http://archive.ubuntu.com/ubuntu</a> lucid-security universe
+														</pre>
+
+															<p>3)<em> cron-apt</em> is configured to install the updates automatically:</p>
+
+														<pre>
+							$ cat /etc/cron-apt/action.d/5-install
+							autoclean -q -y
+							dist-upgrade -q -y -o APT::Get::Show-Upgraded=true \
+							-o Dir::Etc::sourcelist=/etc/apt/sources.list.d/security.sources.list \
+							-o Dir::Etc::sourceparts=nonexistent \
+							-o DPkg::Options::=--force-confdef \
+							-o DPkg::Options::=--force-confold
+														</pre>
+
+															<p>4) <em>cron-apt</em> logs to <em>/var/log/cron-apt/log</em></p>
+
+															<h4>Installing security updates on-demand</h4>
+
+															<p>You can invoke the cron-apt script described above from the command line at any time (e.g., you don't feel like waiting for the nightly security updates cron job):</p>
+
+														<pre>/usr/sbin/cron-apt</pre>
+
+															<h4>Limitations</h4>
+
+															<p>TurnKey Linux 11 is based on Ubuntu 10.04 (Lucid), a Long Term Support release for which Canonical (Ubuntu's sponsor) has guaranteed free security updates until April 2015.</p>
+
+															<p>This guarantee is limited to packages in the "<em>main</em>" component of the Ubuntu package repositories, comprising roughly 7000 of the most important packages and provide good coverage for the core operating system.</p>
+
+															<p>However, Canonical's Long Term Support guarantee does not apply to:</p>
+
+															<ul>
+																<li><strong>Non-main packages</strong>: packages in non-main components of the Ubuntu repositories (e.g., "<em>universe</em>" and "<em>multiverse</em>") are not guaranteed by Canonical, though updates to non-main packages may still be provided by the Ubuntu community.<br>
+																<br>
+																When required and when there are no better alternatives, a TurnKey appliance may contain non-main packages. Usually this is for software with low security sensitivity.<br>
+																&nbsp;</li>
+																<li><strong>TurnKey Linux custom packages</strong>: TurnKey contains a few custom packages which are updated directly by the Core developers from the project's cryptographically signed <a href="http://archive.turnkeylinux.org/" rel="nofollow" target="_blank">package repository</a>.<br>
+																&nbsp;</li>
+																<li><strong>Software installed from source code</strong>: unfortunately, many of the most popular open source web applications (e.g., Joomla) are not packaged by Ubuntu or Debian. This means that they have to be installed and maintained by hand directly from upstream source code and no automatic security updates can be provided through the package management system.<br>
+																<br>
+																Fortunately, most web applications run with reduced privileges and are developed in high-level programming languages that are less susceptible to many of the most serious low-level security vulnerabilities. Also in the appliance model, each application is confined to its own virtual machine. This limits the potential damage somewhat but vigilance is still recommended, especially for high-risk usage scenarios.<br>
+																<br>
+																When a TurnKey appliance includes software installed from upstream source code, this is usually the first thing documented on the appliance page.</li>
+															</ul>
+
+															<p>You can use the "apt-cache policy" command to determine a package's origin:</p>
+
+														<pre>
+							$ apt-cache policy openssh-server
+							openssh-server:
+							Installed: 1:5.3p1-3ubuntu4
+							Candidate: 1:5.3p1-3ubuntu4
+							Version table:
+							*** 1:5.3p1-3ubuntu4
+							650 <a href="http://archive.ubuntu.com" title="http://archive.ubuntu.com" rel="nofollow">http://archive.ubuntu.com</a> lucid-security/main Packages
+														</pre>
+
+															<p>So in the case of openssh-server, we have the most recent version installed and are receiving updates automatically from the lucid-security repository.</p>
+							
+							
+							
+							
+							
+							
 						</div>
 					  </div>	 
 				 </div>
