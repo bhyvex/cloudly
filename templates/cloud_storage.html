@@ -105,8 +105,9 @@
                     <th>Filename</th>
                     <th>Share</th>
 					<th>Password</th>
-					<th>CDN</th>
+					<th>S3</th>
 					<th>Status</th>
+					<th>Action</th>
                   </tr>
                 </thead>   
                 <tbody>
@@ -114,9 +115,10 @@
                 <tr>
 				  <td>{{forloop.counter}}</td>
 				  <td>{{forloop.counter}}</td>
-                  <td>Ajith Hristijan</td>
-                  <td>2012/03/01</td>
-                  <td>Member</td>
+				  <td>{{forloop.counter}}</td>
+				  <td>{{forloop.counter}}</td>
+				  <td>{{forloop.counter}}</td>
+				  <td>&#10004;</td>
                   <td>
                     <span class="label label-warning">Pending</span>
                   </td>
@@ -141,7 +143,6 @@
 	<div class="row">
 		<div class="panel panel-default">
 		<strong><font color="red">Debug</font></strong> {{uploaded_files}}								
-		<strong><font color="red">XXX</font></strong> Link your S3 here, ze "Enable S3 button"....								
 		</div>
 	</div>
 
