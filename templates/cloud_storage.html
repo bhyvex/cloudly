@@ -126,8 +126,8 @@
 					  <td>{{f.file.file.size|filesizeformat}}</td>
 					
 					  <td>
-						<a href="#" target="_blank" class="fa fa-cloud-download"><i></i></a>
-						{{f.file.file|clear_filename}}
+						<a href="/media/{{f.file.file}}" target="_blank" class="fa fa-cloud-download"><i></i></a>
+						<a href="#">{{f.file.file|clear_filename}}</a>
 						<small><a href="#" id="name" data-type="text" data-pk="1" data-original-title="Name this file" class="editable editable-click">alias</a></small>
 					  </td>
 					
