@@ -15,6 +15,7 @@ urlpatterns = patterns('',
 	url(r'^logout/$', 'userprofile.views.user_logout', name='logout'),
 	url(r'^account/settings/$', 'userprofile.views.account_settings', name='account_settings'),
 	url(r'^lock/$', 'userprofile.views.lock', name='lock'),
+	url(r'^goodbye/$', 'userprofile.views.goodbye', name='goodbye'),
 
 	# support
 	url(r'^support/$', 'support.views.support', name='support'),

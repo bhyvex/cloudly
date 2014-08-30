@@ -45,6 +45,12 @@ def user_logout(request):
 	return HttpResponseRedirect("/")
 
 
+
+def goodbye(request):
+
+	return render_to_response('goodbye.html', {}, context_instance=RequestContext(request))
+
+
 def register(request):
 
 	print '-- registration:'
