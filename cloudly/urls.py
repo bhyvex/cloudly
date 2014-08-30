@@ -28,6 +28,8 @@ urlpatterns = patterns('',
 	url(r'^private/servers/$', 'private_servers.views.servers', name='servers'),
 	url(r'^private/server/(?P<uuid>[\w\-\.]+)/$', 'private_servers.views.server_detail', name='server_detail'),
 	url(r'^server/add/new/$', 'private_servers.views.server_add', name='server_add'),	
+	# private storage
+	url(r'^private/storage/$', 'private_storage.views.private_storage', name='private_storage'),
 	
 	# cloud stuff
 	url(r'^cloud/software/$', 'cloud_software.views.cloud_software', name='cloud_software'),
