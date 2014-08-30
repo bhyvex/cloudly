@@ -42,7 +42,7 @@ def user_logout(request):
 		
 	print request.user
 	
-	return HttpResponseRedirect("/")
+	return HttpResponseRedirect("/goodbye/")
 
 
 
