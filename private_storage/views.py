@@ -27,4 +27,11 @@ client = MongoClient('localhost', 27017)
 mongo = client.cloudly
 
 def private_storage(request):
-	return HttpResponse("working on this currently")
+
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	print '-- private storage:'
+	print request.user
+
+	return render_to_response('private_storage.html', locals(), context_instance=RequestContext(request))
