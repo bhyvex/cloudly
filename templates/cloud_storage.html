@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load humanize %}
 
 {% load cloud_extras %}
 						
@@ -113,7 +114,7 @@
 				{% for f in uploaded_files %}
 	                <tr>
 					  <td>{{forloop.counter}}</td>
-					  <td>{{f.date_created}}</td>
+					  <td>{{f.date_created|naturalday}}</td>
 					  <td>
 						  <small><a href="#" id="name" data-type="text" data-pk="1" data-original-title="Name this file" class="editable editable-click">name</a></small>
 						{{f.file.file|clear_filename}}
