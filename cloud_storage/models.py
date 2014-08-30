@@ -20,3 +20,5 @@ class Uploaded_Files(models.Model):
 	is_private = models.BooleanField(default=False)
 	is_deployed = models.BooleanField(default=False)
 
+	is_deleted = models.BooleanField(default=False)
+	date_created = models.DateTimeField(auto_now_add=True)
