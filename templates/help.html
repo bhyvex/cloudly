@@ -1,44 +1,93 @@
-<h2>Help</h2>
 
-<p>Most commonly asked questions:</p>
-<p>
+{% extends "base.html" %}
 
-		<a href="">
-			Question #1 What are the current hardware requirements?
-		</a>
-		<br/>
-		Our Virtualization Agent is written so that runs on any 64-bit processor.<br/>The system periodically measures server and Internet utilization and sends customized reports.
-		<br/>
-		<br/>
-		<a href="">
-		Question #2 Is it possible to import virtual machines from other Hypervisors?
-		</a>
-		<br/>
-		This feature is planned for the next release: you will upload your .vmdk file, and we'll do the rest. Stay tuned!
-		
-		<br/>
-		<br/>
-		<a href="">
-		Question #3 What is the file format for virtual machine image files?
-		</a>
-		<br/>
-		The virtual machine container format is qcow2 – the native format for KVM/QEMU.
-		<br/>
-		<br/>
-		<a href="">
-		Question #4 What advantages can you offer over major cloud providers?
-		</a>
-		<br/>
-		Here are two very good reasons to work with a smaller cloud company: 
-		Better relationship.
-		<br/>
-		Building a solid relationship with a massive cloud company is next to impossible. We can offer you customized solutions to your cloud problems.
-		</p>
+{% load cloud_extras %}
+						
+{% block title %}Devel{% endblock %}
 
-		<p>
-		Need some more information? We’re happy to help!
-		<br/>
-		Just contact us at <a href="mailto:jparicka@gmail.com">jparicka@gmail.com</a>.
-		</p>
+{% block page_content %}
 
-</p>
+
+<div class="col-md-10 col-sm-11 main ">
+
+	<ol class="breadcrumb">
+	  	<li><a href="/support/">Support</a></li>
+	  	<li class="active">Help</li>
+	</ol>
+
+
+	<div class="row">
+		<div class="col-sm-12">
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2><i class="fa fa-slideshare"></i><span class="break"></span>Help</h2>
+				</div>
+				<div class="panel-body">
+					  <div class="row">            
+					     <div class="col-sm12">
+						
+							<p>Most commonly asked questions:</p>
+							<p>
+
+									<a href="">
+										Question #1 What are the current hardware requirements?
+									</a>
+									<br/>
+									Our Virtualization Agent is written so that runs on any 64-bit processor.<br/>The system periodically measures server and Internet utilization and sends customized reports.
+									<br/>
+									<br/>
+									<a href="">
+									Question #2 Is it possible to import virtual machines from other Hypervisors?
+									</a>
+									<br/>
+									This feature is planned for the next release: you will upload your .vmdk file, and we'll do the rest. Stay tuned!
+
+									<br/>
+									<br/>
+									<a href="">
+									Question #3 What is the file format for virtual machine image files?
+									</a>
+									<br/>
+									The virtual machine container format is qcow2 – the native format for KVM/QEMU.
+									<br/>
+									<br/>
+									<a href="">
+									Question #4 What advantages can you offer over major cloud providers?
+									</a>
+									<br/>
+									Here are two very good reasons to work with a smaller cloud company: 
+									Better relationship.
+									<br/>
+									Building a solid relationship with a massive cloud company is next to impossible. We can offer you customized solutions to your cloud problems.
+									</p>
+
+									<p>
+									Need some more information? We’re happy to help!
+									<br/>
+									Just contact us at <a href="mailto:jparicka@gmail.com">jparicka@gmail.com</a>.
+									</p>
+
+							</p>
+
+						 </div>
+					  </div>	 
+				 </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock page_content %}
+
+
+
+
+
+
+
+
+
+
+
