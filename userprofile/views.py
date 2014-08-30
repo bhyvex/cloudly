@@ -148,6 +148,11 @@ def auth(request):
 	return render_to_response('login.html', {}, context_instance=RequestContext(request))
 
 
+def cloud_settings(request):
+	
+	return HttpResponse("working on this currently")
+	
+
 def account_settings(request):
 
 	print '-- account settings:'
