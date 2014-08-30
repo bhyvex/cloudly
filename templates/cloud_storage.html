@@ -104,7 +104,6 @@
                     <th>Date added</th>
                     <th>Filename</th>
                     <th>Share</th>
-					<th>Password</th>
 					<th>S3</th>
 					<th>Status</th>
 					<th>Action</th>
@@ -118,13 +117,13 @@
 					  <td>
 						  <small><a href="#" id="name" data-type="text" data-pk="1" data-original-title="Name this file" class="editable editable-click">name</a></small>
 						{{f.file.file|clear_filename}}
+						<small><font color="red">download_icon</font></small>
 					  </td>
 					
-					  <td>{{forloop.counter}}</td>
-					  <td>{{forloop.counter}}</td>
+					  <td>share link + PasswdProtect</td>
 					  <td>&#10004;</td>
 	                  <td>
-	                    <span class="label label-warning">Pending</span>
+	                    <span class="label label-warning">Synchronising..</span>
 	                  </td>
 	                  <td>
 	                    <a class="btn btn-success" href="#">
