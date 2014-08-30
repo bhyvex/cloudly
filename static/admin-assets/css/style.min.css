@@ -508,6 +508,12 @@ blockquote.pull-right {
   font-size: 10px;
   color: #4f5b5e;
 }
+.nav > li > a {
+   white-space: nowrap;
+}
+.nav > li > a > .text {
+   min-width: 90px;
+}
 .sidebar .nav-sidebar.title span {
   position: relative;
   z-index: 2;

@@ -512,6 +512,13 @@ blockquote.pull-right {
   position: relative;
   z-index: 2;
 }
+.nav > li > a {
+   white-space: nowrap;
+}
+.nav > li > a > .text {
+   min-width: 90px;
+}
+
 .sidebar .nav-sidebar.title span:before {
   content: '';
   position: absolute;
