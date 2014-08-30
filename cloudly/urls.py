@@ -36,6 +36,12 @@ urlpatterns = patterns('',
 	url(r'^cloud/backups/$', 'cloud_backup.views.cloud_backups', name='cloud_backups'),
 	url(r'^cloud/storage/$', 'cloud_storage.views.cloud_storage', name='cloud_storage'),
 
+	# TODO URLs from/refferenced in /cloud/storage/
+	#
+	#/cloud/storage/files/
+	#/cloud/storage/dropzone/
+	#/cloud/storage/s3/enable/
+
 	# devel
 	url(r'^devel/$', 'devel.views.devel', name='devel'),	
 	url(r'^devel/(?P<dev>[\w\-\.]+)/$', 'devel.views.devel', name='devel'),
