@@ -33,7 +33,7 @@ urlpatterns = patterns('',
 	url(r'^cloud/software/$', 'cloud_software.views.cloud_software', name='cloud_software'),
 	url(r'^cloud/software/add/new/$', 'cloud_software.views.cloud_software_add_new', name='cloud_software_add_new'),
 	url(r'^cloud/software/tag/(?P<tag_slug>[\w\-\.]+)/$', 'cloud_software.views.cloud_software_view_tag', name='cloud_software_view_tag'),
-	url(r'^cloud/backup/$', 'cloud_backups.views.cloud_backups', name='cloud_backups'),
+	url(r'^cloud/backup/$', 'cloud_backup.views.cloud_backup', name='cloud_backup'),
 	url(r'^cloud/storage/$', 'cloud_storage.views.cloud_storage', name='cloud_storage'),
 
 	# devel

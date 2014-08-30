@@ -27,9 +27,9 @@ from userprofile.models import Profile as userprofile
 from amazon import ec2_funcs
 
 
-def cloud_backups(request):
+def cloud_backup(request):
 
-	print '--  cloud backups page:'
+	print '--  cloud backup page:'
 
 	if not request.user.is_authenticated():
 		print 'anonymous'
@@ -37,5 +37,5 @@ def cloud_backups(request):
 
 	print request.user
 	
-	return render_to_response('cloud_backups.html', locals(), context_instance=RequestContext(request))
+	return render_to_response('cloud_backup.html', locals(), context_instance=RequestContext(request))
 
