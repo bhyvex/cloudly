@@ -153,6 +153,23 @@ def cloud_settings(request):
 	return HttpResponse("working on this currently")
 	
 
+def lock(request):
+	
+	print '-- lock screen:'
+
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	secret = profile.secret
+
+	print request.user
+
+	return render_to_response('lock.html', locals(), context_instance=RequestContext(request))
+
+	
+
 def account_settings(request):
 
 	print '-- account settings:'
