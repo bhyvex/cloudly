@@ -115,7 +115,11 @@
 	                <tr>
 					  <td>{{forloop.counter}}</td>
 					  <td>{{f.date_created}}</td>
-					  <td>{{f.file.file|clear_filename}}</td>
+					  <td>
+						  <small><a href="#" id="name" data-type="text" data-pk="1" data-original-title="Name this file" class="editable editable-click">name</a></small>
+						{{f.file.file|clear_filename}}
+					  </td>
+					
 					  <td>{{forloop.counter}}</td>
 					  <td>{{forloop.counter}}</td>
 					  <td>&#10004;</td>
