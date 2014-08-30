@@ -111,30 +111,31 @@
                   </tr>
                 </thead>   
                 <tbody>
+				{% for f in uploaded_files %}
+	                <tr>
+					  <td>{{forloop.counter}}</td>
+					  <td>{{f.date_created}}</td>
+					  <td>{{f.file.file|clear_filename}}</td>
+					  <td>{{forloop.counter}}</td>
+					  <td>{{forloop.counter}}</td>
+					  <td>&#10004;</td>
+	                  <td>
+	                    <span class="label label-warning">Pending</span>
+	                  </td>
+	                  <td>
+	                    <a class="btn btn-success" href="#">
+	                      <i class="fa fa-search-plus "></i>                                            
+	                    </a>
+	                    <a class="btn btn-info" href="#">
+	                      <i class="fa fa-edit "></i>                                            
+	                    </a>
+	                    <a class="btn btn-danger" href="#">
+	                      <i class="fa fa-trash-o "></i> 
 
-                <tr>
-				  <td>{{forloop.counter}}</td>
-				  <td>{{forloop.counter}}</td>
-				  <td>{{forloop.counter}}</td>
-				  <td>{{forloop.counter}}</td>
-				  <td>{{forloop.counter}}</td>
-				  <td>&#10004;</td>
-                  <td>
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                  <td>
-                    <a class="btn btn-success" href="#">
-                      <i class="fa fa-search-plus "></i>                                            
-                    </a>
-                    <a class="btn btn-info" href="#">
-                      <i class="fa fa-edit "></i>                                            
-                    </a>
-                    <a class="btn btn-danger" href="#">
-                      <i class="fa fa-trash-o "></i> 
-
-                    </a>
-                  </td>
-                </tr>
+	                    </a>
+	                    </td>
+		              </tr>
+				{% endfor %}
                 </tbody>
               </table>            
 			</div>

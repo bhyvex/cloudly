@@ -37,6 +37,10 @@ def dict_get(h, key):
 		
 	return None
 
+@register.filter(name='clear_filename')
+def clear_filename(f):
+	return str(f)[20:]
+
 @register.filter(name='replace_dots')
 def replace_dots(text):
 	return text.replace(':','-')
