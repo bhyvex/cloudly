@@ -100,36 +100,45 @@
               <table class="table table-striped table-bordered datatable dataTable">
                 <thead>
                   <tr>
-                    <th>#</th>
+                    <th></th>
                     <th>Date added</th>
-                    <th>Role</th>
-                    <th>Status</th>
-                    <th>Actions</th>
+                    <th>Filename</th>
+                    <th>Share</th>
+					<th>S3</th>
+					<th>Status</th>
+					<th>Action</th>
                   </tr>
                 </thead>   
                 <tbody>
+				{% for f in uploaded_files %}
+	                <tr>
+					  <td>{{forloop.counter}}</td>
+					  <td>{{f.date_created}}</td>
+					  <td>
+						  <small><a href="#" id="name" data-type="text" data-pk="1" data-original-title="Name this file" class="editable editable-click">name</a></small>
+						{{f.file.file|clear_filename}}
+						<small><font color="red">download_icon</font></small>
+					  </td>
+					
+					  <td>share link + PasswdProtect</td>
+					  <td>&#10004;</td>
+	                  <td>
+	                    <span class="label label-warning">Synchronising..</span>
+	                  </td>
+	                  <td>
+	                    <a class="btn btn-success" href="#">
+	                      <i class="fa fa-search-plus "></i>                                            
+	                    </a>
+	                    <a class="btn btn-info" href="#">
+	                      <i class="fa fa-edit "></i>                                            
+	                    </a>
+	                    <a class="btn btn-danger" href="#">
+	                      <i class="fa fa-trash-o "></i> 
 
-                <tr>
-				  <td>{{forloop.counter}}</td>
-                  <td>Ajith Hristijan</td>
-                  <td>2012/03/01</td>
-                  <td>Member</td>
-                  <td>
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                  <td>
-                    <a class="btn btn-success" href="#">
-                      <i class="fa fa-search-plus "></i>                                            
-                    </a>
-                    <a class="btn btn-info" href="#">
-                      <i class="fa fa-edit "></i>                                            
-                    </a>
-                    <a class="btn btn-danger" href="#">
-                      <i class="fa fa-trash-o "></i> 
-
-                    </a>
-                  </td>
-                </tr>
+	                    </a>
+	                    </td>
+		              </tr>
+				{% endfor %}
                 </tbody>
               </table>            
 			</div>
@@ -138,7 +147,6 @@
 	<div class="row">
 		<div class="panel panel-default">
 		<strong><font color="red">Debug</font></strong> {{uploaded_files}}								
-		<strong><font color="red">XXX</font></strong> Link your S3 here, ze "Enable S3 button"....								
 		</div>
 	</div>
 
