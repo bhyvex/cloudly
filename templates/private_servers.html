@@ -1,50 +1,121 @@
+{% extends "base.html" %}
+
 {% load cloud_extras %}
+						
+{% block title %}Private Servers{% endblock %}
 
-<h2>Private Servers</h2>
+{% block page_content %}
 
-{% if servers_count = 0 %}
-    <p>
-		There are no servers installed.<br/>
-	</p>
-	<p>
-		Please <a href="/server/add/new/">add one</a>.
-	</p>
-{% else %}
+<div class="col-md-10 col-sm-11 main ">
+	
+	<ol class="breadcrumb">
+	  	<li><a href="#">Private</a></li>
+	  	<li class="active">Servers</li>
+	</ol>
+	
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+					<div class="panel-heading">
+						<h2><i class="fa fa-picture-o"></i>Private Servers</h2>
+						<div class="panel-actions">
+							<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+							<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+						</div>
+					</div>
+					<div class="panel-body">
+						
+						
+						
+						
+						
+						
+						
+						
+						<h2>Private Servers</h2>
 
-	{% for server in servers %}
-    <p>
+						{% if servers_count = 0 %}
+						    <p>
+								There are no servers installed.<br/>
+							</p>
+							<p>
+								Please <a href="/server/add/new/">add one</a>.
+							</p>
+						{% else %}
 
-		<a href="/server/{{server.uuid|replace_dots}}/"><strong><font size="5">Server #{{forloop.counter}}</font></strong></font></a>
+							{% for server in servers %}
+						    <p>
 
-		<br/>
-		
-		<strong>Agent</strong> v{{server|dict_get:"agent_version"}}<br/>
-		<strong>ID</strong> {{server|dict_get:"_id"}}<br/>
-		<strong>UUID</strong> {{server|dict_get:"uuid"}}<br/>
-		<strong>Uptime</strong> {{server|dict_get:"uptime"}}<br/>
-		<strong>IP address</strong> {{server|dict_get:"ip"}}<br/>
-		<strong>Public IP address</strong> {{server|dict_get:"ip_remote"}}<br/>
-		<strong>Load Average</strong> {{server|dict_get:"loadavg"}}<br/>
-		<strong>Current CPU Usage</strong> {{server|dict_get:"cpu_usage"}}<br/>
-		<strong>Current Memory Usage</strong> {{server|dict_get:"memory_usage"}}<br/>
-		<strong>Current Physical Disks</strong> {{server|dict_get:"physical_disks"}}<br/>
-		<strong>Current Disks Usage</strong> {{server|dict_get:"disks_usage"}}<br/>
-		<strong>CPU Virtualization</strong> {{server|dict_get:"cpu_virtualization"}}<br/>
-		<strong>CPU Info</strong> {{server|dict_get:"cpu_info"}}<br/>
-		<strong>Last Seen</strong> {{server|dict_get:"last_seen"}}<br/>
-		
+								<a href="/server/{{server.uuid|replace_dots}}/"><strong><font size="5">Server #{{forloop.counter}}</font></strong></font></a>
 
-		<br/>
-		<br/>
-		<strong>Activities:</strong><br/>
+								<br/>
 
-		{% for activity in server|dict_get:"uuid"|get_server_activities %}
-			{% if forloop.counter < 5 %}
-				{{activity}}<br/>
-			{% endif %}
-		{% endfor %}
+								<strong>Agent</strong> v{{server|dict_get:"agent_version"}}<br/>
+								<strong>ID</strong> {{server|dict_get:"_id"}}<br/>
+								<strong>UUID</strong> {{server|dict_get:"uuid"}}<br/>
+								<strong>Uptime</strong> {{server|dict_get:"uptime"}}<br/>
+								<strong>IP address</strong> {{server|dict_get:"ip"}}<br/>
+								<strong>Public IP address</strong> {{server|dict_get:"ip_remote"}}<br/>
+								<strong>Load Average</strong> {{server|dict_get:"loadavg"}}<br/>
+								<strong>Current CPU Usage</strong> {{server|dict_get:"cpu_usage"}}<br/>
+								<strong>Current Memory Usage</strong> {{server|dict_get:"memory_usage"}}<br/>
+								<strong>Current Physical Disks</strong> {{server|dict_get:"physical_disks"}}<br/>
+								<strong>Current Disks Usage</strong> {{server|dict_get:"disks_usage"}}<br/>
+								<strong>CPU Virtualization</strong> {{server|dict_get:"cpu_virtualization"}}<br/>
+								<strong>CPU Info</strong> {{server|dict_get:"cpu_info"}}<br/>
+								<strong>Last Seen</strong> {{server|dict_get:"last_seen"}}<br/>
 
-	</p>
-	{% endfor %}
 
-{% endif %}						
+								<br/>
+								<br/>
+								<strong>Activities:</strong><br/>
+
+								{% for activity in server|dict_get:"uuid"|get_server_activities %}
+									{% if forloop.counter < 5 %}
+										{{activity}}<br/>
+									{% endif %}
+								{% endfor %}
+
+							</p>
+							{% endfor %}
+
+						{% endif %}						
+
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+ 					</div><!--/col-->
+			</div><!--/row-->	
+		</div>
+		<!-- end: Content -->
+	</div><!--/row-->		
+</div><!--/container-->
+	
+
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Modal title</h4>
+				</div>
+				<div class="modal-body">
+					<p>Here settings can be configured...</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+{% endblock page_content %}

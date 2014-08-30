@@ -1,46 +1,66 @@
+{% extends "base.html" %}
+
 {% load cloud_extras %}
+						
+{% block title %}Virtual Servers{% endblock %}
 
-<h2>Home</h2>
-
-<hr/>
-<a href="/">Virtual Machines</a><br/>
-<hr/>
-<a href="/cloud/storage/">Cloud Storage</a><br/>
-<a href="#">Cloud Backups</a><br/>
-<a href="/cloud/software/">Cloud Software</a><br/>
-<hr/>
-<a href="#">Private Storage</a><br/>
-<a href="/servers/">Private Servers</a><br/>
-<hr/>
-<a href="/account/settings/">Account Settings</a><br/>
-<hr/>
-<a href="/help/">Help</a><br/>
-<a href="/security/">Security</a><br/>
-<a href="/support/">Paid Support</a><br/>
-<hr/>
-<a href="/logout/">Logout</a>
-<hr/>
+{% block page_content %}
 
 
-{% if not aws_virtual_machines and not private_virtual_machines %}
-<p>
-	There are no Virtual Machines installed.<br/>
-</p>
-<p>
-	Please <a href="/cloud/software/">add one</a>.
-</p>
-{% endif %}
+<div class="col-md-10 col-sm-11 main ">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="row">
+				<div class="panel panel-default">
+				<strong><font color="red">Debug</font></strong> {{uploaded_files}}								
+
+				{% if not aws_virtual_machines and not private_virtual_machines %}
+				<p>
+					There are no Virtual Machines installed.<br/>
+				</p>
+				<p>
+					Please <a href="/cloud/software/">add one</a>.
+				</p>
+				{% endif %}
 
 
-<p>
-	<h3>aws_virtual_machines</h3>
-	{% for virtual_machine in aws_virtual_machines %}
-		<b>{{virtual_machine}}</b><br/>
-		<i><b>Instance:</b> {{aws_virtual_machines|dict_get:virtual_machine|dict_get:"instance"}}</i><br/>
-		<b>cpu_utilization_datapoints</b> {{aws_virtual_machines|dict_get:virtual_machine|dict_get:"cpu_utilization_datapoints"}}<br/>
-		<b>disk_readbytes_datapoints</b> {{aws_virtual_machines|dict_get:virtual_machine|dict_get:"disk_readbytes_datapoints"}}<br/>
-		<b>disk_writebytes_datapoints</b> {{aws_virtual_machines|dict_get:virtual_machine|dict_get:"disk_writebytes_datapoints"}}<br/>
-		<b>networkin_datapoints</b> {{aws_virtual_machines|dict_get:virtual_machine|dict_get:"networkin_datapoints"}}<br/>
-		<b>networkout_datapoints</b> {{aws_virtual_machines|dict_get:virtual_machine|dict_get:"networkout_datapoints"}}<br/>
-	{% endfor %}
-</p>
+				<p>
+					<h3>aws_virtual_machines</h3>
+					{% for virtual_machine in aws_virtual_machines %}
+						<b>{{virtual_machine}}</b><br/>
+						<i><b>Instance:</b> {{aws_virtual_machines|dict_get:virtual_machine|dict_get:"instance"}}</i><br/>
+						<b>cpu_utilization_datapoints</b> {{aws_virtual_machines|dict_get:virtual_machine|dict_get:"cpu_utilization_datapoints"}}<br/>
+						<b>disk_readbytes_datapoints</b> {{aws_virtual_machines|dict_get:virtual_machine|dict_get:"disk_readbytes_datapoints"}}<br/>
+						<b>disk_writebytes_datapoints</b> {{aws_virtual_machines|dict_get:virtual_machine|dict_get:"disk_writebytes_datapoints"}}<br/>
+						<b>networkin_datapoints</b> {{aws_virtual_machines|dict_get:virtual_machine|dict_get:"networkin_datapoints"}}<br/>
+						<b>networkout_datapoints</b> {{aws_virtual_machines|dict_get:virtual_machine|dict_get:"networkout_datapoints"}}<br/>
+					{% endfor %}
+				</p>
+				</div>
+			</div>
+
+			
+		</div>
+		<!-- end: Content -->
+	</div><!--/row-->		
+</div><!--/container-->
+	
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Modal title</h4>
+				</div>
+				<div class="modal-body">
+					<p>Here settings can be configured...</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+{% endblock page_content %}
