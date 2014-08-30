@@ -9,4 +9,12 @@ class Uploaded_Files(models.Model):
 	
 	user = models.ForeignKey(User)
 	file = models.ForeignKey(Files)
+	custom_name = models.CharField(max_length=512, blank=True)
+	
+	#name_slug = models.SlugField(max_length=767, blank=True)
+
+	public_link = models.URLField(blank=True)
+	private_link = models.URLField(blank=True)
+	is_passwd_protected = models.BooleanField(default=False)
 	is_deployed = models.BooleanField(default=False)
+
