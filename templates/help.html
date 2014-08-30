@@ -25,50 +25,50 @@
 				</div>
 				<div class="panel-body">
 					  <div class="row">            
-					     <div class="col-sm12">
-						
+					     <div class="col-sm-12">
+
 							<p>Most commonly asked questions:</p>
-							<p>
 
-									<a href="">
-										Question #1 What are the current hardware requirements?
-									</a>
-									<br/>
+							<div class="panel-group" id="accordion">
+							  <div class="panel panel-default">
+							    <div class="panel-heading">
+							      <h4 class="panel-title">
+							        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="ui-elements.html#collapseOne">
+							          Question #1 What are the current hardware requirements?
+							        </a>
+							      </h4>
+							    </div>
+							    <div id="collapseOne" class="panel-collapse collapse in">
+							      <div class="panel-body">
 									Our Virtualization Agent is written so that runs on any 64-bit processor.<br/>The system periodically measures server and Internet utilization and sends customized reports.
-									<br/>
-									<br/>
-									<a href="">
-									Question #2 Is it possible to import virtual machines from other Hypervisors?
-									</a>
-									<br/>
+							      </div>
+							    </div>
+							  </div>
+							  <div class="panel panel-default">
+							    <div class="panel-heading">
+							      <h4 class="panel-title">
+							        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="ui-elements.html#collapseTwo">
+							          	Question #2 Is it possible to import virtual machines from other Hypervisors?
+							        </a>
+							      </h4>
+							    </div>
+							    <div id="collapseTwo" class="panel-collapse collapse">
+							      <div class="panel-body">
 									This feature is planned for the next release: you will upload your .vmdk file, and we'll do the rest. Stay tuned!
+							      </div>
+							    </div>
+							  </div>
 
-									<br/>
-									<br/>
-									<a href="">
-									Question #3 What is the file format for virtual machine image files?
-									</a>
-									<br/>
-									The virtual machine container format is qcow2 – the native format for KVM/QEMU.
-									<br/>
-									<br/>
-									<a href="">
-									Question #4 What advantages can you offer over major cloud providers?
-									</a>
-									<br/>
-									Here are two very good reasons to work with a smaller cloud company: 
-									Better relationship.
-									<br/>
-									Building a solid relationship with a massive cloud company is next to impossible. We can offer you customized solutions to your cloud problems.
-									</p>
 
-									<p>
-									Need some more information? We’re happy to help!
-									<br/>
-									Just contact us at <a href="mailto:jparicka@gmail.com">jparicka@gmail.com</a>.
-									</p>
 
-							</p>
+
+
+		<hr/>
+		<p>
+		Need some more information? We’re happy to help!
+		<br/>
+		Just contact us at <a href="mailto:jparicka@gmail.com">info@fuckmecloudly.com</a>.
+		</p>
 
 						 </div>
 					  </div>	 
@@ -80,12 +80,6 @@
 
 
 {% endblock page_content %}
-
-
-
-
-
-
 
 
 
