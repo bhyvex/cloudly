@@ -103,6 +103,7 @@
                   <tr>
                     <th></th>
                     <th>Added</th>
+                    <th>Size</th>
                     <th>Filename</th>
                     <th>Share</th>
 					<th>S3</th>
@@ -114,14 +115,18 @@
 				{% for f in uploaded_files %}
 	                <tr>
 					  <td>{{forloop.counter}}</td>
+	
 					  <td>{{f.date_created|naturalday}}</td>
+					
+					  <td>filesize</td>
+					
 					  <td>
 						  <small><a href="#" id="name" data-type="text" data-pk="1" data-original-title="Name this file" class="editable editable-click">name</a></small>
 						{{f.file.file|clear_filename}}
 						<small><font color="red">download_icon</font></small>
 					  </td>
 					
-					  <td>share link + PasswdProtect</td>
+					  <td><small><a href="#">Share</a></small></td>
 					  <td>&#10004;</td>
 	                  <td>
 	                    <span class="label label-warning">Synchronising..</span>
@@ -145,11 +150,13 @@
 			</div>
 		</div>
 
-	<div class="row">
-		<div class="panel panel-default">
-		<strong><font color="red">Debug</font></strong> {{uploaded_files}}								
-		</div>
-	</div>
+{% comment %}
+			<div class="row">
+				<div class="panel panel-default">
+				<strong><font color="red">Debug</font></strong> {{uploaded_files}}								
+				</div>
+			</div>
+{% endcomment %}
 
 </div>
 </div>
