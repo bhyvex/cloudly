@@ -1,0 +1,703 @@
+{% extends "base.html" %}
+
+{% load cloud_extras %}
+						
+{% block title %}Devel{% endblock %}
+
+{% block page_content %}
+
+
+<div class="col-md-10 col-sm-11 main ">
+	
+	<div class="row">
+					<div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
+						<div class="smallstat">
+							<div class="boxchart-overlay blue">
+								<div class="boxchart"><canvas width="64" height="30" style="display: inline-block; vertical-align: top; width: 64px; height: 30px;"></canvas></div>
+							</div>
+							<span class="value">4 589</span>	
+							<span class="title">Clients</span>
+
+						</div>
+					</div><!--/col-->
+
+					<div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
+						<div class="smallstat">
+							<div class="linechart-overlay red">
+								<div class="linechart"><canvas width="65" height="30" style="display: inline-block; vertical-align: top; width: 65px; height: 30px;"></canvas></div>
+							</div>
+							<span class="value">789</span>	
+							<span class="title">Deals</span>						
+						</div>
+					</div><!--/col-->
+
+					<div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
+						<div class="smallstat">
+							<i class="fa fa-usd green"></i>
+							<span class="value">$1 999,99</span>
+							<span class="title">Income</span>	
+						</div>
+					</div><!--/col-->
+
+					<div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
+						<div class="smallstat">
+							<div class="piechart-overlay blue">
+								<div class="piechart easyPieChart" data-percent="55" style="width: 40px; height: 40px; line-height: 40px;"><span>55</span>%<canvas width="40" height="40"></canvas></div>
+							</div>
+							<span class="value">$19 999,99</span>	
+							<span class="title">Account</span>		
+						</div>
+					</div><!--/col-->
+	</div><!--/row-->
+
+
+
+	<div class="row">	
+					<div class="col-lg-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h2><i class="fa fa-asterisk"></i><span class="break"></span>Small Quick Buttons</h2>
+							</div>
+							<div class="panel-body">
+
+								<div class="col-lg-1 col-md-2 col-xs-6">
+									<a class="quick-button small">
+										<i class="fa fa-group"></i>
+										<p>Users</p>
+									</a>
+								</div>
+
+								<div class="col-lg-1 col-md-2 col-xs-6">
+									<a class="quick-button small">
+										<i class="fa fa-comments-o"></i>
+										<p>Comments</p>
+									</a>
+								</div>
+
+								<div class="col-lg-1 col-md-2 col-xs-6">
+									<a class="quick-button small">
+										<i class="fa fa-shopping-cart"></i>
+										<p>Orders</p>
+									</a>
+								</div>
+
+								<div class="col-lg-1 col-md-2 col-xs-6">
+									<a class="quick-button small">
+										<i class="fa fa-barcode"></i>
+										<p>Products</p>
+									</a>
+								</div>
+
+								<div class="col-lg-1 col-md-2 col-xs-6">
+									<a class="quick-button small">
+										<i class="fa fa-envelope"></i>
+										<p>Messages</p>
+									</a>
+								</div>
+
+								<div class="col-lg-1 col-md-2 col-xs-6">
+									<a class="quick-button small">
+										<i class="fa fa-calendar"></i>
+										<p>Calendar</p>
+									</a>
+								</div>
+
+								<div class="col-lg-1 col-md-2 col-xs-6">
+									<a class="quick-button small">
+										<i class="fa fa-bars"></i>
+										<p>Projects</p>
+									</a>
+								</div>
+
+								<div class="col-lg-1 col-md-2 col-xs-6">
+									<a class="quick-button small">
+										<i class="fa fa-thumbs-up"></i>
+										<p>Likes</p>
+									</a>
+								</div>
+
+								<div class="col-lg-1 col-md-2 col-xs-6">
+									<a class="quick-button small">
+										<i class="fa fa-heart-o"></i>
+										<p>Favorites</p>
+									</a>
+								</div>
+
+								<div class="col-lg-1 col-md-2 col-xs-6">
+									<a class="quick-button small">
+										<i class="fa fa-bullhorn"></i>
+										<p>alerts</p>
+									</a>
+								</div>
+
+								<div class="col-lg-1 col-md-2 col-xs-6">
+									<a class="quick-button small">
+										<i class="fa fa-cogs"></i>
+										<p>Settings</p>
+									</a>
+								</div>
+
+								<div class="col-lg-1 col-md-2 col-xs-6">
+									<a class="quick-button small">
+										<i class="fa fa-dashboard"></i>
+										<p>Dashboard</p>
+									</a>
+								</div>
+
+								<div class="clearfix"></div>
+							</div>	
+						</div>	
+					</div><!--/col-->
+
+	</div>
+
+
+
+	<div class="row">
+
+					<div class="col-lg-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h2><i class="fa fa-list"></i>Support tickets</h2>
+								<div class="panel-actions">
+									<a href="widgets.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+									<a href="widgets.html#" class="btn-close"><i class="fa fa-times"></i></a>
+								</div>
+							</div>
+							<div class="panel-body">
+								<table class="table bootstrap-datatable datatable small-font">
+									<thead>
+										<tr>
+											<th>Status</th>
+											<th>Date</th>
+											<th>Description</th>
+											<th>User</th>
+											<th>Number</th>
+										</tr>
+									</thead>   
+									<tbody>
+										<tr>
+											<td><span class="label label-success">Complete</span></td>
+											<td>Jul 25, 2012 11:09</td>
+											<td>Server problem</td>
+											<td>Ashley Tan</td>
+											<td><b>[#199278]</b></td>
+										</tr>
+										<tr>
+											<td><span class="label label-warning">Suspended</span></td>
+											<td>Jul 25, 2012 11:09</td>
+											<td>Mobile App Problem</td>
+											<td>Ann Kovalsky</td>
+											<td><b>[#199277]</b></td>
+										</tr>
+										<tr>
+											<td><span class="label label-info">In progress</span></td>
+											<td>Jul 25, 2012 11:09</td>
+											<td>Paypal Issue</td>
+											<td>Chris Dan</td>
+											<td><b>[#199276]</b></td>
+										</tr>
+										<tr>
+											<td><span class="label label-danger">Rejected</span></td>
+											<td>Jul 25, 2012 11:09</td>
+											<td>IE7 Problem</td>
+											<td>John Grand</td>
+											<td><b>[#199275]</b></td>
+										</tr>
+										<tr>
+											<td><span class="label label-success">Complete</span></td>
+											<td>Jul 25, 2012 11:09</td>
+											<td>Mobile App Problem</td>
+											<td>Agnes Young</td>
+											<td><b>[#199274]</b></td>
+										</tr>
+										<tr>
+											<td><span class="label label-warning">Suspended</span></td>
+											<td>Jul 25, 2012 11:09</td>
+											<td>Mobile App Problem</td>
+											<td>Patricia Doyle</td>
+											<td><b>[#199273]</b></td>
+										</tr>
+										<tr>
+											<td><span class="label label-info">In progress</span></td>
+											<td>Jul 25, 2012 11:09</td>
+											<td>Mobile App Problem</td>
+											<td>Melanie Brown</td>
+											<td><b>[#199272]</b></td>
+										</tr>
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div><!--/col-->
+
+				</div>
+
+
+	<div class="row">	
+					<div class="col-lg-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h2><i class="fa fa-asterisk"></i><span class="break"></span>Quick Buttons</h2>
+							</div>
+							<div class="panel-body">
+
+
+								<div class="col-sm-2">
+									<a class="quick-button">
+										<i class="fa fa-group"></i>
+										<p>Users</p>
+									</a>
+								</div>
+								<div class="col-sm-2">
+									<a class="quick-button">
+										<i class="fa fa-comments-o"></i>
+										<p>Comments</p>
+									</a>
+								</div>
+								<div class="col-sm-2">
+									<a class="quick-button">
+										<i class="fa fa-shopping-cart"></i>
+										<p>Orders</p>
+									</a>
+								</div>
+								<div class="col-sm-2">
+									<a class="quick-button">
+										<i class="fa fa-barcode"></i>
+										<p>Products</p>
+									</a>
+								</div>
+								<div class="col-sm-2">
+									<a class="quick-button">
+										<i class="fa fa-envelope"></i>
+										<p>Messages</p>
+									</a>
+								</div>
+								<div class="col-sm-2">
+									<a class="quick-button">
+										<i class="fa fa-calendar"></i>
+										<p>Calendar</p>
+									</a>
+								</div>
+								<div class="clearfix"></div>
+							</div>	
+						</div>	
+					</div><!--/col-->
+
+				</div>
+
+
+	<div class="row">
+
+					<div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
+						<div class="panel panel-default info-box">
+							<div class="backgroundColor blue">
+							<div class="clearfix">
+								<span class="title">SALE</span>
+								<span class="value">$1.890,65</span>
+							</div>
+							<div class="clearfix">
+								<span class="date">Today 6:43 AM</span>
+								<span class="change">+$432,50 (15,78%)</span>
+							</div>	
+							<div class="chart-info-box" style="height: 50px; margin-top: 20px; position: relative; padding: 0px;"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 207px; height: 50px;" width="207" height="50"></canvas><canvas class="flot-overlay" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 207px; height: 50px;" width="207" height="50"></canvas></div>
+							</div>
+
+							<div class="quarters">
+
+								<div class="quarter q1">
+									<div>+$780,98 <span>Weekly Change</span></div>
+								</div>
+								<div class="quarter q2">
+									<div class="verticalChart">
+
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 37%;">
+													<span>37%</span>
+												</div>
+											</div>
+											<div class="title">M</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 16%;">
+													<span>16%</span>
+												</div>
+											</div>
+											<div class="title">T</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 12%;">
+													<span>12%</span>
+												</div>
+											</div>
+											<div class="title">W</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 9%;">
+													<span>9%</span>
+												</div>
+											</div>
+											<div class="title">T</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 7%;">
+													<span>7%</span>
+												</div>
+											</div>
+											<div class="title">F</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 6%;">
+													<span>6%</span>
+												</div>
+											</div>
+											<div class="title">S</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 5%;">
+													<span>5%</span>
+												</div>
+											</div>
+											<div class="title">S</div>
+										</div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<div class="quarter q3">
+									9.127
+									<span>Deals</span>
+								</div>
+								<div class="quarter q4">
+									$189.783,87
+									<span>Total Income</span>
+								</div>
+
+							</div>	
+
+						</div>
+					</div><!--/col-->
+
+					<div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
+						<div class="panel panel-default info-box">
+							<div class="backgroundColor orange">
+							<div class="clearfix">
+								<span class="title">SALE</span>
+								<span class="value">$1.890,65</span>
+							</div>
+							<div class="clearfix">
+								<span class="date">Today 6:43 AM</span>
+								<span class="change">+$432,50 (15,78%)</span>
+							</div>	
+							<div class="chart-info-box2" style="height: 50px; margin-top: 20px; position: relative; padding: 0px;"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 207px; height: 50px;" width="207" height="50"></canvas><canvas class="flot-overlay" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 207px; height: 50px;" width="207" height="50"></canvas></div>
+							</div>
+
+							<div class="quarters">
+
+								<div class="quarter q1">
+									<div>+$780,98 <span>Weekly Change</span></div>
+								</div>
+								<div class="quarter q2">
+									<div class="verticalChart">
+
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 37%;">
+													<span>37%</span>
+												</div>
+											</div>
+											<div class="title">M</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 16%;">
+													<span>16%</span>
+												</div>
+											</div>
+											<div class="title">T</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 12%;">
+													<span>12%</span>
+												</div>
+											</div>
+											<div class="title">W</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 9%;">
+													<span>9%</span>
+												</div>
+											</div>
+											<div class="title">T</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 7%;">
+													<span>7%</span>
+												</div>
+											</div>
+											<div class="title">F</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 6%;">
+													<span>6%</span>
+												</div>
+											</div>
+											<div class="title">S</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 5%;">
+													<span>5%</span>
+												</div>
+											</div>
+											<div class="title">S</div>
+										</div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<div class="quarter q3">
+									9.127
+									<span>Deals</span>
+								</div>
+								<div class="quarter q4">
+									$189.783,87
+									<span>Total Income</span>
+								</div>
+
+							</div>	
+
+						</div>
+					</div><!--/col-->
+
+					<div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
+						<div class="panel panel-default info-box">
+							<div class="backgroundColor red">
+							<div class="clearfix">
+								<span class="title">SALE</span>
+								<span class="value">$1.890,65</span>
+							</div>
+							<div class="clearfix">
+								<span class="date">Today 6:43 AM</span>
+								<span class="change">+$432,50 (15,78%)</span>
+							</div>	
+							<div class="chart-info-box2" style="height: 50px; margin-top: 20px; position: relative; padding: 0px;"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 241px; height: 50px;" width="241" height="50"></canvas><canvas class="flot-overlay" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 241px; height: 50px;" width="241" height="50"></canvas></div>
+							</div>
+
+							<div class="quarters">
+
+								<div class="quarter q1">
+									<div>+$780,98 <span>Weekly Change</span></div>
+								</div>
+								<div class="quarter q2">
+									<div class="verticalChart">
+
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 37%;">
+													<span>37%</span>
+												</div>
+											</div>
+											<div class="title">M</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 16%;">
+													<span>16%</span>
+												</div>
+											</div>
+											<div class="title">T</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 12%;">
+													<span>12%</span>
+												</div>
+											</div>
+											<div class="title">W</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 9%;">
+													<span>9%</span>
+												</div>
+											</div>
+											<div class="title">T</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 7%;">
+													<span>7%</span>
+												</div>
+											</div>
+											<div class="title">F</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 6%;">
+													<span>6%</span>
+												</div>
+											</div>
+											<div class="title">S</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 5%;">
+													<span>5%</span>
+												</div>
+											</div>
+											<div class="title">S</div>
+										</div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<div class="quarter q3">
+									9.127
+									<span>Deals</span>
+								</div>
+								<div class="quarter q4">
+									$189.783,87
+									<span>Total Income</span>
+								</div>
+
+							</div>	
+
+						</div>
+					</div><!--/col-->
+
+					<div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
+						<div class="panel panel-default info-box">
+							<div class="backgroundColor pink">
+							<div class="clearfix">
+								<span class="title">SALE</span>
+								<span class="value">$1.890,65</span>
+							</div>
+							<div class="clearfix">
+								<span class="date">Today 6:43 AM</span>
+								<span class="change">+$432,50 (15,78%)</span>
+							</div>	
+							<div class="chart-info-box" style="height: 50px; margin-top: 20px; position: relative; padding: 0px;"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 241px; height: 50px;" width="241" height="50"></canvas><canvas class="flot-overlay" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 241px; height: 50px;" width="241" height="50"></canvas></div>
+							</div>
+
+							<div class="quarters">
+
+								<div class="quarter q1">
+									<div>+$780,98 <span>Weekly Change</span></div>
+								</div>
+								<div class="quarter q2">
+									<div class="verticalChart">
+
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 37%;">
+													<span>37%</span>
+												</div>
+											</div>
+											<div class="title">M</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 16%;">
+													<span>16%</span>
+												</div>
+											</div>
+											<div class="title">T</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 12%;">
+													<span>12%</span>
+												</div>
+											</div>
+											<div class="title">W</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 9%;">
+													<span>9%</span>
+												</div>
+											</div>
+											<div class="title">T</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 7%;">
+													<span>7%</span>
+												</div>
+											</div>
+											<div class="title">F</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 6%;">
+													<span>6%</span>
+												</div>
+											</div>
+											<div class="title">S</div>
+										</div>
+										<div class="singleBar">
+											<div class="bar">
+												<div class="value" style="height: 5%;">
+													<span>5%</span>
+												</div>
+											</div>
+											<div class="title">S</div>
+										</div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<div class="quarter q3">
+									9.127
+									<span>Deals</span>
+								</div>
+								<div class="quarter q4">
+									$189.783,87
+									<span>Total Income</span>
+								</div>
+
+							</div>	
+
+						</div>
+					</div><!--/col-->
+
+				</div>
+				
+
+		
+</div><!--/container-->
+	
+
+
+
+
+
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Modal title</h4>
+				</div>
+				<div class="modal-body">
+					<p>Here settings can be configured...</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+{% endblock page_content %}
+

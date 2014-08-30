@@ -27,7 +27,7 @@ from userprofile.models import Profile as userprofile
 from amazon import ec2_funcs
 
 	
-def devel(request):
+def devel(request, dev=""):
 
 	print '--  devel page:'
 
@@ -39,5 +39,5 @@ def devel(request):
 	
 	active_tab = "devel"
 	
-	return render_to_response('devel.html', {'active_tab':active_tab,}, context_instance=RequestContext(request))
+	return render_to_response('devel'+dev+'.html', {'active_tab':active_tab,}, context_instance=RequestContext(request))
 
