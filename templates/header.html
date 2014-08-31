@@ -35,6 +35,53 @@
 
     <link href="/static/css/dropzone.css" type="text/css" rel="stylesheet"/>
 
+	<!-- start: JavaScript-->
+	<!--[if !IE]>-->
+
+			<script src="/static/admin-assets/js/jquery-2.1.0.min.js"></script>
+
+	<!--<![endif]-->
+
+	<!--[if IE]>
+	
+		<script src="/static/admin-assets/js/jquery-1.11.0.min.js"></script>
+	
+	<![endif]-->
+
+	<!--[if !IE]>-->
+
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='/static/admin-assets/js/jquery-2.1.0.min.js'>"+"<"+"/script>");
+		</script>
+
+	<!--<![endif]-->
+
+	<!--[if IE]>
+	
+		<script type="text/javascript">
+	 	window.jQuery || document.write("<script src='/static/admin-assets/js/jquery-1.11.0.min.js'>"+"<"+"/script>");
+		</script>
+		
+	<![endif]-->
+	<script src="/static/admin-assets/js/jquery-migrate-1.2.1.min.js"></script>
+	<script src="/static/admin-assets/js/bootstrap.min.js"></script>	
+	
+	
+	<!-- page scripts -->
+	<script src="/static/admin-assets/js/jquery-ui.min.js"></script>
+	<script src="/static/admin-assets/js/modernizr.js"></script>
+	<script src="/static/admin-assets/js/jquery.dataTables.min.js"></script>
+	<script src="/static/admin-assets/js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript"> $(document).ready(function(){ $('.dataTable').dataTable(); }); </script>
+	
+	<!-- theme scripts -->
+	<script src="/static/admin-assets/js/core.min.js"></script>
+	<script src="/static/admin-assets/js/custom.min.js"></script>
+	
+{% block extrajs %}{% endblock %}
+
+	<!-- end: JavaScript-->
+
 </head>
 
 <body>
