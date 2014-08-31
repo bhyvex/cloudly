@@ -31,6 +31,7 @@ from django.core.mail import send_mail
 def _remove_accents(data):
     return ''.join(x for x in unicodedata.normalize('NFKD', data) if x in string.ascii_letters).lower()
 
+
 def user_logout(request):
 	
 	print '-- logout'
@@ -175,6 +176,41 @@ def lock(request):
 	return render_to_response('lock.html', locals(), context_instance=RequestContext(request))
 
 	
+def change_password(request):
+
+	print '-- change password:'
+
+
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	secret = profile.secret
+
+	print request.user
+
+	error = None
+
+	if(request.POST):
+
+		current_passwd = request.POST['current_passwd']
+		new_passwd = request.POST['new_passwd']
+		new_passwd_repeat = request.POST['new_passwd_repeat']
+
+		if(new_passwd != new_passwd_repeat):
+			error = "Passwords do not match."
+
+		user = authenticate(username=request.user, password=current_passwd)
+		if(not user): 
+			error = "Wrong password."
+
+		if(not error):
+			user.set_password(new_passwd)
+			user.save()
+			return HttpResponseRedirect("/account/settings/")
+
+	return render_to_response('account_change_password.html', {'error':error,}, context_instance=RequestContext(request))
 
 def account_settings(request):
 
