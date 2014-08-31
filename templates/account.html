@@ -1,23 +1,47 @@
-<h2>Account Settings</h2>
+{% extends "base.html" %}
 
-<strong>Secret:</strong> {{profile.secret}}<br/>
+{% load cloud_extras %}
+						
+{% block title %}Account Settings{% endblock %}
 
-<p>
-	user.id = {{user.id}}<br/>
-	user.username = {{user.username}}<br/>
-	user.email = {{user.email}}<br/>
-	user.password = {{user.password}}<br/>
-	user.last_login = {{user.last_login}}<br/>
-	user.is_superuser = {{user.is_superuser}}<br/>
-	user.is_staff = {{user.is_staff}}<br/>
-	user.is_active = {{user.is_active}}<br/>
-	user.date_joined = {{user.date_joined}}<br/>
-</p>
+{% block page_content %}
 
-<p>
-	<font color="red">XXX use admin/form-x-editable.html for this one</font>
-</p>
+<div class="col-md-10 col-sm-11 main ">
 
+	<ol class="breadcrumb">
+	  	<li><a href="#">Account</a></li>
+	  	<li class="active">Settings</li>
+	</ol>
+
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+					<div class="panel-heading">
+						<h2><i class="fa fa-picture-o"></i>Name: {{profile.name}}</h2>
+						<div class="panel-actions">
+							<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+							<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+						</div>
+					</div>
+
+
+<div class="panel-body">
+
+  <ul class="list-group">
+    <li class="list-group-item"><strong>E-mail:</strong> {{user.email}}</li>
+    <li class="list-group-item"><strong>Password:</strong> {{user.password}}</li>
+    <li class="list-group-item"><strong>Date joined:</strong> {{user.date_joined}}</li>
+    <li class="list-group-item"><strong>Country:</strong> {{profile.country}}</li>
+    <li class="list-group-item"><strong>Language:</strong> {{profile.language}}</li>
+    <li class="list-group-item"><strong>Address_1:</strong> {{profile.street_address_1}}</li>
+    <li class="list-group-item"><strong>Address_2:</strong> {{profile.street_address_2}}</li>
+    <li class="list-group-item"><strong>Address_3:</strong> {{profile.street_address_3}}</li>
+    <li class="list-group-item"><strong>Mobile:</strong> {{profile.mobile}}</li>
+    <li class="list-group-item"><strong>Twitter:</strong> {{profile.twitter}}</li>
+  </ul>
+
+</div>
 <p>
 	profile.id = {{profile.id}}<br/>
 
@@ -53,3 +77,42 @@
 
 	profile.first_login = {{profile.first_login}}<br/>
 </p>
+
+
+ 					</div><!--/col-->
+<p>
+<a href="/account/delete/"><button type="button" class="btn btn-xs btn-warning">Delete Account</button></a>
+<a href="/account/password/"><button type="button" class="btn btn-xs btn-danger">Change Password</button></a>
+</p>
+<hr/>
+
+			</div><!--/row-->	
+
+			
+			
+		</div>
+		<!-- end: Content -->
+	</div><!--/row-->		
+</div><!--/container-->
+	
+
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Modal title</h4>
+				</div>
+				<div class="modal-body">
+					<p>Here settings can be configured...</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+{% endblock page_content %}
+
