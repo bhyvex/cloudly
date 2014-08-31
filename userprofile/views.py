@@ -105,8 +105,6 @@ def register(request):
 
 					request.session['language'] = "us"
 					
-					send_mail('New user has registered.', 'New user ' + request.user.email + ' has registered.', 'admin@cloud306.com', ['jparicka@gmail.com'], fail_silently=True)
-
 					print 'new user registered'
 					print username
 
@@ -157,7 +155,18 @@ def auth(request):
 
 def cloud_settings(request):
 	
-	return HttpResponse("working on this currently")
+	print '-- cloud settings:'
+
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	secret = profile.secret
+
+	print request.user
+
+	return render_to_response('cloud_settings.html', locals(), context_instance=RequestContext(request))
 	
 
 def lock(request):
