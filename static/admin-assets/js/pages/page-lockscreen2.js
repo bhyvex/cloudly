@@ -11,7 +11,7 @@ $.backstretch([
   	"/static/images/lockscreen/10.jpg",
   	"/static/images/lockscreen/11.jpg",
   	"/static/images/lockscreen/12.jpg",
-  	"/static/images/lockscreen/13.jpg",
+  	"/static/images/lockscreen/13.jpg"
 ], {
     fade: 1000,
     duration: 16000
