@@ -33,7 +33,8 @@
 
   <ul class="list-group">
     <li class="list-group-item"><strong>E-mail:</strong> {{user.email}}</li>
-    <li class="list-group-item"><strong>Password:</strong> {{user.password}}</li>
+    <li class="list-group-item"><strong>Password:</strong> {{user.password}} <a href="/account/password/"><button type="button" class="btn btn-xs btn-danger">Change Password</button></a>
+	</li>
     <li class="list-group-item"><strong>Secret</strong> {{profile.secret}}</li>
     <li class="list-group-item"><strong>Date joined:</strong> {{user.date_joined}}</li>
 	<br/>
@@ -65,11 +66,6 @@
 </div>
 
  					</div><!--/col-->
-<p>
-<a href="/account/delete/"><button type="button" class="btn btn-xs btn-warning">Delete Account</button></a>
-<a href="/account/password/"><button type="button" class="btn btn-xs btn-danger">Change Password</button></a>
-</p>
-<hr/>
 
 			</div><!--/row-->	
 
