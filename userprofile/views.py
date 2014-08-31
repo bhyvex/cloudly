@@ -42,7 +42,13 @@ def user_logout(request):
 		
 	print request.user
 	
-	return HttpResponseRedirect("/")
+	return HttpResponseRedirect("/goodbye/")
+
+
+
+def goodbye(request):
+
+	return render_to_response('goodbye.html', {}, context_instance=RequestContext(request))
 
 
 def register(request):
@@ -147,6 +153,28 @@ def auth(request):
 	
 	return render_to_response('login.html', {}, context_instance=RequestContext(request))
 
+
+def cloud_settings(request):
+	
+	return HttpResponse("working on this currently")
+	
+
+def lock(request):
+	
+	print '-- lock screen:'
+
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	secret = profile.secret
+
+	print request.user
+
+	return render_to_response('lock.html', locals(), context_instance=RequestContext(request))
+
+	
 
 def account_settings(request):
 

@@ -14,6 +14,8 @@ urlpatterns = patterns('',
 	url(r'^register/$', 'userprofile.views.register', name='login'),
 	url(r'^logout/$', 'userprofile.views.user_logout', name='logout'),
 	url(r'^account/settings/$', 'userprofile.views.account_settings', name='account_settings'),
+	url(r'^lock/$', 'userprofile.views.lock', name='lock'),
+	url(r'^goodbye/$', 'userprofile.views.goodbye', name='goodbye'),
 
 	# support
 	url(r'^support/$', 'support.views.support', name='support'),
@@ -28,6 +30,8 @@ urlpatterns = patterns('',
 	url(r'^private/servers/$', 'private_servers.views.servers', name='servers'),
 	url(r'^private/server/(?P<uuid>[\w\-\.]+)/$', 'private_servers.views.server_detail', name='server_detail'),
 	url(r'^server/add/new/$', 'private_servers.views.server_add', name='server_add'),	
+	# private storage
+	url(r'^private/storage/$', 'private_storage.views.private_storage', name='private_storage'),
 	
 	# cloud stuff
 	url(r'^cloud/software/$', 'cloud_software.views.cloud_software', name='cloud_software'),
@@ -35,6 +39,13 @@ urlpatterns = patterns('',
 	url(r'^cloud/software/tag/(?P<tag_slug>[\w\-\.]+)/$', 'cloud_software.views.cloud_software_view_tag', name='cloud_software_view_tag'),
 	url(r'^cloud/backups/$', 'cloud_backup.views.cloud_backups', name='cloud_backups'),
 	url(r'^cloud/storage/$', 'cloud_storage.views.cloud_storage', name='cloud_storage'),
+	url(r'^cloud/settings/$', 'userprofile.views.cloud_settings', name='cloud_settings'),
+
+	# TODO URLs from/refferenced in /cloud/storage/
+	#
+	#/cloud/storage/files/
+	#/cloud/storage/dropzone/
+	#/cloud/storage/s3/enable/
 
 	# devel
 	url(r'^devel/$', 'devel.views.devel', name='devel'),	
@@ -45,4 +56,7 @@ urlpatterns += patterns('',
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': settings.STATIC_ROOT,
     }),
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+		'document_root': settings.MEDIA_ROOT, #'show_indexes': True,
+	}),
 )

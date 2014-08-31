@@ -9,6 +9,7 @@ class Uploaded_Files(models.Model):
 	
 	user = models.ForeignKey(User)
 	file = models.ForeignKey(Files)
+	
 	name = models.CharField(max_length=512, blank=True)
 	
 	#name_slug = models.SlugField(max_length=767, blank=True)

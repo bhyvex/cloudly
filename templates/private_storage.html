@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% load cloud_extras %}
+						
+{% block title %}Private Storage{% endblock %}
+
+{% block page_content %}
+
+<div class="col-md-10 col-sm-11 main ">
+
+	<ol class="breadcrumb">
+	  	<li><a href="#">Private Cloud</a></li>
+	  	<li class="active">Storage</li>
+	</ol>
+
+	<div class="row">
+		<div class="col-xs-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h2><i class="fa fa-picture-o"></i> File Manager</h2>
+							<div class="panel-actions">
+								<a href="file-manager.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+								<a href="file-manager.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+								<a href="file-manager.html#" class="btn-close"><i class="fa fa-times"></i></a>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="file-manager ui-helper-reset ui-helper-clearfix ui-widget ui-widget-content ui-corner-all elfinder elfinder-ltr ui-resizable elfinder-disabled" style="width: auto; height: 402px;"><div class="ui-helper-clearfix ui-widget-header ui-corner-top elfinder-toolbar"><div class="ui-widget-content elfinder-button elfinder-button-search" style="display: block;"><input type="text" size="42"><span class="ui-icon ui-icon-search" title="Find files"></span><span class="ui-icon ui-icon-close"></span></div><div class="ui-widget-content ui-corner-all elfinder-buttonset"><div class="ui-state-default elfinder-button ui-state-disabled" title="Back"><span class="elfinder-button-icon elfinder-button-icon-back"></span></div><span class="ui-widget-content elfinder-toolbar-button-separator"></span><div class="ui-state-default elfinder-button ui-state-disabled" title="Forward"><span class="elfinder-button-icon elfinder-button-icon-forward"></span></div></div><div class="ui-widget-content ui-corner-all elfinder-buttonset"><div class="ui-state-default elfinder-button ui-state-disabled" title="New folder"><span class="elfinder-button-icon elfinder-button-icon-mkdir"></span></div><span class="ui-widget-content elfinder-toolbar-button-separator"></span><div class="ui-state-default elfinder-button ui-state-disabled" title="New text file"><span class="elfinder-button-icon elfinder-button-icon-mkfile"></span></div><span class="ui-widget-content elfinder-toolbar-button-separator"></span><div class="ui-state-default elfinder-button ui-state-disabled" title="Upload files"><span class="elfinder-button-icon elfinder-button-icon-upload"></span><form style="display: none;"><input type="file" multiple="true"></form></div></div><div class="ui-widget-content ui-corner-all elfinder-buttonset"><div class="ui-state-default elfinder-button ui-state-disabled" title="Open"><span class="elfinder-button-icon elfinder-button-icon-open"></span></div><span class="ui-widget-content elfinder-toolbar-button-separator"></span><div class="ui-state-default elfinder-button ui-state-disabled" title="Download"><span class="elfinder-button-icon elfinder-button-icon-download"></span></div><span class="ui-widget-content elfinder-toolbar-button-separator"></span><div class="ui-state-default elfinder-button ui-state-disabled" title="Select files"><span class="elfinder-button-icon elfinder-button-icon-getfile"></span></div></div><div class="ui-widget-content ui-corner-all elfinder-buttonset"><div class="ui-state-default elfinder-button ui-state-disabled" title="Get info"><span class="elfinder-button-icon elfinder-button-icon-info"></span></div></div><div class="ui-widget-content ui-corner-all elfinder-buttonset"><div class="ui-state-default elfinder-button ui-state-disabled" title="Preview"><span class="elfinder-button-icon elfinder-button-icon-quicklook"></span></div></div><div class="ui-widget-content ui-corner-all elfinder-buttonset"><div class="ui-state-default elfinder-button ui-state-disabled" title="Copy"><span class="elfinder-button-icon elfinder-button-icon-copy"></span></div><span class="ui-widget-content elfinder-toolbar-button-separator"></span><div class="ui-state-default elfinder-button ui-state-disabled" title="Cut"><span class="elfinder-button-icon elfinder-button-icon-cut"></span></div><span class="ui-widget-content elfinder-toolbar-button-separator"></span><div class="ui-state-default elfinder-button ui-state-disabled" title="Paste"><span class="elfinder-button-icon elfinder-button-icon-paste"></span></div></div><div class="ui-widget-content ui-corner-all elfinder-buttonset"><div class="ui-state-default elfinder-button ui-state-disabled" title="Delete"><span class="elfinder-button-icon elfinder-button-icon-rm"></span></div></div><div class="ui-widget-content ui-corner-all elfinder-buttonset"><div class="ui-state-default elfinder-button ui-state-disabled" title="Duplicate"><span class="elfinder-button-icon elfinder-button-icon-duplicate"></span></div><span class="ui-widget-content elfinder-toolbar-button-separator"></span><div class="ui-state-default elfinder-button ui-state-disabled" title="Rename"><span class="elfinder-button-icon elfinder-button-icon-rename"></span></div><span class="ui-widget-content elfinder-toolbar-button-separator"></span><div class="ui-state-default elfinder-button ui-state-disabled" title="Edit file"><span class="elfinder-button-icon elfinder-button-icon-edit"></span></div><span class="ui-widget-content elfinder-toolbar-button-separator"></span><div class="ui-state-default elfinder-button ui-state-disabled" title="Resize &amp; Rotate"><span class="elfinder-button-icon elfinder-button-icon-resize"></span></div></div><div class="ui-widget-content ui-corner-all elfinder-buttonset"><div class="ui-state-default elfinder-button ui-state-disabled" title="Extract files from archive"><span class="elfinder-button-icon elfinder-button-icon-extract"></span></div><span class="ui-widget-content elfinder-toolbar-button-separator"></span><div class="ui-state-default elfinder-button elfinder-menubutton ui-state-disabled" title="Create archive"><span class="elfinder-button-icon elfinder-button-icon-archive"></span><div class="ui-widget ui-widget-content elfinder-button-menu ui-corner-all" style="display: none; z-index: 10;"></div></div></div><div class="ui-widget-content ui-corner-all elfinder-buttonset"><div class="ui-state-default elfinder-button ui-state-disabled" title="View"><span class="elfinder-button-icon elfinder-button-icon-view"></span></div><span class="ui-widget-content elfinder-toolbar-button-separator"></span><div class="ui-state-default elfinder-button elfiner-button-sort elfinder-menubutton ui-state-disabled" title="Sort"><span class="elfinder-button-icon elfinder-button-icon-sort"></span><div class="ui-widget ui-widget-content elfinder-button-menu ui-corner-all" style="display: none; z-index: 10;"><div class="elfinder-button-menu-item  elfinder-menu-item-sort-asc"><span class="elfinder-menu-item-sort-dir"></span>by name (folders first)</div><div class="elfinder-button-menu-item  elfinder-menu-item-sort-asc"><span class="elfinder-menu-item-sort-dir"></span>by kind (folders first)</div><div class="elfinder-button-menu-item  elfinder-menu-item-sort-asc"><span class="elfinder-menu-item-sort-dir"></span>by size (folders first)</div><div class="elfinder-button-menu-item  elfinder-menu-item-sort-asc"><span class="elfinder-menu-item-sort-dir"></span>by date (folders first)</div><div class="elfinder-button-menu-item  elfinder-menu-item-sort-asc"><span class="elfinder-menu-item-sort-dir"></span>by name</div><div class="elfinder-button-menu-item  elfinder-menu-item-sort-asc"><span class="elfinder-menu-item-sort-dir"></span>by kind</div><div class="elfinder-button-menu-item  elfinder-menu-item-sort-asc"><span class="elfinder-menu-item-sort-dir"></span>by size</div><div class="elfinder-button-menu-item  elfinder-menu-item-sort-asc"><span class="elfinder-menu-item-sort-dir"></span>by date</div></div></div></div><div class="ui-widget-content ui-corner-all elfinder-buttonset"><div class="ui-state-default elfinder-button ui-state-disabled" title="About this software"><span class="elfinder-button-icon elfinder-button-icon-help"></span></div></div></div><div class="elfinder-workzone" style="height: 343px;"><div class="ui-state-default elfinder-navbar ui-resizable" style="display: block; height: 343px;"><div class="ui-resizable-handle ui-resizable-e" style="z-index: 10;"></div><div class="elfinder-tree"></div></div><div class="elfinder-cwd-wrapper" style="height: 347px;"><div class="ui-helper-clearfix elfinder-cwd ui-selectable ui-droppable" unselectable="on"></div></div></div><div class="ui-widget-overlay elfinder-overlay" style="display: none;"></div><div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable std42-dialog  elfinder-dialog elfinder-dialog-notify" style="display: none; width: 280px; height: auto; top: 12px; right: 12px;"><div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><a href="#" class="ui-dialog-titlebar-close ui-corner-all"><span class="ui-icon ui-icon-closethick"></span></a>&nbsp;</div><div class="ui-dialog-content ui-widget-content"></div></div><div class="ui-widget-header ui-helper-clearfix ui-corner-bottom elfinder-statusbar" style=""><div class="elfinder-stat-size"></div><div class="elfinder-path">&nbsp;</div><div class="elfinder-stat-selected"></div></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div><div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable std42-dialog  elfinder-dialog elfinder-dialog-error elfinder-dialog-active" style="width: 320px; height: auto; top: 139px; left: 390px; z-index: 11;"><div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><a href="#" class="ui-dialog-titlebar-close ui-corner-all"><span class="ui-icon ui-icon-closethick"></span></a>Error</div><div class="ui-dialog-content ui-widget-content"><span class="elfinder-dialog-icon elfinder-dialog-icon-error"></span>Unable to connect to backend.</div><div class=" ui-helper-clearfix ui-dialog-buttonpane ui-widget-content"><div class="ui-dialog-buttonset"><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text">Close</span></button></div></div></div></div>
+						</div>
+					</div>
+				</div><!--/col-->
+			
+			</div>
+			
+			
+				</div>
+				<!-- end: Content -->
+			</div><!--/row-->		
+		</div><!--/container-->
+
+
+			<div class="modal fade" id="myModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title">Modal title</h4>
+						</div>
+						<div class="modal-body">
+							<p>Here settings can be configured...</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Save changes</button>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
+		{% endblock page_content %}
+

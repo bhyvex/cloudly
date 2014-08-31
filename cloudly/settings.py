@@ -42,9 +42,9 @@ INSTALLED_APPS = (
 	'cloud_software',
 	'cloud_storage',
 	'private_servers',
-	# temporarily view during the development phase
-	'devel',
+	'private_storage',
 	'cloud_backup',
+	'devel',
 )
 
 MIDDLEWARE_CLASSES = (

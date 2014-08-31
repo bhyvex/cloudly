@@ -1,7 +1,4 @@
 
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -40,74 +37,30 @@
 <body>
 		<div class="container-fluid content">
 		<div class="row">
-					<div id="content" class="col-sm-12 full">
+				<div id="content2" class="col-sm-12 full">
+			
 			<div class="row">
-				<div class="login-box">
-					
-					<div class="header">
-						Login to Cloud
-					</div>
-{% comment %}
-					<p>
-						<a class="btn btn-facebook"><span>Login via Facebook</span></a>
-					</p>
-					<p>	
-						<a class="btn btn-twitter"><span>Login via Twitter</span></a>
-					</p>
-					<p>	
-						<a class="btn btn-linkedin"><span>Login via LinkedIn</span></a>	
-					</p>
-					
-					<div class="text-with-hr">
-						<span>or using your registered e-mail address</span>
-					</div>
-{% endcomment %}
-					
-					<form action="/login/" method='POST' class='form-validate' id="login">{% csrf_token %}
-						
-						<fieldset class="col-sm-12">
-							<div class="form-group">
-							  	<div class="controls row">
-									<div class="input-group col-sm-12">	
-										<input class="form-control" type="text" placeholder="E-mail" required name="username">
-										<span class="input-group-addon"><i class="fa fa-user"></i></span>
-									</div>	
-							  	</div>
-							</div>
-							
-							<div class="form-group">
-							  	<div class="controls row">
-									<div class="input-group col-sm-12">	
-										<input class="form-control" type="password" placeholder="Password" required name="password">
-										<span class="input-group-addon"><i class="fa fa-key"></i></span>
-									</div>	
-							  	</div>
-							</div>
 
-							<div class="confirm">
-								<input type="checkbox" name="remember"/>
-								<label for="remember">Remember me</label>
-							</div>	
-
-							<div class="row">
-							
-								<button type="submit" class="btn btn-lg btn-primary col-xs-12">Login</button>
-							
-							</div>
-								
-						</fieldset>	
-
-					</form>
+				<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 login-box-locked">
 					
-					<a class="pull-left" href="#">Forgot Password?</a>
-					<a class="pull-right" href="/register/">Sign Up!</a>
+					<img src="/static/admin-assets/img/gallery/photo7.jpg" class="avatar"/>
 					
-					<div class="clearfix"></div>				
-						
-				</div>
+					<h2>XXX User Name</h2>
+					<p>user@email.com</p>
+
+					<div class="input-prepend input-group">
+						<input id="prependedInput" class="form-control" size="16" type="password" placeholder="Password">
+						<span class="input-group-btn">
+							<button class="btn btn-info" type="button"><i class="fa fa-unlock"></i></button>
+						</span>
+				 	</div>
+					<a href="#">I'm not XXX todo</a>
+
+				</div><!--/col-->
+
 			</div><!--/row-->
 		
-		</div>	
+		</div><!--/content-->	
 			
 				</div><!--/row-->		
 		
@@ -147,21 +100,19 @@
 	
 	
 	<!-- page scripts -->
-	<script src="/static/admin-assets/js/jquery.icheck.min.js"></script>
+	<script src="/static/admin-assets/js/jquery.backstretch.min.js"></script>
 	
 	<!-- theme scripts -->
 	<script src="/static/admin-assets/js/custom.min.js"></script>
 	<script src="/static/admin-assets/js/core.min.js"></script>
 	
 	<!-- inline scripts related to this page -->
-	<script src="/static/admin-assets/js/pages/login.js"></script>
+	<script src="/static/admin-assets/js/pages/page-lockscreen.js"></script>
 	
 	<!-- end: JavaScript-->
 	
 	
 	{% include "google_analytics.html" %}
-	
-	
 	
 </body>
 </html>
