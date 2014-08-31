@@ -166,7 +166,7 @@ def cloud_settings(request):
 
 	print request.user
 
-	return render_to_response('cloud_settings.html', locals(), context_instance=RequestContext(request))
+	return render_to_response('cloud_settings.html', {'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
 	
 
 def lock(request):
