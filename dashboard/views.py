@@ -162,6 +162,9 @@ def security(request):
 		return HttpResponseRedirect("/")
 
 	print request.user
-	return render_to_response('security.html', locals(), context_instance=RequestContext(request))
+	
+	profile = userprofile.objects.get(user=request.user)
+	
+	return render_to_response('security.html', {'profile':profile,}, context_instance=RequestContext(request))
 
 

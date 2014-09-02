@@ -1,5 +1,171 @@
 
-{% include "google_analytics.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    	<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Jan Paricka">
+		<meta name="keyword" content="">
+	    <meta name="description" content="">
+	    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/admin-assets/ico/apple-touch-icon-144-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/admin-assets/ico/apple-touch-icon-114-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/admin-assets/ico/apple-touch-icon-72-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="57x57" href="/static/admin-assets/ico/apple-touch-icon-57-precomposed.png">
+		<link rel="shortcut icon" href="/static/admin-assets/ico/favicon.png">
+
+	    <title></title>
+
+	    <!-- Bootstrap core CSS -->
+	    <link href="/static/admin-assets/css/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- page css files -->
+		<link href="/static/admin-assets/css/font-awesome.min.css" rel="stylesheet">
+		<link href="/static/admin-assets/css/jquery-ui.min.css" rel="stylesheet">	
+
+	    <!-- Custom styles for this template -->
+	    <link href="/static/admin-assets/css/style.min.css" rel="stylesheet">
+
+	    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	    <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+	</head>
+</head>
+
+<body>
+		<div class="container-fluid content">
+		<div class="row">
+					<div id="content" class="col-sm-12 full">
+			<div class="row">
+				
+				<div class="login-box">
+					
+					<div class="header">
+						Create your account
+					</div>
+					
+					<form action="/register/" method='POST' class='form-validate' id="register">{% csrf_token %}
+						
+						<fieldset class="col-sm-12">
+							<div class="form-group">
+							  	<label class="control-label" for="url">Your URL</label>
+							  	<div class="controls row">
+									<div class="input-group col-sm-12">	
+										<input type="text" class="form-control" id="url"/>
+										<span class="input-group-addon">.fuckmecloudly.com</span>
+									</div>	
+							  	</div>
+							</div>
+							
+							<div class="form-group">
+							  	<label class="control-label" for="username">Username</label>
+							  	<div class="controls row">
+									<div class="input-group col-sm-12">
+										<input type="text" class="form-control" id="username"/>
+									</div>	
+							  	</div>
+							</div>
+							
+							<div class="form-group">
+							  	<label class="control-label" for="password">Password</label>
+							  	<div class="controls row">
+									<div class="input-group col-sm-12">
+										<input type="password" class="form-control" id="password"/>
+									</div>	
+							  	</div>
+							</div>
+
+							<div class="confirm">
+								<input type="checkbox" name="agree"/>
+								<label for="agree">I agree to <a href="page-register.html#">Term of Use</a></label>
+							</div>	
+
+							
+							<div class="row">
+								<br/>
+								<button type="submit" class="btn btn-primary btn-lg col-xs-12">Create Account!</button>
+							
+							</div>
+				
+							{% comment %}
+							<div class="text-with-hr">
+								<span>or use your facebook account</span>
+							</div>
+							{% endcomment %}
+							
+						</fieldset>	
+
+					</form>			
+
+					<p>
+						<span>&nbsp;</span>
+					</p>				
+						
+				</div>
+			</div><!--/row-->
+		
+		</div>	
+			
+				</div><!--/row-->		
+		
+	</div><!--/container-->
+		
+		
+	<!-- start: JavaScript-->
+	<!--[if !IE]>-->
+
+			<script src="/static/admin-assets/js/jquery-2.1.0.min.js"></script>
+
+	<!--<![endif]-->
+
+	<!--[if IE]>
+	
+		<script src="/static/admin-assets/js/jquery-1.11.0.min.js"></script>
+	
+	<![endif]-->
+
+	<!--[if !IE]>-->
+
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='/static/admin-assets/js/jquery-2.1.0.min.js'>"+"<"+"/script>");
+		</script>
+
+	<!--<![endif]-->
+
+	<!--[if IE]>
+	
+		<script type="text/javascript">
+	 	window.jQuery || document.write("<script src='/static/admin-assets/js/jquery-1.11.0.min.js'>"+"<"+"/script>");
+		</script>
+		
+	<![endif]-->
+	<script src="/static/admin-assets/js/jquery-migrate-1.2.1.min.js"></script>
+	<script src="/static/admin-assets/js/bootstrap.min.js"></script>	
+	
+	
+	<!-- page scripts -->
+	<script src="/static/admin-assets/js/jquery.icheck.min.js"></script>
+	
+	<!-- theme scripts -->
+	<script src="/static/admin-assets/js/custom.min.js"></script>
+	<script src="/static/admin-assets/js/core.min.js"></script>
+	
+	<!-- inline scripts related to this page -->
+	<script src="/static/admin-assets/js/pages/login.js"></script>
+	
+	<!-- end: JavaScript-->
+
+
+	{% include "google_analytics.html" %}
+
+
+	
+</body>
+</html>
+
 
 
 {% comment %}
