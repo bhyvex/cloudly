@@ -1,1 +1,36 @@
-hello world
+{% extends "base.html" %}
+
+{% load cloud_extras %}
+						
+{% block title %}Cloud Settings{% endblock %}
+
+{% block page_content %}
+
+<div class="col-md-10 col-sm-11 main ">
+
+	<ol class="breadcrumb">
+	  	<li><a href="#">Cloud</a></li>
+	  	<li class="active">Settings</li>
+	</ol>
+
+	<p>
+		<font color="red">XXX currently in the todo......</font>
+	
+		<hr/>
+		Secret: {{secret}}<br/>
+		<hr/>
+		Your AWS EC2 Settings<br/>
+		aws_access_key {{profile.aws_access_key}}<br/>
+		aws_secret_key {{profile.aws_secret_key}}<br/>
+		aws_enabled_regions {{profile.aws_enabled_regions}}<br/>
+		aws_is_verified {{profile.aws_is_verified}}<br/>
+		<hr/>
+		Your AWS S3 Settings<br/>
+		TBD<br/>
+		<hr/>
+	
+	</p>
+
+</div>
+{% endblock page_content %}
+

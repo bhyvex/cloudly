@@ -99,14 +99,13 @@ def register(request):
 						''.join([choice(string.digits) for i in range(5)])).upper()
 
 					username = _remove_accents(username)
+					name = _remove_accents(name)
 
 					userprofile.objects.get_or_create(user=user,secret=secret,name=name,language="EN")
 					login(request, user)
 
 					request.session['language'] = "us"
 					
-					send_mail('New user has registered.', 'New user ' + request.user.email + ' has registered.', 'admin@cloud306.com', ['jparicka@gmail.com'], fail_silently=True)
-
 					print 'new user registered'
 					print username
 
@@ -157,7 +156,18 @@ def auth(request):
 
 def cloud_settings(request):
 	
-	return HttpResponse("working on this currently")
+	print '-- cloud settings:'
+
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	secret = profile.secret
+
+	print request.user
+
+	return render_to_response('cloud_settings.html', {'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
 	
 
 def lock(request):
