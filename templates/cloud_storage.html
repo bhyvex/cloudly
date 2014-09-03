@@ -69,27 +69,16 @@
 			</div>
 		</div>
 
-{% comment %}
-			<div class="row">
-				<div class="panel panel-default">
-				<strong><font color="red">Debug</font></strong> {{uploaded_files}}								
-				</div>
-			</div>
-{% endcomment %}
+</div>
 
-{% if not is_s3_enabled %}
-
+{% if not profile.aws_s3_verified %}
 <div class="panel-body">
 	<button type="button" class="btn btn-warning btn-lg btn-block">Enable Amazon S3 Storage</button>
 </div>	
-							
 {% endif %}
 
 
 </div>
-</div>
-
-
 		<div class="modal fade" id="myModal">
 			<div class="modal-dialog">
 				<div class="modal-content">

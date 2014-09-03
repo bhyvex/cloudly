@@ -28,9 +28,6 @@
 
 <div class="panel-body">
 
-	<p><font color="red">XXX this is a work in progress, no styling......</font></p>
-
-
   <ul class="list-group">
     <li class="list-group-item"><strong>E-mail:</strong> {{user.email}}</li>
     <li class="list-group-item"><strong>Password:</strong> {{user.password}} <br/><a href="/account/password/"><button type="button" class="btn btn-xs btn-warning">Change Password</button></a>
@@ -60,7 +57,8 @@
     <li class="list-group-item"><strong>aws_access_key</strong> {{profile.aws_access_key}}</li>
     <li class="list-group-item"><strong>aws_secret_key</strong> {{profile.aws_secret_key}}</li>
     <li class="list-group-item"><strong>aws_enabled_regions</strong> {{profile.aws_enabled_regions}}</li>
-    <li class="list-group-item"><strong>aws_is_verified</strong> {{profile.aws_is_verified}}</li>
+    <li class="list-group-item"><strong>aws_ec2_verified</strong> {{profile.aws_ec2_verified}}</li>
+    <li class="list-group-item"><strong>aws_s3_verified</strong> {{profile.aws_s3_verified}}</li>
 	<br/>
 	<li class="list-group-item"><strong>is_staff</strong> {{user.is_staff}}</li>
     <li class="list-group-item"><strong>is_superuser</strong> {{user.is_superuser}}</li>

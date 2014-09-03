@@ -30,6 +30,7 @@ class Profile(models.Model):
 	aws_access_key = models.CharField(max_length=100, blank=True, verbose_name="Access Key", db_index=True)
 	aws_secret_key = models.CharField(max_length=100, blank=True, verbose_name="Secret Key", db_index=True)
 	aws_enabled_regions = models.CharField(max_length=256, default="us-west-2,", verbose_name="Regions", db_index=True)
-	aws_is_verified = models.BooleanField(default=False)	
+	aws_ec2_verified = models.BooleanField(default=False)	
+	aws_s3_verified = models.BooleanField(default=False)	
 	
 	first_login = models.BooleanField(default=False)
