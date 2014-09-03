@@ -22,8 +22,8 @@ function setupDropzone(zone) {
 		// images already handled
 		if (file.type.match(/image.*/)) return;
 		// Okey, sem treba rovnako pridat dalsie typy. file.type je MIME, file.name je nazov
-		if (thumbnailCheck(zone, file, ".txt", "/static/images/jan-avatar.png")) return;
-		if (thumbnailCheck(zone, file, ".wav", "/static/images/jan-avatar.png")) return;
+		if (thumbnailCheck(zone, file, ".txt", "/static/images/icon-todo.png")) return;
+		if (thumbnailCheck(zone, file, ".wav", "/static/images/icon-todo.png")) return;
 	});
 }
 
