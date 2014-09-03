@@ -65,7 +65,8 @@ def register(request):
 		username = email
 
 		password1 = request.POST[u'password1']
-		password2 = request.POST[u'password2']
+		#password2 = request.POST[u'password2']
+		password2 = password1
 
 		print username
 

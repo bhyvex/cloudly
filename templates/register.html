@@ -6,9 +6,9 @@
     	<meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="author" content="Jan Paricka">
-		<meta name="keyword" content="">
+		<meta name="author" content="">
 	    <meta name="description" content="">
+		<meta name="keyword" content="">
 	    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/admin-assets/ico/apple-touch-icon-144-precomposed.png">
 		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/admin-assets/ico/apple-touch-icon-114-precomposed.png">
 		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/admin-assets/ico/apple-touch-icon-72-precomposed.png">
@@ -50,21 +50,21 @@
 					<form action="/register/" method='POST' class='form-validate' id="register">{% csrf_token %}
 						
 						<fieldset class="col-sm-12">
+							
 							<div class="form-group">
-							  	<label class="control-label" for="url">Your URL</label>
+							  	<label class="control-label" for="username">Name</label>
 							  	<div class="controls row">
-									<div class="input-group col-sm-12">	
-										<input type="text" class="form-control" id="url"/>
-										<span class="input-group-addon">.fuckmecloudly.com</span>
+									<div class="input-group col-sm-12">
+										<input type="text" class="form-control" required name="username">
 									</div>	
 							  	</div>
 							</div>
-							
+
 							<div class="form-group">
-							  	<label class="control-label" for="username">Username</label>
+							  	<label class="control-label" for="username">E-mail</label>
 							  	<div class="controls row">
 									<div class="input-group col-sm-12">
-										<input type="text" class="form-control" id="username"/>
+										<input type="text" class="form-control" required name="email">
 									</div>	
 							  	</div>
 							</div>
@@ -73,35 +73,33 @@
 							  	<label class="control-label" for="password">Password</label>
 							  	<div class="controls row">
 									<div class="input-group col-sm-12">
-										<input type="password" class="form-control" id="password"/>
+										<input type="password" class="form-control" required name="password1">
 									</div>	
 							  	</div>
 							</div>
 
 							<div class="confirm">
 								<input type="checkbox" name="agree"/>
-								<label for="agree">I agree to <a href="page-register.html#">Term of Use</a></label>
+								<label for="agree">I agree to <a href="#">Term of Use</a></label>
 							</div>	
 
 							
 							<div class="row">
-								<br/>
+
 								<button type="submit" class="btn btn-primary btn-lg col-xs-12">Create Account!</button>
 							
 							</div>
-				
-							{% comment %}
+							
 							<div class="text-with-hr">
 								<span>or use your facebook account</span>
 							</div>
-							{% endcomment %}
 							
 						</fieldset>	
 
 					</form>			
-
+					
 					<p>
-						<span>&nbsp;</span>
+						<a class="btn btn-facebook"><span>Register via Facebook</span></a>
 					</p>				
 						
 				</div>
@@ -160,39 +158,6 @@
 
 
 	{% include "google_analytics.html" %}
-
-
 	
 </body>
 </html>
-
-
-
-{% comment %}
-##########################################################################################################################
-{% endcomment %}
-
-
-{% if err %}
-
-	Error: {{err}}
-
-{% endif %}
-
-<form action="/register/" method='POST' class='form-validate' id="register">{% csrf_token %}
-
-	<input type="text" placeholder="name" required name="username">
-	<br/>
-	<br/>
-	<input type="text" placeholder="email address" required name="email">
-	<br/>
-	<br/>
-	<input type="password1" placeholder="password1" required name="password1">
-	<br/>
-	<br/>
-	<input type="password2" placeholder="password2" required name="password2">
-	<br/>
-	<br/>
-	<button>Register</button>
-
-</form>
