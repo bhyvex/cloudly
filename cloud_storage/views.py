@@ -57,3 +57,22 @@ def cloud_storage(request):
 	# XXX batch sync files to the S3.....
 	
 	return render_to_response('cloud_storage.html', {'uploaded_files':uploaded_files,'user':user,'profile':profile,}, context_instance=RequestContext(request))
+
+def ajax_cloud_storage(request):
+
+	print '-- ajax_cloud_storage:'
+
+	if not request.user.is_authenticated():
+		return ""
+
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	secret = profile.secret
+
+	print request.user
+
+	uploaded_files = Uploaded_Files.objects.filter(user=request.user).order_by('-pk')
+
+	return render_to_response('cloud_storage-list.html', {'uploaded_files':uploaded_files,'user':user,'profile':profile,}, context_instance=RequestContext(request))
+
+
