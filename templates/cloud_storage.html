@@ -10,56 +10,14 @@
 <script src="/static/js/storage.js"></script>
 
 <div class="col-md-10 col-sm-11 main ">
-	
-	{% comment %}
-	<ol class="breadcrumb">
-	  	<li><a href="#">Cloud</a></li>
-	  	<li class="active">Storage</li>
-	</ol>
-	{% endcomment %}
-
-
-
 
 	<div class="row">	
 					<div class="col-lg-12">
 						
 						<ol class="breadcrumb">
-						  	<li><a href="#">Cloud</a></li>
+						  	<li><a href="/cloud/settings/">Cloud</a></li>
 						  	<li class="active">Storage</li>
 						</ol>
-						
-
-
-  {% if not is_s3_enabled %}
-
-							<div class="panel-body">
-
-								<p><font color="red">XXX if not yet registered with S3 these shortcuts will take you there..</font></p>
-
-								<div class="col-lg-1 col-md-2 col-xs-6">
-									<a class="quick-button small" href="/cloud/s3/storage/enable/">
-										<i class="fa fa-files-o"></i>
-										<p>Files</p>
-									</a>
-								</div>
-								<div class="col-lg-1 col-md-2 col-xs-6">
-									<a class="quick-button small" href="/cloud/s3/storage/enable/">
-										<i class="fa fa-cloud-download"></i>
-										<p>Dropzone</p>
-									</a>
-								</div>
-								<div class="col-lg-1 col-md-2 col-xs-6 pull-right">
-									<a class="quick-button small" href="/cloud/s3/storage/enable/">
-										<i class="fa fa-database"></i>
-										<p>Enable S3 Storage</p>
-									</a>
-								</div>
-
-								<div class="clearfix"></div>
-							</div>	
-							
-	{% endif %}
 
 					</div><!--/col-->
 
@@ -118,6 +76,15 @@
 				</div>
 			</div>
 {% endcomment %}
+
+{% if not is_s3_enabled %}
+
+<div class="panel-body">
+	<button type="button" class="btn btn-warning btn-lg btn-block">Enable Amazon S3 Storage</button>
+</div>	
+							
+{% endif %}
+
 
 </div>
 </div>
