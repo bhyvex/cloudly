@@ -44,7 +44,7 @@ INSTALLED_APPS = (
 	'private_servers',
 	'private_storage',
 	'cloud_backup',
-	'cloud_pictures',
+	'cloud_photos',
 	'admin',
 	'logs',
 	'devel',

@@ -33,6 +33,6 @@ from cloud_storage.models import Files
 from cloud_storage.models import Uploaded_Files
 
 
-def cloud_pictures(request):
+def cloud_photos(request):
 	return HttpResponse("working on this currently")
 
