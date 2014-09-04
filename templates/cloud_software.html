@@ -27,7 +27,7 @@
 
 				<hr/>
 				{% for package in packages %}
-				Package: {{package.title}}<br/>
+				Package: <strong>{{package.title}}</strong><br/>
 				Tags: 
 				{% for tag in package|get_tags %}
 					<a href="/cloud/software/tag/{{tag.tag.name_slug}}/">{{tag.tag}}</a>
@@ -38,7 +38,7 @@
 				
 				<hr/>
 				All Tags: <a href="/cloud/software/">
-			    <span class="label label-primary">all</span></a>
+			    <span class="label label-warning">all</span></a>
 					
 				{% for tag in tags %}
 				<a href="/cloud/software/tag/{{tag.name_slug}}/">
