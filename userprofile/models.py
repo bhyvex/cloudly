@@ -32,5 +32,6 @@ class Profile(models.Model):
 	aws_enabled_regions = models.CharField(max_length=256, default="us-west-2,", verbose_name="Regions", db_index=True)
 	aws_ec2_verified = models.BooleanField(default=False)	
 	aws_s3_verified = models.BooleanField(default=False)	
+	aws_cloudfront_verified = models.BooleanField(default=False)	
 	
 	first_login = models.BooleanField(default=False)
