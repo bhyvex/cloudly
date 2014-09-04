@@ -1,24 +1,78 @@
+{% extends "base.html" %}
+
 {% load cloud_extras %}
+						
+{% block title %}Cloud Software{% endblock %}
 
-<h2>cloud_software_view_tag</h2>
-
-Tag: <b>{{tag}}</b><br/>
-<br/>
-
-<hr/>
-{% for package in packages %}
-Package: {{package.title}}<br/>
-Tags: 
-{% for tag in package|get_tags %}
-	<a href="/cloud/software/tag/{{tag.tag.name_slug}}/">{{tag.tag}}</a>
-{% endfor %}
-<hr/>
-{% endfor %}
+{% block page_content %}
 
 
-<br/>
+<div class="col-md-10 col-sm-11 main ">
+	
+	
+	<ol class="breadcrumb">
+	  	<li><a href="/cloud/settings/">Cloud</a></li>
+	  	<li><a href="/cloud/software/">Software</a></li>
+	  	<li class="active">"{{tag|title}}"</li>
+	</ol>
+	
+			<div class="row">
+				<div class="panel panel-default">
+				<strong><font color="red">Tag: "{{tag}}"</font></strong> {{uploaded_files}}								
+				<h1>"{{tag}}" packages</h1>
 
-Tags: <a href="/cloud/software/tag/all">all</a>
-{% for tag in tags %}
-<a href="/cloud/software/tag/{{tag.name_slug}}/">{{tag}}</a>
-{% endfor %}
+				<hr/>
+				{% for package in packages %}
+				Package: {{package.title}}<br/>
+				Tags: 
+				{% for tag in package|get_tags %}
+					<a href="/cloud/software/tag/{{tag.tag.name_slug}}/">{{tag.tag}}</a>
+				{% endfor %}
+				<hr/>
+				{% endfor %}
+
+				
+				<hr/>
+				All Tags: <a href="/cloud/software/tag/all">
+			    <span class="label label-primary">all</span></a>
+					
+				{% for tag_ in tags %}
+				<a href="/cloud/software/tag/{{tag_.name_slug}}/">
+					{% if tag_ != tag %}
+						<span class="label label-primary">{{tag_}}</span>
+					{% else %}
+						<span class="label label-warning">{{tag_}}</span>
+					{% endif %}
+				{% endfor %}
+				</a>
+								
+				</div>
+			</div>
+
+			
+		</div>
+		<!-- end: Content -->
+	</div><!--/row-->		
+</div><!--/container-->
+	
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Modal title</h4>
+				</div>
+				<div class="modal-body">
+					<p>Here settings can be configured...</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+{% endblock page_content %}
+
+
