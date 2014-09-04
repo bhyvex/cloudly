@@ -23,6 +23,18 @@ from django.contrib.auth.models import User
 from userprofile.models import Profile
 
 
-def logs(request):
-	return HttpResponse("working on this currently")
+def logs(request):	
 
+	print '-- system logs:'
+
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	user = request.user
+	profile = Profile.objects.get(user=request.user)
+	secret = profile.secret
+
+	print request.user
+	
+	
+	return render_to_response('logs.html', {'profile':profile,}, context_instance=RequestContext(request))
