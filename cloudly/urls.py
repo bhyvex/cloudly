@@ -50,6 +50,8 @@ urlpatterns = patterns('',
 
 	# admin
 	url(r'^admin/$', 'admin.views.admin', name='admin'),
+	# logs
+	url(r'^logs/$', 'logs.views.admin', name='logs'),
 	# devel
 	url(r'^devel/$', 'devel.views.devel', name='devel'),	
 	url(r'^devel/(?P<dev>[\w\-\.]+)/$', 'devel.views.devel', name='devel'),
