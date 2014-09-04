@@ -32,7 +32,9 @@
 
 				
 				<hr/>
-				All Tags: <a href="/cloud/software/tag/all">all</a>
+				All Tags: <a href="/cloud/software/tag/all">
+			    <span class="label label-primary">all</span></a>
+					
 				{% for tag in tags %}
 				<a href="/cloud/software/tag/{{tag.name_slug}}/">
 				<span class="label label-primary">{{tag}}</span></a>
