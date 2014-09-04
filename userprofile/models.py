@@ -8,8 +8,8 @@ class Profile(models.Model):
 	name = models.CharField(max_length=100, blank=True, verbose_name="Name", db_index=True)
 	secret = models.CharField(max_length=100, blank=True, verbose_name="Secret Key", db_index=True)
 
-	custom_url = models.CharField(max_length=100, blank=True, verbose_name="custom_url")
 	company = models.CharField(max_length=100, blank=True, verbose_name="company")
+	company_url = models.CharField(max_length=100, blank=True, verbose_name="custom_url")
 
 	skills = models.CharField(max_length=512, blank=True, verbose_name="skills", db_index=True)
 	country = models.CharField(max_length=10, blank=True, verbose_name="country", db_index=True)
