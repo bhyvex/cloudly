@@ -184,7 +184,7 @@ def lock(request):
 
 	print request.user
 
-	return render_to_response('lock.html', locals(), context_instance=RequestContext(request))
+	return render_to_response('lock.html', {'profile':profile,}, context_instance=RequestContext(request))
 
 	
 def change_password(request):

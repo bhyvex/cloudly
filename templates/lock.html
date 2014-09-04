@@ -45,8 +45,8 @@
 					
 					<img src="/static/admin-assets/img/gallery/photo7.jpg" class="avatar"/>
 					
-					<h2>XXX User Name</h2>
-					<p>user@email.com</p>
+					<h2>{{profile.name}}</h2>
+					<p>{{user.email}}</p>
 
 					<div class="input-prepend input-group">
 						<input id="prependedInput" class="form-control" size="16" type="password" placeholder="Password">
@@ -54,7 +54,7 @@
 							<button class="btn btn-info" type="button"><i class="fa fa-unlock"></i></button>
 						</span>
 				 	</div>
-					<a href="#">I'm not XXX todo</a>
+					<a href="#">I'm not {{profile.name|title}}</a>
 
 				</div><!--/col-->
 
