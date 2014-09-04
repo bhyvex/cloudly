@@ -32,5 +32,17 @@ from cloud_storage.models import Uploaded_Files
 
 
 def cloud_photos(request):
+
+	print '-- cloud_photos:'
+
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	secret = profile.secret
+
+	print request.user
+
 	return HttpResponse("working on this currently")
 
