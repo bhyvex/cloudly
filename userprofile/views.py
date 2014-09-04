@@ -100,7 +100,7 @@ def register(request):
 						''.join([choice(string.digits) for i in range(5)])).upper()
 
 					username = _remove_accents(username)
-					name = _remove_accents(name)
+					#name = _remove_accents(name)
 
 					userprofile.objects.get_or_create(user=user,secret=secret,name=name,language="EN")
 					login(request, user)
