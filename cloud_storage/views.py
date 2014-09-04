@@ -37,7 +37,28 @@ from cloud_storage.models import Uploaded_Files
 
 def cloud_dropzone(request):
 	
-	return HttpResponse("working on this currently")
+
+	print '-- cloud_storage:'
+
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	secret = profile.secret
+
+	print request.user
+
+	if request.method == 'POST':
+		form = UploadFileForm(request.POST, request.FILES)
+		if form.is_valid():
+			new_file = Files(file=request.FILES['file'])
+			new_file.save()
+			Uploaded_Files.objects.create(file=new_file,user=request.user)
+  
+	uploaded_files = Uploaded_Files.objects.filter(user=request.user).order_by('-pk')
+	
+	return render_to_response('cloud_dropzone.html', {'uploaded_files':uploaded_files,'user':user,'profile':profile,}, context_instance=RequestContext(request))
 	
 	
 
