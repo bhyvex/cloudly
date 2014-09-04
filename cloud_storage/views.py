@@ -32,6 +32,15 @@ from forms import UploadFileForm
 from cloud_storage.models import Files
 from cloud_storage.models import Uploaded_Files
 
+
+
+
+def cloud_dropzone(request):
+	
+	return HttpResponse("working on this currently")
+	
+	
+
 def cloud_storage(request):
 
 	print '-- cloud_storage:'
