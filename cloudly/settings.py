@@ -45,6 +45,7 @@ INSTALLED_APPS = (
 	'private_storage',
 	'cloud_backup',
 	'admin',
+	'logs',
 	'devel',
 )
 
