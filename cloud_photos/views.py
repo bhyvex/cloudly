@@ -44,5 +44,5 @@ def cloud_photos(request):
 
 	print request.user
 
-	return HttpResponse("working on this currently")
+	return render_to_response('cloud_pictures.html', {'profile':profile,}, context_instance=RequestContext(request))
 
