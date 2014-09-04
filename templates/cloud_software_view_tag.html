@@ -13,13 +13,13 @@
 	<ol class="breadcrumb">
 	  	<li><a href="/cloud/settings/">Cloud</a></li>
 	  	<li><a href="/cloud/software/">Software</a></li>
-	  	<li class="active">"{{tag|title}}"</li>
+	  	<li class="active">"{{tag|title}}" software packages</li>
 	</ol>
 	
 			<div class="row">
 				<div class="panel panel-default">
 				<strong><font color="red">Tag: "{{tag}}"</font></strong> {{uploaded_files}}								
-				<h1>"{{tag}}" packages</h1>
+				<h1>"{{tag}}" packages ({{tags.count}})</h1>
 
 				<hr/>
 				{% for package in packages %}
