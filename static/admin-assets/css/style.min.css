@@ -5619,6 +5619,15 @@ ul.profile-details li div i {
   margin-top: 5px;
   font-size: 12px;
 }
+.machines-list .machine {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  width: 190px;
+  height: 230px;     
+}
+
 @media (max-width: 479px) {
   .col-xxs-12 {
     width: 100%;
