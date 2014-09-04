@@ -27,8 +27,6 @@ from userprofile.models import Profile as userprofile
 from amazon import s3_funcs
 from amazon import s3_funcs_shortcuts
 
-from django import forms
-from forms import UploadFileForm
 from cloud_storage.models import Files
 from cloud_storage.models import Uploaded_Files
 
