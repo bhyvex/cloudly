@@ -22,6 +22,15 @@
 				<br/>
 				<font color="red">XXX search</font><br/>
 				<font color="red">XXX top categories</font>
+				<br/><br/>
+				
+				All Tags: <a href="/cloud/software/">
+			    <span class="label label-warning">all</span></a>
+				{% for tag in tags %}
+				<a href="/cloud/software/tag/{{tag.name_slug}}/">
+				<span class="label label-primary">{{tag}}</span></a>
+				{% endfor %}
+				<hr/>
 				
 				<h2>cloud_software</h2>
 
@@ -35,15 +44,6 @@
 				<hr/>
 				{% endfor %}
 
-				All Tags: <a href="/cloud/software/">
-			    <span class="label label-warning">all</span></a>
-					
-				{% for tag in tags %}
-				<a href="/cloud/software/tag/{{tag.name_slug}}/">
-				<span class="label label-primary">{{tag}}</span></a>
-				{% endfor %}
-				
-				
 				<hr/>
 				<a href="/cloud/software/add/new/"><button type="button" class="btn btn-danger"><i class="fa fa-heart-o"></i> Add Software</button></a>
 				
