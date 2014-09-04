@@ -34,4 +34,5 @@ class Profile(models.Model):
 	aws_s3_verified = models.BooleanField(default=False)	
 	aws_cloudfront_verified = models.BooleanField(default=False)	
 	
+	clicks = models.BooleanField(default=True)
 	first_login = models.BooleanField(default=False)

@@ -44,11 +44,12 @@ urlpatterns = patterns('',
 	url(r'^cloud/settings/$', 'userprofile.views.cloud_settings', name='cloud_settings'),
 
 	# TODO URLs from/refferenced in /cloud/storage/
-	#
 	#/cloud/storage/files/
 	#/cloud/storage/dropzone/
 	#/cloud/storage/s3/enable/
 
+	# admin
+	url(r'^admin/$', 'admin.views.admin', name='admin'),
 	# devel
 	url(r'^devel/$', 'devel.views.devel', name='devel'),	
 	url(r'^devel/(?P<dev>[\w\-\.]+)/$', 'devel.views.devel', name='devel'),
