@@ -42,6 +42,7 @@ urlpatterns = patterns('',
 	url(r'^cloud/storage/$', 'cloud_storage.views.cloud_storage', name='cloud_storage'),
 	url(r'^ajax/cloud/storage/$', 'cloud_storage.views.ajax_cloud_storage', name='ajax_cloud_storage'),
 	url(r'^cloud/dropzone/$', 'cloud_storage.views.cloud_dropzone', name='cloud_dropzone'),
+	url(r'^cloud/pictures/$', 'cloud_pictures.views.cloud_pictures', name='cloud_pictures'),
 	url(r'^cloud/settings/$', 'userprofile.views.cloud_settings', name='cloud_settings'),
 	# TODO URLs from/refferenced in /cloud/storage/
 	#/cloud/storage/files/
