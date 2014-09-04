@@ -33,11 +33,8 @@ from cloud_storage.models import Files
 from cloud_storage.models import Uploaded_Files
 
 
-
-
 def cloud_dropzone(request):
 	
-
 	print '-- cloud_storage:'
 
 	if not request.user.is_authenticated():
