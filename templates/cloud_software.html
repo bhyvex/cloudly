@@ -29,6 +29,7 @@
 				<hr/>
 				{% for package in packages %}
 				Package: <strong>{{package.title}}</strong><br/>
+				{{package.description}}<br/>
 				Tags: 
 				{% for tag in package|get_tags %}
 					<a href="/cloud/software/tag/{{tag.tag.name_slug}}/">{{tag.tag}}</a>

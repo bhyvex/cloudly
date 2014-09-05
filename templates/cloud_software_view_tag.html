@@ -20,10 +20,12 @@
 				<div class="panel panel-default">
 				<strong><font color="red">Tag: "{{tag}}"</font></strong> {{uploaded_files}}								
 				<h1>"{{tag}}" packages ({{tags.count}})</h1>
-
+				
 				<hr/>
 				{% for package in packages %}
 				Package: {{package.title}}<br/>
+				{{package.description}}<br/><br/>
+				
 				Tags: 
 				{% for tag in package|get_tags %}
 					<a href="/cloud/software/tag/{{tag.tag.name_slug}}/">{{tag.tag}}</a>
