@@ -6,6 +6,8 @@
 
 {% block page_content %}
 
+<script src="/static/js/dashboard.js"></script>
+
 <div class="col-md-10 col-sm-11 main ">
 	
 	<ol class="breadcrumb">
@@ -15,55 +17,54 @@
 	<div class="row">	
 					<div class="col-lg-12">
 						<div class="panel panel-default">
-							<div class="panel-body">
+							<div class="panel-body machines-buttons">
 
 								<p><font color="red">Filters:</font></p>
 
 								<div class="col-lg-1 col-md-2 col-xs-6">
-									<a class="quick-button small">
+									<a class="quick-button small btn-all">
 										<p>show All</p>
 									</a>
 								</div>
 
 
 								<div class="col-lg-1 col-md-2 col-xs-6">
-									<a class="quick-button small">
+									<a class="quick-button small btn-offline">
 										<p>offline</p>
 									</a>
 								</div>
 
 								<div class="col-lg-1 col-md-2 col-xs-6">
-									<a class="quick-button small">
+									<a class="quick-button small btn-suspended">
 										<p>suspended</p>
 									</a>
 								</div>
 								
 								<div class="col-lg-1 col-md-2 col-xs-6">
-									<a class="quick-button small">
+									<a class="quick-button small btn-windows">
 										<p>windows</p>
 									</a>
 								</div>
 								
 								<div class="col-lg-1 col-md-2 col-xs-6">
-									<a class="quick-button small">
+									<a class="quick-button small btn-linux">
 										<p>linux</p>
 									</a>
 								</div>
 								
 								<div class="col-lg-1 col-md-2 col-xs-6">
-									<a class="quick-button small">
+									<a class="quick-button small btn-bsd">
 										<p>bsd</p>
 									</a>
 								</div>
 
 								<div class="col-lg-1 col-md-2 col-xs-6">
-									<a class="quick-button small">
+									<a class="quick-button small btn-private">
 										<p>private</p>
 									</a>
 								</div>
 
 								<hr/>
-								<p><font color="red"><strong>XXX</strong> isotope goes here..</font></small></font></p>
 
 								<div class="clearfix"></div>
 							</div>	
@@ -76,11 +77,9 @@
 
 
 
-	<div class="row">
+	<div class="row machines-list">
 
-					<div class="col-lg-3 col-sm-6">
-
-						<div class="smallchart blue panel panel-default">
+						<div class="smallchart blue panel panel-default windows offline machine">
 
 							<div class="title">EC2-i-f9c80cf2</div>
 
@@ -96,11 +95,7 @@
 
 						</div>
 
-					</div><!--/col-->
-
-					<div class="col-lg-3 col-sm-6">
-
-						<div class="smallchart blue panel panel-default">
+						<div class="smallchart blue panel panel-default windows suspended machine">
 
 							<div class="title">EC2-i-f9480ef3</div>
 
@@ -116,11 +111,7 @@
 
 						</div>
 
-					</div><!--/col-->
-
-					<div class="col-lg-3 col-sm-6">
-
-						<div class="smallchart blue panel panel-default">
+						<div class="smallchart blue panel panel-default bsd private machine">
 
 							<div class="title">EC2-i-f9480e55</div>
 
@@ -136,11 +127,7 @@
 
 						</div>
 
-					</div><!--/col-->
-
-					<div class="col-lg-3 col-sm-6">
-
-						<div class="smallchart blue panel panel-default">
+						<div class="smallchart blue panel panel-default bsd offline machine">
 
 							<div class="title">EC2-i-f9420ef2</div>
 
@@ -156,11 +143,7 @@
 
 						</div>
 
-					</div><!--/col-->
-
-					<div class="col-lg-3 col-sm-6">
-
-						<div class="smallchart blue panel panel-default">
+						<div class="smallchart blue panel panel-default linux suspended machine">
 
 							<div class="title">EC2-i-f94807f2</div>
 
@@ -176,11 +159,7 @@
 
 						</div>
 
-					</div><!--/col-->
-
-					<div class="col-lg-3 col-sm-6">
-
-						<div class="smallchart blue panel panel-default">
+						<div class="smallchart blue panel panel-default linux private machine">
 
 							<div class="title">EC2-i-f5550ef2</div>
 
@@ -196,11 +175,7 @@
 
 						</div>
 
-					</div><!--/col-->
-
-					<div class="col-lg-3 col-sm-6">
-
-						<div class="smallchart blue panel panel-default">
+						<div class="smallchart blue panel panel-default linux offline suspended machine">
 
 							<div class="title">EC2-i-f94a0ef2</div>
 
@@ -216,11 +191,7 @@
 
 						</div>
 
-					</div><!--/col-->
-
-					<div class="col-lg-3 col-sm-6">
-
-						<div class="smallchart red panel panel-default">
+						<div class="smallchart red panel panel-default windows machine">
 
 							<div class="title">EC2-i-f944fef2</div>
 
@@ -236,11 +207,7 @@
 
 						</div>
 
-					</div><!--/col-->
-
-					<div class="col-lg-3 col-sm-6">
-
-						<div class="smallchart green panel panel-default">
+						<div class="smallchart green panel panel-default bsd machine">
 
 							<div class="title">EC2-i-4b4f441</div>
 
@@ -256,11 +223,7 @@
 
 						</div>
 
-					</div><!--/col-->
-
-					<div class="col-lg-3 col-sm-6">
-
-						<div class="smallchart yellow panel panel-default">
+						<div class="smallchart yellow panel panel-default bsd private machine">
 
 							<div class="title">EC2-i-c241fea1</div>
 
@@ -275,8 +238,6 @@
 							<div class="value">$XXX</div>
 
 						</div>
-
-					</div><!--/col-->
 
 	</div>
 
