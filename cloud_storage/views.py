@@ -54,8 +54,9 @@ def cloud_dropzone(request):
 			Uploaded_Files.objects.create(file=new_file,user=request.user)
   
 	uploaded_files = Uploaded_Files.objects.filter(user=request.user).order_by('-pk')
+	cloud_storage_menu_open = True
 	
-	return render_to_response('cloud_dropzone.html', {'uploaded_files':uploaded_files,'user':user,'profile':profile,}, context_instance=RequestContext(request))
+	return render_to_response('cloud_dropzone.html', {'cloud_storage_menu_open':cloud_storage_menu_open,'uploaded_files':uploaded_files,'user':user,'profile':profile,}, context_instance=RequestContext(request))
 	
 	
 
@@ -80,10 +81,11 @@ def cloud_storage(request):
 			Uploaded_Files.objects.create(file=new_file,user=request.user)
   
 	uploaded_files = Uploaded_Files.objects.filter(user=request.user).order_by('-pk')
+	cloud_storage_menu_open = True
 
 	# XXX batch sync files to the S3.....
 	
-	return render_to_response('cloud_storage.html', {'uploaded_files':uploaded_files,'user':user,'profile':profile,}, context_instance=RequestContext(request))
+	return render_to_response('cloud_storage.html', {'cloud_storage_menu_open':cloud_storage_menu_open,'uploaded_files':uploaded_files,'user':user,'profile':profile,}, context_instance=RequestContext(request))
 
 def ajax_cloud_storage(request):
 

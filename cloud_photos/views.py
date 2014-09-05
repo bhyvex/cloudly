@@ -43,6 +43,8 @@ def cloud_photos(request):
 	secret = profile.secret
 
 	print request.user
+	
+	cloud_storage_menu_open = True
 
-	return render_to_response('cloud_pictures.html', {'profile':profile,}, context_instance=RequestContext(request))
+	return render_to_response('cloud_pictures.html', {'profile':profile,'cloud_storage_menu_open':cloud_storage_menu_open,}, context_instance=RequestContext(request))
 
