@@ -8,10 +8,10 @@
                   <tr>
                     <th></th>
                     <th>Added</th>
-                    <th>Size</th>
                     <th>Filename</th>
 					<th>Kind</th>
 					<th>Status</th>
+                    <th>Size</th>
 					<th>Action</th>
                   </tr>
                 </thead>   
@@ -21,13 +21,9 @@
 					  <td>
 						<a href="/media/{{f.file.file}}">{{forloop.counter}}</a>
 					  </td>
-	
+
 					  <td>{{f.date_created|naturalday}}</td>
-										
-					  <td>
-						{{f.file.file.size|filesizeformat}}
-					  </td>
-					
+				
 					  <td>
 						<a href="#">{{f.file.file|clear_filename}}</a>
 						
@@ -36,6 +32,10 @@
 					
 					  <td>todo
 					  </td>
+					  <td>
+						{{f.file.file.size|filesizeformat}}
+					  </td>
+					
 					
 	                  <td width="10%">
 	                    <span class="label label-warning">Synchronising..</span>
