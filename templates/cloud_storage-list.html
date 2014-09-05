@@ -31,7 +31,7 @@
 					  <td>
 						<a href="#">{{f.file.file|clear_filename}}</a>
 						
-						<small><a href="#" id="name" data-type="text" data-pk="1" data-original-title="Name this file" class="editable editable-click">name</a></small>
+						<small><a href="#" id="name" data-type="text" data-pk="1" data-original-title="Name this file" class="editable editable-click">alias</a></small>
 					  </td>
 					
 					  <td>todo
@@ -47,17 +47,21 @@
 	                    <a class="btn btn-info" href="/media/{{f.file.file}}" target="_blank">
 	                      <i class="fa fa-cloud-download "></i>                                            
 	                    </a>
+						{% if not f.is_shared %}
 	                    <a class="btn btn-info" href="#" target="_blank">
 	                      <i class="fa fa-share "></i>                                            
 	                    </a>
+						{% endif %}
 	                    <a class="btn btn-danger" href="#">
 	                      <i class="fa fa-trash-o "></i> 
 	                    </a>
 	                    </td>
 						
+						{% if f.is_shared %}
 					    <td>
-							<button type="button" class="btn btn-link"><i class="fa fa-link"></i> Public Link</button>
+							<button type="button" class="btn btn-link"><i class="fa fa-link"></i> Share Link</button>
 						</td>
+						{% endif %}
 		              </tr>
 				{% endfor %}
                 </tbody>
