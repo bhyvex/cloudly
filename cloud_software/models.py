@@ -63,6 +63,7 @@ class Packages(models.Model):
 	package_name = models.CharField(max_length=250)
 	package_link = models.URLField()
 	package_ami = models.CharField(max_length=20)
+	package_vendor = models.CharField(max_length=250)
 	icon = models.URLField()
 
 
