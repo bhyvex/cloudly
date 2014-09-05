@@ -15,12 +15,11 @@ class Uploaded_Files(models.Model):
 	#name_slug = models.SlugField(max_length=767, blank=True)
 	share_link = models.URLField(blank=True)
 
-	#is_private = models.BooleanField(default=False)
-	#private_link = models.URLField(blank=True)
-	is_passwd_protected = models.BooleanField(default=False)
-	
 	is_deployed = models.BooleanField(default=False)
 	is_deleted = models.BooleanField(default=False)
 	is_shared = models.BooleanField(default=False)
+	
+	share_link = models.URLField(blank=True)
+	#share_link_password = 
 	
 	date_created = models.DateTimeField(auto_now_add=True)
