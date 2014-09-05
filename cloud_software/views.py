@@ -43,6 +43,7 @@ def cloud_software_add_new(request):
 		package_name = request.POST['package_name']
 		package_link = request.POST['package_link']
 		package_ami = request.POST['package_ami']
+		package_vendor = request.POST['vendor']
 
 		package = Packages.objects.create(
 			icon = icon,
@@ -51,6 +52,7 @@ def cloud_software_add_new(request):
 			package_name = package_name,
 			package_link = package_link,
 			package_ami = package_ami,
+			package_vendor = package_vendor,
 			)
 
 		print 'package', package
