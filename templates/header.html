@@ -100,6 +100,7 @@
 				<li><a href="" id="main-menu-toggle"><i class="fa fa-bars"></i></a></li>
 			</ul>
 	        <ul class="nav navbar-nav navbar-right">
+			{% comment %}
 				<li class="dropdown">
 					        		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-comments-o"></i><span class="badge">4</span></a>
 					        		<ul class="dropdown-menu">
@@ -156,10 +157,13 @@
 											</a>
 										</li>
 										<li class="dropdown-menu-footer text-center">
-											<a href="#">View all messages</a>
+											<a href="/support/">View all messages</a>
 										</li>	
 					        		</ul>
-					      		</li>
+					      		
+					
+			    </li>
+				{% endcomment %}
 				<li><a href="/account/settings/"><i class="fa fa-cog"></i></a></li>
 				<li><a href="/logout/"><i class="fa fa-power-off"></i></a></li>
 				<li><a href="/lock/"><i class="fa fa-lock"></i></a></li>
