@@ -33,8 +33,7 @@ class Profile(models.Model):
 	aws_ec2_verified = models.BooleanField(default=False)	
 	aws_s3_verified = models.BooleanField(default=False)	
 	aws_cloudfront_verified = models.BooleanField(default=False)	
-
-	automatic_backups = models.BooleanField(default=False)
+	aws_automatic_backups = models.BooleanField(default=False)
 	
 	clicks = models.BooleanField(default=True)
 	first_login = models.BooleanField(default=False)
