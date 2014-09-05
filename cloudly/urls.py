@@ -27,13 +27,14 @@ urlpatterns = patterns('',
 	url(r'^invoices/$', 'invoices.views.invoices', name='invoices'),
 	#url(r'^invoice/177212(?P<id>\d+)s/$', 'invoices.views.invoice', name='invoice'),
 
-	# private servers
+	# private cloud stuff
 	url(r'^private/servers/$', 'private_servers.views.servers', name='servers'),
 	url(r'^private/server/(?P<uuid>[\w\-\.]+)/$', 'private_servers.views.server_detail', name='server_detail'),
 	url(r'^server/add/new/$', 'private_servers.views.server_add', name='server_add'),	
-	# private storage
 	url(r'^private/storage/$', 'private_storage.views.private_storage', name='private_storage'),
-	
+	url(r'^private/cloud/photos/$', 'private_photos.views.private_photos', name='private_photos'),
+
+
 	# cloud stuff
 	url(r'^cloud/software/$', 'cloud_software.views.cloud_software', name='cloud_software'),
 	url(r'^cloud/software/add/new/$', 'cloud_software.views.cloud_software_add_new', name='cloud_software_add_new'),
