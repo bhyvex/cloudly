@@ -27,8 +27,9 @@ def cloud_software_add_new(request):
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/")
 
-	if not request.user.is_superuser:
-		return HttpResponse("access denied")
+	# XXX temporarily
+	#if not request.user.is_superuser:
+	#	return HttpResponse("access denied")
 
 	print '-- cloud software add new:'
 	print request.user
