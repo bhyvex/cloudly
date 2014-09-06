@@ -40,6 +40,11 @@ def dict_get(h, key):
 @register.filter(name='clear_filename')
 def clear_filename(f):
 	return str(f)[20:]
+	
+@register.filter(name='get_file_extension')
+def get_file_extension(f):
+	return str(f).split('.')[-1:][0]
+
 
 @register.filter(name='replace_dots')
 def replace_dots(text):

@@ -9,9 +9,9 @@
                     <th></th>
                     <th>Added</th>
                     <th>Filename</th>
+					<th>Size</th>
 					<th>Kind</th>
-					<th>Status</th>
-                    <th>Size</th>
+                    <th>Status</th>
 					<th>Action</th>
                   </tr>
                 </thead>   
@@ -30,16 +30,14 @@
 						<small><a href="#" id="name" data-type="text" data-pk="1" data-original-title="Name this file" class="editable editable-click">create alias</a></small>
 					  </td>
 					
-					  <td>todo
-					  </td>
-					  <td>
+					  <td width="10%">
 						{{f.file.file.size|filesizeformat}}
 					  </td>
-					
-					
+					  <td>{{f.file.file|get_file_extension|upper}}</td>
 	                  <td width="10%">
 	                    <span class="label label-warning">Synchronising..</span>
 	                  </td>
+
 	                  <td>
 	                    <a class="btn btn-success" href="#">
 	                      <i class="fa fa-search-plus "></i>                                            
