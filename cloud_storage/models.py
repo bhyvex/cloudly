@@ -20,6 +20,7 @@ class Uploaded_Files(models.Model):
 	is_shared = models.BooleanField(default=False)
 	
 	share_link = models.URLField(blank=True)
+	share_link_clicks_count = models.IntegerField(default=0)
 	#share_link_password = 
 	
 	date_created = models.DateTimeField(auto_now_add=True)
