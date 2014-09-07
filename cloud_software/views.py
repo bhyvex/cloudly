@@ -105,8 +105,9 @@ def cloud_software_view_tag(request, tag_slug):
 
 
 	tags = Tag.objects.all()
+	packages_count = len(packages)
 
-	return render_to_response('cloud_software_view_tag.html', {"tag":tag,"tags":tags,"packages":packages,}, context_instance=RequestContext(request))
+	return render_to_response('cloud_software_view_tag.html', {"tag":tag,"tags":tags,"packages":packages,"packages_count":packages_count,}, context_instance=RequestContext(request))
 
 
 
