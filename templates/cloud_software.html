@@ -23,28 +23,28 @@
 				<font color="red">XXX search</font><br/>
 				<font color="red">XXX top categories</font>
 				<hr/>
-				
-				<h2>cloud_software</h2>
-
-				<hr/>
+								
 				{% for package in packages %}
-				Package: <strong>{{package.title}}</strong><br/>
-				{{package.description}}<br/>
-				Tags: 
-				{% for tag in package|get_tags %}
-					<a href="/cloud/software/tag/{{tag.tag.name_slug}}/">{{tag.tag}}</a>
-				{% endfor %}
+				Package: <strong>{{package.title}}</strong>
+				{{package.description}}
+				
+					{% for tag in package|get_tags %}
+						<a href="/cloud/software/tag/{{tag.tag.name_slug}}/"><span class="label label-primary">{{tag.tag}}</span></a>
+					{% endfor %}
+					<button type="button" class="btn btn-success btn-xs">Install</button>
+				
 				<hr/>
 				{% endfor %}
 
-
-				All Tags: <a href="/cloud/software/">
+				<hr/>
+				All Tags:
+				<a href="/cloud/software/">
 			    <span class="label label-warning">all</span></a>
 				{% for tag in tags %}
 				<a href="/cloud/software/tag/{{tag.name_slug}}/">
 				<span class="label label-primary">{{tag}}</span></a>
 				{% endfor %}
-
+				
 				<hr/>
 				<a href="/cloud/software/add/new/"><button type="button" class="btn btn-danger"><i class="fa fa-heart-o"></i> Add More Software</button></a>
 				
