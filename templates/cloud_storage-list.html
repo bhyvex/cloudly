@@ -38,7 +38,7 @@
 	                    <span class="label label-warning">Synchronising..</span>
 	                  </td>
 
-	                  <td>
+	                  <td width="18%">
 	                    <a class="btn btn-success" href="#">
 	                      <i class="fa fa-search-plus "></i>                                            
 	                    </a>
@@ -49,17 +49,20 @@
 	                    <a class="btn btn-info" href="#" target="_blank">
 	                      <i class="fa fa-share "></i>                                            
 	                    </a>
-						{% endif %}
 	                    <a class="btn btn-danger" href="#">
 	                      <i class="fa fa-trash-o "></i> 
 	                    </a>
+						{% endif %}
 	                    </td>
 						
 						{% if f.is_shared %}
-					    <td>
+					    <td width="25%">
 							{% if f.is_shared %}
 		                    <a class="btn btn-warning" href="/password/protect/file">
 		                      <i class="fa fa-key "></i>                                            
+		                    </a>
+		                    <a class="btn btn-danger" href="#">
+		                      <i class="fa fa-trash-o "></i> 
 		                    </a>
 							{% endif %}
 							<button type="button" class="btn btn-link"><i class="fa fa-link"></i> Share Link</button>
