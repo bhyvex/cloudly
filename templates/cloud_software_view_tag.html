@@ -21,21 +21,7 @@
 				<strong><font color="red">Tag: "{{tag}}"</font></strong> {{uploaded_files}}								
 				<h1>"{{tag}}" packages ({{packages_count}})</h1>
 				
-				<hr/>
-				{% for package in packages %}
-				Package: {{package.title}}<br/>
-				{{package.description}}<br/><br/>
-				
-				Tags: 
-				{% for tag in package|get_tags %}
-					<a href="/cloud/software/tag/{{tag.tag.name_slug}}/">{{tag.tag}}</a>
-				{% endfor %}
 				<br/>
-				<font color="red">install button</font>
-				
-				<hr/>
-				{% endfor %}
-
 				All Tags: <a href="/cloud/software/">
 			    <span class="label label-primary">all</span></a>
 					
@@ -48,7 +34,23 @@
 					{% endif %}
 				</a>
 				{% endfor %}
-				<br/><br/>
+				<br/>
+				
+				<hr/>
+				{% for package in packages %}
+				Package: {{package.title}}<br/>
+				{{package.description}}<br/>
+				
+				Tags: 
+				{% for tag in package|get_tags %}
+					<a href="/cloud/software/tag/{{tag.tag.name_slug}}/">{{tag.tag}}</a>
+				{% endfor %}
+				<br/>
+				<font color="red">install button</font>
+				
+				<hr/>
+				{% endfor %}
+
 				</div>
 			</div>
 
