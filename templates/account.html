@@ -13,6 +13,22 @@
 	  	<li class="active">Settings</li>
 	</ol>
 
+
+	{% if user.is_superuser %}
+	<div class="alert alert-danger">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<strong>You're a Superuser!</strong>
+	</div>
+	{% endif %}
+
+	{% if user.is_superuser %}
+	<div class="alert alert-danger">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		Staff Member
+	</div>
+	{% endif %}
+
+
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="panel panel-default">
@@ -91,9 +107,6 @@
 		    </label>
 		</form>
 	</li>
-	<br/>
-	<li class="list-group-item"><strong>is_staff</strong> {{user.is_staff}}</li>
-    <li class="list-group-item"><strong>is_superuser</strong> {{user.is_superuser}}</li>
 </ul>
 
 </div>
