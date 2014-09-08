@@ -41,13 +41,13 @@
 								<label class="control-label">File Upload</label>
 								<div class="controls">
 								  	<div id="dropzone">
-										<form action="test.html" class="dropzone dz-clickable">
+								        <form class="dropzone" action="/cloud/dropzone/" method="post" enctype="multipart/form-data" style="height:480px">
+								            {% csrf_token %}
 											
 										<div class="dz-default dz-message"><span>Drop files here to upload</span></div></form>
 									</div>
 								</div>
 							</div>	  
-<font color="red">XXX make a big one</font>
 						</div>
 					</div>
 				</div><!--/col-->
@@ -58,5 +58,7 @@
 					
 			</div>
 			
+        <script src="/static/js/dropzone.js"></script>
+
 {% endblock page_content %}
 

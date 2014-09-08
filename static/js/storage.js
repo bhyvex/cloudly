@@ -1,9 +1,26 @@
+function ajaxBlock() {
+	if ($('#storage_datatable input:focus').length) return true;
+	if ($('#storage_datatable select:focus').length) return true;
+	return false;
+}
+
+function storageDataInit() {
+	$('#storage_datatable .cloud_data').dataTable({
+			'lengthMenu': [[10, 25, 50, 100, 250, 500, 1000], [10, 25, 50, 100, 250, 500, 1000]],
+			'stateSave': true,
+			'iDisplayLength': 25,
+			});
+}
+
 function ajaxStorage() {
+	if (ajaxBlock()) return;
 	$.ajax({ url: "/ajax/cloud/storage/", type: "GET", dataType: "html", success: ajaxStorageUpdate });
 }
 
 function ajaxStorageUpdate(content) {
+	if (ajaxBlock()) return;
 	$('#storage_datatable').html(content);
+	storageDataInit();
 	// prevent moving to top
 	$('a[href="#"][data-top!=true]').click(function(e){ e.preventDefault(); });
 
@@ -28,6 +45,7 @@ function setupDropzone(zone) {
 }
 
 $(document).ready (function() {
+	storageDataInit();
 	window.setInterval ( function() { ajaxStorage(); } , 2000);
 
 	window.setTimeout( function() { setupDropzone(Dropzone.instances[0]); }, 500);
