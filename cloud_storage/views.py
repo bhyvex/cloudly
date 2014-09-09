@@ -46,14 +46,16 @@ def cloud_dropzone(request):
 
 	print request.user
 
+	uploaded_files = []
+
 	if request.method == 'POST':
 		form = UploadFileForm(request.POST, request.FILES)
 		if form.is_valid():
 			new_file = Files(file=request.FILES['file'])
 			new_file.save()
-			Uploaded_Files.objects.create(file=new_file,user=request.user)
+			uploaded_file = Uploaded_Files.objects.create(file=new_file,user=request.user)
   
-	uploaded_files = Uploaded_Files.objects.filter(user=request.user).order_by('-pk')
+	#uploaded_files = Uploaded_Files.objects.filter(user=request.user).order_by('-pk')
 	cloud_storage_menu_open = True
 	
 	return render_to_response('cloud_dropzone.html', {'cloud_storage_menu_open':cloud_storage_menu_open,'uploaded_files':uploaded_files,'user':user,'profile':profile,}, context_instance=RequestContext(request))

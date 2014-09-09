@@ -13,6 +13,22 @@
 	  	<li class="active">Settings</li>
 	</ol>
 
+
+	{% if user.is_superuser %}
+	<div class="alert alert-danger">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<strong>You're a Superuser!</strong>
+	</div>
+	{% endif %}
+
+	{% if user.is_staff %}
+	<div class="alert alert-danger">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		Staff Member
+	</div>
+	{% endif %}
+
+
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="panel panel-default">
@@ -66,6 +82,15 @@
 
 
     <li class="list-group-item"><strong>Twitter Notifications</strong> {{profile.twitter_notifications}}
+
+		<form class="form-horizontal" action="/test">
+			<label class="switch">
+		      <input type="checkbox" class="switch-input">
+		      <span class="switch-label" data-on="On" data-off="Off"></span>
+		      <span class="switch-handle"></span>
+		    </label>
+		</form>
+
 	</li>
 	
 	<br/>
@@ -73,93 +98,22 @@
     <li class="list-group-item"><strong>aws_s3_verified</strong> {{profile.aws_s3_verified}}</li>
     <li class="list-group-item"><strong>aws_cloudfront_verified</strong> {{profile.aws_cloudfront_verified}}</li>
 	<br/>
-	<li class="list-group-item"><strong>aws_automatic_backups</strong> {{profile.aws_automatic_backups}}</li>
-	<br/>
-	<li class="list-group-item"><strong>is_staff</strong> {{user.is_staff}}</li>
-    <li class="list-group-item"><strong>is_superuser</strong> {{user.is_superuser}}</li>
+	<li class="list-group-item"><strong>aws_automatic_backups</strong> {{profile.aws_automatic_backups}}
+		<form class="form-horizontal" action="/test">
+		    <label class="switch switch-danger">
+		      <input type="checkbox" class="switch-input" checked="">
+		      <span class="switch-label" data-on="On" data-off="Off"></span>
+		      <span class="switch-handle"></span>
+		    </label>
+		</form>
+	</li>
 </ul>
 
 </div>
 
  					</div><!--/col-->
 
-				<div class="row">
-					<div class="col-lg-12 hideInIE8">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h2><i class="fa fa-edit"></i><span class="break"></span>Toggle Buttons</h2>
-								<div class="panel-actions">
-									<a href="ui-elements.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-									<a href="ui-elements.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-									<a href="ui-elements.html#" class="btn-close"><i class="fa fa-times"></i></a>
-								</div>
-							</div>
-							<div class="panel-body">
-								<form class="form-horizontal">
-									<div class="form-group">
-										<div class="controls row">
-											<div class="col-md-1 col-sm-2 col-xs-3">
-												<label class="switch">
-											      <input type="checkbox" class="switch-input">
-											      <span class="switch-label" data-on="On" data-off="Off"></span>
-											      <span class="switch-handle"></span>
-											    </label>
-											</div>
-											<div class="col-md-1 col-sm-2 col-xs-3">
-											    <label class="switch switch-default">
-											      <input type="checkbox" class="switch-input" checked="">
-											      <span class="switch-label" data-on="On" data-off="Off"></span>
-											      <span class="switch-handle"></span>
-											    </label>
-											</div>
-											<div class="col-md-1 col-sm-2 col-xs-3">
-												<label class="switch switch-primary">
-											      <input type="checkbox" class="switch-input" checked="">
-											      <span class="switch-label" data-on="On" data-off="Off"></span>
-											      <span class="switch-handle"></span>
-											    </label>
-											</div>
-											<div class="col-md-1 col-sm-2 col-xs-3">
-											    <label class="switch switch-success">
-											      <input type="checkbox" class="switch-input" checked="">
-											      <span class="switch-label" data-on="On" data-off="Off"></span>
-											      <span class="switch-handle"></span>
-											    </label>
-											</div>
-											<div class="col-md-1 col-sm-2 col-xs-3">
-											    <label class="switch switch-warning">
-											      <input type="checkbox" class="switch-input" checked="">
-											      <span class="switch-label" data-on="On" data-off="Off"></span>
-											      <span class="switch-handle"></span>
-											    </label>
-											</div>
-											<div class="col-md-1 col-sm-2 col-xs-3">
-											    <label class="switch switch-info">
-											      <input type="checkbox" class="switch-input" checked="">
-											      <span class="switch-label" data-on="On" data-off="Off"></span>
-											      <span class="switch-handle"></span>
-											    </label>
-											</div>
-											<div class="col-md-1 col-sm-2 col-xs-3">
-											    <label class="switch switch-danger">
-											      <input type="checkbox" class="switch-input" checked="">
-											      <span class="switch-label" data-on="On" data-off="Off"></span>
-											      <span class="switch-handle"></span>
-											    </label>
-											</div>
-										</div>
-								  	</div>
-								</form>
-							</div>
-						</div>
-					</div><!--/col-->
-				</div><!-- row -->
-
-
 			</div><!--/row-->	
-
-			
-			
 		</div>
 		<!-- end: Content -->
 	</div><!--/row-->		

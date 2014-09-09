@@ -38,25 +38,25 @@
 	                    <span class="label label-warning">Synchronising..</span>
 	                  </td>
 
-	                  <td width="18%">
+					{% if not f.is_shared %}
+	                    <td>
 	                    <a class="btn btn-success" href="#">
 	                      <i class="fa fa-search-plus "></i>                                            
 	                    </a>
 	                    <a class="btn btn-info" href="/media/{{f.file.file}}" target="_blank">
 	                      <i class="fa fa-cloud-download "></i>                                            
 	                    </a>
-						{% if not f.is_shared %}
 	                    <a class="btn btn-info" href="#" target="_blank">
 	                      <i class="fa fa-share "></i>                                            
 	                    </a>
 	                    <a class="btn btn-danger" href="#">
 	                      <i class="fa fa-trash-o "></i> 
 	                    </a>
-						{% endif %}
-	                    </td>
+                		</td>
+					{% endif %}
 						
 						{% if f.is_shared %}
-					    <td width="25%">
+					     <td>
 							{% if f.is_shared %}
 		                    <a class="btn btn-warning" href="/password/protect/file">
 		                      <i class="fa fa-key "></i>                                            
