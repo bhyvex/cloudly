@@ -8,7 +8,7 @@ function storageDataInit() {
 	$('#storage_datatable .cloud_data').dataTable({
 			'aLengthMenu': [[10, 25, 50, 100, 250, 500, 1000], [10, 25, 50, 100, 250, 500, 1000]],
 			'bStateSave': true,
-			'iDisplayLength': 25,
+			'iDisplayLength': 10,
 			});
 }
 
