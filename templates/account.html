@@ -21,7 +21,7 @@
 	</div>
 	{% endif %}
 
-	{% if user.is_superuser %}
+	{% if user.is_staff %}
 	<div class="alert alert-danger">
 		<button type="button" class="close" data-dismiss="alert">×</button>
 		Staff Member
