@@ -34,3 +34,20 @@ def support(request):
 	print request.user
 
 	return render_to_response('support.html', {'user':user,'profile':profile,}, context_instance=RequestContext(request))
+
+
+
+def support_devel_ticket(request):
+
+	print '-- support_devel_ticket:'
+
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	secret = profile.secret
+
+	print request.user
+
+	return render_to_response('support-ticket.html', {'user':user,'profile':profile,}, context_instance=RequestContext(request))
