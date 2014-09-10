@@ -77,7 +77,6 @@ jQuery(document).ready(function($){
 			$('.main').addClass('full');
 			$('.navbar-brand').addClass('noBg');
 			$('.sidebar').hide();
-			
 		} else {
 			
 			$(this).removeClass('close').addClass('open');
@@ -110,6 +109,7 @@ jQuery(document).ready(function($){
 			
 			$('.sidebar > div > ul > li > a > .chevron').removeClass('closed').addClass('opened');
 			$('.sidebar > div > ul > li > a').addClass('open');
+			if (sessionStorage) sessionStorage.sidebarClosed = 'yes';
 						
 		} else {
 			
@@ -121,6 +121,7 @@ jQuery(document).ready(function($){
 			
 			$('.sidebar > div > ul > li > a > .chevron').removeClass('opened').addClass('closed');
 			$('.sidebar > div > ul > li > a').removeClass('open');		
+			if (sessionStorage) sessionStorage.sidebarClosed = undefined;
 			
 		}
 		
@@ -168,14 +169,20 @@ jQuery(document).ready(function($){
 		}
 	
 	});
-	
+
+
+	if (sessionStorage && (sessionStorage.sidebarClosed === 'yes'))
+		$('#main-menu-min').click();
+
+/*
 	if ($('.sidebar').hasClass('minified')) {
 		
 		$('.sidebar > div > ul > li > a > .chevron').removeClass('closed').addClass('opened');
 		$('.sidebar > div > ul > li > a').addClass('open');
 		$('body').addClass('sidebar-minified');
 	}	
-		
+*/
+
 });	
 
 jQuery(document).ready(function($){
