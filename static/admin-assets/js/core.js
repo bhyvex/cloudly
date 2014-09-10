@@ -122,8 +122,8 @@ jQuery(document).ready(function($){
 			$('.sidebar > div > ul > li > a > .chevron').removeClass('opened').addClass('closed');
 			$('.sidebar > div > ul > li > a').removeClass('open');		
 			if (sessionStorage) sessionStorage.sidebarClosed = undefined;
-			
 		}
+                if ($('.machines-list').length) $('.machines-list').isotope('layout');
 		
 	});
 	
