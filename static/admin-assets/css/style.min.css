@@ -2844,6 +2844,15 @@ ul.comments-list.no-padding li {
   color: white;
   background: #888;
 }
+.quick-button.active.btn-all {
+  color: white;
+  background: #777;
+}
+.quick-button.active.btn-all:hover {
+  color: black !important;
+  background: #aaa;
+}
+
 /* Circle stats
 =================================================================== */
 .tempStats {

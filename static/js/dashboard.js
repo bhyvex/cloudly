@@ -1,7 +1,7 @@
 
 function filterMachines(f) {
 	$('.machines-buttons .quick-button').removeClass('active');
-	if (f != 'all') $('.machines-buttons .btn-'+f).addClass('active');
+	$('.machines-buttons .btn-'+f).addClass('active');
 	if (f == 'all') f = '*';
 	else f = '.'+f;
 	$('.machines-list').isotope( { filter: f } );
