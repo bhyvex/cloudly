@@ -170,6 +170,15 @@ jQuery(document).ready(function($){
 	
 	});
 
+	$(".chart-spark").sparkline('html', {
+		type: 'line',
+		lineColor: '#333333',
+		spotColor: false,
+		maxSpotColor: false,
+		minSpotColor: false,
+		spotRadius: 2,
+		lineWidth: 1
+	});
 
 	if (sessionStorage && (sessionStorage.sidebarClosed === 'yes'))
 		$('#main-menu-min').click();
