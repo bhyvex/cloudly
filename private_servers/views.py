@@ -26,15 +26,6 @@ client = MongoClient('localhost', 27017)
 
 mongo = client.cloudly
 
-def server_add(request):
-
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect("/")
-
-	print '-- server add:'
-	print request.user
-
-	return render_to_response('private_server_add_new.html', {}, context_instance=RequestContext(request))
 
 def server_detail(request, uuid):
 	

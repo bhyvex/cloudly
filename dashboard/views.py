@@ -35,6 +35,7 @@ def home(request):
 	
 		return render_to_response('web.html', locals(), context_instance=RequestContext(request))
 
+	print '-'*100
 	print '--  dashboard:'
 	print request.user
 	
