@@ -30,7 +30,7 @@ from amazon import s3_funcs_shortcuts
 from cloud_storage.models import Files
 from cloud_storage.models import Uploaded_Files
 
-BROWSERS_FORMATS = "JPEG", "GIF", "PNG", "APNG", "MNG", "TIFF", "SVG", "PDF", "XBM", "BMP"
+BROWSERS_FORMATS = ["JPEG", "GIF", "PNG", "APNG", "MNG", "TIFF", "SVG", "PDF", "XBM", "BMP",]
 # As per Browsers Image format support: http://en.wikipedia.org/wiki/Comparison_of_web_browsers#Image_format_support
 
 def cloud_photos(request):
@@ -46,7 +46,21 @@ def cloud_photos(request):
 
 	print request.user
 	
+	print '- searching for pictures'
+	
+	files = Uploaded_Files.objects.filter(user=request.user)
+	files_pictures = []
+	for f in files:
+		
+		f_extension = str(f.file.file).split('.')[-1:][0].upper()
+				
+		if f_extension in BROWSERS_FORMATS:
+			print '- mrdka', f_extension, f.file.file
+			files_pictures.append(f)
+
+	
+	
 	cloud_storage_menu_open = True
 
-	return render_to_response('cloud_pictures.html', {'profile':profile,'cloud_storage_menu_open':cloud_storage_menu_open,}, context_instance=RequestContext(request))
+	return render_to_response('cloud_pictures.html', {'BROWSERS_FORMATS':BROWSERS_FORMATS, 'files_pictures':files_pictures, 'profile':profile,'cloud_storage_menu_open':cloud_storage_menu_open,}, context_instance=RequestContext(request))
 
