@@ -81,14 +81,14 @@ if __name__ == '__main__':
 		c = enbase(b)
 		d = debase(c)
 		e = decode(d)
-		print a,'->', b, '->', c, '->', d, '->', e
+		#print a,'->', b, '->', c, '->', d, '->', e
 		
 		key = a
-		
-		url = UrlEncoder().encode_url(12)
+		url = UrlEncoder().encode_url(key)
 		key = UrlEncoder().decode_url(url)
+		#print 'key:', a,
+		#print ', url:', url,
+		#print ', key:', key
 
-		print 'key:', a,
-		print ', url:', url,
-		print ', key:', key
-		
+
+	
