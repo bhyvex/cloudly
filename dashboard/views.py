@@ -152,7 +152,13 @@ def help(request):
 		return HttpResponseRedirect("/")
 
 	print request.user
-	return render_to_response('help.html', locals(), context_instance=RequestContext(request))
+
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	secret = profile.secret
+
+
+	return render_to_response('help.html', {'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
 
 def security(request):
 
