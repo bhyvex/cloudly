@@ -75,7 +75,12 @@ if __name__ == '__main__':
 	print key
 	
 	
-	for a in range(0, 200000):
+	short_uniques = []
+
+	print 'short_uniques', short_uniques	
+	print 'searching for uniques...'
+	
+	for a in range(0, 2000000):
 		
 		b = encode(a)
 		c = enbase(b)
@@ -89,6 +94,14 @@ if __name__ == '__main__':
 		#print 'key:', a,
 		#print ', url:', url,
 		#print ', key:', key
+		
+		print a
+		if not a in short_uniques:
+			short_uniques.append(a)
+		else:
+			import time
+			print 'duplicate!! '*10000, key, url
+			time.sleep(3)
 
 
 	
