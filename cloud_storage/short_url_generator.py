@@ -69,9 +69,9 @@ def decode_url(n):
 if __name__ == '__main__':
 		
 	print 'example usage'
-	url = UrlEncoder().encode_url(12)
+	url = DEFAULT_ENCODER.encode_url(12)
 	print url
-	key = UrlEncoder().decode_url(url)
+	key = DEFAULT_ENCODER.decode_url(url)
 	print key
 	
 	
@@ -89,8 +89,8 @@ if __name__ == '__main__':
 		#print a,'->', b, '->', c, '->', d, '->', e
 		
 		key = a
-		url = UrlEncoder().encode_url(key)
-		key = UrlEncoder().decode_url(url)
+		url = DEFAULT_ENCODER.encode_url(key)
+		key = DEFAULT_ENCODER.decode_url(url)
 		#print 'key:', a,
 		#print ', url:', url,
 		#print ', key:', key
@@ -101,7 +101,7 @@ if __name__ == '__main__':
 		else:
 			import time
 			print 'duplicate!! '*10000, key, url
-			time.sleep(3)
+			time.sleep(100)
 
 
 	
