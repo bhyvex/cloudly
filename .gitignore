@@ -2,4 +2,5 @@
 *.pyc
 media/*
 /cloudly/settings.py-kamil
+/cloudly/settings.py
 /nbproject/*
