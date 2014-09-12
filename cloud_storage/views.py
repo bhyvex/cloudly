@@ -60,7 +60,20 @@ def cloud_dropzone(request):
 	
 	return render_to_response('cloud_dropzone.html', {'cloud_storage_menu_open':cloud_storage_menu_open,'uploaded_files':uploaded_files,'user':user,'profile':profile,}, context_instance=RequestContext(request))
 	
+def cloud_sharing(request):
 	
+	print '-- cloud sharing:'
+
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	secret = profile.secret
+
+	print 'user', request.user
+	
+	return render_to_response('cloud_sharing.html', {'profile':profile,}, context_instance=RequestContext(request))
 
 def cloud_storage(request):
 

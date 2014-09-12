@@ -12,9 +12,6 @@ class Uploaded_Files(models.Model):
 	
 	name = models.CharField(max_length=512, blank=True)
 	
-	#name_slug = models.SlugField(max_length=767, blank=True)
-	share_link = models.URLField(blank=True)
-
 	is_deployed = models.BooleanField(default=False)
 	is_deleted = models.BooleanField(default=False)
 	is_shared = models.BooleanField(default=False)
