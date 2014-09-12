@@ -71,7 +71,7 @@ def cloud_sharing(request):
 	profile = userprofile.objects.get(user=request.user)
 	secret = profile.secret
 
-	print request.user
+	print 'user', request.user
 	
 	return render_to_response('cloud_sharing.html', {'profile':profile,}, context_instance=RequestContext(request))
 
