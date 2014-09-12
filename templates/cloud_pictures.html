@@ -65,7 +65,14 @@
 						<font color="red">
 							XXX pictures pagination<br/>
 							XXX pictures action buttons<br/>
+							<br/>
 						</font>
+						
+						
+						{% if not file_pictures %}
+						You have currently no pictures in the cloud.  You can add some <a href="/cloud/storage">here</a>.
+						{% endif %}
+						
 					</div>
 				</div>	
 			</div><!--/col-->
