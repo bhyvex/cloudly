@@ -30,8 +30,8 @@ from amazon import s3_funcs_shortcuts
 from cloud_storage.models import Files
 from cloud_storage.models import Uploaded_Files
 
+BROWSERS_FORMATS = "JPEG", "GIF", "PNG", "APNG", "MNG", "TIFF", "SVG", "PDF", "XBM", "BMP"
 # As per Browsers Image format support: http://en.wikipedia.org/wiki/Comparison_of_web_browsers#Image_format_support
-# 
 
 def cloud_photos(request):
 
