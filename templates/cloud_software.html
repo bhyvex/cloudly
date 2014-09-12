@@ -46,11 +46,13 @@
 				{% for package in packages %}
 				Package: <strong>{{package.title}}</strong>
 				{{package.description}}
-				
+				<button type="button" class="btn btn-success btn">Install</button>
+				<br/>
 					{% for tag in package|get_tags %}
-						<a href="/cloud/software/tag/{{tag.tag.name_slug}}/"><span class="label label-primary">{{tag.tag}}</span></a>
+					<a href="/cloud/software/tag/{{tag.tag.name_slug}}/">
+					<button type="button" class="btn btn-xs btn-link active">{{tag.tag}}</button>
+					</a>
 					{% endfor %}
-					<button type="button" class="btn btn-success btn-xs">Install</button>
 				
 				<hr/>
 				{% endfor %}
