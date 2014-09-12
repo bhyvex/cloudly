@@ -60,7 +60,8 @@ def cloud_dropzone(request):
 	
 	return render_to_response('cloud_dropzone.html', {'cloud_storage_menu_open':cloud_storage_menu_open,'uploaded_files':uploaded_files,'user':user,'profile':profile,}, context_instance=RequestContext(request))
 	
-	
+def cloud_sharing(request):
+	return HttpResponse("working on this currently")
 
 def cloud_storage(request):
 
