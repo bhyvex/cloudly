@@ -186,32 +186,32 @@
 									<p>1) A cron job is configured to run <em>cron-apt</em> daily.<em> </em></p>
 
 <pre>
-$ cat /etc/cron.d/cron-apt
-# Regular cron jobs for the cron-apt package
-# Every night at 4 o'clock.
-0 4     * * *   root    test -x /usr/sbin/cron-apt &amp;&amp; /usr/sbin/cron-apt
+	$ cat /etc/cron.d/cron-apt
+	# Regular cron jobs for the cron-apt package
+	# Every night at 4 o'clock.
+	0 4     * * *   root    test -x /usr/sbin/cron-apt &amp;&amp; /usr/sbin/cron-apt
 </pre>
 
 		<p>2)<em> cron-apt</em> is configured to only update from the security sources list.</p>
 
 <pre>
-$ cat /etc/apt/sources.list.d/security.sources.list
-deb <a href="http://archive.turnkeylinux.org/ubuntu" title="http://archive.turnkeylinux.org/ubuntu" rel="nofollow">http://archive.turnkeylinux.org/ubuntu</a> lucid-security main
-deb <a href="http://archive.turnkeylinux.org/ubuntu" title="http://archive.turnkeylinux.org/ubuntu" rel="nofollow">http://archive.turnkeylinux.org/ubuntu</a> lucid-security universe
-deb <a href="http://archive.ubuntu.com/ubuntu" title="http://archive.ubuntu.com/ubuntu" rel="nofollow">http://archive.ubuntu.com/ubuntu</a> lucid-security main
-deb <a href="http://archive.ubuntu.com/ubuntu" title="http://archive.ubuntu.com/ubuntu" rel="nofollow">http://archive.ubuntu.com/ubuntu</a> lucid-security universe
+	$ cat /etc/apt/sources.list.d/security.sources.list
+	deb <a href="http://archive.turnkeylinux.org/ubuntu" title="http://archive.turnkeylinux.org/ubuntu" rel="nofollow">http://archive.turnkeylinux.org/ubuntu</a> lucid-security main
+	deb <a href="http://archive.turnkeylinux.org/ubuntu" title="http://archive.turnkeylinux.org/ubuntu" rel="nofollow">http://archive.turnkeylinux.org/ubuntu</a> lucid-security universe
+	deb <a href="http://archive.ubuntu.com/ubuntu" title="http://archive.ubuntu.com/ubuntu" rel="nofollow">http://archive.ubuntu.com/ubuntu</a> lucid-security main
+	deb <a href="http://archive.ubuntu.com/ubuntu" title="http://archive.ubuntu.com/ubuntu" rel="nofollow">http://archive.ubuntu.com/ubuntu</a> lucid-security universe
 </pre>
 
 									<p>3)<em> cron-apt</em> is configured to install the updates automatically:</p>
 
 <pre>
-$ cat /etc/cron-apt/action.d/5-install
-autoclean -q -y
-dist-upgrade -q -y -o APT::Get::Show-Upgraded=true \
--o Dir::Etc::sourcelist=/etc/apt/sources.list.d/security.sources.list \
--o Dir::Etc::sourceparts=nonexistent \
--o DPkg::Options::=--force-confdef \
--o DPkg::Options::=--force-confold
+	$ cat /etc/cron-apt/action.d/5-install
+	autoclean -q -y
+	dist-upgrade -q -y -o APT::Get::Show-Upgraded=true \
+	-o Dir::Etc::sourcelist=/etc/apt/sources.list.d/security.sources.list \
+	-o Dir::Etc::sourceparts=nonexistent \
+	-o DPkg::Options::=--force-confdef \
+	-o DPkg::Options::=--force-confold
 </pre>
 
 									<p>4) <em>cron-apt</em> logs to <em>/var/log/cron-apt/log</em></p>
