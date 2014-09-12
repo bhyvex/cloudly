@@ -1,4 +1,4 @@
-DEFAULT_ALPHABET = 'mf6d2c4rd8adigw9asahsdaetxuk3fq'
+DEFAULT_ALPHABET = 'mn6j2c4rv8bpygw95z7hsdaetxuk3fq'
 DEFAULT_BLOCK_SIZE = 24
 MIN_LENGTH = 5
 
@@ -67,12 +67,28 @@ def decode_url(n):
 	return DEFAULT_ENCODER.decode_url(n)
 
 if __name__ == '__main__':
-	for a in range(0, 200000, 37):
+		
+	print 'example usage'
+	url = UrlEncoder().encode_url(12)
+	print url
+	key = UrlEncoder().decode_url(url)
+	print key
+	
+	
+	for a in range(0, 200000):
+		
 		b = encode(a)
 		c = enbase(b)
 		d = debase(c)
 		e = decode(d)
-		assert a == e
-		assert b == d
-		c = (' ' * (7 - len(c))) + c
-		print '%6d %12d %s %12d %6d' % (a, b, c, d, e)
+		print a,'->', b, '->', c, '->', d, '->', e
+		
+		key = a
+		
+		url = UrlEncoder().encode_url(12)
+		key = UrlEncoder().decode_url(url)
+
+		print 'key:', a,
+		print ', url:', url,
+		print ', key:', key
+		
