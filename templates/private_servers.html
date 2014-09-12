@@ -17,17 +17,22 @@
 
 			<div class="row">
 				<div class="panel panel-default">
+				
 				<strong><font color="red">Debug</font></strong> {{uploaded_files}}								
 
 				<h2>Private Servers</h2>
 
 				{% if servers_count = 0 %}
 				    <p>
-						There are no servers installed.<br/>
+						You have currently no private servers installed.<br/>
 					</p>
 					<p>
-						Please <a href="/server/add/new/">add one</a>.
+						To install a new private server simply copy and paste the following command into the linux terminal window:<br/>
+						
+						<pre>curl http://cdn..../<a href="/static/agent.py" target="_blank">agent</a></pre>
+					
 					</p>
+					
 				{% else %}
 
 					{% for server in servers %}
