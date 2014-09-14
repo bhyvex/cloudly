@@ -43,14 +43,13 @@
 				
 				Tags: 
 				{% for tag in package|get_tags %}
-					<a href="/cloud/software/tag/{{tag.tag.name_slug}}/">{{tag.tag}}</a>
+					<a href="/cloud/software/tag/{{tag.tag.name_slug}}/">
+					<button type="button" class="btn btn-xs btn-link active">{{tag.tag}}</button>
+					</a>
 				{% endfor %}
-				<br/>
-				<font color="red">install button</font>
-				
+				<button type="button" class="btn btn-xs btn-success btn">Install</button>
 				<hr/>
 				{% endfor %}
-
 				</div>
 			</div>
 
