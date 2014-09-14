@@ -22,7 +22,7 @@ urlpatterns = patterns('',
 	# support
 	url(r'^support/$', 'support.views.support', name='support'),
 	url(r'^support/devel/ticket$', 'support.views.support_devel_ticket', name='support_devel_ticket'),
-	#url(r'^support/new/$', 'support.views.support_add_new', name='support_add_new'),
+	url(r'^support/add/new/$', 'support.views.support_add_new', name='support_add_new'),
 	#url(r'^support/ticket/(?P<ticket_id>\d+)/$', 'support.views.support_view_ticket', name='support_view_ticket'),
 
 	# invoices

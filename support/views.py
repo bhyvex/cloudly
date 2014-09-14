@@ -36,6 +36,9 @@ def support(request):
 	return render_to_response('support.html', {'user':user,'profile':profile,}, context_instance=RequestContext(request))
 
 
+def support_add_new(request):
+	return HttpResponse("working on this currently")
+
 
 def support_devel_ticket(request):
 
