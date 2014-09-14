@@ -36,8 +36,7 @@
 												To install a new private server simply copy and paste the following command into the linux terminal window:<br/>
 
 <pre>
-$ curl <a href="http://{{server_addr}}/static/agent.py" target="_blank">http://{{server_addr}}/static/agent.py</a> > /root/agent.py
-$ sudo python agent..
+curl <a href="http://{{server_addr}}/static/agent.py" target="_blank">http://{{server_addr}}/static/agent.py</a> > ~$USER/agent.py; sudo sh -c "while true; do python ~$USER/agent.py; sleep 3; done"
 </pre>
 
 						And that's that.<br/>
