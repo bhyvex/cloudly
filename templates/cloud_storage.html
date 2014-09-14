@@ -32,7 +32,7 @@
 								<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
 							</div>
 						</div>
-						<div class="panel-body" {% if uploaded_files.count >= 5 %}style="display: none;"{% endif %}>
+						<div class="panel-body" {% if uploaded_files.count > 10 %}style="display: none;"{% endif %}>
 								  
 							<div class="form-group">
 								<label class="control-label">Drag &amp; drop files</label>
