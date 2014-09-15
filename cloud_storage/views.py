@@ -15,6 +15,7 @@ from django.template import RequestContext
 from django.http import HttpResponseForbidden
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
+from django.utils import simplejson
 
 logger = logging.getLogger(__name__)
 
@@ -32,6 +33,9 @@ from forms import UploadFileForm
 from cloud_storage.models import Files
 from cloud_storage.models import Uploaded_Files
 
+from django.template.defaultfilters import filesizeformat, upper
+from django.contrib.humanize.templatetags.humanize import naturalday
+from cloudly.templatetags.cloud_extras import clear_filename, get_file_extension
 
 def cloud_dropzone(request):
 	
@@ -117,6 +121,27 @@ def ajax_cloud_storage(request):
 
 	uploaded_files = Uploaded_Files.objects.filter(user=request.user).order_by('-pk')
 
-	return render_to_response('cloud_storage-list.html', {'uploaded_files':uploaded_files,'user':user,'profile':profile,}, context_instance=RequestContext(request))
+	counter = 0
+	fobj = []
+	for f in uploaded_files:
+		row = []
+		counter+=1
+		row.append('<a href="/media/'+str(f.file.file)+'">'+str(counter)+'</a>')
+		row.append(naturalday(f.date_created))
+		row.append('<a href="/media/'+str(f.file.file)+'" target="_blank">'+clear_filename(f.file.file)+'</a> <small><a href="#" id="name" data-type="text" data-pk="1" data-original-title="Name this file" class="editable editable-click">create alias</a></small>')
+		row.append(filesizeformat(f.file.file.size))
+		row.append(upper(get_file_extension(f.file.file)))
+		row.append('<span class="label label-warning">Synchronising..</span>')
+		if (not f.is_shared):
+			row.append(' <a class="btn btn-success" href="#"><i class="fa fa-search-plus "></i></a> <a class="btn btn-info" href="/media/'+str(f.file.file)+'" target="_blank"><i class="fa fa-cloud-download "></i></a> <a class="btn btn-info" href="#" target="_blank"><i class="fa fa-share "></i></a> <a class="btn btn-danger" href="#"><i class="fa fa-trash-o "></i></a>')
+		else:
+			row.append(' <a class="btn btn-warning" href="/password/protect/file"><i class="fa fa-key "></i></a> <a class="btn btn-danger" href="#"><i class="fa fa-trash-o "></i></a><button type="button" class="btn btn-link"><i class="fa fa-link"></i> Share Link</button><span class="label label-default">'+str(f.share_link_clicks_count)+'</span>')
+
+		fobj.append(row)
+
+	json = { 'data': fobj }
+
+	return HttpResponse(simplejson.dumps(json), mimetype='application/json')
+#	return render_to_response('cloud_storage-list.html', {'uploaded_files':uploaded_files,'user':user,'profile':profile,}, context_instance=RequestContext(request))
 
 
