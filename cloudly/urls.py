@@ -42,6 +42,8 @@ urlpatterns = patterns('',
 	url(r'^cloud/software/tag/(?P<tag_slug>[\w\-\.]+)/$', 'cloud_software.views.cloud_software_view_tag', name='cloud_software_view_tag'),
 	url(r'^cloud/backups/$', 'cloud_backup.views.cloud_backups', name='cloud_backups'),
 	url(r'^cloud/storage/$', 'cloud_storage.views.cloud_storage', name='cloud_storage'),
+	# XXX delete file....
+	# /(?P<updated_file>[\d\-\.]+)/$
 	url(r'^cloud/sharing/$', 'cloud_storage.views.cloud_sharing', name='cloud_sharing'),
 	url(r'^ajax/cloud/storage/$', 'cloud_storage.views.ajax_cloud_storage', name='ajax_cloud_storage'),
 	url(r'^cloud/dropzone/$', 'cloud_storage.views.cloud_dropzone', name='cloud_dropzone'),
