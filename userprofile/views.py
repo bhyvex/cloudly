@@ -167,8 +167,19 @@ def cloud_settings(request):
 	secret = profile.secret
 
 	print request.user
+	
+	aws_regions = {
+		"ap-northeast-1":"Asia Pacific (Tokyo) Region",
+		"ap-southeast-1":"Asia Pacific (Singapore) Region",
+		"ap-southeast-2":"Asia Pacific (Sydney) Region",
+		"eu-west-1":"EU (Ireland) Region",
+		"sa-east-1":"South America (Sao Paulo) Region",
+		"us-east-1":"US East (Northern Virginia) Region",
+		"us-west-1":"US West (Northern California) Region",
+		"us-west-2":"US West (Oregon) Region",
+	}
 
-	return render_to_response('cloud_settings.html', {'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
+	return render_to_response('cloud_settings.html', {'aws_regions':aws_regions,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
 	
 
 def lock(request):
