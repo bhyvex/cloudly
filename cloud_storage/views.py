@@ -59,7 +59,6 @@ def cloud_dropzone(request):
 			new_file.save()
 			uploaded_file = Uploaded_Files.objects.create(file=new_file,user=request.user)
   
-	#uploaded_files = Uploaded_Files.objects.filter(user=request.user).order_by('-pk')
 	cloud_storage_menu_open = True
 	
 	return render_to_response('cloud_dropzone.html', {'cloud_storage_menu_open':cloud_storage_menu_open,'uploaded_files':uploaded_files,'user':user,'profile':profile,}, context_instance=RequestContext(request))
@@ -121,6 +120,8 @@ def ajax_cloud_storage(request):
 
 	uploaded_files = Uploaded_Files.objects.filter(user=request.user).order_by('-pk')
 
+
+	# XXX populate this from html instead..
 	counter = 0
 	fobj = []
 	for f in uploaded_files:
@@ -136,12 +137,10 @@ def ajax_cloud_storage(request):
 			row.append(' <a class="btn btn-success" href="#"><i class="fa fa-search-plus "></i></a> <a class="btn btn-info" href="/media/'+str(f.file.file)+'" target="_blank"><i class="fa fa-cloud-download "></i></a> <a class="btn btn-info" href="#" target="_blank"><i class="fa fa-share "></i></a> <a class="btn btn-danger" href="#"><i class="fa fa-trash-o "></i></a>')
 		else:
 			row.append(' <a class="btn btn-warning" href="/password/protect/file"><i class="fa fa-key "></i></a> <a class="btn btn-danger" href="#"><i class="fa fa-trash-o "></i></a><button type="button" class="btn btn-link"><i class="fa fa-link"></i> Share Link</button><span class="label label-default">'+str(f.share_link_clicks_count)+'</span>')
-
 		fobj.append(row)
 
 	json = { 'data': fobj }
 
-	return HttpResponse(simplejson.dumps(json), mimetype='application/json')
 #	return render_to_response('cloud_storage-list.html', {'uploaded_files':uploaded_files,'user':user,'profile':profile,}, context_instance=RequestContext(request))
-
+	return HttpResponse(simplejson.dumps(json), mimetype='application/json')
 
