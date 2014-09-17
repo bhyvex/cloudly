@@ -7,6 +7,7 @@ urlpatterns = patterns('',
 	url(r'^$', 'dashboard.views.home', name='home'),
 	url(r'^welcome/$', 'dashboard.views.welcome', name='welcome'),
 	url(r'^help/$', 'dashboard.views.help', name='help'),
+	url(r'^pricing/$', 'dashboard.views.pricing', name='pricing'),
 	# decommissioned urls
 	#url(r'^security/$', 'dashboard.views.security', name='security'),
 
