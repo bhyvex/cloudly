@@ -142,7 +142,21 @@ def welcome(request):
 
 	print request.user
 	return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
-	
+
+
+def pricing(request):
+
+	print '--  pricing page:'
+
+	if not request.user.is_authenticated():
+		print 'anonymous'
+		return HttpResponseRedirect("/")
+
+	print request.user
+	return render_to_response('pricing.html', locals(), context_instance=RequestContext(request))
+
+
+
 def help(request):
 
 	print '--  help page:'
