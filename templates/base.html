@@ -29,6 +29,11 @@
 	{% block extra_css%}{% endblock %}
 
 
+	{% block extra_js%}
+
+	{% endblock extra_js %}
+
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -58,8 +63,6 @@
 
 	<!--<![endif]-->
 
-
-	<script src="/static/admin-assets/js/bootstrap-editable.min.js"></script>
 	<!--[if IE]>
 	
 		<script type="text/javascript">
@@ -218,11 +221,6 @@
 	</div><!--/.row-->	
 
 </footer>
-
-
-{% block extra_js%}
-
-{% endblock extra_js %}
 
 
 {% include "google_analytics.html" %}
