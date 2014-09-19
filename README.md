@@ -82,6 +82,8 @@ $ apt-get install python-boto
 10) Run MongoDB
 
 <pre>
+$ sudo mkdir /data
+$ sudo mkdir /data/db
 $ mongod &
 </pre>
 
