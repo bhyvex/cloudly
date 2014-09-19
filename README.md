@@ -60,7 +60,7 @@ Assuming this operation succeded, Django will answer the following:
 
 <pre>
 You just installed Django's auth system, which means you don't have any superusers defined.
-Would you like to create one now? (yes/no): 
+Would you like to create one now? (yes/no): no
 </pre>
 
 Answer "no" to this question.
