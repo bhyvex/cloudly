@@ -29,14 +29,14 @@ $ apt-get install python-dev
 $ apt-get install python-simplejson 
 $ apt-get install python-django
 $ apt-get install python-pip
-$ 
 </pre>
 
 5) Install MongoDB and it's python connector
 
 <pre>
-apt-get install mongodb
-apt-get install python-pymongo
+$ apt-get install mongodb
+$ apt-get install python-pymongo
+$ pip install pymongo --upgrade
 </pre>
 
 ..and configure your server to meet your requirements.
@@ -44,7 +44,7 @@ apt-get install python-pymongo
 6) Download the latest version of Cloudly
 
 <pre>
-git clone https://github.com/jparicka/cloudly.git cloudly
+$ git clone https://github.com/jparicka/cloudly.git cloudly
 </pre>
 
 7) Create Cloudly ORM database tables
