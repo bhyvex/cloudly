@@ -23,6 +23,7 @@ mysql> create database cloudly;
 
 Enable utf-8 characters on the DB:
 <pre>
+mysql> use cloudly;
 mysql> ALTER DATABASE cloudly charset=utf8;
 mysql> ALTER TABLE userprofile_profile CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
 </pre>
