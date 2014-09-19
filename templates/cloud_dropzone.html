@@ -55,7 +55,12 @@
 			</div><!--/row-->
 	{% endcomment %}
 
-
+        <form id="upload" method="post" action="upload.php" enctype="multipart/form-data">
+            <input type="file" name="uploadctl" multiple />
+            <ul id="fileList">
+              <!-- The file list will be shown here -->
+            </ul>
+        </form>
 	<p>
 		<font color="red">XXX kamil zeir magician todo</font>
 	</p>
@@ -64,7 +69,15 @@
 			
 	</div>
 
-    <script src="/static/js/dropzone.js"></script>
+    
+{% block extra_js %}
+   <script src="/static/admin-assets/js/jquery/jquery.fileupload.js"></script>
+    <script src="/static/admin-assets/js/jquery/jquery.fileupload-ui.js"></script>
+    <script src="/static/admin-assets/js/dropzone-fileupload.js"></script>
+   <script src="/static/js/dropzone.js"></script>
+{% endblock %}
 
 {% endblock page_content %}
+
+
 
