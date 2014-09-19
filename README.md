@@ -91,4 +91,12 @@ $ mongod
 
 ..and configure your server to meet your requirements.
 
-11) 
+11) Run the development server
+
+At this point you should be able to run the administration dashboard (Django App):
+
+<pre>
+./run_devel.sh
+</pre>
+
+Now that you have the UI up and set, you'd need to get the API up and running.
