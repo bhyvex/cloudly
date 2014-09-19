@@ -6,7 +6,9 @@ Installation Instructions
 
 1) Install MySQL server and Python MySQLdb
 
-apt-get install mysql-server python-mysqldb
+<pre>
+$ apt-get install mysql-server python-mysqldb
+</pre>
 
 Optionally configure your MySQL server to meet your specific requirements.
 
@@ -15,8 +17,8 @@ As for the user/password, this one needs to match the cloudly/cloudly/settings.p
 
 2) Install other python packages
 
-apt-get install python-dev 
-apt-get install python-simplejson 
+$ apt-get install python-dev 
+$ apt-get install python-simplejson 
 
 3) Install MongoDB and it's python connector
 
