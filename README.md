@@ -27,6 +27,7 @@ mysql> create database cloudly;
 <pre>
 $ apt-get install python-dev 
 $ apt-get install python-simplejson 
+$ apt-get install python-django
 </pre>
 
 5) Install MongoDB and it's python connector
@@ -47,6 +48,8 @@ git clone https://github.com/jparicka/cloudly.git cloudly
 7) Create Cloudly ORM database tables
 
 <pre>
+$ cd cloudly
+$ python manage.py syncdb
 </pre>
 
 
