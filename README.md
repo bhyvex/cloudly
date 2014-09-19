@@ -52,6 +52,8 @@ $ cd cloudly
 $ python manage.py syncdb
 </pre>
 
+If you get an error saying "Access denied for user 'root'@'localhost" then you'd need to edit the cloudly/settings.py and setup the DB section accordingly to your present DB settings.
+
 
 8) Enable utf-8 characters on the database
 
