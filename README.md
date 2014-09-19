@@ -1,6 +1,5 @@
-cloudly
+Cloudly
 =======
 
-This is currently a work in pogress.
-
-Check back soon.
+Installation Instructions
+-------------------------
