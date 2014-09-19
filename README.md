@@ -44,7 +44,7 @@ apt-get install python-pymongo
 git clone https://github.com/jparicka/cloudly.git cloudly
 </pre>
 
-7) Create Cloudly ORM Database tables
+7) Create Cloudly ORM database tables
 
 <pre>
 </pre>
