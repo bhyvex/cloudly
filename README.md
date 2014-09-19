@@ -54,6 +54,15 @@ $ python manage.py syncdb
 
 If you get an error saying "Access denied for user 'root'@'localhost" then you'd need to edit the cloudly/settings.py and setup the DB section accordingly to your present DB settings.
 
+Assuming this operation succeded, Django will answer the following:
+
+<pre>
+You just installed Django's auth system, which means you don't have any superusers defined.
+Would you like to create one now? (yes/no): 
+</pre>
+
+Answer "no" to this question.
+
 
 8) Enable utf-8 characters on the database
 
