@@ -16,6 +16,74 @@
 
 
 	<div class="row">
+		
+		
+		{% comment %}
+			primary
+			success
+			info
+			warning
+			danger
+		{% endcomment %}
+		
+
+		<div class="col-sm-6">	
+			<div class="panel panel-primary">
+			  	<div class="panel-heading">
+			    	<h3 class="panel-title">Server #1</h3>
+			  	</div>
+			  	<div class="panel-body">
+			    	Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+			  	</div>
+				<div class="panel-footer">Panel footer</div>
+			</div>
+		</div>
+		<div class="col-sm-6">	
+			<div class="panel panel-success">
+			  	<div class="panel-heading">
+			    	<h3 class="panel-title">Server #2</h3>
+			  	</div>
+			  	<div class="panel-body">
+			    	Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+			  	</div>
+				<div class="panel-footer">Panel footer</div>
+			</div>
+		</div>
+		<div class="col-sm-6">	
+			<div class="panel panel-info">
+			  	<div class="panel-heading">
+			    	<h3 class="panel-title">Server #3</h3>
+			  	</div>
+			  	<div class="panel-body">
+			    	Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+			  	</div>
+				<div class="panel-footer">Panel footer</div>
+			</div>
+		</div>
+		<div class="col-sm-6">	
+			<div class="panel panel-warning">
+			  	<div class="panel-heading">
+			    	<h3 class="panel-title">Server #4</h3>
+			  	</div>
+			  	<div class="panel-body">
+			    	Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+			  	</div>
+				<div class="panel-footer">Panel footer</div>
+			</div>
+		</div>
+		<div class="col-sm-6">	
+			<div class="panel panel-danger">
+			  	<div class="panel-heading">
+			    	<h3 class="panel-title">Server #5</h3>
+			  	</div>
+			  	<div class="panel-body">
+			    	Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+			  	</div>
+				<div class="panel-footer">Panel footer</div>
+			</div>
+		</div>
+		
+		
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -26,6 +94,7 @@
 							<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
 						</div>
 					</div>
+					
 					<div class="panel-body">
 						
 										{% if servers_count = 0 %}
@@ -50,11 +119,8 @@ curl <a href="http://{{server_addr}}/static/agent.py" target="_blank">http://{{s
 
 											{% for server in servers %}
 										    <p>
-
 												<a href="/server/{{server.uuid|replace_dots}}/"><strong><font size="5">Server #{{forloop.counter}}</font></strong></font></a>
-
 												<br/>
-
 												<strong>Agent</strong> v{{server|dict_get:"agent_version"}}<br/>
 												<strong>ID</strong> {{server|dict_get:"_id"}}<br/>
 												<strong>UUID</strong> {{server|dict_get:"uuid"}}<br/>
@@ -69,8 +135,6 @@ curl <a href="http://{{server_addr}}/static/agent.py" target="_blank">http://{{s
 												<strong>CPU Virtualization</strong> {{server|dict_get:"cpu_virtualization"}}<br/>
 												<strong>CPU Info</strong> {{server|dict_get:"cpu_info"}}<br/>
 												<strong>Last Seen</strong> {{server|dict_get:"last_seen"}}<br/>
-
-
 												<br/>
 												<br/>
 												<strong>Activities:</strong><br/>
@@ -86,13 +150,10 @@ curl <a href="http://{{server_addr}}/static/agent.py" target="_blank">http://{{s
 
 										{% endif %}						
 						
+						</div>
 					</div>
-				</div>
-			</div><!--/col-->
-		</div>
-
-
-
+				</div><!--/col-->
+			</div>
 
 
 		</div>
