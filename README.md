@@ -99,4 +99,5 @@ At this point you should be able to run the administration dashboard (Django App
 ./run_devel.sh
 </pre>
 
-Now that you have the UI up and set, you'd need to get the API up and running.
+Now that you have the User Interface (Admin Dashboard) up and running, you'd need to get the API started.
+
