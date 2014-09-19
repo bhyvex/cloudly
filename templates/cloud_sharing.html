@@ -33,26 +33,26 @@
 							</div>
 						</div>
 						<div class="panel-body">
-							<font color="red">XXX working on this currently</font>
+							<font color="red">XXX working on this currently</font><br/>
+							<font color="red">XXX short links generator in cloud_storage/short_url_generator.py</font><br/>
 						</div>
 					</div>
 				</div><!--/col-->
 			</div>
 
 
+	{% if not profile.aws_s3_verified %}
+	<div class="panel-body">
 
-{% if not profile.aws_s3_verified %}
-<div class="panel-body">
-
-    <a class="btn btn btn-warning btn-lg btn-block" href="/cloud/settings/">
-	Click here to Enable Amazon S3 Cloud Storage
-	</a>
-	</button>
-</div>	
-{% endif %}
+	    <a class="btn btn btn-warning btn-lg btn-block" href="/cloud/settings/">
+		Click here to Enable Amazon S3 Cloud Storage
+		</a>
+		</button>
+	</div>	
+	{% endif %}
 
 
-</div>
+	</div>
 
 </div>
 

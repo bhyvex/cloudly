@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% load cloud_extras %}
+						
+{% block title %}Devel{% endblock %}
+
+{% block page_content %}
+
+<div class="col-md-10 col-sm-11 main ">
+
+	<ol class="breadcrumb">
+	  	<li><a href="/support/">Support</a></li>
+	  	<li class="active">New Ticket</li>
+	</ol>
+	
+	
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+					<div class="panel-heading">
+						<h2><i class="fa fa-picture-o"></i>Hello World</h2>
+						<div class="panel-actions">
+							<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+							<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+						</div>
+					</div>
+					<div class="panel-body">
+						hello world
+ 					</div><!--/col-->
+			</div><!--/row-->	
+		</div>
+		<!-- end: Content -->	
+	
+	<div class="col-md-12">
+
+						<div class="panel panel-default">
+
+							<div class="panel-body message">
+
+								<p class="text-center"><strong>New Support Ticket</strong></p>
+
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+								    	<label for="title" class="col-sm-1 control-label">Title:</label>
+								    	<div class="col-sm-11">
+								      		<div class="select2-container select2-container-multi form-control" id="s2id_cc"><ul class="select2-choices">  <li class="select2-search-field">    <label for="s2id_autogen2" class="select2-offscreen">CC:</label>    <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input select2-default" id="s2id_autogen2" placeholder="" style="width: 692px;">  </li></ul><div class="select2-drop select2-drop-multi select2-display-none">   <ul class="select2-results">   </ul></div></div><input type="email" class="form-control select2-offscreen" id="cc" placeholder="Type email" tabindex="-1">
+								    	</div>
+								  	</div>
+
+								</form>
+
+								<div class="col-sm-11 col-sm-offset-1">
+
+									<div class="form-group">
+
+										<textarea class="form-control" id="message" name="body" rows="12" placeholder=""></textarea>
+
+									</div>
+
+									<div class="form-group">	
+
+										<button type="submit" class="btn btn-success">Send</button>
+										<a href="/support"><button class="btn btn-danger">Discard</button></a>
+
+										<font color="red">XXX System Emergency button</font>
+
+									</div>
+
+								</div>	
+
+							</div>	
+
+						</div>	
+
+					</div>
+	
+	
+	
+	
+				</div>
+	
+	
+	
+</div><!--/container-->
+
+
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Modal title</h4>
+				</div>
+				<div class="modal-body">
+					<p>Here settings can be configured...</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+{% endblock page_content %}
+

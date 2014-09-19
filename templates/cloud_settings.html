@@ -5,7 +5,6 @@
 {% block title %}Cloud Settings{% endblock %}
 
 {% block page_content %}
-
 <div class="col-md-10 col-sm-11 main ">
 
 	<ol class="breadcrumb">
@@ -14,24 +13,23 @@
 	</ol>
 
 	<p>
-		<font color="red">XXX Cloud Settings......</font><br/>
-		<font color="red">XXX List all regions to make user to click to enable......</font>
-		<br/><br/>
 		Secret: {{secret}}<br/>
 		<br/>
 		Your Amazon AWS Settings<br/>
-		aws_enabled_regions {{profile.aws_enabled_regions}}<br/>
-		disabled_regions_list XXX<br/>
-		<br/>
 		aws_access_key {{profile.aws_access_key}}<br/>
-		aws_secret_key {{profile.aws_secret_key}}
-		<br/><br/>
+		aws_secret_key {{profile.aws_secret_key}}<br/>
+		<br/>
 		aws_ec2_verified {{profile.aws_ec2_verified}}<br/>
 		aws_s3_verified {{profile.aws_s3_verified}}<br/>
 		aws_cloudfront_verified {{profile.aws_cloudfront_verified}}<br/>
-		<hr/>
-		<hr/>
-	
+		<br/>
+		aws_enabled_regions {{profile.aws_enabled_regions}}<br/>
+		<br/>
+		aws_regions {{aws_regions}}<br/>
+		XXX make regions nicely clickable to enable	......
+		<br/>
+		<br/>
+		<a href="/pricing">Enable F*ckmecloudly on Amazon</a>
 	</p>
 
 </div>

@@ -13,11 +13,11 @@ class Uploaded_Files(models.Model):
 	name = models.CharField(max_length=512, blank=True)
 	
 	is_deployed = models.BooleanField(default=False)
-	is_deleted = models.BooleanField(default=False)
 	is_shared = models.BooleanField(default=False)
 	
 	share_link = models.URLField(blank=True)
 	share_link_clicks_count = models.IntegerField(default=0)
 	#share_link_password = 
 	
+	is_deleted = models.BooleanField(default=False)
 	date_created = models.DateTimeField(auto_now_add=True)

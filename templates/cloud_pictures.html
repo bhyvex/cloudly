@@ -22,24 +22,33 @@
 	
 
 	<div class="row">
-			<div class="col-lg-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h2><i class="fa fa-edit" ></i>Dropzone</h2>
-						<div class="panel-actions">
-							<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-						</div>
-					</div>
-					<div class="panel-body" style="display: none;">
-						<p>
-							<font color="red">XXX todo intelligent dropzone</font>
-						</p>
+		
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2><i class="fa fa-edit" ></i>Dropzone</h2>
+					<div class="panel-actions">
+						<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
 					</div>
 				</div>
-			</div><!--/col-->
-		</div>
+				<div class="panel-body" {% if files_pictures %} style="display: none;" {% endif %}>
+					<div class="form-group">
+						<label class="control-label">Drag &amp; drop files</label>
+						<div class="controls">
+						  	<div id="dropzone">
+						        <form class="dropzone" action="/cloud/storage/" method="post" enctype="multipart/form-data">
+						            {% csrf_token %}
+								<div class="dz-default dz-message"><span>Drop files here to upload</span></div></form>
+							</div>
+						</div>
+					</div>	  
+				</div>
+			</div>
+		</div><!--/col-->
+
+	</div>
 
 
 
@@ -57,26 +66,32 @@
 				<div class="panel-body">
 								
 					<div class="row">
+						
+						{% if not files_pictures %}
+						<p>You have currently no pictures in the cloud.</p>
+						{% endif %}
+						
 						{% for picture in files_pictures %}
 						<div style="margin-bottom:30px" class="col-sm-2 col-xs-6">
 							<img class="img-thumbnail" src="/media/{{picture.file.file}}" alt="{{picture.file.file|clear_filename}}">
 						</div>
 						{% endfor %}
-						<font color="red">
-							XXX pictures pagination<br/>
-							XXX pictures action buttons<br/>
-							<br/>
-						</font>
-						
-						
-						{% if not file_pictures %}
-						&nbsp;You have currently no pictures in the cloud.  You can add some <a href="/cloud/storage">here</a>.
-						{% endif %}
 						
 					</div>
 				</div>	
 			</div><!--/col-->
 		</div><!--/col-->
+
+		<p>
+			<font color="red">
+				XXX pictures pagination<br/>
+				XXX pictures action buttons<br/>
+				<br/>
+			</font>
+			
+			
+		</p>
+
 
 		{% if not profile.aws_s3_verified %}
 		<div class="panel-body">

@@ -36,6 +36,20 @@ def support(request):
 	return render_to_response('support.html', {'user':user,'profile':profile,}, context_instance=RequestContext(request))
 
 
+def support_add_new(request):
+	print '-- add a new support ticket:'
+
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	secret = profile.secret
+
+	print request.user
+
+	return render_to_response('support-add-new.html', {'user':user,'profile':profile,}, context_instance=RequestContext(request))
+
 
 def support_devel_ticket(request):
 

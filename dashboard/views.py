@@ -35,6 +35,7 @@ def home(request):
 	
 		return render_to_response('web.html', locals(), context_instance=RequestContext(request))
 
+	print '-'*100
 	print '--  dashboard:'
 	print request.user
 	
@@ -141,7 +142,21 @@ def welcome(request):
 
 	print request.user
 	return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
-	
+
+
+def pricing(request):
+
+	print '--  pricing page:'
+
+	if not request.user.is_authenticated():
+		print 'anonymous'
+		return HttpResponseRedirect("/")
+
+	print request.user
+	return render_to_response('pricing.html', locals(), context_instance=RequestContext(request))
+
+
+
 def help(request):
 
 	print '--  help page:'
@@ -151,7 +166,13 @@ def help(request):
 		return HttpResponseRedirect("/")
 
 	print request.user
-	return render_to_response('help.html', locals(), context_instance=RequestContext(request))
+
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	secret = profile.secret
+
+
+	return render_to_response('help.html', {'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
 
 def security(request):
 

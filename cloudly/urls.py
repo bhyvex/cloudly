@@ -7,7 +7,9 @@ urlpatterns = patterns('',
 	url(r'^$', 'dashboard.views.home', name='home'),
 	url(r'^welcome/$', 'dashboard.views.welcome', name='welcome'),
 	url(r'^help/$', 'dashboard.views.help', name='help'),
-	url(r'^security/$', 'dashboard.views.security', name='security'),
+	url(r'^pricing/$', 'dashboard.views.pricing', name='pricing'),
+	# decommissioned urls
+	#url(r'^security/$', 'dashboard.views.security', name='security'),
 
 	# userprofile / account
 	url(r'^login/$', 'userprofile.views.auth', name='login'),
@@ -21,7 +23,7 @@ urlpatterns = patterns('',
 	# support
 	url(r'^support/$', 'support.views.support', name='support'),
 	url(r'^support/devel/ticket$', 'support.views.support_devel_ticket', name='support_devel_ticket'),
-	#url(r'^support/new/$', 'support.views.support_add_new', name='support_add_new'),
+	url(r'^support/add/new/$', 'support.views.support_add_new', name='support_add_new'),
 	#url(r'^support/ticket/(?P<ticket_id>\d+)/$', 'support.views.support_view_ticket', name='support_view_ticket'),
 
 	# invoices
@@ -31,7 +33,6 @@ urlpatterns = patterns('',
 	# private cloud stuff
 	url(r'^private/servers/$', 'private_servers.views.servers', name='servers'),
 	url(r'^private/server/(?P<uuid>[\w\-\.]+)/$', 'private_servers.views.server_detail', name='server_detail'),
-	url(r'^server/add/new/$', 'private_servers.views.server_add', name='server_add'),	
 	url(r'^private/storage/$', 'private_storage.views.private_storage', name='private_storage'),
 	url(r'^private/cloud/photos/$', 'private_photos.views.private_photos', name='private_photos'),
 
@@ -42,6 +43,8 @@ urlpatterns = patterns('',
 	url(r'^cloud/software/tag/(?P<tag_slug>[\w\-\.]+)/$', 'cloud_software.views.cloud_software_view_tag', name='cloud_software_view_tag'),
 	url(r'^cloud/backups/$', 'cloud_backup.views.cloud_backups', name='cloud_backups'),
 	url(r'^cloud/storage/$', 'cloud_storage.views.cloud_storage', name='cloud_storage'),
+	# XXX delete file....
+	# /(?P<updated_file>[\d\-\.]+)/$
 	url(r'^cloud/sharing/$', 'cloud_storage.views.cloud_sharing', name='cloud_sharing'),
 	url(r'^ajax/cloud/storage/$', 'cloud_storage.views.ajax_cloud_storage', name='ajax_cloud_storage'),
 	url(r'^cloud/dropzone/$', 'cloud_storage.views.cloud_dropzone', name='cloud_dropzone'),

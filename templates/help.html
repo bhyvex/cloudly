@@ -15,29 +15,26 @@
 	  	<li class="active">Help</li>
 	</ol>
 
-
-{% comment %}
+	{% comment %}
 	<div class="row">
-
-					<div class="col-sm-12">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h2><i class="fa fa-list-alt"></i><span class="break"></span>Realtime API's Requests</h2>
-								<div class="panel-actions">
-									<a href="charts-flot.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-									<a href="charts-flot.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-									<a href="charts-flot.html#" class="btn-close"><i class="fa fa-times"></i></a>
-								</div>
-							</div>
-							<div class="panel-body">
-								 <div id="realtimechart" style="height: 190px; padding: 0px; position: relative;"><canvas class="flot-base" width="966" height="190" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 966px; height: 190px;"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; top: 173px; left: 13px; text-align: right;">0</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 130px; left: 6px; text-align: right;">25</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 87px; left: 6px; text-align: right;">50</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 44px; left: 6px; text-align: right;">75</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 1px; left: 0px; text-align: right;">100</div></div></div><canvas class="flot-overlay" width="966" height="190" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 966px; height: 190px;"></canvas></div>
-							</div>
-						</div>
-					</div><!--/col-->
-
+		<div class="col-sm-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2><i class="fa fa-list-alt"></i><span class="break"></span>Realtime API's Requests</h2>
+					<div class="panel-actions">
+						<a href="charts-flot.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+						<a href="charts-flot.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+						<a href="charts-flot.html#" class="btn-close"><i class="fa fa-times"></i></a>
+					</div>
 				</div>
-{% endcomment %}
-
+				<div class="panel-body">
+					 <div id="realtimechart" style="height: 190px; padding: 0px; position: relative;"><canvas class="flot-base" width="966" height="190" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 966px; height: 190px;"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; top: 173px; left: 13px; text-align: right;">0</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 130px; left: 6px; text-align: right;">25</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 87px; left: 6px; text-align: right;">50</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 44px; left: 6px; text-align: right;">75</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 1px; left: 0px; text-align: right;">100</div></div></div><canvas class="flot-overlay" width="966" height="190" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 966px; height: 190px;"></canvas></div>
+				</div>
+			</div>
+		</div><!--/col-->
+	</div>
+	{% endcomment %}
+	
 	<div class="row">
 		<div class="col-sm-12">
 
@@ -46,91 +43,222 @@
 					<h2><i class="fa fa-slideshare"></i><span class="break"></span>Help</h2>
 				</div>
 				<div class="panel-body">
-					  <div class="row">            
-					     <div class="col-sm-12">
+				  <div class="row">            
+				     <div class="col-sm-12">
 
-							<p>Most commonly asked questions:</p>
+						<p>Most commonly asked questions:</p>
 
-							<div class="panel-group" id="accordion">
-							  <div class="panel panel-default">
-							    <div class="panel-heading">
-							      <h4 class="panel-title">
-							        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="ui-elements.html#collapseOne">
-							          Question #1 What are the current hardware requirements?
-							        </a>
-							      </h4>
-							    </div>
-							    <div id="collapseOne" class="panel-collapse collapse in">
-							      <div class="panel-body">
-									Our Virtualization Agent is written so that runs on any 64-bit processor.<br/>The system periodically measures server and Internet utilization and sends customized reports.
-							      </div>
-							    </div>
-							  </div>
-							  <div class="panel panel-default">
-							    <div class="panel-heading">
-							      <h4 class="panel-title">
-							        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="ui-elements.html#collapseTwo">
-							          	Question #2 Is it possible to import virtual machines from other Hypervisors?
-							        </a>
-							      </h4>
-							    </div>
-							    <div id="collapseTwo" class="panel-collapse collapse">
-							      <div class="panel-body">
-									This feature is planned for the next release: you will upload your .vmdk file, and we'll do the rest. Stay tuned!
-							      </div>
-							    </div>
-							  </div>
-							  <div class="panel panel-default">
-							    <div class="panel-heading">
-							      <h4 class="panel-title">
-							        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="ui-elements.html#collapseThree">
-										Question #3 What is the file format for virtual machine image files?
-							        </a>
-							      </h4>
-							    </div>
-							    <div id="collapseThree" class="panel-collapse collapse">
-							      <div class="panel-body">
-									The virtual machine container format is qcow2 – the native format for KVM/QEMU.
-							      </div>
-							    </div>
-							  </div>
-							  <div class="panel panel-default">
-							    <div class="panel-heading">
-							      <h4 class="panel-title">
-							        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="ui-elements.html#collapseFour">
-										Question #4 What advantages can you offer over major cloud providers?
-							        </a>
-							      </h4>
-							    </div>
-							    <div id="collapseFour" class="panel-collapse collapse">
-							      <div class="panel-body">
-									<p>
-										Here are two very good reasons to work with a smaller cloud company: 
-										Better relationship.
-										<br/>
-										Building a solid relationship with a massive cloud company is next to impossible. We can offer you customized solutions to your cloud problems.
-									</p>
-							      </div>
-							    </div>
-							  </div>
-							
-							<hr/>
-							<p>
-							Need some more information? We’re happy to help!
-							<br/>
-							Just contact us at <a href="mailto:jparicka@gmail.com">info@fuckmecloudly.com</a>.
-							</p>
-							
+						<div class="panel-group" id="accordion">
+						  <div class="panel panel-default">
+						    <div class="panel-heading">
+						      <h4 class="panel-title">
+						        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="ui-elements.html#collapseOne">
+						          Question #1 What are the current hardware requirements?
+						        </a>
+						      </h4>
+						    </div>
+						    <div id="collapseOne" class="panel-collapse collapse in">
+						      <div class="panel-body">
+								Our Virtualization Agent is written so that runs on any 64-bit processor.<br/>The system periodically measures server and Internet utilization and sends customized reports.
+						      </div>
+						    </div>
+						  </div>
+						  <div class="panel panel-default">
+						    <div class="panel-heading">
+						      <h4 class="panel-title">
+						        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="ui-elements.html#collapseTwo">
+						          	Question #2 Is it possible to import virtual machines from other Hypervisors?
+						        </a>
+						      </h4>
+						    </div>
+						    <div id="collapseTwo" class="panel-collapse collapse">
+						      <div class="panel-body">
+								This feature is planned for the next release: you will upload your .vmdk file, and we'll do the rest. Stay tuned!
+						      </div>
+						    </div>
+						  </div>
+						  <div class="panel panel-default">
+						    <div class="panel-heading">
+						      <h4 class="panel-title">
+						        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="ui-elements.html#collapseThree">
+									Question #3 What is the file format for virtual machine image files?
+						        </a>
+						      </h4>
+						    </div>
+						    <div id="collapseThree" class="panel-collapse collapse">
+						      <div class="panel-body">
+								The virtual machine container format is qcow2 – the native format for KVM/QEMU.
+						      </div>
+						    </div>
+						  </div>
+						  <div class="panel panel-default">
+						    <div class="panel-heading">
+						      <h4 class="panel-title">
+						        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="ui-elements.html#collapseFour">
+									Question #4 What advantages can you offer over major cloud providers?
+						        </a>
+						      </h4>
+						    </div>
+						    <div id="collapseFour" class="panel-collapse collapse">
+						      <div class="panel-body">
+								<p>
+									Here are two very good reasons to work with a smaller cloud company: 
+									Better relationship.
+									<br/>
+									Building a solid relationship with a massive cloud company is next to impossible. We can offer you customized solutions to your cloud problems.
+								</p>
+						      </div>
+						    </div>
+						  </div>
 
 </div>
 
-						 </div>
-					  </div>	 
+					 </div>
+				  </div>	 
 				 </div>
 			</div>
 		</div>
 
+		<div class="col-sm-12">
 
+			<div class="panel panel-default">
+
+				<div class="panel-heading">
+					<h2><i class="fa fa-key"></i><span class="break"></span>Automatic Security Updates</h2>
+				</div>
+
+				<div class="panel-body">
+					  <div class="row">            
+						<div class="col-sm-12">
+						  <p><font size=5>Security Security is a major major thing.</font></p>
+	                        <p class="lead">
+									Security is why you've chosen a private cloud solution in the first place.
+									<br/>
+									<h3>Automatic Security Updates</h3>
+
+									<p><span>TurnKey installs the latest security updates over the network for you:</span></p>
+
+									<ol>
+										<li>The first time you boot a new appliance deployment (you can choose to skip this)</li>
+										<li>Every night, around 4 AM.</li>
+									</ol>
+
+									<p>Usually automatically updating software is considered to be a risky practice since updates may occasionally break existing functionality (e.g., changes to file formats, software interfaces, or expected behavior).</p>
+
+									<p>Debian mitigate this risk by <a href="http://www.debian.org/security/faq#version" rel="nofollow" target="_blank">carefully backporting security fixes</a> so that security updates change as little as possible, minimizing the likelyhood that things will break.</p>
+
+									<p>In practice we've found it is very rare for a security update to break something, so we believe it is beneficial to&nbsp; configure software appliances to auto-update security fixes by default. Advanced users can always disable this mechanism and apply security fixes manually if they want.</p>
+
+									<h3>Installing security updates</h3>
+									<p>In a root shell, run the following command:</p>
+
+									<pre>install-security-updates</pre>
+									<h5>Caution: This isn't 100% full-proof. Make sure we can reach you.</h5>
+									<p>Unfortunately, we can't fix everything automatically so it's still very important that we be able to contact you when necessary.<br>
+									<br>
+									Otherwise you may not know that a problem requires your attention until it's too late. Sure, thanks to automatic security updates we <em>usually</em> don't need to bother you regarding security issues, but there are occasional exceptions...</p>
+
+									<ol>
+										<li><strong>Not everything can be updated automatically</strong>: automatic security updates only work for supported software that is maintained using the package management system. Not all software is installed through the package management system. Not all software installed through the package management is supported.&nbsp; See the limitations section below for details.<br>
+										&nbsp;</li>
+										<li><strong>Some bugs can break automatic updates</strong>: even though security updates change as little as possible and are exceptionally well tested, mistakes can still happen. Usually these can be caught and fixed with another automatic update, but manual intervention is still required for bugs that break the auto-updates mechanism or one of its dependencies.</li>
+									</ol>
+
+									<h4>How it works</h4>
+									<p>Users who wish to tweak the auto-update mechanism may find it helpful to understand how it is set up.</p>
+
+									<p>1) A cron job is configured to run <em>cron-apt</em> daily.<em> </em></p>
+
+<pre>
+	$ cat /etc/cron.d/cron-apt
+	# Regular cron jobs for the cron-apt package
+	# Every night at 4 o'clock.
+	0 4     * * *   root    test -x /usr/sbin/cron-apt &amp;&amp; /usr/sbin/cron-apt
+</pre>
+
+		<p>2)<em> cron-apt</em> is configured to only update from the security sources list.</p>
+
+<pre>
+	$ cat /etc/apt/sources.list.d/security.sources.list
+	deb <a href="http://archive.turnkeylinux.org/ubuntu" title="http://archive.turnkeylinux.org/ubuntu" rel="nofollow">http://archive.turnkeylinux.org/ubuntu</a> lucid-security main
+	deb <a href="http://archive.turnkeylinux.org/ubuntu" title="http://archive.turnkeylinux.org/ubuntu" rel="nofollow">http://archive.turnkeylinux.org/ubuntu</a> lucid-security universe
+	deb <a href="http://archive.ubuntu.com/ubuntu" title="http://archive.ubuntu.com/ubuntu" rel="nofollow">http://archive.ubuntu.com/ubuntu</a> lucid-security main
+	deb <a href="http://archive.ubuntu.com/ubuntu" title="http://archive.ubuntu.com/ubuntu" rel="nofollow">http://archive.ubuntu.com/ubuntu</a> lucid-security universe
+</pre>
+
+									<p>3)<em> cron-apt</em> is configured to install the updates automatically:</p>
+
+<pre>
+	$ cat /etc/cron-apt/action.d/5-install
+	autoclean -q -y
+	dist-upgrade -q -y -o APT::Get::Show-Upgraded=true \
+	-o Dir::Etc::sourcelist=/etc/apt/sources.list.d/security.sources.list \
+	-o Dir::Etc::sourceparts=nonexistent \
+	-o DPkg::Options::=--force-confdef \
+	-o DPkg::Options::=--force-confold
+</pre>
+
+									<p>4) <em>cron-apt</em> logs to <em>/var/log/cron-apt/log</em></p>
+
+									<h4>Installing security updates on-demand</h4>
+
+									<p>You can invoke the cron-apt script described above from the command line at any time (e.g., you don't feel like waiting for the nightly security updates cron job):</p>
+
+<pre>
+	/usr/sbin/cron-apt
+</pre>
+
+									<h4>Limitations</h4>
+
+									<p>TurnKey Linux 11 is based on Ubuntu 10.04 (Lucid), a Long Term Support release for which Canonical (Ubuntu's sponsor) has guaranteed free security updates until April 2015.</p>
+
+									<p>This guarantee is limited to packages in the "<em>main</em>" component of the Ubuntu package repositories, comprising roughly 7000 of the most important packages and provide good coverage for the core operating system.</p>
+
+									<p>However, Canonical's Long Term Support guarantee does not apply to:</p>
+
+									<ul>
+										<li><strong>Non-main packages</strong>: packages in non-main components of the Ubuntu repositories (e.g., "<em>universe</em>" and "<em>multiverse</em>") are not guaranteed by Canonical, though updates to non-main packages may still be provided by the Ubuntu community.<br>
+										<br>
+										When required and when there are no better alternatives, a TurnKey appliance may contain non-main packages. Usually this is for software with low security sensitivity.<br>
+										&nbsp;</li>
+										<li><strong>TurnKey Linux custom packages</strong>: TurnKey contains a few custom packages which are updated directly by the Core developers from the project's cryptographically signed <a href="http://archive.turnkeylinux.org/" rel="nofollow" target="_blank">package repository</a>.<br>
+										&nbsp;</li>
+										<li><strong>Software installed from source code</strong>: unfortunately, many of the most popular open source web applications (e.g., Joomla) are not packaged by Ubuntu or Debian. This means that they have to be installed and maintained by hand directly from upstream source code and no automatic security updates can be provided through the package management system.<br>
+										<br>
+										Fortunately, most web applications run with reduced privileges and are developed in high-level programming languages that are less susceptible to many of the most serious low-level security vulnerabilities. Also in the appliance model, each application is confined to its own virtual machine. This limits the potential damage somewhat but vigilance is still recommended, especially for high-risk usage scenarios.<br>
+										<br>
+										When a TurnKey appliance includes software installed from upstream source code, this is usually the first thing documented on the appliance page.</li>
+									</ul>
+
+									<p>You can use the "apt-cache policy" command to determine a package's origin:</p>
+
+<pre>
+	$ apt-cache policy openssh-server
+	openssh-server:
+	Installed: 1:5.3p1-3ubuntu4
+	Candidate: 1:5.3p1-3ubuntu4
+	Version table:
+	*** 1:5.3p1-3ubuntu4
+	650 <a href="http://archive.ubuntu.com" title="http://archive.ubuntu.com" rel="nofollow">http://archive.ubuntu.com</a> lucid-security/main Packages
+</pre>
+
+									<p>So in the case of openssh-server, we have the most recent version installed and are receiving updates automatically from the lucid-security repository.</p>
+
+						</div>
+					  </div>	 
+				 </div>
+			</div>
+
+			<p>
+			Need some more information? We’re happy to help!
+			<br/>
+			Just contact us at <a href="mailto:jparicka@gmail.com">info@fuckmecloudly.com</a>.
+			</p>
+
+			<hr/>
+
+
+		</div>
 	</div>
 
 </div>

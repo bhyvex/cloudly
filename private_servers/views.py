@@ -5,6 +5,7 @@ import time
 import pickle
 import logging
 import datetime
+import socket
 
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
@@ -26,15 +27,6 @@ client = MongoClient('localhost', 27017)
 
 mongo = client.cloudly
 
-def server_add(request):
-
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect("/")
-
-	print '-- server add:'
-	print request.user
-
-	return render_to_response('private_server_add_new.html', {}, context_instance=RequestContext(request))
 
 def server_detail(request, uuid):
 	
@@ -81,4 +73,7 @@ def servers(request):
 	print 'servers', servers
 	print 'servers_count', servers_count
 
-	return render_to_response('private_servers.html', {'servers':servers,'servers_count':servers_count,}, context_instance=RequestContext(request))
+	#server_addr = socket.gethostbyname(socket.gethostname())
+	server_addr = request.get_host()
+	
+	return render_to_response('private_servers.html', {'server_addr':server_addr, 'servers':servers,'servers_count':servers_count,}, context_instance=RequestContext(request))

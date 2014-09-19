@@ -126,6 +126,9 @@ jQuery(document).ready(function($){
                 if ($('.machines-list').length) $('.machines-list').isotope('layout');
 		
 	});
+	$('#main-menu-toggle').click(function() {
+		$('#main-menu-min').click();
+	});
 	
 	$('.dropmenu').click(function(e){
 		

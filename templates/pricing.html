@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% load cloud_extras %}
+						
+{% block title %}Pricing{% endblock %}
+
+{% block page_content %}
+
+<div class="col-md-10 col-sm-11 main ">
+
+	<ol class="breadcrumb">
+	  	<li><a href="/cloud/settings/">Cloud</a></li>
+	  	<li class="active">Pricing</li>
+	</ol>
+
+	<div class="row">
+
+					<!-- start: New Type Table -->
+					<div class="price-table-overlay">	
+
+						<div class="price-table type1 four">
+
+							<ul>
+								<li class="header">Basic Plan</li>
+								<li class="price">$9month</li>
+								<li><span>Unlimited</span> deployments</li>
+								<li>Micro, Small, Medium, Large</li>
+								<li>Standard SLA Support</li>
+								<li class="strike">offline access</li>
+								<li class="strike">social share</li>
+								<li>support online</li>
+								<li class="strike">private consultant</li>
+								<li class="select"><a class="btn btn-info" href="#">select plan</a></li>
+							</ul>
+
+							<ul>
+								<li class="header">Standard Plan</li>
+								<li class="price">$19month</li>
+								<li><span>Unlimited</span> deployments</li>
+								<li>All Instance sizes</li>
+								<li>Standard SLA Support</li>
+								<li class="strike">offline access</li>
+								<li>social share</li>
+								<li>support online</li>
+								<li class="strike">private consultant</li>
+								<li class="select"><a class="btn btn-info" href="#">select plan</a></li>
+							</ul>
+
+							<ul class="best-option">
+								<li class="header"><span>Most<br>Popular</span>Premium Plan</li>
+								<li class="price">$99month</li>
+								<li><span>Unlimited</span> deployments</li>
+								<li><span>unlimited</span> free consultancy</li>
+								<li>GOLD SLA Support</li>
+								<li>offline access</li>
+								<li><span>social share +</span></li>
+								<li>support online</li>
+								<li><span>24h per day</span></li>
+								<li class="select"><a class="btn btn-large btn-info" href="#">select plan</a></li>
+							</ul>
+
+							<ul>
+								<li class="header">Professional Plan</li>
+								<li class="price">$29month</li>
+								<li><span>10GB</span> disk space</li>
+								<li><span>2</span> hours free consultancy</li>
+								<li>Standard SLA Support</li>
+								<li class="strike">offline access</li>
+								<li>social share</li>
+								<li>support online</li>
+								<li>from 8:00am to 17:00pm</li>
+								<li class="select"><a class="btn btn-info" href="#">select plan</a></li>
+							</ul>
+
+						</div>
+
+					</div>								
+
+				</div>
+</div><!--/container-->
+	
+
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Modal title</h4>
+				</div>
+				<div class="modal-body">
+					<p>Here settings can be configured...</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+{% endblock page_content %}
+

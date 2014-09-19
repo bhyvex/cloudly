@@ -1,3 +1,5 @@
+var dTable;
+
 function ajaxBlock() {
 	if ($('#storage_datatable input:focus').length) return true;
 	if ($('#storage_datatable select:focus').length) return true;
@@ -5,21 +7,24 @@ function ajaxBlock() {
 }
 
 function storageDataInit() {
-	$('#storage_datatable .cloud_data').dataTable({
+	dTable = $('#storage_datatable .cloud_data').DataTable({
+			'ajax': { url: '/ajax/cloud/storage/' },
 			'aLengthMenu': [[10, 25, 50, 100, 250, 500, 1000], [10, 25, 50, 100, 250, 500, 1000]],
-			'bStateSave': true,
 			'iDisplayLength': 10,
 			});
 }
 
 function ajaxStorage() {
 	if (ajaxBlock()) return;
-	$.ajax({ url: "/ajax/cloud/storage/", type: "GET", dataType: "html", success: ajaxStorageUpdate });
+	dTable.ajax.reload(null, false);
+//	$.ajax({ url: "/ajax/cloud/storage/", type: "GET", dataType: "html", success: ajaxStorageUpdate });
 }
 
 function ajaxStorageUpdate(content) {
 	if (ajaxBlock()) return;
-	$('#storage_datatable').html(content);
+	$('#storage_datatable .cloud_data').html(content);
+	if (jQuery.fn.DataTable && jQuery.fn.DataTable.settings.length)
+		jQuery.fn.DataTable.settings[0].nTable = $('#storage_datatable table');
 	storageDataInit();
 	// prevent moving to top
 	$('a[href="#"][data-top!=true]').click(function(e){ e.preventDefault(); });
