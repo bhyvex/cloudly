@@ -75,3 +75,14 @@ mysql> ALTER TABLE userprofile_profile CONVERT TO CHARACTER SET utf8 COLLATE utf
 
 9) Install Amazon Boto - Python Interface to Amazon Web Services
 
+<pre>
+$ apt-get install python-boto
+</pre>
+
+10) Run MongoDB
+
+<pre>
+$ mongod &
+</pre>
+
+..and configure your server to meet your requirements.
