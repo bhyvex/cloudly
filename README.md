@@ -22,12 +22,14 @@ mysql> create database cloudly;
 </pre>
 
 
-4) Install other python packages
+4) Install various python packages
 
 <pre>
 $ apt-get install python-dev 
 $ apt-get install python-simplejson 
 $ apt-get install python-django
+$ apt-get install python-pip
+$ 
 </pre>
 
 5) Install MongoDB and it's python connector
@@ -84,7 +86,9 @@ $ apt-get install python-boto
 <pre>
 $ sudo mkdir /data
 $ sudo mkdir /data/db
-$ mongod &
+$ mongod
 </pre>
 
 ..and configure your server to meet your requirements.
+
+11) 
