@@ -53,11 +53,30 @@
 						    <div class="panel-heading">
 						      <h4 class="panel-title">
 						        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="ui-elements.html#collapseOne">
-						          Question #1 What are the current hardware requirements?
+						          Question #1 How do I install private server?
 						        </a>
 						      </h4>
 						    </div>
 						    <div id="collapseOne" class="panel-collapse collapse in">
+						      <div class="panel-body">
+								To install a new private server simply copy and paste the following command into the linux terminal window:
+<pre>
+curl <a href="http://{{server_addr}}/static/agent.py" target="_blank">http://{{server_addr}}/static/agent.py</a> > ~$USER/agent.py; sudo sh -c "while true; do python ~$USER/agent.py; sleep 3; done"
+</pre>
+								And that's that.<br/>
+								The agent will run and guide you through the installation.
+						      </div>
+						    </div>
+						  </div>
+						  <div class="panel panel-default">
+						    <div class="panel-heading">
+						      <h4 class="panel-title">
+						        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="ui-elements.html#collapseTwo">
+						          Question #2 What are the current hardware requirements?
+						        </a>
+						      </h4>
+						    </div>
+						    <div id="collapseTwo" class="panel-collapse collapse">
 						      <div class="panel-body">
 								Our Virtualization Agent is written so that runs on any 64-bit processor.<br/>The system periodically measures server and Internet utilization and sends customized reports.
 						      </div>
@@ -66,12 +85,12 @@
 						  <div class="panel panel-default">
 						    <div class="panel-heading">
 						      <h4 class="panel-title">
-						        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="ui-elements.html#collapseTwo">
+						        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="ui-elements.html#collapseThree">
 						          	Question #2 Is it possible to import virtual machines from other Hypervisors?
 						        </a>
 						      </h4>
 						    </div>
-						    <div id="collapseTwo" class="panel-collapse collapse">
+						    <div id="collapseThree" class="panel-collapse collapse">
 						      <div class="panel-body">
 								This feature is planned for the next release: you will upload your .vmdk file, and we'll do the rest. Stay tuned!
 						      </div>
@@ -80,12 +99,12 @@
 						  <div class="panel panel-default">
 						    <div class="panel-heading">
 						      <h4 class="panel-title">
-						        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="ui-elements.html#collapseThree">
+						        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="ui-elements.html#collapseFour">
 									Question #3 What is the file format for virtual machine image files?
 						        </a>
 						      </h4>
 						    </div>
-						    <div id="collapseThree" class="panel-collapse collapse">
+						    <div id="collapseFour" class="panel-collapse collapse">
 						      <div class="panel-body">
 								The virtual machine container format is qcow2 – the native format for KVM/QEMU.
 						      </div>
@@ -94,12 +113,12 @@
 						  <div class="panel panel-default">
 						    <div class="panel-heading">
 						      <h4 class="panel-title">
-						        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="ui-elements.html#collapseFour">
+						        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="ui-elements.html#collapseFive">
 									Question #4 What advantages can you offer over major cloud providers?
 						        </a>
 						      </h4>
 						    </div>
-						    <div id="collapseFour" class="panel-collapse collapse">
+						    <div id="collapseFive" class="panel-collapse collapse">
 						      <div class="panel-body">
 								<p>
 									Here are two very good reasons to work with a smaller cloud company: 
