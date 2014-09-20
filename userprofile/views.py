@@ -63,6 +63,11 @@ def register(request):
 		name = request.POST[u'username']
 		email = request.POST[u'email']
 		username = email
+		
+		try:
+			if(request.POST['agree']!='on'):
+				err = "must_agree_tos"
+		except: err = "must_agree_tos"
 
 		password1 = request.POST[u'password1']
 		#password2 = request.POST[u'password2']
