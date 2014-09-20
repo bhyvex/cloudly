@@ -37,8 +37,27 @@ from django.template.defaultfilters import filesizeformat, upper
 from django.contrib.humanize.templatetags.humanize import naturalday
 from cloudly.templatetags.cloud_extras import clear_filename, get_file_extension
 
+
 def delete_file(request, file_id):
+
+	print '-- delete_file:'
+
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	secret = profile.secret
+
+	try:
+		f = Uploaded_Files.objects.get(pk=file_id)
+		if(f.user!=request.user):
+			return HttpResponse("access denied")
+	except: 
+		return HttpResponse("access denied")
+
 	return HttpResponse("working on this currently " + str(file_id))
+
 
 def cloud_dropzone(request):
 	
