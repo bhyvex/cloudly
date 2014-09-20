@@ -58,6 +58,10 @@ def delete_file(request, file_id):
 	except: 
 		return HttpResponse("access denied")
 	
+	if(request.GET):
+		if(request.GET['confirm']=="True"):
+			f.delete()
+			return HttpResponseRedirect("/cloud/storage/")
 	
 	return render_to_response('cloud_file_delete.html', {'f':f,'profile':profile,}, context_instance=RequestContext(request))
 
