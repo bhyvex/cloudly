@@ -137,7 +137,7 @@ def ajax_cloud_storage(request):
 		row.append(upper(get_file_extension(f.file.file)))
 		row.append('<span class="label label-warning">Synchronising..</span>')
 		if (not f.is_shared):
-			row.append(' <a class="btn btn-success" href="#"><i class="fa fa-search-plus "></i></a> <a class="btn btn-info" href="/media/'+str(f.file.file)+'" target="_blank"><i class="fa fa-cloud-download "></i></a> <a class="btn btn-info" href="#" target="_blank"><i class="fa fa-share "></i></a> <a class="btn btn-danger" href="#"><i class="fa fa-trash-o "></i></a>')
+			row.append(' <a class="btn btn-success" href="#"><i class="fa fa-search-plus "></i></a> <a class="btn btn-info" href="/media/'+str(f.file.file)+'" target="_blank"><i class="fa fa-cloud-download "></i></a> <a class="btn btn-info" href="#" target="_blank"><i class="fa fa-share "></i></a> <a class="btn btn-danger" href="/cloud/file/'+str(f.id)+'/delete"><i class="fa fa-trash-o "></i></a>')
 		else:
 			row.append(' <a class="btn btn-warning" href="/password/protect/file"><i class="fa fa-key "></i></a> <a class="btn btn-danger" href="#"><i class="fa fa-trash-o "></i></a><button type="button" class="btn btn-link"><i class="fa fa-link"></i> Share Link</button><span class="label label-default">'+str(f.share_link_clicks_count)+'</span>')
 		fobj.append(row)
