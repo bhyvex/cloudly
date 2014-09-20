@@ -59,7 +59,7 @@ def delete_file(request, file_id):
 		return HttpResponse("access denied")
 	
 	
-	return render_to_response('cloud_file_delete.html', {'profile':profile,}, context_instance=RequestContext(request))
+	return render_to_response('cloud_file_delete.html', {'f':f,'profile':profile,}, context_instance=RequestContext(request))
 
 
 def cloud_dropzone(request):
