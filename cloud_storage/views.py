@@ -37,6 +37,9 @@ from django.template.defaultfilters import filesizeformat, upper
 from django.contrib.humanize.templatetags.humanize import naturalday
 from cloudly.templatetags.cloud_extras import clear_filename, get_file_extension
 
+def delete_file(request, file_id):
+	return HttpResponse("working on this currently " + str(file_id))
+
 def cloud_dropzone(request):
 	
 	print '-- cloud_storage:'
