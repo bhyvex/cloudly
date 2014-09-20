@@ -49,12 +49,16 @@ def delete_file(request, file_id):
 	profile = userprofile.objects.get(user=request.user)
 	secret = profile.secret
 
+	print 'user', request.user
+
 	try:
 		f = Uploaded_Files.objects.get(pk=file_id)
 		if(f.user!=request.user):
 			return HttpResponse("access denied")
 	except: 
 		return HttpResponse("access denied")
+	
+	
 
 	return HttpResponse("working on this currently " + str(file_id))
 
@@ -70,7 +74,7 @@ def cloud_dropzone(request):
 	profile = userprofile.objects.get(user=request.user)
 	secret = profile.secret
 
-	print request.user
+	print 'user', request.user
 
 	uploaded_files = []
 
