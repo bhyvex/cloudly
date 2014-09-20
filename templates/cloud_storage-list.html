@@ -1,0 +1,20 @@
+{% load humanize %}
+{% load cloud_extras %}
+
+{"data": [
+
+	{% for f in uploaded_files %}
+		[
+			"<a href=\"/media/{{f.file.file}}\">{{forloop.counter}}</a>", 
+			"{{f.date_created}}", 
+			"<a href=\"/media/{{f.file.file}}\" target=\"_blank\">{{f.file.file|clear_filename}}</a> <small><a href=\"#\" id=\"name\" data-type=\"text\" data-pk=\"1\" data-original-title=\"Name this file\" class=\"editable editable-click\">create alias</a></small>", 
+			"{{f.file.file.size|filesizeformat}}", 
+			"{{f.file.file|get_file_extension|upper}}", 
+			"<span class=\"label label-warning\">Synchronising..</span>", 
+			"<a class=\"btn btn-success\" href=\"#\"><i class=\"fa fa-search-plus \"></i></a> <a class=\"btn btn-info\" href=\"/media/{{f.file.file}}\" target=\"_blank\"><i class=\"fa fa-cloud-download \"></i></a> <a class=\"btn btn-info\" href=\"#\" target=\"_blank\"><i class=\"fa fa-share \"></i></a> <a class=\"btn btn-danger\" href=\"/cloud/file/{{f.id}}/delete\"><i class=\"fa fa-trash-o \"></i></a>"]
+		{% if not forloop.last %}
+		,
+		{% endif %}
+	{% endfor %}
+
+]}
