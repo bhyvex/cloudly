@@ -130,10 +130,8 @@ def dropzone_uploader(request):
 		import urllib
 
 		response_data = {
-			"delete_url": 1,#request.path + "?" + urllib.urlencode({"f": str(f.pk) + "/" + str(f.file.file)),
-			"delete_type": "POST",
-			"thumbnailUrl": "/media/"+str(new_file.file), # XXX add thumbnail here
 			"name": new_file.file,
+			"thumbnailUrl": "/media/"+str(new_file.file), # XXX add thumbnail here
 			"size": os.path.getsize("media/"+str(new_file.file)),
 			"type": str(new_file.file).split('.')[-1:][0],
 		}
