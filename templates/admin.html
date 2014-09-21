@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load humanize %}
 {% load cloud_extras %}
 						
 {% block title %}Admin{% endblock %}
@@ -56,21 +57,48 @@
 					<table class="table table-condensed">
 						  <thead>
 							  <tr>
-								  <th>Date registered</th>
-								  <th>Name</th>
-								  <th>E-mail</th>
-								  <th>Clicks</th>                                          
-								  <th>Role</th>
+								<th>Registered</th>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Twitter</th>
+								<th>Mobile</th>
+								<th>aws_enabled_regions</th>
+								<th>aws_access_key</th>
+								<th>aws_ec2_verified</th>
+								<th>aws_s3_verified</th>
+								<th>aws_cloudfront_verified</th>
+								<th>aws_automatic_backups</th>
+								<th>clicks</th>                                          
+								
 							  </tr>
 						  </thead>   
 						  <tbody>
 							{% for p in users %}
 							<tr>
-								<td>2012/01/01</td>
+								<td>{{p.user.date_joined|naturaltime}}</td>
 								<td>{{p.name}}</td>
 								<td>{{p.user.email}}</td>
-								<td><a href="#">0</a></td>                                       
-								<td>Member</td>
+								<td>
+									{% if p.twitter %}
+									{{p.twitter}}
+									{% else %}-{% endif %}
+								</td>
+								<td>
+									{% if p.mobile %}
+									{{p.mobile}}
+									{% else %}-{% endif %}
+								</td>
+								<td>{{p.aws_enabled_regions}}</td>
+								<td>
+									{% if p.aws_access_key %}
+									{{p.aws_access_key}}
+									{% else %}-{% endif %}
+								</td>
+								<td>{{p.aws_ec2_verified}}</td>
+								<td>{{p.aws_s3_verified}}</td>
+								<td>{{p.aws_cloudfront_verified}}</td>
+								<td>{{p.aws_automatic_backups}}</td>
+								<td><center><a href="#">0</a></center></td>
 							</tr>
 							{% endfor %}
 						  </tbody>

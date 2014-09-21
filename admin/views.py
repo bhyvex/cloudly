@@ -44,7 +44,7 @@ def admin(request):
 	profile.clicks += 1
 	profile.save()
 	
-	users = Profile.objects.all()
+	users = Profile.objects.all().order_by('-pk')
 	
 	return render_to_response('admin.html', {'users':users,'profile':profile,}, context_instance=RequestContext(request))
 
