@@ -17,15 +17,6 @@
 	
 			<div class="row">
 				<div class="panel panel-default">
-				<strong><font color="red">Debug</font></strong> {{uploaded_files}}
-				<br/>
-				<br/>
-				<font color="red">XXX search</font><br/>
-				<font color="red">XXX top categories</font><br/>
-				<font color="red">XXX style</font>
-				
-				<hr/>
-								
 				<div class="btn-group">
 					<select name="cat" id="prop_cat" data-placeholder="Category">
                        <option value='all'>All categories</option>
@@ -42,15 +33,13 @@
 				</div>
 				
 				<hr/>
-				
-				{% for package in packages %}
-					Package: <strong>{{package.title}}</strong>
-					{{package.description}}
 
+				{% for package in packages %}
 					<div class="col-sm-6">	
 						<div class="panel panel-default">
 						  	<div class="panel-body">
-							Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+								Package: <strong>{{package.title}}</strong>
+								{{package.description}}
 						  	</div>
 						  	<div class="panel-footer">
 							<button type="button" class="btn btn-xs btn-success btn">Install</button>
@@ -64,7 +53,6 @@
 					</div>
 				{% endfor %}
 
-				<hr/>
 				All Tags:
 				<a href="/cloud/software/">
 			    <span class="label label-info">all</span></a>
@@ -72,9 +60,14 @@
 				<a href="/cloud/software/tag/{{tag.name_slug}}/">
 				<span class="label label-primary">{{tag}}</span></a>
 				{% endfor %}
-				
 				<hr/>
 				<a href="/cloud/software/add/new/"><button type="button" class="btn btn-danger"><i class="fa fa-heart-o"></i> Add More Software</button></a>
+				
+				<br/>
+				<br/>
+				<font color="red">XXX search</font><br/>
+				<font color="red">XXX top categories</font><br/>
+				
 				
 				</div>
 			</div>
