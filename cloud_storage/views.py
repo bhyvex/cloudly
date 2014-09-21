@@ -127,19 +127,18 @@ def dropzone_uploader(request):
 		new_file.save()
 		f = Uploaded_Files.objects.create(file=new_file,user=request.user)
 
-		simple_json = {
-			"thumbnailUrl": "/media/"+str(new_file.file), # XXX add thumbnail here
-			"name": new_file.file,
-			"size": os.path.getsize("media/"+str(new_file.file)),
-			"type": str(new_file.file).split('.')[:-1][0]
-		}
-
+		file_thumbnailUrl = "/media/"+str(new_file.file)
+		file_name = new_file.file
+		file_size = os.path.getsize("media/"+str(new_file.file))
+		file_type = str(new_file.file).split('.')[:-1][0]
 
 		response_type = "application/json"
-		if "text/html" in request.META["HTTP_ACCEPT"]:
-		   response_type = "text/html"
+		if "text/html" in request.META["HTTP_ACCEPT"]: response_type = "text/html"
 
-		return HttpResponse(str(simple_json), mimetype=response_type)
+		simple_json = """{"thumbnailUrl": "%s", "name": "%s", "size": "%s", "type": "%s"}""" %(file_thumbnailUrl,file_name,file_size,file_type,)
+		
+		return HttpResponse(simple_json, mimetype=response_type)
+
 
 	return HttpResponse("invalid form")
 
