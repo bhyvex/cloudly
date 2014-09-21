@@ -64,9 +64,9 @@
 								<th>Mobile</th>
 								<th>AWS Regions</th>
 								<th>Access Key</th>
-								<th>EC2 Verified</th>
-								<th>S3 Verified</th>
-								<th>CloudFront Verified</th>
+								<th>EC2 <small>verified</small></th>
+								<th>S3 <small>verified</small></th>
+								<th>CF <small>verified</small></th>
 								<th>Backups</th>
 								<th>activity</th>                                          
 								
@@ -97,7 +97,7 @@
 								<td>{{p.aws_ec2_verified}}</td>
 								<td>{{p.aws_s3_verified}}</td>
 								<td>{{p.aws_cloudfront_verified}}</td>
-								<td>{{p.aws_automatic_backups}}</td>
+								<td>{% if p.aws_automatic_backups %}Enabled{% else %}Disabled{% endif %}</td>
 								<td><center><a href="#">0</a></center></td>
 							</tr>
 							{% endfor %}
@@ -135,21 +135,21 @@
 						  <thead>
 							  <tr>
 								  <th>Date created</th>
-								  <th>Username</th>
+								  <th>Size</th>
 								  <th>Filename</th>
+								  <th>Owner</th>
 								  <th>is_deployed</th>
 								  <th>is_shared</th>
 								  <th>is_deleted</th>
-								  <th>Size</th>
 							  </tr>
 						  </thead>   
 						  <tbody>
 							{% for f in files %}
 							<tr>
 								<td>{{f.date_created}}</td>
-								<td>{{f.user}}</td>
-								<td>{{f.file.file|clear_filename}}</td>
 								<td>xxx</td>
+								<td>{{f.file.file|clear_filename}}</td>
+								<td>{{f.user}}</td>
 								<td>xxx</td>
 								<td>xxx</td>
 								<td>xxx</td>
