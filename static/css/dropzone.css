@@ -452,7 +452,7 @@
   display: block;
   width: 32px;
   height: 32px;
-  background: url("/static/images/progressbar.gif") center no-repeat;
+  background: url("/static/images/loading.gif") center no-repeat;
   background-size: contain;
 }
 .files audio,
@@ -478,4 +478,15 @@
   .files canvas {
     max-width: 100%;
   }
+}
+
+.progress {
+    position: relative;
+}
+
+.progress .progressCount {
+    font-size: 11px;
+    position: absolute;
+    left: 50%;
+    margin-left: -8px;
 }
