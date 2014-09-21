@@ -119,9 +119,6 @@ def dropzone_uploader(request):
 
 	if request.method == 'POST':
 
-		#print 'here POST', request.POST
-		#print 'here FILES', request.FILES
-
 		#form = UploadFileForm(request.POST, request.FILES)
 		#if form.is_valid():
 		#print 'valid form', form
