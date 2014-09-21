@@ -127,27 +127,19 @@ def dropzone_uploader(request):
 		new_file.save()
 		f = Uploaded_Files.objects.create(file=new_file,user=request.user)
 
-		import urllib
-
-		response_data = {
-			"name": new_file.file,
+		simple_json = {
 			"thumbnailUrl": "/media/"+str(new_file.file), # XXX add thumbnail here
+			"name": new_file.file,
 			"size": os.path.getsize("media/"+str(new_file.file)),
-			"type": str(new_file.file).split('.')[-1:][0],
+			"type": str(new_file.file).split('.')[:-1][0]
 		}
-		
-		print response_data
-		
-		#response_data = simplejson.dumps(response_data)
-		#print 'response_data serialized', response_data
+
 
 		response_type = "application/json"
-
 		if "text/html" in request.META["HTTP_ACCEPT"]:
 		   response_type = "text/html"
 
-		return HttpResponse(response_data, mimetype=response_type)
-
+		return HttpResponse(simple_json, mimetype=response_type)
 
 	return HttpResponse("invalid form")
 
