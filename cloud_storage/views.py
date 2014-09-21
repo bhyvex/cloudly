@@ -141,7 +141,7 @@ def dropzone_uploader(request):
 		response_data["type"] = str(new_file.file).split('.')[:-1][0]
 
 		# generate the json data
-		response_data = simplejson.dumps([response_data])
+		#response_data = simplejson.dumps(response_data)
 
 		# response type
 		response_type = "application/json"
