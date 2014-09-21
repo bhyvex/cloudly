@@ -129,28 +129,27 @@ def dropzone_uploader(request):
 
 		import urllib
 
-		response_data = {}
-		# url for deleting the file in case user decides to delete it
-		response_data["delete_url"] = request.path + "?" + urllib.urlencode({"f": str(f.pk) + "/" + str(f.file.file)})
-		# specify the delete type - must be POST for csrf
-		response_data["delete_type"] = "POST"
-
-		response_data["thumbnailUrl"] = "/media/"+str(new_file.file), # XXX add thumbnail here
-		response_data["name"] = new_file.file,
-		response_data["size"] = os.path.getsize("media/"+str(new_file.file)),
-		response_data["type"] = str(new_file.file).split('.')[:-1][0]
-
-		# generate the json data
+		response_data = {
+			"delete_url": 1,#request.path + "?" + urllib.urlencode({"f": str(f.pk) + "/" + str(f.file.file)),
+			"delete_type": "POST",
+			"thumbnailUrl": "/media/"+str(new_file.file), # XXX add thumbnail here
+			"name": new_file.file,
+			"size": os.path.getsize("media/"+str(new_file.file)),
+			"type": str(new_file.file).split('.')[-1:][0],
+		}
+		
+		print response_data
+		
 		#response_data = simplejson.dumps(response_data)
+		#print 'response_data serialized', response_data
 
-		# response type
 		response_type = "application/json"
 
 		if "text/html" in request.META["HTTP_ACCEPT"]:
 		   response_type = "text/html"
 
-		# return the data to the uploading plugin
 		return HttpResponse(response_data, mimetype=response_type)
+
 
 	return HttpResponse("invalid form")
 
