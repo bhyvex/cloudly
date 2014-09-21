@@ -8,8 +8,6 @@ urlpatterns = patterns('',
 	url(r'^welcome/$', 'dashboard.views.welcome', name='welcome'),
 	url(r'^help/$', 'dashboard.views.help', name='help'),
 	url(r'^pricing/$', 'dashboard.views.pricing', name='pricing'),
-	# decommissioned urls
-	#url(r'^security/$', 'dashboard.views.security', name='security'),
 
 	# userprofile / account
 	url(r'^login/$', 'userprofile.views.auth', name='login'),
@@ -36,7 +34,6 @@ urlpatterns = patterns('',
 	url(r'^private/storage/$', 'private_storage.views.private_storage', name='private_storage'),
 	url(r'^private/cloud/photos/$', 'private_photos.views.private_photos', name='private_photos'),
 
-
 	# cloud stuff
 	url(r'^cloud/software/$', 'cloud_software.views.cloud_software', name='cloud_software'),
 	url(r'^cloud/software/add/new/$', 'cloud_software.views.cloud_software_add_new', name='cloud_software_add_new'),
@@ -45,14 +42,10 @@ urlpatterns = patterns('',
 	url(r'^cloud/storage/$', 'cloud_storage.views.cloud_storage', name='cloud_storage'),
 	url(r'^cloud/file/(?P<file_id>\d+)/delete/$', 'cloud_storage.views.delete_file', name='delete_file'),
 	url(r'^cloud/sharing/$', 'cloud_storage.views.cloud_sharing', name='cloud_sharing'),
-	url(r'^ajax/cloud/storage/$', 'cloud_storage.views.ajax_cloud_storage', name='ajax_cloud_storage'),
 	url(r'^cloud/dropzone/$', 'cloud_storage.views.cloud_dropzone', name='cloud_dropzone'),
 	url(r'^cloud/photos/$', 'cloud_photos.views.cloud_photos', name='cloud_photos'),
 	url(r'^cloud/settings/$', 'userprofile.views.cloud_settings', name='cloud_settings'),
-	# TODO URLs from/refferenced in /cloud/storage/
-	#/cloud/storage/files/
-	#/cloud/storage/dropzone/
-	#/cloud/storage/s3/enable/
+	url(r'^ajax/cloud/storage/$', 'cloud_storage.views.ajax_cloud_storage', name='ajax_cloud_storage'),
 
 	# admin
 	url(r'^admin/$', 'admin.views.admin', name='admin'),
