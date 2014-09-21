@@ -43,7 +43,7 @@
 {% endcomment %}	
 	
 	<div class="row">
-		<div class="col-lg-6">
+		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h2><i class="fa fa-align-justify"></i><span class="break"></span>Registered users</h2>
@@ -56,21 +56,23 @@
 					<table class="table table-condensed">
 						  <thead>
 							  <tr>
-								  <th>Username</th>
 								  <th>Date registered</th>
-								  <th>Role</th>
+								  <th>Name</th>
+								  <th>E-mail</th>
 								  <th>Clicks</th>                                          
+								  <th>Role</th>
 							  </tr>
 						  </thead>   
 						  <tbody>
+							{% for p in users %}
 							<tr>
-								<td>Carwyn Fachtna</td>
 								<td>2012/01/01</td>
+								<td>{{p.name}}</td>
+								<td>{{p.user.email}}</td>
+								<td><a href="#">0</a></td>                                       
 								<td>Member</td>
-								<td>
-									<a href="#">0</a>
-								</td>                                       
 							</tr>
+							{% endfor %}
 						  </tbody>
 					 </table> 
 					{% comment %}
@@ -88,8 +90,9 @@
 				</div>
 			</div>
 		</div><!--/col-->
+	</div><!--/row-->
 
-
+	<div class="row">
 		<div class="col-lg-6">
 			<div class="panel panel-default">
 				<div class="panel-heading">
