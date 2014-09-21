@@ -18,38 +18,46 @@
 	
 			<div class="row">
 				<div class="panel panel-default">
-				<strong><font color="red">Tag: "{{tag}}"</font></strong> {{uploaded_files}}								
-				<h1>"{{tag}}" packages ({{packages_count}})</h1>
+					<p>
+					<strong><font color="red">Tag: "{{tag}}"</font></strong> {{uploaded_files}}								
+					<h1>"{{tag}}" packages ({{packages_count}})</h1>
 				
-				<br/>
-				All Tags: <a href="/cloud/software/">
-			    <span class="label label-info">all</span></a>
+					<br/>
+					All Tags: <a href="/cloud/software/">
+				    <span class="label label-info">all</span></a>
 					
-				{% for tag_ in tags %}
-				<a href="/cloud/software/tag/{{tag_.name_slug}}/">
-					{% if tag_ != tag %}
-						<span class="label label-primary">{{tag_}}</span>
-					{% else %}
-						<span class="label label-warning">{{tag_}}</span>
-					{% endif %}
-				</a>
-				{% endfor %}
-				<br/>
-				
-				<hr/>
-				{% for package in packages %}
-				Package: {{package.title}}<br/>
-				{{package.description}}<br/>
-				
-				Tags: 
-				{% for tag in package|get_tags %}
-					<a href="/cloud/software/tag/{{tag.tag.name_slug}}/">
-					<button type="button" class="btn btn-xs btn-link active">{{tag.tag}}</button>
+					{% for tag_ in tags %}
+					<a href="/cloud/software/tag/{{tag_.name_slug}}/">
+						{% if tag_ != tag %}
+							<span class="label label-primary">{{tag_}}</span>
+						{% else %}
+							<span class="label label-warning">{{tag_}}</span>
+						{% endif %}
 					</a>
-				{% endfor %}
-				<button type="button" class="btn btn-xs btn-success btn">Install</button>
-				<hr/>
-				{% endfor %}
+					{% endfor %}
+					</p>
+					<div class="row">
+					{% for package in packages %}
+						<div class="col-sm-6">	
+							<div class="panel panel-default">
+							  	<div class="panel-body">
+									Package: <strong>{{package.title}}</strong>
+									{{package.description}}
+							  	</div>
+							  	<div class="panel-footer">
+								<button type="button" class="btn btn-xs btn-success btn">Install</button>
+								{% for tag in package|get_tags %}
+									<a href="/cloud/software/tag/{{tag.tag.name_slug}}/">
+									<button type="button" class="btn btn-xs btn-link active">{{tag.tag}}</button>
+									</a>
+								{% endfor %}
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+					</div>
+
+
 				</div>
 			</div>
 
