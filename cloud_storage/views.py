@@ -118,8 +118,14 @@ def dropzone_uploader(request):
 	print request.user
 
 	if request.method == 'POST':
+
+		print 'here POST', request.POST
+		print 'here FILES', request.FILES
+
 		form = UploadFileForm(request.POST, request.FILES)
 		if form.is_valid():
+			
+			print 'valid form', form
 
 			new_file = Files(file=request.FILES['file'])
 			new_file.save()
@@ -130,7 +136,6 @@ def dropzone_uploader(request):
 				"size": "100",
 				"type": "tbd"
 			}
-
 
 			import urllib
 
@@ -163,7 +168,7 @@ def dropzone_uploader(request):
 			# return the data to the uploading plugin
 			return HttpResponse(response_data, mimetype=response_type)
 
-	return HttpResponse("False")
+	return HttpResponse("invalid form")
 
 
 def cloud_storage(request):

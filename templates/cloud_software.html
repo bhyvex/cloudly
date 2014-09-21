@@ -44,17 +44,24 @@
 				<hr/>
 				
 				{% for package in packages %}
-				Package: <strong>{{package.title}}</strong>
-				{{package.description}}
-				<br/>
-					{% for tag in package|get_tags %}
-					<a href="/cloud/software/tag/{{tag.tag.name_slug}}/">
-					<button type="button" class="btn btn-xs btn-link active">{{tag.tag}}</button>
-					</a>
-					{% endfor %}
-					<button type="button" class="btn btn-xs btn-success btn">Install</button>
-				
-				<hr/>
+					Package: <strong>{{package.title}}</strong>
+					{{package.description}}
+
+					<div class="col-sm-6">	
+						<div class="panel panel-default">
+						  	<div class="panel-body">
+							Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+						  	</div>
+						  	<div class="panel-footer">
+							<button type="button" class="btn btn-xs btn-success btn">Install</button>
+							{% for tag in package|get_tags %}
+								<a href="/cloud/software/tag/{{tag.tag.name_slug}}/">
+								<button type="button" class="btn btn-xs btn-link active">{{tag.tag}}</button>
+								</a>
+							{% endfor %}
+							</div>
+						</div>
+					</div>
 				{% endfor %}
 
 				<hr/>
