@@ -131,8 +131,9 @@ def dropzone_uploader(request):
 		f = Uploaded_Files.objects.create(file=new_file,user=request.user)
 
 		simple_json = {
+			"thumbnailUrl": "/media/"+str(new_file.file), # XXX add thumbnail here
 			"name": new_file.file,
-			"size": os.path.getsize(new_file.file),
+			"size": os.path.getsize("media/"+str(new_file.file)),
 			"type": str(new_file.file).split('.')[:-1][0]
 		}
 
