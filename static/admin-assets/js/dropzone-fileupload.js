@@ -88,6 +88,7 @@ $('#upload').fileupload({
           loader.prop('width','25');
           
           element.find('td.status').css("text-align","center").html(loader);
+          
       }
   }  
   
