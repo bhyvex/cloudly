@@ -127,13 +127,6 @@ def dropzone_uploader(request):
 		new_file.save()
 		f = Uploaded_Files.objects.create(file=new_file,user=request.user)
 
-		simple_json = {
-			"thumbnailUrl": "/media/"+str(new_file.file), # XXX add thumbnail here
-			"name": new_file.file,
-			"size": os.path.getsize("media/"+str(new_file.file)),
-			"type": str(new_file.file).split('.')[:-1][0]
-		}
-
 		import urllib
 
 		response_data = {}
@@ -142,21 +135,16 @@ def dropzone_uploader(request):
 		# specify the delete type - must be POST for csrf
 		response_data["delete_type"] = "POST"
 
+		response_data["thumbnailUrl"] = "/media/"+str(new_file.file), # XXX add thumbnail here
+		response_data["name"] = new_file.file,
+		response_data["size"] = os.path.getsize("media/"+str(new_file.file)),
+		response_data["type"] = str(new_file.file).split('.')[:-1][0]
+
 		# generate the json data
 		response_data = simplejson.dumps([response_data])
 
 		# response type
 		response_type = "application/json"
-
-		# QUIRK HERE
-		# in jQuey uploader, when it falls back to uploading using iFrames
-		# the response content type has to be text/html
-		# if json will be send, error will occur
-		# if iframe is sending the request, it's headers are a little different compared
-		# to the jQuery ajax request
-		# they have different set of HTTP_ACCEPT values
-		# so if the text/html is present, file was uploaded using jFrame because
-		# that value is not in the set when uploaded by XHR
 
 		if "text/html" in request.META["HTTP_ACCEPT"]:
 		   response_type = "text/html"
