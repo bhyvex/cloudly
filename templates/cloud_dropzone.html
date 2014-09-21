@@ -1,82 +1,113 @@
 {% extends "base.html" %}
+{% load humanize %}
 
 {% load cloud_extras %}
-						
-{% block title %}Cloud Dropzone{% endblock %}
+					
+{% block title %}Cloud Files{% endblock %}
 
 {% block page_content %}
+ 
 
-<div class="col-md-10 col-sm-11 main" style="min-height: 295px;">
 
+<div class="col-md-10 col-sm-11 main ">
+ <form id="upload" action="/cloud/storage/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+		<div class="panel panel-default">
+			<div class="panel-heading" data-original-title="">
+				<h2><i class="fa fa-user"></i><span class="break"></span>Dropzone</h2>
+				<div class="panel-actions">
+					<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+					<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+					<!--<a href="#" class="btn-close"><i class="fa fa-times"></i></a>-->
+				</div>
+			</div>
+                    
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="action col-md-4">
+                                <span class="btn btn-sm btn-success fileinput-button">
+                                    <i class="fa fa-upload"></i> Add files
+                                    <input type="file" name="files[]" multiple>
+                                </span>
 
-	<div class="row">	
-		<div class="col-lg-12">
-			<ol class="breadcrumb">
-			  	<li><a href="#">Cloud</a></li>
-			  	<li class="active">Dropzone</li>
-			</ol>
+                                <button type="submit" class="btn btn-sm btn-primary start"><i class="fa fa-dot-circle-o"></i> Start upload</button>
+                                <button type="submit" class="btn btn-sm btn-warning cancel"><i class="fa fa-ban"></i> Cancel upload</button>
+                                <button type="reset" class="btn btn-sm btn-danger delete"><i class="fa fa-remove"></i> Remove files</button>
+                            </div>  
+                            <div class="col-md-5">
+                                <div id="progressAll" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                                </div>
+                                <div class="progress-extended">&nbsp;</div>
+                            </div>   
+                        </div>    
+                    </div>
+                    
+			<div class="panel-body">
+                            <!--<table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>-->
+			<div id="storage_datatable">
+			  <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline">
+			    <table role="presentation" class="table table-striped table-bordered cloud_data">
+			    <thead>
+			      <tr>
+				    <th>Preview</th>
+				    <th>Filename</th>
+				    <th>Size</th>
+				    <th>Status</th>
+				    <th>Action</th>
+			      </tr>
+			    </thead>   
+			    <tbody class="files">
+
+			    </tbody>
+			    </table>
+			  </div>
+			</div>
 		</div>
-	</div>
-			
-	{% comment %}
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h2><i class="fa fa-edit"></i>Cloud Dropzone</h2>
-							<div class="panel-actions">
-								<a href="form-dropzone.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-								<a href="form-dropzone.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-								<a href="form-dropzone.html#" class="btn-close"><i class="fa fa-times"></i></a>
-							</div>
-						</div>
-						<div class="panel-body">
-							
-							<div class="alert alert-info">
-								<button type="button" class="close" data-dismiss="alert">×</button>
-								Drag &amp; drop your files to upload them to the cloud
-							</div>
-								  
-							<div class="form-group">
-								<label class="control-label">File Upload</label>
-								<div class="controls">
-								  	<div id="dropzone">
-								        <form class="dropzone" action="/cloud/dropzone/" method="post" enctype="multipart/form-data" style="height:480px">
-								            {% csrf_token %}
-											
-										<div class="dz-default dz-message"><span>Drop files here to upload</span></div></form>
-									</div>
-								</div>
-							</div>	  
-						</div>
-					</div>
-				</div><!--/col-->
+		
+</div>
 
-			</div><!--/row-->
-	{% endcomment %}
-
-        <form id="upload" method="post" action="upload.php" enctype="multipart/form-data">
-            <input type="file" name="uploadctl" multiple />
             <ul id="fileList">
               <!-- The file list will be shown here -->
             </ul>
         </form>
-	<p>
-		<font color="red">XXX kamil zeir magician todo</font>
-	</p>
+</div>
 
-
-			
-	</div>
-
-
-
+ 
     
-{% block extra_js %}
-   <script src="/static/admin-assets/js/jquery/jquery.fileupload.js"></script>
-    <script src="/static/admin-assets/js/jquery/jquery.fileupload-ui.js"></script>
-    <script src="/static/admin-assets/js/dropzone-fileupload.js"></script>
-   <script src="/static/js/dropzone.js"></script>
+{% block extra_js_footer %}
+
+<script src="/static/admin-assets/js/jquery/custom-plugins/template-loader.js"></script>
+
+
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="/static/admin-assets/js/jquery/vendor/jquery.ui.widget.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!-- blueimp Gallery script -->
+<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="/static/admin-assets/js/jquery/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="/static/admin-assets/js/jquery/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->
+<script src="/static/admin-assets/js/jquery/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="/static/admin-assets/js/jquery/jquery.fileupload-image.js"></script>
+<!-- The File Upload audio preview plugin -->
+<script src="/static/admin-assets/js/jquery/jquery.fileupload-audio.js"></script>
+<!-- The File Upload video preview plugin -->
+<script src="/static/admin-assets/js/jquery/jquery.fileupload-video.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="/static/admin-assets/js/jquery/jquery.fileupload-validate.js"></script>
+<!-- The File Upload user interface plugin -->
+<script src="/static/admin-assets/js/jquery/jquery.fileupload-ui.js"></script>
+<script src="/static/admin-assets/js/dropzone-fileupload.js"></script>
+<script src="/static/js/dropzone.js"></script>
 {% endblock %}
 
 {% endblock page_content %}

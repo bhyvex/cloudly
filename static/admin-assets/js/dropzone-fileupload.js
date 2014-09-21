@@ -1,48 +1,69 @@
 $('#upload').fileupload({
-
-  // This function is called when a file is added to the queue
-  add: function (e, data) {
-    //This area will contain file list and progress information.
-    var tpl = $('<li class="working">'+
-                '<input type="text" value="0" data-width="48" data-height="48" data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" />'+
-                '<p></p><span></span></li>' );
-
-    // Append the file name and file size
-    tpl.find('p').text(data.files[0].name)
-                 .append('<i>' + formatFileSize(data.files[0].size) + '</i>');
-
-    // Add the HTML to the UL element
-    data.context = tpl.appendTo('ul#fileList');
-
-    // Initialize the knob plugin. This part can be ignored, if you are showing progress in some other way.
-    tpl.find('input').knob();
-
-    // Listen for clicks on the cancel icon
-    tpl.find('span').click(function(){
-      if(tpl.hasClass('working')){
-              jqXHR.abort();
-      }
-      tpl.fadeOut(function(){
-              tpl.remove();
+  filesContainer: 'tbody.files',
+  uploadTemplateId: null,
+  downloadTemplateId: null,
+  dataType: 'json',
+  
+  uploadTemplate: function(o){
+      
+      var rows = $();
+      $.each(o.files, function(index, file){
+        var tpl = $('<tr class="template-upload fade">'+
+                          '<td align="center"><span class="preview"></span></td>'+
+                          '<td class="filename"></td>'+
+                          '<td class="filesize"></td>'+
+                          '<td class="status"><div class="progress"></div></td>'+
+                          '<td class="action">'+
+                              (!index && !o.options.autoUpload ?
+                              '<button class="btn btn-sm btn-primary start" disabled>Upload</button>' : '') +
+                              (!index ? '<button class="btn btn-sm btn-warning cancel">Cancel</button>' : '')+
+                          '</td>'+
+                     '</tr>');
+            
+            tpl.find('td.filename').text(file.name);
+            tpl.find('td.filesize').append('<i>'+formatFileSize(file.size)+'</i>');
+            if(file.thumbnailUrl){
+                tpl.find(".preview").append($("img").prop('src',file.thumbnailUrl));
+            }
+            rows = rows.add(tpl);
       });
-    });
-
-    // Automatically upload the file once it is added to the queue
-    var jqXHR = data.submit();
+      
+      return rows;
+      
   },
-  progress: function(e, data){
-
-        // Calculate the completion percentage of the upload
+  downloadTemplate: function(o){
+      var rows = $();
+      $.each(o.files, function(index, file){
+        var tpl = $('<tr class="template-download fade">'+
+                          '<td align="center"><span class="preview"></span></td>'+
+                          '<td class="filename"></td>'+
+                          '<td class="filesize"></td>'+
+                          '<td class="status"><span class="label label-warning">Synchronising..</span></td>'+
+                          '<td class="action">'+
+                              (!index && !o.options.autoUpload ?
+                              '<button class="btn btn-sm btn-primary start" disabled>Upload</button>' : '') +
+                              (!index ? '<button class="btn btn-sm btn-warning cancel">Cancel</button>' : '')+
+                          '</td>'+
+                     '</tr>');
+            
+            tpl.find('td.filename').text(file.name);
+            tpl.find('td.filesize').append('<i>'+formatFileSize(file.size)+'</i>');
+            if(file.thumbnailUrl){
+                tpl.find(".preview").append($("img").prop('src',file.thumbnailUrl));
+            }
+            rows = rows.add(tpl);
+      });
+      
+      return rows;
+  },
+  progressall: function (e, data) {
         var progress = parseInt(data.loaded / data.total * 100, 10);
-
-        // Update the hidden input field and trigger a change
-        // so that the jQuery knob plugin knows to update the dial
-        data.context.find('input').val(progress).change();
-
-        if(progress == 100){
-            data.context.removeClass('working');
-        }
+        $('#progressAll .progress-bar').css(
+            'width',
+            progress + '%'
+        );
     }
+  
 });
 //Helper function for calculation of progress
 function formatFileSize(bytes) {
