@@ -10,7 +10,6 @@
 
 {% block extra_js %}
 <script>
-alert('Hello, World!')
 </script>
 {% endblock %}
 
@@ -19,15 +18,15 @@ alert('Hello, World!')
 <div class="col-md-10 col-sm-11 main ">
 
 	<ol class="breadcrumb">
-	  	<li><a href="#">Admin</a></li>
-	  	<li class="active">Admin</li>
+	  	<li><a href="#"><font color="red"><b>Administrator Report</b></font></a></li>
 	</ol>
 
+{% comment %}
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="panel panel-default">
 					<div class="panel-heading">
-						<h2><i class="fa fa-picture-o"></i><font color="red">Administrator</font></h2>
+						<h2><i class="fa fa-picture-o"></i>Registered Users</h2>
 						<div class="panel-actions">
 							<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
@@ -40,16 +39,183 @@ alert('Hello, World!')
 			</div><!--/row-->	
 		</div>
 		<!-- end: Content -->
-	</div><!--/row-->		
-</div><!--/container-->
+	</div><!--/row-->
+{% endcomment %}	
 	
+	<div class="row">
+		<div class="col-lg-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2><i class="fa fa-align-justify"></i><span class="break"></span>Registered users</h2>
+					<div class="panel-actions">
+						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+					</div>
+				</div>
+				<div class="panel-body">
+					<table class="table table-condensed">
+						  <thead>
+							  <tr>
+								  <th>Username</th>
+								  <th>Date registered</th>
+								  <th>Role</th>
+								  <th>Clicks</th>                                          
+							  </tr>
+						  </thead>   
+						  <tbody>
+							<tr>
+								<td>Carwyn Fachtna</td>
+								<td>2012/01/01</td>
+								<td>Member</td>
+								<td>
+									<a href="#">0</a>
+								</td>                                       
+							</tr>
+							<tr>
+								<td>Nehemiah Tatius</td>
+								<td>2012/02/01</td>
+								<td>Staff</td>
+								<td>
+									<a href="#">0</a>
+								</td>                                       
+							</tr>
+							<tr>
+								<td>Ebbe Gemariah</td>
+								<td>2012/02/01</td>
+								<td>Admin</td>
+								<td>
+									<a href="#">0</a>
+								</td>                                        
+							</tr>
+							<tr>
+								<td>Eustorgios Amulius</td>
+								<td>2012/03/01</td>
+								<td>Member</td>
+								<td>
+									<a href="#">0</a>
+								</td>                                       
+							</tr>
+							<tr>
+								<td>Leopold Gáspár</td>
+								<td>2012/01/21</td>
+								<td>Staff</td>
+								<td>
+									<a href="#">0</a>
+								</td>                                        
+							</tr>                                   
+						  </tbody>
+					 </table> 
+					{% comment %}
+					<ul class="pagination">
+						<li><a href="#">Prev</a></li>
+						<li class="active">
+						  <a href="#">1</a>
+						</li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">Next</a></li>
+					  </ul>
+					{% endcomment %}
+				</div>
+			</div>
+		</div><!--/col-->
+
+
+		<div class="col-lg-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2><i class="fa fa-align-justify"></i><span class="break"></span>Last 1,000 Uploaded files</h2>
+					<div class="panel-actions">
+						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+					</div>
+				</div>
+				<div class="panel-body" style="display: none;">
+					<table class="table table-condensed">
+						  <thead>
+							  <tr>
+								  <th>Username</th>
+								  <th>Date registered</th>
+								  <th>Role</th>
+								  <th>Clicks</th>                                          
+							  </tr>
+						  </thead>   
+						  <tbody>
+							<tr>
+								<td>Carwyn Fachtna</td>
+								<td>2012/01/01</td>
+								<td>Member</td>
+								<td>
+									<a href="#">0</a>
+								</td>                                       
+							</tr>
+							<tr>
+								<td>Nehemiah Tatius</td>
+								<td>2012/02/01</td>
+								<td>Staff</td>
+								<td>
+									<a href="#">0</a>
+								</td>                                       
+							</tr>
+							<tr>
+								<td>Ebbe Gemariah</td>
+								<td>2012/02/01</td>
+								<td>Admin</td>
+								<td>
+									<a href="#">0</a>
+								</td>                                        
+							</tr>
+							<tr>
+								<td>Eustorgios Amulius</td>
+								<td>2012/03/01</td>
+								<td>Member</td>
+								<td>
+									<a href="#">0</a>
+								</td>                                       
+							</tr>
+							<tr>
+								<td>Leopold Gáspár</td>
+								<td>2012/01/21</td>
+								<td>Staff</td>
+								<td>
+									<a href="#">0</a>
+								</td>                                        
+							</tr>                                   
+						  </tbody>
+					 </table> 
+					{% comment %}
+					<ul class="pagination">
+						<li><a href="#">Prev</a></li>
+						<li class="active">
+						  <a href="#">1</a>
+						</li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">Next</a></li>
+					  </ul>
+					{% endcomment %}
+				</div>
+			</div>
+		</div><!--/col-->
+	</div><!-- row -->
+
+
+
+
+
+
+
+	
+</div><!--/container-->
 
 	<div class="modal fade" id="myModal">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">Modal title</h4>
+					<h4 class="modal-title">Registered users</h4>
 				</div>
 				<div class="modal-body">
 					<p>Here settings can be configured...</p>
