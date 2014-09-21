@@ -8,6 +8,8 @@ urlpatterns = patterns('',
 	url(r'^welcome/$', 'dashboard.views.welcome', name='welcome'),
 	url(r'^help/$', 'dashboard.views.help', name='help'),
 	url(r'^pricing/$', 'dashboard.views.pricing', name='pricing'),
+	# decommissioned urls
+	#url(r'^security/$', 'dashboard.views.security', name='security'),
 
 	# userprofile / account
 	url(r'^login/$', 'userprofile.views.auth', name='login'),
@@ -42,15 +44,16 @@ urlpatterns = patterns('',
 	url(r'^cloud/storage/$', 'cloud_storage.views.cloud_storage', name='cloud_storage'),
 	url(r'^cloud/file/(?P<file_id>\d+)/delete/$', 'cloud_storage.views.delete_file', name='delete_file'),
 	url(r'^cloud/sharing/$', 'cloud_storage.views.cloud_sharing', name='cloud_sharing'),
+	url(r'^ajax/cloud/storage/$', 'cloud_storage.views.ajax_cloud_storage', name='ajax_cloud_storage'),
 	url(r'^cloud/dropzone/$', 'cloud_storage.views.cloud_dropzone', name='cloud_dropzone'),
 	url(r'^cloud/photos/$', 'cloud_photos.views.cloud_photos', name='cloud_photos'),
 	url(r'^cloud/settings/$', 'userprofile.views.cloud_settings', name='cloud_settings'),
-	url(r'^ajax/cloud/storage/$', 'cloud_storage.views.ajax_cloud_storage', name='ajax_cloud_storage'),
+
+	# system logs
+	url(r'^logs/$', 'logs.views.logs', name='logs'),
 
 	# admin
 	url(r'^admin/$', 'admin.views.admin', name='admin'),
-	# logs
-	url(r'^logs/$', 'logs.views.logs', name='logs'),
 	# devel
 	url(r'^devel/$', 'devel.views.devel', name='devel'),	
 	url(r'^devel/(?P<dev>[\w\-\.]+)/$', 'devel.views.devel', name='devel'),
