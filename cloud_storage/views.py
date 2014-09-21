@@ -132,8 +132,8 @@ def dropzone_uploader(request):
 
 		simple_json = {
 			"name": new_file.file,
-			"size": "100",
-			"type": "tbd"
+			"size": os.path.getsize(new_file.file),
+			"type": str(new_file.file).split('.')[:-1][0]
 		}
 
 		import urllib
