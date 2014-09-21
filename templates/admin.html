@@ -135,52 +135,22 @@
 						  <thead>
 							  <tr>
 								  <th>Username</th>
-								  <th>Date registered</th>
-								  <th>Role</th>
-								  <th>Clicks</th>                                          
+								  <th>Date created</th>
+								  <th>Filename</th>
+								  <th>Size</th>                                          
 							  </tr>
 						  </thead>   
 						  <tbody>
+							{% for f in files %}
 							<tr>
-								<td>Carwyn Fachtna</td>
+								<td>{{f.user}}</td>
 								<td>2012/01/01</td>
 								<td>Member</td>
 								<td>
 									<a href="#">0</a>
-								</td>                                       
+								</td>
 							</tr>
-							<tr>
-								<td>Nehemiah Tatius</td>
-								<td>2012/02/01</td>
-								<td>Staff</td>
-								<td>
-									<a href="#">0</a>
-								</td>                                       
-							</tr>
-							<tr>
-								<td>Ebbe Gemariah</td>
-								<td>2012/02/01</td>
-								<td>Admin</td>
-								<td>
-									<a href="#">0</a>
-								</td>                                        
-							</tr>
-							<tr>
-								<td>Eustorgios Amulius</td>
-								<td>2012/03/01</td>
-								<td>Member</td>
-								<td>
-									<a href="#">0</a>
-								</td>                                       
-							</tr>
-							<tr>
-								<td>Leopold Gáspár</td>
-								<td>2012/01/21</td>
-								<td>Staff</td>
-								<td>
-									<a href="#">0</a>
-								</td>                                        
-							</tr>                                   
+							{% endfor %}
 						  </tbody>
 					 </table> 
 					{% comment %}
