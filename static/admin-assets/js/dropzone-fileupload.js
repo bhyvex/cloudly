@@ -47,10 +47,16 @@ $('#upload').fileupload({
                           '</td>'+
                      '</tr>');
             
+            
+            
             tpl.find('td.filename').text(file.name);
-            tpl.find('td.filesize').append('<i>'+formatFileSize(file.size)+'</i>');
+            tpl.find('td.filesize').append('<i>'+formatFileSize(parseInt(file.size))+'</i>');
+            
             if(file.thumbnailUrl){
-                tpl.find(".preview").append($("img").prop('src',file.thumbnailUrl));
+                var img = $('img');
+                img.prop('src',file.thumbnailUrl);
+                img.prop('width','80');
+                tpl.find(".preview").append(img);
             }
             rows = rows.add(tpl);
       });

@@ -5,6 +5,7 @@ import time
 import pickle
 import logging
 import datetime
+import json
 
 from pprint import pprint
 
@@ -130,13 +131,24 @@ def dropzone_uploader(request):
 		file_thumbnailUrl = "/media/"+str(new_file.file)
 		file_name = new_file.file
 		file_size = os.path.getsize("media/"+str(new_file.file))
+<<<<<<< HEAD
 		file_type = str(new_file.file).split('.')[1:][0]
+=======
+		file_type = str(new_file.file).split('.')[-1:][0]
+>>>>>>> FETCH_HEAD
 
 		response_type = "application/json"
 		if "text/html" in request.META["HTTP_ACCEPT"]: response_type = "text/html"
-
-		simple_json = """{"thumbnailUrl": "%s", "name": "%s", "size": "%s", "type": "%s"}""" %(file_thumbnailUrl,file_name,file_size,file_type,)
-		
+                jsonData = {}
+                    
+                jsonData['thumbnailUrl'] = str(file_thumbnailUrl)
+                jsonData['name'] = str(file_name)
+                jsonData['size'] = str(file_size)
+                jsonData['type'] = str(file_type)
+                
+                jsonData = {"files" : [jsonData]}
+		#simple_json = """{"thumbnailUrl": "%s", "name": "%s", "size": "%s", "type": "%s"}""" %(file_thumbnailUrl,file_name,file_size,file_type,)
+		simple_json = json.dumps(jsonData, separators=(',',':'))
 		return HttpResponse(simple_json, mimetype=response_type)
 
 
