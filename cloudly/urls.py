@@ -36,7 +36,6 @@ urlpatterns = patterns('',
 	url(r'^private/storage/$', 'private_storage.views.private_storage', name='private_storage'),
 	url(r'^private/cloud/photos/$', 'private_photos.views.private_photos', name='private_photos'),
 
-
 	# cloud stuff
 	url(r'^cloud/software/$', 'cloud_software.views.cloud_software', name='cloud_software'),
 	url(r'^cloud/software/add/new/$', 'cloud_software.views.cloud_software_add_new', name='cloud_software_add_new'),
@@ -49,15 +48,13 @@ urlpatterns = patterns('',
 	url(r'^cloud/dropzone/$', 'cloud_storage.views.cloud_dropzone', name='cloud_dropzone'),
 	url(r'^cloud/photos/$', 'cloud_photos.views.cloud_photos', name='cloud_photos'),
 	url(r'^cloud/settings/$', 'userprofile.views.cloud_settings', name='cloud_settings'),
-	# TODO URLs from/refferenced in /cloud/storage/
-	#/cloud/storage/files/
-	#/cloud/storage/dropzone/
-	#/cloud/storage/s3/enable/
+	url(r'^files_uploader/$', 'cloud_storage.views.dropzone_uploader', name='dropzone_uploader'),
+
+	# system logs
+	url(r'^logs/$', 'logs.views.logs', name='logs'),
 
 	# admin
 	url(r'^admin/$', 'admin.views.admin', name='admin'),
-	# logs
-	url(r'^logs/$', 'logs.views.logs', name='logs'),
 	# devel
 	url(r'^devel/$', 'devel.views.devel', name='devel'),	
 	url(r'^devel/(?P<dev>[\w\-\.]+)/$', 'devel.views.devel', name='devel'),

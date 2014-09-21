@@ -36,8 +36,7 @@
 								<label class="control-label">Drag &amp; drop files</label>
 								<div class="controls">
 								  	<div id="dropzone">
-								        <form class="dropzone" action="/cloud/storage/" method="post" enctype="multipart/form-data">
-								            {% csrf_token %}
+								        <form class="dropzone" action="/cloud/storage/" method="post" enctype="multipart/form-data">{% csrf_token %}
 										<div class="dz-default dz-message"><span>Drop files here to upload</span></div></form>
 									</div>
 								</div>

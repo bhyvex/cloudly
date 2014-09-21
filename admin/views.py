@@ -31,9 +31,9 @@ def admin(request):
 		print 'anonymous'
 		return HttpResponseRedirect("/")
 
-	if not request.user.is_superuser:
-		print 'anonymous'
-		return HttpResponseRedirect("/")
+	#if not request.user.is_superuser:
+	#	print 'anonymous'
+	#	return HttpResponseRedirect("/")
 
 	print request.user
 	
