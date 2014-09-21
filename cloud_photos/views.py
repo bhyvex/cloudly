@@ -55,10 +55,11 @@ def cloud_photos(request):
 		f_extension = str(f.file.file).split('.')[-1:][0].upper()
 				
 		if f_extension in BROWSERS_FORMATS:
-			print '- mrdka', f_extension, f.file.file
+			#print '- mrdka', f_extension, f.file.file
 			files_pictures.append(f)
 		else:
-			print '* skipping', f_extension, f.file.file
+			#print '* skipping', f_extension, f.file.file
+			pass
 
 	
 	
