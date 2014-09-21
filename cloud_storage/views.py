@@ -131,11 +131,7 @@ def dropzone_uploader(request):
 		file_thumbnailUrl = "/media/"+str(new_file.file)
 		file_name = new_file.file
 		file_size = os.path.getsize("media/"+str(new_file.file))
-<<<<<<< HEAD
-		file_type = str(new_file.file).split('.')[1:][0]
-=======
 		file_type = str(new_file.file).split('.')[-1:][0]
->>>>>>> FETCH_HEAD
 
 		response_type = "application/json"
 		if "text/html" in request.META["HTTP_ACCEPT"]: response_type = "text/html"
