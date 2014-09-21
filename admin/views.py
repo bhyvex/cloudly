@@ -44,5 +44,7 @@ def admin(request):
 	profile.clicks += 1
 	profile.save()
 	
+	users = User.objects.all()
+	
 	return render_to_response('admin.html', {'users':users,'profile':profile,}, context_instance=RequestContext(request))
 
