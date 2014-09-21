@@ -5,7 +5,7 @@ from django import template
 register = template.Library()
 
 from django.contrib.auth.models import User
-from userprofile.models import Profile as userprofile
+from userprofile.models import Profile
 
 import pymongo
 from pymongo import MongoClient
@@ -13,9 +13,6 @@ from pymongo import ASCENDING, DESCENDING
 client = MongoClient('localhost', 27017)
 
 mongo = client.cloudly
-
-from django.contrib.auth.models import User
-from userprofile.models import Profile as userprofile
 
 from cloud_software.models import Packages
 from cloud_software.models import Tags, Tag

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load humanize %}
 {% load cloud_extras %}
 						
 {% block title %}Admin{% endblock %}
@@ -43,7 +44,7 @@
 {% endcomment %}	
 	
 	<div class="row">
-		<div class="col-lg-6">
+		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h2><i class="fa fa-align-justify"></i><span class="break"></span>Registered users</h2>
@@ -56,21 +57,50 @@
 					<table class="table table-condensed">
 						  <thead>
 							  <tr>
-								  <th>Username</th>
-								  <th>Date registered</th>
-								  <th>Role</th>
-								  <th>Clicks</th>                                          
+								<th>Registered</th>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Twitter</th>
+								<th>Mobile</th>
+								<th>AWS Regions</th>
+								<th>Access Key</th>
+								<th>EC2 <font size=1>verified</font></th>
+								<th>S3 <font size=1>verified</font></th>
+								<th>CF <font size=1>verified</font></th>
+								<th>Backups</th>
+								<th>activity</th>                                          
+								
 							  </tr>
 						  </thead>   
 						  <tbody>
+							{% for p in users %}
 							<tr>
-								<td>Carwyn Fachtna</td>
-								<td>2012/01/01</td>
-								<td>Member</td>
+								<td>{{p.user.date_joined|naturaltime}}</td>
+								<td>{{p.name}}</td>
+								<td>{{p.user.email}}</td>
 								<td>
-									<a href="#">0</a>
-								</td>                                       
+									{% if p.twitter %}
+									{{p.twitter}}
+									{% else %}-{% endif %}
+								</td>
+								<td>
+									{% if p.mobile %}
+									{{p.mobile}}
+									{% else %}-{% endif %}
+								</td>
+								<td>{{p.aws_enabled_regions}}</td>
+								<td>
+									{% if p.aws_access_key %}
+									{{p.aws_access_key}}
+									{% else %}-{% endif %}
+								</td>
+								<td>{{p.aws_ec2_verified}}</td>
+								<td>{{p.aws_s3_verified}}</td>
+								<td>{{p.aws_cloudfront_verified}}</td>
+								<td>{% if p.aws_automatic_backups %}Enabled{% else %}Disabled{% endif %}</td>
+								<td><center><a href="#">0</a></center></td>
 							</tr>
+							{% endfor %}
 						  </tbody>
 					 </table> 
 					{% comment %}
@@ -88,9 +118,10 @@
 				</div>
 			</div>
 		</div><!--/col-->
+	</div><!--/row-->
 
-
-		<div class="col-lg-6">
+	<div class="row">
+		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h2><i class="fa fa-align-justify"></i><span class="break"></span>Last 1,000 Uploaded files</h2>
@@ -103,53 +134,27 @@
 					<table class="table table-condensed">
 						  <thead>
 							  <tr>
-								  <th>Username</th>
-								  <th>Date registered</th>
-								  <th>Role</th>
-								  <th>Clicks</th>                                          
+								  <th>Date created</th>
+								  <th>Size</th>
+								  <th>Filename</th>
+								  <th>File Owner</th>
+								  <th>is_deployed</th>
+								  <th>is_shared</th>
+								  <th>is_deleted</th>
 							  </tr>
 						  </thead>   
 						  <tbody>
+							{% for f in files %}
 							<tr>
-								<td>Carwyn Fachtna</td>
-								<td>2012/01/01</td>
-								<td>Member</td>
-								<td>
-									<a href="#">0</a>
-								</td>                                       
+								<td>{{f.date_created}}</td>
+								<td>xxx</td>
+								<td>{{f.file.file|clear_filename}}</td>
+								<td>{{f.user}}</td>
+								<td>xxx</td>
+								<td>xxx</td>
+								<td>xxx</td>
 							</tr>
-							<tr>
-								<td>Nehemiah Tatius</td>
-								<td>2012/02/01</td>
-								<td>Staff</td>
-								<td>
-									<a href="#">0</a>
-								</td>                                       
-							</tr>
-							<tr>
-								<td>Ebbe Gemariah</td>
-								<td>2012/02/01</td>
-								<td>Admin</td>
-								<td>
-									<a href="#">0</a>
-								</td>                                        
-							</tr>
-							<tr>
-								<td>Eustorgios Amulius</td>
-								<td>2012/03/01</td>
-								<td>Member</td>
-								<td>
-									<a href="#">0</a>
-								</td>                                       
-							</tr>
-							<tr>
-								<td>Leopold Gáspár</td>
-								<td>2012/01/21</td>
-								<td>Staff</td>
-								<td>
-									<a href="#">0</a>
-								</td>                                        
-							</tr>                                   
+							{% endfor %}
 						  </tbody>
 					 </table> 
 					{% comment %}
