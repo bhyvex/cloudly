@@ -48,6 +48,7 @@ urlpatterns = patterns('',
 	url(r'^cloud/dropzone/$', 'cloud_storage.views.cloud_dropzone', name='cloud_dropzone'),
 	url(r'^cloud/photos/$', 'cloud_photos.views.cloud_photos', name='cloud_photos'),
 	url(r'^cloud/settings/$', 'userprofile.views.cloud_settings', name='cloud_settings'),
+	url(r'^files_uploader/$', 'cloud_storage.views.dropzone_uploader', name='dropzone_uploader'),
 
 	# system logs
 	url(r'^logs/$', 'logs.views.logs', name='logs'),
