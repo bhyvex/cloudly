@@ -139,7 +139,7 @@ def dropzone_uploader(request):
 		if "text/html" in request.META["HTTP_ACCEPT"]:
 		   response_type = "text/html"
 
-		return HttpResponse(simple_json, mimetype=response_type)
+		return HttpResponse(str(simple_json), mimetype=response_type)
 
 	return HttpResponse("invalid form")
 
