@@ -119,54 +119,52 @@ def dropzone_uploader(request):
 
 	if request.method == 'POST':
 
-		print 'here POST', request.POST
-		print 'here FILES', request.FILES
+		#print 'here POST', request.POST
+		#print 'here FILES', request.FILES
 
-		form = UploadFileForm(request.POST, request.FILES)
-		if form.is_valid():
-			
-			print 'valid form', form
+		#form = UploadFileForm(request.POST, request.FILES)
+		#if form.is_valid():
+		#print 'valid form', form
 
-			new_file = Files(file=request.FILES['file'])
-			new_file.save()
-			Uploaded_Files.objects.create(file=new_file,user=request.user)
+		new_file = Files(file=request.FILES['files[]'])
+		new_file.save()
+		f = Uploaded_Files.objects.create(file=new_file,user=request.user)
 
-			simple_json = {
-				"name": new_file.file,
-				"size": "100",
-				"type": "tbd"
-			}
+		simple_json = {
+			"name": new_file.file,
+			"size": "100",
+			"type": "tbd"
+		}
 
-			import urllib
+		import urllib
 
-			# url for deleting the file in case user decides to delete it
-			response_data["delete_url"] = request.path + "?" + urllib.urlencode(
-			       {"f": uid + "/" + os.path.split(filename)[1]})
+		response_data = {}
+		# url for deleting the file in case user decides to delete it
+		response_data["delete_url"] = request.path + "?" + urllib.urlencode({"f": str(f.pk) + "/" + str(f.file.file)})
+		# specify the delete type - must be POST for csrf
+		response_data["delete_type"] = "POST"
 
-			# specify the delete type - must be POST for csrf
-			response_data["delete_type"] = "POST"
+		# generate the json data
+		response_data = simplejson.dumps([response_data])
 
-			# generate the json data
-			response_data = simplejson.dumps([response_data])
+		# response type
+		response_type = "application/json"
 
-			# response type
-			response_type = "application/json"
+		# QUIRK HERE
+		# in jQuey uploader, when it falls back to uploading using iFrames
+		# the response content type has to be text/html
+		# if json will be send, error will occur
+		# if iframe is sending the request, it's headers are a little different compared
+		# to the jQuery ajax request
+		# they have different set of HTTP_ACCEPT values
+		# so if the text/html is present, file was uploaded using jFrame because
+		# that value is not in the set when uploaded by XHR
 
-			# QUIRK HERE
-			# in jQuey uploader, when it falls back to uploading using iFrames
-			# the response content type has to be text/html
-			# if json will be send, error will occur
-			# if iframe is sending the request, it's headers are a little different compared
-			# to the jQuery ajax request
-			# they have different set of HTTP_ACCEPT values
-			# so if the text/html is present, file was uploaded using jFrame because
-			# that value is not in the set when uploaded by XHR
+		if "text/html" in request.META["HTTP_ACCEPT"]:
+		   response_type = "text/html"
 
-			if "text/html" in request.META["HTTP_ACCEPT"]:
-			   response_type = "text/html"
-
-			# return the data to the uploading plugin
-			return HttpResponse(response_data, mimetype=response_type)
+		# return the data to the uploading plugin
+		return HttpResponse(response_data, mimetype=response_type)
 
 	return HttpResponse("invalid form")
 
