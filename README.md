@@ -31,6 +31,10 @@ $ apt-get install python-django
 $ apt-get install python-pip
 </pre>
 
+<pre>
+$ pip install PIL
+</pre>
+
 5) Install MongoDB and it's python connector
 
 <pre>
