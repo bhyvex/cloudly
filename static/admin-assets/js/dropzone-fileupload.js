@@ -32,6 +32,7 @@ $('#upload').fileupload({
       
   },
   downloadTemplate: function(o){
+      
       var rows = $();
       $.each(o.files, function(index, file){
         var tpl = $('<tr class="template-download fade">'+
