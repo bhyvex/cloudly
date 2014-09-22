@@ -11,6 +11,7 @@ class Uploaded_Files(models.Model):
 	file = models.ForeignKey(Files)
 	
 	name = models.CharField(max_length=512, blank=True)
+	size = IntegerField(blank=True)
 	
 	is_deployed = models.BooleanField(default=False)
 	is_shared = models.BooleanField(default=False)
