@@ -146,7 +146,7 @@
 							{% for f in files %}
 							<tr>
 								<td>{{f.date_created}}</td>
-								<td>xxx</td>
+								<td>{{f.size|filesizeformat}}</td>
 								<td>{{f.file.file|clear_filename}}</td>
 								<td>{{f.user}}</td>
 								<td>{{f.is_deployed}}</td>
