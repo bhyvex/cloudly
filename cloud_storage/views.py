@@ -85,9 +85,18 @@ def cloud_dropzone(request):
 	if request.method == 'POST':
 		form = UploadFileForm(request.POST, request.FILES)
 		if form.is_valid():
+			
 			new_file = Files(file=request.FILES['file'])
 			new_file.save()
+			
 			uploaded_file = Uploaded_Files.objects.create(file=new_file,user=request.user)
+
+			file_size = os.path.getsize("media/"+str(new_file.file))
+			file_type = str(new_file.file).split('.')[-1:][0]
+
+			uploaded_file.size = file_size
+			uploaded_file.file_type = file_type
+			uploaded_file.save()
   
 	cloud_storage_menu_open = True
 	

@@ -11,8 +11,8 @@ class Uploaded_Files(models.Model):
 	file = models.ForeignKey(Files)
 	
 	name = models.CharField(max_length=512, blank=True)
-	size = models.IntegerField(blank=True)
-	file_type = models.CharField(max_length=10, blank=True)
+	size = models.IntegerField(blank=True, null=True)
+	file_type = models.CharField(max_length=10, blank=True, null=True)
 	
 	thumbnail_pic1 = models.URLField(blank=True)
 	thumbnail_pic2 = models.URLField(blank=True)
