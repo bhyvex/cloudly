@@ -38,6 +38,11 @@ def dict_get(h, key):
 def clear_filename(f):
 	return str(f)[20:]
 
+
+@register.filter(name='shorten_key')
+def shorten_key(key):
+	return key[:11]+'..'
+
 	
 @register.filter(name='get_file_extension')
 def get_file_extension(f):
