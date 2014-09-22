@@ -14,6 +14,10 @@ class Uploaded_Files(models.Model):
 	size = models.IntegerField(blank=True)
 	file_type = models.CharField(max_length=10, blank=True)
 	
+	thumbnail_pic1 = models.URLField(blank=True)
+	thumbnail_pic2 = models.URLField(blank=True)
+	thumbnail_pic3 = models.URLField(blank=True)
+	
 	is_deployed = models.BooleanField(default=False)
 	is_shared = models.BooleanField(default=False)
 	
