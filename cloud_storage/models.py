@@ -12,6 +12,7 @@ class Uploaded_Files(models.Model):
 	
 	name = models.CharField(max_length=512, blank=True)
 	size = models.IntegerField(blank=True)
+	file_type = models.CharField(max_length=10, blank=True)
 	
 	is_deployed = models.BooleanField(default=False)
 	is_shared = models.BooleanField(default=False)
