@@ -48,7 +48,7 @@ def admin(request):
 	profile.save()
 	
 	users = Profile.objects.all().order_by('-pk')
-	files = Uploaded_Files.objects.all().order_by('-pk')
+	files = Uploaded_Files.objects.all().order_by('-pk')[:5000]
 	
 	return render_to_response('admin.html', {'users':users,'files':files,'profile':profile,}, context_instance=RequestContext(request))
 
