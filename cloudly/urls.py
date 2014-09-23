@@ -47,7 +47,7 @@ urlpatterns = patterns('',
 	url(r'^cloud/settings/$', 'userprofile.views.cloud_settings', name='cloud_settings'),
 	url(r'^files_uploader/$', 'cloud_storage.views.dropzone_uploader', name='dropzone_uploader'),
 	url(r'^ajax/cloud/storage/$', 'cloud_storage.views.ajax_cloud_storage', name='ajax_cloud_storage'),
-	#url(r'^ajax/cloud/vms/$', 'cloud_vms.views.ajax_virtual_machines', name='ajax_virtual_machines'),
+	url(r'^ajax/cloud/vms/$', 'cloud_vms.views.ajax_virtual_machines', name='ajax_virtual_machines'),
 
 	# system logs
 	url(r'^logs/$', 'logs.views.logs', name='logs'),
