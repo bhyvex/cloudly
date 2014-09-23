@@ -37,6 +37,8 @@ def _log_user_activity(userprofile, activity, link, function=""):
 	
 	activity = Activity.objects.create(user=userprofile.user,activity=activity,link=link)
 	userprofile.clicks += 1
+	if(function):
+		userprofile.function = function
 	userprofile.save()
 	
 	return activity
