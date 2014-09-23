@@ -8,8 +8,6 @@ urlpatterns = patterns('',
 	url(r'^welcome/$', 'dashboard.views.welcome', name='welcome'),
 	url(r'^help/$', 'dashboard.views.help', name='help'),
 	url(r'^pricing/$', 'dashboard.views.pricing', name='pricing'),
-	# decommissioned urls
-	#url(r'^security/$', 'dashboard.views.security', name='security'),
 
 	# userprofile / account
 	url(r'^login/$', 'userprofile.views.auth', name='login'),
@@ -55,16 +53,18 @@ urlpatterns = patterns('',
 
 	# admin
 	url(r'^admin/$', 'admin.views.admin', name='admin'),
-	# devel
+	
+	###### devel
 	url(r'^devel/$', 'devel.views.devel', name='devel'),	
 	url(r'^devel/(?P<dev>[\w\-\.]+)/$', 'devel.views.devel', name='devel'),
 )
+
 
 urlpatterns += patterns('',
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': settings.STATIC_ROOT,
     }),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-		'document_root': settings.MEDIA_ROOT, #'show_indexes': True,
+		'document_root': settings.MEDIA_ROOT, 'show_indexes': False,
 	}),
 )
