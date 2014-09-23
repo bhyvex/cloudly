@@ -17,6 +17,7 @@ from django.shortcuts import redirect, render
 
 from django.contrib.auth.models import User
 from userprofile.models import Profile as userprofile
+from userprofile.views import _log_user_activity
 
 logger = logging.getLogger(__name__)
 
@@ -51,6 +52,10 @@ def server_detail(request, uuid):
 	cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(10)
 	activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(5)
 
+	# XXX
+	#profile = userprofile.objects.get(user=request.user)
+	#_log_user_activity(profile,"click","/server/","admin")
+
 	return render_to_response('private_server_detail.html', {"uuid":uuid,"server":server,"loadavg":loadavg,"mem_usage":mem_usage, "cpu_usage":cpu_usage, "disks_usage":disks_usage, "activity":activity,}, context_instance=RequestContext(request))
 
 def servers(request):
@@ -62,6 +67,8 @@ def servers(request):
 	print request.user
 
 	profile = userprofile.objects.get(user=request.user)
+
+	_log_user_activity(profile,"click","/servers/","servers")
 
 	if request.user.is_superuser:
 		servers  = mongo.servers.find().sort('_id',-1)
