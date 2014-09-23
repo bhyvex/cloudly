@@ -38,6 +38,8 @@ from django.template.defaultfilters import filesizeformat, upper
 from django.contrib.humanize.templatetags.humanize import naturalday
 from cloudly.templatetags.cloud_extras import clear_filename, get_file_extension
 
+from userprofile.views import _log_user_activity
+
 
 def delete_file(request, file_id):
 
@@ -49,6 +51,8 @@ def delete_file(request, file_id):
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
 	secret = profile.secret
+
+	_log_user_activity(profile,"click","/delete/file/"+str(file_id)+"/delete/","delete_file")
 
 	print 'user', request.user
 
@@ -77,6 +81,8 @@ def cloud_dropzone(request):
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
 	secret = profile.secret
+
+	_log_user_activity(profile,"click","/cloud/dropzone/","cloud_dropzone")
 
 	print 'user', request.user
 
@@ -112,6 +118,8 @@ def cloud_sharing(request):
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
 	secret = profile.secret
+
+	_log_user_activity(profile,"click","/cloud/sharing/","cloud_sharing")
 
 	print 'user', request.user
 	
@@ -176,6 +184,9 @@ def cloud_storage(request):
 	secret = profile.secret
 
 	print request.user
+	
+	_log_user_activity(profile,"click","/cloud/storage/","cloud_storage")
+	
 
 	if request.method == 'POST':
 		form = UploadFileForm(request.POST, request.FILES)
