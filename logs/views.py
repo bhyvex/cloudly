@@ -21,6 +21,7 @@ import boto.ec2.cloudwatch
 
 from django.contrib.auth.models import User
 from userprofile.models import Profile
+from userprofile.views import _log_user_activity
 
 
 def logs(request):	
@@ -36,5 +37,7 @@ def logs(request):
 
 	print request.user
 	
+	_log_user_activity(profile,"click","/logs/","logs")
+
 	
 	return render_to_response('logs.html', {'profile':profile,}, context_instance=RequestContext(request))
