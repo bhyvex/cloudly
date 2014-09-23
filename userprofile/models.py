@@ -7,7 +7,8 @@ class Activity(models.Model):
 	user = models.OneToOneField(User)
 	link = models.URLField(blank=True, verbose_name="links")
 	activity = models.CharField(max_length=100, blank=True, verbose_name="activities", db_index=True)
-
+	date_created = models.DateTimeField(auto_now_add=True)
+	
 class Profile(models.Model):
 	
 	user = models.OneToOneField(User)

@@ -25,6 +25,8 @@ from userprofile.models import Profile
 from cloud_storage.models import Files
 from cloud_storage.models import Uploaded_Files
 
+from userprofile.views import _log_user_activity
+
 
 def admin(request):
 
@@ -49,6 +51,8 @@ def admin(request):
 	
 	users = Profile.objects.all().order_by('-pk')
 	files = Uploaded_Files.objects.all().order_by('-pk')[:5000]
+	
+	_log_user_activity(profile,"click","/admin/")
 	
 	return render_to_response('admin.html', {'users':users,'files':files,'profile':profile,}, context_instance=RequestContext(request))
 
