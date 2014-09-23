@@ -148,7 +148,7 @@
 						  <tbody>
 							{% for f in files %}
 							<tr>
-								<td>{{forloop.counter}}</td>
+								<td>{{f.id}}</td>
 								<td>{{f.date_created}}</td>
 								<td>{{f.size|filesizeformat}}</td>
 								<td>{{f.file.file|clear_filename}}</td>
