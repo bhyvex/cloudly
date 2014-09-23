@@ -234,6 +234,8 @@ def change_password(request):
 
 	error = None
 
+	_log_user_activity(profile,"click","/account/password/","change_password")
+
 	if(request.POST):
 
 		current_passwd = request.POST['current_passwd']
@@ -252,8 +254,6 @@ def change_password(request):
 			user.save()
 			return HttpResponseRedirect("/account/settings/")
 
-
-	_log_user_activity(profile,"click","/account/password/","change_password")
 
 	return render_to_response('account_change_password.html', {'error':error,}, context_instance=RequestContext(request))
 
