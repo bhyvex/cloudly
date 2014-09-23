@@ -17,6 +17,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 
 from django.contrib.auth.models import User
+from userprofile.models import Activity
 from userprofile.models import Profile as userprofile
 
 from django.contrib.auth import authenticate
@@ -31,8 +32,11 @@ from django.core.mail import send_mail
 def _remove_accents(data):
     return ''.join(x for x in unicodedata.normalize('NFKD', data) if x in string.ascii_letters).lower()
 
-def _log_user_activity():
-	return False
+def _log_user_activity(user, activity, link):
+	
+	activity = Activity.objects.create(user=user,activity=activity,link=link)
+	
+	return activity
 
 def user_logout(request):
 	
