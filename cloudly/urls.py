@@ -57,6 +57,7 @@ urlpatterns = patterns('',
 	###### devel
 	url(r'^devel/$', 'devel.views.devel', name='devel'),	
 	url(r'^devel/(?P<dev>[\w\-\.]+)/$', 'devel.views.devel', name='devel'),
+	
 )
 
 
