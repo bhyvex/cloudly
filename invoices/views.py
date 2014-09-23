@@ -18,6 +18,7 @@ logger = logging.getLogger(__name__)
 
 from django.contrib.auth.models import User
 from userprofile.models import Profile as userprofile
+from userprofile.views import _log_user_activity
 
 
 def invoices(request):
@@ -32,5 +33,8 @@ def invoices(request):
 	secret = profile.secret
 
 	print request.user
+
+	_log_user_activity(profile,"click","/invoices/","invoices")
+	
 
 	return render_to_response('invoices.html', {'user':user,'profile':profile,}, context_instance=RequestContext(request))
