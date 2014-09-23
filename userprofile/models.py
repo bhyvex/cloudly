@@ -2,11 +2,17 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
 
+class Activity(models.Model):
+	
+	user = models.OneToOneField(User)
+	link = URLField(blank=True, verbose_name="links")
+	activity = models.CharField(max_length=100, blank=True, verbose_name="activities", db_index=True)
+
 class Profile(models.Model):
 	
 	user = models.OneToOneField(User)
-	name = models.CharField(max_length=100, blank=True, verbose_name="Name", db_index=True)
-	secret = models.CharField(max_length=100, blank=True, verbose_name="Secret Key", db_index=True)
+	name = models.CharField(max_length=100, blank=True, verbose_name="name", db_index=True)
+	secret = models.CharField(max_length=100, blank=True, verbose_name="secret_key", db_index=True)
 
 	company = models.CharField(max_length=100, blank=True, verbose_name="company")
 	company_url = models.CharField(max_length=100, blank=True, verbose_name="custom_url")
