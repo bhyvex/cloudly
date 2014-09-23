@@ -31,6 +31,8 @@ from django.core.mail import send_mail
 def _remove_accents(data):
     return ''.join(x for x in unicodedata.normalize('NFKD', data) if x in string.ascii_letters).lower()
 
+def _log_user_activity():
+	return False
 
 def user_logout(request):
 	
