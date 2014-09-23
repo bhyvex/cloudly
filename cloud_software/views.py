@@ -17,10 +17,13 @@ from django.shortcuts import redirect, render
 logger = logging.getLogger(__name__)
 
 from django.contrib.auth.models import User
-from userprofile.models import Profile as userprofile
+from userprofile.models import Profile
 
 from cloud_software.models import Packages
 from cloud_software.models import Tags, Tag
+
+from userprofile.views import _log_user_activity
+
 
 def cloud_software_add_new(request):
 
@@ -33,6 +36,9 @@ def cloud_software_add_new(request):
 
 	print '-- cloud software add new:'
 	print request.user
+
+	profile = Profile.objects.get(user=request.user)
+	_log_user_activity(profile,"click","/cloud/software/add/new","cloud_software_add_new")
 
 	if request.POST:
 
@@ -81,8 +87,9 @@ def cloud_software_view_tag(request, tag_slug):
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/")
 
-	profile = userprofile.objects.get(user=request.user)
+	profile = Profile.objects.get(user=request.user)
 	secret = profile.secret
+	_log_user_activity(profile,"click","/cloud/software/tag/"+tag_slug+"/","cloud_software_view_tag")
 
 	packages = []
 
@@ -110,7 +117,6 @@ def cloud_software_view_tag(request, tag_slug):
 	return render_to_response('cloud_software_view_tag.html', {"tag":tag,"tags":tags,"packages":packages,"packages_count":packages_count,}, context_instance=RequestContext(request))
 
 
-
 def cloud_software(request):
 
 	print '-- cloud_software:'
@@ -119,8 +125,10 @@ def cloud_software(request):
 		return HttpResponseRedirect("/")
 
 	user = request.user
-	profile = userprofile.objects.get(user=request.user)
+	profile = Profile.objects.get(user=request.user)
 	secret = profile.secret
+
+	_log_user_activity(profile,"click","/cloud/software/","cloud_software")
 
 	packages = Packages.objects.all().order_by('-pk')
 	tags = Tag.objects.all()
