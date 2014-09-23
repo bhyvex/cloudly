@@ -43,5 +43,5 @@ class Profile(models.Model):
 	
 	aws_automatic_backups = models.BooleanField(default=True)
 	
-	clicks = models.BooleanField(default=True)
+	clicks = models.IntegerField(default=0)
 	first_login = models.BooleanField(default=False)
