@@ -15,7 +15,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 
 from django.contrib.auth.models import User
-from userprofile.models import Profile as userprofile
+from userprofile.models import Profile
+from userprofile.views import _log_user_activity
 
 logger = logging.getLogger(__name__)
 
@@ -33,5 +34,8 @@ def private_storage(request):
 
 	print '-- private storage:'
 	print request.user
+
+	profile = Profile.objects.get(user=request.user)
+	_log_user_activity(profile,"click","/private/storage/","private_storage")
 
 	return render_to_response('private_storage.html', locals(), context_instance=RequestContext(request))
