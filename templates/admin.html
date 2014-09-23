@@ -56,6 +56,7 @@
 					<table class="table table-condensed">
 						  <thead>
 							  <tr>
+								<td>#</td>
 								<th>Registered</th>
 								<th>Name</th>
 								<th>Email</th>
@@ -74,6 +75,7 @@
 						  <tbody>
 							{% for p in users %}
 							<tr>
+								<td>{{forloop.counter}}</td>
 								<td>{{p.user.date_joined|naturaltime}}</td>
 								<td>{{p.name}}</td>
 								<td>{{p.user.email}}</td>
@@ -133,6 +135,7 @@
 					<table class="table table-condensed">
 						  <thead>
 							  <tr>
+								  <th>#</th>
 								  <th>Date created</th>
 								  <th>Size</th>
 								  <th>Filename</th>
@@ -145,6 +148,7 @@
 						  <tbody>
 							{% for f in files %}
 							<tr>
+								<td>{{forloop.counter}}</td>
 								<td>{{f.date_created}}</td>
 								<td>{{f.size|filesizeformat}}</td>
 								<td>{{f.file.file|clear_filename}}</td>
