@@ -22,7 +22,9 @@ import boto.ec2
 import boto.ec2.cloudwatch
 
 from django.contrib.auth.models import User
-from userprofile.models import Profile as userprofile
+from userprofile.models import Profile
+from userprofile.views import _log_user_activity
+
 
 from amazon import ec2_funcs
 
@@ -36,6 +38,9 @@ def cloud_backups(request):
 		return HttpResponseRedirect("/")
 
 	print request.user
+
+	profile = Profile.objects.get(user=request.user)
+	_log_user_activity(profile,"click","/cloud/backups/","cloud_backups")
 	
 	return render_to_response('cloud_backups.html', locals(), context_instance=RequestContext(request))
 
