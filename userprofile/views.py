@@ -194,6 +194,8 @@ def cloud_settings(request):
 		"us-west-2":"US West (Oregon) Region",
 	}
 
+	_log_user_activity(profile,"click","/cloud/settings/","cloud_settings")
+
 	return render_to_response('cloud_settings.html', {'aws_regions':aws_regions,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
 	
 
@@ -209,6 +211,9 @@ def lock(request):
 	secret = profile.secret
 
 	print request.user
+
+	from userprofile.views import _log_user_activity
+	_log_user_activity(profile,"click","/lock/","lock")
 
 	return render_to_response('lock.html', {'profile':profile,}, context_instance=RequestContext(request))
 
@@ -247,6 +252,9 @@ def change_password(request):
 			user.save()
 			return HttpResponseRedirect("/account/settings/")
 
+
+	_log_user_activity(profile,"click","/account/password/","change_password")
+
 	return render_to_response('account_change_password.html', {'error':error,}, context_instance=RequestContext(request))
 
 def account_settings(request):
@@ -266,6 +274,9 @@ def account_settings(request):
 	#ec2_regions = boto.ec2.regions()
 	#for ec2_region in ec2_regions:
 	#	print '- ec2 region:', ec2_region.name
+
+
+	_log_user_activity(profile,"click","/account/settings/","account_settings")
 
 	return render_to_response('account.html', {'user':user,'profile':profile,}, context_instance=RequestContext(request))
 

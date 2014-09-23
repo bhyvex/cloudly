@@ -46,8 +46,6 @@ def admin(request):
 	profile = Profile.objects.get(user=request.user)
 		
 	active_tab = "admin"
-	profile.clicks += 1
-	profile.save()
 	
 	users = Profile.objects.all().order_by('-pk')
 	files = Uploaded_Files.objects.all().order_by('-pk')[:5000]
