@@ -36,6 +36,8 @@ def _remove_accents(data):
 def _log_user_activity(userprofile, activity, link):
 	
 	activity = Activity.objects.create(user=userprofile.user,activity=activity,link=link)
+	userprofile.clicks += 1
+	userprofile.save()
 	
 	return activity
 
