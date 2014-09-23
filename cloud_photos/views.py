@@ -22,13 +22,15 @@ import boto.ec2
 import boto.ec2.cloudwatch
 
 from django.contrib.auth.models import User
-from userprofile.models import Profile as userprofile
+from userprofile.models import Profile
 
 from amazon import s3_funcs
 from amazon import s3_funcs_shortcuts
 
 from cloud_storage.models import Files
 from cloud_storage.models import Uploaded_Files
+
+from userprofile.views import _log_user_activity
 
 BROWSERS_FORMATS = ["JPG", "JPEG", "GIF", "PNG", "APNG", "MNG", "TIFF", "SVG", "PDF", "XBM", "BMP",]
 # As per Browsers Image format support: http://en.wikipedia.org/wiki/Comparison_of_web_browsers#Image_format_support
@@ -41,12 +43,11 @@ def cloud_photos(request):
 		return HttpResponseRedirect("/")
 
 	user = request.user
-	profile = userprofile.objects.get(user=request.user)
+	profile = Profile.objects.get(user=request.user)
 	secret = profile.secret
 
 	print request.user
-	
-	print '- searching for pictures'
+	#print '- searching for pictures'
 	
 	files = Uploaded_Files.objects.filter(user=request.user).order_by('-pk')
 	files_pictures = []
@@ -61,9 +62,8 @@ def cloud_photos(request):
 			#print '* skipping', f_extension, f.file.file
 			pass
 
-	
-	
 	cloud_storage_menu_open = True
+	_log_user_activity(profile,"click","/cloud/photos/","cloud_photos")
 
 	return render_to_response('cloud_pictures.html', {'BROWSERS_FORMATS':BROWSERS_FORMATS, 'files_pictures':files_pictures, 'profile':profile,'cloud_storage_menu_open':cloud_storage_menu_open,}, context_instance=RequestContext(request))
 
