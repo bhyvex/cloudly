@@ -38,5 +38,15 @@ from cloudly.templatetags.cloud_extras import clear_filename, get_file_extension
 
 
 def ajax_virtual_machines(request):
-	return HttpResponse("working on this currently")
+	
+	print '-- ajax virtual machines'
+	
+	if not request.user.is_authenticated():
+		print 'anonymous'
+		return HttpResponseRedirect("/")
+
+	print request.user
+	
+	
+	return render_to_response('ajax_virtual_machines.html', locals(), context_instance=RequestContext(request))
 
