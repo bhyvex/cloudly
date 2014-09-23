@@ -186,7 +186,7 @@ def cloud_storage(request):
 	print request.user
 	
 	_log_user_activity(profile,"click","/cloud/storage/","cloud_storage")
-	
+		
 
 	if request.method == 'POST':
 		form = UploadFileForm(request.POST, request.FILES)

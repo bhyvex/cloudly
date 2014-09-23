@@ -23,6 +23,7 @@ import boto.ec2.cloudwatch
 
 from django.contrib.auth.models import User
 from userprofile.models import Profile as userprofile
+from userprofile.views import _log_user_activity
 
 from amazon import ec2_funcs
 
@@ -43,6 +44,9 @@ def home(request):
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
 	secret = profile.secret
+	
+	_log_user_activity(profile,"click","/","home")
+	
 	
 	aws_access_key = profile.aws_access_key
 	aws_secret_key = profile.aws_secret_key
@@ -140,6 +144,10 @@ def welcome(request):
 		print 'anonymous'
 		return HttpResponseRedirect("/")
 
+	profile = userprofile.objects.get(user=request.user)
+	_log_user_activity(profile,"click","/welcome/","welcome")
+	
+
 	print request.user
 	return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
 
@@ -151,6 +159,10 @@ def pricing(request):
 	if not request.user.is_authenticated():
 		print 'anonymous'
 		return HttpResponseRedirect("/")
+
+	profile = userprofile.objects.get(user=request.user)
+	_log_user_activity(profile,"click","/pricing/","pricing")
+
 
 	print request.user
 	return render_to_response('pricing.html', locals(), context_instance=RequestContext(request))
@@ -171,6 +183,7 @@ def help(request):
 	profile = userprofile.objects.get(user=request.user)
 	secret = profile.secret
 
+	_log_user_activity(profile,"click","/help/","help")
 
 	return render_to_response('help.html', {'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
 
@@ -185,6 +198,9 @@ def security(request):
 	print request.user
 	
 	profile = userprofile.objects.get(user=request.user)
+	
+	_log_user_activity(profile,"click","/security/","security")
+	
 	
 	return render_to_response('security.html', {'profile':profile,}, context_instance=RequestContext(request))
 
