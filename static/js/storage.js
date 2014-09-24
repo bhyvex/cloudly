@@ -7,26 +7,16 @@ function ajaxBlock() {
 		return true;
 	return false;
 }
-// =============================================================================
-// =============================================================================
+
 function storageDataInit() {
 	dTable = $('#storage_datatable .cloud_data').DataTable({
 			'ajax': { 
-				url: '/ajax/cloud/storage/'/*,
-				success: function ( ){
-					console.log( 'dTable was successfully reloaded' );
-				},
-				done: function ( ){
-					var i = 1;
-					console.log( 'dTable was done' );
-				}*/
+				url: '/ajax/cloud/storage/'
 			},
 			'aLengthMenu': [[10, 25, 50, 100, 250, 500, 1000], [10, 25, 50, 100, 250, 500, 1000]],
 			'iDisplayLength': 10,
 			});
 }
-// =============================================================================
-// =============================================================================
 
 // =============================================================================
 // =============================================================================
@@ -35,12 +25,9 @@ function ajaxStorage() {
 		return;
 	dTable.ajax.reload( function ( param ){
 		var i = 1;
-		console.log( 'LL OO LL' );
-
 		$('.btn-pop').click(function(e){
 			e.preventDefault();
 			$('#myModal').modal('show');
-			//alert('KCILC');
 		});
 	}, false );
 //	$.ajax({ url: "/ajax/cloud/storage/", type: "GET", dataType: "html", success: ajaxStorageUpdate });
