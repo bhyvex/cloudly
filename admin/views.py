@@ -46,13 +46,11 @@ def admin(request):
 	profile = Profile.objects.get(user=request.user)
 		
 	active_tab = "admin"
-	profile.clicks += 1
-	profile.save()
 	
 	users = Profile.objects.all().order_by('-pk')
 	files = Uploaded_Files.objects.all().order_by('-pk')[:5000]
 	
-	_log_user_activity(profile,"click","/admin/")
+	_log_user_activity(profile,"click","/admin/","admin")
 	
 	return render_to_response('admin.html', {'users':users,'files':files,'profile':profile,}, context_instance=RequestContext(request))
 

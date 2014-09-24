@@ -33,9 +33,13 @@ def _remove_accents(data):
     return ''.join(x for x in unicodedata.normalize('NFKD', data) if x in string.ascii_letters).lower()
 
 
-def _log_user_activity(userprofile, activity, link):
+def _log_user_activity(userprofile, activity, link, function=""):
 	
 	activity = Activity.objects.create(user=userprofile.user,activity=activity,link=link)
+	userprofile.clicks += 1
+	if(function):
+		userprofile.function = function
+	userprofile.save()
 	
 	return activity
 
@@ -192,6 +196,8 @@ def cloud_settings(request):
 		"us-west-2":"US West (Oregon) Region",
 	}
 
+	_log_user_activity(profile,"click","/cloud/settings/","cloud_settings")
+
 	return render_to_response('cloud_settings.html', {'aws_regions':aws_regions,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
 	
 
@@ -207,6 +213,9 @@ def lock(request):
 	secret = profile.secret
 
 	print request.user
+
+	from userprofile.views import _log_user_activity
+	_log_user_activity(profile,"click","/lock/","lock")
 
 	return render_to_response('lock.html', {'profile':profile,}, context_instance=RequestContext(request))
 
@@ -227,6 +236,8 @@ def change_password(request):
 
 	error = None
 
+	_log_user_activity(profile,"click","/account/password/","change_password")
+
 	if(request.POST):
 
 		current_passwd = request.POST['current_passwd']
@@ -244,6 +255,7 @@ def change_password(request):
 			user.set_password(new_passwd)
 			user.save()
 			return HttpResponseRedirect("/account/settings/")
+
 
 	return render_to_response('account_change_password.html', {'error':error,}, context_instance=RequestContext(request))
 
@@ -264,6 +276,9 @@ def account_settings(request):
 	#ec2_regions = boto.ec2.regions()
 	#for ec2_region in ec2_regions:
 	#	print '- ec2 region:', ec2_region.name
+
+
+	_log_user_activity(profile,"click","/account/settings/","account_settings")
 
 	return render_to_response('account.html', {'user':user,'profile':profile,}, context_instance=RequestContext(request))
 
