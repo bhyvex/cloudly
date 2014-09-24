@@ -30,7 +30,8 @@ jQuery(document).ready(function($){
 	$('.btn-close').click(function(e){
 		e.preventDefault();
 		$(this).parent().parent().parent().fadeOut();
-	});
+r});
+
 	$('.btn-minimize').click(function(e){
 		e.preventDefault();
 		var $target = $(this).parent().parent().next('.panel-body');
