@@ -1,24 +1,52 @@
 var dTable;
 
 function ajaxBlock() {
-	if ($('#storage_datatable input:focus').length) return true;
-	if ($('#storage_datatable select:focus').length) return true;
+	if ($('#storage_datatable input:focus').length) 
+		return true;
+	if ($('#storage_datatable select:focus').length) 
+		return true;
 	return false;
 }
-
+// =============================================================================
+// =============================================================================
 function storageDataInit() {
 	dTable = $('#storage_datatable .cloud_data').DataTable({
-			'ajax': { url: '/ajax/cloud/storage/' },
+			'ajax': { 
+				url: '/ajax/cloud/storage/'/*,
+				success: function ( ){
+					console.log( 'dTable was successfully reloaded' );
+				},
+				done: function ( ){
+					var i = 1;
+					console.log( 'dTable was done' );
+				}*/
+			},
 			'aLengthMenu': [[10, 25, 50, 100, 250, 500, 1000], [10, 25, 50, 100, 250, 500, 1000]],
 			'iDisplayLength': 10,
 			});
 }
+// =============================================================================
+// =============================================================================
 
+// =============================================================================
+// =============================================================================
 function ajaxStorage() {
-	if (ajaxBlock()) return;
-	dTable.ajax.reload(null, false);
+	if (ajaxBlock()) 
+		return;
+	dTable.ajax.reload( function ( param ){
+		var i = 1;
+		console.log( 'LL OO LL' );
+
+		$('.btn-pop').click(function(e){
+			e.preventDefault();
+			$('#myModal').modal('show');
+			//alert('KCILC');
+		});
+	}, false );
 //	$.ajax({ url: "/ajax/cloud/storage/", type: "GET", dataType: "html", success: ajaxStorageUpdate });
 }
+// =============================================================================
+// =============================================================================
 
 function ajaxStorageUpdate(content) {
 	if (ajaxBlock()) return;
