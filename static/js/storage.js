@@ -24,7 +24,6 @@ function ajaxStorage() {
 	if (ajaxBlock()) 
 		return;
 	dTable.ajax.reload( function ( param ){
-		var i = 1;
 		$('.btn-pop').click(function(e){
 			e.preventDefault();
 			$('#myModal').modal('show');

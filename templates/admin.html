@@ -75,7 +75,7 @@
 						  <tbody>
 							{% for p in users %}
 							<tr>
-								<td>{{forloop.counter}}</td>
+								<td>{{p.id}}</td>
 								<td>{{p.user.date_joined|naturaltime}}</td>
 								<td>{{p.name}}</td>
 								<td>{{p.user.email}}</td>
