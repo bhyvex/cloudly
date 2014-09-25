@@ -155,16 +155,16 @@ def dropzone_uploader(request):
 		f.save()
 
 		response_type = "application/json"
-		if "text/html" in request.META["HTTP_ACCEPT"]: response_type = "text/html"
-                jsonData = {}
-                    
-                jsonData['thumbnailUrl'] = str(file_thumbnailUrl)
-                jsonData['name'] = str(file_name)
-                jsonData['size'] = str(file_size)
-                jsonData['type'] = str(file_type)
-                
-                jsonData = {"files" : [jsonData]}
-		#simple_json = """{"thumbnailUrl": "%s", "name": "%s", "size": "%s", "type": "%s"}""" %(file_thumbnailUrl,file_name,file_size,file_type,)
+		if "text/html" in request.META["HTTP_ACCEPT"]: 
+			response_type = "text/html"
+
+		jsonData = {}
+		jsonData['thumbnailUrl'] = str(file_thumbnailUrl)
+		jsonData['name'] = str(file_name)
+		jsonData['size'] = str(file_size)
+		jsonData['type'] = str(file_type)
+		jsonData = {"files" : [jsonData]}
+
 		simple_json = json.dumps(jsonData, separators=(',',':'))
 		return HttpResponse(simple_json, mimetype=response_type)
 
