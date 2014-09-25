@@ -28,6 +28,9 @@ from cloud_storage.models import Uploaded_Files
 from userprofile.views import _log_user_activity
 
 
+def user_activity_report(request, user_id):
+	return HttpResponse("working on this currently")
+	
 def admin(request):
 
 	print '--  admin page:'
