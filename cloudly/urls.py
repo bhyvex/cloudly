@@ -53,6 +53,7 @@ urlpatterns = patterns('',
 
 	# admin
 	url(r'^admin/$', 'admin.views.admin', name='admin'),
+	#url(r'^admin/user/user_id/activity/$', 'admin.views.user_activity', name='user_activity'),
 	
 	###### devel
 	url(r'^devel/$', 'devel.views.devel', name='devel'),	
