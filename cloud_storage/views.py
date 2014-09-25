@@ -73,7 +73,7 @@ def delete_file(request, file_id):
 
 def cloud_dropzone(request):
 	
-	print '-- cloud_storage:'
+	print '-- cloud dropzone:'
 
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/")
@@ -189,11 +189,22 @@ def cloud_storage(request):
 		
 
 	if request.method == 'POST':
+		
 		form = UploadFileForm(request.POST, request.FILES)
+		
 		if form.is_valid():
+		
 			new_file = Files(file=request.FILES['file'])
 			new_file.save()
-			Uploaded_Files.objects.create(file=new_file,user=request.user)
+
+			f = Uploaded_Files.objects.create(file=new_file,user=request.user)
+			file_name = new_file.file
+			file_size = os.path.getsize("media/"+str(new_file.file))
+			file_type = str(new_file.file).split('.')[-1:][0]
+			f.size = file_size
+			f.file_type = file_type
+			f.save()
+			
 
 
 	uploaded_files = Uploaded_Files.objects.filter(user=request.user).order_by('-pk')
