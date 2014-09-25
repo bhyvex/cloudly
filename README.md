@@ -109,4 +109,8 @@ Now that you have the User Interface (Admin Dashboard) up and running you'd need
 
 tbd...
 
+13 ) Installing Hypervisor Server
+
+tbd...
+
 
