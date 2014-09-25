@@ -29,7 +29,30 @@ from userprofile.views import _log_user_activity
 
 
 def user_activity_report(request, user_id):
-	return HttpResponse("working on this currently")
+	
+	print '-- admin report user activity', user_id
+	
+	if not request.user.is_authenticated():
+		print 'anonymous'
+		return HttpResponseRedirect("/")
+
+	#if not request.user.is_superuser:
+	#	print 'anonymous'
+	#	return HttpResponseRedirect("/")
+	
+	print request.user
+	
+	profile = Profile.objects.get(user=request.user)
+	
+	user_files = Uploaded_Files.objects.filter(user_id=user_id).order_by('-pk')[:5000]
+	
+	_log_user_activity(profile,"click","/admin/user/"+str(user_id)+"/report/","user_activity_report")
+	
+	user_activity = "TODO"
+		
+	return render_to_response('admin-user-report.html', {'user_files':user_files,'user_activity':user_activity,'profile':profile,}, context_instance=RequestContext(request))
+	
+
 	
 def admin(request):
 
@@ -48,8 +71,7 @@ def admin(request):
 	users = Profile.objects.all()
 	profile = Profile.objects.get(user=request.user)
 		
-	active_tab = "admin"
-	
+			
 	users = Profile.objects.all().order_by('-pk')
 	files = Uploaded_Files.objects.all().order_by('-pk')[:5000]
 	
