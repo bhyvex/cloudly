@@ -20,7 +20,7 @@ import boto.ec2
 import boto.ec2.cloudwatch
 
 from django.contrib.auth.models import User
-from userprofile.models import Profile
+from userprofile.models import Profile, Activity
 
 from cloud_storage.models import Files
 from cloud_storage.models import Uploaded_Files
@@ -45,11 +45,11 @@ def user_activity_report(request, user_id):
 	profile = Profile.objects.get(user=request.user)
 	
 	u = User.objects.get(pk=user_id)
-	user_files = Uploaded_Files.objects.filter(user_id=user_id).order_by('-pk')[:5000]
+	user_files = Uploaded_Files.objects.filter(user=u).order_by('-pk')[:5000]
 	
 	_log_user_activity(profile,"click","/admin/user/"+str(user_id)+"/report/","user_activity_report")
 	
-	user_activity = "TODO"
+	user_activity = Activity.objects.filter(user=u)
 			
 	return render_to_response('admin-user-report.html', {'u':u,'user_files':user_files,'user_activity':user_activity,'profile':profile,}, context_instance=RequestContext(request))
 	
