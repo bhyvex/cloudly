@@ -44,13 +44,14 @@ def user_activity_report(request, user_id):
 	
 	profile = Profile.objects.get(user=request.user)
 	
+	u = User.objects.get(pk=user_id)
 	user_files = Uploaded_Files.objects.filter(user_id=user_id).order_by('-pk')[:5000]
 	
 	_log_user_activity(profile,"click","/admin/user/"+str(user_id)+"/report/","user_activity_report")
 	
 	user_activity = "TODO"
-		
-	return render_to_response('admin-user-report.html', {'user_files':user_files,'user_activity':user_activity,'profile':profile,}, context_instance=RequestContext(request))
+			
+	return render_to_response('admin-user-report.html', {'u':u,'user_files':user_files,'user_activity':user_activity,'profile':profile,}, context_instance=RequestContext(request))
 	
 
 	
