@@ -184,8 +184,10 @@ def help(request):
 	secret = profile.secret
 
 	_log_user_activity(profile,"click","/help/","help")
+	
+	http_host = request.META['HTTP_HOST']
 
-	return render_to_response('help.html', {'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
+	return render_to_response('help.html', {'http_host':http_host, 'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
 
 def security(request):
 
