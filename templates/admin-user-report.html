@@ -37,7 +37,7 @@
 					</div>
 					<div class="panel-body">
 						{% for a in user_activity %} 
-							<font size="2">{{a.date_created}}</font> <u>{{a.activity}}</u> <a href="{{a.link}}">{{a.link}}</a><br/>
+							<font size="2">{{a.date_created|naturaltime}}</font> <u>{{a.activity}}</u> <a href="{{a.link}}">{{a.link}}</a><br/>
 						{% endfor %}
 					</div>
 			</div>
