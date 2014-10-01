@@ -25,7 +25,7 @@
 	
 	<div class="row">
 	
-		<div class="col-xs-6">
+		<div class="col-xs-4">
 			<div class="panel panel-default">
 					<div class="panel-heading">
 						<h2><i class="fa fa-picture-o"></i>Activity</h2>
@@ -43,7 +43,7 @@
 			</div>
 		</div>
 
-		<div class="col-xs-6">
+		<div class="col-xs-8">
 			<div class="panel panel-default">
 					<div class="panel-heading">
 						<h2><i class="fa fa-picture-o"></i>Files</h2>
@@ -54,7 +54,28 @@
 						</div>
 					</div>
 					<div class="panel-body">
-						user files {{user_files}}
+						<table class="table table-bordered">
+						  <thead>
+							  <tr>
+								  <th>Date created</th>
+								  <th>Size</th>
+								  <th>Filename</th>
+								  <th>Type</th>                                          
+							  </tr>
+						  </thead>   
+						  <tbody>
+							{% for f in user_files %}
+							<tr>
+								<td>{{f.date_created}}</td>
+								<td>{{f.size|filesizeformat}}</td>
+								<td>{{f.file.file|clear_filename}}</td>
+								<td>
+									<span class="label label-success">{{f.file_type|upper}}</span>
+								</td>                                       
+							</tr>
+							{% endfor %}
+						  </tbody>
+					 </table>
 					</div>
 			</div>
 		</div>
