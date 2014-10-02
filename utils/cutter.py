@@ -1,3 +1,4 @@
+# Credits: https://gist.github.com/sigilioso/2957026
 # -*- coding: utf-8 -*-
 
 import Image
