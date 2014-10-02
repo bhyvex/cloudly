@@ -76,7 +76,7 @@
 							{% for p in users %}
 							<tr>
 								<td>{{p.id}}</td>
-								<td>{{p.user.date_joined|naturaltime}}</td>
+								<td><font size=2>{{p.user.date_joined|naturaltime}}</font></td>
 								<td><a href="/admin/user/{{p.id}}/activity/">{{p.name}}</a></td>
 								<td>{{p.user.email}}</td>
 								<td>
