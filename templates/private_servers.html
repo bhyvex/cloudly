@@ -285,7 +285,7 @@
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h2><i class="fa fa-edit" ></i>Private Servers</h2>
+						<h2><i class="fa fa-edit" ></i>Add another private server</h2>
 						<div class="panel-actions">
 							<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
@@ -296,15 +296,19 @@
 					<div class="panel-body">
 						
 										{% if servers_count = 0 %}
-										    <p>
-												You have currently no private servers installed.<br/>
-											</p>
 											<p>
-												To install a new private server simply copy and paste the following command into the linux terminal window:<br/>
+												The more hardware you give your private cloud, the more your private cloud grows in size and capacity.
+												<br/>That's the fundamental logic behind most cloud solutions.
+												<br/>
+												<br/>
+												To add another private server simply copy and paste the following command into the linux terminal window:<br/>
 
 <pre>
 curl <a href="http://{{server_addr}}/static/agent.py" target="_blank">http://{{server_addr}}/static/agent.py</a> > ~$USER/agent.py; sudo sh -c "while true; do python ~$USER/agent.py; sleep 3; done"
 </pre>
+						
+						Provide your secret: ******** <br/><br/>
+
 
 						And that's that.<br/>
 						The agent will run and guide you through the installation.
