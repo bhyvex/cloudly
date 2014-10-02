@@ -105,11 +105,20 @@ At this point you should be able to run the administration dashboard (Django App
 
 Now that you have the User Interface (Admin Dashboard) up and running you'd need to get the API started.  You can do so by following instructions in the next step.
 
-12) Run the API
+12) Configuring the web server (NGINX without SSL support)
+
+TBD...
+
+13) Configuring NGINX (with SSL support)
+
+You'd need to contact me about this one. You can reach me on jparicka@gmail.com, or Skype: jparicka
+
+
+14) Run the API
 
 tbd...
 
-13 ) Installing Hypervisor Server
+14) Installing Hypervisor Server
 
 tbd...
 
