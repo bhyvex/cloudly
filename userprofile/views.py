@@ -43,6 +43,12 @@ def _log_user_activity(userprofile, activity, link, function=""):
 	
 	return activity
 
+def _simple_email_validation(email):
+	
+	if('@' and '.' in email): 
+		return True		
+	return False
+
 
 def user_logout(request):
 	
@@ -94,6 +100,10 @@ def register(request):
 
 		if(password1 != password2):
 			err = "password_mismatch"
+			print err
+
+		if not _simple_email_validation(email):
+			err = "invalid_email_address"
 			print err
 
 		if not err:
