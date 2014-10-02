@@ -1,7 +1,15 @@
 # -*- coding: utf-8
 #!/usr/bin/env python
 
-# Credits: http://united-coders.com/christian-harms/image-resizing-tips-every-coder-should-know/
+import Image, os, sys
+
+import django
+from cloud_storage import models
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cloudly.settings")
+django.setup()
+
+print models.Uploaded_Files.objects.get(pk=1)
 
 
 
@@ -12,6 +20,7 @@ def resize(img, box, fit, out):
     @param fix: boolean - crop the image to fill the box
     @param out: file-like-object - save the image into the output stream
     '''
+	# Credits: http://united-coders.com/christian-harms/image-resizing-tips-every-coder-should-know/
     #preresize image with factor 2, 4, 8 and fast algorithm
     factor = 1
     while img.size[0]/factor > 2*box[0] and img.size[1]*2/factor > 2*box[1]:
@@ -38,4 +47,12 @@ def resize(img, box, fit, out):
 
     #save it into a file-like object
     img.save(out, "JPEG", quality=75)
-#resize
+
+
+def main():
+    pass
+
+if __name__ == "__main__":
+
+    main()
+
