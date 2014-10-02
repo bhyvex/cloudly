@@ -1,3 +1,5 @@
+# Credits: https://gist.github.com/olooney/1601455
+
 '''
 PIL's Image.thumbnail() returns an image that fits inside of a given size (preserving aspect ratios)
 but the size of the actual image will vary and is certainly not guaranteed to be the requested size.
