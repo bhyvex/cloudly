@@ -100,8 +100,8 @@ $ mongod
 At this point you should be able to run the administration dashboard (Django App):
 
 <pre>
-echo Do not run this as root.
-./run_devel.sh
+$ echo Never run this as user root!
+$ ./run_devel.sh
 </pre>
 
 Now that you have the User Interface (Admin Dashboard) up and running you'd need to get the API started.  You can do so by following instructions in the next step.
