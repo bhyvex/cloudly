@@ -148,7 +148,7 @@
 							{% for f in files %}
 							<tr>
 								<td>{{f.id}}</td>
-								<td>{{f.date_created}}</td>
+								<td><font size=2>{{f.date_created}}</font></td>
 								<td>{{f.size|filesizeformat}}</td>
 								<td>{{f.file.file|clear_filename}}</td>
 								<td>{{f.user}}</td>
