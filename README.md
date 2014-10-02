@@ -35,6 +35,13 @@ $ apt-get install python-pip
 $ pip install PIL
 </pre>
 
+..and since the setup_environ() was deprecated for one-off django scripts, you'd need to install also the django-configurations:
+
+</pre>
+$ pip install django-configurations
+</pre>
+
+
 5) Install MongoDB and it's python connector
 
 <pre>
