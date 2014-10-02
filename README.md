@@ -37,7 +37,7 @@ $ pip install PIL
 
 ..and since the setup_environ() was deprecated for one-off django scripts, you'd need to install also the django-configurations:
 
-</pre>
+<pre>
 $ pip install django-configurations
 </pre>
 
