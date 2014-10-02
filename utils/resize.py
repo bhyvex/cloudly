@@ -1,4 +1,9 @@
+# -*- coding: utf-8
+#!/usr/bin/env python
+
 # Credits: http://united-coders.com/christian-harms/image-resizing-tips-every-coder-should-know/
+
+
 
 def resize(img, box, fit, out):
     '''Downsample the image.
