@@ -100,6 +100,7 @@ $ mongod
 At this point you should be able to run the administration dashboard (Django App):
 
 <pre>
+echo Do not run this as root.
 ./run_devel.sh
 </pre>
 
