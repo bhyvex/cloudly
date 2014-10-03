@@ -63,9 +63,7 @@ def main():
 			thumbnail_dimensions = [195,95]
 			thumb_filename = filename.split('.')[:-1][0] + '-thumb' + str(thumbnail_dimensions[0]) + 'x' + str(thumbnail_dimensions[1]) + '.' + file_type
 			
-
-		#else:
-		#	print '*** skipping', file_type, filename
+			print thumb_filename
 			
 
 if __name__ == "__main__":
