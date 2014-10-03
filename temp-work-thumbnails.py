@@ -3,12 +3,13 @@
 
 import os
 import sys
-import Image
 import django
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cloudly.settings")
 
 from cloud_storage import models as cloud_storage
+
+from PIL import Image
 
 
 def resize(img, box, fit, out):
@@ -49,7 +50,7 @@ def resize(img, box, fit, out):
 
 def main():
 
-    for f in cloud_storage.Uploaded_Files.objects.all():
+    for f in cloud_storage.Uploaded_Files.objects.all().order_by('-pk'):
 
 		filename = "media/" + str(f.file.file)
 		file_type = str(f.file.file).split('.')[-1:][0].lower()
