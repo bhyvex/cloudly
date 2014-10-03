@@ -50,9 +50,19 @@ def resize(img, box, fit, out):
 def main():
 
     for f in cloud_storage.Uploaded_Files.objects.all():
+
 		filename = "media/" + str(f.file.file)
 		file_type = str(f.file.file).split('.')[-1:][0].lower()
-		print file_type, filename
+
+		supported_file_types = ['jpg','png','jpeg',]
+
+		if(file_type in supported_file_types):
+			
+			print filename, 'processing......'
+
+		#else:
+		#	print '*** skipping', file_type, filename
+			
 
 if __name__ == "__main__":
 
