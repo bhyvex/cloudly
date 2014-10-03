@@ -64,6 +64,9 @@ def main():
 			thumbnail_dimensions = [195,95]
 			thumb_filename = filename.split('.')[:-1][0] + '-thumb' + str(thumbnail_dimensions[0]) + 'x' + str(thumbnail_dimensions[1]) + '.' + file_type
 			
+			thumb = open(thumb_filename,'wb+')
+			resize(image, thumbnail_dimensions, True, thumb)
+			
 			print thumb_filename
 			
 
