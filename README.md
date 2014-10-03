@@ -31,6 +31,8 @@ $ apt-get install python-django
 $ apt-get install python-pip
 </pre>
 
+You'll also need the Python PIL with the JPEG support:
+
 <pre>
 $ apt-get install libjpeg-dev
 $ pip install pillow
