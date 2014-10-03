@@ -54,14 +54,14 @@ def main():
 		filename = "media/" + str(f.file.file)
 		file_type = str(f.file.file).split('.')[-1:][0].lower()
 
-		supported_file_types = ['bmp','dib','dcx','eps','ps','gif','im','jpg','jpe','jpeg','pcd','pcx','pdf','png','pbm','pgm','ppm','psd','tif','tiff','xbm','xpm',]
+		supported_file_types = [ 'bmp','dib','dcx','eps','ps','gif','im','jpg','jpe','jpeg', \
+					'pcd','pcx','pdf','png','pbm','pgm','ppm','psd','tif','tiff','xbm','xpm',]
 
 		if(file_type in supported_file_types):
 			
+			image = Image.open(filename)
 			thumbnail_dimensions = [195,95]
 			thumb_filename = filename.split('.')[:-1][0] + '-thumb' + str(thumbnail_dimensions[0]) + 'x' + str(thumbnail_dimensions[1]) + '.' + file_type
-			
-			print thumb_filename, 'processing......'
 			
 
 		#else:
