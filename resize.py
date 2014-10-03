@@ -54,7 +54,7 @@ def main():
 		filename = "media/" + str(f.file.file)
 		file_type = str(f.file.file).split('.')[-1:][0].lower()
 
-		supported_file_types = ['jpg','png','jpeg',]
+		supported_file_types = ['bmp','dib','dcx','eps','ps','gif','im','jpg','jpe','jpeg','pcd','pcx','pdf','png','pbm','pgm','ppm','psd','tif','tiff','xbm','xpm',]
 
 		if(file_type in supported_file_types):
 			
