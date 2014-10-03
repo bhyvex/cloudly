@@ -125,6 +125,9 @@ def cloud_sharing(request):
 	
 	return render_to_response('cloud_sharing.html', {'profile':profile,}, context_instance=RequestContext(request))
 
+
+#######################################################################################################################
+
 def dropzone_uploader(request):
 
 	print '-- dropzone_uploader:'
@@ -213,6 +216,9 @@ def cloud_storage(request):
 	# XXX batch sync files to the S3.....
 	
 	return render_to_response('cloud_storage.html', {'cloud_storage_menu_open':cloud_storage_menu_open,'uploaded_files':uploaded_files,'user':user,'profile':profile,}, context_instance=RequestContext(request))
+
+#######################################################################################################################
+
 
 def ajax_cloud_storage(request):
 
