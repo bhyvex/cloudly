@@ -32,7 +32,8 @@ $ apt-get install python-pip
 </pre>
 
 <pre>
-$ pip install PIL
+$ apt-get install libjpeg-dev
+$ pip install pillow
 </pre>
 
 5) Install MongoDB and it's python connector
