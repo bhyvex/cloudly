@@ -1,16 +1,16 @@
 # -*- coding: utf-8
 #!/usr/bin/env python
 
-import Image, os, sys
-
+import os
+import sys
+import Image
 import django
-from cloud_storage import models
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cloudly.settings")
-django.setup()
+
+from cloud_storage import models
 
 print models.Uploaded_Files.objects.get(pk=1)
-
 
 
 def resize(img, box, fit, out):
