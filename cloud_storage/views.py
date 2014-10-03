@@ -69,6 +69,11 @@ def _resize_image(img, box, fit, out):
 	img.save(out, "JPEG", quality=75)
 
 
+def _work_thumbnail():
+	return "TODO"
+
+
+
 
 def delete_file(request, file_id):
 
