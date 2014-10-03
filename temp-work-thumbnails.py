@@ -12,7 +12,7 @@ from cloud_storage import models as cloud_storage
 from PIL import Image
 
 
-def resize(img, box, fit, out):
+def _resize(img, box, fit, out):
 	# Pre-resize image with factor 2, 4, 8 and fast algorithm
 	factor = 1
 	while img.size[0]/factor > 2*box[0] and img.size[1]*2/factor > 2*box[1]:
@@ -58,7 +58,7 @@ def main():
 			
 			thumb = open(thumb_filename,'wb+')
 			try:
-				resize(image, thumbnail_dimensions, True, thumb)
+				_resize(image, thumbnail_dimensions, True, thumb)
 			except:
 				print '** failed to convert', 
 	
