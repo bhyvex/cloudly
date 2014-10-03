@@ -51,7 +51,8 @@ def main():
 
     for f in cloud_storage.Uploaded_Files.objects.all():
 		filename = "media/" + str(f.file.file)
-		print filename
+		file_type = str(f.file.file).split('.')[-1:][0].lower()
+		print file_type, filename
 
 if __name__ == "__main__":
 
