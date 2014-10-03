@@ -8,9 +8,9 @@ import django
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cloudly.settings")
 
-from cloud_storage import models
+from cloud_storage.models import Uploaded_files
 
-print models.Uploaded_Files.objects.get(pk=1)
+print Uploaded_Files.objects.get(pk=1)
 
 
 def resize(img, box, fit, out):
