@@ -58,7 +58,11 @@ def main():
 
 		if(file_type in supported_file_types):
 			
-			print filename, 'processing......'
+			thumbnail_dimensions = [195,95]
+			thumb_filename = filename.split('.')[:-1][0] + '-thumb' + str(thumbnail_dimensions[0]) + 'x' + str(thumbnail_dimensions[1]) + '.' + file_type
+			
+			print thumb_filename, 'processing......'
+			
 
 		#else:
 		#	print '*** skipping', file_type, filename
