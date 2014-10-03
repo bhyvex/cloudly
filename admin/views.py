@@ -6,6 +6,8 @@ import pickle
 import logging
 import datetime
 
+from django.db.models import Q
+
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
@@ -50,8 +52,11 @@ def user_activity_report(request, user_id):
 	_log_user_activity(profile,"click","/admin/user/"+str(user_id)+"/report/","user_activity_report")
 	
 	user_activity = Activity.objects.filter(user=u).order_by('-pk')
-			
-	return render_to_response('admin-user-report.html', {'u':u,'user_files':user_files,'user_activity':user_activity,'profile':profile,}, context_instance=RequestContext(request))
+	
+	user_activity_clicks = Activity.objects.filter(user=u,activity="click").order_by('-pk')
+	user_activity_other = Activity.objects.filter(user=u).filter(~Q(activity="click")).order_by('-pk')	
+	
+	return render_to_response('admin-user-report.html', {'u':u,'user_files':user_files,'user_activity':user_activity,'user_activity_clicks':user_activity_clicks,'user_activity_other':user_activity_other,'profile':profile,}, context_instance=RequestContext(request))
 	
 
 	
