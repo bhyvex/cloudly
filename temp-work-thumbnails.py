@@ -65,8 +65,13 @@ def main():
 			thumb_filename = filename.split('.')[:-1][0] + '-thumb' + str(thumbnail_dimensions[0]) + 'x' + str(thumbnail_dimensions[1]) + '.' + file_type
 			
 			thumb = open(thumb_filename,'wb+')
-			resize(image, thumbnail_dimensions, True, thumb)
-			
+			try:
+				resize(image, thumbnail_dimensions, True, thumb)
+			except:
+				print '** failed to convert', 
+	
+			thumb.close()
+		
 			print thumb_filename
 			
 
