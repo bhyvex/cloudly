@@ -46,7 +46,7 @@
 							  </tr>
 						  </thead>   
 						  <tbody>
-							{% for a in user_activity %} 
+							{% for a in user_activity_clicks %} 
 							<tr>
 								<td><font size=2>{{a.date_created|naturaltime}}</font></td>
 								<td><a href="{{a.link}}">{{a.link}}</a></td>
@@ -96,6 +96,43 @@
 					</div>
 			</div>
 		</div>
+
+
+		<div class="col-xs-8">
+			<div class="panel panel-default">
+					<div class="panel-heading">
+						<h2><i class="fa fa-picture-o"></i>Activity (other)</h2>
+						<div class="panel-actions">
+							<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+							<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+						</div>
+					</div>
+					<div class="panel-body">
+						<table class="table table-bordered">
+						  <thead>
+							  <tr>
+								  <th>Date</th>
+								  <th>Activity</th>
+								  <th>Link</th>
+								  <th>Function</th>                                          
+							  </tr>
+						  </thead>   
+						  <tbody>
+							{% for a in user_activity_other %}
+							<tr>
+								<td><font size=2>{{a.date_created}}</font></td>
+								<td>{{a.activity}}<td>
+								<td>{{a.link}}</td>
+								<td>{{a.function}}</td>                                       
+							</tr>
+							{% endfor %}
+						  </tbody>
+					 </table>
+					</div>
+			</div>
+		</div>
+
 
 
 	</div>
