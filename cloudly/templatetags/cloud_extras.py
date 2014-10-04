@@ -65,6 +65,15 @@ def get_tags(package):
 	return Tags.objects.filter(package=package)
 
 
+@register.filter(name='count_user_files')
+def count_user_files(user):
+	return "TBD"
+
+@register.filter(name='count_user_files_size')
+def count_user_files_size(user):
+	return "TBD"
+
+
 @register.filter(name='get_server_activities')
 def get_server_activities(server_uuid):
 
