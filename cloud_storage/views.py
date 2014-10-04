@@ -40,6 +40,12 @@ from cloudly.templatetags.cloud_extras import clear_filename, get_file_extension
 
 from userprofile.views import _log_user_activity
 
+from PIL import Image
+
+
+supported_image_file_types = [ 'bmp','dib','dcx','eps','ps','gif','im','jpg','jpe','jpeg', \
+			'pcd','pcx','png','pbm','pgm','ppm','psd','tif','tiff','xbm','xpm',]
+
 
 def _resize_image(img, box, fit, out):
 	# Pre-resize image with factor 2, 4, 8 and fast algorithm
@@ -69,9 +75,30 @@ def _resize_image(img, box, fit, out):
 	img.save(out, "JPEG", quality=75)
 
 
-def _work_thumbnail():
-	return "TODO"
+def _work_thumbnail(file_object):
+	
+	f = file_object
+	
+	filename = "media/" + str(f.file.file)
+	file_type = str(f.file.file).split('.')[-1:][0].lower()
 
+	if(file_type in supported_image_file_types):
+		
+		image = Image.open(filename)
+		thumbnail_dimensions = [100,100]
+		thumb_filename = filename.split('.')[:-1][0] + '-thumb' + str(thumbnail_dimensions[0]) + 'x' + str(thumbnail_dimensions[1]) + '.' + file_type
+		
+		thumb = open(thumb_filename,'wb+')
+		try:
+			_resize(image, thumbnail_dimensions, True, thumb)
+		except:
+			print '** failed to convert', 
+
+		thumb.close()
+		f.thumbnail_pic1 = thumb_filename
+		f.save()
+
+	return f.thumbnail_pic1
 
 
 
@@ -137,7 +164,7 @@ def cloud_dropzone(request):
 			uploaded_file.size = file_size
 			uploaded_file.file_type = file_type
 			uploaded_file.save()
-  
+			  
 	cloud_storage_menu_open = True
 	
 	return render_to_response('cloud_dropzone.html', {'cloud_storage_menu_open':cloud_storage_menu_open,'uploaded_files':uploaded_files,'user':user,'profile':profile,}, context_instance=RequestContext(request))
@@ -190,6 +217,9 @@ def dropzone_uploader(request):
 		f.size = file_size
 		f.file_type = file_type
 		f.save()
+		
+		_work_thumbnail(f)
+		
 
 		response_type = "application/json"
 		if "text/html" in request.META["HTTP_ACCEPT"]: 
@@ -241,6 +271,8 @@ def cloud_storage(request):
 			f.size = file_size
 			f.file_type = file_type
 			f.save()
+			
+			_work_thumbnail(f)
 			
 
 
