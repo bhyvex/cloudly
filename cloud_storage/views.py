@@ -85,7 +85,7 @@ def _work_thumbnail(file_object):
 	if(file_type in SUPPORTED_IMAGE_FILE_TYPES):
 		
 		image = Image.open(filename)
-		thumbnail_dimensions = [200,200]
+		thumbnail_dimensions = [148,148]
 		thumb_filename = filename.split('.')[:-1][0] + '-thumb' + str(thumbnail_dimensions[0]) + 'x' + str(thumbnail_dimensions[1]) + '.' + file_type
 		
 		thumb = open(thumb_filename,'wb+')
