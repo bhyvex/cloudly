@@ -24,6 +24,8 @@ import boto.ec2.cloudwatch
 from django.contrib.auth.models import User
 from userprofile.models import Profile
 
+from django.db.models import Q
+
 from amazon import s3_funcs
 from amazon import s3_funcs_shortcuts
 
