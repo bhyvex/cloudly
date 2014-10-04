@@ -6,7 +6,7 @@
 	{% for f in uploaded_files %}
 		[
 			"<a href=\"/media/{{f.file.file}}\">{{forloop.counter}}</a>", 
-			"<font size=2>{{f.date_created}}</font>", 
+			"<font size=2>{{f.date_created|naturaltime}}</font>", 
 			"<a href=\"/media/{{f.file.file}}\" target=\"_blank\">{{f.file.file|clear_filename}}</a> <small><a href=\"#\" id=\"name\" data-type=\"text\" data-pk=\"1\" data-original-title=\"Name this file\" class=\"editable editable-click\">create alias</a></small>", 
 			"{{f.file.file.size|filesizeformat}}", 
 			"{{f.file.file|get_file_extension|upper}}", 
