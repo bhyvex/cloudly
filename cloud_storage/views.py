@@ -90,7 +90,7 @@ def _work_thumbnail(file_object):
 		
 		thumb = open(thumb_filename,'wb+')
 		try:
-			_resize(image, thumbnail_dimensions, True, thumb)
+			_resize_image(image, thumbnail_dimensions, True, thumb)
 			f.thumbnail_pic1 = thumb_filename
 			f.save()
 		except:
