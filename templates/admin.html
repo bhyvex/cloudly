@@ -68,6 +68,8 @@
 								<th>S3 <font size=1>verified</font></th>
 								<th>CF <font size=1>verified</font></th>
 								<th>Backups</th>
+								<th>Files</th>
+								<th>Size</th>
 								<th>activity</th>                                          
 								
 							  </tr>
@@ -99,6 +101,8 @@
 								<td>{{p.aws_s3_verified}}</td>
 								<td>{{p.aws_cloudfront_verified}}</td>
 								<td>{% if p.aws_automatic_backups %}Enabled{% else %}Disabled{% endif %}</td>
+								<td>-</td>
+								<td>-</td>
 								<td><center><a href="/admin/user/{{p.id}}/activity/">{{p.clicks}}</a></center></td>
 							</tr>
 							{% endfor %}
