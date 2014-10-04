@@ -102,7 +102,7 @@
 								<td>{{p.aws_cloudfront_verified}}</td>
 								<td>{% if p.aws_automatic_backups %}Enabled{% else %}Disabled{% endif %}</td>
 								<td>{{p.user|count_user_files}}</td>
-								<td>-</td>
+								<td>{{p.user|count_user_files_size}}</td>
 								<td><center><a href="/admin/user/{{p.id}}/activity/">{{p.clicks}}</a></center></td>
 							</tr>
 							{% endfor %}

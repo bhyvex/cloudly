@@ -77,6 +77,9 @@ def count_user_files(user):
 
 @register.filter(name='count_user_files_size')
 def count_user_files_size(user):
+	
+	
+	
 	return "TBD"
 
 
