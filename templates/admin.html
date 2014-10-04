@@ -143,9 +143,9 @@
 								  <th>Date created</th>
 								  <th>File Owner</th>
 								  <th>Filename</th>
+								  <th>Size</th>
 								  <th>is_deployed</th>
 								  <th>is_shared</th>
-								  <th>Size</th>
 							  </tr>
 						  </thead>   
 						  <tbody>
@@ -155,9 +155,9 @@
 								<td><font size=2>{{f.date_created}}</font></td>
 								<td><a href="/admin/user/{{f.user.id}}/activity/">{{f.user}}</a></td>
 								<td>{{f.file.file|clear_filename}}</td>
+								<td>{{f.size|filesizeformat}}</td>
 								<td>{{f.is_deployed}}</td>
 								<td>{{f.is_shared}}</td>
-								<td>{{f.size|filesizeformat}}</td>
 							</tr>
 							{% endfor %}
 						  </tbody>
