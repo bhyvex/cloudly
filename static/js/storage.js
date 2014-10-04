@@ -57,8 +57,7 @@ function setupDropzone(zone) {
 	zone.on("addedfile", function(file) {
 		// images already handled
 		if (file.type.match(/image.*/)) return;
-		// Okey, sem treba rovnako pridat dalsie typy. file.type je MIME, file.name je nazov
-		if (thumbnailCheck(zone, file, ".txt", "/static/images/icon-todo.png")) return;
+		// add to the list: .sh, 
         if (thumbnailCheck(zone, file, ".3dm", "/static/file-icons/3dm.ico")) return;
         if (thumbnailCheck(zone, file, ".3ds", "/static/file-icons/3ds.ico")) return;
         if (thumbnailCheck(zone, file, ".3g2", "/static/file-icons/3g2.ico")) return;
