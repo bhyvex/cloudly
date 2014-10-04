@@ -17,6 +17,9 @@ mongo = client.cloudly
 from cloud_software.models import Packages
 from cloud_software.models import Tags, Tag
 
+from cloud_storage.models import Files
+from cloud_storage.models import Uploaded_Files
+
 
 def _seconds_since_epoch(d):
 
