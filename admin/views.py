@@ -56,7 +56,9 @@ def user_activity_report(request, user_id):
 	user_activity_clicks = Activity.objects.filter(user=u,activity="click").order_by('-pk')
 	user_activity_other = Activity.objects.filter(user=u).filter(~Q(activity="click")).order_by('-pk')	
 	
-	return render_to_response('admin-user-report.html', {'u':u,'user_files':user_files,'user_activity':user_activity,'user_activity_clicks':user_activity_clicks,'user_activity_other':user_activity_other,'profile':profile,}, context_instance=RequestContext(request))
+	user_profile = Profile.objects.get(user=u)
+	
+	return render_to_response('admin-user-report.html', {'u':u,'user_profile':user_profile,'user_files':user_files,'user_activity':user_activity,'user_activity_clicks':user_activity_clicks,'user_activity_other':user_activity_other,'profile':profile,}, context_instance=RequestContext(request))
 	
 
 	
