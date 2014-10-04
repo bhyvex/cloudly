@@ -91,12 +91,12 @@ def _work_thumbnail(file_object):
 		thumb = open(thumb_filename,'wb+')
 		try:
 			_resize(image, thumbnail_dimensions, True, thumb)
+			f.thumbnail_pic1 = thumb_filename
+			f.save()
 		except:
-			print '** failed to convert', 
+			print '** failed to convert ' * 100
 
 		thumb.close()
-		f.thumbnail_pic1 = thumb_filename
-		f.save()
 
 	return f.thumbnail_pic1
 

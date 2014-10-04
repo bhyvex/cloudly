@@ -73,7 +73,7 @@
 						
 						{% for picture in files_pictures %}
 						<div style="margin-bottom:30px" class="col-sm-2 col-xs-6">
-							<img class="img-thumbnail" src="/media/{{picture.file.file}}" alt="{{picture.file.file|clear_filename}}">
+							<img class="img-thumbnail" src="/{{picture.thumbnail_pic1}}" alt="{{picture.thumbnail_pic1|clear_filename}}">
 						</div>
 						{% endfor %}
 						

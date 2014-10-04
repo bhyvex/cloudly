@@ -51,8 +51,9 @@ def cloud_photos(request):
 	print request.user
 	#print '- searching for pictures'
 	
-	files = Uploaded_Files.objects.filter(user=request.user).order_by('-pk')
+	files = Uploaded_Files.objects.filter(user=request.user).exclude(thumbnail_pic1="").order_by('-pk')
 	files_pictures = []
+
 	for f in files:
 		
 		f_extension = str(f.file.file).split('.')[-1:][0].upper()
