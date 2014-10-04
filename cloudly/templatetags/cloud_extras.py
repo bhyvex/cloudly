@@ -70,7 +70,10 @@ def get_tags(package):
 
 @register.filter(name='count_user_files')
 def count_user_files(user):
-	return "TBD"
+	
+	users_files_count = Uploaded_Files.objects.filter(user=user).count()
+	
+	return users_files_count
 
 @register.filter(name='count_user_files_size')
 def count_user_files_size(user):
