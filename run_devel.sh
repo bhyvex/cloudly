@@ -1,12 +1,13 @@
 #!/bin/sh
 
-#echo syncing db
+#echo Syncing DB..
 #python manage.py syncdb
 
 #echo
-echo updating from git....
+echo Updating to the latest version from git....
 git pull
 
 echo
-echo running development server..
+echo Running development server..
 python manage.py runserver 0.0.0.0:8000
+
