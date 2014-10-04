@@ -78,9 +78,12 @@ def count_user_files(user):
 @register.filter(name='count_user_files_size')
 def count_user_files_size(user):
 	
+	total_size = 0
+
+	for user_file in Uploaded_Files.objects.filter(user=user):
+		total_size += user_file.size
 	
-	
-	return "TBD"
+	return total_size
 
 
 @register.filter(name='get_server_activities')
