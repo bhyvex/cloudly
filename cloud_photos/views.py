@@ -54,13 +54,7 @@ def cloud_photos(request):
 	for f in files:
 		
 		f_extension = str(f.file.file).split('.')[-1:][0].upper()
-				
-		if f_extension in BROWSERS_FORMATS:
-			#print '- mrdka', f_extension, f.file.file
-			files_pictures.append(f)
-		else:
-			#print '* skipping', f_extension, f.file.file
-			pass
+		files_pictures.append(f)
 
 	cloud_storage_menu_open = True
 	_log_user_activity(profile,"click","/cloud/photos/","cloud_photos")
