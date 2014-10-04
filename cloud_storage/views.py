@@ -43,7 +43,7 @@ from userprofile.views import _log_user_activity
 from PIL import Image
 
 
-supported_image_file_types = [ 'bmp','dib','dcx','eps','ps','gif','im','jpg','jpe','jpeg', \
+SUPPORTED_IMAGE_FILE_TYPES = [ 'bmp','dib','dcx','eps','ps','gif','im','jpg','jpe','jpeg', \
 			'pcd','pcx','png','pbm','pgm','ppm','psd','tif','tiff','xbm','xpm',]
 
 
@@ -82,7 +82,7 @@ def _work_thumbnail(file_object):
 	filename = "media/" + str(f.file.file)
 	file_type = str(f.file.file).split('.')[-1:][0].lower()
 
-	if(file_type in supported_image_file_types):
+	if(file_type in SUPPORTED_IMAGE_FILE_TYPES):
 		
 		image = Image.open(filename)
 		thumbnail_dimensions = [100,100]
