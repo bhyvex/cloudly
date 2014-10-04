@@ -25,7 +25,6 @@
 	
 	<div class="row">
 	
-	
 		<div class="col-xs-12">
 			<div class="panel panel-default">
 					<div class="panel-heading">
@@ -117,6 +116,7 @@
 						<table class="table table-bordered">
 						  <thead>
 							  <tr>
+								  <th>IP Address</th>
 								  <th>When</th>
 								  <th>Link</th>
 							  </tr>
@@ -124,6 +124,7 @@
 						  <tbody>
 							{% for a in user_activity_clicks %} 
 							<tr>
+								<td><font size=1>123.123.123.123</font></td>
 								<td><font size=2>{{a.date_created|naturaltime}}</font></td>
 								<td><a href="{{a.link}}">{{a.link}}</a></td>
 							</tr>
