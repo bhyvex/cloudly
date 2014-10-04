@@ -17,6 +17,7 @@ mongo = client.cloudly
 from cloud_software.models import Packages
 from cloud_software.models import Tags, Tag
 
+
 def _seconds_since_epoch(d):
 
 	date_time = d.isoformat().split('.')[0].replace('T',' ')
@@ -24,6 +25,7 @@ def _seconds_since_epoch(d):
 	seconds_since_epoch = int(time.mktime(time.strptime(date_time, pattern)))
 
 	return seconds_since_epoch
+
 
 @register.filter(name='dict_get')
 def dict_get(h, key):
@@ -33,6 +35,7 @@ def dict_get(h, key):
 	except: pass
 		
 	return None
+	
 
 @register.filter(name='clear_filename')
 def clear_filename(f):
