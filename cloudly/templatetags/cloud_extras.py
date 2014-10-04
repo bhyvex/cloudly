@@ -36,7 +36,10 @@ def dict_get(h, key):
 
 @register.filter(name='clear_filename')
 def clear_filename(f):
-	return str(f)[20:]
+	try:
+		return str(f)[20:]
+	except:
+		return f
 
 
 @register.filter(name='shorten_key')
