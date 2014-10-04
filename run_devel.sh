@@ -1,9 +1,11 @@
 #!/bin/sh
 
-#echo Syncing DB..
-#python manage.py syncdb
+clear
 
-#echo
+echo Syncing DB..
+python manage.py syncdb
+
+echo
 echo Updating to the latest version from git....
 git pull
 
