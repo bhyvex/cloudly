@@ -45,7 +45,8 @@ def home(request):
 	profile = userprofile.objects.get(user=request.user)
 	secret = profile.secret
 	
-	_log_user_activity(profile,"click","/","home")
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/","home",ip=ip)
 	
 	
 	aws_access_key = profile.aws_access_key
@@ -144,8 +145,9 @@ def welcome(request):
 		print 'anonymous'
 		return HttpResponseRedirect("/")
 
+	ip = request.META['REMOTE_ADDR']
 	profile = userprofile.objects.get(user=request.user)
-	_log_user_activity(profile,"click","/welcome/","welcome")
+	_log_user_activity(profile,"click","/welcome/","welcome",ip=ip)
 	
 
 	print request.user
@@ -160,8 +162,9 @@ def pricing(request):
 		print 'anonymous'
 		return HttpResponseRedirect("/")
 
+	ip = request.META['REMOTE_ADDR']
 	profile = userprofile.objects.get(user=request.user)
-	_log_user_activity(profile,"click","/pricing/","pricing")
+	_log_user_activity(profile,"click","/pricing/","pricing",ip=ip)
 
 
 	print request.user
@@ -183,7 +186,8 @@ def help(request):
 	profile = userprofile.objects.get(user=request.user)
 	secret = profile.secret
 
-	_log_user_activity(profile,"click","/help/","help")
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/help/","help",ip=ip)
 	
 	http_host = request.META['HTTP_HOST']
 
@@ -201,7 +205,8 @@ def security(request):
 	
 	profile = userprofile.objects.get(user=request.user)
 	
-	_log_user_activity(profile,"click","/security/","security")
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/security/","security",ip=ip)
 	
 	
 	return render_to_response('security.html', {'profile':profile,}, context_instance=RequestContext(request))
