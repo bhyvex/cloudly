@@ -53,8 +53,9 @@ def server_detail(request, uuid):
 	activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(5)
 
 	# XXX
+	#ip = request.META['REMOTE_ADDR']
 	#profile = userprofile.objects.get(user=request.user)
-	#_log_user_activity(profile,"click","/server/","admin")
+	#_log_user_activity(profile,"click","/server/","admin",ip=ip)
 
 	return render_to_response('private_server_detail.html', {"uuid":uuid,"server":server,"loadavg":loadavg,"mem_usage":mem_usage, "cpu_usage":cpu_usage, "disks_usage":disks_usage, "activity":activity,}, context_instance=RequestContext(request))
 
@@ -68,7 +69,8 @@ def servers(request):
 
 	profile = userprofile.objects.get(user=request.user)
 
-	_log_user_activity(profile,"click","/servers/","servers")
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/servers/","servers",ip=ip)
 
 	if request.user.is_superuser:
 		servers  = mongo.servers.find().sort('_id',-1)
