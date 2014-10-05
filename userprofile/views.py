@@ -215,7 +215,8 @@ def cloud_settings(request):
 		"us-west-2":"US West (Oregon) Region",
 	}
 
-	_log_user_activity(profile,"click","/cloud/settings/","cloud_settings")
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/cloud/settings/","cloud_settings",ip=ip)
 
 	return render_to_response('cloud_settings.html', {'aws_regions':aws_regions,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
 	
@@ -233,8 +234,9 @@ def lock(request):
 
 	print request.user
 
+	ip = request.META['REMOTE_ADDR']
 	from userprofile.views import _log_user_activity
-	_log_user_activity(profile,"click","/lock/","lock")
+	_log_user_activity(profile,"click","/lock/","lock",ip=ip)
 
 	return render_to_response('lock.html', {'profile':profile,}, context_instance=RequestContext(request))
 
@@ -255,7 +257,8 @@ def change_password(request):
 
 	error = None
 
-	_log_user_activity(profile,"click","/account/password/","change_password")
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/account/password/","change_password",ip=ip)
 
 	if(request.POST):
 
@@ -297,7 +300,8 @@ def account_settings(request):
 	#	print '- ec2 region:', ec2_region.name
 
 
-	_log_user_activity(profile,"click","/account/settings/","account_settings")
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/account/settings/","account_settings",ip=ip)
 
 	return render_to_response('account.html', {'user':user,'profile':profile,}, context_instance=RequestContext(request))
 
