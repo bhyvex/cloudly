@@ -38,8 +38,9 @@ def devel(request, dev=""):
 
 	print request.user
 
+	ip = request.META['REMOTE_ADDR']
 	profile = Profile.objects.get(user=request.user)
-	_log_user_activity(profile,"click","/devel/","devel")	
+	_log_user_activity(profile,"click","/devel/","devel",ip=ip)	
 	
 	active_tab = "devel"
 	
