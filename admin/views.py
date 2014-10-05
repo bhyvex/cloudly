@@ -49,10 +49,11 @@ def user_activity_report(request, user_id):
 	u = User.objects.get(pk=user_id)
 	user_files = Uploaded_Files.objects.filter(user=u).order_by('-pk')[:5000]
 	
-	_log_user_activity(profile,"click","/admin/user/"+str(user_id)+"/report/","user_activity_report")
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/admin/user/"+str(user_id)+"/report/","user_activity_report",ip=ip)
 	
 	user_activity = Activity.objects.filter(user=u).order_by('-pk')
-	
+		
 	user_activity_clicks = Activity.objects.filter(user=u,activity="click").order_by('-pk')
 	user_activity_other = Activity.objects.filter(user=u).filter(~Q(activity="click")).order_by('-pk')	
 	
@@ -83,7 +84,8 @@ def admin(request):
 	users = Profile.objects.all().order_by('-pk')
 	files = Uploaded_Files.objects.all().order_by('-pk')[:5000]
 	
-	_log_user_activity(profile,"click","/admin/","admin")
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/admin/","admin",ip=ip)
 	
 	return render_to_response('admin.html', {'users':users,'files':files,'profile':profile,}, context_instance=RequestContext(request))
 
