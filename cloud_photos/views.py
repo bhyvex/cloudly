@@ -59,8 +59,9 @@ def cloud_photos(request):
 		f_extension = str(f.file.file).split('.')[-1:][0].upper()
 		files_pictures.append(f)
 
+	ip = request.META['REMOTE_ADDR']
 	cloud_storage_menu_open = True
-	_log_user_activity(profile,"click","/cloud/photos/","cloud_photos")
+	_log_user_activity(profile,"click","/cloud/photos/","cloud_photos",ip=ip)
 
 	return render_to_response('cloud_pictures.html', {'BROWSERS_FORMATS':BROWSERS_FORMATS, 'files_pictures':files_pictures, 'profile':profile,'cloud_storage_menu_open':cloud_storage_menu_open,}, context_instance=RequestContext(request))
 
