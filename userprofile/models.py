@@ -5,11 +5,11 @@ from django.conf import settings
 class Activity(models.Model):
 	
 	user = models.ForeignKey(User)
+	ip_addr = models.IPAddressField(blank=True,default="")
 	link = models.URLField(blank=True, verbose_name="links")
 	activity = models.CharField(max_length=100, blank=True, verbose_name="activities", db_index=True)
 	function = models.CharField(max_length=100, blank=True, verbose_name="function", db_index=True)
 	meta = models.CharField(max_length=1024, blank=True, verbose_name="meta", db_index=True)
-	ip_address = models.IPAddressField(blank=True)
 	date_created = models.DateTimeField(auto_now_add=True)
 	
 class Profile(models.Model):
