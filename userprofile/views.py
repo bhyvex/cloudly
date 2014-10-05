@@ -33,15 +33,18 @@ def _remove_accents(data):
     return ''.join(x for x in unicodedata.normalize('NFKD', data) if x in string.ascii_letters).lower()
 
 
-def _log_user_activity(userprofile, activity, link, function=""):
+def _log_user_activity(userprofile, activity, link, function="", ip=""):
 	
 	activity = Activity.objects.create(user=userprofile.user,activity=activity,link=link)
 	
-	if(activity.activity=="click"): userprofile.clicks += 1
-	
+	if(activity.activity=="click"): 
+		userprofile.clicks += 1
+
 	if(function):
 		userprofile.function = function
+
 	userprofile.save()
+
 	
 	return activity
 
