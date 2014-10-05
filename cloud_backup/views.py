@@ -39,8 +39,9 @@ def cloud_backups(request):
 
 	print request.user
 
+	ip = request.META['REMOTE_ADDR']
 	profile = Profile.objects.get(user=request.user)
-	_log_user_activity(profile,"click","/cloud/backups/","cloud_backups")
+	_log_user_activity(profile,"click","/cloud/backups/","cloud_backups",ip=ip)
 	
 	return render_to_response('cloud_backups.html', locals(), context_instance=RequestContext(request))
 
