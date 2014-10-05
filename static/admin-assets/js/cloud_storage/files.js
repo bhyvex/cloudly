@@ -1,7 +1,7 @@
 var cloudlyFiles = {
 	items: new Array(),
 	currentItem: 0,
-	action: '',
+	currentAction: '',
 	initAction: function(){
 		var $this = this;
 		
@@ -9,7 +9,7 @@ var cloudlyFiles = {
 			$('.btn-pop').live('click',function(e){
 			 	e.preventDefault();
 				
-				$this.action = $(this).attr('rel');
+				$this.currentAction = $(this).attr('rel');
 				
 				var itemId = $(this).parent().find('.fieldId').val(); 
 				
@@ -36,15 +36,19 @@ var cloudlyFiles = {
 				}
 			}
 		});
-	}
+	},
 	proccessResponse: function(res){
-		this.items[this.currentItem] = new Array();
-		
+		this.items[this.currentItem] = new Array();		
 		this.items[this.currentItem]['zoom'] 		= res.zoom;
 		this.items[this.currentItem]['download']	= res.download;
 		this.items[this.currentItem]['share']		= res.share;
 		this.items[this.currentItem]['delete']		= res.deleteItem;
 		
+		this.showInfoBlock();
+	},
+	pasteDataToBlock: function(){
+		var action = this.currentAction;
+		var htmlData = this.items[this.currentItem][action];
 		
 	},
 	showInfoBlock: function(){
