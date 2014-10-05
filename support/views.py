@@ -18,6 +18,7 @@ logger = logging.getLogger(__name__)
 
 from django.contrib.auth.models import User
 from userprofile.models import Profile as userprofile
+from userprofile.views import _log_user_activity
 
 
 def support(request):
@@ -32,6 +33,9 @@ def support(request):
 	secret = profile.secret
 
 	print request.user
+
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/private/storage/","support",ip=ip)
 
 	return render_to_response('support.html', {'user':user,'profile':profile,}, context_instance=RequestContext(request))
 
@@ -48,6 +52,9 @@ def support_add_new(request):
 
 	print request.user
 
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/private/storage/","support_add_new",ip=ip)
+
 	return render_to_response('support-add-new.html', {'user':user,'profile':profile,}, context_instance=RequestContext(request))
 
 
@@ -63,5 +70,8 @@ def support_devel_ticket(request):
 	secret = profile.secret
 
 	print request.user
+
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/private/storage/","support_devel_ticket",ip=ip)
 
 	return render_to_response('support-ticket.html', {'user':user,'profile':profile,}, context_instance=RequestContext(request))
