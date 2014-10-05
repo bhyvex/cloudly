@@ -35,7 +35,8 @@ def private_storage(request):
 	print '-- private storage:'
 	print request.user
 
+	ip = request.META['REMOTE_ADDR']
 	profile = Profile.objects.get(user=request.user)
-	_log_user_activity(profile,"click","/private/storage/","private_storage")
+	_log_user_activity(profile,"click","/private/storage/","private_storage",ip=ip)
 
 	return render_to_response('private_storage.html', locals(), context_instance=RequestContext(request))
