@@ -37,8 +37,9 @@ def cloud_software_add_new(request):
 	print '-- cloud software add new:'
 	print request.user
 
+	ip = request.META['REMOTE_ADDR']
 	profile = Profile.objects.get(user=request.user)
-	_log_user_activity(profile,"click","/cloud/software/add/new","cloud_software_add_new")
+	_log_user_activity(profile,"click","/cloud/software/add/new","cloud_software_add_new",ip=ip)
 
 	if request.POST:
 
@@ -87,9 +88,10 @@ def cloud_software_view_tag(request, tag_slug):
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/")
 
+	ip = request.META['REMOTE_ADDR']
 	profile = Profile.objects.get(user=request.user)
 	secret = profile.secret
-	_log_user_activity(profile,"click","/cloud/software/tag/"+tag_slug+"/","cloud_software_view_tag")
+	_log_user_activity(profile,"click","/cloud/software/tag/"+tag_slug+"/","cloud_software_view_tag",ip=ip)
 
 	packages = []
 
@@ -128,7 +130,8 @@ def cloud_software(request):
 	profile = Profile.objects.get(user=request.user)
 	secret = profile.secret
 
-	_log_user_activity(profile,"click","/cloud/software/","cloud_software")
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/cloud/software/","cloud_software",ip=ip)
 
 	packages = Packages.objects.all().order_by('-pk')
 	tags = Tag.objects.all()
