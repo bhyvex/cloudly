@@ -39,6 +39,9 @@ from cloudly.templatetags.cloud_extras import clear_filename, get_file_extension
 
 def ajax_vms_refresh(request):
 	# XXX work on this
+	import time
+	import random
+	time.sleep(random.randint(1,5))
 	return HttpResponse("ALLDONE")
 
 
