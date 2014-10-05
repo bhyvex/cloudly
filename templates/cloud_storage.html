@@ -119,7 +119,14 @@
 
 
         <script src="/static/js/dropzone.js"></script>
+		<script src="/static/admin-assets/js/cloud_storage/files.js"></script>
+		<script type="text/javascript">
+			<!--
+			cloudlyFiles.initAction();
+			//-->
+		</script>
         <script type="text/javascript">
+			<!--
             Dropzone.options.myDropzone = {
  
                 // Prevents Dropzone from uploading dropped files immediately
@@ -142,7 +149,8 @@
  
                 }
             };
+			//-->
         </script>
-
+		
 {% endblock page_content %}
 

@@ -37,6 +37,11 @@ from django.contrib.humanize.templatetags.humanize import naturalday
 from cloudly.templatetags.cloud_extras import clear_filename, get_file_extension
 
 
+def ajax_vms_refresh(request):
+	# XXX work on this
+	return HttpResponse("ALLDONE")
+
+
 def ajax_virtual_machines(request):
 	
 	print '-- ajax virtual machines'

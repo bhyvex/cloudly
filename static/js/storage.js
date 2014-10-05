@@ -24,10 +24,7 @@ function ajaxStorage() {
 	if (ajaxBlock()) 
 		return;
 	dTable.ajax.reload( function ( param ){
-		$('.btn-pop').click(function(e){
-			e.preventDefault();
-			$('#myModal').modal('show');
-		});
+
 	}, false );
 //	$.ajax({ url: "/ajax/cloud/storage/", type: "GET", dataType: "html", success: ajaxStorageUpdate });
 }
