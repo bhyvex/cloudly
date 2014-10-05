@@ -113,7 +113,8 @@ def delete_file(request, file_id):
 	profile = userprofile.objects.get(user=request.user)
 	secret = profile.secret
 
-	_log_user_activity(profile,"click","/delete/file/"+str(file_id)+"/delete/","delete_file")
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/delete/file/"+str(file_id)+"/delete/","delete_file",ip=ip)
 
 	print 'user', request.user
 
@@ -143,7 +144,8 @@ def cloud_dropzone(request):
 	profile = userprofile.objects.get(user=request.user)
 	secret = profile.secret
 
-	_log_user_activity(profile,"click","/cloud/dropzone/","cloud_dropzone")
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/cloud/dropzone/","cloud_dropzone",ip=ip)
 
 	print 'user', request.user
 
@@ -180,7 +182,8 @@ def cloud_sharing(request):
 	profile = userprofile.objects.get(user=request.user)
 	secret = profile.secret
 
-	_log_user_activity(profile,"click","/cloud/sharing/","cloud_sharing")
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/cloud/sharing/","cloud_sharing",ip=ip)
 
 	print 'user', request.user
 	
@@ -250,7 +253,8 @@ def cloud_storage(request):
 
 	print request.user
 	
-	_log_user_activity(profile,"click","/cloud/storage/","cloud_storage")
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/cloud/storage/","cloud_storage",ip=ip)
 		
 
 	if request.method == 'POST':
