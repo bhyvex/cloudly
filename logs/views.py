@@ -37,7 +37,8 @@ def logs(request):
 
 	print request.user
 	
-	_log_user_activity(profile,"click","/logs/","logs")
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/logs/","logs",ip=ip)
 
 	
 	return render_to_response('logs.html', {'profile':profile,}, context_instance=RequestContext(request))
