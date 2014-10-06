@@ -6,6 +6,8 @@ class Cache(models.Model):
 	
 	user = models.ForeignKey(User)
 	
+	# XXX Note: perhaps it's a good idea to work this on mongo?
+	
 	# detail_level1
 	# detail_level2
 	# detail_level3
