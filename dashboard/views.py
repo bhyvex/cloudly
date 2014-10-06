@@ -36,10 +36,8 @@ def home(request):
 	
 		return render_to_response('web.html', locals(), context_instance=RequestContext(request))
 
-	print '-'*100
 	print '--  dashboard:'
 	print request.user
-	
 	
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
@@ -48,11 +46,6 @@ def home(request):
 	ip = request.META['REMOTE_ADDR']
 	_log_user_activity(profile,"click","/","home",ip=ip)
 	
-	
-	aws_access_key = profile.aws_access_key
-	aws_secret_key = profile.aws_secret_key
-	aws_ec2_verified = profile.aws_ec2_verified
-		
 	return render_to_response('dashboard.html', locals(), context_instance=RequestContext(request))
 
 
