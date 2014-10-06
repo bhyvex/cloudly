@@ -8,9 +8,11 @@ class Cache(models.Model):
 	
 	# XXX Note: perhaps it's a good idea to work this on mongo?
 	
-	# detail_level1
-	# detail_level2
-	# detail_level3
+	# vms_detail_level1
+	# vms_detail_level2
+	# vms_detail_level3
+	# vms_detail_level4
+	# vms_detail_level5
 	
 	last_seen = models.DateTimeField(auto_now_add=True)
 	date_created = models.DateTimeField(auto_now_add=True)

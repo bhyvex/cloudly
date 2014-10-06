@@ -72,10 +72,8 @@ def ajax_vms_refresh(request):
 					
 					instance_metrics = {}
 					instance_metrics['instance'] = instance.__dict__
-					
-					#pprint(instance.__dict__)
-										
-					print '** name', instance.id
+															
+					print '** instance', instance.id
 					print '** monitoring', instance.monitoring_state
 					
 					if(instance.monitoring_state=="disabled"):
@@ -130,15 +128,14 @@ def ajax_vms_refresh(request):
 
 					aws_virtual_machines[instance.id] = instance_metrics
 
-	print 'VMs updated'
+	print 'AWS VMs updated'
 	
-	pprint(aws_virtual_machines)
-	
-	print aws_virtual_machines.keys()
-	
-		
+	#pprint(aws_virtual_machines)	
+	#print aws_virtual_machines.keys()
+			
 	return HttpResponse("ALLDONE")
-
+	
+	
 
 def ajax_virtual_machines(request):
 	
