@@ -74,8 +74,13 @@
 </div>
 
 
-
 {% include "ajax_virtual_machines.html" %}
+
+
+{% if aws_virtual_machines %}
+	<strong>aws_virtual_machines</strong> {{aws_virtual_machines}}
+{% endif %}
+
 
 
 {% block extra_js_footer %}
