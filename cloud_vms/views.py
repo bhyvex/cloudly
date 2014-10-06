@@ -45,7 +45,7 @@ def ajax_vms_refresh(request):
 	aws_access_key = profile.aws_access_key
 	aws_secret_key = profile.aws_secret_key
 	aws_ec2_verified = profile.aws_ec2_verified
-	
+
 	aws_virtual_machines = {}
 	aws_virtual_machines_filter_level1 = {}
 	aws_virtual_machines_filter_level2 = {}
@@ -128,10 +128,11 @@ def ajax_vms_refresh(request):
 
 					aws_virtual_machines[instance.id] = instance_metrics
 
+
 	print 'AWS VMs updated'
 	
-	#pprint(aws_virtual_machines)	
-	#print aws_virtual_machines.keys()
+
+
 			
 	return HttpResponse("ALLDONE")
 	
