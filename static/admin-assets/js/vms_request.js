@@ -22,7 +22,7 @@ var vmsRequest = {
 		var $this = this;
 		$.ajax({
 			type: 'GET',
-			url: '/ajax/cloud/vms/refresh',
+			url: '/ajax/cloud/vms/refresh/',
 			data: '',
 			success:function(res){
 				if(res.indexOf('ALLDONE') !== -1){
