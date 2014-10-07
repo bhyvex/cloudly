@@ -128,13 +128,15 @@ def ajax_vms_refresh(request):
 
 	print 'AWS VMs updated'
 	
-	vms_cache = Cache.objects.get_or_create(user=user)
-	
+	vms_cache = Cache.objects.get_or_create(user=user)	
 	vms_cache = vms_cache[0]
 	
-	#vms_cache.vms_respose = simplejson.dumps(aws_virtual_machines)
+	vms_cache.vms_respose = aws_virtual_machines
+	
+	from django.utils import timezone
 	#vms_cache.last_seen = datetime.datetime.now()
-	#vms_cache.save()
+	vms_cache.last_seen = timezone.now()
+	vms_cache.save()
 	
 	print vms_cache
 			
