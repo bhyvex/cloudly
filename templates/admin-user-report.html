@@ -56,11 +56,16 @@
 							{% endcomment %}
 						  </tbody>
 					 </table>
-					Debug <strong>user_vms</strong> {{user_vms}}
-					<br>/
-					<i>
-						{{user_vms.vms_respose}}
-					</i>
+					Debug <strong>user_vms</strong> {% comment %}{{user_vms}}{% endcomment %}
+					<br>
+					
+					{% comment %}
+					<pre>
+						{% for i in user_vms.vms_respose %}
+							{{i}}
+						{% endfor %}
+					</pre>
+					{% endcomment %}
 					</div>
 			</div>
 		</div>
