@@ -36,6 +36,8 @@ from django.template.defaultfilters import filesizeformat, upper
 from django.contrib.humanize.templatetags.humanize import naturalday
 from cloudly.templatetags.cloud_extras import clear_filename, get_file_extension
 
+from cloud_vms.models import Cache
+
 
 def ajax_vms_refresh(request):
 	
@@ -126,8 +128,15 @@ def ajax_vms_refresh(request):
 
 	print 'AWS VMs updated'
 	
-
-
+	vms_cache = Cache.objects.get_or_create(user=user)
+	
+	vms_cache = vms_cache[0]
+	
+	#vms_cache.vms_respose = simplejson.dumps(aws_virtual_machines)
+	#vms_cache.last_seen = datetime.datetime.now()
+	#vms_cache.save()
+	
+	print vms_cache
 			
 	return HttpResponse("ALLDONE")
 	
