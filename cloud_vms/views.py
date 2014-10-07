@@ -37,6 +37,7 @@ from django.contrib.humanize.templatetags.humanize import naturalday
 from cloudly.templatetags.cloud_extras import clear_filename, get_file_extension
 
 from cloud_vms.models import Cache
+from bson import json_util
 
 
 def ajax_vms_refresh(request):
