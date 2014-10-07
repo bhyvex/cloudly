@@ -21,6 +21,8 @@ logger = logging.getLogger(__name__)
 import boto.ec2
 import boto.ec2.cloudwatch
 
+from cloud_vms.models import Cache
+
 from django.contrib.auth.models import User
 from userprofile.models import Profile, Activity
 
@@ -28,6 +30,7 @@ from cloud_storage.models import Files
 from cloud_storage.models import Uploaded_Files
 
 from userprofile.views import _log_user_activity
+
 
 
 def user_activity_report(request, user_id):
