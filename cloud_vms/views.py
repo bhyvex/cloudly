@@ -72,8 +72,8 @@ def ajax_vms_refresh(request):
 					instance_metrics = {}
 					instance_metrics['instance'] = instance.__dict__
 															
-					print '** instance', instance.id
-					#print 'monitoring', instance.monitoring_state
+					print '** instance', instance.id,
+					print 'monitoring', instance.monitoring_state
 					
 					if(instance.monitoring_state=="disabled"):
 						try:
@@ -138,7 +138,6 @@ def ajax_vms_refresh(request):
 	vms_cache.vms_respose = aws_virtual_machines
 	
 	from django.utils import timezone
-	#vms_cache.last_seen = datetime.datetime.now()
 	vms_cache.last_seen = timezone.now()
 	vms_cache.save()
 	
