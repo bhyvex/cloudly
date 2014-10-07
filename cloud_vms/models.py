@@ -6,8 +6,8 @@ class Cache(models.Model):
 	
 	user = models.ForeignKey(User)
 	
-	# vms_respose
-	# vms_info_filtered_1
+	vms_respose = models.TextField(blank=True)
+	vms_info_filtered_1 = models.TextField(blank=True)
 
 	last_seen = models.DateTimeField(auto_now_add=True)
 	date_created = models.DateTimeField(auto_now_add=True)
