@@ -73,7 +73,7 @@ def ajax_vms_refresh(request):
 					instance_metrics['instance'] = instance.__dict__
 															
 					print '** instance', instance.id
-					print 'monitoring', instance.monitoring_state
+					#print 'monitoring', instance.monitoring_state
 					
 					if(instance.monitoring_state=="disabled"):
 						try:
