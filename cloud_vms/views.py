@@ -94,14 +94,14 @@ def ajax_vms_refresh(request):
 					instance_metrics['cpu_utilization_datapoints'] = cpu_utilization_datapoints
 
 					# DiskReadOps
-					#metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskReadOps")[0]
-					#disk_readops_datapoints = metric.query(start, end, 'Average', '')
-					#instance_metrics['disk_readops_datapoints'] = disk_readops_datapoints
+					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskReadOps")[0]
+					disk_readops_datapoints = metric.query(start, end, 'Average', '')
+					instance_metrics['disk_readops_datapoints'] = disk_readops_datapoints
 
 					# DiskWriteOps
-					#metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskWriteOps")[0]
-					#disk_writeops_datapoints = metric.query(start, end, 'Average', '')
-					#instance_metrics['disk_writeops_datapoints'] = disk_writeops_datapoints
+					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskWriteOps")[0]
+					disk_writeops_datapoints = metric.query(start, end, 'Average', '')
+					instance_metrics['disk_writeops_datapoints'] = disk_writeops_datapoints
 
 					# DiskReadBytes
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskReadBytes")[0]
@@ -125,8 +125,6 @@ def ajax_vms_refresh(request):
 
 					aws_virtual_machines[instance.id] = instance_metrics
 
-
-	print 'AWS VMs updated'
 	
 	vms_cache = Cache.objects.get_or_create(user=user)	
 	vms_cache = vms_cache[0]
@@ -138,8 +136,8 @@ def ajax_vms_refresh(request):
 	vms_cache.last_seen = timezone.now()
 	vms_cache.save()
 	
-	print vms_cache
-			
+	print 'AWS VMs cache was succesfully updated', vms_cache
+	
 	return HttpResponse("ALLDONE")
 	
 	
