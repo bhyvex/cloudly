@@ -38,6 +38,7 @@ from cloudly.templatetags.cloud_extras import clear_filename, get_file_extension
 
 from cloud_vms.models import Cache
 from bson import json_util
+import json
 
 
 def ajax_vms_refresh(request):
