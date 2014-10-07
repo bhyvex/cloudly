@@ -47,11 +47,6 @@ def ajax_vms_refresh(request):
 	aws_ec2_verified = profile.aws_ec2_verified
 
 	aws_virtual_machines = {}
-	aws_virtual_machines_filter_level1 = {}
-	aws_virtual_machines_filter_level2 = {}
-	aws_virtual_machines_filter_level3 = {}
-	aws_virtual_machines_filter_level4 = {}
-	aws_virtual_machines_filter_level5 = {}
 
 	if aws_ec2_verified:
 					
