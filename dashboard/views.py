@@ -27,6 +27,7 @@ from userprofile.models import Profile as userprofile
 from userprofile.views import _log_user_activity
 
 from amazon import ec2_funcs
+from cloud_vms.models import Cache
 
 def home(request):
 		
@@ -47,7 +48,11 @@ def home(request):
 	ip = request.META['REMOTE_ADDR']
 	_log_user_activity(profile,"click","/","home",ip=ip)
 	
-	return render_to_response('dashboard.html', locals(), context_instance=RequestContext(request))
+	try:
+		vms_cache = Cache.objects.get(user=request.user)
+	except: vms_cache = {}
+	
+	return render_to_response('dashboard.html', {'vms_cache':vms_cache,}, context_instance=RequestContext(request))
 
 
 def welcome(request):
