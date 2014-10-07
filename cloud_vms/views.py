@@ -44,6 +44,8 @@ def ajax_vms_refresh(request):
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
 	
+	print 'Refreshing', user, 'VMs cache..'
+	
 	aws_access_key = profile.aws_access_key
 	aws_secret_key = profile.aws_secret_key
 	aws_ec2_verified = profile.aws_ec2_verified
@@ -89,7 +91,11 @@ def ajax_vms_refresh(request):
 					# ['Seconds', 'Percent', 'Bytes', 'Bits', 'Count', 'Bytes/Second', 'Bits/Second', 'Count/Second']
 					
 					# CPUUtilization
-					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="CPUUtilization")[0]
+					try:
+						metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="CPUUtilization")[0]
+					except: continue
+					
+					
 					cpu_utilization_datapoints = metric.query(start, end, 'Average', 'Percent')
 					instance_metrics['cpu_utilization_datapoints'] = cpu_utilization_datapoints
 
