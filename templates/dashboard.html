@@ -76,8 +76,9 @@
 
 {% include "ajax_virtual_machines.html" %}
 
+{% if vms_cache %}
 <strong>vms_cache</strong> {{vms_cache.last_seen}} {{vms_cache.vms_respose}}
-
+{% endif %}
 
 {% block extra_js_footer %}
 
