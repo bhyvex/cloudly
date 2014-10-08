@@ -59,7 +59,13 @@
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"_state"}}</td>
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"instance_type"}}</td>
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"tags"|dict_get:"Name"}}</td>
-								<td><a href="http://{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"public_dns_name"}}" target="_blank"><font size=1>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"public_dns_name"}}</a></font></td>
+								<td>
+									{% if vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"public_dns_name" %}
+									<a href="http://{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"public_dns_name"}}" target="_blank"><font size=1>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"public_dns_name"}}</a></font>
+									{% else %}
+									-
+									{% endif %}
+								</td>
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"_placement"}}</td>
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"region"}}</td>
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"ip_address"}}</td>
