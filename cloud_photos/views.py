@@ -63,5 +63,10 @@ def cloud_photos(request):
 	cloud_storage_menu_open = True
 	_log_user_activity(profile,"click","/cloud/photos/","cloud_photos",ip=ip)
 
+	import datetime
+	user = request.user
+	user.last_login = datetime.datetime.now()
+	user.save()
+
 	return render_to_response('cloud_pictures.html', {'BROWSERS_FORMATS':BROWSERS_FORMATS, 'files_pictures':files_pictures, 'profile':profile,'cloud_storage_menu_open':cloud_storage_menu_open,}, context_instance=RequestContext(request))
 
