@@ -47,23 +47,16 @@
 					</p>
 
 					<div class="form-group">
-	                    <label class="col-md-3 control-label">Checkboxes</label>
+	                    <label class="col-md-3 control-label">AWS Regions</label>
 	                    <div class="col-md-9">
+							{% for region in aws_regions %}
 	                        <div class="checkbox">
 	                            <label for="checkbox1">
-	                            	<input type="checkbox" id="checkbox1" name="checkbox1" value="option1" checked> Option 1
+	                            	<input type="checkbox" id="checkbox1" name="checkbox1" value="option1" {% if forloop.counter = 1 %}checked{% endif %}> Option 1
 	                            </label>
 	                        </div>
-	                        <div class="checkbox">
-	                            <label for="checkbox2">
-	                            	<input type="checkbox" id="checkbox2" name="checkbox2" value="option2"> Option 2
-	                            </label>
-	                        </div>
-	                        <div class="checkbox">
-	                            <label for="checkbox3">
-	                            	<input type="checkbox" id="checkbox3" name="checkbox3" value="option3"> Option 3
-	                            </label>
-	                        </div>
+							{% endfor %}
+	
 	                    </div>
 	                </div>
 	
