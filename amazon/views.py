@@ -40,6 +40,14 @@ def aws_test(request):
 	print '-'*100
 	print 'metrics', metrics
 	
+	
+	import datetime
+	user = request.user
+	user.last_login = datetime.datetime.now()
+	user.save()
+	
+	
+	
 	for reservation in reservations:
 
 		instances = reservation.instances
