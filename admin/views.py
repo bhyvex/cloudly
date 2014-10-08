@@ -2,9 +2,9 @@
 
 import os
 import time
-import pickle
 import logging
 import simplejson
+import base64, pickle
 import datetime
 
 from django.db.models import Q
@@ -64,7 +64,6 @@ def user_activity_report(request, user_id):
 	user_profile = Profile.objects.get(user=u)
 	
 	user_vms = Cache.objects.get(user=request.user)
-	#user_vms = simplejson.loads(user_vms.vms_respose)
 	
 	return render_to_response('admin-user-report.html', {'u':u,'user_vms':user_vms,'user_profile':user_profile,'user_files':user_files,'user_activity':user_activity,'user_activity_clicks':user_activity_clicks,'user_activity_other':user_activity_other,'profile':profile,}, context_instance=RequestContext(request))
 	

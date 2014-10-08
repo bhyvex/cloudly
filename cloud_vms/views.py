@@ -137,7 +137,7 @@ def ajax_vms_refresh(request):
 	vms_cache = vms_cache[0]
 	
 	print 'dumping json data....'
-	vms_cache.vms_respose = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
+	vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
 	
 	from django.utils import timezone
 	vms_cache.last_seen = timezone.now()

@@ -2,10 +2,10 @@
 
 import os
 import time
-import pickle
 import logging
 import datetime
 import simplejson
+import base64, pickle
 
 from pprint import pprint
 
@@ -48,10 +48,14 @@ def home(request):
 	ip = request.META['REMOTE_ADDR']
 	_log_user_activity(profile,"click","/","home",ip=ip)
 	
-	try:
-		vms_cache = Cache.objects.get(user=request.user)
-	except: vms_cache = {}
-	
+	#try:
+	#print 'vms_cache.vms_response' * 1000
+	#vms_cache = Cache.objects.get(user=request.user)
+	#vms_respose = base64.b64encode(vms_cache.vms_response)
+	#print vms_response
+	#except: 
+	vms_cache = {}
+
 	return render_to_response('dashboard.html', {'vms_cache':vms_cache,}, context_instance=RequestContext(request))
 
 
