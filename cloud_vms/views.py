@@ -2,10 +2,12 @@
 
 import os
 import time
-import pickle
+import base64, pickle
 import logging
+
 import datetime
 import json
+#from django.utils import simplejson
 
 from pprint import pprint
 
@@ -16,7 +18,6 @@ from django.template import RequestContext
 from django.http import HttpResponseForbidden
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
-from django.utils import simplejson
 
 logger = logging.getLogger(__name__)
 
@@ -37,8 +38,6 @@ from django.contrib.humanize.templatetags.humanize import naturalday
 from cloudly.templatetags.cloud_extras import clear_filename, get_file_extension
 
 from cloud_vms.models import Cache
-from bson import json_util
-import json
 
 
 def ajax_vms_refresh(request):
@@ -138,7 +137,7 @@ def ajax_vms_refresh(request):
 	vms_cache = vms_cache[0]
 	
 	print 'dumping json data....'
-	vms_cache.vms_respose = aws_virtual_machines
+	vms_cache.vms_respose = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
 	
 	from django.utils import timezone
 	vms_cache.last_seen = timezone.now()
