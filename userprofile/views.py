@@ -202,6 +202,9 @@ def cloud_settings(request):
 	profile = userprofile.objects.get(user=request.user)
 	secret = profile.secret
 
+	user.last_login = datetime.datetime.now()
+	user.save()
+
 	print request.user
 	
 	aws_regions = {
@@ -289,6 +292,9 @@ def account_settings(request):
 		return HttpResponseRedirect("/")
 
 	user = request.user
+	user.last_login = datetime.datetime.now()
+	user.save()
+
 	profile = userprofile.objects.get(user=request.user)
 	secret = profile.secret
 
