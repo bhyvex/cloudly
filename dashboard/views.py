@@ -54,7 +54,7 @@ def home(request):
 	#vms_respose = base64.b64encode(vms_cache.vms_response)
 	#print vms_response
 	#except: 
-	vms_cache = {}
+	vms_cache = None
 
 	return render_to_response('dashboard.html', {'vms_cache':vms_cache,}, context_instance=RequestContext(request))
 

@@ -76,11 +76,10 @@
 
 {% include "ajax_virtual_machines.html" %}
 
-{% if vms_cache %}
-<strong>vms_cache</strong> {{vms_cache}}
-<hr/>
-{{vms_cache.last_seen}} {{vms_cache.vms_respose}}
-{% endif %}
+<strong>vms_cached_response</strong> {{vms_cached_response}}<br/>
+<strong>last_seen</strong> {{vms_cache.last_seen}}<br/>
+<strong>vms_response</strong> {{vms_cache.vms_response}}
+
 
 {% block extra_js_footer %}
 
