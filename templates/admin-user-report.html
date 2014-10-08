@@ -38,13 +38,13 @@
 						  <thead>
 							  <tr>
 								  <th>id</th>
-								  <th>name</th>
 								  <th>state</th>
 								  <th>instance_type</th>
+								  <th>name</th>
+								  <th>public_dns_name</th>
 								  <th>_placement</th>
 								  <th>region</th>
 								  <th>ip_address</th>
-								  <th>public_dns_name</th>
 								  <th>key_name</th>
 								  <th>launch_time</th>
 								  <th>virtualization_type</th>
@@ -56,13 +56,13 @@
 							{% for i in vms_cached_response %}
 							<tr>
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"id"}}</td>
-								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"tags"|dict_get:"Name"}}</td>
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"_state"}}</td>
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"instance_type"}}</td>
+								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"tags"|dict_get:"Name"}}</td>
+								<td><a href="http://{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"public_dns_name"}}" target="_blank"><font size=1>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"public_dns_name"}}</a></font></td>
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"_placement"}}</td>
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"region"}}</td>
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"ip_address"}}</td>
-								<td><a href="http://{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"public_dns_name"}}" target="_blank"><font size=1>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"public_dns_name"}}</a></font></td>
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"key_name"}}</td>
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"launch_time"}}</td>
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"virtualization_type"}}</td>
