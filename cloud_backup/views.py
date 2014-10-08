@@ -43,5 +43,11 @@ def cloud_backups(request):
 	profile = Profile.objects.get(user=request.user)
 	_log_user_activity(profile,"click","/cloud/backups/","cloud_backups",ip=ip)
 	
+	import datetime
+	user = request.user
+	user.last_login = datetime.datetime.now()
+	user.save()
+	
+	
 	return render_to_response('cloud_backups.html', locals(), context_instance=RequestContext(request))
 
