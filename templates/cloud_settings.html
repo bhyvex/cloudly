@@ -42,7 +42,6 @@
 					                </div>
 					
 					<p>
-						aws_regions {{aws_regions}}<br/>
 						enabled_regions {{profile.aws_enabled_regions}}<br/>	
 					</p>
 
@@ -52,7 +51,7 @@
 							{% for region in aws_regions %}
 	                        <div class="checkbox">
 	                            <label for="checkbox1">
-	                            	<input type="checkbox" id="checkbox1" name="checkbox1" value="option1" {% if forloop.counter = 1 %}checked{% endif %}> Option 1
+	                            	<input type="checkbox" id="{{region}}" name="checkbox1" value="option1" {% if forloop.counter = 1 %}checked{% endif %}> {{aws_regions|dict_get:region}}
 	                            </label>
 	                        </div>
 							{% endfor %}
@@ -62,6 +61,8 @@
 	
 	
                     <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-dot-circle-o"></i> Submit</button>
+
+
                     <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-dot-circle-o"></i> Verify</button>
 
 				            
