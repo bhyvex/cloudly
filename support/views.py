@@ -29,6 +29,10 @@ def support(request):
 		return HttpResponseRedirect("/")
 
 	user = request.user
+	user.last_login = datetime.datetime.now()
+	user.save()
+
+	user = request.user
 	profile = userprofile.objects.get(user=request.user)
 	secret = profile.secret
 
@@ -45,6 +49,10 @@ def support_add_new(request):
 
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/")
+
+	user = request.user
+	user.last_login = datetime.datetime.now()
+	user.save()
 
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
@@ -64,6 +72,10 @@ def support_devel_ticket(request):
 
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/")
+
+	user = request.user
+	user.last_login = datetime.datetime.now()
+	user.save()
 
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
