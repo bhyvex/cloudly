@@ -62,7 +62,7 @@
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"_placement"}}</td>
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"region"}}</td>
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"ip_address"}}</td>
-								<td><a href="#"><font size=1>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"public_dns_name"}}</a></font></td>
+								<td><a href="http://{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"public_dns_name"}}" target="_blank"><font size=1>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"public_dns_name"}}</a></font></td>
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"key_name"}}</td>
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"launch_time"}}</td>
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"virtualization_type"}}</td>
