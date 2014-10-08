@@ -34,6 +34,11 @@ def cloud_software_add_new(request):
 	#if not request.user.is_superuser:
 	#	return HttpResponse("access denied")
 
+	import datetime
+	user = request.user
+	user.last_login = datetime.datetime.now()
+	user.save()
+
 	print '-- cloud software add new:'
 	print request.user
 
@@ -88,6 +93,11 @@ def cloud_software_view_tag(request, tag_slug):
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/")
 
+	import datetime
+	user = request.user
+	user.last_login = datetime.datetime.now()
+	user.save()
+	
 	ip = request.META['REMOTE_ADDR']
 	profile = Profile.objects.get(user=request.user)
 	secret = profile.secret
@@ -125,6 +135,11 @@ def cloud_software(request):
 
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/")
+
+	import datetime
+	user = request.user
+	user.last_login = datetime.datetime.now()
+	user.save()
 
 	user = request.user
 	profile = Profile.objects.get(user=request.user)
