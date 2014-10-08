@@ -52,11 +52,8 @@
   <ul class="list-group">
     <li class="list-group-item"><strong>Name:</strong> {{profile.name}}</li>
     <li class="list-group-item"><strong>E-mail:</strong> {{user.email}}</li>
-    <li class="list-group-item"><strong>Password:</strong> {{user.password}} <br/><a href="/account/password/"><button type="button" class="btn btn-xs btn-warning">Change Password</button></a>
-	</li>
     <li class="list-group-item"><strong>Secret</strong> {{profile.secret}}</li>
-    <li class="list-group-item"><strong>Date joined:</strong> {{user.date_joined}}</li>
-	<br/>
+    <li class="list-group-item"><strong>Password:</strong> <a href="/account/password/"><button type="button" class="btn btn-xs btn-warning">Change Password</button></a> {{user.password}}</li>
     <li class="list-group-item"><strong>Language</strong> {{profile.language}}</li>
     <li class="list-group-item"><strong>Country</strong> {{profile.country}}</li>
 	<br/>
@@ -104,18 +101,12 @@
  					</div><!--/col-->
 
 					<p>
-						Secret: {{secret}}<br/>
-						<br/>
+						Secret: {{profile.secret}}<br/>
 						Your Amazon AWS Settings<br/>
 						aws_access_key {{profile.aws_access_key}}<br/>
 						aws_secret_key {{profile.aws_secret_key}}<br/>
 						<br/>
-						aws_ec2_verified {{profile.aws_ec2_verified}}<br/>
-						aws_s3_verified {{profile.aws_s3_verified}}<br/>
-						aws_cloudfront_verified {{profile.aws_cloudfront_verified}}<br/>
-						<br/>
 						aws_enabled_regions {{profile.aws_enabled_regions}}<br/>
-						<br/>
 						aws_regions {{aws_regions}}<br/>
 					</p>
 
