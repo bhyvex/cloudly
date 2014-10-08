@@ -56,16 +56,14 @@
 							{% endcomment %}
 						  </tbody>
 					 </table>
-					Debug <strong>vms_cached_response</strong> last_seen <strong>{{vms_cached_response|dict_get:"last_seen"}}</strong> {{vms_cached_response}}
-					<br>
 					
-					{% comment %}
 					<pre>
-						{% for i in user_vms.vms_respose %}
-							{{i}}
-						{% endfor %}
+{% for i in vms_cached_response %}
+{{i}}
+{{vms_cached_response|dict_get:i|dict_get:"instance"}}
+{% endfor %}
 					</pre>
-					{% endcomment %}
+					
 					</div>
 			</div>
 		</div>

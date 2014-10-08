@@ -69,7 +69,7 @@ def user_activity_report(request, user_id):
 		vms_response = base64.b64decode(vms_response)
 		vms_response = pickle.loads(vms_response)
 		vms_cached_response = vms_response
-		vms_cached_response['last_seen'] = vms_cache.last_seen
+		#vms_cached_response['last_seen'] = vms_cache.last_seen
 	except: vms_cached_response = None
 	
 	return render_to_response('admin-user-report.html', {'u':u,'vms_cached_response':vms_cached_response,'user_profile':user_profile,'user_files':user_files,'user_activity':user_activity,'user_activity_clicks':user_activity_clicks,'user_activity_other':user_activity_other,'profile':profile,}, context_instance=RequestContext(request))
