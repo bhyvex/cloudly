@@ -109,6 +109,11 @@ def delete_file(request, file_id):
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/")
 
+	import datetime
+	user = request.user
+	user.last_login = datetime.datetime.now()
+	user.save()
+
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
 	secret = profile.secret
@@ -139,6 +144,11 @@ def cloud_dropzone(request):
 
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/")
+
+	import datetime
+	user = request.user
+	user.last_login = datetime.datetime.now()
+	user.save()
 
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
@@ -178,6 +188,11 @@ def cloud_sharing(request):
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/")
 
+	import datetime
+	user = request.user
+	user.last_login = datetime.datetime.now()
+	user.save()
+
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
 	secret = profile.secret
@@ -199,6 +214,7 @@ def dropzone_uploader(request):
 		return HttpResponseRedirect("/")
 
 	print request.user
+
 
 	if request.method == 'POST':
 
@@ -246,6 +262,11 @@ def cloud_storage(request):
 
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/")
+
+	import datetime
+	user = request.user
+	user.last_login = datetime.datetime.now()
+	user.save()
 
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
