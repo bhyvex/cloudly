@@ -70,8 +70,8 @@
 								<th>Backups</th>
 								<th>Files</th>
 								<th>Size</th>
-								<th>Last Seen</th>
 								<th>Registered</th>
+								<th>Last Seen</th>
 								<th>clicks</th>                                          
 								
 							  </tr>
@@ -104,8 +104,8 @@
 								<td>{% if p.aws_automatic_backups %}Enabled{% else %}Disabled{% endif %}</td>
 								<td>{{p.user|count_user_files}}</td>
 								<td>{{p.user|count_user_files_size|filesizeformat}}</td>
-								<td><font size=2>{{p.user.last_login|naturaltime}}</font></td>
 								<td><font size=2>{{p.user.date_joined|naturaltime}}</font></td>
+								<td><font size=2>{{p.user.last_login|naturaltime}}</font></td>
 								<td><center><a href="/admin/user/{{p.id}}/activity/">{{p.clicks}}</a></center></td>
 							</tr>
 							{% endfor %}
