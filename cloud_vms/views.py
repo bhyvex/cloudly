@@ -68,7 +68,10 @@ def ajax_vms_refresh(request):
 				reservations = ec2conn.get_all_instances()
 				instances = [i for r in reservations for i in r.instances]
 
+
 				for instance in instances:
+					
+					aws_virtual_machines[instance.id] = {}
 					
 					instance_metrics = {}
 					instance_metrics['instance'] = instance.__dict__

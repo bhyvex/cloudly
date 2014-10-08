@@ -53,6 +53,7 @@
 							  </tr>
 						  </thead>   
 						  <tbody>
+							here debug {{vms_cached_response}}
 							{% for i in vms_cached_response %}
 							<tr>
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"id"}}</td>
