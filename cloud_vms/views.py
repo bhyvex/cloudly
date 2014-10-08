@@ -43,7 +43,10 @@ from cloud_vms.models import Cache
 def ajax_vms_refresh(request):
 	
 	user = request.user
-	profile = userprofile.objects.get(user=request.user)
+	
+	try:
+		profile = userprofile.objects.get(user=request.user)
+	except: return HttpResponseRedirect("access denied")
 	
 	print 'Refreshing', user, 'VMs cache..'
 	
