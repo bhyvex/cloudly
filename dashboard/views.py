@@ -48,17 +48,14 @@ def home(request):
 	ip = request.META['REMOTE_ADDR']
 	_log_user_activity(profile,"click","/","home",ip=ip)
 	
-	#try:
-	print '-' * 1000
-	vms_cache = Cache.objects.get(user=request.user)
-	print '-'*100
-	
-	vms_response = vms_cache.vms_response
-	vms_response = base64.b64decode(vms_response)
-	vms_response = pickle.loads(vms_response)
-	print vms_response
-	#except: 
-	vms_cached_response = None
+	try:
+		vms_cache = Cache.objects.get(user=request.user)
+		vms_response = vms_cache.vms_response
+		vms_response = base64.b64decode(vms_response)
+		vms_response = pickle.loads(vms_response)
+		vms_cached_response = vms_response
+		vms_cached_response['last_seen'] = vms_cache.last_seen
+	except: vms_cached_response = None
 
 	return render_to_response('dashboard.html', {'vms_cached_response':vms_cached_response,}, context_instance=RequestContext(request))
 
