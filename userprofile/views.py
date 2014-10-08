@@ -222,7 +222,9 @@ def cloud_settings(request):
 	ip = request.META['REMOTE_ADDR']
 	_log_user_activity(profile,"click","/cloud/settings/","cloud_settings",ip=ip)
 
-	return render_to_response('cloud_settings.html', {'aws_regions':AWS_REGIONS,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
+	profile_regions = profile.aws_enabled_regions.split(',')
+
+	return render_to_response('cloud_settings.html', {'aws_regions':AWS_REGIONS,'profile_regions':profile_regions,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
 	
 
 def lock(request):
