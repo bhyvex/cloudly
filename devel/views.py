@@ -44,5 +44,10 @@ def devel(request, dev=""):
 	
 	active_tab = "devel"
 	
+	user = request.user
+	user.last_login = datetime.datetime.now()
+	user.save()
+	
+	
 	return render_to_response('devel'+dev+'.html', {'active_tab':active_tab,}, context_instance=RequestContext(request))
 

@@ -37,5 +37,9 @@ def invoices(request):
 	ip = request.META['REMOTE_ADDR']
 	_log_user_activity(profile,"click","/invoices/","invoices",ip=ip)
 	
+	user = request.user
+	user.last_login = datetime.datetime.now()
+	user.save()
+	
 
 	return render_to_response('invoices.html', {'user':user,'profile':profile,}, context_instance=RequestContext(request))
