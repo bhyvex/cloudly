@@ -59,8 +59,19 @@
 					
 					<pre>
 {% for i in vms_cached_response %}
-{{i}}
-{{vms_cached_response|dict_get:i|dict_get:"instance"}}
+id {{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"id"}}
+state {{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"_state"}}
+instance_type {{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"instance_type"}}
+region {{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"region"}}
+_placement {{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"_placement"}}
+Name (tags) {{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"tags"|dict_get:"Name"}}
+virtualization_type {{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"virtualization_type"}}
+ip_address {{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"ip_address"}}
+public_dns_name {{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"public_dns_name"}}
+key_name {{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"key_name"}}
+launch_time {{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"launch_time"}}
+architecture {{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"architecture"}}
+hypervisor {{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"hypervisor"}}
 {% endfor %}
 					</pre>
 					
