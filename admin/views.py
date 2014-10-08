@@ -64,7 +64,7 @@ def user_activity_report(request, user_id):
 	user_profile = Profile.objects.get(user=u)
 	
 	try:
-		vms_cache = Cache.objects.get(user=request.user)
+		vms_cache = Cache.objects.get(user=u)
 		vms_response = vms_cache.vms_response
 		vms_response = base64.b64decode(vms_response)
 		vms_response = pickle.loads(vms_response)
