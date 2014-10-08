@@ -136,14 +136,14 @@ def ajax_vms_refresh(request):
 	vms_cache = Cache.objects.get_or_create(user=user)	
 	vms_cache = vms_cache[0]
 	
-	print 'dumping json data....'
+	#print 'dumping json data....'
 	vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
 	
 	from django.utils import timezone
 	vms_cache.last_seen = timezone.now()
 	vms_cache.save()
 	
-	print 'AWS VMs cache was succesfully updated', vms_cache
+	print 'VMs cache was succesfully updated.'
 	
 	return HttpResponse("ALLDONE")
 	
