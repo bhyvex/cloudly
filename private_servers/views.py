@@ -34,6 +34,10 @@ def server_detail(request, uuid):
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/")
 
+	user = request.user
+	user.last_login = datetime.datetime.now()
+	user.save()
+
 	print '-- server detail:'
 	print request.user, 'server', uuid
 	
@@ -63,6 +67,10 @@ def servers(request):
 		
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/")
+
+	user = request.user
+	user.last_login = datetime.datetime.now()
+	user.save()
 
 	print '-- servers:'
 	print request.user
