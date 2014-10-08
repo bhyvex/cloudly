@@ -49,10 +49,14 @@ def home(request):
 	_log_user_activity(profile,"click","/","home",ip=ip)
 	
 	#try:
-	#print 'vms_cache.vms_response' * 1000
-	#vms_cache = Cache.objects.get(user=request.user)
-	#vms_respose = base64.b64encode(vms_cache.vms_response)
-	#print vms_response
+	print '-' * 1000
+	vms_cache = Cache.objects.get(user=request.user)
+	print '-'*100
+	
+	vms_response = vms_cache.vms_response
+	vms_response = base64.b64decode(vms_response)
+	vms_response = pickle.loads(vms_response)
+	print vms_response
 	#except: 
 	vms_cached_response = None
 
