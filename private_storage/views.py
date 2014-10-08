@@ -32,6 +32,10 @@ def private_storage(request):
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/")
 
+	user = request.user
+	user.last_login = datetime.datetime.now()
+	user.save()
+
 	print '-- private storage:'
 	print request.user
 
