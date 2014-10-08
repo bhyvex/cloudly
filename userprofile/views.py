@@ -30,9 +30,20 @@ logger = logging.getLogger(__name__)
 from django.core.mail import send_mail
 
 
+AWS_REGIONS = {
+	"ap-northeast-1":"Asia Pacific (Tokyo) Region",
+	"ap-southeast-1":"Asia Pacific (Singapore) Region",
+	"ap-southeast-2":"Asia Pacific (Sydney) Region",
+	"eu-west-1":"EU (Ireland) Region",
+	"sa-east-1":"South America (Sao Paulo) Region",
+	"us-east-1":"US East (Northern Virginia) Region",
+	"us-west-1":"US West (Northern California) Region",
+	"us-west-2":"US West (Oregon) Region",
+}
+
+
 def _remove_accents(data):
     return ''.join(x for x in unicodedata.normalize('NFKD', data) if x in string.ascii_letters).lower()
-
 
 def _log_user_activity(userprofile, activity, link, function="", ip=""):
 	
@@ -208,21 +219,10 @@ def cloud_settings(request):
 
 	print request.user
 	
-	aws_regions = {
-		"ap-northeast-1":"Asia Pacific (Tokyo) Region",
-		"ap-southeast-1":"Asia Pacific (Singapore) Region",
-		"ap-southeast-2":"Asia Pacific (Sydney) Region",
-		"eu-west-1":"EU (Ireland) Region",
-		"sa-east-1":"South America (Sao Paulo) Region",
-		"us-east-1":"US East (Northern Virginia) Region",
-		"us-west-1":"US West (Northern California) Region",
-		"us-west-2":"US West (Oregon) Region",
-	}
-
 	ip = request.META['REMOTE_ADDR']
 	_log_user_activity(profile,"click","/cloud/settings/","cloud_settings",ip=ip)
 
-	return render_to_response('cloud_settings.html', {'aws_regions':aws_regions,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
+	return render_to_response('cloud_settings.html', {'aws_regions':AWS_REGIONS,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
 	
 
 def lock(request):
