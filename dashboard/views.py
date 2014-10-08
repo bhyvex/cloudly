@@ -42,6 +42,9 @@ def home(request):
 	print request.user
 	
 	user = request.user
+	user.last_login = datetime.datetime.now()
+	user.save()
+	
 	profile = userprofile.objects.get(user=request.user)
 	secret = profile.secret
 	
