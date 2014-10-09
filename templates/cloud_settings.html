@@ -36,7 +36,7 @@
 					                <div class="form-group">
 					                    <label class="col-md-3 control-label" for="hf-password">AWS Secret</label>
 					                    <div class="col-md-9">
-					                        <input type="password" id="hf-password" name="new_passwd" class="form-control" placeholder="">
+					                        <input type="password" id="hf-password" name="new_passwd" class="form-control" placeholder="{% if profile.aws_secret_key %}*******************************************************************{% endif %}">
 					                        <span class="help-block">Please provide your AWS Secret</span>
 					                    </div>
 					                </div>
