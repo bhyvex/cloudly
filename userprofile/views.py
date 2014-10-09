@@ -232,7 +232,8 @@ def cloud_settings_update_credentials(request):
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/")
 	
-	# XXX here....
+	print '*'*1000
+	print request.POST
 	
 	return HttpResponseRedirect("/cloud/settings/")
 
