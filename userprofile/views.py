@@ -289,6 +289,8 @@ def change_password(request):
 
 def cloud_settings_update_regions(request):
 	
+	print '*'*1000
+	print request.POST
 	
 	return HttpResponseRedirect("/cloud/settings/")
 
