@@ -228,6 +228,12 @@ def cloud_settings(request):
 	
 
 def cloud_settings_update_credentials(request):
+	
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+	
+	# XXX here....
+	
 	return HttpResponseRedirect("/cloud/settings/")
 
 def lock(request):
@@ -253,7 +259,6 @@ def lock(request):
 def change_password(request):
 
 	print '-- change password:'
-
 
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/")
@@ -291,6 +296,9 @@ def change_password(request):
 
 
 def cloud_settings_update_regions(request):
+	
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
 	
 	enable_regions = request.POST.getlist('checkboxes')
 	
