@@ -58,15 +58,15 @@
 							</div>
 						</div>
 						<div class="panel-body">
-							<form name="input" action="#" method="POST" class="form-horizontal ">{% csrf_token %}
+							<form name="input" action="/cloud/settings/regions/update/" method="POST" class="form-horizontal ">{% csrf_token %}
 							
 							<div class="form-group">
 				                <label class="col-md-3 control-label"></label>
 				                <div class="col-md-9">
 									{% for region in aws_regions %}
 				                    <div class="checkbox">
-				                        <label for="checkbox1">
-				                        	<input type="checkbox" id="{{region}}" name="checkbox1" value="option1" {% if region in profile_regions %}checked{% endif %}> {{aws_regions|dict_get:region}}
+				                        <label for="checkbox{{forloop.counter}}">
+				                        	<input type="checkbox" id="{{region}}" name="checkbox{{forloop.counter}}" value="option{{forloop.counter}}" {% if region in profile_regions %}checked{% endif %}> {{aws_regions|dict_get:region}}
 				                        </label>
 				                    </div>
 									{% endfor %}
