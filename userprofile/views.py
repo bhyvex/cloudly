@@ -288,7 +288,10 @@ def change_password(request):
 	return render_to_response('account_change_password.html', {'error':error,}, context_instance=RequestContext(request))
 
 def cloud_settings_update_regions(request):
-	return "TODO"
+	
+	
+	return HttpResponseRedirect("/cloud/settings/")
+
 
 def account_settings(request):
 
