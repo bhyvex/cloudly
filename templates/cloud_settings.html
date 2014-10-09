@@ -43,7 +43,7 @@
 	
 		                    <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-dot-circle-o"></i> Update AWS Key and Secret</button>
 		                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-truck"></i> Verify</button>
-
+							</form>
 				            
 	 					</div><!--/col-->
 				</div><!--/row-->	
@@ -58,6 +58,8 @@
 							</div>
 						</div>
 						<div class="panel-body">
+							<form name="input" action="#" method="POST" class="form-horizontal ">{% csrf_token %}
+							
 							<div class="form-group">
 				                <label class="col-md-3 control-label"></label>
 				                <div class="col-md-9">
@@ -73,7 +75,7 @@
 				            </div>
 	
 		                    <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-dot-circle-o"></i> Update Regions</button>
-				            
+				            </form>
 	 					</div><!--/col-->
 				</div><!--/row-->	
 			</div>
