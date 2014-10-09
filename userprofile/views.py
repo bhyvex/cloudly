@@ -289,9 +289,17 @@ def change_password(request):
 
 def cloud_settings_update_regions(request):
 	
-	print '*'*1000
-	print request.POST
+	enable_regions = request.POST.getlist('checkboxes')
 	
+	enabled_regions = ""
+	for region in enable_regions:
+		enabled_regions += ","+str(region)
+	
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	profile.aws_enabled_regions = enabled_regions
+	profile.save()
+
 	return HttpResponseRedirect("/cloud/settings/")
 
 
