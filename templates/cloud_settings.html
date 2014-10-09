@@ -29,14 +29,14 @@
 					                <div class="form-group">
 					                    <label class="col-md-3 control-label" for="hf-email">AWS Access Key</label>
 					                    <div class="col-md-9">
-					                        <input id="hf-email" name="current_passwd" class="form-control" placeholder="{{profile.aws_access_key}}">
+					                        <input id="hf-email" name="aws_access_key" class="form-control" placeholder="{{profile.aws_access_key}}">
 					                        {% if not profile.aws_access_key %}<span class="help-block">Please provide your AWS Access Key</span>{% endif %}
 					                    </div>
 					                </div>
 					                <div class="form-group">
 					                    <label class="col-md-3 control-label" for="hf-password">AWS Secret</label>
 					                    <div class="col-md-9">
-					                        <input type="password" id="hf-password" name="new_passwd" class="form-control" placeholder="{% if profile.aws_secret_key %}*******************************************************************{% endif %}">
+					                        <input type="password" id="hf-password" name="aws_access_secret" class="form-control" placeholder="{% if profile.aws_secret_key %}*******************************************************************{% endif %}">
 					                        {% if not profile.aws_secret_key %}<span class="help-block">Please provide your AWS Secret</span>{% endif %}
 					                    </div>
 					                </div>
