@@ -17,6 +17,7 @@ urlpatterns = patterns('',
 	url(r'^account/password/$', 'userprofile.views.change_password', name='change_password'),
 	url(r'^cloud/settings/$', 'userprofile.views.cloud_settings', name='cloud_settings'),
 	url(r'^cloud/settings/regions/update/$', 'userprofile.views.cloud_settings_update_regions', name='cloud_settings_update_regions'),
+	url(r'^cloud/settings/credentials/update/$', 'userprofile.views.cloud_settings_update_credentials', name='cloud_settings_update_credentials'),
 	url(r'^lock/$', 'userprofile.views.lock', name='lock'),
 	url(r'^goodbye/$', 'userprofile.views.goodbye', name='goodbye'),
 	

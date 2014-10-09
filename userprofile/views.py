@@ -227,6 +227,9 @@ def cloud_settings(request):
 	return render_to_response('cloud_settings.html', {'aws_regions':AWS_REGIONS,'profile_regions':profile_regions,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
 	
 
+def cloud_settings_update_credentials(request):
+	return HttpResponseRedirect("/cloud/settings/")
+
 def lock(request):
 	
 	print '-- lock screen:'
@@ -318,12 +321,6 @@ def account_settings(request):
 	secret = profile.secret
 
 	print request.user
-
-	# this is how to get the list of all available aws regions..
-	#ec2_regions = boto.ec2.regions()
-	#for ec2_region in ec2_regions:
-	#	print '- ec2 region:', ec2_region.name
-
 
 	ip = request.META['REMOTE_ADDR']
 	_log_user_activity(profile,"click","/account/settings/","account_settings",ip=ip)
