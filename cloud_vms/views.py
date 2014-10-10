@@ -163,6 +163,10 @@ def ajax_vms_refresh(request):
 
 	print 'aws_virtual_machines', aws_virtual_machines
 
+	# workaround to supplement for pickle not working
+	aws_virtual_machines['instance']['groups'] = []
+	aws_virtual_machines['instance']['block_device_mapping'] = []
+
 	try:
 		vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
 	except:
