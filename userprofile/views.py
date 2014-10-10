@@ -272,14 +272,15 @@ def cloud_settings_update_credentials(request):
 		aws_access_key_id=aws_access_key,
 		aws_secret_access_key=aws_secret_key)
 
+		reservations = ec2conn.get_all_instances()
+		instances = [i for r in reservations for i in r.instances]
+
 		print '-'*1000
 		print 'ec2conn', ec2conn
 		print 'cloudwatch', cloudwatch
-		
-		reservations = ec2conn.get_all_reservations
 		print 'reservations', reservations
-
-	
+		print 'instances', instances
+		
 	
 	return render_to_response('cloud_settings.html', {'err':err,'aws_regions':AWS_REGIONS,'profile_regions':profile_regions,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
 
