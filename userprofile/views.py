@@ -270,12 +270,12 @@ def cloud_settings_update_credentials(request):
 		aws_access_key_id=aws_access_key,
 		aws_secret_access_key=aws_secret_key)
 
-		#try:
-		regions_ = ec2conn.get_all_regions()
-		profile.aws_ec2_verified = True
-		#except:
-		#	err = "AWS verification failed.  Please check your Access Key and Secret and try again."
-		#	profile.aws_ec2_verified = False
+		try:
+			regions_ = ec2conn.get_all_regions()
+			profile.aws_ec2_verified = True
+		except:
+			err = "AWS verification failed.  Please check your Access Key and Secret and try again."
+			profile.aws_ec2_verified = False
 
 		profile.save()
 		
