@@ -2,8 +2,11 @@
 
 import os
 import time
-import base64, pickle
 import logging
+
+import base64
+try: import cPickle as pickle
+except: import pickle
 
 import datetime
 import json
@@ -153,7 +156,12 @@ def ajax_vms_refresh(request):
 
 	
 	print '- aws_virtual_machines', aws_virtual_machines
+	#try:
 	vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
+	#except:
+		#from collections import defaultdict
+		#from functools import partial
+		
 	
 	from django.utils import timezone
 	vms_cache.last_seen = timezone.now()
