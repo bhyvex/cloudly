@@ -107,7 +107,7 @@ def ajax_vms_refresh(request):
 													
 					print '** instance', instance.id, instance.private_ip_address
 
-					# workaround to supplement for pickle not working
+					# XXX workaround to supplement for pickle not working
 					#aws_virtual_machines[instance.id]['instance']['groups'] = []
 					#aws_virtual_machines[instance.id]['instance']['block_device_mapping'] = []
 							
