@@ -97,7 +97,7 @@ def ajax_vms_refresh(request):
 					instance_metrics['instance'] = instance.__dict__					
 					aws_virtual_machines[instance.id] = instance_metrics
 															
-					print '** instance', instance.id, instance.private_ip_address,
+					print '** instance', instance.id, instance.private_ip_address
 							
 					try:
 						ec2conn.monitor_instance(str(instance.id))
@@ -152,10 +152,9 @@ def ajax_vms_refresh(request):
 					networkout_datapoints = metric.query(start, end, 'Average', '')
 					instance_metrics['networkout_datapoints'] = networkout_datapoints
 
-					#aws_virtual_machines[instance.id] = instance_metrics
+					aws_virtual_machines[instance.id] = instance_metrics
 
 	
-	print
 	print '- aws_virtual_machines', aws_virtual_machines
 	#try:
 	vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
