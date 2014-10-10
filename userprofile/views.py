@@ -228,9 +228,9 @@ def cloud_settings(request):
 	_log_user_activity(profile,"click","/cloud/settings/","cloud_settings",ip=ip)
 
 	profile_regions = profile.aws_enabled_regions.split(',')
+	aws_ec2_verified = profile.aws_ec2_verified
 
-
-	return render_to_response('cloud_settings.html', {'aws_regions':AWS_REGIONS,'profile_regions':profile_regions,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
+	return render_to_response('cloud_settings.html', {'aws_ec2_verified':aws_ec2_verified,'aws_regions':AWS_REGIONS,'profile_regions':profile_regions,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
 	
 
 def cloud_settings_update_credentials(request):
