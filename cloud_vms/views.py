@@ -98,7 +98,9 @@ def ajax_vms_refresh(request):
 				instances = [i for r in reservations for i in r.instances]
 
 				for instance in instances:
-										
+						
+					if not instance: continue
+	
 					instance_metrics = {}
 					instance_metrics['instance'] = instance.__dict__					
 					aws_virtual_machines[instance.id] = pprint(instance_metrics)
