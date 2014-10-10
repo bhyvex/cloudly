@@ -232,10 +232,37 @@ def cloud_settings_update_credentials(request):
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/")
 	
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	secret = profile.secret
+
+	err = None
+	
+	aws_access_key  = request.POST['aws_access_key']
+	aws_secret_key = request.POST['aws_access_secret']
+
 	print '*'*1000
 	print request.POST
+	print 'aws_access_key', aws_access_key
+	print 'aws_secret_key', aws_secret_key
+
+	if(aws_access_key):
+		profile.aws_access_key = aws_access_key
+		profile.save()
+	else: err = "Missing AWS Access Key"
+
+
+	if(aws_secret_key):
+		profile.aws_secret_key = aws_secret_key
+		profile.save()
+	else: err = "Missing AWS Secret"
+
+
+	profile_regions = profile.aws_enabled_regions.split(',')
 	
-	return HttpResponseRedirect("/cloud/settings/")
+	return render_to_response('cloud_settings.html', {'err':err,'aws_regions':AWS_REGIONS,'profile_regions':profile_regions,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
+
+
 
 def lock(request):
 	
