@@ -94,7 +94,7 @@ def ajax_vms_refresh(request):
 				for instance in instances:
 										
 					instance_metrics = {}
-					#instance_metrics['instance'] = instance.__dict__					
+					instance_metrics['instance'] = instance.__dict__					
 					aws_virtual_machines[instance.id] = instance_metrics
 															
 					print '** instance', instance.id, instance.private_ip_address
