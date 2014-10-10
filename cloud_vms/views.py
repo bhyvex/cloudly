@@ -154,14 +154,15 @@ def ajax_vms_refresh(request):
 
 					aws_virtual_machines[instance.id] = instance_metrics
 
-	
-	print '- aws_virtual_machines', aws_virtual_machines
-	#try:
-	#vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
-	#except:
-	from collections import defaultdict
-	from functools import partial
-	vms_cache.vms_response = base64.b64encode(pickle.dumps(defaultdict(partial(defaultdict,aws_virtual_machines))))
+
+	print 'aws_virtual_machines', aws_virtual_machines
+
+	try:
+		vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
+	except:
+		from collections import defaultdict
+		from functools import partial
+		vms_cache.vms_response = base64.b64encode(pickle.dumps(defaultdict(partial(defaultdict,aws_virtual_machines))))
 	
 	
 	from django.utils import timezone
