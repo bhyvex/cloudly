@@ -29,6 +29,7 @@ $ apt-get install python-dev
 $ apt-get install python-simplejson 
 $ apt-get install python-django
 $ apt-get install python-pip
+$ apt-get install python-openssl
 </pre>
 
 You'll also need the Python PIL with the JPEG support:
