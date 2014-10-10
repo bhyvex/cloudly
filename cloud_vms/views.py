@@ -175,8 +175,8 @@ def ajax_vms_refresh(request):
 	try:
 		vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
 	except:
-		import marshal
-		vms_cache.vms_response = json.dumps(aws_virtual_machines,cls = DateTimeEncoder)
+		import simplejson
+		vms_cache.vms_response = simplejson.dumps(aws_virtual_machines,cls = DateTimeEncoder)
 		
 	
 	
