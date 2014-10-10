@@ -94,7 +94,7 @@ def ajax_vms_refresh(request):
 				for instance in instances:
 										
 					instance_metrics = {}
-					instance_metrics['instance'] = instance.__dict__					
+					#instance_metrics['instance'] = instance.__dict__					
 					aws_virtual_machines[instance.id] = instance_metrics
 															
 					print '** instance', instance.id, instance.private_ip_address,
@@ -157,8 +157,7 @@ def ajax_vms_refresh(request):
 	
 	print '- aws_virtual_machines', aws_virtual_machines
 	#try:
-	#vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
-	vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines))	
+	vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
 	#except:
 		#from collections import defaultdict
 		#from functools import partial
