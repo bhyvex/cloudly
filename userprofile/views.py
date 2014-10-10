@@ -266,7 +266,7 @@ def cloud_settings_update_credentials(request):
 		err = "Please select at least 1 active region prior updating your AWS credentials."
 	else:
 
-		ec2conn = boto.ec2.connect_to_region( profile_regions[1],
+		ec2conn = boto.ec2.connect_to_region( "us-west-1",
 		aws_access_key_id=aws_access_key,
 		aws_secret_access_key=aws_secret_key)
 
