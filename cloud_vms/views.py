@@ -157,7 +157,8 @@ def ajax_vms_refresh(request):
 	
 	print '- aws_virtual_machines', aws_virtual_machines
 	#try:
-	vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
+	#vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
+	vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines))	
 	#except:
 		#from collections import defaultdict
 		#from functools import partial
