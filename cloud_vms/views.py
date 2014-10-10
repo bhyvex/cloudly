@@ -75,7 +75,17 @@ def ajax_vms_refresh(request):
 				ec2conn = boto.ec2.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
 				cloudwatch = boto.ec2.cloudwatch.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
 
-				reservations = ec2conn.get_all_instances()
+				try:
+					reservations = ec2conn.get_all_instances()
+				except:
+					print '-'*1000
+					vms_cache.is_updating = False
+					vms_cache.vms_response = ""
+					vms_cache.save()
+					print vms_cache.is_updating
+					print vms_cache.vms_response
+					return HttpResponse("access denied")
+					
 				instances = [i for r in reservations for i in r.instances]
 
 

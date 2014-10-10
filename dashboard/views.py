@@ -51,6 +51,8 @@ def home(request):
 	ip = request.META['REMOTE_ADDR']
 	_log_user_activity(profile,"click","/","home",ip=ip)
 	
+	is_updating = False
+	
 	try:
 		vms_cache = Cache.objects.get(user=request.user)
 		vms_response = vms_cache.vms_response
