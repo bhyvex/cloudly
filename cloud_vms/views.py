@@ -152,7 +152,7 @@ def ajax_vms_refresh(request):
 					networkout_datapoints = metric.query(start, end, 'Average', '')
 					instance_metrics['networkout_datapoints'] = networkout_datapoints
 
-					aws_virtual_machines[instance.id] = instance_metrics
+					#aws_virtual_machines[instance.id] = instance_metrics
 
 	
 	print '- aws_virtual_machines', aws_virtual_machines
