@@ -108,10 +108,8 @@ def ajax_vms_refresh(request):
 					print '** instance', instance.id, instance.private_ip_address
 
 					# workaround to supplement for pickle not working
-					try:
-						aws_virtual_machines[instance.id]['instance']['groups'] = []
-						aws_virtual_machines[instance.id]['instance']['block_device_mapping'] = []
-					except: pass
+					#aws_virtual_machines[instance.id]['instance']['groups'] = []
+					#aws_virtual_machines[instance.id]['instance']['block_device_mapping'] = []
 							
 					try:
 						ec2conn.monitor_instance(str(instance.id))
