@@ -260,7 +260,9 @@ def cloud_settings_update_credentials(request):
 
 	profile_regions = profile.aws_enabled_regions.split(',')	
 
+
 	if(len(profile_regions)==1):
+		
 		err = "Please select at least 1 active region prior updating your AWS credentials."
 	else:
 		
@@ -268,23 +270,10 @@ def cloud_settings_update_credentials(request):
 		aws_access_key_id=aws_access_key,
 		aws_secret_access_key=aws_secret_key)
 
-		# XXX this is validation
-		
-		regions_ = ec2conn.get_all_regions()
-
-
-		#cloudwatch = boto.ec2.cloudwatch.connect_to_region( profile_regions[1],
-		#aws_access_key_id=aws_access_key,
-		#aws_secret_access_key=aws_secret_key)
-
-		#reservations = ec2conn.get_all_instances()
-		#instances = [i for r in reservations for i in r.instances]
-
-		print '-'*1000
-		print 'ec2conn', ec2conn
-		#print 'cloudwatch', cloudwatch
-		#print 'reservations', reservations
-		#print 'instances', instances
+		try:
+			regions_ = ec2conn.get_all_regions()
+		except:
+			err = "AWS verification failed.  Please check your Access Key and Secret and try again."
 		
 	
 	return render_to_response('cloud_settings.html', {'err':err,'aws_regions':AWS_REGIONS,'profile_regions':profile_regions,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
