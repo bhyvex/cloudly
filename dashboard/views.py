@@ -58,9 +58,10 @@ def home(request):
 		vms_response = pickle.loads(vms_response)
 		vms_cached_response = vms_response
 		vms_cached_response['last_seen'] = vms_cache.last_seen
+		is_updating = vms_cache.is_updating
 	except: vms_cached_response = None
 
-	return render_to_response('dashboard.html', {'vms_cached_response':vms_cached_response,}, context_instance=RequestContext(request))
+	return render_to_response('dashboard.html', {'is_updating':is_updating,'vms_cached_response':vms_cached_response,}, context_instance=RequestContext(request))
 
 
 def welcome(request):

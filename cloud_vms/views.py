@@ -58,7 +58,13 @@ def ajax_vms_refresh(request):
 	aws_virtual_machines = {}
 
 	if aws_ec2_verified:
-					
+		
+		vms_cache = Cache.objects.get_or_create(user=user)	
+		vms_cache = vms_cache[0]
+		
+		vms_cache.is_updating = True
+		vms_cache.save()
+		
 		aws_regions = profile.aws_enabled_regions.split(',')
 		print 'AWS regions', aws_regions
 		
@@ -139,12 +145,11 @@ def ajax_vms_refresh(request):
 					aws_virtual_machines[instance.id] = instance_metrics
 
 	
-	vms_cache = Cache.objects.get_or_create(user=user)	
-	vms_cache = vms_cache[0]
 	vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
 	
 	from django.utils import timezone
 	vms_cache.last_seen = timezone.now()
+	vms_cache.is_updating = False
 	vms_cache.save()
 	
 	print 'VMs cache was succesfully updated.'

@@ -5,6 +5,9 @@ from django.conf import settings
 class Cache(models.Model):
 	
 	user = models.ForeignKey(User)
+	
+	is_updating = models.BooleanField(default=False)
+
 	vms_response = models.TextField(blank=True)
 
 	vms_info_filtered_1 = models.TextField(blank=True)
