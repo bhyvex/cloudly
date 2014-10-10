@@ -161,9 +161,7 @@ def ajax_vms_refresh(request):
 		vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
 	except:
 		import marshal
-		from collections import defaultdict
-		from functools import partial
-		vms_cache.vms_response = base64.b64encode(marshal.dumps(defaultdict(partial(aws_virtual_machines,int))))
+		vms_cache.vms_response = base64.b64encode(json(aws_virtual_machines))
 		
 	
 	
