@@ -94,7 +94,9 @@ def ajax_vms_refresh(request):
 					instance_metrics['instance'] = instance.__dict__					
 					aws_virtual_machines[instance.id] = instance_metrics
 															
-					print '** instance', instance.id,
+					print '** instance', instance.id, dir(instance),
+					
+					
 					
 					if(instance.monitoring_state=="disabled"):
 						try:
