@@ -25,6 +25,10 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.contrib.auth import logout
 
+import boto.ec2
+import boto.ec2.cloudwatch
+
+
 logger = logging.getLogger(__name__)
 
 from django.core.mail import send_mail
@@ -256,6 +260,9 @@ def cloud_settings_update_credentials(request):
 		profile.aws_secret_key = aws_secret_key
 		profile.save()
 	else: err = "Missing AWS Secret"
+
+
+	# XXX cloud settings validation
 
 
 	profile_regions = profile.aws_enabled_regions.split(',')
