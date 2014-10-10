@@ -273,12 +273,14 @@ def cloud_settings_update_credentials(request):
 		try:
 			regions_ = ec2conn.get_all_regions()
 			profile.aws_ec2_verified = True
-			profile.save()
 		except:
 			err = "AWS verification failed.  Please check your Access Key and Secret and try again."
+			profile.aws_ec2_verified = False
+
+		profile.save()
 		
 	
-	return render_to_response('cloud_settings.html', {'err':err,'aws_regions':AWS_REGIONS,'profile_regions':profile_regions,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
+	return render_to_response('cloud_settings.html', {'err':err,'aws_ec2_verified':profile.aws_ec2_verified,'aws_regions':AWS_REGIONS,'profile_regions':profile_regions,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
 
 
 
