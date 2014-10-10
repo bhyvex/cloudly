@@ -144,7 +144,8 @@ def ajax_vms_refresh(request):
 	vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
 	
 	from django.utils import timezone
-	vms_cache.last_seen = timezone.now()
+	if(aws_virtual_machines):
+		vms_cache.last_seen = timezone.now()
 	vms_cache.save()
 	
 	print 'VMs cache was succesfully updated.'
