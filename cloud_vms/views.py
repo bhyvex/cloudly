@@ -160,10 +160,10 @@ def ajax_vms_refresh(request):
 	try:
 		vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
 	except:
-		from collections import defaultdict
-		from functools import partial
-		import json
-		vms_cache.vms_response = pickle.dumps(base64.b64encode(json.dumps(aws_virtual_machines)))
+		#import json
+		#vms_cache.vms_response = pickle.dumps(base64.b64encode(json.dumps(aws_virtual_machines)))
+		vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
+		
 	
 	
 	from django.utils import timezone
