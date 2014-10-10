@@ -162,7 +162,8 @@ def ajax_vms_refresh(request):
 	except:
 		from collections import defaultdict
 		from functools import partial
-		vms_cache.vms_response = pickle.dumps(base64.b64encode(aws_virtual_machines))
+		import json
+		vms_cache.vms_response = pickle.dumps(base64.b64encode(json.loads(aws_virtual_machines)))
 	
 	
 	from django.utils import timezone
