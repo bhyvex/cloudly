@@ -78,7 +78,6 @@ def ajax_vms_refresh(request):
 				try:
 					reservations = ec2conn.get_all_instances()
 				except:
-					print '-'*1000
 					vms_cache.is_updating = False
 					vms_cache.vms_response = ""
 					vms_cache.save()
@@ -96,7 +95,6 @@ def ajax_vms_refresh(request):
 					aws_virtual_machines[instance.id] = instance_metrics
 															
 					print '** instance', instance.id,
-					print 'monitoring', instance.monitoring_state
 					
 					if(instance.monitoring_state=="disabled"):
 						try:
