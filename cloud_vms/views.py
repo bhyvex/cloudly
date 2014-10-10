@@ -94,18 +94,15 @@ def ajax_vms_refresh(request):
 					instance_metrics['instance'] = instance.__dict__					
 					aws_virtual_machines[instance.id] = instance_metrics
 															
-					print '** instance', instance.id, dir(instance),
-					
-					
-					
-					if(instance.monitoring_state=="disabled"):
-						try:
-							ec2conn.monitor_instance(str(instance.id))
-						except:
-							print instance.id, 'instance not in a monitorable state!'.upper()
-							print instance.id, 'state:', instance.state
-							print instance.id, 'reason:', instance.state_reason['message']
-							continue
+					print '** instance', instance.id, instance.private_ip_address,
+							
+					try:
+						ec2conn.monitor_instance(str(instance.id))
+					except:
+						print instance.id, 'instance not in a monitorable state!'.upper()
+						print instance.id, 'state:', instance.state
+						print instance.id, 'reason:', instance.state_reason['message']
+						continue
 					
 					end = datetime.datetime.utcnow()
 					start = end - datetime.timedelta(hours=1)
