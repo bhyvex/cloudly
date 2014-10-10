@@ -258,10 +258,20 @@ def cloud_settings_update_credentials(request):
 		profile.save()
 	else: err = "Missing AWS Access Key"
 
-	profile_regions = profile.aws_enabled_regions.split(',')
+	profile_regions = profile.aws_enabled_regions.split(',')	
 
 	# XXX
-	#ec2conn = boto.ec2.connect_to_region(ec2_region[0],aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
+	#ec2conn = boto.ec2.connect_to_region( 
+	#	ec2_region=profile_regions[0],
+	#	aws_access_key_id=aws_access_key,
+	#	aws_secret_access_key=aws_secret_key
+	#)
+
+	print '-'*1000
+	#print ec2conn
+	
+	if(not profile_regions[0]):
+		err = "Please select at least 1 active region prior updating your AWS credentials."
 	
 	return render_to_response('cloud_settings.html', {'err':err,'aws_regions':AWS_REGIONS,'profile_regions':profile_regions,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
 

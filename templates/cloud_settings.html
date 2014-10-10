@@ -76,7 +76,7 @@
 									{% for region in aws_regions %}
 				                    <div class="checkbox">
 				                        <label for="checkbox{{forloop.counter}}">
-				                        	<input type="checkbox" id="{{region}}" name="checkboxes" value="{{region}}" {% if region in profile_regions %}checked{% endif %}> <small>{{region}}</small> {{aws_regions|dict_get:region}}
+				                        	<input type="checkbox" id="{{region}}" name="checkboxes" value="{{region}}" {% if region in profile_regions %}checked{% endif %}> <a href="#">{{region}}</a> {{aws_regions|dict_get:region}}
 				                        </label>
 				                    </div>
 									{% endfor %}
