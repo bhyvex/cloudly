@@ -266,11 +266,11 @@ def cloud_settings_update_credentials(request):
 	#	aws_access_key_id=aws_access_key,
 	#	aws_secret_access_key=aws_secret_key
 	#)
+	#print ec2conn
 
 	print '-'*1000
-	#print ec2conn
 	
-	if(not profile_regions[0]):
+	if(len(profile_regions)==1):
 		err = "Please select at least 1 active region prior updating your AWS credentials."
 	
 	return render_to_response('cloud_settings.html', {'err':err,'aws_regions':AWS_REGIONS,'profile_regions':profile_regions,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
