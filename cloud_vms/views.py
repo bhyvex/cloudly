@@ -47,16 +47,8 @@ import decimal
 from django.db.models.base import ModelState
 
 
-class DateTimeEncoder(json.JSONEncoder):
-	def default(self, obj):
-		if hasattr(obj, 'isoformat'):
-			return obj.isoformat()
-		elif isinstance(obj, decimal.Decimal):
-			return float(obj)
-		elif isinstance(obj, ModelState):
-			return None
-		else:
-			return json.JSONEncoder.default(self, obj)
+def date_handler(obj):
+	return obj.isoformat() if hasattr(obj, 'isoformat') else obj
 
 
 def ajax_vms_refresh(request):
@@ -175,8 +167,7 @@ def ajax_vms_refresh(request):
 	try:
 		vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
 	except:
-		import simplejson
-		vms_cache.vms_response = simplejson.dumps(aws_virtual_machines,cls = DateTimeEncoder)
+		vms_cache.vms_response = json.dumps(aws_virtual_machines),default=date_handler)
 		
 	
 	
