@@ -260,18 +260,26 @@ def cloud_settings_update_credentials(request):
 
 	profile_regions = profile.aws_enabled_regions.split(',')	
 
-	# XXX
-	#ec2conn = boto.ec2.connect_to_region( 
-	#	ec2_region=profile_regions[0],
-	#	aws_access_key_id=aws_access_key,
-	#	aws_secret_access_key=aws_secret_key
-	#)
-	#print ec2conn
-
-	print '-'*1000
-	
 	if(len(profile_regions)==1):
 		err = "Please select at least 1 active region prior updating your AWS credentials."
+	else:
+		
+		ec2conn = boto.ec2.connect_to_region( profile_regions[1],
+		aws_access_key_id=aws_access_key,
+		aws_secret_access_key=aws_secret_key)
+
+		cloudwatch = boto.ec2.cloudwatch.connect_to_region( profile_regions[1],
+		aws_access_key_id=aws_access_key,
+		aws_secret_access_key=aws_secret_key)
+
+		print '-'*1000
+		print 'ec2conn', ec2conn
+		print 'cloudwatch', cloudwatch
+		
+		reservations = ec2conn.get_all_reservations
+		print 'reservations', reservations
+
+	
 	
 	return render_to_response('cloud_settings.html', {'err':err,'aws_regions':AWS_REGIONS,'profile_regions':profile_regions,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
 
