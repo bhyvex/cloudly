@@ -57,7 +57,7 @@ def ajax_vms_refresh(request):
 	
 	try:
 		profile = userprofile.objects.get(user=request.user)
-	except: return HttpResponseRedirect("access denied")
+	except: return HttpResponseRedirect("/")
 	
 	print 'Refreshing', user, 'VMs cache..'
 	
