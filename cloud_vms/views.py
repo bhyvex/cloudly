@@ -107,14 +107,9 @@ def ajax_vms_refresh(request):
 													
 					print '** instance', instance.id, instance.private_ip_address
 					
+					volumes = {}
 					for volume in ec2conn.get_all_volumes(filters={'attachment.instance-id': instance.id}):
-
-						print "-- id",volume.id
-						print "-- iops", volume.iops
-						print "-- region",volume.region
-						print "-- size",volume.size
-						print "-- snapshot_id",volume.snapshot_id
-						print "-- type",volume.type
+						volumes[volume] = [volume.id, volume.iops, volume.size, volume.type,]
 
 					# XXX
 					#aws_virtual_machines[instance.id]['instance']['groups'] = []
