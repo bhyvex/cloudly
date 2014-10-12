@@ -111,7 +111,7 @@ def ajax_vms_refresh(request):
 					for volume in ec2conn.get_all_volumes(filters={'attachment.instance-id': instance.id}):
 						volumes[volume] = [volume.id, volume.iops, volume.size, volume.type,]
 
-					# XXX
+					# XXX these are in fact objects hence cannot be flattened..
 					#aws_virtual_machines[instance.id]['instance']['groups'] = []
 					#aws_virtual_machines[instance.id]['instance']['block_device_mapping'] = []
 							
