@@ -115,10 +115,9 @@ def ajax_vms_refresh(request):
 					for group in instance_metrics['instance']['groups']:
 						groups.append([group.id, group.name,])
 
-
-					# XXX these are in fact objects hence cannot be flattened..
 					instance_metrics['instance']['groups'] = groups
 					instance_metrics['instance']['block_device_mapping'] = volumes
+				
 					
 					try:
 						ec2conn.monitor_instance(str(instance.id))
@@ -138,7 +137,6 @@ def ajax_vms_refresh(request):
 					try:
 						metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="CPUUtilization")[0]
 					except: continue
-					
 					
 					cpu_utilization_datapoints = metric.query(start, end, 'Average', 'Percent')
 					#instance_metrics['cpu_utilization_datapoints'] = cpu_utilization_datapoints
@@ -176,8 +174,11 @@ def ajax_vms_refresh(request):
 					aws_virtual_machines[instance.id] = instance_metrics
 
 
-		#print 'aws_virtual_machines', aws_virtual_machines
+		print 'aws_virtual_machines'
+		pprint(aws_virtual_machines)
+
 		vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
+		#vms_cache.vms_response = json.dumps(aws_virtual_machines)	
 
 		from django.utils import timezone
 		vms_cache.last_seen = timezone.now()
