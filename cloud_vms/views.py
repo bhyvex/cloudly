@@ -116,7 +116,7 @@ def ajax_vms_refresh(request):
 						print "-- snapshot_id",volume.snapshot_id
 						print "-- type",volume.type
 
-					# XXX workaround to supplement for pickle not working
+					# XXX
 					#aws_virtual_machines[instance.id]['instance']['groups'] = []
 					#aws_virtual_machines[instance.id]['instance']['block_device_mapping'] = []
 							
