@@ -26,6 +26,7 @@ logger = logging.getLogger(__name__)
 
 import boto.ec2
 import boto.ec2.cloudwatch
+#from boto.ec2.blockdevicemapping import BlockDeviceMapping, BlockDeviceType
 
 from django.contrib.auth.models import User
 from userprofile.models import Profile as userprofile
@@ -103,9 +104,14 @@ def ajax_vms_refresh(request):
 	
 					instance_metrics = {}
 					instance_metrics['instance'] = instance.__dict__					
-					aws_virtual_machines[instance.id] = pprint(instance_metrics)
 													
 					print '** instance', instance.id, instance.private_ip_address
+					
+					#instance_metrics['instance']['block_device_mapping']
+					
+					print '----->', ec2conn.get_all_volumes(filters={'attachment.instance-id': instance.id})
+												
+					
 
 					# XXX workaround to supplement for pickle not working
 					#aws_virtual_machines[instance.id]['instance']['groups'] = []
@@ -167,7 +173,7 @@ def ajax_vms_refresh(request):
 					aws_virtual_machines[instance.id] = instance_metrics
 
 
-		print 'aws_virtual_machines', aws_virtual_machines
+		#print 'aws_virtual_machines', aws_virtual_machines
 		vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
 
 		from django.utils import timezone
