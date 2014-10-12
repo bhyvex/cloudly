@@ -117,13 +117,13 @@ def ajax_vms_refresh(request):
 
 					instance_metrics['instance']['groups'] = groups
 					instance_metrics['instance']['block_device_mapping'] = volumes
-				
+					instance_metrics['instance']['_state'] = str(instance.state)
 					
 					try:
 						ec2conn.monitor_instance(str(instance.id))
 					except:
 						print instance.id, 'instance not in a monitorable state!'.upper()
-						print instance.id, 'state:', instance.state
+						#print instance.id, 'state:', instance.state
 						print instance.id, 'reason:', instance.state_reason['message']
 						continue
 					
@@ -175,14 +175,14 @@ def ajax_vms_refresh(request):
 
 
 		print 'aws_virtual_machines'
-		pprint(aws_virtual_machines)
 
 		# XXX Note This is how this should be - but I get this fucked up error on the prod......
 		# XXX Note Can't pickle <type '_hashlib.HASH'>: attribute lookup _hashlib.HASH failed
 		# XXX Note Specifically, it's the Python Bug that cannot be fixed http://bugs.python.org/issue11771
 		# XXX Note Quote: There is no way to implement generic pickling for hash objects that would work across all implementations.
-		#vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
-		vms_cache.vms_response = json.dumps(aws_virtual_machines)	
+		vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
+		
+		print 'xxxxx', aws_virtual_machines
 
 
 		from django.utils import timezone
