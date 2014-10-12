@@ -266,18 +266,18 @@ def cloud_settings_update_credentials(request):
 		err = "Please select at least 1 active region prior updating your AWS credentials."
 	else:
 
-		#try:
-		ec2conn = boto.ec2.connect_to_region( "us-west-1",
-		aws_access_key_id=aws_access_key,
-		aws_secret_access_key=aws_secret_key)
-		regions_ = ec2conn.get_all_regions()
-		profile.aws_ec2_verified = True
-		#except:
-		#	err = "AWS verification failed.  Please check your Access Key and Secret and try again."
-		#	profile.aws_ec2_verified = False
+		try:
+			ec2conn = boto.ec2.connect_to_region( "us-west-1",
+			aws_access_key_id=aws_access_key,
+			aws_secret_access_key=aws_secret_key)
+			regions_ = ec2conn.get_all_regions()
+			profile.aws_ec2_verified = True
+		except:
+			err = "AWS verification failed.  Please check your Access Key and Secret and try again."
+			profile.aws_ec2_verified = False
 
 		profile.save()
-		
+
 	
 	return render_to_response('cloud_settings.html', {'err':err,'aws_ec2_verified':profile.aws_ec2_verified,'aws_regions':AWS_REGIONS,'profile_regions':profile_regions,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
 
