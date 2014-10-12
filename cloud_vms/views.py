@@ -111,15 +111,16 @@ def ajax_vms_refresh(request):
 					for volume in ec2conn.get_all_volumes(filters={'attachment.instance-id': instance.id}):
 						volumes[volume] = [volume.id, volume.iops, volume.size, volume.type,]
 
-					# XXX these are in fact objects hence cannot be flattened..
-					#aws_virtual_machines[instance.id]['instance']['groups'] = []
-					#aws_virtual_machines[instance.id]['instance']['block_device_mapping'] = []
 					
 					groups = {}
 					for group in instance_metrics['instance']['groups']:
-						print '- group id', group.id
-						print '- group name', group.name
-					
+						groups[group] = [group.id, group.name,]
+
+
+					# XXX these are in fact objects hence cannot be flattened..
+					#aws_virtual_machines[instance.id]['instance']['groups'] = []
+					#aws_virtual_machines[instance.id]['instance']['block_device_mapping'] = []
+
 					
 					try:
 						ec2conn.monitor_instance(str(instance.id))
