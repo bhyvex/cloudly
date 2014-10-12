@@ -185,7 +185,7 @@ def ajax_vms_refresh(request):
 		try:
 			vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
 		except:
-			return HttpResponse("Fuck shit wank bugger the Can't pickle <type '_hashlib.HASH'>: attribute lookup _hashlib.HASH failed problem..")
+			return HttpResponse("Fuck shit wank bugger Can't pickle <type '_hashlib.HASH'>: attribute lookup _hashlib.HASH failed problem..")
 		
 		print 'xxxxx', aws_virtual_machines
 
