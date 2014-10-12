@@ -52,6 +52,7 @@ $ pip install pymongo --upgrade
 6) Download the latest version of Cloudly
 
 <pre>
+$ apt-get install git
 $ git clone https://github.com/jparicka/cloudly.git cloudly
 </pre>
 
