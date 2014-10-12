@@ -119,8 +119,6 @@ def ajax_vms_refresh(request):
 					for group in instance_metrics['instance']['groups']:
 						print '- group id', group.id
 						print '- group name', group.name
-						print '- group startElement', group.startElement
-						print '- group endElement', group.endElement
 					
 					
 					try:
