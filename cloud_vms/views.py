@@ -9,6 +9,8 @@ try: import cPickle as pickle
 except: import pickle
 
 import datetime
+from django.utils import timezone
+
 import json
 #from django.utils import simplejson
 
@@ -184,8 +186,6 @@ def ajax_vms_refresh(request):
 		
 		print 'xxxxx', aws_virtual_machines
 
-
-		from django.utils import timezone
 		vms_cache.last_seen = timezone.now()
 		vms_cache.is_updating = False
 		vms_cache.save()
