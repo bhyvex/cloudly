@@ -114,7 +114,15 @@ def ajax_vms_refresh(request):
 					# XXX these are in fact objects hence cannot be flattened..
 					#aws_virtual_machines[instance.id]['instance']['groups'] = []
 					#aws_virtual_machines[instance.id]['instance']['block_device_mapping'] = []
-							
+					
+					groups = {}
+					for group in instance_metrics['instance']['groups']:
+						print '- group id', group.id
+						print '- group name', group.name
+						print '- group startElement', group.startElement
+						print '- group endElement', group.endElement
+					
+					
 					try:
 						ec2conn.monitor_instance(str(instance.id))
 					except:
