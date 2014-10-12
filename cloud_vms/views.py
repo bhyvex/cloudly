@@ -182,7 +182,10 @@ def ajax_vms_refresh(request):
 		# XXX Note Can't pickle <type '_hashlib.HASH'>: attribute lookup _hashlib.HASH failed
 		# XXX Note Specifically, it's the Python Bug that cannot be fixed http://bugs.python.org/issue11771
 		# XXX Note Quote: There is no way to implement generic pickling for hash objects that would work across all implementations.
-		vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
+		try:
+			vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
+		except:
+			return HttpResponse("fuck shit wank bugger the Can't pickle <type '_hashlib.HASH'>: attribute lookup _hashlib.HASH failed problem..")
 		
 		print 'xxxxx', aws_virtual_machines
 
