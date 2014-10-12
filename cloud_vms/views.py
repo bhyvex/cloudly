@@ -109,17 +109,12 @@ def ajax_vms_refresh(request):
 					
 					for volume in ec2conn.get_all_volumes(filters={'attachment.instance-id': instance.id}):
 
-						print dir(volume)
 						print "-- id",volume.id
 						print "-- iops", volume.iops
-						print "-- item", volume.item
-						print "-- attachment_state",volume.attachment_state
 						print "-- region",volume.region
 						print "-- size",volume.size
 						print "-- snapshot_id",volume.snapshot_id
-						print "-- snapshots",volume.snapshots
 						print "-- type",volume.type
-						print "-- volume_state",volume.volume_state
 
 					# XXX workaround to supplement for pickle not working
 					#aws_virtual_machines[instance.id]['instance']['groups'] = []
