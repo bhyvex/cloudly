@@ -14,6 +14,14 @@ import boto.ec2.cloudwatch
 
 ########################################################
 ## TODO expand these funcs with the Region parameter!!!!
+## TODO expand these funcs with the Region parameter!!!!
+## TODO expand these funcs with the Region parameter!!!!
+## TODO expand these funcs with the Region parameter!!!!
+## TODO expand these funcs with the Region parameter!!!!
+## TODO expand these funcs with the Region parameter!!!!
+## TODO expand these funcs with the Region parameter!!!!
+## TODO expand these funcs with the Region parameter!!!!
+## TODO expand these funcs with the Region parameter!!!!
 ########################################################
 
 def aws_instance_start(name):
