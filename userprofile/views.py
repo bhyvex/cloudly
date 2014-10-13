@@ -65,9 +65,12 @@ def _log_user_activity(userprofile, activity, link, function="", ip=""):
 		userprofile.function = function
 
 	userprofile.save()
-
 	
+	#print '*'*100
+	#print 'activity', activity, activity.activity
+
 	return activity
+
 
 def _simple_email_validation(email):
 	

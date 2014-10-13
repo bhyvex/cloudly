@@ -57,7 +57,6 @@ def user_activity_report(request, user_id):
 	_log_user_activity(profile,"click","/admin/user/"+str(user_id)+"/report/","user_activity_report",ip=ip)
 	
 	user_activity = Activity.objects.filter(user=u).order_by('-pk')
-		
 	user_activity_clicks = Activity.objects.filter(user=u,activity="click").order_by('-pk')
 	user_activity_other = Activity.objects.filter(user=u).filter(~Q(activity="click")).order_by('-pk')	
 	
