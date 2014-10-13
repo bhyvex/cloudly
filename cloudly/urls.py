@@ -21,7 +21,6 @@ urlpatterns = patterns('',
 	url(r'^lock/$', 'userprofile.views.lock', name='lock'),
 	url(r'^goodbye/$', 'userprofile.views.goodbye', name='goodbye'),
 	
-
 	# support
 	url(r'^support/$', 'support.views.support', name='support'),
 	url(r'^support/devel/ticket$', 'support.views.support_devel_ticket', name='support_devel_ticket'),
@@ -51,6 +50,9 @@ urlpatterns = patterns('',
 	url(r'^ajax/cloud/storage/$', 'cloud_storage.views.ajax_cloud_storage', name='ajax_cloud_storage'),
 	url(r'^ajax/cloud/vms/$', 'cloud_vms.views.ajax_virtual_machines', name='ajax_virtual_machines'),
 	url(r'^ajax/cloud/vms/refresh/$', 'cloud_vms.views.ajax_vms_refresh', name='ajax_vms_refresh'),
+
+	# aws ec2 stuff
+	
 
 	# system logs
 	url(r'^logs/$', 'logs.views.logs', name='logs'),

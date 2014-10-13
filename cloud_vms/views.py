@@ -226,3 +226,5 @@ def ajax_virtual_machines(request):
 	
 	return render_to_response('ajax_virtual_machines.html', locals(), context_instance=RequestContext(request))
 
+
+
