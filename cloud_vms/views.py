@@ -213,7 +213,7 @@ def ajax_vms_refresh(request):
 	return HttpResponse("ALLDONE")
 	
 
-def aws_vm_view(request):
+def aws_vm_view(request,vm_name):
 	# template aws_vm.html
 	return HttpResponse("working on this currently")
 

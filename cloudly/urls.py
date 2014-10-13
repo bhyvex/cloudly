@@ -52,6 +52,7 @@ urlpatterns = patterns('',
 	url(r'^ajax/cloud/vms/refresh/$', 'cloud_vms.views.ajax_vms_refresh', name='ajax_vms_refresh'),
 
 	# aws ec2 stuff
+	url(r'^aws/(?P<vm_name>[\w\-\.]+)/$', 'cloud_vms.views.aws_vm_view', name='aws_vm_view'),
 	
 
 	# system logs
