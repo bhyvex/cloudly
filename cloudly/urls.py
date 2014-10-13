@@ -53,7 +53,6 @@ urlpatterns = patterns('',
 
 	# aws ec2 stuff
 	url(r'^aws/(?P<vm_name>[\w\-\.]+)/$', 'cloud_vms.views.aws_vm_view', name='aws_vm_view'),
-	
 
 	# system logs
 	url(r'^logs/$', 'logs.views.logs', name='logs'),
