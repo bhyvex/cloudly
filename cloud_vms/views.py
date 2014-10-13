@@ -28,7 +28,6 @@ logger = logging.getLogger(__name__)
 
 import boto.ec2
 import boto.ec2.cloudwatch
-#from boto.ec2.blockdevicemapping import BlockDeviceMapping, BlockDeviceType
 
 from django.contrib.auth.models import User
 from userprofile.models import Profile as userprofile
@@ -48,6 +47,7 @@ from cloud_vms.models import Cache
 
 import decimal
 from django.db.models.base import ModelState
+
 
 
 def date_handler(obj):
@@ -223,7 +223,6 @@ def ajax_virtual_machines(request):
 		return HttpResponseRedirect("/")
 
 	print request.user
-	
 	
 	return render_to_response('ajax_virtual_machines.html', locals(), context_instance=RequestContext(request))
 
