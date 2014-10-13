@@ -157,17 +157,19 @@ def ajax_vms_refresh(request):
 					# And the list of possible values on the aws response....
 					# ['Minimum', 'Maximum', 'Sum', 'Average', 'SampleCount']
 					# ['Seconds', 'Percent', 'Bytes', 'Bits', 'Count', 'Bytes/Second', 'Bits/Second', 'Count/Second']
+					# print ec2conn.list_metrics()
 					
 					# CPUUtilization
 					try:
 						metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="CPUUtilization")[0]
 					except: continue
 					
+					print '-_'*1000
 					cpu_utilization_datapoints_ = []
-					cpu_utilization_datapoints = metric.query(start, end, 'Average', 'Percent')
-					for i in cpu_utilization_datapoints: 
-						i_ = {'Timestamp':i.Timestamp,'Average':i.Average,'Unit':i.Unit,}
-						cpu_utilization_datapoints_.append(i_)
+					datapoints = metric.query(start, end, 'Average', 'Percent')
+					for i in datapoints: 
+						cpu_utilization_datapoints_.append(i)
+					pprint(cpu_utilization_datapoints_)
 					instance_metrics['cpu_utilization_datapoints'] = cpu_utilization_datapoints_
 
 					# DiskReadOps
