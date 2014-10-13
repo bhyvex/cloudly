@@ -31,6 +31,7 @@ import boto.ec2.cloudwatch
 
 from django.contrib.auth.models import User
 from userprofile.models import Profile as userprofile
+from userprofile.views import _log_user_activity
 
 from amazon import s3_funcs
 from amazon import s3_funcs_shortcuts
@@ -226,6 +227,15 @@ def aws_vm_view(request,vm_name):
 	#XXX add logging click
 	
 	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	secret = profile.secret
+	user.last_login = datetime.datetime.now()
+	user.save()
+
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/cloud/settings/","cloud_settings",ip=ip)
+
+
 	vms_cache = Cache.objects.get(user=user)
 	vm_cache =  vms_cache.vms_response
 	
