@@ -82,8 +82,6 @@
 
 Instances: {% for vm in vms_cached_response %}{% if not "last_seen" in vm %}<a href="/aws/{{vm}}/">{{vm}}</a> {% endif %}{% endfor %}
 
-last_updated: {% for vm in vms_cached_response %}{% if "last_seen" in vm %}{{vms_cached_response|dict_get:vm}} {% endif %}{% endfor %}
-
 {% for vm in vms_cached_response %}
 {% if not "last_seen" in vm %}<a href="/aws/{{vm}}/">{{vm}}</a> {{vms_cached_response|dict_get:vm}}{% endif %}
 {% endfor %}
