@@ -139,7 +139,13 @@ def ajax_vms_refresh(request):
 					instance_metrics['monitored'] = instance.monitored
 					instance_metrics['persistent'] = instance.persistent
 					instance_metrics['ramdisk'] = instance.ramdisk
-					
+					instance_metrics['root_device_name'] = instance.root_device_name
+					instance_metrics['root_device_type'] = instance.root_device_type
+					instance_metrics['tags'] = instance.tags
+					instance_metrics['virtualization_type'] = instance.virtualization_type
+					instance_metrics['vpc_id'] = instance.vpc_id
+				
+				
 					try:
 						ec2conn.monitor_instance(str(instance.id))
 					except:
