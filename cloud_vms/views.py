@@ -153,16 +153,18 @@ def ajax_vms_refresh(request):
 					# Here is where you define start - end for the Logs...............
 					end = datetime.datetime.utcnow()
 					start = end - datetime.timedelta(hours=1)
-									
+				
+					# And the list of possible values on the aws response....
+					# ['Minimum', 'Maximum', 'Sum', 'Average', 'SampleCount']
+					# ['Seconds', 'Percent', 'Bytes', 'Bits', 'Count', 'Bytes/Second', 'Bits/Second', 'Count/Second']
+					
 					# CPUUtilization
 					try:
 						metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="CPUUtilization")[0]
 					except: continue
 					
 					cpu_utilization_datapoints = metric.query(start, end, 'Average', 'Percent')
-					print '-='*1000
-					pprint(cpu_utilization_datapoints)
-					instance_metrics['cpu_utilization_datapoints'] = cpu_utilization_datapoints
+					#instance_metrics['cpu_utilization_datapoints'] = cpu_utilization_datapoints
 
 					# DiskReadOps
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskReadOps")[0]
