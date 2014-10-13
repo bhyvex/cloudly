@@ -105,9 +105,8 @@ def ajax_vms_refresh(request):
 					if not instance: continue
 	
 					instance_metrics = {}
-					#instance_metrics['instance'] = instance.__dict__
 					
-					print 'instance.__dict__'*100
+					print '-'*1000
 					pprint(instance.__dict__)
 										
 					instance_metrics['instance'] = {}
@@ -124,15 +123,14 @@ def ajax_vms_refresh(request):
 					for group in instance_metrics['instance']['groups']:
 						groups.append([group.id, group.name,])
 
-					#instance_metrics['instance']['groups'] = groups
-					#instance_metrics['instance']['block_device_mapping'] = volumes
-					#instance_metrics['instance']['_state'] = str(instance.state)
+					instance_metrics['instance']['groups'] = groups
+					instance_metrics['instance']['block_device_mapping'] = volumes
+					
 					
 					try:
 						ec2conn.monitor_instance(str(instance.id))
 					except:
 						print instance.id, 'instance not in a monitorable state!'.upper()
-						#print instance.id, 'state:', instance.state
 						print instance.id, 'reason:', instance.state_reason['message']
 						continue
 					
@@ -202,7 +200,7 @@ def ajax_vms_refresh(request):
 	
 		print 'VMs cache was succesfully updated.'
 
-	
+
 	return HttpResponse("ALLDONE")
 	
 	
