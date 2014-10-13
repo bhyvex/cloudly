@@ -149,7 +149,7 @@ def ajax_vms_refresh(request):
 						print instance.id, 'instance not in a monitorable state!'.upper()
 						continue
 					
-					
+
 					# Here is where you define start - end for the Logs...............
 					end = datetime.datetime.utcnow()
 					start = end - datetime.timedelta(hours=1)
@@ -158,6 +158,7 @@ def ajax_vms_refresh(request):
 					# ['Minimum', 'Maximum', 'Sum', 'Average', 'SampleCount']
 					# ['Seconds', 'Percent', 'Bytes', 'Bits', 'Count', 'Bytes/Second', 'Bits/Second', 'Count/Second']
 					# print ec2conn.list_metrics()
+					
 					
 					# CPUUtilization
 					try:
