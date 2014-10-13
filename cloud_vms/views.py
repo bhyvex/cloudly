@@ -106,7 +106,7 @@ def ajax_vms_refresh(request):
 	
 					instance_metrics = {}
 					#instance_metrics['instance'] = instance.__dict__					
-					instance_metrics['instance'] = "test"
+					instance_metrics['instance'] = {}
 						
 					print '** instance', instance.id, instance.private_ip_address
 					
