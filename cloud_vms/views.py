@@ -146,6 +146,10 @@ def ajax_vms_refresh(request):
 					instance_metrics['vpc_id'] = instance.vpc_id
 				
 				
+					# XXX
+					#'_state': running(16),
+				 	#'region': RegionInfo:eu-west-1,
+				
 					try:
 						ec2conn.monitor_instance(str(instance.id))
 					except:
