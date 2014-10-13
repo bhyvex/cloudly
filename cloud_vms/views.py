@@ -214,8 +214,16 @@ def ajax_vms_refresh(request):
 	
 
 def aws_vm_view(request,vm_name):
-	# template aws_vm.html
-	return HttpResponse("working on this currently")
+
+	print '-- aws_vm_view'
+	
+	if not request.user.is_authenticated():
+		print 'anonymous'
+		return HttpResponseRedirect("/")
+
+	print request.user
+	
+	return render_to_response('aws_vm.html', locals(), context_instance=RequestContext(request))
 
 def ajax_virtual_machines(request):
 	
