@@ -223,23 +223,23 @@ def aws_vm_view(request,vm_name):
 		return HttpResponseRedirect("/")
 
 	print request.user
-	
-	#XXX add logging click
-	
+			
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
-	secret = profile.secret
 	user.last_login = datetime.datetime.now()
 	user.save()
 
 	ip = request.META['REMOTE_ADDR']
-	_log_user_activity(profile,"click","/cloud/settings/","cloud_settings",ip=ip)
-
+	
+	print '-_'*1000
+	print 'logging in click....'
+	_log_user_activity(profile,"click","/aws/"+vm_name,"aws_vm_view",ip=ip)
 
 	vms_cache = Cache.objects.get(user=user)
 	vm_cache =  vms_cache.vms_response
 	
 	return render_to_response('aws_vm.html', {'vm_name':vm_name,'vm_cache':vm_cache,}, context_instance=RequestContext(request))
+
 
 def ajax_virtual_machines(request):
 	
