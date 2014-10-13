@@ -120,7 +120,7 @@ def ajax_vms_refresh(request):
 						volumes.append([volume.id, volume.iops, volume.size,])
 
 					groups = []
-					for group in instance_metrics['instance']['groups']:
+					for group in instance.__dict__['groups']:
 						groups.append([group.id, group.name,])
 
 					instance_metrics['instance']['groups'] = groups
