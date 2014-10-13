@@ -105,8 +105,9 @@ def ajax_vms_refresh(request):
 					if not instance: continue
 	
 					instance_metrics = {}
-					instance_metrics['instance'] = instance.__dict__					
-													
+					#instance_metrics['instance'] = instance.__dict__					
+					instance_metrics['instance'] = "test"
+						
 					print '** instance', instance.id, instance.private_ip_address
 					
 					volumes = {}
@@ -141,37 +142,37 @@ def ajax_vms_refresh(request):
 					except: continue
 					
 					cpu_utilization_datapoints = metric.query(start, end, 'Average', 'Percent')
-					instance_metrics['cpu_utilization_datapoints'] = cpu_utilization_datapoints
+					#instance_metrics['cpu_utilization_datapoints'] = cpu_utilization_datapoints
 
 					# DiskReadOps
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskReadOps")[0]
 					disk_readops_datapoints = metric.query(start, end, 'Average', '')
-					instance_metrics['disk_readops_datapoints'] = disk_readops_datapoints
+					#instance_metrics['disk_readops_datapoints'] = disk_readops_datapoints
 
 					# DiskWriteOps
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskWriteOps")[0]
 					disk_writeops_datapoints = metric.query(start, end, 'Average', '')
-					instance_metrics['disk_writeops_datapoints'] = disk_writeops_datapoints
+					#instance_metrics['disk_writeops_datapoints'] = disk_writeops_datapoints
 
 					# DiskReadBytes
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskReadBytes")[0]
 					disk_readbytes_datapoints = metric.query(start, end, 'Average', '')
-					instance_metrics['disk_readbytes_datapoints'] = disk_readbytes_datapoints
+					#instance_metrics['disk_readbytes_datapoints'] = disk_readbytes_datapoints
 
 					# DiskWriteBytes
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskWriteBytes")[0]
 					disk_writebytes_datapoints = metric.query(start, end, 'Average', '')
-					instance_metrics['disk_writebytes_datapoints'] = disk_writebytes_datapoints
+					#instance_metrics['disk_writebytes_datapoints'] = disk_writebytes_datapoints
 					
 					# NetworkIn
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="NetworkIn")[0]
 					networkin_datapoints = metric.query(start, end, 'Average', '')
-					instance_metrics['networkin_datapoints'] = networkin_datapoints
+					#instance_metrics['networkin_datapoints'] = networkin_datapoints
 					
 					# NetworkOut
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="NetworkOut")[0]
 					networkout_datapoints = metric.query(start, end, 'Average', '')
-					instance_metrics['networkout_datapoints'] = networkout_datapoints
+					#instance_metrics['networkout_datapoints'] = networkout_datapoints
 
 					aws_virtual_machines[instance.id] = instance_metrics
 
@@ -180,7 +181,7 @@ def ajax_vms_refresh(request):
 
 		# XXX Note This is how this should be - but I get this fucked up error on the prod......
 		# XXX Note Can't pickle <type '_hashlib.HASH'>: attribute lookup _hashlib.HASH failed
-		# XXX Note Specifically, it's the Python Bug that cannot be fixed http://bugs.python.org/issue11771
+		# XXX Note Specifically, it's the Python Bug that "cannot be fixed" http://bugs.python.org/issue11771
 		# XXX Note Quote: There is no way to implement generic pickling for hash objects that would work across all implementations.
 		try:
 			vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
