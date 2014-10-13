@@ -142,14 +142,13 @@ def ajax_vms_refresh(request):
 					
 					pprint(instance.__dict__)
 					
-					instance_metrics['_state'] = {"code":instance._state.code,"name":instance._state.name,}
 					instance_metrics['region'] = {"endpoint":instance.region.endpoint,"name":instance.region.name,}				
+					instance_metrics['state'] = {"state":instance.state,"code":instance.state_code,"state_reason":instance.state_reason,}
 				
 					try:
 						ec2conn.monitor_instance(str(instance.id))
 					except:
 						print instance.id, 'instance not in a monitorable state!'.upper()
-						print instance.id, 'reason:', instance.state_reason['message']
 						continue
 					
 					end = datetime.datetime.utcnow()
