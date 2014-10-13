@@ -107,7 +107,8 @@ def ajax_vms_refresh(request):
 					instance_metrics = {}
 					#instance_metrics['instance'] = instance.__dict__
 					
-					print 'instance.__dict__', instance.__dict__
+					print 'instance.__dict__'*100
+					pprint(instance.__dict__)
 										
 					instance_metrics['instance'] = {}
 					instance_metrics['instance']['groups'] = {}
@@ -147,37 +148,37 @@ def ajax_vms_refresh(request):
 					except: continue
 					
 					cpu_utilization_datapoints = metric.query(start, end, 'Average', 'Percent')
-					#instance_metrics['cpu_utilization_datapoints'] = cpu_utilization_datapoints
+					instance_metrics['cpu_utilization_datapoints'] = cpu_utilization_datapoints
 
 					# DiskReadOps
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskReadOps")[0]
 					disk_readops_datapoints = metric.query(start, end, 'Average', '')
-					#instance_metrics['disk_readops_datapoints'] = disk_readops_datapoints
+					instance_metrics['disk_readops_datapoints'] = disk_readops_datapoints
 
 					# DiskWriteOps
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskWriteOps")[0]
 					disk_writeops_datapoints = metric.query(start, end, 'Average', '')
-					#instance_metrics['disk_writeops_datapoints'] = disk_writeops_datapoints
+					instance_metrics['disk_writeops_datapoints'] = disk_writeops_datapoints
 
 					# DiskReadBytes
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskReadBytes")[0]
 					disk_readbytes_datapoints = metric.query(start, end, 'Average', '')
-					#instance_metrics['disk_readbytes_datapoints'] = disk_readbytes_datapoints
+					instance_metrics['disk_readbytes_datapoints'] = disk_readbytes_datapoints
 
 					# DiskWriteBytes
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskWriteBytes")[0]
 					disk_writebytes_datapoints = metric.query(start, end, 'Average', '')
-					#instance_metrics['disk_writebytes_datapoints'] = disk_writebytes_datapoints
+					instance_metrics['disk_writebytes_datapoints'] = disk_writebytes_datapoints
 					
 					# NetworkIn
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="NetworkIn")[0]
 					networkin_datapoints = metric.query(start, end, 'Average', '')
-					#instance_metrics['networkin_datapoints'] = networkin_datapoints
+					instance_metrics['networkin_datapoints'] = networkin_datapoints
 					
 					# NetworkOut
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="NetworkOut")[0]
 					networkout_datapoints = metric.query(start, end, 'Average', '')
-					#instance_metrics['networkout_datapoints'] = networkout_datapoints
+					instance_metrics['networkout_datapoints'] = networkout_datapoints
 
 					aws_virtual_machines[instance.id] = instance_metrics
 
