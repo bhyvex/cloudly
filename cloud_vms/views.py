@@ -126,21 +126,20 @@ def ajax_vms_refresh(request):
 					instance_metrics['groups'] = groups
 					instance_metrics['block_device_mapping'] = volumes
 					instance_metrics['architecture'] = instance.architecture
-					#'client_token': u'14122606519867141',
-					#'dns_name': u'ec2-54-171-15-105.eu-west-1.compute.amazonaws.com',
-					#'private_ip_address': u'172.31.34.238',
-					#'hypervisor': u'xen',
-					#'id': u'i-75cf9e36',
-					#'image_id': u'ami-1d61a76a',
-					#'instance_type': u't1.micro',
-					#'ip_address': u'54.171.15.105',
-					#'key_name': u'jparicka-eu-west-1',
-					#'launch_time': u'2014-10-02T14:37:38.000Z',
-					#'monitored': True,
-					#'monitoring_state': u'enabled',
-					#'persistent': False,
-					#'ramdisk': None,
-				 
+					instance_metrics['client_token'] = instance.client_token
+					instance_metrics['dns_name'] = instance.dns_name
+					instance_metrics['private_ip_address'] = instance.private_ip_address
+					instance_metrics['hypervisor'] = instance.hypervisor
+					instance_metrics['id'] = instance.id
+					instance_metrics['image_id'] = instance.image_id
+					instance_metrics['instance_type'] = instance.instance_type
+					instance_metrics['ip_address'] = instance.ip_address
+					instance_metrics['key_name'] = instance.key_name
+					instance_metrics['launch_time'] = instance.launch_time
+					instance_metrics['monitored'] = instance.monitored
+					instance_metrics['monitoring_state'] = instance.monitoring_state
+					instance_metrics['persistent'] = instance.persistent
+					instance_metrics['ramdisk'] = instance.ramdisk
 					
 					try:
 						ec2conn.monitor_instance(str(instance.id))
