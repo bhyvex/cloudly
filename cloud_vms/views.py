@@ -109,9 +109,9 @@ def ajax_vms_refresh(request):
 					print '-'*1000
 					pprint(instance.__dict__)
 										
-					instance_metrics['instance'] = {}
-					instance_metrics['instance']['groups'] = {}
-					instance_metrics['instance']['block_device_mapping'] = {}
+					instance_metrics = {}
+					instance_metrics['groups'] = {}
+					instance_metrics['block_device_mapping'] = {}
 						
 					print '** instance', instance.id, instance.private_ip_address
 					
@@ -123,8 +123,10 @@ def ajax_vms_refresh(request):
 					for group in instance.__dict__['groups']:
 						groups.append([group.id, group.name,])
 
-					instance_metrics['instance']['groups'] = groups
-					instance_metrics['instance']['block_device_mapping'] = volumes
+					instance_metrics['groups'] = groups
+					instance_metrics['block_device_mapping'] = volumes
+					
+					
 					
 					
 					try:
