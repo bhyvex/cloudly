@@ -80,12 +80,12 @@
 
 <strong>is_updating {{is_updating}}</strong>
 
-Instances: {% for vm in vms_cached_response %}{% if not "last_seen" in vm %}{{vm}} {% endif %}{% endfor %}
+Instances: {% for vm in vms_cached_response %}{% if not "last_seen" in vm %}<a href="/vm/{{vm}}/">{{vm}}</a> {% endif %}{% endfor %}
 
 last_seen: {% for vm in vms_cached_response %}{% if "last_seen" in vm %}{{vm}} {% endif %}{% endfor %}
 
 {% for vm in vms_cached_response %}
-{% if not "last_seen" in vm %}<strong>{{vm}}</strong> {{vms_cached_response|dict_get:vm}}{% endif %}
+{% if not "last_seen" in vm %}<a href="/vm/{{vm}}/">{{vm}}</a> {{vms_cached_response|dict_get:vm}}{% endif %}
 {% endfor %}
 
 </pre>
