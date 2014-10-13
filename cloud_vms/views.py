@@ -231,15 +231,14 @@ def aws_vm_view(request,vm_name):
 
 	ip = request.META['REMOTE_ADDR']
 	
-	print '-_'*1000
-	print 'logging in click....'
 	_log_user_activity(profile,"click","/aws/"+vm_name,"aws_vm_view",ip=ip)
+
+	# XXX check permissions to see this VM!!!!!!!!!!!!
 
 	vms_cache = Cache.objects.get(user=user)
 	vm_cache =  vms_cache.vms_response
-	
-	# XXX check permissions to see this VM!!!!!!!!!!!!
-	
+	vm_cache = base64.b64decode(vm_cache)
+	vm_cache = pickle.loads(vm_cache)[vm_name]
 	
 	return render_to_response('aws_vm.html', {'vm_name':vm_name,'vm_cache':vm_cache,}, context_instance=RequestContext(request))
 
