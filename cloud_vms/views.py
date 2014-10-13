@@ -165,7 +165,7 @@ def ajax_vms_refresh(request):
 					except: continue
 					
 					cpu_utilization_datapoints = metric.query(start, end, 'Average', 'Percent')
-					instance_metrics['cpu_utilization_datapoints'] = json.dumps(cpu_utilization_datapoints_,default=date_handler)
+					instance_metrics['cpu_utilization_datapoints'] = json.dumps(cpu_utilization_datapoints,default=date_handler)
 
 
 					# DiskReadOps
