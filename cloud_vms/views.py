@@ -223,7 +223,7 @@ def aws_vm_view(request,vm_name):
 
 	print request.user
 	
-	return render_to_response('aws_vm.html', locals(), context_instance=RequestContext(request))
+	return render_to_response('aws_vm.html', {'vm_name':vm_name,}, context_instance=RequestContext(request))
 
 def ajax_virtual_machines(request):
 	
