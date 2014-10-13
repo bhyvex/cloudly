@@ -137,7 +137,6 @@ def ajax_vms_refresh(request):
 					instance_metrics['key_name'] = instance.key_name
 					instance_metrics['launch_time'] = instance.launch_time
 					instance_metrics['monitored'] = instance.monitored
-					instance_metrics['monitoring_state'] = instance.monitoring_state
 					instance_metrics['persistent'] = instance.persistent
 					instance_metrics['ramdisk'] = instance.ramdisk
 					
