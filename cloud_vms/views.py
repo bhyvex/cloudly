@@ -223,7 +223,13 @@ def aws_vm_view(request,vm_name):
 
 	print request.user
 	
-	return render_to_response('aws_vm.html', {'vm_name':vm_name,}, context_instance=RequestContext(request))
+	#XXX add logging click
+	
+	user = request.user
+	vms_cache = Cache.objects.get(user=user)
+	vm_cache =  vms_cache.vms_response
+	
+	return render_to_response('aws_vm.html', {'vm_name':vm_name,'vm_cache':vm_cache,}, context_instance=RequestContext(request))
 
 def ajax_virtual_machines(request):
 	
