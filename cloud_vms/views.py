@@ -176,7 +176,7 @@ def ajax_vms_refresh(request):
 					# DiskWriteOps
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskWriteOps")[0]
 					disk_writeops_datapoints = metric.query(start, end, 'Average', '')
-					#instance_metrics['disk_writeops_datapoints'] = disk_writeops_datapoints
+					instance_metrics['disk_writeops_datapoints'] = json.dumps(disk_writeops_datapoints,default=date_handler)
 
 					# DiskReadBytes
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskReadBytes")[0]
