@@ -181,39 +181,27 @@ def ajax_vms_refresh(request):
 					# DiskReadBytes
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskReadBytes")[0]
 					disk_readbytes_datapoints = metric.query(start, end, 'Average', '')
-					#instance_metrics['disk_readbytes_datapoints'] = disk_readbytes_datapoints
+					instance_metrics['disk_readbytes_datapoints'] = json.dumps(disk_readbytes_datapoints,default=date_handler)
 
 					# DiskWriteBytes
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskWriteBytes")[0]
 					disk_writebytes_datapoints = metric.query(start, end, 'Average', '')
-					#instance_metrics['disk_writebytes_datapoints'] = disk_writebytes_datapoints
+					instance_metrics['disk_writebytes_datapoints'] = json.dumps(disk_writebytes_datapoints,default=date_handler)
 					
 					# NetworkIn
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="NetworkIn")[0]
 					networkin_datapoints = metric.query(start, end, 'Average', '')
-					#instance_metrics['networkin_datapoints'] = networkin_datapoints
+					instance_metrics['networkin_datapoints'] = json.dumps(networkin_datapoints,default=date_handler)
 					
 					# NetworkOut
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="NetworkOut")[0]
 					networkout_datapoints = metric.query(start, end, 'Average', '')
-					#instance_metrics['networkout_datapoints'] = networkout_datapoints
+					instance_metrics['networkout_datapoints'] = json.dumps(networkout_datapoints,default=date_handler)
 
 					aws_virtual_machines[instance.id] = instance_metrics
 
 
-		print 'aws_virtual_machines'
-
-		# XXX Note This is how this should be - but I get this fucked up error on the prod......
-		# XXX Note Can't pickle <type '_hashlib.HASH'>: attribute lookup _hashlib.HASH failed
-		# XXX Note Specifically, it's the Python Bug that "cannot be fixed" http://bugs.python.org/issue11771
-		# XXX Note Quote: There is no way to implement generic pickling for hash objects that would work across all implementations.
-		#try:
 		vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
-		#except:
-		#	return HttpResponse("Fuck shit wank bugger Can't pickle <type '_hashlib.HASH'>: attribute lookup _hashlib.HASH failed problem..")
-		
-		print 'xxxxx', aws_virtual_machines
-
 		vms_cache.last_seen = timezone.now()
 		vms_cache.is_updating = False
 		vms_cache.save()
