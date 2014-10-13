@@ -117,7 +117,7 @@ def ajax_vms_refresh(request):
 					
 					volumes = []
 					for volume in ec2conn.get_all_volumes(filters={'attachment.instance-id': instance.id}):
-						volumes.append(volume.id, volume.iops, volume.size,)
+						volumes.append([volume.id, volume.iops, volume.size,])
 
 					groups = []
 					for group in instance_metrics['instance']['groups']:
