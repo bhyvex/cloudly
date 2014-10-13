@@ -163,10 +163,10 @@ def ajax_vms_refresh(request):
 						metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="CPUUtilization")[0]
 					except: continue
 					
+					cpu_utilization_datapoints_ = []
 					cpu_utilization_datapoints = metric.query(start, end, 'Average', 'Percent')
-					print '-='*1000
-					pprint(cpu_utilization_datapoints)
-					instance_metrics['cpu_utilization_datapoints'] = {cpu_utilization_datapoints,}
+					for i in cpu_utilization_datapoints: cpu_utilization_datapoints_.append(i)
+					instance_metrics['cpu_utilization_datapoints'] = cpu_utilization_datapoints_
 
 					# DiskReadOps
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskReadOps")[0]
