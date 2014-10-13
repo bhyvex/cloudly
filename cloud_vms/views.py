@@ -172,7 +172,7 @@ def ajax_vms_refresh(request):
 					pprint(cpu_utilization_datapoints_)
 					print type(cpu_utilization_datapoints_)
 					
-					instance_metrics['cpu_utilization_datapoints'] = json.dumps(cpu_utilization_datapoints_)
+					instance_metrics['cpu_utilization_datapoints'] = json.dumps(cpu_utilization_datapoints_,default=date_handler)
 
 					# DiskReadOps
 					metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskReadOps")[0]
