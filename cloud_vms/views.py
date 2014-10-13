@@ -166,8 +166,8 @@ def ajax_vms_refresh(request):
 					cpu_utilization_datapoints_ = []
 					cpu_utilization_datapoints = metric.query(start, end, 'Average', 'Percent')
 					for i in cpu_utilization_datapoints: 
-						cpu_utilization_datapoints_.append(i)
-						print i
+						i_ = {'Timestamp':i.Timestamp,'Average':i.Average,'Unit':i.Unit,}
+						cpu_utilization_datapoints_.append(i_)
 					instance_metrics['cpu_utilization_datapoints'] = cpu_utilization_datapoints_
 
 					# DiskReadOps
