@@ -103,12 +103,7 @@ def ajax_vms_refresh(request):
 				for instance in instances:
 						
 					if not instance: continue
-	
-					instance_metrics = {}
-					
-					print '-'*1000
-					pprint(instance.__dict__)
-										
+											
 					instance_metrics = {}
 					instance_metrics['groups'] = {}
 					instance_metrics['block_device_mapping'] = {}
