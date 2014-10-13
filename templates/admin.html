@@ -79,8 +79,8 @@
 						  <tbody>
 							{% for p in users %}
 							<tr>
-								<td>{{p.id}}</td>
-								<td><a href="/admin/user/{{p.id}}/activity/">{{p.name}}</a></td>
+								<td>{{p.user.id}}</td>
+								<td><a href="/admin/user/{{p.user.id}}/activity/">{{p.name}}</a></td>
 								<td>{{p.user.email}}</td>
 								<td>
 									{% if p.twitter %}
