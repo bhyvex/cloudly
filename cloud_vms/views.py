@@ -120,9 +120,9 @@ def ajax_vms_refresh(request):
 					for group in instance_metrics['instance']['groups']:
 						groups.append([group.id, group.name,])
 
-					instance_metrics['instance']['groups'] = groups
-					instance_metrics['instance']['block_device_mapping'] = volumes
-					instance_metrics['instance']['_state'] = str(instance.state)
+					#instance_metrics['instance']['groups'] = groups
+					#instance_metrics['instance']['block_device_mapping'] = volumes
+					#instance_metrics['instance']['_state'] = str(instance.state)
 					
 					try:
 						ec2conn.monitor_instance(str(instance.id))
