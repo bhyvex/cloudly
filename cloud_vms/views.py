@@ -139,11 +139,9 @@ def ajax_vms_refresh(request):
 					instance_metrics['tags'] = instance.tags
 					instance_metrics['virtualization_type'] = instance.virtualization_type
 					instance_metrics['vpc_id'] = instance.vpc_id
-					
-					pprint(instance.__dict__)
-					
 					instance_metrics['region'] = {"endpoint":instance.region.endpoint,"name":instance.region.name,}				
 					instance_metrics['state'] = {"state":instance.state,"code":instance.state_code,"state_reason":instance.state_reason,}
+
 				
 					try:
 						ec2conn.monitor_instance(str(instance.id))
