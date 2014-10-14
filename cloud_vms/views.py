@@ -119,6 +119,8 @@ def ajax_vms_refresh(request):
 						groups.append([group.id, group.name,])
 
 					instance_metrics['id'] = instance.id
+					instance_metrics['user_id'] = request.user.id
+					instance_metrics['instance']['user_id'] = request.user.id
 					instance_metrics['instance']['groups'] = groups
 					instance_metrics['instance']['block_device_mapping'] = volumes
 					instance_metrics['instance']['architecture'] = instance.architecture
@@ -143,8 +145,7 @@ def ajax_vms_refresh(request):
 					instance_metrics['instance']['region'] = {"endpoint":instance.region.endpoint,"name":instance.region.name,}				
 					instance_metrics['instance']['state'] = {"state":instance.state,"code":instance.state_code,"state_reason":instance.state_reason,}
 					
-					# XXX add on user_id here
-				
+									
 					try:
 						ec2conn.monitor_instance(str(instance.id))
 					except:
