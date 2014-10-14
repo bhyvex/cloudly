@@ -43,7 +43,6 @@
 								  <th>instance_type</th>
 								  <th>name</th>
 								  <th>public_dns_name</th>
-								  <th>_placement</th>
 								  <th>region</th>
 								  <th>ip_address</th>
 								  <th>key_name</th>
@@ -67,8 +66,7 @@
 									-
 									{% endif %}
 								</td>
-								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"_placement"}}</td>
-								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"region"}}</td>
+																<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"region"|dict_get:"name"}}</td>
 								<td>
 									{% if vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"ip_address" %}
 									{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"ip_address"}}
@@ -85,7 +83,6 @@
 							{% endfor %}
 						  </tbody>
 					 </table>
-					debug: {{vms_cached_response}}	
 					</div>
 			</div>
 		</div>
