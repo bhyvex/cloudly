@@ -352,9 +352,14 @@ def cloud_settings_update_regions(request):
 	
 	enable_regions = request.POST.getlist('checkboxes')
 	
+	c=0
 	enabled_regions = ""
 	for region in enable_regions:
-		enabled_regions += ","+str(region)
+		if(c):
+			enabled_regions += ","+str(region)
+		else:
+			enabled_regions = str(region)
+		c+=1
 	
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
