@@ -232,10 +232,8 @@ def aws_vm_view(request,vm_name):
 	user.save()
 
 	ip = request.META['REMOTE_ADDR']
-	
 	_log_user_activity(profile,"click","/aws/"+vm_name,"aws_vm_view",ip=ip)
 
-	# XXX check permissions to see this VM!!!!!!!!!!!!
 
 	vms_cache = Cache.objects.get(user=user)
 	vm_cache =  vms_cache.vms_response
@@ -244,7 +242,10 @@ def aws_vm_view(request,vm_name):
 		vm_cache = pickle.loads(vm_cache)[vm_name]
 	except:
 		return HttpResponse("access denied")
-	
+
+	if(vm_cache['user_id']!=request.user.id):
+		return HttpResponse("access denied")
+		
 	return render_to_response('aws_vm.html', {'vm_name':vm_name,'vm_cache':vm_cache,}, context_instance=RequestContext(request))
 
 
