@@ -157,9 +157,7 @@ def ajax_vms_refresh(request):
 					end = datetime.datetime.utcnow()
 					start = end - datetime.timedelta(hours=1)
 				
-					# And the list of possible values on the aws response....
-					# ['Minimum', 'Maximum', 'Sum', 'Average', 'SampleCount']
-					# ['Seconds', 'Percent', 'Bytes', 'Bits', 'Count', 'Bytes/Second', 'Bits/Second', 'Count/Second']
+					# This is how you list all possible values on the response....
 					# print ec2conn.list_metrics()
 					
 					# CPUUtilization
