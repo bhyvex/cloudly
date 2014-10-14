@@ -1,6 +1,16 @@
 Cloudly
 =======
 
+
+What is Project Cloudly? 
+------------------------
+
+It's a software to control your Cloud Services (both public and private ones). 
+It saves you money and energies by taking away most of the usual cloud complexities allowing you to focus on control and better use of your infrastructure. 
+
+It also comes with more than 100+ ready to use professionally configured software packages and allows you to deploy these quickly on bare metal, virtual machines, or in the cloud. 
+
+
 Installation Instructions
 -------------------------
 
