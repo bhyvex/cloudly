@@ -107,10 +107,7 @@ def ajax_vms_refresh(request):
 											
 					instance_metrics = {}
 					instance_metrics['instance'] = {}
-					
-					instance_metrics['groups'] = {}
-					instance_metrics['block_device_mapping'] = {}
-						
+											
 					print '** instance', instance.id, instance.private_ip_address
 					
 					volumes = []
@@ -121,29 +118,30 @@ def ajax_vms_refresh(request):
 					for group in instance.__dict__['groups']:
 						groups.append([group.id, group.name,])
 
-					instance_metrics['groups'] = groups
-					instance_metrics['block_device_mapping'] = volumes
-					instance_metrics['architecture'] = instance.architecture
-					instance_metrics['client_token'] = instance.client_token
-					instance_metrics['dns_name'] = instance.dns_name
-					instance_metrics['private_ip_address'] = instance.private_ip_address
-					instance_metrics['hypervisor'] = instance.hypervisor
 					instance_metrics['id'] = instance.id
-					instance_metrics['image_id'] = instance.image_id
-					instance_metrics['instance_type'] = instance.instance_type
-					instance_metrics['ip_address'] = instance.ip_address
-					instance_metrics['key_name'] = instance.key_name
-					instance_metrics['launch_time'] = instance.launch_time
-					instance_metrics['monitored'] = instance.monitored
-					instance_metrics['persistent'] = instance.persistent
-					instance_metrics['ramdisk'] = instance.ramdisk
-					instance_metrics['root_device_name'] = instance.root_device_name
-					instance_metrics['root_device_type'] = instance.root_device_type
-					instance_metrics['tags'] = instance.tags
-					instance_metrics['virtualization_type'] = instance.virtualization_type
-					instance_metrics['vpc_id'] = instance.vpc_id
-					instance_metrics['region'] = {"endpoint":instance.region.endpoint,"name":instance.region.name,}				
-					instance_metrics['state'] = {"state":instance.state,"code":instance.state_code,"state_reason":instance.state_reason,}
+					instance_metrics['instance']['groups'] = groups
+					instance_metrics['instance']['block_device_mapping'] = volumes
+					instance_metrics['instance']['architecture'] = instance.architecture
+					instance_metrics['instance']['client_token'] = instance.client_token
+					instance_metrics['instance']['dns_name'] = instance.dns_name
+					instance_metrics['instance']['private_ip_address'] = instance.private_ip_address
+					instance_metrics['instance']['hypervisor'] = instance.hypervisor
+					instance_metrics['instance']['id'] = instance.id
+					instance_metrics['instance']['image_id'] = instance.image_id
+					instance_metrics['instance']['instance_type'] = instance.instance_type
+					instance_metrics['instance']['ip_address'] = instance.ip_address
+					instance_metrics['instance']['key_name'] = instance.key_name
+					instance_metrics['instance']['launch_time'] = instance.launch_time
+					instance_metrics['instance']['monitored'] = instance.monitored
+					instance_metrics['instance']['persistent'] = instance.persistent
+					instance_metrics['instance']['ramdisk'] = instance.ramdisk
+					instance_metrics['instance']['root_device_name'] = instance.root_device_name
+					instance_metrics['instance']['root_device_type'] = instance.root_device_type
+					instance_metrics['instance']['tags'] = instance.tags
+					instance_metrics['instance']['virtualization_type'] = instance.virtualization_type
+					instance_metrics['instance']['vpc_id'] = instance.vpc_id
+					instance_metrics['instance']['region'] = {"endpoint":instance.region.endpoint,"name":instance.region.name,}				
+					instance_metrics['instance']['state'] = {"state":instance.state,"code":instance.state_code,"state_reason":instance.state_reason,}
 
 				
 					try:
