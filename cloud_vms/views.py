@@ -142,7 +142,8 @@ def ajax_vms_refresh(request):
 					instance_metrics['instance']['vpc_id'] = instance.vpc_id
 					instance_metrics['instance']['region'] = {"endpoint":instance.region.endpoint,"name":instance.region.name,}				
 					instance_metrics['instance']['state'] = {"state":instance.state,"code":instance.state_code,"state_reason":instance.state_reason,}
-
+					
+					# XXX add on user_id here
 				
 					try:
 						ec2conn.monitor_instance(str(instance.id))
