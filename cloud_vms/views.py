@@ -162,7 +162,6 @@ def ajax_vms_refresh(request):
 					# ['Seconds', 'Percent', 'Bytes', 'Bits', 'Count', 'Bytes/Second', 'Bits/Second', 'Count/Second']
 					# print ec2conn.list_metrics()
 					
-					
 					# CPUUtilization
 					try:
 						metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="CPUUtilization")[0]
