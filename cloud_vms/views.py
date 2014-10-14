@@ -106,6 +106,8 @@ def ajax_vms_refresh(request):
 					if not instance: continue
 											
 					instance_metrics = {}
+					instance_metrics['instance'] = {}
+					
 					instance_metrics['groups'] = {}
 					instance_metrics['block_device_mapping'] = {}
 						
