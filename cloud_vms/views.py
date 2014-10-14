@@ -238,7 +238,10 @@ def aws_vm_view(request,vm_name):
 	vms_cache = Cache.objects.get(user=user)
 	vm_cache =  vms_cache.vms_response
 	vm_cache = base64.b64decode(vm_cache)
-	vm_cache = pickle.loads(vm_cache)[vm_name]
+	try:
+		vm_cache = pickle.loads(vm_cache)[vm_name]
+	except:
+		return HttpResponse("access denied")
 	
 	return render_to_response('aws_vm.html', {'vm_name':vm_name,'vm_cache':vm_cache,}, context_instance=RequestContext(request))
 
