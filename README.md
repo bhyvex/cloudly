@@ -28,7 +28,7 @@ mysql> create database cloudly;
 </pre>
 
 
-4) Install various python packages
+3) Install various python packages
 
 <pre>
 $ apt-get install python-dev 
@@ -45,7 +45,7 @@ $ apt-get install libjpeg-dev
 $ pip install pillow
 </pre>
 
-5) Install MongoDB and it's python connector
+4) Install MongoDB and it's python connector
 
 <pre>
 $ apt-get install mongodb
@@ -55,14 +55,14 @@ $ pip install pymongo --upgrade
 
 ..and configure your server to meet your requirements.
 
-6) Download the latest version of Cloudly
+5) Download the latest version of Cloudly
 
 <pre>
 $ apt-get install git
 $ git clone https://github.com/jparicka/cloudly.git cloudly
 </pre>
 
-7) Create Cloudly ORM database tables
+6) Create Cloudly ORM database tables
 
 <pre>
 $ cd cloudly
@@ -81,7 +81,7 @@ Would you like to create one now? (yes/no): no
 Answer "no" to this question.
 
 
-8) Enable utf-8 characters on the database
+7) Enable utf-8 characters on the database
 
 <pre>
 $ mysql -u root -p
@@ -90,13 +90,13 @@ mysql> ALTER DATABASE cloudly charset=utf8;
 mysql> ALTER TABLE userprofile_profile CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
 </pre>
 
-9) Install Amazon Boto - Python Interface to Amazon Web Services
+8) Install Amazon Boto - Python Interface to Amazon Web Services
 
 <pre>
 $ apt-get install python-boto
 </pre>
 
-10) Run MongoDB
+9) Run MongoDB
 
 <pre>
 $ sudo mkdir /data
@@ -106,7 +106,7 @@ $ mongod
 
 ..and configure your server to meet your requirements.
 
-11) Run the development server
+10) Run the development server
 
 At this point you should be able to run the administration dashboard (Django App):
 
@@ -117,16 +117,16 @@ $ ./run_devel.sh
 
 Now that you have the User Interface (Admin Dashboard) up and running you'd need to get the API started.  You can do so by following instructions in the next step.
 
-12) Configuring the web server (NGINX without SSL support)
+11) Configuring the web server (NGINX without SSL support)
 
 TBD...
 
-13) Configuring NGINX (with SSL support)
+12) Configuring NGINX (with SSL support)
 
 You'd need to contact me about this one. You can reach me on jparicka@gmail.com, or Skype: jparicka
 
 
-14) Run the API
+13) Run the API
 
 tbd...
 
