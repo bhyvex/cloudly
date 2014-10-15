@@ -63,6 +63,7 @@
 	 					</div><!--/col-->
 				</div><!--/row-->	
 
+{% if aws_ec2_verified %}
 				<div class="panel panel-default">
 						<div class="panel-heading">
 							<h2><i class="fa fa-picture-o"></i>Public Cloud Regions</h2>
@@ -93,9 +94,11 @@
 				
 	 					</div><!--/col-->
 				</div><!--/row-->	
+				<br/>
+				<font color="red">XXX clicking world map with regions clickable would be cool...</font>
+{% endif %}
+
 			</div>
-			<br/>
-			<font color="red">XXX clicking world map with regions clickable would be cool...</font>
 		</div>
 				
 		<!-- end: Content -->
