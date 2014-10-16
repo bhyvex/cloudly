@@ -27,7 +27,9 @@
 					<div class="panel-body">
 
 <pre>
-<strong>instance</strong> {{vm_cache|dict_get:"instance"}}
+<strong>instance</strong> 
+{% for vm in vm_cache|dict_get:"instance" %}
+{{vm}}: {{vm_cache|dict_get:"instance"|dict_get:vm}}{% endfor %}
 </pre>	
 
 
