@@ -29,7 +29,7 @@
 <pre>
 <strong>instance</strong> 
 {% for vm in vm_cache|dict_get:"instance" %}
-{{vm}}: {{vm_cache|dict_get:"instance"|dict_get:vm}}{% endfor %}
+<strong>{{vm}}</strong> {{vm_cache|dict_get:"instance"|dict_get:vm}}{% endfor %}
 </pre>	
 
 
@@ -53,7 +53,10 @@
 						<div class="panel-body">
 
 <pre>
-<strong>vm_cache</strong> {{vm_cache}}
+<strong>vm_cache</strong>
+{% for graph in vm_cache %}
+<strong>{{graph}}</strong> {{vm_cache|dict_get:graph}}
+{% endfor %}
 </pre>					
 
 
