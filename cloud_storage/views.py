@@ -16,7 +16,6 @@ from django.template import RequestContext
 from django.http import HttpResponseForbidden
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
-from django.utils import simplejson
 
 logger = logging.getLogger(__name__)
 
