@@ -99,7 +99,7 @@ def _work_thumbnail(file_object):
 
 	return f.thumbnail_pic1
 
-
+ 
 
 def delete_file(request, file_id):
 
