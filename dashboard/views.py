@@ -36,7 +36,7 @@ def home(request):
 		print '--  web:'
 		print 'anonymous'
 	
-		return render_to_response('web.html', locals(), context_instance=RequestContext(request))
+		return render_to_response('web.html', {'request':request,}, context_instance=RequestContext(request))
 
 	print '--  dashboard:'
 	print request.user
