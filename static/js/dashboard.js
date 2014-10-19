@@ -2,9 +2,9 @@
 function filterMachines(f) {
 	$('.machines-buttons .quick-button').removeClass('active');
 	$('.machines-buttons .btn-'+f).addClass('active');
-	if (f == 'all') f = '*';
+	if (f === 'all') f = '*';
 	else f = '.'+f;
-	$('.machines-list').isotope( { filter: f } );
+	$('#machines-loader').isotope( { filter: f } );
 }
 
 var dashboard  = {
@@ -12,7 +12,9 @@ var dashboard  = {
     actualMachines: '',
     initAction: function(){
         var $this = this;
-        $('#machines-loader').isotope();
+        $('#machines-loader').isotope({
+            itemSelector: '.vms-machine'
+        });
         $.ajax({
             type: 'GET',
             url: '/ajax/cloud/box-template/',
@@ -99,8 +101,7 @@ var dashboard  = {
 
 $(document).ready (function() {
 	
-        $('#machines-loader').isotope();
-	var btns = ['all', 'offline', 'suspended', 'windows', 'linux', 'bsd', 'private'];
+	var btns = ['all','critical','offline', 'suspended', 'windows', 'linux', 'bsd', 'private'];
 	for (var i = 0; i < btns.length; ++i) {
 	    (function(){
 		var type = btns[i];
