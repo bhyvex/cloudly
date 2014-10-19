@@ -270,4 +270,9 @@ def ajax_virtual_machines(request):
 	return render_to_response('ajax_virtual_machines.html', {'user':user,'vms_cached_response':vm_cache,}, context_instance=RequestContext(request))
 
 
+def ajax_virtual_machines_box(request):
+			
+	return render_to_response('ajax_virtual_machines_box.html', locals(), context_instance=RequestContext(request))
+
+
 

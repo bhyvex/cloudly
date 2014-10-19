@@ -1,27 +1,3 @@
 {% load cloud_extras %}
 {% load humanize %}
-
-<div class="row machines-list">
-    {% for vm in vms_cached_response %}
-        {% if not "last_seen" in vm %}
-            <div class="col-lg-3 col-sm-6 windows">
-                <div class="smallchart blue panel panel-default">
-                        <div class="title"><a href="/aws/{{vm}}/" class="white">{{vm}}</a></div>
-                        <div class="content">
-                                <div class="chart-stat">
-                                        <div class="chart white">
-								            {% for data in vms_cached_response|dict_get:vm|dict_get:"cpu_utilization_datapoints"|make_json %}
-                                        	{{data|dict_get:"Average"}},
-											{% endfor %}
-                                        </div>
-                            </div>
-                        </div>
-                        <div class="value">{{vms_cached_response|dict_get:vm|dict_get:"instance"|dict_get:"state"|dict_get:"state"|title}}</div>
-                </div>
-            </div><!--/col-->
-            {# {{vms_cached_response|dict_get:vm|dict_get:"instance"|dict_get:"tags"|dict_get:"Name"}} #}
-            {# {{vms_cached_response|dict_get:vm|dict_get:"instance"|dict_get:"state"}} #}
-
-        {% endif %}
-    {% endfor %}
-</div>
+{ {% for vm in vms_cached_response %}{% if not "last_seen" in vm %}"{{vm}}":{"vmcolor":"red","vmtitle":"windows","averge":"{% for data in vms_cached_response|dict_get:vm|dict_get:"cpu_utilization_datapoints"|make_json %}{{data|dict_get:"Average"}},{% endfor %}","state":"{{vms_cached_response|dict_get:vm|dict_get:"instance"|dict_get:"state"|dict_get:"state"|title}}" }{% if not forloop.last %},{% endif %}{% endif %}{% endfor %}}
