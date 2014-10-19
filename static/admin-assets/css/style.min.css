@@ -5741,6 +5741,9 @@ ul.profile-details li div i {
   
 }
 
+.vms-machine {
+    height: 300px !important;
+}
 .vms-machine .panel {
-    height: 200px !important;
+    height: 300px !important;
 }
