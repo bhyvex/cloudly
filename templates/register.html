@@ -117,52 +117,38 @@
 	</div><!--/container-->
 		
 		
-	<!-- start: JavaScript-->
-	<!--[if !IE]>-->
+<!-- start: JavaScript-->
+<!--[if !IE]>-->
+    <script src="/static/admin-assets/js/jquery-2.1.0.min.js"></script>
+<!--<![endif]-->
+<!--[if IE]>
+        <script src="/static/admin-assets/js/jquery-1.11.0.min.js"></script>
+<![endif]-->
+<!--[if !IE]>-->
+    <script type="text/javascript">
+            window.jQuery || document.write("<script src='/static/admin-assets/js/jquery-2.1.0.min.js'>"+"<"+"/script>");
+    </script>
+<!--<![endif]-->
+<!--[if IE]>
+    <script type="text/javascript">
+    window.jQuery || document.write("<script src='/static/admin-assets/js/jquery-1.11.0.min.js'>"+"<"+"/script>");
+    </script>
+<![endif]-->
+<script src="/static/admin-assets/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="/static/admin-assets/js/bootstrap.min.js"></script>
 
-			<script src="/static/admin-assets/js/jquery-2.1.0.min.js"></script>
+<!-- page scripts -->
+<script src="/static/admin-assets/js/jquery.icheck.min.js"></script>
 
-	<!--<![endif]-->
+<!-- theme scripts -->
+<script src="/static/admin-assets/js/custom.min.js"></script>
+<script src="/static/admin-assets/js/core.js"></script>
 
-	<!--[if IE]>
-	
-		<script src="/static/admin-assets/js/jquery-1.11.0.min.js"></script>
-	
-	<![endif]-->
+<!-- inline scripts related to this page -->
+<script src="/static/admin-assets/js/pages/login.js"></script>
 
-	<!--[if !IE]>-->
-
-		<script type="text/javascript">
-			window.jQuery || document.write("<script src='/static/admin-assets/js/jquery-2.1.0.min.js'>"+"<"+"/script>");
-		</script>
-
-	<!--<![endif]-->
-
-	<!--[if IE]>
-	
-		<script type="text/javascript">
-	 	window.jQuery || document.write("<script src='/static/admin-assets/js/jquery-1.11.0.min.js'>"+"<"+"/script>");
-		</script>
-		
-	<![endif]-->
-	<script src="/static/admin-assets/js/jquery-migrate-1.2.1.min.js"></script>
-	<script src="/static/admin-assets/js/bootstrap.min.js"></script>	
-	
-	
-	<!-- page scripts -->
-	<script src="/static/admin-assets/js/jquery.icheck.min.js"></script>
-	
-	<!-- theme scripts -->
-	<script src="/static/admin-assets/js/custom.min.js"></script>
-	<script src="/static/admin-assets/js/core.js"></script>
-	
-	<!-- inline scripts related to this page -->
-	<script src="/static/admin-assets/js/pages/login.js"></script>
-	
-	<!-- end: JavaScript-->
-
-
-	{% include "google_analytics.html" %}
+<!-- end: JavaScript-->
+{% include "google_analytics.html" %}
 	
 </body>
 </html>
