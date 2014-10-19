@@ -5742,13 +5742,13 @@ ul.profile-details li div i {
 }
 
 .vms-machine {
-    height: 300px !important;
+    height: 200px !important;
     margin-bottom: 15px;
 }
 .vms-machine .panel {
-    height: 300px !important;
+    height: 200px !important;
 }
 
 .vms-machine .content {
-    height: 220px !important;
+    height: 120px !important;
 }
