@@ -96,6 +96,7 @@ var dashboard  = {
     },
     addBlank: function(){
         this.addVMS('testVMS',{"averge":"0.0,0.0,0.0,0.0","state":"Running"});
+    
     }
 }
 
