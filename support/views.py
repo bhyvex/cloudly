@@ -41,6 +41,9 @@ def support(request):
 	ip = request.META['REMOTE_ADDR']
 	_log_user_activity(profile,"click","/support/","support",ip=ip)
 
+	if(profile.pricing_plan==0):
+		return HttpResponseRedirect('/pricing/')
+
 	return render_to_response('support.html', {'user':user,'profile':profile,}, context_instance=RequestContext(request))
 
 
