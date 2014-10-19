@@ -1,4 +1,5 @@
 import time
+import json
 import datetime
 
 from django import template
@@ -62,6 +63,9 @@ def get_file_extension(f):
 def replace_dots(text):
 	return text.replace(':','-')
 
+@register.filter(name='make_json')
+def make_json(json_):
+	return json.loads(json_)
 
 @register.filter(name='get_tags')
 def get_tags(package):

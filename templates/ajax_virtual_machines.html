@@ -9,59 +9,23 @@
                         <div class="title"><a href="/aws/{{vm}}/" class="white">{{vm}}</a></div>
                         <div class="content">
                                 <div class="chart-stat">
-                                        <div class="chart white">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-                                </div>
+                                        <div class="chart white">
+								            {% for data in vms_cached_response|dict_get:vm|dict_get:"cpu_utilization_datapoints"|make_json %}
+                                        	{{data|dict_get:"Average"}},
+											{% endfor %}
+                                        </div>
+                            </div>
                         </div>
-                        <div class="value">Some value</div>
+                        <div class="value">{{vms_cached_response|dict_get:vm|dict_get:"instance"|dict_get:"state"|dict_get:"state"|title}}</div>
                 </div>
             </div><!--/col-->
             {# {{vms_cached_response|dict_get:vm|dict_get:"instance"|dict_get:"tags"|dict_get:"Name"}} #}
             {# {{vms_cached_response|dict_get:vm|dict_get:"instance"|dict_get:"state"}} #}
-            {{vms_cached_response|dict_get:vm|dict_get:"cpu_utilization_datapoints"}}
+
         {% endif %}
     {% endfor %}
 
     
 
-    
-    <div class="col-lg-3 col-sm-6 windows">
-
-            <div class="smallchart blue panel panel-default">
-
-                    <div class="title">EC2-i-f9480ef3</div>
-
-                    <div class="content">
-
-                            <div class="chart-stat">
-                                    <div class="chart white">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-                            </div>
-
-                    </div>
-
-                    <div class="value">Some value</div>
-
-            </div>
-
-    </div><!--/col-->
-    
-    <div class="col-lg-3 col-sm-6 bsd">
-
-            <div class="smallchart red panel panel-default">
-
-                    <div class="title">EC2-i-f9480ef3</div>
-
-                    <div class="content">
-
-                            <div class="chart-stat">
-                                    <div class="chart white">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-                            </div>
-
-                    </div>
-
-                    <div class="value">Some value</div>
-
-            </div>
-
-    </div><!--/col-->
 </div>
 
