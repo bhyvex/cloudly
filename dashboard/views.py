@@ -99,7 +99,7 @@ def activate_pricing_plan(request):
 	profile.pricing_plan = int(plan)
 	profile.save()
 	
-	return HttpResponseRedirect("/support/")
+	return HttpResponseRedirect("/")
 	
 	
 def pricing(request):
