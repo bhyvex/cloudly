@@ -7,7 +7,10 @@ urlpatterns = patterns('',
 	url(r'^$', 'dashboard.views.home', name='home'),
 	url(r'^welcome/$', 'dashboard.views.welcome', name='welcome'),
 	url(r'^help/$', 'dashboard.views.help', name='help'),
+
+	# pricing
 	url(r'^pricing/$', 'dashboard.views.pricing', name='pricing'),
+	#url(r'^pricing/$', 'dashboard.views.pricing', name='pricing'),
 
 	# userprofile / account
 	url(r'^login/$', 'userprofile.views.auth', name='login'),
