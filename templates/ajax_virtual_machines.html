@@ -4,7 +4,7 @@
 <div class="row machines-list">
     {% for vm in vms_cached_response %}
         {% if not "last_seen" in vm %}
-            <div class="col-lg-3 col-sm-6">
+            <div class="col-lg-3 col-sm-6 windows">
                 <div class="smallchart blue panel panel-default">
                         <div class="title"><a href="/aws/{{vm}}/" class="white">{{vm}}</a></div>
                         <div class="content">

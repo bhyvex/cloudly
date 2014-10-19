@@ -6,7 +6,6 @@
 
 {% block page_content %}
 
-<script src="/static/js/dashboard.js"></script>
 
 <div class="col-md-10 col-sm-11 main ">
 	
@@ -90,19 +89,7 @@ Instances:
 
 </pre>
 
-{% block extra_js_footer %}
 
-<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
-<script src="/static/admin-assets/js/jquery/vendor/jquery.ui.widget.js"></script>
-<script src="/static/admin-assets/js/vms_request.js"></script>
-
-<script type="text/javascript">
-	<!--
-	vmsRequest.initAction();
-	//-->
-</script>
-
-{% endblock %}
 
 
 </div><!--/container-->
@@ -126,3 +113,10 @@ Instances:
 	</div><!-- /.modal -->
 
 {% endblock page_content %}
+{% block extra_js %}
+
+<script src="/static/js/dashboard.js"></script>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="/static/admin-assets/js/jquery/vendor/jquery.ui.widget.js"></script>
+
+{% endblock %}
