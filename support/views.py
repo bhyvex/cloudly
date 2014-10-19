@@ -45,6 +45,7 @@ def support(request):
 
 
 def support_add_new(request):
+	
 	print '-- add a new support ticket:'
 
 	if not request.user.is_authenticated():
@@ -54,7 +55,6 @@ def support_add_new(request):
 	user.last_login = datetime.datetime.now()
 	user.save()
 
-	user = request.user
 	profile = userprofile.objects.get(user=request.user)
 	secret = profile.secret
 
@@ -67,6 +67,23 @@ def support_add_new(request):
 
 
 def support_new_aws(request, instance_id):
+	
+	print '-- request aws help'
+	
+	user = request.user
+	user.last_login = datetime.datetime.now()
+	user.save()
+
+	profile = userprofile.objects.get(user=request.user)
+	secret = profile.secret
+
+	print request.user
+
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/support/add/new/","support_add_new",ip=ip)
+	
+	if(profile.pricing_plan==0):
+		return HttpResponseRedirect('/pricing/')
 	
 	return HttpResponse("working on this currently " +str(instance_id))
 
