@@ -1,11 +1,11 @@
 
-//function filterMachines(f) {
-//	$('.machines-buttons .quick-button').removeClass('active');
-//	$('.machines-buttons .btn-'+f).addClass('active');
-//	if (f == 'all') f = '*';
-//	else f = '.'+f;
-//	$('.machines-list').isotope( { filter: f } );
-//}
+function filterMachines(f) {
+	$('.machines-buttons .quick-button').removeClass('active');
+	$('.machines-buttons .btn-'+f).addClass('active');
+	if (f == 'all') f = '*';
+	else f = '.'+f;
+	$('#machines-loader').isotope( { filter: f } );
+}
 
 var dashboard  = {
     template: '',
