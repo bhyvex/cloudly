@@ -4,7 +4,6 @@ import os
 import time
 import logging
 import datetime
-import simplejson
 import base64, pickle
 
 from pprint import pprint
