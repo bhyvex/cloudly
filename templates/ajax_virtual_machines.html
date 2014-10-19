@@ -2,261 +2,66 @@
 {% load humanize %}
 
 <div class="row machines-list">
+    {% for vm in vms_cached_response %}
+        {% if not "last_seen" in vm %}
+            <div class="col-lg-3 col-sm-6">
+                <div class="smallchart blue panel panel-default">
+                        <div class="title"><a href="/aws/{{vm}}/" class="white">{{vm}}</a></div>
+                        <div class="content">
+                                <div class="chart-stat">
+                                        <div class="chart white">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
+                                </div>
+                        </div>
+                        <div class="value">Some value</div>
+                </div>
+            </div><!--/col-->
+            {# {{vms_cached_response|dict_get:vm|dict_get:"instance"|dict_get:"tags"|dict_get:"Name"}} #}
+            {# {{vms_cached_response|dict_get:vm|dict_get:"instance"|dict_get:"state"}} #}
+            {{vms_cached_response|dict_get:vm|dict_get:"cpu_utilization_datapoints"}}
+        {% endif %}
+    {% endfor %}
 
-		<div class="smallchart red panel panel-default windows suspended machine">
+    
 
-			<div class="title">EC2-i-f9480ef3</div>
+    
+    <div class="col-lg-3 col-sm-6 windows">
 
-			<div class="content">
+            <div class="smallchart blue panel panel-default">
 
-				<div class="chart-stat">
-					<div class="chart-spark white">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-				</div>
+                    <div class="title">EC2-i-f9480ef3</div>
 
-			</div>
+                    <div class="content">
 
-			<div class="value">XXX</div>
+                            <div class="chart-stat">
+                                    <div class="chart white">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
+                            </div>
 
-		</div>
+                    </div>
 
-		<div class="smallchart red panel panel-default windows machine">
+                    <div class="value">Some value</div>
 
-			<div class="title">EC2-i-f9480ef3</div>
+            </div>
 
-			<div class="content">
+    </div><!--/col-->
+    
+    <div class="col-lg-3 col-sm-6 bsd">
 
-				<div class="chart-stat">
-					<div class="chart-spark white">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-				</div>
+            <div class="smallchart red panel panel-default">
 
-			</div>
+                    <div class="title">EC2-i-f9480ef3</div>
 
-			<div class="value">XXX</div>
+                    <div class="content">
 
-		</div>
+                            <div class="chart-stat">
+                                    <div class="chart white">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
+                            </div>
 
-		<div class="smallchart red panel panel-default bsd suspended machine">
+                    </div>
 
-			<div class="title">EC2-i-f9480e55</div>
+                    <div class="value">Some value</div>
 
-			<div class="content">
+            </div>
 
-				<div class="chart-stat">
-					<div class="chart-spark white">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-				</div>
-
-			</div>
-
-			<div class="value">XXX</div>
-
-		</div>
-
-
-		<div class="smallchart blue panel panel-default linux machine">
-
-			<div class="title">EC2-i-f9420ef2</div>
-
-			<div class="content">
-
-				<div class="chart-stat">
-					<div class="chart-spark white">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-				</div>
-
-			</div>
-
-			<div class="value">XXX</div>
-
-		</div>
-
-		<div class="smallchart blue panel panel-default linux machine">
-
-			<div class="title">EC2-i-f9420ef2</div>
-
-			<div class="content">
-
-				<div class="chart-stat">
-					<div class="chart-spark white">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-				</div>
-
-			</div>
-
-			<div class="value">XXX</div>
-
-		</div>
-
-
-
-			<div class="smallchart grey panel panel-default bsd offline machine">
-
-				<div class="title">EC2-i-f9420ef2</div>
-
-				<div class="content">
-
-					<div class="chart-stat">
-						<div class="chart-spark white">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-					</div>
-
-				</div>
-
-				<div class="value">XXX</div>
-
-			</div>
-
-			<div class="smallchart blue panel panel-default linux machine">
-
-				<div class="title">EC2-i-f9420ef2</div>
-
-				<div class="content">
-
-					<div class="chart-stat">
-						<div class="chart-spark white">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-					</div>
-
-				</div>
-
-				<div class="value">XXX</div>
-
-			</div>
-
-
-			<div class="smallchart green panel panel-default windows machine">
-
-				<div class="title">EC2-i-f9480ef3</div>
-
-				<div class="content">
-
-					<div class="chart-stat">
-						<div class="chart-spark white">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-					</div>
-
-				</div>
-
-				<div class="value">XXX</div>
-
-			</div>
-
-			<div class="smallchart green panel panel-default windows machine">
-
-				<div class="title">EC2-i-f9480ef3</div>
-
-				<div class="content">
-
-					<div class="chart-stat">
-						<div class="chart-spark white">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-					</div>
-
-				</div>
-
-				<div class="value">XXX</div>
-
-			</div>
-
-
-			<div class="smallchart grey panel panel-default bsd offline machine">
-
-				<div class="title">EC2-i-f9420ef2</div>
-
-				<div class="content">
-
-					<div class="chart-stat">
-						<div class="chart-spark white" height=100>1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-					</div>
-
-				</div>
-
-				<div class="value">XXX</div>
-
-			</div>
-			<div class="smallchart grey panel panel-default bsd offline machine">
-
-				<div class="title">EC2-i-f9420ef2</div>
-
-				<div class="content">
-
-					<div class="chart-stat">
-						<div class="chart-spark white">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-					</div>
-
-				</div>
-
-				<div class="value">XXX</div>
-
-			</div>
-			<div class="smallchart grey panel panel-default bsd offline machine">
-
-				<div class="title">EC2-i-f9420ef2</div>
-
-				<div class="content">
-
-					<div class="chart-stat">
-						<div class="chart-spark white">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-					</div>
-
-				</div>
-
-				<div class="value">XXX</div>
-
-			</div>
-			<div class="smallchart grey panel panel-default bsd offline machine">
-
-				<div class="title">EC2-i-f9420ef2</div>
-
-				<div class="content">
-
-					<div class="chart-stat">
-						<div class="chart-spark white">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-					</div>
-
-				</div>
-
-				<div class="value">XXX</div>
-
-			</div>
-			<div class="smallchart grey panel panel-default bsd offline machine">
-
-				<div class="title">EC2-i-f9420ef2</div>
-
-				<div class="content">
-
-					<div class="chart-stat">
-						<div class="chart-spark white">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-					</div>
-
-				</div>
-
-				<div class="value">XXX</div>
-
-			</div>
-			<div class="smallchart grey panel panel-default bsd offline machine">
-
-				<div class="title">EC2-i-f9420ef2</div>
-
-				<div class="content">
-
-					<div class="chart-stat">
-						<div class="chart-spark white">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-					</div>
-
-				</div>
-
-				<div class="value">XXX</div>
-
-			</div>
-			<div class="smallchart grey panel panel-default bsd offline machine">
-
-				<div class="title">EC2-i-f9420ef2</div>
-
-				<div class="content">
-
-					<div class="chart-stat">
-						<div class="chart-spark white">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-					</div>
-
-				</div>
-
-				<div class="value">XXX</div>
-
-			</div>
-
-	</div>
+    </div><!--/col-->
+</div>
 
