@@ -5744,6 +5744,7 @@ ul.profile-details li div i {
 .vms-machine {
     height: 200px !important;
     margin-bottom: 15px;
+    max-width: 344px;
 }
 .vms-machine .panel {
     height: 200px !important;
