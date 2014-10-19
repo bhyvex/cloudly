@@ -57,8 +57,6 @@ def date_handler(obj):
 
 def ajax_vms_refresh(request):
 	
-	return HttpResponse("ALLDONE")
-	
 	user = request.user
 	
 	try:
