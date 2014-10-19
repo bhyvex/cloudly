@@ -110,8 +110,8 @@ def delete_file(request, file_id):
 
 	import datetime
 	user = request.user
-	#user.last_login = datetime.datetime.now()
-	#user.save()
+	user.last_login = datetime.datetime.now()
+	user.save()
 
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
@@ -146,8 +146,8 @@ def cloud_dropzone(request):
 
 	import datetime
 	user = request.user
-	#user.last_login = datetime.datetime.now()
-	#user.save()
+	user.last_login = datetime.datetime.now()
+	user.save()
 
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
@@ -189,8 +189,8 @@ def cloud_sharing(request):
 
 	import datetime
 	user = request.user
-	#user.last_login = datetime.datetime.now()
-	#user.save()
+	user.last_login = datetime.datetime.now()
+	user.save()
 
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
@@ -264,8 +264,8 @@ def cloud_storage(request):
 
 	import datetime
 	user = request.user
-	#user.last_login = datetime.datetime.now()
-	#user.save()
+	user.last_login = datetime.datetime.now()
+	user.save()
 
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)

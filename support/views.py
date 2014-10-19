@@ -67,6 +67,7 @@ def support_add_new(request):
 
 
 def support_new_aws(request, instance_id):
+	
 	return HttpResponse("working on this currently " +str(instance_id))
 
 
