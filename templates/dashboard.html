@@ -71,27 +71,7 @@
 	</div>
   </div>
 </div>
-
-
-{% include "ajax_virtual_machines.html" %}
-
-<pre>
-
-<strong>is_updating {{is_updating}}</strong>
-
-Instances:
-
-{% for vm in vms_cached_response %}{% if not "last_seen" in vm %}{{forloop.counter}} <a href="/aws/{{vm}}/">{{vm}}</a> {{vms_cached_response|dict_get:vm|dict_get:"instance"|dict_get:"tags"|dict_get:"Name"}} {{vms_cached_response|dict_get:vm|dict_get:"instance"|dict_get:"state"}}
-{% endif %}{% endfor %}
-{% for vm in vms_cached_response %}{% if not "last_seen" in vm %}<a href="/aws/{{vm}}/">{{vm}}</a> {{vms_cached_response|dict_get:vm}}
-
-{% endif %}{% endfor %}
-
-</pre>
-
-
-
-
+<div id="machines-loader"></div>
 </div><!--/container-->
 
 	<div class="modal fade" id="myModal">

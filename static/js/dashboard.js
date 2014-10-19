@@ -19,3 +19,20 @@ $(document).ready (function() {
 	    })();
 	}
 });
+
+var dashboard  = {
+    loadMachines: function(){
+        $.ajax({
+            type: "POST",
+            url: "/ajax/cloud/vms/",
+            data: "nodata=nodata",
+            success: function(res){
+                $("#machines-loader").html(res);
+            }
+        });
+    }
+}
+
+dashboard.loadMachines();
+
+vmsRequest.addAfterStartHandler(function(){dashboard.loadMachines();});
