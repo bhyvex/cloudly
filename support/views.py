@@ -83,12 +83,12 @@ def support_new_aws(request, instance_id):
 	print request.user
 
 	ip = request.META['REMOTE_ADDR']
-	_log_user_activity(profile,"click","/support/add/new/","support_add_new",ip=ip)
+	_log_user_activity(profile,"click","/aws/"+str(instance_id)+"/request/help/","request_help",ip=ip)
 	
 	if(profile.pricing_plan==0):
 		return HttpResponseRedirect('/pricing/')
 	
-	return HttpResponse("working on this currently " +str(instance_id))
+	return render_to_response('support-add-new.html', {'instance_id':instance_id,'user':user,'profile':profile,}, context_instance=RequestContext(request))
 
 
 def support_devel_ticket(request):
