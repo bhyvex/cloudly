@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Author: Jan Paricka
+# Author: Jan Paricka, Kamil Hurajt
 
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
