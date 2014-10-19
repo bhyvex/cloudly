@@ -256,7 +256,18 @@ def ajax_virtual_machines(request):
 
 	print request.user
 	
-	return render_to_response('ajax_virtual_machines.html', locals(), context_instance=RequestContext(request))
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	user.last_login = datetime.datetime.now()
+	user.save()
+	
+	vms_cache = Cache.objects.get(user=user)
+	vm_cache =  vms_cache.vms_response
+	vm_cache = base64.b64decode(vm_cache)
+	vm_cache = pickle.loads(vm_cache)
+	
+	
+	return render_to_response('ajax_virtual_machines.html', {'user':user,'vms_cached_response':vm_cache,}, context_instance=RequestContext(request))
 
 
 
