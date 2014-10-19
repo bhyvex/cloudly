@@ -5743,6 +5743,7 @@ ul.profile-details li div i {
 
 .vms-machine {
     height: 300px !important;
+    margin-bottom: 15px;
 }
 .vms-machine .panel {
     height: 300px !important;
