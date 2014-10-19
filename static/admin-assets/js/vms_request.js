@@ -4,13 +4,13 @@ var vmsRequest = {
 	firstRun: true,
 	initAction: function(){
 		var $this = this;
-		if(this.firstRun === true){
-			this.firstRun = false;
-			this.start();
-		}
+//		if(this.firstRun === true){
+//			this.firstRun = false;
+//			this.start();
+//		}
 		setInterval(function(){
 			
-			if($this.hasResponse === true){
+			if($this.hasResponse === true || $this.firstRun === true){
 				$this.firstRun = false;
 				$this.hasResponse = false;
 				$this.start();
