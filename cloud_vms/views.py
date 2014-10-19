@@ -258,8 +258,6 @@ def ajax_virtual_machines(request):
 	
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
-	user.last_login = datetime.datetime.now()
-	user.save()
 	
 	vms_cache = Cache.objects.get(user=user)
 	vm_cache =  vms_cache.vms_response
