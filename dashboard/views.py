@@ -83,6 +83,25 @@ def welcome(request):
 	return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
 
 
+def activate_pricing_plan(request):
+	
+	print '-- activate pricing plan'
+	
+	if not request.user.is_authenticated():
+		print 'anonymous'
+		return HttpResponseRedirect("/")
+
+	ip = request.META['REMOTE_ADDR']
+	profile = userprofile.objects.get(user=request.user)
+
+	plan = request.GET['plan']
+	
+	profile.pricing_plan = int(plan)
+	profile.save()
+	
+	return HttpResponseRedirect("/support/")
+	
+	
 def pricing(request):
 
 	print '--  pricing page:'

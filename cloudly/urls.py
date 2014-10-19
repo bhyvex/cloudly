@@ -10,7 +10,7 @@ urlpatterns = patterns('',
 
 	# pricing
 	url(r'^pricing/$', 'dashboard.views.pricing', name='pricing'),
-	#url(r'^pricing/$', 'dashboard.views.pricing', name='pricing'),
+	url(r'^pricing/activate/$', 'dashboard.views.activate_pricing_plan', name='activate_pricing_plan'),
 
 	# userprofile / account
 	url(r'^login/$', 'userprofile.views.auth', name='login'),
