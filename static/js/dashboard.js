@@ -1,18 +1,20 @@
 
-function filterMachines(f) {
-	$('.machines-buttons .quick-button').removeClass('active');
-	$('.machines-buttons .btn-'+f).addClass('active');
-	if (f == 'all') f = '*';
-	else f = '.'+f;
-	$('.machines-list').isotope( { filter: f } );
-}
+//function filterMachines(f) {
+//	$('.machines-buttons .quick-button').removeClass('active');
+//	$('.machines-buttons .btn-'+f).addClass('active');
+//	if (f == 'all') f = '*';
+//	else f = '.'+f;
+//	$('.machines-list').isotope( { filter: f } );
+//}
 
 var dashboard  = {
     template: '',
     actualMachines: '',
     initAction: function(){
         var $this = this;
-        $('#machines-loader').isotope();
+        $('#machines-loader').isotope({
+            itemSelector: '.vms-machine'
+        });
         $.ajax({
             type: 'GET',
             url: '/ajax/cloud/box-template/',
