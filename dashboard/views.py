@@ -98,6 +98,12 @@ def activate_pricing_plan(request):
 	profile.pricing_plan = int(plan)
 	profile.save()
 	
+	
+	if(request.GET):
+		print 'request.GET', request.GET
+		if("support" in request.GET['return']):
+			return HttpResponseRedirect("/support/")
+	
 	return HttpResponseRedirect("/")
 	
 	
