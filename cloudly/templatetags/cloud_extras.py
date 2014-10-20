@@ -65,7 +65,9 @@ def replace_dots(text):
 
 @register.filter(name='make_json')
 def make_json(json_):
-	return json.loads(json_)
+	try:
+		return json.loads(json_)
+	except: return {}
 
 @register.filter(name='get_tags')
 def get_tags(package):

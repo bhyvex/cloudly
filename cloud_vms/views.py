@@ -144,13 +144,16 @@ def ajax_vms_refresh(request):
 					instance_metrics['instance']['vpc_id'] = instance.vpc_id
 					instance_metrics['instance']['region'] = {"endpoint":instance.region.endpoint,"name":instance.region.name,}				
 					instance_metrics['instance']['state'] = {"state":instance.state,"code":instance.state_code,"state_reason":instance.state_reason,}
-										
+					
+					aws_virtual_machines[instance.id] = instance_metrics
+									
 					#pprint(instance_metrics)
 									
 					try:
 						ec2conn.monitor_instance(str(instance.id))
 					except:
-						print instance.id, 'instance not in a monitorable state!'.upper()
+						print instance.id, 'instance not in a monitorable state!!'.upper()
+						pprint(instance_metrics)
 						continue
 					
 
@@ -263,7 +266,6 @@ def ajax_virtual_machines(request):
 	vm_cache =  vms_cache.vms_response
 	vm_cache = base64.b64decode(vm_cache)
 	vm_cache = pickle.loads(vm_cache)
-	
 	
 	return render_to_response('ajax_virtual_machines.html', {'user':user,'vms_cached_response':vm_cache,}, context_instance=RequestContext(request))
 
