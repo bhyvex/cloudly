@@ -93,6 +93,26 @@ def user_logout(request):
 	return HttpResponseRedirect("/goodbye/")
 
 
+def reset_cloud_settings(request):
+
+	print '-- reset cloud settings'
+	
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	secret = profile.secret
+
+	print request.user
+
+	error = None
+
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/cloud/settings/reset/","change_password",ip=ip)
+
+	return HttpResponse("working on this currently")
+
 
 def goodbye(request):
 
