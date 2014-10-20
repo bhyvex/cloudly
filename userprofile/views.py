@@ -29,6 +29,7 @@ import boto.ec2
 import boto.ec2.cloudwatch
 from amazon import s3_funcs
 from amazon import s3_funcs_shortcuts
+from cloud_vms.models import Cache
 
 logger = logging.getLogger(__name__)
 
@@ -106,12 +107,22 @@ def reset_cloud_settings(request):
 
 	print request.user
 
+	profile.aws_access_key = ""
+	profile.aws_secret_key = ""
+	profile.aws_ec2_verified = False
+	profile.save()
+
+	vms_cache = Cache.objects.get(user=user)
+	vms_cache.vms_response = ""
+	vms_cache.save()
+
 	error = None
 
 	ip = request.META['REMOTE_ADDR']
 	_log_user_activity(profile,"click","/cloud/settings/reset/","change_password",ip=ip)
 
-	return HttpResponse("working on this currently")
+
+	return HttpResponseRedirect("/cloud/settings/")
 
 
 def goodbye(request):
