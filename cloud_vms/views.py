@@ -265,7 +265,10 @@ def ajax_virtual_machines(request):
 	vms_cache = Cache.objects.get(user=user)
 	vm_cache =  vms_cache.vms_response
 	vm_cache = base64.b64decode(vm_cache)
-	vm_cache = pickle.loads(vm_cache)
+
+	try:
+		vm_cache = pickle.loads(vm_cache)
+	except: vm_cache = {}
 	
 	return render_to_response('ajax_virtual_machines.html', {'user':user,'vms_cached_response':vm_cache,}, context_instance=RequestContext(request))
 
