@@ -113,9 +113,9 @@ def pricing(request):
 	profile = userprofile.objects.get(user=request.user)
 	_log_user_activity(profile,"click","/pricing/","pricing",ip=ip)
 
-
 	print request.user
-	return render_to_response('pricing.html', locals(), context_instance=RequestContext(request))
+
+	return render_to_response('pricing.html', {'redirect_url':'support'}, context_instance=RequestContext(request))
 
 
 

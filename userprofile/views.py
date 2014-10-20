@@ -121,7 +121,6 @@ def reset_cloud_settings(request):
 	ip = request.META['REMOTE_ADDR']
 	_log_user_activity(profile,"click","/cloud/settings/reset/","change_password",ip=ip)
 
-
 	return HttpResponseRedirect("/cloud/settings/")
 
 
