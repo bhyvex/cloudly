@@ -146,6 +146,9 @@ def ajax_vms_refresh(request):
 					instance_metrics['instance']['state'] = {"state":instance.state,"code":instance.state_code,"state_reason":instance.state_reason,}
 					
 					aws_virtual_machines[instance.id] = instance_metrics
+					
+					print 'Updating cache. '*100
+					print instance
 									
 					try:
 						ec2conn.monitor_instance(str(instance.id))
