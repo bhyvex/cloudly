@@ -225,7 +225,7 @@ def dropzone_uploader(request):
 			new_file = Files(file=request.FILES['files[]'])
 			new_file.save()
 		except: 
-			return HttpResponse("empty files - " + request.FILES['files[]'])
+			return HttpResponse("request - " + request)
 			
 		f = Uploaded_Files.objects.create(file=new_file,user=request.user)
 
