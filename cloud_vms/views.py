@@ -371,16 +371,16 @@ def ajax_virtual_machines(request):
 			except: 
 				instance_name = vm
 
+			
+			vm_state = vm_cache[vm]["instance"]["state"]["state"].title()
+			color = "pink"
 
 			ajax_vms_response += "\""
 			ajax_vms_response += instance_name
 			ajax_vms_response += "\": {"
 
 			ajax_vms_response += "\"vmcolor\":\""
-			
-			import random
-			if(random.randint(0,1)==0): ajax_vms_response += "lightBlue"
-			else: ajax_vms_response += "orange"
+			ajax_vms_response += color
 			ajax_vms_response += "\","
 
 			ajax_vms_response += "\"vmtitle\":\""
@@ -392,7 +392,7 @@ def ajax_virtual_machines(request):
 			ajax_vms_response += "\","
 
 			ajax_vms_response += "\"state\":\""
-			ajax_vms_response += vm_cache[vm]["instance"]["state"]["state"].title()
+			ajax_vms_response += vm_state
 			ajax_vms_response += "\""
 
 			ajax_vms_response += "},"
