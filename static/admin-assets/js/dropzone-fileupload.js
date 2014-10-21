@@ -92,7 +92,7 @@ $('#upload').fileupload({
   
 });
 
-$(document).ready(function(){
+
     $("#startUpload").click(function(){
         var start = 0;
         $.each($('.start'),function(index,btn){
@@ -105,7 +105,7 @@ $(document).ready(function(){
     $("#cancelUpload").click(function(){
         $('.cancel-btn').click();
     });
-});
+
 
 //Helper function for calculation of progress
 function formatFileSize(bytes) {
