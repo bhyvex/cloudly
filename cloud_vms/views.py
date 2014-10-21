@@ -316,7 +316,7 @@ def ajax_virtual_machines(request):
 			
 			import random
 			if(random.randint(0,1)): color = "red"
-			else: color = "orange"
+			else: color = "lightBlue"
 			
 			#if(data_median<25):
 			#	color = "green"
