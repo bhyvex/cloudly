@@ -92,6 +92,7 @@ var cloudlyVMSmanager  = {
     },
     checkRemoved: function(machines,actualMachines){
         var machineIds = 'testVMS';
+		var removed = false;
         $.each(machines,function(vms,value){
             machineIds += vms+',';
         });
@@ -99,12 +100,20 @@ var cloudlyVMSmanager  = {
         $.each(actualMachines,function(index,item){
             var id = $(item).attr('id');
             if(machineIds.indexOf(id) < 0){
+				removed = true;
                 $('#'+id).fadeOut(500,'easeInOutQuart',function(){
                     $(this).remove();
                 });
             }
         });
+
+		if(removed === true){
+			this.reloadPositions();
+		}
     },
+	reloadPositions: function(){
+		$('#machines-loader').isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' });
+	},
     addBlank: function(){
         this.addVMS('testVMS',{"averge":"0.0,0.0,0.0,0.0","state":"Running"});
     
