@@ -314,6 +314,15 @@ def ajax_virtual_machines(request):
 			if(vm_state=="Pending"): color = "pink"
 			if(vm_state=="Shutting-Down"): color = "pink"
 			
+			import random
+			xxx=random.randint(0,5)
+			if(xxx==0): color = "silver"
+			if(xxx==1): color = "red"
+			if(xxx==2): color = "lightBlue"
+			if(xxx==3): color = "black"
+			if(xxx==4): color = "ping"
+			if(xxx==5): color = "lightOrange"
+			
 			#if(data_median<25):
 			#	color = "green"
 			#if(data_median>=25 and data_median<=50):
