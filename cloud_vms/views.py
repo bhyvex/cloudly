@@ -292,7 +292,7 @@ def ajax_virtual_machines(request):
 				for i in cpu_utilization_datapoints:
 					data += str(i["Average"])
 					try:
-						data_median += float(data)
+						data_median += float(i["Average"])
 					except: pass
 
 					if(len(cpu_utilization_datapoints)-1>z): 
@@ -317,9 +317,7 @@ def ajax_virtual_machines(request):
 			if(vm_state=="Running"): 
 				
 				if(data_median<10):
-					color = "lightBlue"
-					print 'here'*100
-					print data_median
+					color = "green"
 				if(data_median>10 and data_median<=25):
 					color = "darkGreen"
 				if(data_median>=25 and data_median<=50):
