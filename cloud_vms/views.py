@@ -279,6 +279,20 @@ def ajax_virtual_machines(request):
 
 		if(vm_cache[vm]["instance"]["state"]["state"].lower()!="terminated"):
 
+			try:
+				data = ""
+				cpu_utilization_datapoints = vm_cache[vm]["cpu_utilization_datapoints"]
+				cpu_utilization_datapoints = json.loads(cpu_utilization_datapoints)
+				z=0
+				for i in cpu_utilization_datapoints:
+					data += str(i["Average"])
+					if(len(cpu_utilization_datapoints)-1>z): 
+						data += ","					
+					z+=1
+			except:
+				data = ""
+
+
 			ajax_vms_response += "\""
 			ajax_vms_response += vm
 			ajax_vms_response += "\": {"
@@ -292,7 +306,7 @@ def ajax_virtual_machines(request):
 			ajax_vms_response += "\","
 		
 			ajax_vms_response += "\"averge\":\""
-			ajax_vms_response += "1.0,1.0,7.0,2.0,3.0"
+			ajax_vms_response += data
 			ajax_vms_response += "\","
 
 			ajax_vms_response += "\"state\":\""
@@ -307,7 +321,7 @@ def ajax_virtual_machines(request):
 		c+=1
 		
 		print '-_'*80
-		print vm_cache[vm]["instance"]["state"]["state"].title(), vm #["cpu_utilization_datapoints"]
+		print vm_cache[vm]["instance"]["state"]["state"].title(), vm
 	
 
 	ajax_vms_response = ajax_vms_response.replace(",}","}")
