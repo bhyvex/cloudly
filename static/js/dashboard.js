@@ -10,7 +10,17 @@ function filterMachines(f) {
 var cloudlyVMSmanager  = {
     template: '',
     actualMachines: '',
-    colors : ['lightBlue','green','darkGreen','yellow','orange','red', 'silver', 'pink', 'black'],
+    colors : [
+		'#36a9e1':'lightBlue',
+		'#bdea74':'green',
+		'#78cd51':'darkGreen',
+		'#eae874':'yellow',
+		'#fa603d':'orange',
+		'#ff5454':'red',
+		'#CBD4E4':'silver',
+		'#e84c8a':'pink',
+		'#000000':'black'
+		],
     initAction: function(){
         var $this = this;
         $('#machines-loader').isotope({

@@ -282,7 +282,7 @@ def ajax_virtual_machines(request):
 
 		if(vm_cache[vm]["instance"]["state"]["state"].lower()!="terminated"):
 
-			#data_median = 0
+			data_median = 0
 
 			try:
 				data = ""
