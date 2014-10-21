@@ -320,7 +320,7 @@ def ajax_virtual_machines(request):
 								
 				if(data_median<15):
 					color = "lightBlue"
-				if(data_median>15 and data_median<=35):
+				if(data_median>=15 and data_median<=35):
 					color = "green"
 				if(data_median>35 and data_median<=50):
 					color = "darkGreen"
