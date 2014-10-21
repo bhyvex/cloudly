@@ -266,6 +266,13 @@ def ajax_virtual_machines(request):
 	try:
 		vm_cache = pickle.loads(vm_cache)
 	except: vm_cache = {}
+
+
+	example_response = { "i-61765f22":{"vmcolor":"lightBlue","vmtitle":"windows","averge":"0.0,0.33","state":"Running" }, \
+		"i-75cf9e36":{"vmcolor":"lightBlue","vmtitle":"windows","averge":"13.56,15.0","state":"Running" }, \
+		"i-d0705993":{"vmcolor":"orange","vmtitle":"windows","averge":"","state":"Stopped" } }
+
+
 	
 	return render_to_response('ajax_virtual_machines.html', {'user':user,'vms_cached_response':vm_cache,}, context_instance=RequestContext(request))
 
