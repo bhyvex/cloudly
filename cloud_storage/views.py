@@ -221,8 +221,12 @@ def dropzone_uploader(request):
 		#if form.is_valid():
 		#print 'valid form', form
 
-		new_file = Files(file=request.FILES['files[]'])
-		new_file.save()
+		try:
+			new_file = Files(file=request.FILES['files[]'])
+			new_file.save()
+		except: 
+			return HttpResponse("empty files")
+			
 		f = Uploaded_Files.objects.create(file=new_file,user=request.user)
 
 		file_thumbnailUrl = "/media/"+str(new_file.file)
