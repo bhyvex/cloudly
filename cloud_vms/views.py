@@ -147,13 +147,11 @@ def ajax_vms_refresh(request):
 					
 					aws_virtual_machines[instance.id] = instance_metrics
 									
-					#pprint(instance_metrics)
-									
 					try:
 						ec2conn.monitor_instance(str(instance.id))
 					except:
 						print instance.id, 'instance not in a monitorable state!!'.upper()
-						pprint(instance_metrics)
+						#pprint(instance_metrics)
 						continue
 					
 
@@ -211,7 +209,6 @@ def ajax_vms_refresh(request):
 		vms_cache.save()
 	
 		print 'VMs cache was succesfully updated.'
-		
 
 	return HttpResponse("ALLDONE")
 	
