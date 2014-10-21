@@ -24,7 +24,7 @@ var cloudlyVMSmanager  = {
                 $this.template = res;
                 setInterval(function(){
                     $this.loadMachinesData();
-                },1000);
+                },5000);
             }
         });
     },
