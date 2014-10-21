@@ -372,12 +372,16 @@ def ajax_virtual_machines(request):
 			ajax_vms_response += "\": {"
 
 			ajax_vms_response += "\"vmcolor\":\""
+			
 			import random
-			if(random.randint(0,1)):
-				ajax_vms_response += "lightBlue"
-			else:
-				ajax_vms_response += "orange"
-				
+			if(random.randint(0,6)==0): ajax_vms_response += "lightBlue"
+			if(random.randint(0,6)==1): ajax_vms_response += "green"
+			if(random.randint(0,6)==2): ajax_vms_response += "darkGreen"
+			if(random.randint(0,6)==3): ajax_vms_response += "yellow"
+			if(random.randint(0,6)==4): ajax_vms_response += "orange"
+			if(random.randint(0,6)==5): ajax_vms_response += "red"
+			if(random.randint(0,6)==6): ajax_vms_response += ""
+			
 			ajax_vms_response += "\","
 
 			ajax_vms_response += "\"vmtitle\":\""
