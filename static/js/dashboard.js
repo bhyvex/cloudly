@@ -24,7 +24,7 @@ var cloudlyVMSmanager  = {
                 $this.template = res;
                 setInterval(function(){
                     $this.loadMachinesData();
-                },5000);
+                },1000);
             }
         });
     },
@@ -62,14 +62,14 @@ var cloudlyVMSmanager  = {
         chartStatElement($('#'+vms).find('.chart').html(data.averge));
         $('#'+vms).find('.value').html(data.state);
 
-		var panel = $("#"+vms).find('.panel');
-		$.each(this.colors,function(index,color){
-			if(panel.hasClass(color) && panel.attr('class').indexOf(data.vmcolor) === -1){
-				$(panel).switchClass(color,data.vmcolor,500,"easeInOutQuad");
-				//console.log('VM '+vms+' changed color: '+color+' to: '+data.vmcolor+' and actual has class: '+panel.attr('class'));
-				return;
-			}
-		}); 
+        var panel = $("#"+vms).find('.panel');
+        $.each(this.colors,function(index,color){
+                if(panel.hasClass(color) && panel.attr('class').indexOf(data.vmcolor) === -1){
+                        $(panel).switchClass(color,data.vmcolor,500,"easeInOutQuad");
+                        //console.log('VM '+vms+' changed color: '+color+' to: '+data.vmcolor+' and actual has class: '+panel.attr('class'));
+                        return;
+                }
+        }); 
 		
     },
     addVMS: function(vms,data){
@@ -92,28 +92,25 @@ var cloudlyVMSmanager  = {
     },
     checkRemoved: function(machines,actualMachines){
         var machineIds = 'testVMS';
-		var removed = false;
+	var $container = $('#machines-loader');
         $.each(machines,function(vms,value){
             machineIds += vms+',';
         });
         
         $.each(actualMachines,function(index,item){
             var id = $(item).attr('id');
-            if(machineIds.indexOf(id) < 0){
-				removed = true;
-                $('#'+id).fadeOut(500,'easeInOutQuart',function(){
-                    $(this).remove();
-                });
+            if(machineIds.indexOf(id) < 0){                
+                $container.isotope( 'remove', item ).isotope('layout');                
             }
         });
 
-		if(removed === true){
-			this.reloadPositions();
-		}
+        if(removed === true){
+                this.reloadPositions();
+        }
     },
-	reloadPositions: function(){
-		$('#machines-loader').isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' });
-	},
+    reloadPositions: function(){
+            $('#machines-loader').isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' });
+    },
     addBlank: function(){
         this.addVMS('testVMS',{"averge":"0.0,0.0,0.0,0.0","state":"Running"});
     
