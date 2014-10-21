@@ -366,9 +366,14 @@ def ajax_virtual_machines(request):
 			except:
 				data = ""
 
+			try: 
+				instance_name = vm_cache[vm]["instance"]["tags"]["Name"]
+			except: 
+				instance_name = vm
+
 
 			ajax_vms_response += "\""
-			ajax_vms_response += vm
+			ajax_vms_response += instance_name
 			ajax_vms_response += "\": {"
 
 			ajax_vms_response += "\"vmcolor\":\""
@@ -399,7 +404,6 @@ def ajax_virtual_machines(request):
 		
 		print '-_'*80
 		print vm_cache[vm]["instance"]["state"]["state"].title(), vm
-	
 
 	ajax_vms_response = ajax_vms_response.replace(",}","}")
 	
