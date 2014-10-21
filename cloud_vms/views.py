@@ -324,9 +324,9 @@ def ajax_virtual_machines(request):
 					color = "green"
 				if(data_median>35 and data_median<=50):
 					color = "darkGreen"
-				if(data_median>50 and data_median<=80):
+				if(data_median>50 and data_median<=70):
 					color = "lightOrange"
-				if(data_median>80):
+				if(data_median>70):
 					color = "red"
 				
 			if(vm_state=="Stopped"): color = "black"
