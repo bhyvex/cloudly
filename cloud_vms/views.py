@@ -372,9 +372,10 @@ def ajax_virtual_machines(request):
 				instance_name = vm
 
 			
-			vm_state = vm_cache[vm]["instance"]["state"]["state"].title()
 			color = "pink"
-
+			vm_state = vm_cache[vm]["instance"]["state"]["state"].title()
+			if(vm_state=="Running"): color = "darkGreen"
+			
 			ajax_vms_response += "\""
 			ajax_vms_response += instance_name
 			ajax_vms_response += "\": {"
