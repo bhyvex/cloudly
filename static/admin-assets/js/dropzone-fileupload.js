@@ -16,8 +16,8 @@ $('#upload').fileupload({
                           '<td class="status"><div class="progress"><span class="progressCount">0%</span><div class="progress-bar progress-bar-success" style="width:0%;"></div></div></td>'+
                           '<td class="action">'+
                               (!index && !o.options.autoUpload ?
-                              '<button class="btn btn-sm btn-primary start" disabled>Upload</button>' : '') +
-                              (!index ? '<button class="btn btn-sm btn-warning cancel">Cancel</button>' : '')+
+                              '<button class="btn btn-sm btn-primary start start-btn" disabled>Upload</button>' : '') +
+                              (!index ? '<button class="btn btn-sm btn-warning cancel cancel-btn">Cancel</button>' : '')+
                           '</td>'+
                      '</tr>');
             
@@ -43,13 +43,12 @@ $('#upload').fileupload({
                           '<td class="status"><span class="label label-warning">Synchronising..</span></td>'+
                           '<td class="action">'+
                               (!index && !o.options.autoUpload ?
-                              '<button class="btn btn-sm btn-primary start" disabled>Upload</button>' : '') +
-                              (!index ? '<button class="btn btn-sm btn-warning cancel">Cancel</button>' : '')+
+                              '<button class="btn btn-sm btn-primary start start-btn" disabled>Upload</button>' : '') +
+                              (!index ? '<button class="btn btn-sm btn-warning cancel cancel-btn">Cancel</button>' : '')+
                           '</td>'+
                      '</tr>');
             
             
-            console.log(file.thumbnailUrl);
             tpl.find('td.filename').text(file.name);
             tpl.find('td.filesize').append('<i>'+formatFileSize(parseInt(file.size))+'</i>');
             
@@ -61,7 +60,6 @@ $('#upload').fileupload({
             }
             rows = rows.add(tpl);
       });
-      console.log(rows);
       return rows;
   },
   progressall: function (e, data) {
@@ -92,6 +90,16 @@ $('#upload').fileupload({
       }
   }  
   
+});
+
+$(document).ready(function(){
+    $("#startUpload").click(function(){
+        $('.start-btn').click();
+    });
+    
+    $("#cancelUpload").click(function(){
+        $('.cancel-btn').click();
+    });
 });
 
 //Helper function for calculation of progress
