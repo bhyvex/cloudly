@@ -282,6 +282,8 @@ def ajax_virtual_machines(request):
 
 		if(vm_cache[vm]["instance"]["state"]["state"].lower()!="terminated"):
 
+			data_median = 0
+
 			try:
 				data = ""
 				cpu_utilization_datapoints = vm_cache[vm]["cpu_utilization_datapoints"]
@@ -290,8 +292,10 @@ def ajax_virtual_machines(request):
 				for i in cpu_utilization_datapoints:
 					data += str(i["Average"])
 					if(len(cpu_utilization_datapoints)-1>z): 
-						data += ","					
+						data += ","
+						data_median += float(data)
 					z+=1
+				data_median = data_median/z
 			except:
 				data = ""
 
@@ -303,6 +307,10 @@ def ajax_virtual_machines(request):
 			
 			color = "silver"
 			vm_state = vm_cache[vm]["instance"]["state"]["state"].title()
+			
+			if(data_median>25 and data_median<50):
+				color = "darkGreen"
+			
 			if(vm_state=="Running"): color = "lightBlue"
 			if(vm_state=="Stopped"): color = "black"
 			if(vm_state=="Stopping"): color = "pink"
@@ -337,6 +345,7 @@ def ajax_virtual_machines(request):
 		c+=1
 		
 		print '-_'*80
+		print 'data_median', data_median
 		print vm_cache[vm]["instance"]["state"]["state"].title(), vm
 
 	ajax_vms_response = ajax_vms_response.replace(",}","}")
