@@ -321,7 +321,7 @@ def ajax_virtual_machines(request):
 			if(xxx==2): color = "darkGreen"
 			if(xxx==3): color = "lightBlue"
 			if(xxx==4): color = "black"
-			if(xxx==5): color = "ping"
+			if(xxx==5): color = "pink"
 			if(xxx==6): color = "lightOrange"
 			
 			#if(data_median<25):
