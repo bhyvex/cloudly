@@ -79,7 +79,7 @@ var cloudlyVMSmanager  = {
                         $('#'+vms+' .panel .title').animate({
                             backgroundColor: code                            
                         },800,function(){
-                            $('#'+vms+' .panel .title').css('backgroundColor','none');
+                            $(this).attr('style','');
                             $(panel).switchClass(color,data.vmcolor);
                         });
                         
