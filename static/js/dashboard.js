@@ -19,7 +19,8 @@ var cloudlyVMSmanager  = {
 		'#ff5454':'red',
 		'#CBD4E4':'silver',
 		'#e84c8a':'pink',
-		'#000000':'black'
+		'#000000':'black',
+                '#fabb3d': 'lightOrange'
 		},
     initAction: function(){
         var $this = this;
