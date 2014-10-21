@@ -15,12 +15,11 @@ var cloudlyVMSmanager  = {
 		'#bdea74':'green',
 		'#78cd51':'darkGreen',
 		'#eae874':'yellow',
-		'#fa603d':'orange',
+		'#fa603d':'lightOrange',
 		'#ff5454':'red',
 		'#CBD4E4':'silver',
 		'#e84c8a':'pink',
-		'#000000':'black',
-                '#fabb3d': 'lightOrange'
+		'#000000':'black'
 		},
     initAction: function(){
         var $this = this;
