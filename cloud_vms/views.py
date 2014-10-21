@@ -291,11 +291,17 @@ def ajax_virtual_machines(request):
 				z=0
 				for i in cpu_utilization_datapoints:
 					data += str(i["Average"])
+					try:
+						data_median += float(data)
+					except: pass
+
 					if(len(cpu_utilization_datapoints)-1>z): 
 						data += ","
-						#data_median += float(data)
+					#print data
 					z+=1
-				#data_median = data_median/z
+				try: 
+					data_median = data_median/z
+				except: data_median = 0 
 			except:
 				data = ""
 
@@ -308,31 +314,26 @@ def ajax_virtual_machines(request):
 			color = "silver"
 			vm_state = vm_cache[vm]["instance"]["state"]["state"].title()
 						
-			if(vm_state=="Running"): color = "lightBlue"
+			if(vm_state=="Running"): 
+				
+				if(data_median<10):
+					color = "lightBlue"
+					print 'here'*100
+					print data_median
+				if(data_median>10 and data_median<=25):
+					color = "darkGreen"
+				if(data_median>=25 and data_median<=50):
+					color = "darkGreen"
+				if(data_median>60 and data_median<=80):
+					color = "lightOrange"
+				if(data_median>80):
+					color = "red"
+				
 			if(vm_state=="Stopped"): color = "black"
 			if(vm_state=="Stopping"): color = "pink"
 			if(vm_state=="Pending"): color = "pink"
 			if(vm_state=="Shutting-Down"): color = "pink"
-			
-			#import random
-			#xxx=random.randint(0,6)
-			#if(xxx==0): color = "silver"
-			#if(xxx==1): color = "red"
-			#if(xxx==2): color = "darkGreen"
-			#if(xxx==3): color = "lightBlue"
-			#if(xxx==4): color = "black"
-			#if(xxx==5): color = "pink"
-			#if(xxx==6): color = "lightOrange"
-			
-			#if(data_median<25):
-			#	color = "green"
-			#if(data_median>=25 and data_median<=50):
-			#	color = "darkGreen"
-			#if(data_median>60 and data_median<=80):
-			#	color = "orange"
-			#if(data_median>80):
-			#	color = "red"
-			
+						
 			ajax_vms_response += "\""
 			ajax_vms_response += instance_name
 			ajax_vms_response += "\": {"
