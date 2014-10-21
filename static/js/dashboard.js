@@ -7,9 +7,10 @@ function filterMachines(f) {
 	$('#machines-loader').isotope( { filter: f } );
 }
 
-var dashboard  = {
+var cloudlyVMSmanager  = {
     template: '',
     actualMachines: '',
+    colors : ['lightBlue','green','darkGreen','yellow','orange','red', 'silver'],
     initAction: function(){
         var $this = this;
         $('#machines-loader').isotope({
@@ -60,6 +61,16 @@ var dashboard  = {
     updateVMS: function(vms,data){
         chartStatElement($('#'+vms).find('.chart').html(data.averge));
         $('#'+vms).find('.value').html(data.state);
+
+		var panel = $("#"+vms).find('.panel');
+		$.each(this.colors,function(index,color){
+			if(panel.hasClass(color) && panel.attr('class').indexOf(data.vmcolor) === -1){
+				$(panel).switchClass(color,data.vmcolor,500,"easeInOutQuad");
+				//console.log('VM '+vms+' changed color: '+color+' to: '+data.vmcolor+' and actual has class: '+panel.attr('class'));
+				return;
+			}
+		}); 
+		
     },
     addVMS: function(vms,data){
         var template = this.template;
@@ -111,7 +122,7 @@ $(document).ready (function() {
 	    })();
 	}
         
-        dashboard.initAction();
+        cloudlyVMSmanager.initAction();
         
 });
 
