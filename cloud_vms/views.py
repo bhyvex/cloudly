@@ -315,12 +315,14 @@ def ajax_virtual_machines(request):
 			vm_state = vm_cache[vm]["instance"]["state"]["state"].title()
 						
 			if(vm_state=="Running"): 
-				
+								
 				if(data_median<15):
+					color = "lightBlue"
+				if(data_median>15 and data_median<=35):
 					color = "green"
-				if(data_median>15 and data_median<=60):
+				if(data_median>35 and data_median<=50):
 					color = "darkGreen"
-				if(data_median>60 and data_median<=80):
+				if(data_median>50 and data_median<=80):
 					color = "lightOrange"
 				if(data_median>80):
 					color = "red"
