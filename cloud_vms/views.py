@@ -149,78 +149,7 @@ def ajax_vms_refresh(request):
 					
 					print 'Updating cache. '*100
 					print instance.platform, instance.product_codes
-					print dir(instance)
-					print '----- ami_launch_index'
-					print instance.add_tag
-					print instance.add_tags
-					print instance.ami_launch_index
-					print instance.architecture
-					print instance.block_device_mapping
-					print instance.client_token
-					print instance.confirm_product
-					print instance.connection
-					print instance.create_image
-					print instance.dns_name
-					print instance.ebs_optimized
-					print instance.endElement
-					print instance.eventsSet
-					print instance.get_attribute
-					print instance.get_console_output
-					print instance.group_name
-					print instance.groups
-					print instance.hypervisor
-					print instance.id
-					print instance.image_id
-					print instance.instance_profile
-					print instance.instance_type
-					print instance.interfaces
-					print instance.ip_address
-					print instance.item
-					print instance.kernel
-					print instance.key_name
-					print instance.launch_time
-					print instance.modify_attribute
-					print instance.monitor
-					print instance.monitored
-					print instance.monitoring
-					print instance.monitoring_state
-					print instance.persistent
-					print instance.placement
-					print instance.placement_group
-					print instance.placement_tenancy
-					print instance.platform
-					print instance.previous_state
-					print instance.previous_state_code
-					print instance.private_dns_name
-					print instance.private_ip_address
-					print instance.product_codes
-					print instance.public_dns_name
-					print instance.ramdisk
-					print instance.reason
-					print instance.reboot
-					print instance.region
-					print instance.remove_tag
-					print instance.requester_id
-					print instance.reset_attribute
-					print instance.root_device_name
-					print instance.root_device_type
-					print instance.sourceDestCheck
-					print instance.spot_instance_request_id
-					print instance.start
-					print instance.startElement
-					print instance.state
-					print instance.state_code
-					print instance.state_reason
-					print instance.stop
-					print instance.subnet_id
-					print instance.tags
-					print instance.terminate
-					print instance.unmonitor
-					print instance.update
-					print instance.use_ip
-					print instance.virtualization_type
-					print instance.vpc_id
-									
+
 					try:
 						ec2conn.monitor_instance(str(instance.id))
 					except:
@@ -374,7 +303,7 @@ def ajax_virtual_machines(request):
 			
 			color = "pink"
 			vm_state = vm_cache[vm]["instance"]["state"]["state"].title()
-			if(vm_state=="Running"): color = "darkGreen"
+			if(vm_state=="Running"): color = "lightBlue"
 			
 			ajax_vms_response += "\""
 			ajax_vms_response += instance_name
