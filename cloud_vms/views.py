@@ -279,37 +279,40 @@ def ajax_virtual_machines(request):
 	ajax_vms_response = "{"
 	for vm in vm_cache:
 
-		ajax_vms_response += "\""
-		ajax_vms_response += vm
-		ajax_vms_response += "\": {"
+		if(vm_cache[vm]["instance"]["state"]["state"].lower()!="terminated"):
 
-		ajax_vms_response += "\"vmcolor\":\""
-		ajax_vms_response += "red"
-		ajax_vms_response += "\","
+			ajax_vms_response += "\""
+			ajax_vms_response += vm
+			ajax_vms_response += "\": {"
 
-		ajax_vms_response += "\"vmtitle\":\""
-		ajax_vms_response += "linux"
-		ajax_vms_response += "\","
+			ajax_vms_response += "\"vmcolor\":\""
+			ajax_vms_response += "red"
+			ajax_vms_response += "\","
 
-		ajax_vms_response += "\"averge\":\""
-		ajax_vms_response += "1.0,1.0,7.0,2.0,3.0"
-		ajax_vms_response += "\","
+			ajax_vms_response += "\"vmtitle\":\""
+			ajax_vms_response += "linux"
+			ajax_vms_response += "\","
+		
+			ajax_vms_response += "\"averge\":\""
+			ajax_vms_response += "1.0,1.0,7.0,2.0,3.0"
+			ajax_vms_response += "\","
 
-		ajax_vms_response += "\"state\":\""
-		ajax_vms_response += "Running"
-		ajax_vms_response += "\""
+			ajax_vms_response += "\"state\":\""
+			ajax_vms_response += vm_cache[vm]["instance"]["state"]["state"].title()
+			ajax_vms_response += "\""
 
-		ajax_vms_response += "}"
+			ajax_vms_response += "},"
 
-		if(c!=len(vm_cache)-1):
-			ajax_vms_response += ", "
-		else:
+		if(c==len(vm_cache)-1):
 			ajax_vms_response += "}"
+			
 		c+=1
 		
-		print vm
+		
+		print vm_cache[vm]["instance"]["state"]["state"].title()
 	
-	print "ajax_vms_response", ajax_vms_response
+	#print "ajax_vms_response", ajax_vms_response
+	ajax_vms_response = ajax_vms_response.replace(",}","}")
 
 	
 	return render_to_response('ajax_virtual_machines.html', {'user':user,'ajax_vms_response':ajax_vms_response,'vms_cached_response':vm_cache,}, context_instance=RequestContext(request))
