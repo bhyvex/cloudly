@@ -1,3 +1,8 @@
 {% load cloud_extras %}
 {% load humanize %}
+
+{% comment %}
+{{ajax_vms_response|safe}}
+{% endcomment %}
+
 { {% for vm in vms_cached_response %}{% if not "last_seen" in vm %}"{{vm}}":{"vmcolor":"{% if vms_cached_response|dict_get:vm|dict_get:"instance"|dict_get:"state"|dict_get:"state"|lower = "running" %}lightBlue{% else %}orange{% endif %}","vmtitle":"windows","averge":"{% for data in vms_cached_response|dict_get:vm|dict_get:"cpu_utilization_datapoints"|make_json %}{{data|dict_get:"Average"}}{% if not forloop.last %},{% endif %}{% endfor %}","state":"{{vms_cached_response|dict_get:vm|dict_get:"instance"|dict_get:"state"|dict_get:"state"|title}}" }{% if not forloop.last %},{% endif %}{% endif %}{% endfor %} }
