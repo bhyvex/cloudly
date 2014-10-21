@@ -94,12 +94,7 @@ $('#upload').fileupload({
 
 
     $("#startUpload").click(function(){
-        var start = 0;
-        $.each($('.start'),function(index,btn){
-            start += 500;
-            setTimeout(function(){$(btn).click();},start);
-            
-        });
+        $('.start-btn').click();
     });
     
     $("#cancelUpload").click(function(){
