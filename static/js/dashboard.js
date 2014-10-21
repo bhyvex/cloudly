@@ -63,9 +63,15 @@ var cloudlyVMSmanager  = {
         $('#'+vms).find('.value').html(data.state);
 
         var panel = $("#"+vms).find('.panel');
-        $.each(this.colors,function(index,color){
+        $.each(this.colors,function(code,color){
                 if(panel.hasClass(color) && panel.attr('class').indexOf(data.vmcolor) === -1){
-                        $(panel).switchClass(color,data.vmcolor,500,"easeInOutQuad");
+                        var panelTitle = $(panel).find('.title');
+                        $(panelTitle).animate({
+                            backgroundColor: code                            
+                        },500,function(){
+                            $(panel).switchClass(color,data.vmcolor);
+                        });
+                        
                         //console.log('VM '+vms+' changed color: '+color+' to: '+data.vmcolor+' and actual has class: '+panel.attr('class'));
                         return;
                 }
