@@ -272,8 +272,6 @@ def ajax_virtual_machines(request):
 		"i-75cf9e36":{"vmcolor":"lightBlue","vmtitle":"windows","averge":"13.56,15.0","state":"Running" }, \
 		"i-d0705993":{"vmcolor":"orange","vmtitle":"windows","averge":"","state":"Stopped" } }
 
-
-	print "-_"*80
 	
 	c=0
 	ajax_vms_response = "{"
@@ -308,12 +306,11 @@ def ajax_virtual_machines(request):
 			
 		c+=1
 		
-		
-		print vm_cache[vm]["instance"]["state"]["state"].title()
+		print '-_'*80
+		print vm_cache[vm]["instance"]["state"]["state"].title(), vm #["cpu_utilization_datapoints"]
 	
-	#print "ajax_vms_response", ajax_vms_response
-	ajax_vms_response = ajax_vms_response.replace(",}","}")
 
+	ajax_vms_response = ajax_vms_response.replace(",}","}")
 	
 	return render_to_response('ajax_virtual_machines.html', {'user':user,'ajax_vms_response':ajax_vms_response,'vms_cached_response':vm_cache,}, context_instance=RequestContext(request))
 
