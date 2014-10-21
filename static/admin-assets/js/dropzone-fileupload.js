@@ -97,7 +97,7 @@ $(document).ready(function(){
         var start = 0;
         $.each($('.start-btn'),function(index,btn){
             start += 100;
-            setTimeout(function(){$(btn).click()},start);
+            setTimeout(function(){$(btn).click();},start);
             
         });
     });
