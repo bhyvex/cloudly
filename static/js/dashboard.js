@@ -79,7 +79,7 @@ var cloudlyVMSmanager  = {
                         $('#'+vms+' .panel .title').animate({
                             backgroundColor: code                            
                         },1000,function(){
-                            setTimeout(function(){$(panel).switchClass(color,data.vmcolor);},200);
+                            $(panel).switchClass(color,data.vmcolor);
                         });
                         
                         //console.log('VM '+vms+' changed color: '+color+' to: '+data.vmcolor+' and actual has class: '+panel.attr('class'));
