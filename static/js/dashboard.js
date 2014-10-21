@@ -104,9 +104,6 @@ var cloudlyVMSmanager  = {
             }
         });
 
-        if(removed === true){
-                this.reloadPositions();
-        }
     },
     reloadPositions: function(){
             $('#machines-loader').isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' });
