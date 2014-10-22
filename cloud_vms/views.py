@@ -305,7 +305,7 @@ def ajax_virtual_machines(request):
 				data = ""
 
 			try: 
-				instance_name = vm_cache[vm]["instance"]["tags"]["Name"]
+				instance_name = vm_cache[vm]["instance"]["tags"]["Name"] + " " + vm
 			except: 
 				instance_name = vm
 
