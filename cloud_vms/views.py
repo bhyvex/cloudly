@@ -333,7 +333,7 @@ def ajax_virtual_machines(request):
 				if(data_median>70):
 					isotope_filter_classes += " critical"
 					color = "red"
-					data_median>85:
+					if data_median>85:
 						vm_state = "Hot hot hot!"
 				
 			if(vm_state=="Stopping"): 
