@@ -272,11 +272,6 @@ def ajax_virtual_machines(request):
 		vm_cache = pickle.loads(vm_cache)
 	except: vm_cache = {}
 
-
-	example_response = { "i-61765f22":{"vmcolor":"lightBlue","vmtitle":"windows","averge":"0.0,0.33","state":"Running" }, \
-		"i-75cf9e36":{"vmcolor":"lightBlue","vmtitle":"windows","averge":"13.56,15.0","state":"Running" }, \
-		"i-d0705993":{"vmcolor":"orange","vmtitle":"windows","averge":"","state":"Stopped" } }
-
 	
 	c=0
 	ajax_vms_response = "{"
