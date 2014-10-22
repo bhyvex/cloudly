@@ -241,12 +241,15 @@ def aws_vm_view(request,vm_name):
 	try:
 		vm_cache = pickle.loads(vm_cache)[vm_name]
 	except:
-		return HttpResponse("XXX - " + vm_name)
+		return HttpResponse("XXX " + vm_name)
 
 	if(vm_cache['user_id']!=request.user.id):
 		return HttpResponse("access denied")
 		
-	return render_to_response('aws_vm.html', {'vm_name':vm_name,'vm_cache':vm_cache,}, context_instance=RequestContext(request))
+	#XXX get_console_output
+	console_output = ""
+		
+	return render_to_response('aws_vm.html', {'vm_name':vm_name,'vm_cache':vm_cache,'console_output':console_output,}, context_instance=RequestContext(request))
 
 
 def ajax_virtual_machines(request):
