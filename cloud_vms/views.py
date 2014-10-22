@@ -314,7 +314,6 @@ def ajax_virtual_machines(request):
 				instance_name = vm
 
 
-			
 			color = "silver"
 			vm_state = vm_cache[vm]["instance"]["state"]["state"].title()
 						
@@ -333,9 +332,15 @@ def ajax_virtual_machines(request):
 				if(data_median>70):
 					color = "red"
 				
-			if(vm_state=="Stopping"): color = "pink"
-			if(vm_state=="Pending"): color = "pink"
-			if(vm_state=="Shutting-Down"): color = "pink"
+			if(vm_state=="Stopping"): 
+				isotope_filter_classes += " offline"
+				color = "pink"
+			if(vm_state=="Pending"): 
+				isotope_filter_classes += " offline"
+				color = "pink"
+			if(vm_state=="Shutting-Down"): 
+				isotope_filter_classes += " offline suspended"
+				color = "pink"
 						
 			ajax_vms_response += "\""
 			ajax_vms_response += instance_name
@@ -346,7 +351,7 @@ def ajax_virtual_machines(request):
 			ajax_vms_response += "\","
 
 			ajax_vms_response += "\"vmtitle\":\""
-			ajax_vms_response += "linux"
+			ajax_vms_response += isotope_filter_classes
 			ajax_vms_response += "\","
 		
 			ajax_vms_response += "\"averge\":\""
