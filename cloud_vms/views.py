@@ -241,7 +241,7 @@ def aws_vm_view(request,vm_name):
 	try:
 		vm_cache = pickle.loads(vm_cache)[vm_name]
 	except:
-		return HttpResponse("access denied")
+		return HttpResponse("XXX - " + vm_name)
 
 	if(vm_cache['user_id']!=request.user.id):
 		return HttpResponse("access denied")
@@ -312,6 +312,10 @@ def ajax_virtual_machines(request):
 			except: 
 				instance_name = vm
 
+			is_critical = ""
+			is_offline = ""
+			is_suspended = ""
+
 			
 			color = "silver"
 			vm_state = vm_cache[vm]["instance"]["state"]["state"].title()
@@ -331,7 +335,6 @@ def ajax_virtual_machines(request):
 				if(data_median>70):
 					color = "red"
 				
-			if(vm_state=="Stopped"): color = "black"
 			if(vm_state=="Stopping"): color = "pink"
 			if(vm_state=="Pending"): color = "pink"
 			if(vm_state=="Shutting-Down"): color = "pink"
