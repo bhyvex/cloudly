@@ -285,7 +285,8 @@ def ajax_virtual_machines(request):
 		if(vm_cache[vm]["instance"]["state"]["state"].lower()!="terminated"):
 
 			data_median = 0
-			isotope_filter_classes = ""
+			# XXX reset isotope_filter_classes to "" here...
+			isotope_filter_classes = "linux"
 			
 			try:
 				data = ""
