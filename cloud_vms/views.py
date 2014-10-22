@@ -306,7 +306,10 @@ def ajax_virtual_machines(request):
 
 
 			try: 
-				instance_name = vm_cache[vm]["instance"]["tags"]["Name"] + "-" + vm
+				if(vm_cache[vm]["instance"]["tags"]["Name"]):
+					instance_name = vm_cache[vm]["instance"]["tags"]["Name"] + "-" + vm
+				else:
+					instance_name = vm
 			except: 
 				instance_name = vm
 
