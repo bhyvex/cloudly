@@ -304,10 +304,12 @@ def ajax_virtual_machines(request):
 			except:
 				data = ""
 
-			try: 
-				instance_name = vm_cache[vm]["instance"]["tags"]["Name"] + " " + vm
-			except: 
-				instance_name = vm
+
+			if(instance_name = vm_cache[vm]["instance"]["tags"]["Name"]):
+				try: 
+					instance_name = vm_cache[vm]["instance"]["tags"]["Name"] + "-" + vm
+				except: 
+					instance_name = vm
 
 
 			color = "silver"
