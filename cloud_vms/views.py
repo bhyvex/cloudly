@@ -368,6 +368,8 @@ def ajax_virtual_machines(request):
 
 	ajax_vms_response = ajax_vms_response.replace(",}","}")
 	
+	if(not vm_cache): ajax_vms_response = {}
+	
 	return render_to_response('ajax_virtual_machines.html', {'user':user,'ajax_vms_response':ajax_vms_response,'vms_cached_response':vm_cache,}, context_instance=RequestContext(request))
 
 
