@@ -285,7 +285,11 @@ def ajax_virtual_machines(request):
 		if(vm_cache[vm]["instance"]["state"]["state"].lower()!="terminated"):
 
 			data_median = 0
-
+			
+			is_critical = False
+			is_offline = False
+			is_suspended = False
+			
 			try:
 				data = ""
 				cpu_utilization_datapoints = vm_cache[vm]["cpu_utilization_datapoints"]
@@ -312,9 +316,6 @@ def ajax_virtual_machines(request):
 			except: 
 				instance_name = vm
 
-			is_critical = ""
-			is_offline = ""
-			is_suspended = ""
 
 			
 			color = "silver"
