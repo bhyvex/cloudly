@@ -286,7 +286,7 @@ def ajax_virtual_machines(request):
 
 			data_median = 0
 			# XXX reset isotope_filter_classes to "" here...
-			isotope_filter_classes = "linux"
+			isotope_filter_classes = "offline linux "
 			
 			try:
 				data = ""
@@ -321,7 +321,9 @@ def ajax_virtual_machines(request):
 			if(vm_state=="Running"): 
 				
 				print 'data_median', data_median
-								
+				
+				isotope_filter_classes = "linux"
+							
 				if(data_median<17):
 					color = "lightBlue"
 				if(data_median>=17 and data_median<=35):
@@ -334,13 +336,11 @@ def ajax_virtual_machines(request):
 					color = "red"
 				
 			if(vm_state=="Stopping"): 
-				isotope_filter_classes += " offline"
 				color = "pink"
 			if(vm_state=="Pending"): 
-				isotope_filter_classes += " offline"
 				color = "pink"
 			if(vm_state=="Shutting-Down"): 
-				isotope_filter_classes += " offline suspended"
+				isotope_filter_classes += " suspended"
 				color = "pink"
 						
 			ajax_vms_response += "\""
