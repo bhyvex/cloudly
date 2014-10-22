@@ -285,10 +285,7 @@ def ajax_virtual_machines(request):
 		if(vm_cache[vm]["instance"]["state"]["state"].lower()!="terminated"):
 
 			data_median = 0
-			
-			is_critical = False
-			is_offline = False
-			is_suspended = False
+			isotope_filter_classes = ""
 			
 			try:
 				data = ""
