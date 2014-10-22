@@ -363,7 +363,7 @@ def ajax_virtual_machines(request):
 
 			ajax_vms_response += "\"state\":\""
 			ajax_vms_response += vm_state
-			ajax_vms_response += "\""
+			ajax_vms_response += "\","
 
 			ajax_vms_response += "\"link\":\""
 			ajax_vms_response += "/aws/"+vm+"/"
