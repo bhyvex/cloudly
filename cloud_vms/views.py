@@ -338,6 +338,7 @@ def ajax_virtual_machines(request):
 			if(vm_state=="Stopping"): 
 				color = "pink"
 			if(vm_state=="Pending"): 
+				isotope_filter_classes += " suspended"
 				color = "pink"
 			if(vm_state=="Shutting-Down"): 
 				isotope_filter_classes += " suspended"
