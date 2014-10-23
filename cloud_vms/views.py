@@ -118,8 +118,10 @@ def ajax_vms_refresh(request):
 					for group in instance.__dict__['groups']:
 						groups.append([group.id, group.name,])
 
+
 					instance_metrics['id'] = instance.id
 					instance_metrics['user_id'] = request.user.id
+					instance_metrics['instance']['placement'] = instance.placement
 					instance_metrics['instance']['user_id'] = request.user.id
 					instance_metrics['instance']['groups'] = groups
 					instance_metrics['instance']['block_device_mapping'] = volumes
@@ -252,7 +254,10 @@ def aws_vm_view(request,vm_name):
 	if(vms_cache.vms_console_output_cache):
 		console_output = vms_cache.vms_console_output_cache
 	else:
-		# xxx decode instance details from cache
+				
+		#print '*'*5000
+		#pprint(vm_cache)
+		
 		# xxx get the instance region
 		# xxx connect to region
 		# xxx potiahni data, uloz, nastav console output
