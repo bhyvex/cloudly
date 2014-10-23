@@ -252,15 +252,25 @@ def aws_vm_view(request,vm_name):
 	vms_cache = Cache.objects.get(user=user)
 	
 	if(vms_cache.vms_console_output_cache):
+		
 		console_output = vms_cache.vms_console_output_cache
 	else:
 				
-		instance_placement = vm_cache['instance']['placement']
-		
-		# xxx get the instance region
-		# xxx connect to region
-		# xxx potiahni data, uloz, nastav console output
-		console_output = "working on this currently"
+		aws_access_key = profile.aws_access_key
+		aws_secret_key = profile.aws_secret_key
+		aws_ec2_verified = profile.aws_ec2_verified
+
+		ec2_region = vm_cache['instance']['region']['name']
+
+		ec2conn = boto.ec2.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
+		reservations = ec2conn.get_all_instances(instance_ids=[vm_name,])
+		instance = reservations[0].instances[0]
+
+		console_output = instance.get_console_output()
+		console_output = console_output.output
+
+		vms_cache.vms_console_output_cache = console_output
+		vms_cache.save()
 		
 	# XXX conn.get_all_instance_status
 		
