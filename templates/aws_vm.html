@@ -159,7 +159,7 @@ Console output:
 							{% endif %}
 
 							{% if vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state" == "stopped" %}
-								<a href="#"><button type="button" class="btn btn-success">Start</button></a>
+								<a href="/aws/{{vm_name}}/start/"><button type="button" class="btn btn-success">Start</button></a>
 								<a href="#"><button type="button" class="btn btn-danger">Terminate</button></a>
 								<a href="/aws/{{vm_name}}/request/help/"><button type="button" class="btn btn-default">Request Help</button></a>
 								<a href="#"></a>
