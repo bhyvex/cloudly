@@ -255,8 +255,7 @@ def aws_vm_view(request,vm_name):
 		console_output = vms_cache.vms_console_output_cache
 	else:
 				
-		#print '*'*5000
-		#pprint(vm_cache)
+		instance_placement = vm_cache['instance']['placement']
 		
 		# xxx get the instance region
 		# xxx connect to region
