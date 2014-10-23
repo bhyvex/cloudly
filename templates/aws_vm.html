@@ -116,6 +116,7 @@ Console output:
 
 							<a href="/aws/{{vm_name}}/request/help/"><button type="button" class="btn btn-default">Request Help</button></a>
 
+							{% if vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state" == "running" %}
 								<div class="btn-group dropup">
 									<button type="button" class="btn btn-warning">Remote desktop</button>
 									<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
@@ -136,6 +137,7 @@ Console output:
 								        <li><a href="#">Remote desktop</a></li>
 									</ul>
 								</div>
+							{% endif %}
 
 							</div>	
 
@@ -144,9 +146,6 @@ Console output:
 
 
 					</div><!--/row-->
-
-
-
 
 		</div><!--/row-->
 
