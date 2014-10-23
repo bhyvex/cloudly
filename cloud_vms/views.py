@@ -246,9 +246,15 @@ def aws_vm_view(request,vm_name):
 	if(vm_cache['user_id']!=request.user.id):
 		return HttpResponse("access denied")
 		
-	#XXX get_console_output needs to be cached and this is the place
-	#XXX where it should be handled (not on the vms update!)
-	console_output = ""
+
+	vms_cache = Cache.objects.get(user=user)
+	
+	if(vms_cache.vms_console_output_cache):
+		console_output = vms_cache.vms_console_output_cache
+	else:
+		# xxx
+		# potiahni data, uloz, nastav console output
+		console_output = "working on this currently"
 		
 	return render_to_response('aws_vm.html', {'vm_name':vm_name,'vm_cache':vm_cache,'console_output':console_output,}, context_instance=RequestContext(request))
 
