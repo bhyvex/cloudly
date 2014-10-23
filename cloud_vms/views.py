@@ -252,9 +252,13 @@ def aws_vm_view(request,vm_name):
 	if(vms_cache.vms_console_output_cache):
 		console_output = vms_cache.vms_console_output_cache
 	else:
-		# xxx
-		# potiahni data, uloz, nastav console output
+		# xxx decode instance details from cache
+		# xxx get the instance region
+		# xxx connect to region
+		# xxx potiahni data, uloz, nastav console output
 		console_output = "working on this currently"
+		
+	# XXX conn.get_all_instance_status
 		
 	return render_to_response('aws_vm.html', {'vm_name':vm_name,'vm_cache':vm_cache,'console_output':console_output,}, context_instance=RequestContext(request))
 
