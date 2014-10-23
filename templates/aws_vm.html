@@ -139,6 +139,14 @@ Console output:
 								</div>
 							{% endif %}
 
+							{% if vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state" == "stopped" %}
+							<a href="#">start</a>
+							<a href="#">terminate</a>
+							<a href="#">duplicate</a>
+							<a href="#">enable auto</a>
+							<a href="#">backup to the cloud</a>
+							{% endif %}
+
 							</div>	
 
 						</div>
