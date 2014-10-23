@@ -271,9 +271,7 @@ def aws_vm_view(request,vm_name):
 
 		vms_cache.vms_console_output_cache = console_output
 		vms_cache.save()
-		
-	# XXX conn.get_all_instance_status
-		
+				
 	return render_to_response('aws_vm.html', {'vm_name':vm_name,'vm_cache':vm_cache,'console_output':console_output,}, context_instance=RequestContext(request))
 
 
