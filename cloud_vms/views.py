@@ -457,8 +457,7 @@ def control_aws_vm(request, vm_name, action):
 		pass
 
 	if(action=="start"):
-		# start_instances
-		pass
+		ec2conn.start_instances([vm_name,])
 
 	if(action=="stop"):
 		# stop_instances
