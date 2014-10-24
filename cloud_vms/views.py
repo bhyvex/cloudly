@@ -455,12 +455,11 @@ def control_aws_vm(request, vm_name, action):
 	if(action=="start"):
 		ec2conn.start_instances([vm_name,])
 	if(action=="stop"):
-		#stop_instances
-		pass
-		
+		ec2conn.stop_instances([vm_name,])		
 	if(action=="terminate"):
-		# terminate_instances
-		pass
+		ec2conn.terminate_instances([vm_name,])
+
+	# XXX duplicate, auto-scaling on, auto-scaling off, backup
 
 	return HttpResponse("working on this currently " + action + " " + vm_name)
 
