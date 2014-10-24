@@ -425,6 +425,17 @@ def control_aws_vm(request, vm_name, action):
 	if not request.user.is_authenticated():
 		print 'anonymous'
 		return HttpResponse("access denied")
+		
+	print request.user
+
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	user.last_login = datetime.datetime.now()
+	user.save()
+
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/aws/"+vm_name+"/"+action+"/","control_aws_vm",ip=ip)
+	
 	
 	return HttpResponse("working on this currently " + action + " " + vm_name)
 
