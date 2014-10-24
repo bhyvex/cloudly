@@ -448,21 +448,16 @@ def control_aws_vm(request, vm_name, action):
 	aws_ec2_verified = profile.aws_ec2_verified
 
 	ec2_region = vm_cache['instance']['region']['name']
-
 	ec2conn = boto.ec2.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
-	
 
 	if(action=="reboot"):
-		# reboot_instances
-		pass
-
+		ec2conn.reboot_instances([vm_name,])
 	if(action=="start"):
 		ec2conn.start_instances([vm_name,])
-
 	if(action=="stop"):
-		# stop_instances
+		#stop_instances
 		pass
-
+		
 	if(action=="terminate"):
 		# terminate_instances
 		pass
