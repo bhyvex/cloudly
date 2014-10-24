@@ -436,6 +436,7 @@ def control_aws_vm(request, vm_name, action):
 	ip = request.META['REMOTE_ADDR']
 	_log_user_activity(profile,"click","/aws/"+vm_name+"/"+action+"/","control_aws_vm",ip=ip)
 	
+	# XXX check the ownership of the VM prior taking action...
 	
 	return HttpResponse("working on this currently " + action + " " + vm_name)
 
