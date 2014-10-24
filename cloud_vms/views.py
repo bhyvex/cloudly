@@ -434,7 +434,17 @@ def control_aws_vm(request, vm_name, action):
 	ip = request.META['REMOTE_ADDR']
 	_log_user_activity(profile,"click","/aws/"+vm_name+"/"+action+"/","control_aws_vm",ip=ip)
 	
-	# XXX check the ownership of the VM prior taking action...
+	vms_cache = Cache.objects.get(user=user)
+	vm_cache =  vms_cache.vms_response
+	vm_cache = base64.b64decode(vm_cache)
+	try:
+		vm_cache = pickle.loads(vm_cache)[vm_name]
+	except:
+		return HttpResponse("XXX " + vm_name)
+
+	if(vm_cache['user_id']!=request.user.id):
+		return HttpResponse("access denied")
+	
 	
 	return HttpResponse("working on this currently " + action + " " + vm_name)
 
