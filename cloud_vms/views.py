@@ -437,13 +437,19 @@ def control_aws_vm(request, vm_name, action):
 	vms_cache = Cache.objects.get(user=user)
 	vm_cache =  vms_cache.vms_response
 	vm_cache = base64.b64decode(vm_cache)
-	try:
-		vm_cache = pickle.loads(vm_cache)[vm_name]
-	except:
-		return HttpResponse("XXX " + vm_name)
+	vm_cache = pickle.loads(vm_cache)[vm_name]
 
 	if(vm_cache['user_id']!=request.user.id):
 		return HttpResponse("access denied")
+
+
+	aws_access_key = profile.aws_access_key
+	aws_secret_key = profile.aws_secret_key
+	aws_ec2_verified = profile.aws_ec2_verified
+
+	ec2_region = vm_cache['instance']['region']['name']
+
+	ec2conn = boto.ec2.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
 	
 	
 	return HttpResponse("working on this currently " + action + " " + vm_name)
