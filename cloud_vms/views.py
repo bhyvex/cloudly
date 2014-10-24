@@ -461,7 +461,7 @@ def control_aws_vm(request, vm_name, action):
 
 	# XXX duplicate, auto-scaling on, auto-scaling off, backup
 
-	return HttpResponse("working on this currently " + action + " " + vm_name)
+	return HttpResponseRedirect("/")
 
 
 def ajax_virtual_machines_box(request):
