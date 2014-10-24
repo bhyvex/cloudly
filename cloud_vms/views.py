@@ -255,8 +255,6 @@ def aws_vm_view(request,vm_name):
 	if(vm_cache['user_id']!=request.user.id):
 		return HttpResponse("access denied")
 		
-
-	vms_cache = Cache.objects.get(user=user)
 	
 	if(vms_cache.vms_console_output_cache):
 		
@@ -439,7 +437,6 @@ def control_aws_vm(request, vm_name, action):
 	# XXX check the ownership of the VM prior taking action...
 	
 	return HttpResponse("working on this currently " + action + " " + vm_name)
-
 
 
 def ajax_virtual_machines_box(request):
