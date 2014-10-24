@@ -451,6 +451,9 @@ def control_aws_vm(request, vm_name, action):
 
 	ec2conn = boto.ec2.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
 	
+	#'reboot_instances', 'run_instances', 'start_instances', 'stop_instances', 'terminate_instances',
+
+
 	
 	return HttpResponse("working on this currently " + action + " " + vm_name)
 
