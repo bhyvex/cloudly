@@ -17,7 +17,8 @@ class Profile(models.Model):
 	user = models.OneToOneField(User)
 	name = models.CharField(max_length=100, blank=True, verbose_name="name", db_index=True)
 	secret = models.CharField(max_length=100, blank=True, verbose_name="secret_key", db_index=True)
-	public_key = models.CharField(max_length=1024, blank=True, verbose_name="secret_key", db_index=True)
+	public_key = models.CharField(max_length=1024, blank=True, verbose_name="public_key", db_index=True)
+	public_key_passphrase = models.CharField(max_length=100, blank=True, verbose_name="ssh_passphrase", db_index=True)
 
 	company = models.CharField(max_length=100, blank=True, verbose_name="company")
 	company_url = models.CharField(max_length=100, blank=True, verbose_name="custom_url")
