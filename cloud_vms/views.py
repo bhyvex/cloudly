@@ -314,7 +314,7 @@ def ajax_virtual_machines(request):
 
 			data_median = 0
 			# XXX reset isotope_filter_classes to "" here...
-			isotope_filter_classes = "offline linux "
+			isotope_filter_classes = " offline linux "
 			
 			try:
 				data = ""
@@ -346,38 +346,38 @@ def ajax_virtual_machines(request):
 			except: instance_name = vm
 
 
-			color = "silver"
+			color = "silver "
 			vm_state = vm_cache[vm]["instance"]["state"]["state"].title()
 						
 			if(vm_state=="Running"): 
 				
 				print 'data_median', data_median
 				
-				isotope_filter_classes = "linux"
+				isotope_filter_classes = " linux "
 							
 				if(data_median<17):
-					color = "lightBlue"
+					color = "lightBlue "
 				if(data_median>=17 and data_median<=35):
-					color = "green"
+					color = "green "
 				if(data_median>35 and data_median<=50):
-					color = "darkGreen"
+					color = "darkGreen "
 				if(data_median>50 and data_median<=70):
-					color = "lightOrange"
+					color = "lightOrange "
 				if(data_median>70):
 					isotope_filter_classes += " critical"
-					color = "red"
+					color = "red "
 					if data_median>85:
 						vm_state = "Hot hot hot!"
 				
 			if(vm_state=="Stopping"): 
 				isotope_filter_classes += " suspended"
-				color = "pink"
+				color = "pink "
 			if(vm_state=="Pending"): 
 				isotope_filter_classes += " suspended"
-				color = "pink"
+				color = "pink "
 			if(vm_state=="Shutting-Down"): 
 				isotope_filter_classes += " suspended"
-				color = "pink"
+				color = "pink "
 						
 			ajax_vms_response += "\""
 			ajax_vms_response += instance_name

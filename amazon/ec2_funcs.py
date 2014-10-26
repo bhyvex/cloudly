@@ -84,8 +84,8 @@ def clone_instance(instance):
 						new_bdt.snapshot_id = latest_snap.id
 						new_bdm[dev] = new_bdt
 
-
-	return ec2.run_instances(instance.image_id,
+	return ec2.run_instances(
+		instance.image_id,
 		key_name=instance.key_name,
 		security_groups=[g.name for g in instance.groups],
 		user_data=user_data,
@@ -94,4 +94,5 @@ def clone_instance(instance):
 		ramdisk_id=instance.ramdisk,
 		monitoring_enabled=instance.monitored,
 		placement=instance.placement,
-		block_device_map=new_bdm).instances[0]
+		block_device_map=new_bdm
+	).instances[0]
