@@ -274,6 +274,8 @@ def aws_vm_view(request,vm_name):
 		console_output = instance.get_console_output()
 		console_output = console_output.output
 
+		if(not console_output):
+			console_output = ""
 		vms_cache.vms_console_output_cache = console_output
 		vms_cache.save()
 				
