@@ -16,7 +16,7 @@ class Cache(models.Model):
 	vms_info_filtered_4 = models.TextField(blank=True)
 	vms_info_filtered_5 = models.TextField(blank=True)
 
-	vms_console_output_cache = models.TextField(blank=True)
+	vms_console_output_cache = models.TextField(blank=True, default="")
 
 	last_seen = models.DateTimeField(auto_now_add=True)
 	date_created = models.DateTimeField(auto_now_add=True)
