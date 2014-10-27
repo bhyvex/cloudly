@@ -57,17 +57,24 @@
                 <div id="network-metrics"></div>
                 <br />
                 <div id="hdd-metrics"></div>
-<!--                <pre>
-                <strong>vm_cache</strong>
-                {% for graph in vm_cache %}
-                <strong>{{graph}}</strong> {{vm_cache|dict_get:graph}}
-                {% endfor %}
-                </pre>-->
 
 
+<strong>Debug:</strong> vm_cache<br/>
+
+{% for graph in vm_cache %}
+{% if graph == "cpu_utilization_datapoints" %}
+	<strong>{{graph}} data</strong>
+	<br/>
+	{% for value in vm_cache|dict_get:graph|make_json %}
+		{{value|dict_get:"Timestamp"}},{{value|dict_get:"Average"}}<br/>
+	{% endfor %}
+{% endif %}
+{% endfor %}
+
+<br/>
 
 <pre>
-<strong>Debug:</strong> vm_cache
+<strong>Available metrics</strong>
 cpu_utilization_datapoints
 networkout_datapoints
 networkin_datapoints
@@ -260,35 +267,18 @@ Console output:
                 // of 1970/71 in order to be compared on the same x axis. Note
                 // that in JavaScript, months start at 0 for January, 1 for February etc.
                 data: [
-                    [Date.UTC(1970,  9, 27), 0   ],
-                    [Date.UTC(1970, 10, 10), 0.6 ],
-                    [Date.UTC(1970, 10, 18), 0.7 ],
-                    [Date.UTC(1970, 11,  2), 0.8 ],
-                    [Date.UTC(1970, 11,  9), 0.6 ],
-                    [Date.UTC(1970, 11, 16), 0.6 ],
-                    [Date.UTC(1970, 11, 28), 0.67],
-                    [Date.UTC(1971,  0,  1), 0.81],
-                    [Date.UTC(1971,  0,  8), 0.78],
-                    [Date.UTC(1971,  0, 12), 0.98],
-                    [Date.UTC(1971,  0, 27), 1.84],
-                    [Date.UTC(1971,  1, 10), 1.80],
-                    [Date.UTC(1971,  1, 18), 1.80],
-                    [Date.UTC(1971,  1, 24), 1.92],
-                    [Date.UTC(1971,  2,  4), 2.49],
-                    [Date.UTC(1971,  2, 11), 2.79],
-                    [Date.UTC(1971,  2, 15), 2.73],
-                    [Date.UTC(1971,  2, 25), 2.61],
-                    [Date.UTC(1971,  3,  2), 2.76],
-                    [Date.UTC(1971,  3,  6), 2.82],
-                    [Date.UTC(1971,  3, 13), 2.8 ],
-                    [Date.UTC(1971,  4,  3), 2.1 ],
-                    [Date.UTC(1971,  4, 26), 1.1 ],
-                    [Date.UTC(1971,  5,  9), 0.25],
-                    [Date.UTC(1971,  5, 12), 0   ]
+					{% for graph in vm_cache %}
+					{% if graph == "cpu_utilization_datapoints" %}
+                    [Date.UTC(1971,  5, 12), 0   ],
+					{% endif %}
+					{% endfor %}
+
                 ]
             }]
         });
         
+
+{% comment %}
         //network metrics
         $('#network-metrics').highcharts({
             chart: {
@@ -437,6 +427,7 @@ Console output:
                 21000, 20000, 19000, 18000, 18000, 17000, 16000]
         }]
     });
+{% endcomment %}
 });
     
     //-->

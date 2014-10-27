@@ -416,6 +416,7 @@ def ajax_virtual_machines(request):
 	
 	return render_to_response('ajax_virtual_machines.html', {'user':user,'ajax_vms_response':ajax_vms_response,'vms_cached_response':vm_cache,}, context_instance=RequestContext(request))
 
+
 def ajax_aws_graphs(request, instance_id, graph_type="all"):
 	
 	print '-- ajax_aws_graphs', request.user
