@@ -269,9 +269,12 @@ Console output:
                 data: [
 					{% for graph in vm_cache %}
 					{% if graph == "cpu_utilization_datapoints" %}
-                    [Date.UTC(1971,  5, 12), 0   ], // XXX this needs to be adjusted accordingly to dateTimeLabelFormats
+						{% for value in vm_cache|dict_get:graph|make_json %}
+							[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}), {{value|dict_get:"Average"}} ],
+						{% endfor %}
 					{% endif %}
 					{% endfor %}
+
                 ]
             }]
         });
