@@ -33,72 +33,71 @@
 </pre>	
 
 
- 					</div><!--/col-->
-			</div><!--/row-->	
-		</div>
-		<!-- end: Content -->
-	</div><!--/row-->
+                                </div><!--/col-->
+                </div><!--/row-->	
+        </div>
+        <!-- end: Content -->
+</div><!--/row-->
 
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="panel panel-default">
-						<div class="panel-heading">
-							<h2><i class="fa fa-truck"></i>System metrics</h2>
-							<div class="panel-actions">
-								<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-								<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-								<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-							</div>
-						</div>
-						<div class="panel-body">
-
-<pre>
-<strong>vm_cache</strong>
-{% for graph in vm_cache %}
-<strong>{{graph}}</strong> {{vm_cache|dict_get:graph}}
-{% endfor %}
-</pre>					
-
-
-	 					</div><!--/col-->
-
-				</div><!--/row-->	
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                    <h2><i class="fa fa-truck"></i>System metrics</h2>
+                    <div class="panel-actions">
+                            <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+                            <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                            <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                    </div>
+            </div>
+            <div class="panel-body">
+                
+                <div id="CPU-Metrics"></div>
+                <br />
+                <div id="network-metrics"></div>
+<!--                <pre>
+                <strong>vm_cache</strong>
+                {% for graph in vm_cache %}
+                <strong>{{graph}}</strong> {{vm_cache|dict_get:graph}}
+                {% endfor %}
+                </pre>					-->
 
 
-							
+            </div><!--/col-->
+
+</div><!--/row-->	
 						
-							<div class="row">
-								<div class="col-xs-12">
-									<div class="panel panel-default">
-											<div class="panel-heading">
-												<h2><i class="fa fa-truck"></i>Alerts</h2>
-												<div class="panel-actions">
-													<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-													<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-													<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-												</div>
-											</div>
-											<div class="panel-body">
-												TBD
-						 					</div><!--/col-->
-									</div><!--/row-->	
-								</div>
-								<!-- end: Content -->
-							</div><!--/row-->
+<div class="row">
+        <div class="col-xs-12">
+                <div class="panel panel-default">
+                                <div class="panel-heading">
+                                        <h2><i class="fa fa-truck"></i>Alerts</h2>
+                                        <div class="panel-actions">
+                                                <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+                                                <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                                                <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                                        </div>
+                                </div>
+                                <div class="panel-body">
+                                        TBD
+                                </div><!--/col-->
+                </div><!--/row-->	
+        </div>
+        <!-- end: Content -->
+</div><!--/row-->
 
-
-							<div class="row">
-								<div class="col-xs-12">
-									<div class="panel panel-default">
-											<div class="panel-heading">
-												<h2><i class="fa fa-truck"></i>Console output</h2>
-												<div class="panel-actions">
-													<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-													<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-													<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-												</div>
-											</div>
-											<div class="panel-body" style="display: none;">
+<div class="row">
+        <div class="col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                            <h2><i class="fa fa-truck"></i>Console output</h2>
+                            <div class="panel-actions">
+                                    <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+                                    <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                                    <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                            </div>
+                    </div>
+                    <div class="panel-body" style="display: none;">
 
 <pre>
 Console output:
@@ -106,76 +105,76 @@ Console output:
 </pre>	
 
 
-						 					</div><!--/col-->
-									</div><!--/row-->	
+                </div><!--/col-->
+</div><!--/row-->	
 
 
-							<div class="row">
-								<div class="col-xs-12">
-									<div class="panel panel-default">
-											<div class="panel-heading">
-												<h2><i class="fa fa-truck"></i>Estimated cost</h2>
-												<div class="panel-actions">
-													<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-													<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-													<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-												</div>
-											</div>
-											<div class="panel-body">
-												TBD
-						 					</div><!--/col-->
-									</div><!--/row-->	
-								</div>
-								<!-- end: Content -->
-							</div><!--/row-->
-							
-						</div>
-						<!-- end: Content -->
+<div class="row">
+        <div class="col-xs-12">
+                <div class="panel panel-default">
+                                <div class="panel-heading">
+                                        <h2><i class="fa fa-truck"></i>Estimated cost</h2>
+                                        <div class="panel-actions">
+                                                <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+                                                <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                                                <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                                        </div>
+                                </div>
+                                <div class="panel-body">
+                                        TBD
+                                </div><!--/col-->
+                </div><!--/row-->	
+        </div>
+        <!-- end: Content -->
+</div><!--/row-->
 
-						<div class="panel-body">
+</div>
+<!-- end: Content -->
 
-
-							{% if vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state" == "running" %}
-								<a href="/aws/{{vm_name}}/request/help/"><button type="button" class="btn btn-default">Request Help</button></a>
-								<div class="btn-group dropup">
-									<button type="button" class="btn btn-warning">Remote desktop</button>
-									<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
-								        <span class="caret"></span>
-								        <span class="sr-only">Toggle Dropdown</span>
-									</button>
-									<ul class="dropdown-menu" role="menu">
-								        <li><a href="/aws/{{vm_name}}/stop/">Stop</a></li>
-								        <li><a href="/aws/{{vm_name}}/terminate/">Terminate</a></li>
-								        <li class="divider"></li>
-								        <li><a href="#">Duplicate</a></li>
-								        <li><a href="#">Assign a static IP</a></li>
-								        <li><a href="#">Enable auto-scaling</a></li>
-								        <li><a href="#">Backup to the Cloud</a></li>
-								        <li class="divider"></li>
-								        <li class="divider"></li>
-								        <li><a href="#">Remote desktop</a></li>
-									</ul>
-								</div>
-							{% endif %}
-
-							{% if vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state" == "stopped" %}
-								<a href="/aws/{{vm_name}}/start/"><button type="button" class="btn btn-success">Start</button></a>
-								<a href="/aws/{{vm_name}}/terminate/"><button type="button" class="btn btn-danger">Terminate</button></a>
-								<a href="/aws/{{vm_name}}/request/help/"><button type="button" class="btn btn-default">Request Help</button></a>
-								<a href="#"></a>
-								<a href="#"></a>
-							{% endif %}
-							
-
-							</div>	
-
-						</div>
-						<!-- end: Content -->
+<div class="panel-body">
 
 
-					</div><!--/row-->
+{% if vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state" == "running" %}
+        <a href="/aws/{{vm_name}}/request/help/"><button type="button" class="btn btn-default">Request Help</button></a>
+        <div class="btn-group dropup">
+                <button type="button" class="btn btn-warning">Remote desktop</button>
+                <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                <li><a href="/aws/{{vm_name}}/stop/">Stop</a></li>
+                <li><a href="/aws/{{vm_name}}/terminate/">Terminate</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Duplicate</a></li>
+                <li><a href="#">Assign a static IP</a></li>
+                <li><a href="#">Enable auto-scaling</a></li>
+                <li><a href="#">Backup to the Cloud</a></li>
+                <li class="divider"></li>
+                <li class="divider"></li>
+                <li><a href="#">Remote desktop</a></li>
+                </ul>
+        </div>
+{% endif %}
 
-		</div><!--/row-->
+{% if vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state" == "stopped" %}
+        <a href="/aws/{{vm_name}}/start/"><button type="button" class="btn btn-success">Start</button></a>
+        <a href="/aws/{{vm_name}}/terminate/"><button type="button" class="btn btn-danger">Terminate</button></a>
+        <a href="/aws/{{vm_name}}/request/help/"><button type="button" class="btn btn-default">Request Help</button></a>
+        <a href="#"></a>
+        <a href="#"></a>
+{% endif %}
+
+
+</div>	
+
+</div>
+<!-- end: Content -->
+
+
+</div><!--/row-->
+
+</div><!--/row-->
 
 
 
@@ -200,4 +199,151 @@ Console output:
 	</div><!-- /.modal -->
 
 {% endblock page_content %}
+
+{% block extra_js %}
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<script type="text/javascript">
+    <!--
+    
+    $(function () {
+        //CPU metrics
+        $('#CPU-Metrics').highcharts({
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: 'CPU Metrics'
+            },
+            subtitle: {
+                text: 'Irregular time data in Highcharts JS'
+            },
+            xAxis: {
+                type: 'datetime',
+                dateTimeLabelFormats: { // don't display the dummy year
+                    month: '%e. %b',
+                    year: '%b'
+                },
+                title: {
+                    text: 'Date and time'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Snow depth (m)'
+                },
+                min: 0
+            },
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br>',
+                pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
+            },
+
+            series: [{
+                name: 'Average',
+                // Define the data points. All series have a dummy year
+                // of 1970/71 in order to be compared on the same x axis. Note
+                // that in JavaScript, months start at 0 for January, 1 for February etc.
+                data: [
+                    [Date.UTC(1970,  9, 27), 0   ],
+                    [Date.UTC(1970, 10, 10), 0.6 ],
+                    [Date.UTC(1970, 10, 18), 0.7 ],
+                    [Date.UTC(1970, 11,  2), 0.8 ],
+                    [Date.UTC(1970, 11,  9), 0.6 ],
+                    [Date.UTC(1970, 11, 16), 0.6 ],
+                    [Date.UTC(1970, 11, 28), 0.67],
+                    [Date.UTC(1971,  0,  1), 0.81],
+                    [Date.UTC(1971,  0,  8), 0.78],
+                    [Date.UTC(1971,  0, 12), 0.98],
+                    [Date.UTC(1971,  0, 27), 1.84],
+                    [Date.UTC(1971,  1, 10), 1.80],
+                    [Date.UTC(1971,  1, 18), 1.80],
+                    [Date.UTC(1971,  1, 24), 1.92],
+                    [Date.UTC(1971,  2,  4), 2.49],
+                    [Date.UTC(1971,  2, 11), 2.79],
+                    [Date.UTC(1971,  2, 15), 2.73],
+                    [Date.UTC(1971,  2, 25), 2.61],
+                    [Date.UTC(1971,  3,  2), 2.76],
+                    [Date.UTC(1971,  3,  6), 2.82],
+                    [Date.UTC(1971,  3, 13), 2.8 ],
+                    [Date.UTC(1971,  4,  3), 2.1 ],
+                    [Date.UTC(1971,  4, 26), 1.1 ],
+                    [Date.UTC(1971,  5,  9), 0.25],
+                    [Date.UTC(1971,  5, 12), 0   ]
+                ]
+            }]
+        });
+        
+        //network metrics
+        $('#network-metrics').highcharts({
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: 'CPU Metrics'
+            },
+            subtitle: {
+                text: 'Irregular time data in Highcharts JS'
+            },
+            xAxis: {
+                type: 'datetime',
+                dateTimeLabelFormats: { // don't display the dummy year
+                    month: '%e. %b',
+                    year: '%b'
+                },
+                title: {
+                    text: 'Date and time'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Snow depth (m)'
+                },
+                min: 0
+            },
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br>',
+                pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
+            },
+
+            series: [{
+                name: 'Average',
+                // Define the data points. All series have a dummy year
+                // of 1970/71 in order to be compared on the same x axis. Note
+                // that in JavaScript, months start at 0 for January, 1 for February etc.
+                data: [
+                    [Date.UTC(1970,  9, 27), 0   ],
+                    [Date.UTC(1970, 10, 10), 0.6 ],
+                    [Date.UTC(1970, 10, 18), 0.7 ],
+                    [Date.UTC(1970, 11,  2), 0.8 ],
+                    [Date.UTC(1970, 11,  9), 0.6 ],
+                    [Date.UTC(1970, 11, 16), 0.6 ],
+                    [Date.UTC(1970, 11, 28), 0.67],
+                    [Date.UTC(1971,  0,  1), 0.81],
+                    [Date.UTC(1971,  0,  8), 0.78],
+                    [Date.UTC(1971,  0, 12), 0.98],
+                    [Date.UTC(1971,  0, 27), 1.84],
+                    [Date.UTC(1971,  1, 10), 1.80],
+                    [Date.UTC(1971,  1, 18), 1.80],
+                    [Date.UTC(1971,  1, 24), 1.92],
+                    [Date.UTC(1971,  2,  4), 2.49],
+                    [Date.UTC(1971,  2, 11), 2.79],
+                    [Date.UTC(1971,  2, 15), 2.73],
+                    [Date.UTC(1971,  2, 25), 2.61],
+                    [Date.UTC(1971,  3,  2), 2.76],
+                    [Date.UTC(1971,  3,  6), 2.82],
+                    [Date.UTC(1971,  3, 13), 2.8 ],
+                    [Date.UTC(1971,  4,  3), 2.1 ],
+                    [Date.UTC(1971,  4, 26), 1.1 ],
+                    [Date.UTC(1971,  5,  9), 0.25],
+                    [Date.UTC(1971,  5, 12), 0   ]
+                ]
+            }]
+        });
+    });
+    //-->
+</script>
+
+{% endblock extra_js %}
 
