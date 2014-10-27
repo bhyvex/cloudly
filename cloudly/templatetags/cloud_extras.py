@@ -85,7 +85,7 @@ def format_datetime_special(date):
 	minute = date.split('-')[2].split('T')[1].split(':')[1]
 	second = date.split('-')[2].split('T')[1].split(':')[2]
 	
-	return year, month, day, hour, minute, second
+	return {'year':year, 'month':month, 'day':day, 'hour':hour, 'minute':minute, 'second':second}
 
 
 @register.filter(name='count_user_files')
