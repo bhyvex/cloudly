@@ -446,11 +446,20 @@ def ajax_aws_graphs(request, instance_id, graph_type="all"):
 	ec2_region = vm_cache['instance']['region']['name']
 
 	ec2conn = boto.ec2.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
+	cloudwatch = boto.ec2.cloudwatch.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
+
 	reservations = ec2conn.get_all_instances(instance_ids=[instance_id,])
 	instance = reservations[0].instances[0]
-	
-	# XXX expand this function with the date range..
 
+
+	end = datetime.datetime.utcnow()
+	start = end - datetime.timedelta(days=10)
+
+	metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance_id}, metric_name="CPUUtilization")[0]
+	cpu_utilization_datapoints = metric.query(start, end, 'Average', 'Percent',period=3600)
+	
+	print cpu_utilization_datapoints
+	
 	return HttpResponse("working on this currently " + instance_id + "=" + str(instance) + " ** " + graph_type.upper())
 
 
