@@ -60,6 +60,7 @@ urlpatterns = patterns('',
 	url(r'^aws/(?P<vm_name>[\w\-\.]+)/$', 'cloud_vms.views.aws_vm_view', name='aws_vm_view'),
 	url(r'^aws/(?P<vm_name>[\w\-\.]+)/(?P<action>[\w\-\.]+)/$', 'cloud_vms.views.control_aws_vm', name='control_aws_vm'),
 	url(r'^aws/(?P<instance_id>[\w\-\.]+)/request/help/$', 'support.views.support_new_aws', name='support_new_aws'),
+	url(r'^ajax/aws/(?P<instance_id>[\w\-\.]+)/graph/cpu/$', 'support.views.aws_cpu_graph', name='aws_cpu_graph'),
 
 	# system logs
 	url(r'^logs/$', 'logs.views.logs', name='logs'),
