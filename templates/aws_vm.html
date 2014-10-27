@@ -31,38 +31,37 @@
 						working on this currently....
 						<hr/>
 						
-						id xxx<br/>
-						instance_type xxx<br/>
+						id {{vm_cache|dict_get:"instance"|dict_get:"id"}}<br/>
+						instance_type {{vm_cache|dict_get:"instance"|dict_get:"instance_type"}}<br/>
 						<br/>
-						image_id xxx<br/>
-						client_token xxx<br/>
-						monitored xxx<br/>
+						image_id {{vm_cache|dict_get:"instance"|dict_get:"image_id"}}<br/>
+						client_token {{vm_cache|dict_get:"instance"|dict_get:"client_token"}}<br/>
 						<br/>
-						state xxx<br/>
+						state {{vm_cache|dict_get:"instance"|dict_get:"state"}}<br/>
 						<br/>
-						root_device_type xxx<br/>
-						root_device_name xxx<br/>
-						block_device_mapping xxx<br/>
-						ramdisk xxx<br/>
+						root_device_type {{vm_cache|dict_get:"instance"|dict_get:"root_device_type"}}<br/>
+						root_device_name {{vm_cache|dict_get:"instance"|dict_get:"root_device_name"}}<br/>
+						block_device_mapping {{vm_cache|dict_get:"instance"|dict_get:""}}<br/>
+						ramdisk {{vm_cache|dict_get:"instance"|dict_get:"ramdisk"}}<br/>
 						<br/>
-						ip_address xxx<br/>
-						private_ip_address xxx<br/>
-						dns_name xxx<br/>
-						vpc_id xxx<br/>
-						placement xxx<br/>
-						region xxx<br/>
+						ip_address {{vm_cache|dict_get:"instance"|dict_get:"ip_address"}}<br/>
+						private_ip_address {{vm_cache|dict_get:"instance"|dict_get:"private_ip_address"}}<br/>
+						dns_name {{vm_cache|dict_get:"instance"|dict_get:"dns_name"}}<br/>
+						vpc_id {{vm_cache|dict_get:"instance"|dict_get:"vpc_id"}}<br/>
+						placement {{vm_cache|dict_get:"instance"|dict_get:"placement"}}<br/>
+						region {{vm_cache|dict_get:"instance"|dict_get:"region"}}<br/>
 						<br/>
-						key_name xxx<br/>
+						key_name {{vm_cache|dict_get:"instance"|dict_get:""}}<br/>
 						<br/>
-						tags xxx<br/>
-						groups xxx<br/>
+						tags {{vm_cache|dict_get:"instance"|dict_get:"key_name"}}<br/>
+						groups {{vm_cache|dict_get:"instance"|dict_get:"groups"}}<br/>
 						<br/>
-						architecture xxx<br/>
-						virtualization_type xxx<br/>
-						hypervisor xxx<br/>
+						architecture {{vm_cache|dict_get:"instance"|dict_get:"architecture"}}<br/>
+						virtualization_type {{vm_cache|dict_get:"instance"|dict_get:"virtualization_type"}}<br/>
+						hypervisor {{vm_cache|dict_get:"instance"|dict_get:"hypervisor"}}<br/>
 						<br/>
-						launch_time xxx<br/>
-						persistent xxx<br/>
+						launch_time {{vm_cache|dict_get:"instance"|dict_get:"launch_time"}}<br/>
+						persistent {{vm_cache|dict_get:"instance"|dict_get:"persistent"}}<br/>
 
                     </div><!--/col-->
                 </div><!--/row-->	
