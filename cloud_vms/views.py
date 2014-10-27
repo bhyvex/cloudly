@@ -427,6 +427,19 @@ def ajax_aws_graphs(request, instance_id, graph_type):
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
 	
+	vms_cache = Cache.objects.get(user=user)
+	vm_cache =  vms_cache.vms_response
+	vm_cache = base64.b64decode(vm_cache)
+	try:
+		vm_cache = pickle.loads(vm_cache)[instance_id]
+	except:
+		return HttpResponse("XXX " + instance_id)
+
+	if(vm_cache['user_id']!=request.user.id):
+		return HttpResponse("access denied")
+		
+	
+	
 	return HttpResponse("working on this currently " + instance_id + " " + graph_type)
 
 
