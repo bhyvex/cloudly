@@ -420,7 +420,12 @@ def ajax_aws_graphs(request, instance_id, graph_type):
 	
 	print '-- ajax_aws_graphs', request.user
 
-	# XXX 
+	if not request.user.is_authenticated():
+		print 'anonymous'
+		return HttpResponseRedirect("/")
+			
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
 	
 	return HttpResponse("working on this currently " + instance_id + " " + graph_type)
 
