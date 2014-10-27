@@ -66,7 +66,7 @@
 	<strong>{{graph}} data</strong>
 	<br/>
 	{% for value in vm_cache|dict_get:graph|make_json %}
-		{{value|dict_get:"Timestamp"}},{{value|dict_get:"Average"}}<br/>
+		{{value|dict_get:"Timestamp"|format_datetime_special}} - {{value|dict_get:"Average"}}<br/>
 	{% endfor %}
 {% endif %}
 {% endfor %}

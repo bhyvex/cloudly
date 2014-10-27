@@ -74,6 +74,12 @@ def get_tags(package):
 	return Tags.objects.filter(package=package)
 
 
+
+@register.filter(name='format_datetime_special')
+def format_datetime_special(date):
+	return date
+
+
 @register.filter(name='count_user_files')
 def count_user_files(user):
 	
