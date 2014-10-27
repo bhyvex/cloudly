@@ -453,7 +453,7 @@ def ajax_aws_graphs(request, instance_id, graph_type):
 	# XXX expand this function with the date range..
 	
 
-	return HttpResponse("working on this currently " + instance_id + " " + str(instance) + " " + graph_type)
+	return HttpResponse("working on this currently " + instance_id + "=" + str(instance) + " " + graph_type)
 
 
 def control_aws_vm(request, vm_name, action):
