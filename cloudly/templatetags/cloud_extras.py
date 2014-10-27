@@ -77,7 +77,15 @@ def get_tags(package):
 
 @register.filter(name='format_datetime_special')
 def format_datetime_special(date):
-	return date
+	
+	year = date.split('-')[0]
+	month = date.split('-')[1]
+	day = date.split('-')[2].split('T')[0]
+	hour = date.split('-')[2].split('T')[1].split(':')[0]
+	minute = date.split('-')[2].split('T')[1].split(':')[1]
+	second = date.split('-')[2].split('T')[1].split(':')[2]
+	
+	return year, month, day, hour, minute, second
 
 
 @register.filter(name='count_user_files')
