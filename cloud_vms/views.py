@@ -439,8 +439,17 @@ def ajax_aws_graphs(request, instance_id, graph_type):
 		return HttpResponse("access denied")
 		
 	
+	aws_access_key = profile.aws_access_key
+	aws_secret_key = profile.aws_secret_key
+	aws_ec2_verified = profile.aws_ec2_verified
+
+	ec2_region = vm_cache['instance']['region']['name']
+
+	ec2conn = boto.ec2.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
+	reservations = ec2conn.get_all_instances(instance_ids=[instance_id,])
+	instance = reservations[0].instances[0]
 	
-	return HttpResponse("working on this currently " + instance_id + " " + graph_type)
+	return HttpResponse("working on this currently " + instance_id + " " + str(instance) + " " + graph_type)
 
 
 def control_aws_vm(request, vm_name, action):
