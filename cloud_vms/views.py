@@ -449,11 +449,9 @@ def ajax_aws_graphs(request, instance_id, graph_type="all"):
 	reservations = ec2conn.get_all_instances(instance_ids=[instance_id,])
 	instance = reservations[0].instances[0]
 	
-
 	# XXX expand this function with the date range..
-	
 
-	return HttpResponse("working on this currently " + instance_id + "=" + str(instance) + " " + graph_type)
+	return HttpResponse("working on this currently " + instance_id + "=" + str(instance) + " ** " + graph_type.upper())
 
 
 def control_aws_vm(request, vm_name, action):
