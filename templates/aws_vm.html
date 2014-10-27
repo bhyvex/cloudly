@@ -61,6 +61,7 @@
 
 <strong>Debug:</strong> vm_cache<br/>
 
+{% comment %}
 {% for graph in vm_cache %}
 {% if graph == "cpu_utilization_datapoints" %}
 	<strong>{{graph}} data</strong>
@@ -70,8 +71,8 @@
 	{% endfor %}
 {% endif %}
 {% endfor %}
-
 <br/>
+{% endcomment %}
 
 <pre>
 <strong>Available metrics</strong>
