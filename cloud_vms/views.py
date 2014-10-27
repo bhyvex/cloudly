@@ -416,10 +416,10 @@ def ajax_virtual_machines(request):
 	
 	return render_to_response('ajax_virtual_machines.html', {'user':user,'ajax_vms_response':ajax_vms_response,'vms_cached_response':vm_cache,}, context_instance=RequestContext(request))
 
-def aws_cpu_graph(request, instance_id, graph_type):
+def ajax_aws_graphs(request, instance_id, graph_type):
 	
-	print '-- aws_cpu_graph', request.user
-	
+	print '-- ajax_aws_graphs', request.user
+
 	# XXX 
 	
 	return HttpResponse("working on this currently " + instance_id + " " + graph_type)
