@@ -326,7 +326,7 @@ Console output:
 					{% for graph in vm_cache %}
 					{% if graph == "cpu_utilization_datapoints" %}
 						{% for value in vm_cache|dict_get:graph|make_json %}
-							[Highcharst.dateFormat("%Y. %m. %d %H:%i:%s"), {{value|dict_get:"Average"}} ],
+							[Highcharts.dateFormat("%Y. %m. %d %H:%i:%s"), {{value|dict_get:"Average"}} ],
 						{% endfor %}
 					{% endif %}
 					{% endfor %}
