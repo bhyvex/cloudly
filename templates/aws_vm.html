@@ -43,9 +43,6 @@
 								<li class="list-group-item">hypervisor {{vm_cache|dict_get:"instance"|dict_get:"hypervisor"}}</li>
 								<li class="list-group-item">persistent {{vm_cache|dict_get:"instance"|dict_get:"persistent"}}</li>
 								<br/>
-								<li class="list-group-item">key_name {{vm_cache|dict_get:"instance"|dict_get:"key_name"}}</li>								
-								<li class="list-group-item">groups {{vm_cache|dict_get:"instance"|dict_get:"groups"}}</li>
-								<br/>
 								<li class="list-group-item">
 									vpc_id {{vm_cache|dict_get:"instance"|dict_get:"vpc_id"}}<br/>
 									* A virtual private cloud (VPC) is a virtual network dedicated to your AWS account. It is logically isolated from other virtual networks in the AWS cloud. You can launch your AWS resources, such as Amazon EC2 instances, into your VPC.
@@ -55,6 +52,9 @@
 								<li class="list-group-item">dns_name {{vm_cache|dict_get:"instance"|dict_get:"dns_name"}}</li>
 								<li class="list-group-item">region {{vm_cache|dict_get:"instance"|dict_get:"region"}}</li>
 								<li class="list-group-item">placement {{vm_cache|dict_get:"instance"|dict_get:"placement"}}</li>
+								<br/>
+								<li class="list-group-item">key_name {{vm_cache|dict_get:"instance"|dict_get:"key_name"}}</li>								
+								<li class="list-group-item">groups {{vm_cache|dict_get:"instance"|dict_get:"groups"}}</li>
 								<br/>
 								<li class="list-group-item">root_device_name {{vm_cache|dict_get:"instance"|dict_get:"root_device_name"}}</li>
 								<li class="list-group-item">root_device_type {{vm_cache|dict_get:"instance"|dict_get:"root_device_type"}}</li>
