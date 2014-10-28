@@ -50,13 +50,6 @@ import decimal
 from django.db.models.base import ModelState
 
 
-class _ansi_colors:
-
-  red   = '\033[31m'
-  green = '\033[32m'
-  reset = '\033[0m'
-  grey  = '\033[1;30m'
-
 
 def date_handler(obj):
 	return obj.isoformat() if hasattr(obj, 'isoformat') else obj
