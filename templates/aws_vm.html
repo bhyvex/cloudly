@@ -37,6 +37,7 @@
 								<li class="list-group-item">tags {{vm_cache|dict_get:"instance"|dict_get:"tags"}}</li>
 								<br/>
 								<li class="list-group-item">instance_type {{vm_cache|dict_get:"instance"|dict_get:"instance_type"}}</li>
+								<li class="list-group-item">persistent {{vm_cache|dict_get:"instance"|dict_get:"persistent"}}</li>
 								<br/>
 								<li class="list-group-item">state {{vm_cache|dict_get:"instance"|dict_get:"state"}}</li>
 								<br/>
@@ -60,7 +61,6 @@
 								<li class="list-group-item">hypervisor {{vm_cache|dict_get:"instance"|dict_get:"hypervisor"}}</li>
 								<br/>
 								<li class="list-group-item">launch_time {{vm_cache|dict_get:"instance"|dict_get:"launch_time"}}</li>
-							<li class="list-group-item">persistent {{vm_cache|dict_get:"instance"|dict_get:"persistent"}}</li>
 
 						</ul>
 
