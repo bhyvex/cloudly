@@ -43,7 +43,10 @@
 								<li class="list-group-item">key_name {{vm_cache|dict_get:"instance"|dict_get:"key_name"}}</li>								
 								<li class="list-group-item">groups {{vm_cache|dict_get:"instance"|dict_get:"groups"}}</li>
 								<br/>
-								<li class="list-group-item">vpc_id {{vm_cache|dict_get:"instance"|dict_get:"vpc_id"}}</li>
+								<li class="list-group-item">
+									vpc_id {{vm_cache|dict_get:"instance"|dict_get:"vpc_id"}}<br/>
+									* A virtual private cloud (VPC) is a virtual network dedicated to your AWS account. It is logically isolated from other virtual networks in the AWS cloud. You can launch your AWS resources, such as Amazon EC2 instances, into your VPC.
+								</li>
 								<li class="list-group-item">ip_address {{vm_cache|dict_get:"instance"|dict_get:"ip_address"}}</li>
 								<li class="list-group-item">private_ip_address {{vm_cache|dict_get:"instance"|dict_get:"private_ip_address"}}</li>
 								<li class="list-group-item">dns_name {{vm_cache|dict_get:"instance"|dict_get:"dns_name"}}</li>
