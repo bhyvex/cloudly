@@ -310,7 +310,7 @@ Console output:
             },
             tooltip: {
                 headerFormat: '<b>{series.name}</b><br>',
-                pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
+                pointFormat: '{point.x:%Y. %m. %d %H:%i:%s}: %{point.y:.2f}'
             },
             yAxis: {
                 title: {
@@ -323,27 +323,23 @@ Console output:
             series: [{
                 name: 'Average',
                 data: [
-                    [Date.UTC(2010, 10, 1, 10, 20, 00), 29.9],
-                    [Date.UTC(2010, 10, 1, 10, 30, 00), 71.5],
-                    [Date.UTC(2010, 10, 1, 10, 40, 00), 106.4],
-                    [Date.UTC(2010, 10, 1, 10, 50, 00), 129.2],
-                    [Date.UTC(2010, 10, 1, 10, 60, 00), 144.0],
-                    [Date.UTC(2010, 10, 1, 10, 70, 00), 176.0]
-                ]
-                /*data: [
-                                        {#{% for graph in vm_cache %}
+                                        {% for graph in vm_cache %}
 					{% if graph == "cpu_utilization_datapoints" %}
 						{% for value in vm_cache|dict_get:graph|make_json %}
+<<<<<<< HEAD
 <<<<<<< HEAD
 							[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, 10), {{value|dict_get:"Average"}} ],
 =======
 							[10, {{value|dict_get:"Average"}} ],
 >>>>>>> 5238e090828582ace4d9484f37cc42e2c69f4bea
+=======
+							[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"hour"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"minute"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"second"}}), {{value|dict_get:"Average"}}],
+>>>>>>> c0cd8d0b3ca84bf7f52824fe853ab19dc6792fdd
 						{% endfor %}
 					{% endif %}
-					{% endfor %}#}
+					{% endfor %}
 
-                ]*/
+                ]
             }]
         });
         
