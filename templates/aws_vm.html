@@ -323,20 +323,18 @@ Console output:
             series: [{
                 name: 'Average',
                 data: [
-                                        {% for graph in vm_cache %}
+					{% for graph in vm_cache %}
 					{% if graph == "cpu_utilization_datapoints" %}
 						{% for value in vm_cache|dict_get:graph|make_json %}
 							[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"hour"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"minute"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"second"}}), {{value|dict_get:"Average"}}],
 						{% endfor %}
 					{% endif %}
 					{% endfor %}
-
                 ]
             }]
         });
-        
 });
-    
+
     //-->
 </script>
 {# <!-- {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, 10, 40, 40, 400 --> #}
