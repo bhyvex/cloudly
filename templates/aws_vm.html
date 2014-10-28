@@ -303,13 +303,14 @@ Console output:
             },
             xAxis: {
                 type: 'datetime',
-                dateTimeLabelFormats: { // XXX i need to expand this
-                    month: '%d. %M. %Y %H: %i: %s',
-                    year: '%Y'
-                },
+                
                 title: {
                     text: 'Date and time'
                 }
+            },
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br>',
+                pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
             },
             yAxis: {
                 title: {
@@ -317,10 +318,7 @@ Console output:
                 },
                 min: 0
             },
-            tooltip: {
-                headerFormat: '<b>{series.name}</b><br>',
-                pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
-            },
+            
 
             series: [{
                 name: 'Average',
@@ -328,7 +326,7 @@ Console output:
 					{% for graph in vm_cache %}
 					{% if graph == "cpu_utilization_datapoints" %}
 						{% for value in vm_cache|dict_get:graph|make_json %}
-							[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}), {{value|dict_get:"Average"}} ],
+							[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, 10, 20), {{value|dict_get:"Average"}} ],
 						{% endfor %}
 					{% endif %}
 					{% endfor %}
