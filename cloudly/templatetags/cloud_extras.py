@@ -69,6 +69,14 @@ def make_json(json_):
 		return json.loads(json_)
 	except: return {}
 
+
+@register.filter(name='make_json_sorted')
+def make_json_sorted(json_):
+
+	json_ = json.loads(json_)
+	json_.sort(key=lambda json_: json_['Timestamp'])
+	return json_
+
 @register.filter(name='get_tags')
 def get_tags(package):
 	return Tags.objects.filter(package=package)
