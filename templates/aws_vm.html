@@ -304,9 +304,6 @@ Console output:
             },
             xAxis: {
                 type: 'datetime',
-                formater: function(){
-                    return 'test';
-                },
                 title: {
                     text: 'Date and time'
                 }
@@ -329,7 +326,7 @@ Console output:
 					{% for graph in vm_cache %}
 					{% if graph == "cpu_utilization_datapoints" %}
 						{% for value in vm_cache|dict_get:graph|make_json %}
-							[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, 10, 40, 40, 400), {{value|dict_get:"Average"}} ],
+							[Highcharst.dateFormat("%Y. %m. %d %H:%i:%s"), {{value|dict_get:"Average"}} ],
 						{% endfor %}
 					{% endif %}
 					{% endfor %}
@@ -342,6 +339,6 @@ Console output:
     
     //-->
 </script>
-
+<!-- {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, 10, 40, 40, 400 -->
 {% endblock extra_js %}
 
