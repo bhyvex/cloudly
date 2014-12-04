@@ -262,8 +262,13 @@ def cloud_settings(request):
 
 	profile_regions = profile.aws_enabled_regions.split(',')
 	aws_ec2_verified = profile.aws_ec2_verified
+	
+	updated_regions = False
+	if request.GET:
+		updated = request.GET['updated']
+		if(updated=='regions'): updated_regions = True
 
-	return render_to_response('cloud_settings.html', {'aws_ec2_verified':aws_ec2_verified,'aws_regions':AWS_REGIONS,'profile_regions':profile_regions,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
+	return render_to_response('cloud_settings.html', {'aws_ec2_verified':aws_ec2_verified,'aws_regions':AWS_REGIONS,'profile_regions':profile_regions,'profile':profile,'secret':secret,'updated_regions':updated_regions,}, context_instance=RequestContext(request))
 	
 
 def cloud_settings_update_credentials(request):
@@ -304,7 +309,6 @@ def cloud_settings_update_credentials(request):
 		profile.aws_ec2_verified = False
 
 	profile.save()
-
 	
 	return render_to_response('cloud_settings.html', {'err':err,'aws_ec2_verified':profile.aws_ec2_verified,'aws_regions':AWS_REGIONS,'profile_regions':profile_regions,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
 
