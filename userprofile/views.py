@@ -390,7 +390,7 @@ def cloud_settings_update_regions(request):
 	profile.aws_enabled_regions = enabled_regions
 	profile.save()
 
-	return HttpResponseRedirect("/cloud/settings/")
+	return HttpResponseRedirect("/cloud/settings?updated=region&")
 
 
 def account_settings(request):
