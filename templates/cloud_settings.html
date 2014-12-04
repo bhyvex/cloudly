@@ -80,16 +80,15 @@
 							<div class="form-group">
 
 				                <label class="col-md-3 control-label"></label>
-
+								
+								{% if updated_regions %}
+								<div class="alert alert-success">
+									<button type="button" class="close" data-dismiss="alert">×</button>
+									<strong>Well done!</strong> You successfully updated your cloud regions.
+								</div>
+								{% endif %}
+								
 				                <div class="col-md-9">
-
-									{% if updated_regions %}
-									<div class="alert alert-success">
-										<button type="button" class="close" data-dismiss="alert">×</button>
-										<strong>Well done!</strong> You successfully updated your cloud regions.
-									</div>
-									{% endif %}
-
 									{% for region in aws_regions %}
 				                    <div class="checkbox">
 				                        <label for="checkbox{{forloop.counter}}">
