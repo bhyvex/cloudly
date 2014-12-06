@@ -130,7 +130,7 @@ You'd need to contact me about this one. You can reach me on jparicka@gmail.com,
 
 tbd...
 
-14) Installing Hypervisor Server
+14) The Server Monitor Agent
 
 tbd...
 
