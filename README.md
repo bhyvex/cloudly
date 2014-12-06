@@ -138,6 +138,12 @@ To run the monitor agent simply copy and paste the following in your terminal wi
 curl http://dev.projectcloudly.com:8000/static/agent.py > ~$USER/agent.py; sudo sh -c "while true; do python ~$USER/agent.py; sleep 3; done"
 </pre>
 
+15) ..and that's that!
+
+Enjoy!  
+
+:)
+
 
 Screenshots & Video
 -------------------
