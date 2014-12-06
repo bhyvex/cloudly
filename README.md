@@ -132,7 +132,7 @@ tbd...
 
 14) The Server Monitor Agent
 
-To run the monitor agent simply copy and paste the following in your terminal window on your private that you want to monitor:
+To add a private server to monitor simply copy and paste the following into server's terminal window:
 
 <pre>
 curl http://dev.projectcloudly.com:8000/static/agent.py > ~$USER/agent.py; sudo sh -c "while true; do python ~$USER/agent.py; sleep 3; done"
