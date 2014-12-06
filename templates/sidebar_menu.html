@@ -7,11 +7,17 @@
 						
 		<div class="sidebar-collapse collapse">			
 			
+			{% comment %}
 			<div class="nav-sidebar title"><span>Public Cloud</span></div>
+			{% endcomment %}
+			<div class="nav-sidebar title"><span>Dashboard</span></div>
 			
 			<ul class="nav nav-sidebar">
 				<li ><a href="/"><i class="fa fa-cloud"></i><span class="hidden-sm text"> 
+					{% comment %}
 					Virtual Machines</span></a>
+					{% endcomment %}
+					Servers
 				</li>
 				<li>
 					<a class="dropmenu" href="#"><i class="fa fa-folder-open-o"></i><span class="hidden-sm text"> Cloud Storage</span> <span class="chevron "></span></a>
@@ -23,10 +29,13 @@
 						<li><a href="#"><i class="fa fa-circle-o-notch"></i><span class="hidden-sm text"> Get Started</span></a></li>
 					</ul>
 				</li>
+				{% comment %}
 				<li><a href="/cloud/backups/"><i class="fa fa-database"></i><span class="hidden-sm text"> Cloud Backups</span> <span class="chevron closed"></span></a></li>
 				<li><a href="/cloud/software/"><i class="fa fa-archive"></i><span class="hidden-sm text"> Cloud Software</span> <span class="chevron closed"></span></a></li>
+				{% endcomment
 			</ul>
 			
+			{% comment %}
 			<div class="nav-sidebar title"><span>Private Cloud</span></div>
 			<ul class="nav nav-sidebar">
 
@@ -40,6 +49,7 @@
 				<li><a href="/private/servers/"><i class="fa fa-gears"></i><span class="hidden-sm text"> Private Servers</span> <span class="chevron closed"></span></a></li>
 
 			</ul>
+			{% endcomment %}
 
 			<div class="nav-sidebar title"><span>Support</span></div>
 			
