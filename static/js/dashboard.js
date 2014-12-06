@@ -12,8 +12,8 @@ var cloudlyVMSmanager  = {
     actualMachines: '',
     colors : {
 		'#36a9e1':'lightBlue',
-		'#bdea74':'green',
-		'#78cd51':'darkGreen',
+		'#78cd51':'green',
+		'#333366':'darkGreen',
 		'#eae874':'yellow',
 		'#fa603d':'lightOrange',
 		'#ff5454':'red',
