@@ -1,10 +1,10 @@
 Cloudly
 =======
 
-Project Cloudly a software to control your Cloud Services (both public and private ones). 
-It saves you money and energies by taking away most of the usual cloud complexities allowing you to focus on control and better use of your infrastructure. 
+Project Cloudly a software to control your servers (both public and private ones). 
+It saves you money and energies by taking away most of the usual servers' monitoring complexities allowing you to focus on control and better use of your infrastructure. 
 
-Cloudly also comes with more than 100+ ready to use professionally configured software packages and allows you to deploy these quickly on bare metal, virtual machines, or in the cloud. 
+Cloudly also comes with more than 100+ ready to use professionally configured cloud software packages and allows you to deploy these quickly in the cloud. 
 
 
 Installation Instructions
