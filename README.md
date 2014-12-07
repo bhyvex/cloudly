@@ -148,10 +148,10 @@ Enjoy!
 Screenshots & Video
 -------------------
 
-TBD...
-
 ![alt tag](http://dev.projectcloudly.com:8000/static/screenshots/screenshot0.png)
 
 More to come.  Stay tuned.
+
+TBD...
 
 
