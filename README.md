@@ -18,7 +18,7 @@ $ apt-get install mysql-server python-mysqldb
 
 Optionally configure your MySQL server to meet your specific requirements.
 
-As for the user/password, this one needs to match the cloudly/cloudly/settings.py.
+As for the user/password, this one needs to match the entries in the cloudly/cloudly/settings.py file.
 
 2) Create Cloudly Database
 
