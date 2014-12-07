@@ -1,6 +1,6 @@
 #!/bin/sh
 
-clear
+#clear
 
 echo !! Synchronizing the database..
 python manage.py syncdb
