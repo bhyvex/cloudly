@@ -115,7 +115,7 @@ $ echo Never run this as user root!
 $ ./run_devel.sh
 </pre>
 
-Now that you have the User Interface (Admin Dashboard) up and running you'd need to get the API started.  You can do so by following instructions in the next step.
+Now that you have the User Interface (Admin Dashboard) up and running you'd need to get the API started.  You can do so by following the instructions in the next step.
 
 11) Configuring the web server (NGINX without SSL support)
 
