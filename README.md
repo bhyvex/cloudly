@@ -1,7 +1,7 @@
 Cloudly
 =======
 
-Project Cloudly is a software to monitor and control your servers (both private and cloud ones). 
+Project Cloudly is a software to monitor and control your servers as well as your cloud servers. 
 It saves you money and energies by taking away most of the usual servers' monitoring complexities allowing you to focus on control and better use of your infrastructure. 
 
 Cloudly also comes with more than 100+ ready to use professionally configured cloud software packages and allows you to deploy these quickly in the cloud. 
@@ -18,7 +18,7 @@ $ apt-get install mysql-server python-mysqldb
 
 Optionally configure your MySQL server to meet your specific requirements.
 
-As for the user/password, this one needs to match the cloudly/cloudly/settings.py.
+As for the user/password, this one needs to match the entries in the cloudly/cloudly/settings.py file.
 
 2) Create Cloudly Database
 
@@ -71,7 +71,7 @@ $ python manage.py syncdb
 
 If you get an error saying "Access denied for user 'root'@'localhost" then you'd need to edit the cloudly/settings.py and setup the DB section accordingly to your present DB settings.
 
-Assuming this operation succeded, Django will answer the following:
+Assuming this operation succeded, Django will ask you the following:
 
 <pre>
 You just installed Django's auth system, which means you don't have any superusers defined.
@@ -115,7 +115,7 @@ $ echo Never run this as user root!
 $ ./run_devel.sh
 </pre>
 
-Now that you have the User Interface (Admin Dashboard) up and running you'd need to get the API started.  You can do so by following instructions in the next step.
+Now that you have the User Interface (Admin Dashboard) up and running you'd need to get the API started.  You can do so by following the instructions in the next step.
 
 11) Configuring the web server (NGINX without SSL support)
 
