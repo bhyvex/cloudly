@@ -143,8 +143,8 @@ curl http://dev.projectcloudly.com:8000/static/agent.py > ~$USER/agent.py; sudo 
 Enjoy!
 
 
-Screenshots & Video
--------------------
+Screenshots & Live Demo
+-----------------------
 
 ![alt tag](http://dev.projectcloudly.com:8000/static/screenshots/screenshot0.png)
 
