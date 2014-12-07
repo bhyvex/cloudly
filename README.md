@@ -128,7 +128,7 @@ You'd need to contact me about this one. You can reach me on jparicka@gmail.com,
 
 13) Run the API
 
-tbd...
+TBD...
 
 14) The Server Monitor Agent
 
@@ -148,5 +148,10 @@ Enjoy!
 Screenshots & Video
 -------------------
 
-tbd...
+TBD...
+
+![alt tag](http://dev.projectcloudly.com:8000/static/screenshots/screenshot0.png)
+
+More to come.  Stay tuned.
+
 
