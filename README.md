@@ -138,11 +138,9 @@ To add a private server to monitor simply copy and paste the following into serv
 curl http://dev.projectcloudly.com:8000/static/agent.py > ~$USER/agent.py; sudo sh -c "while true; do python ~$USER/agent.py; sleep 3; done"
 </pre>
 
-15) ..and that's that!
+15) ..and that's that!  :)
 
-Enjoy!  
-
-:)
+Enjoy!
 
 
 Screenshots & Video
