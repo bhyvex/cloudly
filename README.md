@@ -156,7 +156,10 @@ Enjoy!
 Screenshots & Live Demo
 -----------------------
 
-![alt tag](http://dev.projectcloudly.com:8000/static/screenshots/screenshot0.png)
+![alt screenshot0](http://dev.projectcloudly.com:8000/static/screenshots/screenshot0.png)
+
+![alt screenshot1](http://dev.projectcloudly.com:8000/static/screenshots/screenshot1.png)
+
 
 More to come.  Stay tuned.
 
