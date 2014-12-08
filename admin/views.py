@@ -94,7 +94,7 @@ def admin(request):
 
 	print request.user
 	
-	users = Profile.objects.all()
+	users = Profile.objects.all().order_by('-last_seen')
 	profile = Profile.objects.get(user=request.user)
 	
 	import datetime
