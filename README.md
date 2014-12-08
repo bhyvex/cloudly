@@ -125,10 +125,20 @@ TBD...
 
 You'd need to contact me about this one. You can reach me on jparicka@gmail.com, or Skype: jparicka
 
-
 13) Run the API
 
-TBD...
+API server runs off of Flask therefore you'd need to install Python Flask first.  To do so simply copy and paste the following into your terminal window:
+
+<pre>
+$ apt-get install python-flask
+</pre>
+
+Once you have the Flask installed, simply run the API like so:
+
+<pre>
+$ python api.py
+</pre>
+
 
 14) The Server Monitor Agent
 
