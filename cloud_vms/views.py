@@ -121,6 +121,7 @@ def ajax_vms_refresh(request):
 
 					instance_metrics['id'] = instance.id
 					instance_metrics['user_id'] = request.user.id
+					instance_metrics['provider'] = "aws-ec2"
 					instance_metrics['instance']['placement'] = instance.placement
 					instance_metrics['instance']['user_id'] = request.user.id
 					instance_metrics['instance']['groups'] = groups
