@@ -50,36 +50,35 @@
     <li class="list-group-item"><strong>Name:</strong> {{profile.name}}</li>
     <li class="list-group-item"><strong>E-mail:</strong> {{user.email}}</li>
 	<br/>
-    <li class="list-group-item"><strong>Practical skills</strong> {{profile.skills}} (e.g. apache, nginx, iptables, ..)</li>
-	<br/>
     <li class="list-group-item"><strong>Secret</strong> {{profile.secret}}</li>
     <li class="list-group-item"><strong>Password:</strong> <a href="/account/password/"><button type="button" class="btn btn-xs btn-warning">Change Password</button></a> {{user.password}}</li>
-	<br/>
-	<li class="list-group-item"><strong>Public key</strong> ssh-dss AAAAB3NzaC1kc3MAAACBAN7/15KkgiEbVK2INvJSJLZUMY3U0zK....jparicka@jans-air</li>
-	<li class="list-group-item"><strong>Public key passphrase</strong> <a href="#">TBD</a><br/>
-	* The password for your SSH key if it is encrypted with a passphrase
-	</li>
-	<br/>
-    
+    <br/>
+    <li class="list-group-item"><strong>Public key</strong> ssh-dss AAAAB3NzaC1kc3MAAACBAN7/15KkgiEbVK2INvJSJLZUMY3U0zK....jparicka@jans-air</li>
+    <li class="list-group-item"><strong>Public key passphrase</strong> <a href="#">TBD</a><br/>
+    * The password for your SSH key if it is encrypted with a passphrase
+    </li>
+    <br/>
     <li class="list-group-item"><strong>Company</strong> {{profile.company}}</li>
     <li class="list-group-item"><strong>Company URL</strong> {{profile.custom_url}}</li>
-	<br/>
+    <br/>
+    <li class="list-group-item"><strong>My practical skills</strong> {{profile.skills}} (e.g. apache, nginx, iptables, ..)</li>
+    <br/>
     <li class="list-group-item"><strong>Twitter</strong> {{profile.twitter}}</li>
     <li class="list-group-item"><strong>Mobile</strong> {{profile.mobile}}</li>
-	<br/>
+    <br/>
     <li class="list-group-item"><strong>Street Address 1</strong> {{profile.street_address_1}}</li>
     <li class="list-group-item"><strong>Street Address 2</strong> {{profile.street_address_2}}</li>
     <li class="list-group-item"><strong>Street Address 3</strong> {{profile.street_address_3}}</li>
-	<br/>
-	<li class="list-group-item"><strong>Email Notfications</strong> {{profile.email_notfications}}
-		<form class="form-horizontal" action="/test">
-		    <label class="switch switch-info">
-		      <input type="checkbox" class="switch-input" checked="">
-		      <span class="switch-label" data-on="On" data-off="Off"></span>
-		      <span class="switch-handle"></span>
-		    </label>
-		</form>
-	</li>
+    <br/>
+    <li class="list-group-item"><strong>Email Notfications</strong> {{profile.email_notfications}}
+	<form class="form-horizontal" action="/test">
+		<label class="switch switch-info">
+			<input type="checkbox" class="switch-input" checked="">
+			<span class="switch-label" data-on="On" data-off="Off"></span>
+			<span class="switch-handle"></span>
+		</label>
+	</form>
+    </li>
     <li class="list-group-item"><strong>Twitter Notifications</strong> {{profile.twitter_notifications}}
 		<form class="form-horizontal" action="/test">
 			<label class="switch">
