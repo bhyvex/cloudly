@@ -41,10 +41,12 @@ urlpatterns = patterns('',
 	url(r'^private/storage/$', 'private_storage.views.private_storage', name='private_storage'),
 
 	# cloud stuff
+	{% comment %}
 	url(r'^cloud/software/$', 'cloud_software.views.cloud_software', name='cloud_software'),
 	url(r'^cloud/software/add/new/$', 'cloud_software.views.cloud_software_add_new', name='cloud_software_add_new'),
 	url(r'^cloud/software/tag/(?P<tag_slug>[\w\-\.]+)/$', 'cloud_software.views.cloud_software_view_tag', name='cloud_software_view_tag'),
 	url(r'^cloud/backups/$', 'cloud_backup.views.cloud_backups', name='cloud_backups'),
+	{% endcomment %}
 	url(r'^cloud/storage/$', 'cloud_storage.views.cloud_storage', name='cloud_storage'),
 	url(r'^cloud/file/(?P<file_id>\d+)/delete/$', 'cloud_storage.views.delete_file', name='delete_file'),
 	url(r'^cloud/sharing/$', 'cloud_storage.views.cloud_sharing', name='cloud_sharing'),
