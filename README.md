@@ -53,7 +53,7 @@ $ apt-get install python-pymongo
 $ pip install pymongo --upgrade
 </pre>
 
-..and configure your server to meet your requirements.
+..and configure your server to meet your specific requirements.
 
 5) Download the latest version of Cloudly
 
@@ -104,7 +104,7 @@ $ sudo mkdir /data/db
 $ mongod
 </pre>
 
-..and configure your server to meet your requirements.
+..and configure your server to meet your specific requirements.
 
 10) Run the development server
 
