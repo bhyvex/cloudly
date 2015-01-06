@@ -45,17 +45,18 @@ urlpatterns = patterns('',
 	#url(r'^cloud/software/add/new/$', 'cloud_software.views.cloud_software_add_new', name='cloud_software_add_new'),
 	#url(r'^cloud/software/tag/(?P<tag_slug>[\w\-\.]+)/$', 'cloud_software.views.cloud_software_view_tag', name='cloud_software_view_tag'),
 	#url(r'^cloud/backups/$', 'cloud_backup.views.cloud_backups', name='cloud_backups'),
+	# storage
 	url(r'^cloud/storage/$', 'cloud_storage.views.cloud_storage', name='cloud_storage'),
 	url(r'^cloud/file/(?P<file_id>\d+)/delete/$', 'cloud_storage.views.delete_file', name='delete_file'),
 	url(r'^cloud/sharing/$', 'cloud_storage.views.cloud_sharing', name='cloud_sharing'),
 	url(r'^cloud/dropzone/$', 'cloud_storage.views.cloud_dropzone', name='cloud_dropzone'),
-	url(r'^cloud/photos/$', 'cloud_photos.views.cloud_photos', name='cloud_photos'),
 	url(r'^files_uploader/$', 'cloud_storage.views.dropzone_uploader', name='dropzone_uploader'),
 	url(r'^ajax/cloud/storage/$', 'cloud_storage.views.ajax_cloud_storage', name='ajax_cloud_storage'),
 	url(r'^ajax/cloud/vms/$', 'cloud_vms.views.ajax_virtual_machines', name='ajax_virtual_machines'),
 	url(r'^ajax/cloud/box-template/$', 'cloud_vms.views.ajax_virtual_machines_box', name='ajax_virtual_machines_box'),
 	url(r'^ajax/cloud/vms/refresh/$', 'cloud_vms.views.ajax_vms_refresh', name='ajax_vms_refresh'),
-
+	# photos
+	url(r'^cloud/photos/$', 'cloud_photos.views.cloud_photos', name='cloud_photos'),
 	# aws ec2 stuff
 	url(r'^aws/(?P<vm_name>[\w\-\.]+)/$', 'cloud_vms.views.aws_vm_view', name='aws_vm_view'),
 	url(r'^aws/(?P<vm_name>[\w\-\.]+)/(?P<action>[\w\-\.]+)/$', 'cloud_vms.views.control_aws_vm', name='control_aws_vm'),
