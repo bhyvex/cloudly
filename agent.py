@@ -243,10 +243,8 @@ def _get_disks_usage():
 			try:
 				volume[2] = int(volume[2]) / 1024 / 1024 # Used
 				volume[3] = int(volume[3]) / 1024 / 1024 # Available
-			
 			except IndexError:
 				pass
-			
 			except KeyError:
 				pass
 			
@@ -282,7 +280,6 @@ def get_system_metrics( secret ):
 		'memory_usage': memory_usage,
 		'physical_disks': physical_disks,
 		'disks_usage': disks_usage,
-		# XXX system_metrics_json should include hypervisor networks as well
 		'agent_version': AGENT_VERSION,
 	}
 
@@ -335,22 +332,8 @@ if __name__=="__main__":
 		command = command['command']
 				
 		if(command):
-
-			# Using virsh!
 			
-			# install (w/autostart)
-			# start
-			# shutdown
-			# force_shutdown
-			# suspend
-			# resume
-			# save (backup)
-			# restore
-			# clone
-			# add_volume
-			# remove_volume
-			# delete_vm (destroy, undefine, vol-delete)
-			
+			# TBD
 			print datetime.datetime.now(), SECRET, '!! '*100
 			print datetime.datetime.now(), SECRET, 'Received command:', command
 			print datetime.datetime.now(), SECRET, 'sleeping 30'
