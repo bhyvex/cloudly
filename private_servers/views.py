@@ -80,10 +80,10 @@ def servers(request):
 	ip = request.META['REMOTE_ADDR']
 	_log_user_activity(profile,"click","/servers/","servers",ip=ip)
 
-	if request.user.is_superuser:
-		servers  = mongo.servers.find().sort('_id',-1)
-	else:
-		servers = mongo.servers.find({'secret':profile.secret,}).sort('_id',-1)
+	#if request.user.is_superuser:
+	#	servers  = mongo.servers.find().sort('_id',-1)
+	#else:
+	servers = mongo.servers.find({'secret':profile.secret,}).sort('_id',-1)
 	
 	servers_count = servers.count()
 	
