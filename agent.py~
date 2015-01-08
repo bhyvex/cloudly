@@ -299,7 +299,7 @@ if __name__=="__main__":
 	os.system("clear")
 		
 	print "AGENT: v"+AGENT_VERSION
-	print "Written By: Jan Paricka"
+	print "Written By: jparicka"
 
 	api_call = "/v10/activity/"
 	activity = {
