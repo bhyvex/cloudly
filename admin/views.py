@@ -77,13 +77,15 @@ def user_activity_report(request, user_id):
 		#vms_cached_response['last_seen'] = vms_cache.last_seen
 	except: vms_cached_response = None
 
+
+	servers = mongo.servers.find({'secret':user_profile.secret,}).sort('_id',-1)
 	
 	import datetime
 	user = request.user
 	user.last_login = datetime.datetime.now()
 	user.save()
 	
-	return render_to_response('admin-user-report.html', {'u':u,'vms_cached_response':vms_cached_response,'user_profile':user_profile,'user_files':user_files,'user_activity':user_activity,'user_activity_clicks':user_activity_clicks,'user_activity_other':user_activity_other,'profile':profile,}, context_instance=RequestContext(request))
+	return render_to_response('admin-user-report.html', {'u':u,'vms_cached_response':vms_cached_response,'user_profile':user_profile,'user_files':user_files,'user_activity':user_activity,'user_activity_clicks':user_activity_clicks,'user_activity_other':user_activity_other,'profile':profile,'servers':servers,}, context_instance=RequestContext(request))
 	
 
 	
