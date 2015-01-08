@@ -48,18 +48,18 @@ def _get_sys_uptime():
 
 def _get_sys_cpu():
 	
-	top_info = subprocess.Popen(["top","b","n","1"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+	#top_info = subprocess.Popen(["top","b","n","1"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+	cpu_info = subprocess.Popen(["ps","e","o","pcpu"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 
 	c=0
 	cpu_total = float(0)
 	
-	for line in top_info.split('\n'):
-		if(c==6): pass
-		if(c<7): c+=1
+	for line in cpu_info.split('\n'):
 
-		line = str(line).split(' ')[:-6]
+		line = line.replace(' ','')
+		
 		try:
-			cpu_process_usage = float(line[-1:][0])
+			cpu_process_usage = float(line)
 			cpu_total += cpu_process_usage
 		except:
 			pass
