@@ -32,6 +32,12 @@ from cloud_storage.models import Uploaded_Files
 
 from userprofile.views import _log_user_activity
 
+import pymongo
+from pymongo import MongoClient
+from pymongo import ASCENDING, DESCENDING
+client = MongoClient('localhost', 27017)
+
+mongo = client.cloudly
 
 
 def user_activity_report(request, user_id):
@@ -70,6 +76,7 @@ def user_activity_report(request, user_id):
 		vms_cached_response = vms_response
 		#vms_cached_response['last_seen'] = vms_cache.last_seen
 	except: vms_cached_response = None
+
 	
 	import datetime
 	user = request.user
