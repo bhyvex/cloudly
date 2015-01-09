@@ -25,11 +25,6 @@ if not platform.system() == 'Darwin':
 else:
 	UUID = "devel"
 
-# Required packages:~$ apt-get install kvm qemu-kvm \
-#  iptables libvirt0 libvirt-bin virtinst openvpn \
-#  bridge-utils hdparm mdadm sasl2-bin pm-utils \
-#  python-libvirt python-virtinst python-requests python-bson python-pip
-
 def _get_sys_loadavg():
 	
 	loadavg=subprocess.Popen(['uptime',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
