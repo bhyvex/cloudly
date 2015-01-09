@@ -104,7 +104,7 @@
 						  <tbody>
 							{% for server in servers %}
 							<tr>
-								<td>{{server|dict_get:"agent_version"}}</td>
+								<td>v{{server|dict_get:"agent_version"}}</td>
 								<td>{{server|dict_get:"ip"}}</td>
 								<td>{{server|dict_get:"ip_remote"}}</td>
 								<td>{{server|dict_get:"uptime"}}</td>
