@@ -104,11 +104,11 @@
 						  <tbody>
 							{% for server in servers %}
 							<tr>
-								<td>xxx</td>
-								<td>xxx</td>
-								<td>xxx</td>
-								<td>xxx</td>
-								<td>xxx</td>
+								<td>{{server|dict_get:"agent_version"}}</td>
+								<td>{{server|dict_get:"ip}}</td>
+								<td>{{server|dict_get:"ip_remote"}}</td>
+								<td>{{server|dict_get:"uptime"}}</td>
+								<td>{{server|dict_get:"last_seen"}}</td>
 							</tr>
 							{% endfor %}
 						  </tbody>
