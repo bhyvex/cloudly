@@ -50,6 +50,7 @@ INSTALLED_APPS = (
 	'admin',
 	'logs',
 	'devel',
+	'alerts',
 )
 
 MIDDLEWARE_CLASSES = (
