@@ -10,8 +10,8 @@ import platform
 import base64, pickle
 
 import json
-import urllib2
-import requests
+import urllib
+import httplib
 import subprocess
 
 AGENT_VERSION = "0.1"
@@ -281,10 +281,17 @@ def get_system_metrics( secret ):
 
 def send_data( secret, api_call, data ):
 	
+	params = urllib.urlencode(data)
 	headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-	response = requests.post("http://"+API_SERVER+api_call, data=json.dumps(data), headers=headers)
+        api_url = "http://"+API_SERVER+api_call
+        	
+	conn = httplib.HTTPConnection(API_SERVER)
+	conn.request("POST", api_call, json.dumps(data), headers)
+	response = conn.getresponse()
+	response_data = response.read()
+	conn.close()
 	
-	return response
+	return response_data
 	
 	
 if __name__=="__main__":
