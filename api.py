@@ -84,9 +84,10 @@ def ping():
 	}
 
 	print 'Agent-V'+str(agent_version), uuid, secret, 'IP', ip_remote+'/'+ ip, '('+uptime+')'
-	print server
-	import random
-	print '.'*random.randint(10,80)
+
+	#print server
+	#import random
+	#print '.'*random.randint(10,80)
 	
 	servers = mongo.servers
 	server_ = servers.find_one({'secret':secret, 'uuid':uuid,})
