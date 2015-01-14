@@ -74,8 +74,6 @@ var cloudlyVMSmanager  = {
 
         var panel = $("#"+vms).find('.panel');
         
-        $(panel).addClass(data.vmcolor);
-        
         $.each(this.colors,function(code,color){
                 if(panel.hasClass(color) && panel.attr('class').indexOf(data.vmcolor) === -1){
                         $(panel).switchClass(color,data.vmcolor);
