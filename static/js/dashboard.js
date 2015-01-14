@@ -87,14 +87,13 @@ var cloudlyVMSmanager  = {
         var template = this.template;
         template = template.replace('{@vmlink@}',data.link);
         template = template.replace('{@vm@}',vms);
-        template = template.replace('{@vm@}',vms);
         template = template.replace('{@vmtitle@}',data.vmtitle);
         template = template.replace('{@vmcolor@}',data.vmcolor);
         template = template.replace('{@averge@}',data.averge);
         template = template.replace("{@state@}", data.state); 
         
         template = $(template);
-        console.log(template);
+        //console.log(template);
         var prepend = $('#machines-loader').prepend(template);
         chartStatElement($('#'+vms).find('.chart').html(data.averge));
         prepend.isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' });
