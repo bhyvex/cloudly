@@ -80,7 +80,7 @@ var cloudlyVMSmanager  = {
                         return;
                 }
                 if(!panel.hasClass(color)){
-                	$(panel).switchClass(color,data.vmcolor);
+                	$(panel).addClassName(color,data.vmcolor);
                 	return;
                 }
         }); 
