@@ -2,12 +2,11 @@ from django.conf.urls import patterns, include, url
 from django.conf import settings
 
 urlpatterns = patterns('',
-
 	# common views
 	url(r'^$', 'dashboard.views.home', name='home'),
 	url(r'^welcome/$', 'dashboard.views.welcome', name='welcome'),
 	url(r'^help/$', 'dashboard.views.help', name='help'),
-        url(r'^agent/$', 'dashboard.views.agent', name='agent'),        
+        url(r'^download/agent/$', 'agent.views.download', name='download_agent'),        
 	# pricing
 	url(r'^pricing/$', 'dashboard.views.pricing', name='pricing'),
 	url(r'^pricing/activate/$', 'dashboard.views.activate_pricing_plan', name='activate_pricing_plan'),
@@ -69,7 +68,6 @@ urlpatterns = patterns('',
 	###### devel
 	url(r'^devel/$', 'devel.views.devel', name='devel'),	
 	url(r'^devel/(?P<dev>[\w\-\.]+)/$', 'devel.views.devel', name='devel'),	
-
 )
 
 
