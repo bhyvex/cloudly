@@ -7,11 +7,10 @@ urlpatterns = patterns('',
 	url(r'^$', 'dashboard.views.home', name='home'),
 	url(r'^welcome/$', 'dashboard.views.welcome', name='welcome'),
 	url(r'^help/$', 'dashboard.views.help', name='help'),
-
+        url(r'^agent/$', 'dashboard.views.agent', name='agent'),        
 	# pricing
 	url(r'^pricing/$', 'dashboard.views.pricing', name='pricing'),
 	url(r'^pricing/activate/$', 'dashboard.views.activate_pricing_plan', name='activate_pricing_plan'),
-
 	# userprofile / account
 	url(r'^login/$', 'userprofile.views.auth', name='login'),
 	url(r'^register/$', 'userprofile.views.register', name='login'),
@@ -23,23 +22,19 @@ urlpatterns = patterns('',
 	url(r'^cloud/settings/regions/update/$', 'userprofile.views.cloud_settings_update_regions', name='cloud_settings_update_regions'),
 	url(r'^cloud/settings/credentials/update/$', 'userprofile.views.cloud_settings_update_credentials', name='cloud_settings_update_credentials'),
 	url(r'^lock/$', 'userprofile.views.lock', name='lock'),
-	url(r'^goodbye/$', 'userprofile.views.goodbye', name='goodbye'),
-	
+	url(r'^goodbye/$', 'userprofile.views.goodbye', name='goodbye'),	
 	# support
 	url(r'^support/$', 'support.views.support', name='support'),
 	url(r'^support/devel/ticket$', 'support.views.support_devel_ticket', name='support_devel_ticket'),
 	url(r'^support/add/new/$', 'support.views.support_add_new', name='support_add_new'),
 	url(r'^support/ticket/(?P<ticket_id>\d+)/$', 'support.views.support_view_ticket', name='support_view_ticket'),
-
 	# invoices
 	url(r'^invoices/$', 'invoices.views.invoices', name='invoices'),
 	#url(r'^invoice/177212(?P<id>\d+)s/$', 'invoices.views.invoice', name='invoice'),
-
 	# private cloud stuff
 	url(r'^private/servers/$', 'private_servers.views.servers', name='servers'),
 	url(r'^private/server/(?P<uuid>[\w\-\.]+)/$', 'private_servers.views.server_detail', name='server_detail'),
 	url(r'^private/storage/$', 'private_storage.views.private_storage', name='private_storage'),
-
 	# cloud software
 	url(r'^cloud/software/$', 'cloud_software.views.cloud_software', name='cloud_software'),
 	url(r'^cloud/software/add/new/$', 'cloud_software.views.cloud_software_add_new', name='cloud_software_add_new'),
@@ -64,20 +59,17 @@ urlpatterns = patterns('',
 	url(r'^aws/(?P<instance_id>[\w\-\.]+)/request/help/$', 'support.views.support_new_aws', name='support_new_aws'),
 	url(r'^ajax/aws/(?P<instance_id>[\w\-\.]+)/metrics/$', 'cloud_vms.views.ajax_aws_graphs', name='ajax_aws_graphs'),
 	url(r'^ajax/aws/(?P<instance_id>[\w\-\.]+)/metrics/(?P<graph_type>[\w\-\.]+)/$', 'cloud_vms.views.ajax_aws_graphs', name='ajax_aws_graphs'),
-
 	# system logs
 	url(r'^logs/$', 'logs.views.logs', name='logs'),
 	# incidents
 	url(r'^incidents/$', 'incidents.views.incidents', name='incidents'),
-
 	# admin
 	url(r'^admin/$', 'admin.views.admin', name='admin'),
-	url(r'^admin/user/(?P<user_id>\d+)/activity/$', 'admin.views.user_activity_report', name='user_activity_report'),
-	
+	url(r'^admin/user/(?P<user_id>\d+)/activity/$', 'admin.views.user_activity_report', name='user_activity_report'),	
 	###### devel
 	url(r'^devel/$', 'devel.views.devel', name='devel'),	
-	url(r'^devel/(?P<dev>[\w\-\.]+)/$', 'devel.views.devel', name='devel'),
-	
+	url(r'^devel/(?P<dev>[\w\-\.]+)/$', 'devel.views.devel', name='devel'),	
+
 )
 
 
