@@ -80,6 +80,7 @@ var cloudlyVMSmanager  = {
                         console.log('VM '+vms+' changed color: '+color+' to: '+data.vmcolor+' and actual has class: '+panel.attr('class'));
                         return;
                 }
+                console.log('here color:', data.vmcolor)
         }); 
 		
     },
