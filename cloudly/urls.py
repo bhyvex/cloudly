@@ -67,6 +67,8 @@ urlpatterns = patterns('',
 
 	# system logs
 	url(r'^logs/$', 'logs.views.logs', name='logs'),
+	# incidents
+	url(r'^incidents/$', 'incidents.views.incidents', name='incidents'),
 
 	# admin
 	url(r'^admin/$', 'admin.views.admin', name='admin'),
