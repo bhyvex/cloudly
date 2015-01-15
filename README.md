@@ -4,7 +4,7 @@ Cloudly
 Project Cloudly is a software to monitor and control your servers.  It's also the ultimate Management Dashboard for your cloud. 
 It saves you money and energies by taking away most of the usual servers' monitoring complexities allowing you to focus on control and better use of your infrastructure. 
 
-Cloudly also comes with more than 100+ ready to use professionally configured cloud software packages and allows you to deploy these quickly in the cloud. 
+Cloudly also comes with more than 100+ ready to use services plugins allowing you to monitor what you run off of your servers. 
 
 
 Installation Instructions
