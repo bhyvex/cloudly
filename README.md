@@ -8,8 +8,6 @@ Cloudly also comes with more than 100+ ready to use services and various product
 
 It is fully automated and does the servers monitoring for you with close to none things to setup.
 
-Hace fun!  :)
-
 
 Installation Instructions
 -------------------------
