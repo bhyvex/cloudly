@@ -33,7 +33,7 @@
 						  <ul class="list-group">
 						
 								<li class="list-group-item">Name {{vm_cache|dict_get:"instance"|dict_get:"id"}}</li>
-								<li class="list-group-item">IP Address {{vm_cache|dict_get:"instance"|dict_get:"ip_address"}} / Private IP Address {{vm_cache|dict_get:"instance"|dict_get:"private_ip_address"}}</li>
+								<li class="list-group-item">IP Address <a href="http://www.infosniper.net/index.php?ip_address={{vm_cache|dict_get:"instance"|dict_get:"ip_address"}}&map_source=1&overview_map=1&lang=1&map_type=1&zoom_level=7">{{vm_cache|dict_get:"instance"|dict_get:"ip_address"}}</a> / Private IP Address {{vm_cache|dict_get:"instance"|dict_get:"private_ip_address"}}</li>
 								<li class="list-group-item">DNS Name {{vm_cache|dict_get:"instance"|dict_get:"dns_name"}}</li>
 								<li class="list-group-item">Region {{vm_cache|dict_get:"instance"|dict_get:"region"}}</li>
 								<li class="list-group-item">Placement {{vm_cache|dict_get:"instance"|dict_get:"placement"}}</li>
