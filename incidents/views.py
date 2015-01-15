@@ -24,7 +24,7 @@ from userprofile.models import Profile
 from userprofile.views import _log_user_activity
 
 
-def logs(request):	
+def incidents(request):	
 
 	print '-- system logs:'
 
@@ -44,4 +44,4 @@ def logs(request):
 	user.last_login = datetime.datetime.now()
 	user.save()
 	
-	return render_to_response('logs.html', {'profile':profile,}, context_instance=RequestContext(request))
+	return render_to_response('incidents.html', {'profile':profile,}, context_instance=RequestContext(request))
