@@ -6,7 +6,7 @@ It saves you money and energies by taking away most of the usual servers' monito
 
 Cloudly also comes with more than 100+ ready to use services and various products plugins allowing you to monitor what you run off of your servers. 
 
-It is fully automated and does the servers monitoring for you with close to none things to setup.
+It's fully automated and does the servers monitoring for you with close to none things to setup.
 
 
 Installation Instructions
