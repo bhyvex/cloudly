@@ -1,7 +1,7 @@
 Cloudly
 =======
 
-Project Cloudly is an award winning "The Easiest To Setup" software to monitor and control your servers in the whole wide world!  It's also the ultimate Management Dashboard for your cloud.
+Project Cloudly is an award winning "The Easiest To Setup" software to monitor and control your servers in the world!  It's also the ultimate Management Dashboard for your cloud.
 It saves you money and energies by taking away most of the usual servers' monitoring complexities allowing you to focus on control and better use of your infrastructure. 
 
 Cloudly also comes with more than 100+ ready to use services and various products plugins allowing you to monitor what you run off of your servers. 
