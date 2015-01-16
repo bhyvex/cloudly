@@ -23,5 +23,5 @@ from userprofile.models import Profile as userprofile
 from userprofile.views import _log_user_activity
 
 
-def download_agent(request):
+def download(request):
 	return HttpResponse("working on this currently")
