@@ -22,6 +22,9 @@ from django.contrib.auth.models import User
 from userprofile.models import Profile as userprofile
 from userprofile.views import _log_user_activity
 
+from django.contrib.auth.decorators import login_required
 
+
+@login_required(login_url="/login/")
 def download(request):
 	return HttpResponse("working on this currently")
