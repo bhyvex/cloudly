@@ -6,7 +6,7 @@ urlpatterns = patterns('',
 	url(r'^$', 'dashboard.views.home', name='home'),
 	url(r'^welcome/$', 'dashboard.views.welcome', name='welcome'),
 	url(r'^help/$', 'dashboard.views.help', name='help'),
-        url(r'^agent/$', 'dashboard.views.agent', name='agent'),        
+        url(r'^download/agent/$', 'dashboard.views.agent', name='agent'),        
 	# pricing
 	url(r'^pricing/$', 'dashboard.views.pricing', name='pricing'),
 	url(r'^pricing/activate/$', 'dashboard.views.activate_pricing_plan', name='activate_pricing_plan'),
