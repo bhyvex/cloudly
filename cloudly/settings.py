@@ -95,6 +95,9 @@ USE_TZ = True
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '..', 'static'))
 STATIC_URL = '/static/'
 
+LOGIN_URL = '/login/'
+LOGOUT_URL = '/logout/'
+
 STATICFILES_DIRS = (
 	os.path.abspath(os.path.join(BASE_DIR, 'static')),
 )
