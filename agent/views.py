@@ -27,4 +27,6 @@ from django.contrib.auth.decorators import login_required
 
 @login_required()
 def download(request):
+	#return render_to_response('agent.html', {'profile':profile,}, context_instance=RequestContext(request))
 	return HttpResponse("working on this currently")
+	
