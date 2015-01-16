@@ -2,7 +2,6 @@ from django.conf.urls import patterns, include, url
 from django.conf import settings
 
 urlpatterns = patterns('',
-
 	# common views
 	url(r'^$', 'dashboard.views.home', name='home'),
 	url(r'^welcome/$', 'dashboard.views.welcome', name='welcome'),
@@ -69,7 +68,6 @@ urlpatterns = patterns('',
 	###### devel
 	url(r'^devel/$', 'devel.views.devel', name='devel'),	
 	url(r'^devel/(?P<dev>[\w\-\.]+)/$', 'devel.views.devel', name='devel'),	
-
 )
 
 
