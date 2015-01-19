@@ -34,9 +34,9 @@ urlpatterns = patterns('',
 	url(r'^private/server/(?P<uuid>[\w\-\.]+)/$', 'private_servers.views.server_detail', name='server_detail'),
 	#url(r'^private/storage/$', 'private_storage.views.private_storage', name='private_storage'),
 	# cloud software
-	url(r'^cloud/software/$', 'cloud_software.views.cloud_software', name='cloud_software'),
-	url(r'^cloud/software/add/new/$', 'cloud_software.views.cloud_software_add_new', name='cloud_software_add_new'),
-	url(r'^cloud/software/tag/(?P<tag_slug>[\w\-\.]+)/$', 'cloud_software.views.cloud_software_view_tag', name='cloud_software_view_tag'),
+	#url(r'^cloud/software/$', 'cloud_software.views.cloud_software', name='cloud_software'),
+	#url(r'^cloud/software/add/new/$', 'cloud_software.views.cloud_software_add_new', name='cloud_software_add_new'),
+	#url(r'^cloud/software/tag/(?P<tag_slug>[\w\-\.]+)/$', 'cloud_software.views.cloud_software_view_tag', name='cloud_software_view_tag'),
 	# cloud backups
 	#url(r'^cloud/backups/$', 'cloud_backup.views.cloud_backups', name='cloud_backups'),
 	# storage
