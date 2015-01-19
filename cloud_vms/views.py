@@ -36,9 +36,7 @@ from userprofile.views import _log_user_activity
 from amazon import s3_funcs
 from amazon import s3_funcs_shortcuts
 
-from cloud_storage.models import Files
-from cloud_storage.models import Uploaded_Files
-
+from django.contrib.auth.decorators import login_required
 from django.template.defaultfilters import filesizeformat, upper
 from django.contrib.humanize.templatetags.humanize import naturalday
 
@@ -55,14 +53,13 @@ def date_handler(obj):
 	return obj.isoformat() if hasattr(obj, 'isoformat') else obj
 
 
+@login_required()
 def ajax_vms_refresh(request):
 	
 	user = request.user
 	
-	try:
-		profile = userprofile.objects.get(user=request.user)
-	except: return HttpResponseRedirect("/")
-	
+	profile = userprofile.objects.get(user=request.user)
+
 	print 'Refreshing', user, 'VMs cache..'
 	
 	aws_access_key = profile.aws_access_key
@@ -219,13 +216,10 @@ def ajax_vms_refresh(request):
 	return HttpResponse("ALLDONE")
 	
 
+@login_required()
 def aws_vm_view(request,vm_name):
 
 	print '-- aws_vm_view'
-	
-	if not request.user.is_authenticated():
-		print 'anonymous'
-		return HttpResponseRedirect("/")
 
 	print request.user
 			
@@ -276,13 +270,10 @@ def aws_vm_view(request,vm_name):
 	return render_to_response('aws_vm.html', {'vm_name':vm_name,'vm_cache':vm_cache,'console_output':console_output,}, context_instance=RequestContext(request))
 
 
+@login_required()
 def ajax_virtual_machines(request):
 	
 	print '-- ajax virtual machines'
-	
-	if not request.user.is_authenticated():
-		print 'anonymous'
-		return HttpResponseRedirect("/")
 
 	print request.user
 	
@@ -410,14 +401,11 @@ def ajax_virtual_machines(request):
 	
 	return render_to_response('ajax_virtual_machines.html', {'user':user,'ajax_vms_response':ajax_vms_response,'vms_cached_response':vm_cache,}, context_instance=RequestContext(request))
 
-
+@login_required()
 def ajax_aws_graphs(request, instance_id, graph_type="all"):
 	
 	print '-- ajax_aws_graphs', request.user
 
-	if not request.user.is_authenticated():
-		print 'anonymous'
-		return HttpResponseRedirect("/")
 			
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
@@ -458,12 +446,9 @@ def ajax_aws_graphs(request, instance_id, graph_type="all"):
 	return HttpResponse("data " + instance_id + "=" + str(instance) + " ** " + graph_type.upper())
 
 
+@login_required()
 def control_aws_vm(request, vm_name, action):
 	
-	if not request.user.is_authenticated():
-		print 'anonymous'
-		return HttpResponse("access denied")
-		
 	print request.user
 
 	user = request.user
