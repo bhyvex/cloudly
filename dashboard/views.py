@@ -24,6 +24,7 @@ import boto.ec2.cloudwatch
 from django.contrib.auth.models import User
 from userprofile.models import Profile as userprofile
 from userprofile.views import _log_user_activity
+from django.contrib.auth.decorators import login_required
 
 from amazon import ec2_funcs
 from cloud_vms.models import Cache
@@ -31,10 +32,7 @@ from cloud_vms.models import Cache
 def home(request):
 		
 	if not request.user.is_authenticated():
-		
 		print '--  web:'
-		print 'anonymous'
-	
 		return render_to_response('web.html', {'request':request,}, context_instance=RequestContext(request))
 
 	print '--  dashboard:'
@@ -65,19 +63,15 @@ def home(request):
 	return render_to_response('dashboard.html', {'is_updating':is_updating,'vms_cached_response':vms_cached_response,}, context_instance=RequestContext(request))
 
 
+@login_required()
 def welcome(request):
 
 	print '--  welcome page:'
-
-	if not request.user.is_authenticated():
-		print 'anonymous'
-		return HttpResponseRedirect("/")
 
 	ip = request.META['REMOTE_ADDR']
 	profile = userprofile.objects.get(user=request.user)
 	_log_user_activity(profile,"click","/welcome/","welcome",ip=ip)
 	
-
 	print request.user
 	return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
 
