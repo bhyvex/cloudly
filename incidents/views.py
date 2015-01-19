@@ -22,14 +22,12 @@ import boto.ec2.cloudwatch
 from django.contrib.auth.models import User
 from userprofile.models import Profile
 from userprofile.views import _log_user_activity
+from django.contrib.auth.decorators import login_required
 
-
+@login_required()
 def incidents(request):	
 
 	print '-- system logs:'
-
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect("/")
 
 	user = request.user
 	profile = Profile.objects.get(user=request.user)
