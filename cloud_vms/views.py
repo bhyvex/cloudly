@@ -77,6 +77,7 @@ def ajax_vms_refresh(request):
 	
 	if(servers.count()):
 	
+		#XXX
 		print '-'*1000
 		print 'servers' * 100
 		print servers.count()		
