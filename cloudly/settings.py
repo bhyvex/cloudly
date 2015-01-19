@@ -38,20 +38,10 @@ INSTALLED_APPS = (
 	# views
 	'amazon',
 	'dashboard',
-	'invoices',
-	'support',
 	'userprofile',
-	'cloud_software',
-	'cloud_storage',
 	'private_servers',
-	'private_storage',
-	'cloud_backup',
-	'cloud_photos',
 	'cloud_vms',
 	'admin',
-	'logs',
-	'devel',
-	'alerts',
 )
 
 MIDDLEWARE_CLASSES = (
