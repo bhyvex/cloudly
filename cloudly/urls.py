@@ -27,7 +27,7 @@ urlpatterns = patterns('',
 	#url(r'^support/add/new/$', 'support.views.support_add_new', name='support_add_new'),
 	#url(r'^support/ticket/(?P<ticket_id>\d+)/$', 'support.views.support_view_ticket', name='support_view_ticket'),
 	# invoices
-	url(r'^invoices/$', 'invoices.views.invoices', name='invoices'),
+	#url(r'^invoices/$', 'invoices.views.invoices', name='invoices'),
 	#url(r'^invoice/177212(?P<id>\d+)s/$', 'invoices.views.invoice', name='invoice'),
 	# private cloud stuff
 	url(r'^private/servers/$', 'private_servers.views.servers', name='servers'),
