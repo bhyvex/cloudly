@@ -16,7 +16,9 @@ import subprocess
 
 AGENT_VERSION = "0.1"
 
-SECRET = "160-OJ1E-09509"
+#SECRET = "160-OJ1E-09509"
+SECRET = raw_input("Enter your secret: ")
+
 API_SERVER = "127.0.0.1:5000"
 
 HWADDR = subprocess.Popen(["ifconfig","eth0"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
