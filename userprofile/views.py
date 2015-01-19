@@ -24,6 +24,7 @@ from userprofile.models import Profile as userprofile
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
 import boto.ec2
 import boto.ec2.cloudwatch
@@ -46,7 +47,6 @@ AWS_REGIONS = {
 	"us-west-1":"US West (Northern California) Region",
 	"us-west-2":"US West (Oregon) Region",
 }
-
 
 def _remove_accents(data):
     return ''.join(x for x in unicodedata.normalize('NFKD', data) if x in string.ascii_letters).lower()
@@ -86,20 +86,16 @@ def user_logout(request):
 	
 	try:
 		logout(request)
-	except:
-		pass
+	except: pass
 		
 	print request.user
 	
 	return HttpResponseRedirect("/goodbye/")
 
-
+@login_required()
 def reset_cloud_settings(request):
 
 	print '-- reset cloud settings'
-	
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect("/")
 
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
@@ -240,13 +236,10 @@ def auth(request):
 	
 	return render_to_response('login.html', {}, context_instance=RequestContext(request))
 
-
+@login_required()
 def cloud_settings(request):
 	
 	print '-- cloud settings:'
-
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect("/")
 
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
@@ -269,12 +262,10 @@ def cloud_settings(request):
 		if(updated=='regions'): updated_regions = True
 
 	return render_to_response('cloud_settings.html', {'aws_ec2_verified':aws_ec2_verified,'aws_regions':AWS_REGIONS,'profile_regions':profile_regions,'profile':profile,'secret':secret,'updated_regions':updated_regions,}, context_instance=RequestContext(request))
-	
 
+
+@login_required()
 def cloud_settings_update_credentials(request):
-	
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect("/")
 	
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
@@ -313,13 +304,10 @@ def cloud_settings_update_credentials(request):
 	return render_to_response('cloud_settings.html', {'err':err,'aws_ec2_verified':profile.aws_ec2_verified,'aws_regions':AWS_REGIONS,'profile_regions':profile_regions,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
 
 
-
+@login_required()
 def change_password(request):
 
 	print '-- change password:'
-
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect("/")
 
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
@@ -353,10 +341,8 @@ def change_password(request):
 	return render_to_response('account_change_password.html', {'error':error,}, context_instance=RequestContext(request))
 
 
+@login_required()
 def cloud_settings_update_regions(request):
-	
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect("/")
 	
 	enable_regions = request.POST.getlist('checkboxes')
 	
@@ -377,12 +363,10 @@ def cloud_settings_update_regions(request):
 	return HttpResponseRedirect("/cloud/settings?updated=regions")
 
 
+@login_required()
 def account_settings(request):
 
 	print '-- account settings:'
-
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect("/")
 
 	user = request.user
 	user.last_login = datetime.datetime.now()
