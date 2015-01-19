@@ -50,7 +50,7 @@ urlpatterns = patterns('',
 	url(r'^ajax/cloud/box-template/$', 'cloud_vms.views.ajax_virtual_machines_box', name='ajax_virtual_machines_box'),
 	url(r'^ajax/cloud/vms/refresh/$', 'cloud_vms.views.ajax_vms_refresh', name='ajax_vms_refresh'),
 	# photos
-	url(r'^cloud/photos/$', 'cloud_photos.views.cloud_photos', name='cloud_photos'),
+	#url(r'^cloud/photos/$', 'cloud_photos.views.cloud_photos', name='cloud_photos'),
 	# aws ec2 stuff
 	url(r'^aws/(?P<vm_name>[\w\-\.]+)/$', 'cloud_vms.views.aws_vm_view', name='aws_vm_view'),
 	url(r'^aws/(?P<vm_name>[\w\-\.]+)/(?P<action>[\w\-\.]+)/$', 'cloud_vms.views.control_aws_vm', name='control_aws_vm'),
