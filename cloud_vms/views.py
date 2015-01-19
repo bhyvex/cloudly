@@ -47,6 +47,13 @@ from cloud_vms.models import Cache
 import decimal
 from django.db.models.base import ModelState
 
+import pymongo
+from pymongo import MongoClient
+from pymongo import ASCENDING, DESCENDING
+client = MongoClient('localhost', 27017)
+
+mongo = client.cloudly
+
 
 def date_handler(obj):
 	return obj.isoformat() if hasattr(obj, 'isoformat') else obj
@@ -65,6 +72,16 @@ def ajax_vms_refresh(request):
 	aws_ec2_verified = profile.aws_ec2_verified
 
 	aws_virtual_machines = {}
+	servers = mongo.servers.find({'secret':profile.secret,}).sort('_id',-1)
+	
+	
+	if(servers.count()):
+	
+		print '-'*1000
+		print 'servers' * 100
+		print servers.count()		
+		print '-'*1000
+				
 
 	if aws_ec2_verified:
 		
