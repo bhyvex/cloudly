@@ -15,13 +15,6 @@ client = MongoClient('localhost', 27017)
 
 mongo = client.cloudly
 
-from cloud_software.models import Packages
-from cloud_software.models import Tags, Tag
-
-from cloud_storage.models import Files
-from cloud_storage.models import Uploaded_Files
-
-
 def _seconds_since_epoch(d):
 
 	date_time = d.isoformat().split('.')[0].replace('T',' ')
@@ -99,7 +92,8 @@ def format_datetime_special(date):
 @register.filter(name='count_user_files')
 def count_user_files(user):
 	
-	users_files_count = Uploaded_Files.objects.filter(user=user).count()
+	#users_files_count = Uploaded_Files.objects.filter(user=user).count()
+	users_files_count = 0
 	
 	return users_files_count
 
@@ -108,8 +102,8 @@ def count_user_files_size(user):
 	
 	total_size = 0
 
-	for user_file in Uploaded_Files.objects.filter(user=user):
-		total_size += user_file.size
+	#for user_file in Uploaded_Files.objects.filter(user=user):
+	#	total_size += user_file.size
 	
 	return total_size
 
