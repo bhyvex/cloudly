@@ -48,10 +48,8 @@ import decimal
 from django.db.models.base import ModelState
 
 
-
 def date_handler(obj):
 	return obj.isoformat() if hasattr(obj, 'isoformat') else obj
-
 
 @login_required()
 def ajax_vms_refresh(request):
