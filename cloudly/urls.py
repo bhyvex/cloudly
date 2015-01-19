@@ -19,7 +19,6 @@ urlpatterns = patterns('',
 	url(r'^cloud/settings/reset/$', 'userprofile.views.reset_cloud_settings', name='reset_cloud_settings'),
 	url(r'^cloud/settings/regions/update/$', 'userprofile.views.cloud_settings_update_regions', name='cloud_settings_update_regions'),
 	url(r'^cloud/settings/credentials/update/$', 'userprofile.views.cloud_settings_update_credentials', name='cloud_settings_update_credentials'),
-	url(r'^lock/$', 'userprofile.views.lock', name='lock'),
 	url(r'^goodbye/$', 'userprofile.views.goodbye', name='goodbye'),	
 	# support
 	#url(r'^support/$', 'support.views.support', name='support'),

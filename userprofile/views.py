@@ -314,26 +314,6 @@ def cloud_settings_update_credentials(request):
 
 
 
-def lock(request):
-	
-	print '-- lock screen:'
-
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect("/")
-
-	user = request.user
-	profile = userprofile.objects.get(user=request.user)
-	secret = profile.secret
-
-	print request.user
-
-	ip = request.META['REMOTE_ADDR']
-	from userprofile.views import _log_user_activity
-	_log_user_activity(profile,"click","/lock/","lock",ip=ip)
-
-	return render_to_response('lock.html', {'profile':profile,}, context_instance=RequestContext(request))
-
-	
 def change_password(request):
 
 	print '-- change password:'
