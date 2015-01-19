@@ -58,7 +58,7 @@ urlpatterns = patterns('',
 	url(r'^ajax/aws/(?P<instance_id>[\w\-\.]+)/metrics/$', 'cloud_vms.views.ajax_aws_graphs', name='ajax_aws_graphs'),
 	url(r'^ajax/aws/(?P<instance_id>[\w\-\.]+)/metrics/(?P<graph_type>[\w\-\.]+)/$', 'cloud_vms.views.ajax_aws_graphs', name='ajax_aws_graphs'),
 	# system logs
-	url(r'^logs/$', 'logs.views.logs', name='logs'),
+	#url(r'^logs/$', 'logs.views.logs', name='logs'),
 	# incidents
 	url(r'^incidents/$', 'incidents.views.incidents', name='incidents'),
 	# admin
