@@ -31,6 +31,7 @@ from cloud_storage.models import Files
 from cloud_storage.models import Uploaded_Files
 
 from userprofile.views import _log_user_activity
+from django.contrib.auth.decorators import login_required
 
 import pymongo
 from pymongo import MongoClient
@@ -39,14 +40,10 @@ client = MongoClient('localhost', 27017)
 
 mongo = client.cloudly
 
-
+@login_required()
 def user_activity_report(request, user_id):
 	
 	print '-- admin report user activity', user_id
-	
-	if not request.user.is_authenticated():
-		print 'anonymous'
-		return HttpResponseRedirect("/")
 
 	#if not request.user.is_superuser:
 	#	print 'anonymous'
@@ -88,14 +85,10 @@ def user_activity_report(request, user_id):
 	return render_to_response('admin-user-report.html', {'u':u,'vms_cached_response':vms_cached_response,'user_profile':user_profile,'user_files':user_files,'user_activity':user_activity,'user_activity_clicks':user_activity_clicks,'user_activity_other':user_activity_other,'profile':profile,'servers':servers,}, context_instance=RequestContext(request))
 	
 
-	
+@login_required()
 def admin(request):
 
 	print '--  admin page:'
-
-	if not request.user.is_authenticated():
-		print 'anonymous'
-		return HttpResponseRedirect("/")
 
 	#if not request.user.is_superuser:
 	#	print 'anonymous'
