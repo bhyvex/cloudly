@@ -18,6 +18,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from userprofile.models import Profile as userprofile
 from userprofile.views import _log_user_activity
+from django.contrib.auth.decorators import login_required
 
 logger = logging.getLogger(__name__)
 
@@ -28,12 +29,9 @@ client = MongoClient('localhost', 27017)
 
 mongo = client.cloudly
 
-
+@login_required()
 def server_detail(request, uuid):
 	
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect("/")
-
 	user = request.user
 	user.last_login = datetime.datetime.now()
 	user.save()
@@ -63,10 +61,8 @@ def server_detail(request, uuid):
 
 	return render_to_response('private_server_detail.html', {"uuid":uuid,"server":server,"loadavg":loadavg,"mem_usage":mem_usage, "cpu_usage":cpu_usage, "disks_usage":disks_usage, "activity":activity,}, context_instance=RequestContext(request))
 
+@login_required()
 def servers(request):
-		
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect("/")
 
 	user = request.user
 	user.last_login = datetime.datetime.now()
