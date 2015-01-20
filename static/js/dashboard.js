@@ -86,7 +86,7 @@ var cloudlyVMSmanager  = {
     addVMS: function(vms,data){
         var template = this.template;
         template = template.replace('{@vmlink@}',data.link);
-        template = template.replace('{@vm@}',vms);
+        template = template.replace('{@vm@}',vms.replace(/:/g,'-'));
         template = template.replace('{@vm@}',vms);
         template = template.replace('{@vmtitle@}',data.vmtitle);
         template = template.replace('{@vmcolor@}',data.vmcolor);
