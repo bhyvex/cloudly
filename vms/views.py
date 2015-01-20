@@ -82,7 +82,6 @@ def ajax_vms_refresh(request):
 		vms_cache.save()
 
 		print '#'*100
-		print 'servers ' * 100
 		print 'servers count', servers.count()
 
 		for server in servers:
