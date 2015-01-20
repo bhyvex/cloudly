@@ -39,7 +39,6 @@ INSTALLED_APPS = (
 	'amazon',
 	'dashboard',
 	'userprofile',
-	'private_servers',
 	'vms',
 	'admin',
 )

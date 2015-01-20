@@ -377,7 +377,10 @@ def ajax_virtual_machines(request):
 					data_median = data_median/z
 				except: data_median = 0 
 			except:
-				data = ""
+				try:
+					data = vm_cache[vm]["cpu_utilization_datapoints"]
+					# XXX work data median(!!)
+				except: data = ""
 
 
 			try:
