@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 import boto.ec2
 import boto.ec2.cloudwatch
 
-from cloud_vms.models import Cache
+from vms.models import Cache
 
 from django.contrib.auth.models import User
 from userprofile.models import Profile, Activity
