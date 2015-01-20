@@ -111,6 +111,8 @@ def ajax_vms_refresh(request):
 				cpu_usage_ += ","
 			cpu_usage = cpu_usage_[:-1]
 			
+			# XXX reverse cpu_usage graph here
+			
 			instance_metrics['cpu_utilization_datapoints'] = cpu_usage			
 			virtual_machines[server['uuid'].replace(':','-')] = instance_metrics
 
