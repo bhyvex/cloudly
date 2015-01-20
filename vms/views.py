@@ -98,10 +98,10 @@ def ajax_vms_refresh(request):
 			instance_metrics['instance']['state']['state'] = "Running"
 
 			uuid = server['uuid']		
-			cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(32)
-			#loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(32)
-			#mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(32)
-			#disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(32)
+			cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+			#loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+			#mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+			#disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 			#activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(5)
 			
 			cpu_usage_ = ""
