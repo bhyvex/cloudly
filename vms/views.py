@@ -109,7 +109,7 @@ def ajax_vms_refresh(request):
 				cpu_usage_ += ","
 			cpu_usage = cpu_usage_[:-1]
 			
-			instance_metrics['instance']['average'] = cpu_usage
+			instance_metrics['cpu_utilization_datapoints'] = cpu_usage
 			
 			virtual_machines[server['uuid'].replace(':','-')] = instance_metrics
 
