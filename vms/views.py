@@ -81,14 +81,29 @@ def ajax_vms_refresh(request):
 		vms_cache.is_updating = True
 		vms_cache.save()
 
-		#XXX
-		print '#'*1000
+		print '#'*100
 		print 'servers ' * 100
 		print 'servers count', servers.count()
-		print 'vms_cache', vms_cache
-		print '#'*1000
+
+		for server in servers:
+
+			instance_metrics = {}
+			instance_metrics['id'] = server['uuid']
+			instance_metrics['user_id'] = request.user.id
+			instance_metrics['provider'] = 'agent'
+			instance_metrics['instance'] = {}
+			instance_metrics['instance']['user_id'] = request.user.id
+			instance_metrics['instance']['state'] = {}
+			# XXX expand this with checking for the last seen....
+			instance_metrics['instance']['state']['state'] = "Running"
+
+			virtual_machines[server['uuid']] = instance_metrics
+
+		print '#'*100
 		
-		#vms_cache.vms_response = base64.b64encode(pickle.dumps(virtual_machines, pickle.HIGHEST_PROTOCOL))
+		print 'virtual_machines', virtual_machines
+		
+		vms_cache.vms_response = base64.b64encode(pickle.dumps(virtual_machines, pickle.HIGHEST_PROTOCOL))
 		vms_cache.last_seen = timezone.now()
 		vms_cache.is_updating = False
 		vms_cache.save()
