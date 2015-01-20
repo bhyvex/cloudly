@@ -37,7 +37,6 @@ def aws_test(request):
 	cloudwatch = boto.connect_cloudwatch()
 	metrics = cloudwatch.list_metrics()	
 
-	print '-'*100
 	print 'AWS IMs metrics', metrics
 
 	import datetime
@@ -51,8 +50,7 @@ def aws_test(request):
 		instances = reservation.instances
 		for instance in instances:
 			
-			print '-'*100
 			print 'id', instance.id
-			#print 'attributes', instance.__dict__
+			print 'attributes', instance.__dict__
 
 	return HttpResponse(True)
