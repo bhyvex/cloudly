@@ -448,7 +448,10 @@ def ajax_virtual_machines(request):
 			ajax_vms_response += "\","
 
 			ajax_vms_response += "\"link\":\""
-			ajax_vms_response += "/aws/"+vm+"/"
+			if(vm_cache[vm]['provider']=='agent'):
+				ajax_vms_response += "/server/"+vm+"/"
+			else:
+				ajax_vms_response += "/aws/"+vm+"/"
 			ajax_vms_response += "\""
 
 			ajax_vms_response += "},"
