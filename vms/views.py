@@ -93,7 +93,10 @@ def ajax_vms_refresh(request):
 			instance_metrics['instance'] = {}
 			instance_metrics['instance']['user_id'] = request.user.id
 			instance_metrics['instance']['state'] = {}
+
 			# XXX expand this with checking for the last seen....
+			# XXX work the data median..
+
 			instance_metrics['instance']['state']['state'] = "Running"
 
 			uuid = server['uuid']		
