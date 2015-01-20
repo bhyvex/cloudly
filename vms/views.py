@@ -110,9 +110,13 @@ def ajax_vms_refresh(request):
 				cpu_usage_ += ","
 			cpu_usage = cpu_usage_[:-1]
 			
-			# XXX reverse cpu_usage graph here
+			cpu_usage_reversed = ""
+			cpu_usage_array_reversed = []
+			for i in cpu_usage.split(','): cpu_usage_array_reversed.insert(0,i)
+			for i in cpu_usage_array_reversed: cpu_usage_reversed += str(i)+","
+			cpu_usage_reversed = cpu_usage_reversed[:-1]
 			
-			instance_metrics['cpu_utilization_datapoints'] = cpu_usage			
+			instance_metrics['cpu_utilization_datapoints'] = cpu_usage_reversed
 			virtual_machines[server['uuid'].replace(':','-')] = instance_metrics
 
 		#print 'virtual_machines', virtual_machines
