@@ -379,7 +379,14 @@ def ajax_virtual_machines(request):
 			except:
 				try:
 					data = vm_cache[vm]["cpu_utilization_datapoints"]
-					# XXX work data median(!!)
+
+					z = 0
+					data_median = 0
+					for i in data.split(','):
+						z+=1
+						data_median += float(i)
+					data_median = data_median/z
+						
 				except: data = ""
 
 
