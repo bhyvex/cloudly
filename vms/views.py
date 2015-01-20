@@ -96,8 +96,8 @@ def ajax_vms_refresh(request):
 			instance_metrics['instance']['state'] = {}
 			# XXX expand this with checking for the last seen....
 			instance_metrics['instance']['state']['state'] = "Running"
-
-			virtual_machines[server['uuid']] = instance_metrics
+			# XXX average
+			virtual_machines[server['uuid'].replace(':','-')] = instance_metrics
 
 		print '#'*100
 		
