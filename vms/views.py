@@ -76,12 +76,23 @@ def ajax_vms_refresh(request):
 	
 	if(servers.count()):
 	
+		vms_cache = Cache.objects.get_or_create(user=user)
+		vms_cache = vms_cache[0]
+		vms_cache.is_updating = True
+		vms_cache.save()
+
 		#XXX
-		print '-'*1000
-		print 'servers' * 100
-		print servers.count()		
-		print '-'*1000
-				
+		print '#'*1000
+		print 'servers ' * 100
+		print 'servers count', servers.count()
+		print 'vms_cache', vms_cache
+		print '#'*1000
+		
+		#vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))
+		vms_cache.last_seen = timezone.now()
+		vms_cache.is_updating = False
+		vms_cache.save()
+		                                		
 
 	if aws_ec2_verified:
 		
