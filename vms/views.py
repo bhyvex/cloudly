@@ -70,7 +70,7 @@ def ajax_vms_refresh(request):
 	aws_secret_key = profile.aws_secret_key
 	aws_ec2_verified = profile.aws_ec2_verified
 
-	aws_virtual_machines = {}
+	virtual_machines = {}
 	servers = mongo.servers.find({'secret':profile.secret,}).sort('_id',-1)
 	
 	
@@ -88,7 +88,7 @@ def ajax_vms_refresh(request):
 		print 'vms_cache', vms_cache
 		print '#'*1000
 		
-		#vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))
+		#vms_cache.vms_response = base64.b64encode(pickle.dumps(virtual_machines, pickle.HIGHEST_PROTOCOL))
 		vms_cache.last_seen = timezone.now()
 		vms_cache.is_updating = False
 		vms_cache.save()
@@ -171,7 +171,7 @@ def ajax_vms_refresh(request):
 					instance_metrics['instance']['region'] = {"endpoint":instance.region.endpoint,"name":instance.region.name,}				
 					instance_metrics['instance']['state'] = {"state":instance.state,"code":instance.state_code,"state_reason":instance.state_reason,}
 					
-					aws_virtual_machines[instance.id] = instance_metrics
+					virtual_machines[instance.id] = instance_metrics
 					
 					print 'Updating cache. '*100
 					print instance.platform, instance.product_codes
@@ -229,10 +229,10 @@ def ajax_vms_refresh(request):
 					networkout_datapoints = metric.query(start, end, 'Average', '')
 					instance_metrics['networkout_datapoints'] = json.dumps(networkout_datapoints,default=date_handler)
 
-					aws_virtual_machines[instance.id] = instance_metrics
+					virtual_machines[instance.id] = instance_metrics
 
 
-		vms_cache.vms_response = base64.b64encode(pickle.dumps(aws_virtual_machines, pickle.HIGHEST_PROTOCOL))	
+		vms_cache.vms_response = base64.b64encode(pickle.dumps(virtual_machines, pickle.HIGHEST_PROTOCOL))	
 		vms_cache.last_seen = timezone.now()
 		vms_cache.is_updating = False
 		vms_cache.save()
