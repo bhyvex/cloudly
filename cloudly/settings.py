@@ -40,7 +40,7 @@ INSTALLED_APPS = (
 	'dashboard',
 	'userprofile',
 	'private_servers',
-	'cloud_vms',
+	'vms',
 	'admin',
 )
 
