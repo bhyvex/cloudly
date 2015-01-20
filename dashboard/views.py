@@ -27,7 +27,7 @@ from userprofile.views import _log_user_activity
 from django.contrib.auth.decorators import login_required
 
 from amazon import ec2_funcs
-from cloud_vms.models import Cache
+from vms.models import Cache
 
 def home(request):
 		

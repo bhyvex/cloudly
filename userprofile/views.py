@@ -30,7 +30,7 @@ import boto.ec2
 import boto.ec2.cloudwatch
 from amazon import s3_funcs
 from amazon import s3_funcs_shortcuts
-from cloud_vms.models import Cache
+from vms.models import Cache
 
 logger = logging.getLogger(__name__)
 

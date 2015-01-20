@@ -41,8 +41,7 @@ from django.template.defaultfilters import filesizeformat, upper
 from django.contrib.humanize.templatetags.humanize import naturalday
 
 from cloudly.templatetags.cloud_extras import clear_filename, get_file_extension
-
-from cloud_vms.models import Cache
+from vms.models import Cache
 
 import decimal
 from django.db.models.base import ModelState
