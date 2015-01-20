@@ -81,8 +81,7 @@ def ajax_vms_refresh(request):
 		vms_cache.is_updating = True
 		vms_cache.save()
 
-		print '#'*100
-		print 'servers count', servers.count()
+		#print 'servers count', servers.count()
 
 		for server in servers:
 
@@ -112,12 +111,10 @@ def ajax_vms_refresh(request):
 				cpu_usage_ += ","
 			cpu_usage = cpu_usage_[:-1]
 			
-			instance_metrics['cpu_utilization_datapoints'] = cpu_usage
-			
+			instance_metrics['cpu_utilization_datapoints'] = cpu_usage			
 			virtual_machines[server['uuid'].replace(':','-')] = instance_metrics
 
-		print '#'*100
-		print 'virtual_machines', virtual_machines
+		#print 'virtual_machines', virtual_machines
 		
 		vms_cache.vms_response = base64.b64encode(pickle.dumps(virtual_machines, pickle.HIGHEST_PROTOCOL))
 		vms_cache.last_seen = timezone.now()
