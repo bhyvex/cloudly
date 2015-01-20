@@ -180,11 +180,13 @@ def register(request):
 					secret = (''.join([choice(string.digits) for i in range(3)]) + '-' + \
 						''.join([choice(string.letters + string.digits) for i in range(4)]) + '-' + \
 						''.join([choice(string.digits) for i in range(5)])).upper()
-
+					
+					agent_hash = (''.join([choice(string.letters + string.digits) for i in range(12)]))
+					
 					username = _remove_accents(username)
 					#name = _remove_accents(name)
 
-					userprofile.objects.get_or_create(user=user,secret=secret,name=name,language="EN")
+					userprofile.objects.get_or_create(user=user,secret=secret,name=name,agent_hash=agent_hash,language="EN")
 					login(request, user)
 
 					request.session['language'] = "us"
