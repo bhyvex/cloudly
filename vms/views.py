@@ -96,11 +96,25 @@ def ajax_vms_refresh(request):
 			instance_metrics['instance']['state'] = {}
 			# XXX expand this with checking for the last seen....
 			instance_metrics['instance']['state']['state'] = "Running"
-			# XXX average
+
+			uuid = server['uuid']		
+			cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(32)
+			#loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(32)
+			#mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(32)
+			#disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(32)
+			#activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(5)
+			
+			cpu_usage_ = ""
+			for usage in cpu_usage:
+				cpu_usage_ += str(usage['cpu_usage']['cpu_used'])
+				cpu_usage_ += ","
+			cpu_usage = cpu_usage_[:-1]
+			
+			instance_metrics['instance']['average'] = cpu_usage
+			
 			virtual_machines[server['uuid'].replace(':','-')] = instance_metrics
 
 		print '#'*100
-		
 		print 'virtual_machines', virtual_machines
 		
 		vms_cache.vms_response = base64.b64encode(pickle.dumps(virtual_machines, pickle.HIGHEST_PROTOCOL))
