@@ -29,17 +29,16 @@
 	</div>
 	{% endif %}
 
-
 	<div class="row">
 		
 		<div class="col-sm-6">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h2><strong>Account Details</strong></h2>
+					<h2><i class="fa fa-user"></i>Account Details</h2>
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<div class="form-group col-sm-4">
+						<div class="form-group col-sm-2">
 							<label>Title</label><br/>
 							<select class="form-control">
 								<option> </option>
@@ -49,33 +48,31 @@
 								<option>Dr.</option>
 							</select>
 						</div>
-				  		<div class="form-group col-sm-4">
+				  		<div class="form-group col-sm-5">
 							<label>First Name</label><br/>
 							<input type="text" class="form-control" value="{{profile.name}}">
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-5">
 							<label>Surname</label><br/>
 							<input type="text" class="form-control" value="">
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>Email address / Login name</label><br/>
-							<input type="text" class="form-control" value="{{user.email}}">
-						</div>					
+					<div class="form-group">
+						<label>Email address / Login name</label>
+						<input type="text" class="form-control" value="{{user.email}}">
 					</div>					
 					<div class="row">
-						<div class="col-sm-6">
-							<label>Twitter account</label><br/>
+						<div class="form-group col-sm-6">
+							<label>Twitter account</label>
 							<input type="text" class="form-control" value="{{profile.twitter}}">
 						</div>					
-						<div class="col-sm-6">
-							<label>Mobile phone</label><br/>
+						<div class="form-group col-sm-6">
+							<label>Mobile phone</label>
 							<input type="text" class="form-control" value="{{profile.mobile}}">
 						</div>					
 					</div>
-					<div class="row">
-						<label for="checkbox1">
+					<div class="form-group">
+						<label class="checkbox inline">
 							<input type="checkbox" id="checkbox1" name="checkbox1" value="option1" checked> Receive Cloudly product news and software updates notifications
 						</label>
 					</div>
@@ -84,7 +81,7 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h2><strong>Billing Details</strong></h2>
+					<h2><i class="fa fa-money"></i>Billing Details</h2>
 				</div>
 				<div class="panel-body">
 					<div class="row">
@@ -136,7 +133,7 @@
 		<div class="col-sm-6">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h2><strong>Passwords & keys</strong></h2>
+					<h2><i class="fa fa-key"></i>Passwords & keys</h2>
 				</div>
 				<div class="panel-body">
 					<div class="row">
@@ -176,45 +173,40 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h2><strong>Notifications</strong></h2>
+					<h2><i class="fa fa-bullhorn"></i>Notifications</h2>
 				</div>
 				
-				<div class="row">
-					<div class="col-md-1 col-sm-2 col-xs-3">
-						<label class="switch switch-primary">
-						  <input type="checkbox" class="switch-input" checked="">
-						  <span class="switch-label" data-on="On" data-off="Off">Email notifications</span>
-						  <span class="switch-handle"></span>
-						</label>
-					</div>
+				<div class="form-group">
+					<label class="switch switch-primary">
+					  <input type="checkbox" class="switch-input" checked="">
+					  <span class="switch-label" data-on="On" data-off="Off"></span>
+					  <span class="switch-handle"></span>
+					</label>
+					Email notifications
 				</div>
 				
-				<div class="row">
-					<div class="col-md-1 col-sm-2 col-xs-3">
-						<label class="switch switch-primary">
-						  <input type="checkbox" class="switch-input" checked="">
-						  <span class="switch-label" data-on="On" data-off="Off">Twitter notifications</span>
-						  <span class="switch-handle"></span>
-						</label>
-					</div>
+				<div class="form-group">
+					<label class="switch switch-primary">
+					  <input type="checkbox" class="switch-input" checked="">
+					  <span class="switch-label" data-on="On" data-off="Off"></span>
+					  <span class="switch-handle"></span>
+					</label>
+					Twitter notifications
 				</div>
-				<br/><br/>
 
-				<div class="row">
-					<div class="col-md-1 col-sm-2 col-xs-3">
-						<label class="switch switch-primary">
-						  <input type="checkbox" class="switch-input" checked="">
-						  <span class="switch-label" data-on="On" data-off="Off">SMS notifications</span>
-						  <span class="switch-handle"></span>
-						</label>
-					</div>
+				<div class="form-group">
+					<label class="switch switch-primary">
+					  <input type="checkbox" class="switch-input" checked="">
+					  <span class="switch-label" data-on="On" data-off="Off"></span>
+					  <span class="switch-handle"></span>
+					</label>
+					SMS notifications
 				</div>
-				<br/><br/>
 			
 			</div>
 		</div>
 
-				
+{% comment %}				
 		<div class="col-xs-12">
 			<div class="panel panel-default">
 					<div class="panel-heading">
@@ -226,7 +218,7 @@
 						</div>
 					</div>
 
-{% comment %}
+
 <div class="panel-body">
 
   <ul class="list-group">
