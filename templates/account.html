@@ -84,44 +84,34 @@
 					<h2><i class="fa fa-money"></i>Billing Details</h2>
 				</div>
 				<div class="panel-body">
-					<div class="row">
-						<div class="col-sm-12">
-							<label>Company name</label><br/>
-							<input type="text" class="form-control" value="{{profile.company}}">
-						</div>					
+					<div class="form-group">
+						<label>Company name</label><br/>
+						<input type="text" class="form-control" value="{{profile.company}}">
 					</div>					
-					<div class="row">
-						<div class="col-sm-12">
-							<label>Company URL</label><br/>
-							<input type="text" class="form-control" value="{{profile.custom_url}}">
-						</div>
+					<div class="form-group">
+						<label>Company URL</label><br/>
+						<input type="text" class="form-control" value="{{profile.custom_url}}">
+					</div>
+					<div class="form-group">
+						<label>Address</label><br/>
+						<input type="text" class="form-control" value="{{profile.street_address_1}}">
+						<input type="text" class="form-control" value="{{profile.street_address_2}}">
+						<input type="text" class="form-control" value="{{profile.street_address_3}}">
+					</div>
+					<div class="form-group">
+						<label>Town / City</label><br/>
+						<input type="text" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Country</label><br/>
+						<input type="text" class="form-control">
 					</div>
 					<div class="row">
-						<div class="col-sm-12">
-							<label>Address</label><br/>
-							<input type="text" class="form-control" value="{{profile.street_address_1}}">
-							<input type="text" class="form-control" value="{{profile.street_address_2}}">
-							<input type="text" class="form-control" value="{{profile.street_address_3}}">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>Town / City</label><br/>
-							<input type="text" class="form-control">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>Country</label><br/>
-							<input type="text" class="form-control">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-6">
+						<div class="form-group col-sm-6">
 							<label>Registration #</label><br/>
 							<input type="text" class="form-control">
 						</div>
-						<div class="col-sm-6">
+						<div class="form-group col-sm-6">
 							<label>VAT #</label><br/>
 							<input type="text" class="form-control">
 						</div>
@@ -137,36 +127,30 @@
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-sm-4">
+						<div class="form-group col-sm-4">
 							<label>Password</label><br/>
 							<input type="text" class="form-control input-sm">
 						</div>
-						<div class="col-sm-4">
+						<div class="form-group col-sm-4">
 							<label>Re-enter password</label><br/>
 							<input type="text" class="form-control input-sm">
 						</div>
-						<div class="col-sm-4">
+						<div class="form-group col-sm-4">
 							<label>&nbsp;</label><br/>
 							<button class="btn">Change password</button>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>Secret</label><br/>
-							<input type="text" class="form-control" value="{{profile.secret}}">
-						</div>
+					<div class="form-group">
+						<label>Secret</label><br/>
+						<input type="text" class="form-control" value="{{profile.secret}}">
 					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>Public key</label><br/>
-							<input type="text" class="form-control">
-						</div>
+					<div class="form-group">
+						<label>Public key</label><br/>
+						<input type="text" class="form-control">
 					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>Public key passphrase</label><br/>
-							<input type="text" class="form-control">
-						</div>
+					<div class="form-group">
+						<label>Public key passphrase</label><br/>
+						<input type="text" class="form-control">
 					</div>
 				</div>
 			</div>
@@ -175,34 +159,34 @@
 				<div class="panel-heading">
 					<h2><i class="fa fa-bullhorn"></i>Notifications</h2>
 				</div>
-				
-				<div class="form-group">
-					<label class="switch switch-primary">
-					  <input type="checkbox" class="switch-input" checked="">
-					  <span class="switch-label" data-on="On" data-off="Off"></span>
-					  <span class="switch-handle"></span>
-					</label>
-					Email notifications
-				</div>
-				
-				<div class="form-group">
-					<label class="switch switch-primary">
-					  <input type="checkbox" class="switch-input" checked="">
-					  <span class="switch-label" data-on="On" data-off="Off"></span>
-					  <span class="switch-handle"></span>
-					</label>
-					Twitter notifications
-				</div>
+				<div class="panel-body">
+					<div class="form-group">
+						<label class="switch switch-primary">
+						  <input type="checkbox" class="switch-input" checked="">
+						  <span class="switch-label" data-on="On" data-off="Off"></span>
+						  <span class="switch-handle"></span>
+						  Email notifications
+						</label>
+					</div>
 
-				<div class="form-group">
-					<label class="switch switch-primary">
-					  <input type="checkbox" class="switch-input" checked="">
-					  <span class="switch-label" data-on="On" data-off="Off"></span>
-					  <span class="switch-handle"></span>
-					</label>
-					SMS notifications
+					<div class="form-group">
+						<label class="switch switch-primary">
+						  <input type="checkbox" class="switch-input" checked="">
+						  <span class="switch-label" data-on="On" data-off="Off"></span>
+						  <span class="switch-handle"></span>
+						  Twitter notifications
+						</label>
+					</div>
+
+					<div class="form-group">
+						<label class="switch switch-primary">
+						  <input type="checkbox" class="switch-input" checked="">
+						  <span class="switch-label" data-on="On" data-off="Off"></span>
+						  <span class="switch-handle"></span>
+						  SMS notifications
+						</label>
+					</div>
 				</div>
-			
 			</div>
 		</div>
 
