@@ -382,5 +382,5 @@ def account_settings(request):
 	ip = request.META['REMOTE_ADDR']
 	_log_user_activity(profile,"click","/account/settings/","account_settings",ip=ip)
 
-	return render_to_response('account.html', {'aws_regions':AWS_REGIONS,'user':user,'profile':profile,}, context_instance=RequestContext(request))
+	return render_to_response('account_settings.html', {'aws_regions':AWS_REGIONS,'user':user,'profile':profile,}, context_instance=RequestContext(request))
 

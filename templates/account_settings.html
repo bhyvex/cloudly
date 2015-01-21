@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% load cloud_extras %}
+						
+{% block title %}Account Settings{% endblock %}
+
+
+
+{% block page_content %}
+			
+			
+<div class="col-md-10 col-sm-11 main ">
+
+	<ol class="breadcrumb">
+	  	<li class="active">Account Settings</li>
+	</ol>
+
+		<div class="row">
+
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+					<div class="panel-heading">
+						<h2><i class="fa fa-picture-o"></i>Account Settings</h2>
+						<div class="panel-actions">
+							<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+							<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+						</div>
+					</div>
+
+
+<div class="panel-body">
+
+  <ul class="list-group">
+    <li class="list-group-item"><strong>Name:</strong> {{profile.name}}</li>
+    <li class="list-group-item"><strong>E-mail:</strong> {{user.email}}</li>
+	<br/>
+    <li class="list-group-item"><strong>Secret</strong> {{profile.secret}}</li>
+    <li class="list-group-item"><strong>Password:</strong> <a href="/account/password/"><button type="button" class="btn btn-xs btn-warning">Change Password</button></a> {{user.password}}</li>
+    <br/>
+    <li class="list-group-item"><strong>Public key</strong> ssh-dss AAAAB3NzaC1kc3MAAACBAN7/15KkgiEbVK2INvJSJLZUMY3U0zK....jparicka@jans-air</li>
+    <li class="list-group-item"><strong>Public key passphrase</strong> <a href="#">TBD</a><br/>
+    * The password for your SSH key if it is encrypted with a passphrase
+    </li>
+    <br/>
+    <li class="list-group-item"><strong>Company</strong> {{profile.company}}</li>
+    <li class="list-group-item"><strong>Company URL</strong> {{profile.custom_url}}</li>
+    <br/>
+    <li class="list-group-item"><strong>My practical skills</strong> {{profile.skills}} (e.g. apache, nginx, iptables, ..)</li>
+    <br/>
+    <li class="list-group-item"><strong>Twitter</strong> {{profile.twitter}}</li>
+    <li class="list-group-item"><strong>Mobile</strong> {{profile.mobile}}</li>
+    <br/>
+    <li class="list-group-item"><strong>Street Address 1</strong> {{profile.street_address_1}}</li>
+    <li class="list-group-item"><strong>Street Address 2</strong> {{profile.street_address_2}}</li>
+    <li class="list-group-item"><strong>Street Address 3</strong> {{profile.street_address_3}}</li>
+    <br/>
+    <li class="list-group-item"><strong>Email Notfications</strong> {{profile.email_notfications}}
+	<form class="form-horizontal" action="/test">
+		<label class="switch switch-info">
+			<input type="checkbox" class="switch-input" checked="">
+			<span class="switch-label" data-on="On" data-off="Off"></span>
+			<span class="switch-handle"></span>
+		</label>
+	</form>
+    </li>
+    <li class="list-group-item"><strong>Twitter Notifications</strong> {{profile.twitter_notifications}}
+		<form class="form-horizontal" action="/test">
+			<label class="switch">
+		      <input type="checkbox" class="switch-input">
+		      <span class="switch-label" data-on="On" data-off="Off"></span>
+		      <span class="switch-handle"></span>
+		    </label>
+		</form>
+	</li>
+	<br/>
+	<li class="list-group-item"><strong>aws_automatic_backups</strong> {{profile.aws_automatic_backups}}
+		<form class="form-horizontal" action="/test">
+		    <label class="switch switch-danger">
+		      <input type="checkbox" class="switch-input" checked="">
+		      <span class="switch-label" data-on="On" data-off="Off"></span>
+		      <span class="switch-handle"></span>
+		    </label>
+		</form>
+	</li>
+
+
+			</div><!--/row-->		
+		</div><!--/container-->
+
+
+			</div>
+		</div>
+
+
+
+		</div><!--/col-->
+
+
+
+
+	</div>
+
+	
+</div>
+<!-- end: Content -->
+
+
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Modal title</h4>
+			</div>
+			<div class="modal-body">
+				<p>Here settings can be configured...</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{% endblock page_content %}
+
+{% block extra_js %}
+<script src="/static/admin-assets/js/bootstrap-editable.min.js"></script>
+{% endblock %}
