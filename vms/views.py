@@ -73,14 +73,13 @@ def ajax_vms_refresh(request):
 	virtual_machines = {}
 	servers = mongo.servers.find({'secret':profile.secret,}).sort('_id',-1)
 	
-	
+	vms_cache = Cache.objects.get_or_create(user=user)
+	vms_cache = vms_cache[0]
+	vms_cache.is_updating = True
+	vms_cache.save()
+                                	
 	if(servers.count()):
 	
-		vms_cache = Cache.objects.get_or_create(user=user)
-		vms_cache = vms_cache[0]
-		vms_cache.is_updating = True
-		vms_cache.save()
-
 		#print 'servers count', servers.count()
 
 		for server in servers:
@@ -121,19 +120,9 @@ def ajax_vms_refresh(request):
 
 		#print 'virtual_machines', virtual_machines
 		
-		vms_cache.vms_response = base64.b64encode(pickle.dumps(virtual_machines, pickle.HIGHEST_PROTOCOL))
-		vms_cache.last_seen = timezone.now()
-		vms_cache.is_updating = False
-		vms_cache.save()
-		                                		
 
 	if aws_ec2_verified:
 		
-		vms_cache = Cache.objects.get_or_create(user=user)	
-		vms_cache = vms_cache[0]
-		
-		vms_cache.is_updating = True
-		vms_cache.save()
 		
 		aws_regions = profile.aws_enabled_regions.split(',')
 		print 'AWS regions', aws_regions
