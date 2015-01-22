@@ -12,7 +12,6 @@ import datetime
 from django.utils import timezone
 
 import json
-#from django.utils import simplejson
 
 from pprint import pprint
 

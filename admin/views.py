@@ -3,7 +3,6 @@
 import os
 import time
 import logging
-import simplejson
 import base64, pickle
 import datetime
 
