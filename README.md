@@ -33,7 +33,6 @@ mysql> create database cloudly;
 <pre>
 $ apt-get install python-dev 
 $ apt-get install python-django
-$ apt-get install python-pip
 $ apt-get install python-openssl
 </pre>
 
@@ -43,7 +42,6 @@ $ apt-get install python-openssl
 <pre>
 $ apt-get install mongodb
 $ apt-get install python-pymongo
-$ pip install pymongo --upgrade
 </pre>
 
 ..and configure your server to meet your specific requirements.
