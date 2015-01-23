@@ -76,6 +76,10 @@
 				            <table id="user" class="table table-bordered table-striped" style="clear: both">
 				                <tbody> 
 				                    <tr>         
+				                        <td>State</td>
+				                        <td>{{vm_cache|dict_get:"instance"|dict_get:"state"}}</td>
+				                    </tr>                       
+				                    <tr>         
 				                        <td width="30">Launch Time</td>
 				                        <td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"launch_time"}}</td>
 				                    </tr>                      
@@ -95,10 +99,6 @@
 				                        <td>Architecture</td>
 				                        <td>{{vm_cache|dict_get:"instance"|dict_get:"architecture"}}</td>
 				                    </tr> 
-				                    <tr>         
-				                        <td>State</td>
-				                        <td>{{vm_cache|dict_get:"instance"|dict_get:"state"}}</td>
-				                    </tr>                       
 				                    <tr>         
 				                        <td>Virtualization Type</td>
 				                        <td>{{vm_cache|dict_get:"instance"|dict_get:"virtualization_type"}}</td>
