@@ -118,19 +118,6 @@
 				            <table id="user" class="table table-bordered table-striped" style="clear: both">
 				                <tbody> 
 				                    <tr>         
-				                        <td>Security Groups</td>
-				                        <td>{{vm_cache|dict_get:"instance"|dict_get:"groups"}}</td>
-				                    </tr>                      
-				                    <tr>         
-				                        <td width="30%">Key Name</td>
-				                        <td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"key_name"}}</td>
-				                    </tr>                      
-				                </tbody>
-				            </table>	
-
-				            <table id="user" class="table table-bordered table-striped" style="clear: both">
-				                <tbody> 
-				                    <tr>         
 				                        <td width="30%">Root Device Name</td>
 				                        <td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"root_device_name"}}</td>
 				                    </tr>                      
@@ -145,6 +132,19 @@
 				                    <tr>         
 				                        <td>Ramdisk</td>
 				                        <td>{{vm_cache|dict_get:"instance"|dict_get:"ramdisk"}}</td>
+				                    </tr>                      
+				                </tbody>
+				            </table>	
+
+				            <table id="user" class="table table-bordered table-striped" style="clear: both">
+				                <tbody> 
+				                    <tr>         
+				                        <td>Security Groups</td>
+				                        <td>{{vm_cache|dict_get:"instance"|dict_get:"groups"}}</td>
+				                    </tr>                      
+				                    <tr>         
+				                        <td width="30%">Key Name</td>
+				                        <td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"key_name"}}</td>
 				                    </tr>                      
 				                </tbody>
 				            </table>	
