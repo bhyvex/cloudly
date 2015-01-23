@@ -63,15 +63,20 @@
 				                </tbody>
 				            </table>	
 
-							<table id="user" class="table table-bordered table-striped" style="clear: both">
+
+				            <table id="user" class="table table-bordered table-striped" style="clear: both">
 				                <tbody> 
 				                    <tr>         
-				                        <td width="30%">VPC ID</td>
-				                        <td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"vpc_id"}}<br/>
-									* A virtual private cloud (VPC) is a virtual network dedicated to your AWS account. It is logically isolated from other virtual networks in the AWS cloud. You can launch your AWS resources, such as Amazon EC2 instances, into your VPC.</td>
+				                        <td>Security Groups</td>
+				                        <td>{{vm_cache|dict_get:"instance"|dict_get:"groups"}}</td>
+				                    </tr>                      
+				                    <tr>         
+				                        <td width="30%">Key Name</td>
+				                        <td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"key_name"}}</td>
 				                    </tr>                      
 				                </tbody>
-				            </table>
+				            </table>	
+
 
 				            <table id="user" class="table table-bordered table-striped" style="clear: both">
 				                <tbody> 
@@ -136,18 +141,6 @@
 				                </tbody>
 				            </table>	
 
-				            <table id="user" class="table table-bordered table-striped" style="clear: both">
-				                <tbody> 
-				                    <tr>         
-				                        <td>Security Groups</td>
-				                        <td>{{vm_cache|dict_get:"instance"|dict_get:"groups"}}</td>
-				                    </tr>                      
-				                    <tr>         
-				                        <td width="30%">Key Name</td>
-				                        <td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"key_name"}}</td>
-				                    </tr>                      
-				                </tbody>
-				            </table>	
 
                     </div><!--/col-->
                 </div><!--/row-->	
