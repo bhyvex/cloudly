@@ -207,7 +207,7 @@ def ajax_vms_refresh(request):
 
 					# Here is where you define start - end for the Logs...............
 					end = datetime.datetime.utcnow()
-					start = end - datetime.timedelta(minutes=10)
+					start = end - datetime.timedelta(minutes=60)
 				
 					# This is how you list all possible values on the response....
 					# print ec2conn.list_metrics()
