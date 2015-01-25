@@ -151,35 +151,6 @@
 	</div><!--/row-->
 
 
-
-{% comment %}
-	<div class="row">
-		<div class="col-xs-12">
-			<div class="panel panel-default">
-					<div class="panel-heading">
-						<h2><i class="fa fa-truck"></i>{{vm_name}}</h2>
-						<div class="panel-actions">
-							<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-						</div>
-					</div>
-					<div class="panel-body">
-
-<pre>
-{% for vm in vm_cache|dict_get:"instance" %}
-<strong>{{vm}}</strong> {{vm_cache|dict_get:"instance"|dict_get:vm}}{% endfor %}
-</pre>	
-
-
-                                </div><!--/col-->
-                </div><!--/row-->	
-        </div>
-        <!-- end: Content -->
-</div><!--/row-->
-{% endcomment %}
-
-
     <div class="col-xs-12">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -229,26 +200,6 @@ disk_readbytes_datapoints
 
 </div><!--/row-->	
 
-{% comment %}				
-<div class="row">
-        <div class="col-xs-12">
-                <div class="panel panel-default">
-                                <div class="panel-heading">
-                                        <h2><i class="fa fa-truck"></i>Alerts</h2>
-                                        <div class="panel-actions">
-                                                <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-                                                <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-                                                <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-                                        </div>
-                                </div>
-                                <div class="panel-body" style="display: none;">
-                                        TBD
-                                </div><!--/col-->
-                </div><!--/row-->	
-        </div>
-        <!-- end: Content -->
-</div><!--/row-->
-{% endcomment %}
 
 <div class="row">
         <div class="col-xs-12">
@@ -423,6 +374,4 @@ Console output:
 
     //-->
 </script>
-{# <!-- {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, 10, 40, 40, 400 --> #}
 {% endblock extra_js %}
-
