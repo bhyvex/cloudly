@@ -551,6 +551,9 @@ def control_aws_vm(request, vm_name, action):
 
 	return HttpResponseRedirect("/")
 
+def server_view(request, hwaddr):
+	return HttpResponse(hwaddr+" working on this currently")
+
 
 def ajax_virtual_machines_box(request):
 			

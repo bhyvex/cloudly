@@ -28,6 +28,8 @@ urlpatterns = patterns('',
 	url(r'^aws/(?P<instance_id>[\w\-\.]+)/request/help/$', 'support.views.support_new_aws', name='support_new_aws'),
 	url(r'^ajax/aws/(?P<instance_id>[\w\-\.]+)/metrics/$', 'vms.views.ajax_aws_graphs', name='ajax_aws_graphs'),
 	url(r'^ajax/aws/(?P<instance_id>[\w\-\.]+)/metrics/(?P<graph_type>[\w\-\.]+)/$', 'vms.views.ajax_aws_graphs', name='ajax_aws_graphs'),
+	# servers
+	url(r'^server/(?P<hwaddr>[\w\-\.]+)/$', 'vms.views.server_view', name='server_view'),
 	# incidents
 	url(r'^incidents/$', 'incidents.views.incidents', name='incidents'),
 	# admin
