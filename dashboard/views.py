@@ -75,4 +75,9 @@ def welcome(request):
 	print request.user
 	return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
 
-
+@login_required()
+def download_agent(request):
+	# XXX if request.GET, inject the server IP and the security key into the agent
+	# XXX if not request.GET, display instructions
+	return HttpResponse("working on this currently")
+	
