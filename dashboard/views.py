@@ -99,7 +99,11 @@ def download_agent(request):
 
 	if(request.GET):
 
-		# XXX look up code
+		try:
+			xuuid = request.GET['xuuid']
+			profile = userprofile.objects.get(agent_hash=xuuid)
+		except:
+			return HttpResponseForbidden()
 	
 		agent_code = ""
 		for line in open('agent.py'):
@@ -114,7 +118,6 @@ def download_agent(request):
 		return HttpResponse(agent_code)	
 	
 	# XXX if not request.GET, display download/install instructions.
-	
 
 	return HttpResponse("working on this currently")
 	
