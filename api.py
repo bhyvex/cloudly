@@ -32,7 +32,7 @@ def activity():
 		'uuid': data['uuid'],
 		'agent_version': data['agent_version'],
 		'activity': data['activity'],
-		'date_created': datetime.datetime.now(),
+		'date_created': datetime.datetime.utcnow(),
 	}
 	activity_ = mongo.activity
 	activity_.insert( activity_log )
@@ -103,7 +103,7 @@ def ping():
 		'agent_version': agent_version,
 		'uuid': uuid,
 		'loadavg': loadavg,
-		'date_created': datetime.datetime.now(),
+		'date_created': datetime.datetime.utcnow(),
 	}
 	loadavg_ = mongo.loadavg
 	loadavg_.insert( loadavg_metrics )
@@ -113,7 +113,7 @@ def ping():
 		'agent_version': agent_version,
 		'uuid': uuid,
 		'cpu_usage': cpu_usage,
-		'date_created': datetime.datetime.now(),
+		'date_created': datetime.datetime.utcnow(),
 	}
 	cpu_usage_ = mongo.cpu_usage
 	cpu_usage_.insert( cpu_usage_metrics )
@@ -123,7 +123,7 @@ def ping():
 		'agent_version': agent_version,
 		'uuid': uuid,
 		'memory_usage': memory_usage,
-		'date_created': datetime.datetime.now(),
+		'date_created': datetime.datetime.utcnow(),
 	}
 	memory_usage_ = mongo.memory_usage
 	memory_usage_.insert( memory_usage_metrics )
@@ -133,7 +133,7 @@ def ping():
 		'agent_version': agent_version,
 		'uuid': uuid,
 		'disks_usage': disks_usage,
-		'date_created': datetime.datetime.now(),
+		'date_created': datetime.datetime.utcnow(),
 	}
 	disks_usage_ = mongo.disks_usage
 	disks_usage_.insert( disks_usage_metrics )
