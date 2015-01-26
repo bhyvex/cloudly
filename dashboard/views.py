@@ -98,6 +98,8 @@ def download_agent(request):
 	print 'agent_download_url', agent_download_url
 
 	if(request.GET):
+
+		# XXX look up code
 	
 		agent_code = ""
 		for line in open('agent.py'):
