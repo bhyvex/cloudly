@@ -98,7 +98,7 @@ def ajax_vms_refresh(request):
 			#disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 			#activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(5)
 
-			if((datetime.datetime.now()-server['last_seen']).total_seconds()>20):
+			if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>20):
 				instance_metrics['instance']['state']['state'] = "Stopped"
 				cpu_usage = []
 			else:
