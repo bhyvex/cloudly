@@ -420,6 +420,8 @@ def ajax_virtual_machines(request):
 				color = "pink "
 			if(vm_state=="Shutting-Down"): 
 				color = "pink "
+			if(vm_state=="Stopped"):
+				isotope_filter_classes += " offline"
 						
 			ajax_vms_response += "\""
 			ajax_vms_response += instance_name
