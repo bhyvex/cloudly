@@ -77,7 +77,7 @@ def user_activity_report(request, user_id):
 	user.last_login = datetime.datetime.now()
 	user.save()
 	
-	return render_to_response('admin-user-report.html', {'u':u,'vms_cached_response':vms_cached_response,'user_profile':user_profile,'user_files':[],'user_activity':user_activity,'user_activity_clicks':user_activity_clicks,'user_activity_other':user_activity_other,'profile':profile,'servers':servers,}, context_instance=RequestContext(request))
+	return render_to_response('admin_user_report.html', {'u':u,'vms_cached_response':vms_cached_response,'user_profile':user_profile,'user_files':[],'user_activity':user_activity,'user_activity_clicks':user_activity_clicks,'user_activity_other':user_activity_other,'profile':profile,'servers':servers,}, context_instance=RequestContext(request))
 	
 
 @login_required()
