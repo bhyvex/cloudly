@@ -91,18 +91,28 @@ def download_agent(request):
 	profile = userprofile.objects.get(user=request.user)
 	_log_user_activity(profile,"download","/download/agent/","download_agent",ip=ip)
 
-	agent_download_url = server_url + "download/agent?xuuid="+profile.agent_hash+"&"
+	agent_download_url = server_url + "download/agent?xuuid="+profile.agent_hash
 	
 	print 'server_url', server_url
 	print 'api_server_url', api_server_url
 	print 'agent_download_url', agent_download_url
 
-	# XXX if request.GET, inject the server IP and the security key into the agent
 	if(request.GET):
-		print 'request.GET ' *100
 	
+		agent_code = ""
+		for line in open('agent.py'):
+			if("SECRET = \"\"" in line):
+				agent_code += "SECRET = \""+profile.secret+"\"\n"
+				continue
+			if("API_SERVER = \"\"" in line):
+				agent_code += "API_SERVER = \""+api_server_url+"\"\n"
+				continue
+			agent_code += line
+			
+		return HttpResponse(agent_code)	
 	
-	# XXX if not request.GET, display instructions
+	# XXX if not request.GET, display download/install instructions.
 	
+
 	return HttpResponse("working on this currently")
 	
