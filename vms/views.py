@@ -383,7 +383,6 @@ def ajax_virtual_machines(request):
 			try:
 				if(vm_cache[vm]["instance"]["tags"]["Name"]):
 					instance_name = vm_cache[vm]["instance"]["tags"]["Name"]
-					instance_name = "AWS " + instance_name
 				else:
 					instance_name = vm
 			except: instance_name = vm
