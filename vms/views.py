@@ -253,12 +253,12 @@ def ajax_vms_refresh(request):
 					virtual_machines[instance.id] = instance_metrics
 
 
-		vms_cache.vms_response = base64.b64encode(pickle.dumps(virtual_machines, pickle.HIGHEST_PROTOCOL))	
-		vms_cache.last_seen = timezone.now()
-		vms_cache.is_updating = False
-		vms_cache.save()
+	vms_cache.vms_response = base64.b64encode(pickle.dumps(virtual_machines, pickle.HIGHEST_PROTOCOL))	
+	vms_cache.last_seen = timezone.now()
+	vms_cache.is_updating = False
+	vms_cache.save()
 	
-		print 'VMs cache was succesfully updated.'
+	print 'VMs cache was succesfully updated.'
 
 	return HttpResponse("ALLDONE")
 	
