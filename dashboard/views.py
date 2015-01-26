@@ -2,6 +2,7 @@
 
 import os
 import time
+import socket
 import logging
 import datetime
 import base64, pickle
@@ -77,6 +78,14 @@ def welcome(request):
 
 @login_required()
 def download_agent(request):
+
+	print '-- download agent:'
+
+	server_url = request.build_absolute_uri('/')
+	server_url = server_url.replace('http://','').replace('https://','')
+	server_url = server_url.split(':')[0]
+	print server_url
+	
 	# XXX if request.GET, inject the server IP and the security key into the agent
 	# XXX if not request.GET, display instructions
 	return HttpResponse("working on this currently")
