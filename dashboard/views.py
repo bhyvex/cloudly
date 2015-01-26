@@ -82,9 +82,15 @@ def download_agent(request):
 	print '-- download agent:'
 
 	server_url = request.build_absolute_uri('/')
-	server_url = server_url.replace('http://','').replace('https://','')
-	server_url = server_url.split(':')[0]
-	print server_url
+	api_server_url = server_url
+	api_server_url = api_server_url.replace('http://','').replace('https://','')
+	api_server_url = api_server_url.split(':')[0]
+	api_server_url = api_server_url + ":5000"
+
+	print 'server_url', server_url
+	print 'api_server_url', api_server_url
+
+	agent_download_url = ""
 	
 	# XXX if request.GET, inject the server IP and the security key into the agent
 	# XXX if not request.GET, display instructions
