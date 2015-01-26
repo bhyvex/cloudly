@@ -79,7 +79,7 @@ def ajax_vms_refresh(request):
                                 	
 	if(servers.count()):
 	
-		#print 'servers count', servers.count()
+		print 'servers count', servers.count()
 
 		for server in servers:
 
@@ -94,8 +94,8 @@ def ajax_vms_refresh(request):
 			
 			if((datetime.datetime.now()-server['last_seen']).total_seconds()<20):
 				instance_metrics['instance']['state']['state'] = "Running"
-			else:  instance_metrics['instance']['state']['state'] = "Stopped"
-
+			else: instance_metrics['instance']['state']['state'] = "Stopped"
+			
 
 			uuid = server['uuid']		
 			cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
