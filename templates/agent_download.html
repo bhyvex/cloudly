@@ -33,7 +33,7 @@
 						<br/>
 						<br/>
 <pre>
-curl {{agent_download_url}} > $HOME/agent.py; sudo sh -c "while true; do python $HOME/agent.py; sleep 3; done"
+wget {{agent_download_url}} -O $HOME/agent.py; sudo sh -c "while true; do python $HOME/agent.py; sleep 3; done"
 </pre>
 				
 	 					</div><!--/col-->
