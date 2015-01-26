@@ -76,7 +76,7 @@ def welcome(request):
 	print request.user
 	return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
 
-@login_required()
+
 def download_agent(request):
 
 	print '-- download agent:'
