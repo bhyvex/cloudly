@@ -117,4 +117,4 @@ def download_agent(request):
 			
 		return HttpResponse(agent_code)	
 	
-	return render_to_response('agent_download.html', {'profile':profile,}, context_instance=RequestContext(request))    	
+	return render_to_response('agent_download.html', {'profile':profile,'agent_download_url':agent_download_url,}, context_instance=RequestContext(request))    	

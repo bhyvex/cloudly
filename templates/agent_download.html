@@ -33,8 +33,7 @@
 						<br/>
 						<br/>
 <pre>
-curl url >
-~$USER/agent.py; sudo sh -c "while true; do python ~$USER/agent.py; sleep 3;
+curl url {{agent_download_url}} > ~$USER/agent.py; sudo sh -c "while true; do python ~$USER/agent.py; sleep 3;
 done"
 </pre>
 				
@@ -50,4 +49,3 @@ done"
 
 </div>
 {% endblock page_content %}
-
