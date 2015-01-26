@@ -64,7 +64,7 @@ def ping():
 	physical_disks = data['physical_disks']
 	disks_usage = data['disks_usage']
 	agent_version = data['agent_version']
-	last_seen = datetime.datetime.utnow()
+	last_seen = datetime.datetime.utcnow()
 
 	server = {
 		'secret': secret,
