@@ -91,18 +91,19 @@ def ajax_vms_refresh(request):
 			instance_metrics['instance']['user_id'] = request.user.id
 			instance_metrics['instance']['state'] = {}
 
-			
-			if((datetime.datetime.now()-server['last_seen']).total_seconds()<20):
-				instance_metrics['instance']['state']['state'] = "Running"
-			else: instance_metrics['instance']['state']['state'] = "Stopped"
-			
-
 			uuid = server['uuid']		
 			cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 			#loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 			#mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 			#disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 			#activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(5)
+
+			if((datetime.datetime.now()-server['last_seen']).total_seconds()>20):
+				instance_metrics['instance']['state']['state'] = "Stopped"
+				cpu_usage = []
+			else:
+				instance_metrics['instance']['state']['state'] = "Running"
+
 			
 			cpu_usage_ = ""
 			for usage in cpu_usage:
