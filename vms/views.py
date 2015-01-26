@@ -91,13 +91,10 @@ def ajax_vms_refresh(request):
 			instance_metrics['instance']['user_id'] = request.user.id
 			instance_metrics['instance']['state'] = {}
 
-			# XXX expand this with checking for the last_seen....
-
-			#print server['uuid'],'last_seen',server['last_seen']
 			
-			if((datetime.datetime.now()-server['last_seen']).total_seconds()<30):
+			if((datetime.datetime.now()-server['last_seen']).total_seconds()<20):
 				instance_metrics['instance']['state']['state'] = "Running"
-			else:  instance_metrics['instance']['state']['state'] = "Offline"
+			else:  instance_metrics['instance']['state']['state'] = "Stopped"
 
 
 			uuid = server['uuid']		
