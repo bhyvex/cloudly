@@ -87,15 +87,15 @@ def download_agent(request):
 	api_server_url = api_server_url.split(':')[0]
 	api_server_url = api_server_url + ":5000"
 
-	ip = request.META['REMOTE_ADDR']        
-	profile = userprofile.objects.get(user=request.user)
-	_log_user_activity(profile,"download","/download/agent/","download_agent",ip=ip)
-
-	agent_download_url = server_url + "download/agent?xuuid="+profile.agent_hash
+	ip = request.META['REMOTE_ADDR']
 	
+	try:
+		profile = userprofile.objects.get(user=request.user)
+		_log_user_activity(profile,"download","/download/agent/","download_agent",ip=ip)
+	except: pass
+
 	print 'server_url', server_url
 	print 'api_server_url', api_server_url
-	print 'agent_download_url', agent_download_url
 
 	if(request.GET):
 
@@ -116,5 +116,12 @@ def download_agent(request):
 			agent_code += line
 			
 		return HttpResponse(agent_code)	
-	
+
+	try:
+		agent_download_url = server_url + "download/agent?xuuid="+profile.agent_hash
+		print 'agent_download_url', agent_download_url
+	except:
+		return HttpResponseRedirect("https://raw.githubusercontent.com/jparicka/cloudly/master/agent.py")
+    	
+
 	return render_to_response('agent_download.html', {'profile':profile,'agent_download_url':agent_download_url,}, context_instance=RequestContext(request))    	
