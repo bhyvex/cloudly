@@ -5,6 +5,8 @@ urlpatterns = patterns('',
 	# common views
 	url(r'^$', 'dashboard.views.home', name='home'),
 	url(r'^welcome/$', 'dashboard.views.welcome', name='welcome'),
+	# agent
+	url(r'^download/agent/$', 'dashboard.views.download_agent', name='download_agent'),
 	url(r'^login/$', 'userprofile.views.auth', name='login'),
 	url(r'^register/$', 'userprofile.views.register', name='login'),
 	url(r'^logout/$', 'userprofile.views.user_logout', name='logout'),
