@@ -87,8 +87,15 @@ def download_agent(request):
 	api_server_url = api_server_url.split(':')[0]
 	api_server_url = api_server_url + ":5000"
 
+	ip = request.META['REMOTE_ADDR']        
+	profile = userprofile.objects.get(user=request.user)
+	_log_user_activity(profile,"download","/download/agent/","download_agent",ip=ip)
+
+	download_agent_url = server_url + "download/agent?xuuid="+profile.agent_hash+"&"
+	
 	print 'server_url', server_url
 	print 'api_server_url', api_server_url
+	print 'download_agent_url', download_agent_url
 
 	agent_download_url = ""
 	
