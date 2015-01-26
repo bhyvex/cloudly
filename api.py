@@ -83,9 +83,9 @@ def ping():
 		'last_seen': last_seen,
 	}
 
-	print ' - API query from v'+str(agent_version), uuid
-	print '   '+unichr(746), secret, 'IP', ip_remote+'/'+ ip
-	print '   '+unichr(746)+' host machine uptime '+uptime+''
+	print 'API query from v'+str(agent_version), uuid
+	print '    '+unichr(746), secret, 'IP', ip_remote+'/'+ ip
+	print '    '+unichr(746)+' host machine uptime '+uptime+''
 
 	#print server
 	#import random
