@@ -79,7 +79,7 @@ def ajax_vms_refresh(request):
                                 	
 	if(servers.count()):
 	
-		#print 'servers count', servers.count()
+		print 'servers count', servers.count()
 
 		for server in servers:
 
@@ -92,6 +92,9 @@ def ajax_vms_refresh(request):
 			instance_metrics['instance']['state'] = {}
 
 			# XXX expand this with checking for the last_seen....
+
+			print server['uuid'],'last_seen',server['last_seen']
+			print ' -- was', (datetime.datetime.now()-server['last_seen']).total_seconds(),'ago..'
 
 			instance_metrics['instance']['state']['state'] = "Running"
 
@@ -393,7 +396,7 @@ def ajax_virtual_machines(request):
 						
 			if(vm_state=="Running"): 
 				
-				print 'data_median', data_median
+				#print 'data_median', data_median
 				
 				isotope_filter_classes = " linux "
 							
