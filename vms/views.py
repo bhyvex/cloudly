@@ -553,6 +553,7 @@ def control_aws_vm(request, vm_name, action):
 
 @login_required()
 def server_view(request, hwaddr):
+	# XXX perhaps it's a good idea to manually check for the permission to see the server based on the ownership
 	return HttpResponse(hwaddr+" working on this currently")
 
 
