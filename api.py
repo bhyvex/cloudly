@@ -85,7 +85,7 @@ def ping():
 
 	print 'API query from v'+str(agent_version), uuid
 	print ' '+unichr(746), secret, uuid, 'IP', ip_remote+'/'+ ip
-	print ' '+unichr(746)+, uuid, 'host machine uptime '+uptime+''
+	print ' '+unichr(746), uuid, 'host machine uptime '+uptime+''
 
 	#print server
 	#import random
