@@ -5,30 +5,36 @@
 <br/>
 <br/>
 
-server {{server}}
+<b>server</b> {{server}}
+<hr/>
 
+<b>cpu_usage</b> {{cpu_usage}}
 <br/>
-<br/>
+{% for cpu_metrics in cpu_usage %}
+	{{cpu_metrics}}
+{% endfor %}
+<hr/>
 
-cpu_usage {{cpu_usage}}
+<b>loadavg</b> {{loadavg}}
+{% for loadavg_metrics in loadavg %}
+	{{loadavg_metrics}}
+{% endfor %}
+<hr/>
 
-<br/>
-<br/>
+<b>mem_usage</b> {{mem_usage}}
+{% for mem_metrics in mem_usage %}
+	{{mem_metrics}}
+{% endfor %}
+<hr/>
 
-loadavg {{loadavg}}
+<b>disks_usage</b> {{disks_usage}}
+{% for disks_metrics in disks_usage %}
+	{{disks_metrics}}
+{% endfor %}
+<hr/>
 
-<br/>
-<br/>
-
-mem_usage {{mem_usage}}
-
-<br/>
-<br/>
-
-disks_usage {{disks_usage}}
-
-<br/>
-<br/>
-
-activity {{activity}}
+<b>activity</b> {{activity}}
+{% for log in activity %}
+	{{log}}
+{% endfor %}
 
