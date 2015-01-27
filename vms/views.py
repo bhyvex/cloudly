@@ -564,16 +564,21 @@ def server_view(request, hwaddr):
 
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
-	user.last_login = datetime.datetime.now()
-	user.save()
 	
 	ip = request.META['REMOTE_ADDR']
 	_log_user_activity(profile,"click","/server/"+hwaddr,"server_view",ip=ip)
 	
 	hwaddr = hwaddr.replace('-',':')
 	server = mongo.servers.find_one({'secret':profile.secret,'uuid':hwaddr,})
-	
-	return render_to_response('server_detail.html', {'hwaddr':hwaddr,'server':server,}, context_instance=RequestContext(request))
+
+	uuid = server['uuid']		
+	cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(5)
+
+	return render_to_response('server_detail.html', {'hwaddr':hwaddr,'server':server,'cpu_usage':cpu_usage,'loadavg':loadavg,'mem_usage':mem_usage,'disks_usage':disks_usage,'activity':activity,}, context_instance=RequestContext(request))
     
 
 def ajax_virtual_machines_box(request):
