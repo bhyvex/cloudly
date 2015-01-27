@@ -558,6 +558,15 @@ def control_aws_vm(request, vm_name, action):
 
 @login_required()
 def server_view(request, hwaddr):
+
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	user.last_login = datetime.datetime.now()
+	user.save()
+	
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/server/"+hwaddr,"server_view",ip=ip)
+	
 	# XXX perhaps it's a good idea to manually check for the permission to see the server based on the ownership
 	# XXX record click on the server view
 	return HttpResponse(hwaddr+" working on this currently")
