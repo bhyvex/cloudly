@@ -17,10 +17,7 @@ urlpatterns = patterns('',
 	url(r'^cloud/settings/reset/$', 'userprofile.views.reset_cloud_settings', name='reset_cloud_settings'),
 	url(r'^cloud/settings/regions/update/$', 'userprofile.views.cloud_settings_update_regions', name='cloud_settings_update_regions'),
 	url(r'^cloud/settings/credentials/update/$', 'userprofile.views.cloud_settings_update_credentials', name='cloud_settings_update_credentials'),
-	url(r'^goodbye/$', 'userprofile.views.goodbye', name='goodbye'),	
-	# private cloud stuff
-	url(r'^private/servers/$', 'private_servers.views.servers', name='servers'),
-	url(r'^private/server/(?P<uuid>[\w\-\.]+)/$', 'private_servers.views.server_detail', name='server_detail'),
+	url(r'^goodbye/$', 'userprofile.views.goodbye', name='goodbye'),
 	# ajax
 	url(r'^ajax/cloud/vms/$', 'vms.views.ajax_virtual_machines', name='ajax_virtual_machines'),
 	url(r'^ajax/cloud/box-template/$', 'vms.views.ajax_virtual_machines_box', name='ajax_virtual_machines_box'),
