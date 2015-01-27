@@ -569,8 +569,8 @@ def server_view(request, hwaddr):
 	
 	# XXX perhaps it's a good idea to manually check for the permission to see the server based on the ownership
 	# XXX record click on the server view
-	return HttpResponse(hwaddr+" working on this currently")
-
+	return render_to_response('server_detail.html', {'hwaddr':hwaddr,}, context_instance=RequestContext(request))
+    
 
 def ajax_virtual_machines_box(request):
 			
