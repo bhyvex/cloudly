@@ -127,8 +127,7 @@ def ajax_vms_refresh(request):
 		
 
 	if aws_ec2_verified:
-		
-		
+				
 		aws_regions = profile.aws_enabled_regions.split(',')
 		print 'AWS regions', aws_regions
 		
