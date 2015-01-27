@@ -570,6 +570,7 @@ def server_view(request, hwaddr):
 	ip = request.META['REMOTE_ADDR']
 	_log_user_activity(profile,"click","/server/"+hwaddr,"server_view",ip=ip)
 	
+	hwaddr = hwaddr.replace('-',':')
 	server = mongo.servers.find_one({'secret':profile.secret,'uuid':hwaddr,})
 	
 	return render_to_response('server_detail.html', {'hwaddr':hwaddr,'server':server,}, context_instance=RequestContext(request))
