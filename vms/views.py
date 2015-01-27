@@ -569,6 +569,10 @@ def server_view(request, hwaddr):
 	
 	# XXX perhaps it's a good idea to manually check for the permission to see the server based on the ownership
 	# XXX record click on the server view
+
+	server = mongo.servers.find({'secret':profile.secret,'uuid':hwaddr,})
+	print server
+
 	return render_to_response('server_detail.html', {'hwaddr':hwaddr,}, context_instance=RequestContext(request))
     
 
