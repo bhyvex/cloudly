@@ -14,176 +14,176 @@
 	  	<li class="active">Amazon EC2 {{vm_name|upper}}</li>
 	</ol>
 
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2><i class="fa fa-truck"></i>Server Details</h2>
+					<div class="panel-actions">
+						<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+					</div>
+				</div>
+
+				<div class="panel-body">
+
+					<div class="panel-body col-md-6">
+					
+						<table id="user" class="table table-bordered table-striped" style="clear: both">
+							<tbody> 
+								<tr>         
+									<td width="30%">Name</td>
+									<td width="70%"><a href="#" id="servername">{{vm_cache|dict_get:"instance"|dict_get:"id"}}</a></td>
+								</tr>
+								<tr>         
+									<td>IP Address</td>
+									<td>
+										<a href="http://www.infosniper.net/index.php?ip_address={{vm_cache|dict_get:"instance"|dict_get:"ip_address"}}&map_source=1&overview_map=1&lang=1&map_type=1&zoom_level=7" target="_blank">{{vm_cache|dict_get:"instance"|dict_get:"ip_address"}}</a> (private IP {{vm_cache|dict_get:"instance"|dict_get:"private_ip_address"}})
+									</td>
+								</tr>
+								<tr>
+									<td>DNS Name</td>
+									<td><a href="http://{{vm_cache|dict_get:"instance"|dict_get:"dns_name"}}" target="_blank">http://{{vm_cache|dict_get:"instance"|dict_get:"dns_name"}}</a></td>
+-								</tr>
+								<tr>         
+									<td>Region</td>
+									<td>{{vm_cache|dict_get:"instance"|dict_get:"region"}}</td>
+								</tr> 
+								<tr>         
+									<td>Placement</td>
+									<td>{{vm_cache|dict_get:"instance"|dict_get:"placement"}}</td>
+								</tr>  
+								<tr>         
+									<td>AWS Image ID</td>
+									<td>{{vm_cache|dict_get:"instance"|dict_get:"image_id"}}</td>
+								</tr>
+			                </tbody>
+			            </table>	
+
+						<table id="user" class="table table-bordered table-striped" style="clear: both">
+							<tbody> 
+								<tr>         
+									<td>Security Groups</td>
+									<td>{{vm_cache|dict_get:"instance"|dict_get:"groups"}}</td>
+								</tr>                      
+								<tr>         
+									<td width="30%">Key Name</td>
+									<td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"key_name"}}</td>
+								</tr>                      
+							</tbody>
+						</table>	
+
+
+						<table id="user" class="table table-bordered table-striped" style="clear: both">
+							<tbody> 
+								<tr>         
+									<td>State</td>
+									<td>{{vm_cache|dict_get:"instance"|dict_get:"state"}}</td>
+								</tr>                       
+								<tr>         
+									<td width="30">Launch Time</td>
+									<td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"launch_time"}}</td>
+								</tr>                      
+							</tbody>
+						</table>	
+
+					</div>
+					<div class="panel-body col-md-6">							
+							
+						<table id="user" class="table table-bordered table-striped" style="clear: both">
+							<tbody> 
+								<tr>         
+									<td width="30%">Instance Type</td>
+									<td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"instance_type"}}</td>
+								</tr> 
+								<tr>         
+									<td>Architecture</td>
+									<td>{{vm_cache|dict_get:"instance"|dict_get:"architecture"}}</td>
+								</tr> 
+								<tr>         
+									<td>Virtualization Type</td>
+									<td>{{vm_cache|dict_get:"instance"|dict_get:"virtualization_type"}}</td>
+								</tr>
+								<tr>         
+									<td>Hypervisor</td>
+									<td>{{vm_cache|dict_get:"instance"|dict_get:"hypervisor"}}</td>
+								</tr>                    
+
+								<tr>         
+									<td>Persistent</td>
+									<td>{{vm_cache|dict_get:"instance"|dict_get:"persistent"}}</td>
+								</tr>  
+							</tbody>
+						</table>	
+
+						<table id="user" class="table table-bordered table-striped" style="clear: both">
+							<tbody> 
+								<tr>         
+									<td width="30%">Root Device Name</td>
+									<td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"root_device_name"}}</td>
+								</tr>                      
+								<tr>         
+									<td>Root Device Type</td>
+									<td>{{vm_cache|dict_get:"instance"|dict_get:"root_device_type"}}</td>
+								</tr>                      
+								<tr>         
+									<td>Block Device Mapping</td>
+									<td>{{vm_cache|dict_get:"instance"|dict_get:""}}</td>
+								</tr>                      
+								<tr>         
+									<td>Ramdisk</td>
+									<td>{{vm_cache|dict_get:"instance"|dict_get:"ramdisk"}}</td>
+								</tr>                      
+							</tbody>
+						</table>	
+
+						<table id="tags" class="table table-bordered table-striped" style="clear: both">
+							<tr>         
+								<td>Tags</td>
+								<td>{{vm_cache|dict_get:"instance"|dict_get:"tags"}}</td>
+							</tr> 
+						</table>
+
+                    </div>
+                </div>
+			</div>
+		</div>
+	</div><!--/row-->
 
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="panel panel-default">
-					<div class="panel-heading">
-						<h2><i class="fa fa-truck"></i>Server Details</h2>
-						<div class="panel-actions">
-							<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-						</div>
+				<div class="panel-heading">
+					<h2><i class="fa fa-truck"></i>System metrics</h2>
+					<div class="panel-actions">
+						<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
 					</div>
+				</div>
+				<div class="panel-body">
+               
+					<div id="CPU-Metrics"></div>
+					<br />
+					<div id="network-metrics"></div>
+					<br />
+					<div id="hdd-metrics"></div>
 
-					<div class="panel-body">
+					<strong>Debug:</strong> vm_cache<br/>
 
-					<div class="panel-body col-md-6">
-				            <table id="user" class="table table-bordered table-striped" style="clear: both">
-				                <tbody> 
-				                    <tr>         
-				                        <td width="30%">Name</td>
-				                        <td width="70%"><a href="#" id="servername">{{vm_cache|dict_get:"instance"|dict_get:"id"}}</a></td>
-				                    </tr>
-				                    <tr>         
-				                        <td>IP Address</td>
-				                        <td><a href="http://www.infosniper.net/index.php?ip_address={{vm_cache|dict_get:"instance"|dict_get:"ip_address"}}&map_source=1&overview_map=1&lang=1&map_type=1&zoom_level=7" target="_blank">{{vm_cache|dict_get:"instance"|dict_get:"ip_address"}}</a> (private IP {{vm_cache|dict_get:"instance"|dict_get:"private_ip_address"}})</td>
-				                    </tr>
-				                    <tr>
-							<td>DNS Name</td>
--				                        <td><a href="http://{{vm_cache|dict_get:"instance"|dict_get:"dns_name"}}" target="_blank">http://{{vm_cache|dict_get:"instance"|dict_get:"dns_name"}}</a></td>
--				                    </tr>
-				                    <tr>         
-				                        <td>Region</td>
-				                        <td>{{vm_cache|dict_get:"instance"|dict_get:"region"}}</td>
-				                    </tr> 
-				                    <tr>         
-				                        <td>Placement</td>
-				                        <td>{{vm_cache|dict_get:"instance"|dict_get:"placement"}}</td>
-				                    </tr>  
-				                    <tr>         
-				                        <td>AWS Image ID</td>
-				                        <td>{{vm_cache|dict_get:"instance"|dict_get:"image_id"}}</td>
-				                    </tr>
-				                </tbody>
-				            </table>	
-
-
-				            <table id="user" class="table table-bordered table-striped" style="clear: both">
-				                <tbody> 
-				                    <tr>         
-				                        <td>Security Groups</td>
-				                        <td>{{vm_cache|dict_get:"instance"|dict_get:"groups"}}</td>
-				                    </tr>                      
-				                    <tr>         
-				                        <td width="30%">Key Name</td>
-				                        <td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"key_name"}}</td>
-				                    </tr>                      
-				                </tbody>
-				            </table>	
-
-
-				            <table id="user" class="table table-bordered table-striped" style="clear: both">
-				                <tbody> 
-				                    <tr>         
-				                        <td>State</td>
-				                        <td>{{vm_cache|dict_get:"instance"|dict_get:"state"}}</td>
-				                    </tr>                       
-				                    <tr>         
-				                        <td width="30">Launch Time</td>
-				                        <td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"launch_time"}}</td>
-				                    </tr>                      
-				                </tbody>
-				            </table>	
-
-						</div>
-						<div class="panel-body col-md-6">							
-							
-				            <table id="user" class="table table-bordered table-striped" style="clear: both">
-				                <tbody> 
-				                    <tr>         
-				                        <td width="30%">Instance Type</td>
-				                        <td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"instance_type"}}</td>
-				                    </tr> 
-				                    <tr>         
-				                        <td>Architecture</td>
-				                        <td>{{vm_cache|dict_get:"instance"|dict_get:"architecture"}}</td>
-				                    </tr> 
-				                    <tr>         
-				                        <td>Virtualization Type</td>
-				                        <td>{{vm_cache|dict_get:"instance"|dict_get:"virtualization_type"}}</td>
-				                    </tr>
-				                    <tr>         
-				                        <td>Hypervisor</td>
-				                        <td>{{vm_cache|dict_get:"instance"|dict_get:"hypervisor"}}</td>
-				                    </tr>                    
-
-				                    <tr>         
-				                        <td>Persistent</td>
-				                        <td>{{vm_cache|dict_get:"instance"|dict_get:"persistent"}}</td>
-				                    </tr>  
-				                </tbody>
-				            </table>	
-
-				            <table id="user" class="table table-bordered table-striped" style="clear: both">
-				                <tbody> 
-				                    <tr>         
-				                        <td width="30%">Root Device Name</td>
-				                        <td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"root_device_name"}}</td>
-				                    </tr>                      
-				                    <tr>         
-				                        <td>Root Device Type</td>
-				                        <td>{{vm_cache|dict_get:"instance"|dict_get:"root_device_type"}}</td>
-				                    </tr>                      
-				                    <tr>         
-				                        <td>Block Device Mapping</td>
-				                        <td>{{vm_cache|dict_get:"instance"|dict_get:""}}</td>
-				                    </tr>                      
-				                    <tr>         
-				                        <td>Ramdisk</td>
-				                        <td>{{vm_cache|dict_get:"instance"|dict_get:"ramdisk"}}</td>
-				                    </tr>                      
-				                </tbody>
-				            </table>	
-
-				            <table id="tags" class="table table-bordered table-striped" style="clear: both">
-				                    <tr>         
-				                        <td>Tags</td>
-				                        <td>{{vm_cache|dict_get:"instance"|dict_get:"tags"}}</td>
-				                    </tr> 
-					    </table>
-
-                    </div><!--/col-->
-                </div><!--/row-->	
-        </div>
-        <!-- end: Content -->
-	</div><!--/row-->
-
-
-    <div class="col-xs-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                    <h2><i class="fa fa-truck"></i>System metrics</h2>
-                    <div class="panel-actions">
-                            <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-                            <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-                            <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-                    </div>
-            </div>
-            <div class="panel-body">
-                
-                <div id="CPU-Metrics"></div>
-                <br />
-                <div id="network-metrics"></div>
-                <br />
-                <div id="hdd-metrics"></div>
-
-
-<strong>Debug:</strong> vm_cache<br/>
-
-{% comment %}
-{% for graph in vm_cache %}
-{% if graph == "cpu_utilization_datapoints" %}
-	<strong>{{graph}} data</strong>
-	<br/>
-	{% for value in vm_cache|dict_get:graph|make_json %}
-		{{value|dict_get:"Timestamp"|format_datetime_special}}, value: {{value|dict_get:"Average"}}<br/>
-	{% endfor %}
-{% endif %}
-{% endfor %}
-<br/>
-{% endcomment %}
+					{% comment %}
+					{% for graph in vm_cache %}
+					{% if graph == "cpu_utilization_datapoints" %}
+						<strong>{{graph}} data</strong>
+						<br/>
+						{% for value in vm_cache|dict_get:graph|make_json %}
+							{{value|dict_get:"Timestamp"|format_datetime_special}}, value: {{value|dict_get:"Average"}}<br/>
+						{% endfor %}
+					{% endif %}
+					{% endfor %}
+					<br/>
+					{% endcomment %}
 
 <pre>
 <strong>(Only) Available metrics from the ec2.cloudwatch:</strong>
@@ -196,60 +196,58 @@ disk_writebytes_datapoints
 disk_readbytes_datapoints
 </pre>
 
-            </div><!--/col-->
+				</div>
+			</div>
+		</div>
+	</div><!--/row -->
 
-</div><!--/row-->	
 
-
-<div class="row">
-        <div class="col-xs-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                            <h2><i class="fa fa-truck"></i>Console output</h2>
-                            <div class="panel-actions">
-                                    <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-                                    <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-                                    <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-                            </div>
-                    </div>
-                    <div class="panel-body" style="display: none;">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2><i class="fa fa-truck"></i>Console output</h2>
+					<div class="panel-actions">
+						<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+					</div>
+				</div>
+				<div class="panel-body" style="display: none;">
 
 <pre>
 Console output:
 {{console_output}}
 </pre>	
+						
+				</div>
+			</div>
+		</div><!--/col-->
+	</div><!--/row-->	
 
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2><i class="fa fa-truck"></i>Estimated cost (based on the actual usage)</h2>
+					<div class="panel-actions">
+						<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+					</div>
+				</div>
+				<div class="panel-body">
+					TBD
+				</div>
+			</div>
+		</div>
+	</div><!--/row-->
 
-                </div><!--/col-->
-</div><!--/row-->	
+</div><!-- end: Content -->
 
-
-<div class="row">
-        <div class="col-xs-12">
-                <div class="panel panel-default">
-                                <div class="panel-heading">
-                                        <h2><i class="fa fa-truck"></i>Estimated cost (based on the actual usage)</h2>
-                                        <div class="panel-actions">
-                                                <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-                                                <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-                                                <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-                                        </div>
-                                </div>
-                                <div class="panel-body">
-                                        TBD
-                                </div><!--/col-->
-                </div><!--/row-->	
-        </div>
-        <!-- end: Content -->
-</div><!--/row-->
-
-</div>
-<!-- end: Content -->
 
 <div class="panel-body">
-
-
-{% if vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state" == "running" %}
+	{% if vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state" == "running" %}
         <a href="/aws/{{vm_name}}/request/help/"><button type="button" class="btn btn-default">Request Help</button></a>
         <div class="btn-group dropup">
                 <button type="button" class="btn btn-warning">Remote desktop</button>
@@ -270,52 +268,35 @@ Console output:
                 <li><a href="#">Remote desktop</a></li>
                 </ul>
         </div>
-{% endif %}
+	{% endif %}
 
-{% if vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state" == "stopped" %}
+	{% if vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state" == "stopped" %}
         <a href="/aws/{{vm_name}}/start/"><button type="button" class="btn btn-success">Start</button></a>
         <a href="/aws/{{vm_name}}/terminate/"><button type="button" class="btn btn-danger">Terminate</button></a>
         <a href="/aws/{{vm_name}}/request/help/"><button type="button" class="btn btn-default">Request Help</button></a>
         <a href="#"></a>
         <a href="#"></a>
-{% endif %}
-
-
+	{% endif %}
 </div>	
 
-</div>	
 
-</div>	
-
-</div>	
-
-</div>
-
-</div>
-<!-- end: Content -->
-
-
-
-
-</div><!--/container-->
-
-	<div class="modal fade" id="myModal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">Modal title</h4>
-				</div>
-				<div class="modal-body">
-					<p>Here settings can be configured...</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Modal title</h4>
+			</div>
+			<div class="modal-body">
+				<p>Here settings can be configured...</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 {% endblock page_content %}
 
