@@ -572,8 +572,8 @@ def server_view(request, hwaddr):
 	_log_user_activity(profile,"click","/server/"+hwaddr,"server_view",ip=ip)
 	
 	server = mongo.servers.find({'secret':profile.secret,'uuid':hwaddr,})
-
-	return render_to_response('server_detail.html', {'hwaddr':hwaddr,}, context_instance=RequestContext(request))
+	
+	return render_to_response('server_detail.html', {'hwaddr':hwaddr,'server':server,}, context_instance=RequestContext(request))
     
 
 def ajax_virtual_machines_box(request):
