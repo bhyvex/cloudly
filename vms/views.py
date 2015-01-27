@@ -572,11 +572,11 @@ def server_view(request, hwaddr):
 	server = mongo.servers.find_one({'secret':profile.secret,'uuid':hwaddr,})
 
 	uuid = server['uuid']		
-	cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-	loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-	mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-	disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-	activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(5)
+	cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(120)
+	loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(120)
+	mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(120)
+	disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(120)
+	activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1)
 
 	return render_to_response('server_detail.html', {'hwaddr':hwaddr,'server':server,'cpu_usage':cpu_usage,'loadavg':loadavg,'mem_usage':mem_usage,'disks_usage':disks_usage,'activity':activity,}, context_instance=RequestContext(request))
     
