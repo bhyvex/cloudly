@@ -245,38 +245,40 @@ Console output:
 		</div>
 	</div><!--/row-->
 
-	<div class="panel-body">
-		{% if vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state" == "running" %}
-			<a href="/aws/{{vm_name}}/request/help/"><button type="button" class="btn btn-default">Request Help</button></a>
-			<div class="btn-group dropup">
-				<button type="button" class="btn btn-warning">Remote desktop</button>
-				<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
-					<span class="caret"></span>
-					<span class="sr-only">Toggle Dropdown</span>
-				</button>
-				<ul class="dropdown-menu" role="menu">
-					<li><a href="/aws/{{vm_name}}/stop/">Stop</a></li>
-					<li><a href="/aws/{{vm_name}}/terminate/">Terminate</a></li>
-					<li class="divider"></li>
-					<li><a href="#">Duplicate</a></li>
-					<li><a href="#">Assign a static IP</a></li>
-					<li><a href="#">Enable auto-scaling</a></li>
-					<li><a href="#">Backup to the Cloud</a></li>
-					<li class="divider"></li>
-					<li class="divider"></li>
-					<li><a href="#">Remote desktop</a></li>
-				</ul>
-			</div>
-		{% endif %}
+	<div class="row">
+		<div class="panel-body">
+			{% if vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state" == "running" %}
+				<a href="/aws/{{vm_name}}/request/help/"><button type="button" class="btn btn-default">Request Help</button></a>
+				<div class="btn-group dropup">
+					<button type="button" class="btn btn-warning">Remote desktop</button>
+					<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+						<span class="caret"></span>
+						<span class="sr-only">Toggle Dropdown</span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="/aws/{{vm_name}}/stop/">Stop</a></li>
+						<li><a href="/aws/{{vm_name}}/terminate/">Terminate</a></li>
+						<li class="divider"></li>
+						<li><a href="#">Duplicate</a></li>
+						<li><a href="#">Assign a static IP</a></li>
+						<li><a href="#">Enable auto-scaling</a></li>
+						<li><a href="#">Backup to the Cloud</a></li>
+						<li class="divider"></li>
+						<li class="divider"></li>
+						<li><a href="#">Remote desktop</a></li>
+					</ul>
+				</div>
+			{% endif %}
 
-		{% if vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state" == "stopped" %}
-			<a href="/aws/{{vm_name}}/start/"><button type="button" class="btn btn-success">Start</button></a>
-			<a href="/aws/{{vm_name}}/terminate/"><button type="button" class="btn btn-danger">Terminate</button></a>
-			<a href="/aws/{{vm_name}}/request/help/"><button type="button" class="btn btn-default">Request Help</button></a>
-			<a href="#"></a>
-			<a href="#"></a>
-		{% endif %}
-	</div>	
+			{% if vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state" == "stopped" %}
+				<a href="/aws/{{vm_name}}/start/"><button type="button" class="btn btn-success">Start</button></a>
+				<a href="/aws/{{vm_name}}/terminate/"><button type="button" class="btn btn-danger">Terminate</button></a>
+				<a href="/aws/{{vm_name}}/request/help/"><button type="button" class="btn btn-default">Request Help</button></a>
+				<a href="#"></a>
+				<a href="#"></a>
+			{% endif %}
+		</div>	
+	</div><!--/row-->	
 	
 </div><!-- end: Content -->
 
