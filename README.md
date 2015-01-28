@@ -28,7 +28,7 @@ mysql> create database cloudly;
 </pre>
 
 
-3) Install various python packages
+3) Install various python modules
 
 <pre>
 $ apt-get install python-dev 
