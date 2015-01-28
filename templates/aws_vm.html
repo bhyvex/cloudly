@@ -53,11 +53,13 @@
 								<tr>         
 									<td>Region</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"region"}}</td>
-								</tr> 
+								</tr>
+								{% comment %} 
 								<tr>         
 									<td>Placement</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"placement"}}</td>
 								</tr>  
+								{% endcomment %}
 								<tr>         
 									<td>AWS Image ID</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"image_id"}}</td>
