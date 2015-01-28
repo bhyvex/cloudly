@@ -46,10 +46,14 @@
 										{% endif %}
 									</td>
 								</tr>
+								
+								{% if vm_cache|dict_get:"instance"|dict_get:"dns_name" %}
 								<tr>
 									<td>DNS Name</td>
 									<td><a href="http://{{vm_cache|dict_get:"instance"|dict_get:"dns_name"}}" target="_blank">http://{{vm_cache|dict_get:"instance"|dict_get:"dns_name"}}</a></td>
 								</tr>
+								{% endif %}
+								
 								<tr>         
 									<td>Region</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"region"}}</td>
