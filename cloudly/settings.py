@@ -41,6 +41,8 @@ INSTALLED_APPS = (
 	'userprofile',
 	'vms',
 	'admin',
+	# devel
+	'devel',
 )
 
 MIDDLEWARE_CLASSES = (
