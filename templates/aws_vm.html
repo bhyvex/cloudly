@@ -82,13 +82,19 @@
 						<table id="user" class="table table-bordered table-striped" style="clear: both">
 							<tbody> 
 								<tr>         
-									<td>State</td>
-									<td>{{vm_cache|dict_get:"instance"|dict_get:"state"}}</td>
-								</tr>                       
-								<tr>         
 									<td width="30%">Launch Time</td>
 									<td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"launch_time"}}</td>
 								</tr>                      
+								<tr>         
+									<td>State</td>
+									<td>{{vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state"|title}}</td>
+								</tr>
+								{% if vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state_reason" %}
+								<tr>
+									<td>State Reason</td>
+									<td>{{vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state_reason"|dict_get:"message"}}</td>
+								</tr>
+								{% endif %}
 							</tbody>
 						</table>	
 
