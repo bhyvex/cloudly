@@ -199,7 +199,7 @@ def ajax_vms_refresh(request):
 					
 					virtual_machines[instance.id] = instance_metrics
 					
-					print 'Updating cache. '*100
+					print 'Updating', request.user, 'cache..'
 					print instance.platform, instance.product_codes
 
 					try:
