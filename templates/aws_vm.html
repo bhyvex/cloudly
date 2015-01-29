@@ -69,7 +69,13 @@
 							<tbody> 
 								<tr>         
 									<td>Security Groups</td>
-									<td>{{vm_cache|dict_get:"instance"|dict_get:"groups"}}</td>
+									<td>
+									{% for group in vm_cache|dict_get:"instance"|dict_get:"groups" %}
+										{% for g in group %}
+											{{g}}{% if not forloop.last %},{% endif %}
+										{% endfor %}
+									{% endfor %}
+									</td>
 								</tr>                      
 								<tr>         
 									<td width="30%">Key Name</td>
