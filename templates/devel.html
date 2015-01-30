@@ -70,7 +70,25 @@
 							</tr>
 						</tbody>
 					</table>	
-
+					
+					<table id="user1" class="table table-bordered table-striped" style="clear: both">
+						<tbody> 
+							<tr>         
+								<td>Security Groups</td>
+								<td>
+								{% for group in vm_cache|dict_get:"instance"|dict_get:"groups" %}
+									{% for g in group %}
+										{{g}}{% if not forloop.last %},{% endif %}
+									{% endfor %}
+								{% endfor %}
+								</td>
+							</tr>                      
+							<tr>         
+								<td width="30%">Key Name</td>
+								<td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"key_name"}}</td>
+							</tr>                      
+						</tbody>
+					</table>
                 </div>
 			</div>
 		</div>
@@ -253,7 +271,7 @@
 						  </thead>   
 						  <tbody>
 							<tr>
-								<td>10</td>
+								<td>1</td>
 								<td><span class="label label-success">root</span></td>
 								<td>5%</td>                                       
 								<td>0.3%</td>                                       
@@ -261,12 +279,12 @@
 								<td>xenwatch</td>                                       
 							</tr>
 							<tr>
-								<td>10</td>
+								<td>5</td>
 								<td><span class="label label-success">root</span></td>
 								<td>5%</td>                                       
 								<td>0.3%</td>                                       
 								<td>42:45.94</td>                                       
-								<td>xenwatch</td>                                       
+								<td>mysqld</td>                                       
 							</tr>
 							<tr>
 								<td>10</td>
@@ -274,23 +292,23 @@
 								<td>5%</td>                                       
 								<td>0.3%</td>                                       
 								<td>42:45.94</td>                                       
-								<td>xenwatch</td>                                       
+								<td>apache2</td>                                       
 							</tr>
 							<tr>
-								<td>10</td>
+								<td>15</td>
 								<td><span class="label label-success">root</span></td>
 								<td>5%</td>                                       
 								<td>0.3%</td>                                       
 								<td>42:45.94</td>                                       
-								<td>xenwatch</td>                                       
+								<td>crypto</td>                                       
 							</tr>
 							<tr>
-								<td>10</td>
+								<td>20</td>
 								<td><span class="label label-success">root</span></td>
 								<td>5%</td>                                       
 								<td>0.3%</td>                                       
 								<td>42:45.94</td>                                       
-								<td>xenwatch</td>                                       
+								<td>khelper</td>                                       
 							</tr>
 						  </tbody>
 					 </table>  
