@@ -246,7 +246,7 @@ Console output:
 	<div class="row">
 		<div class="panel-body">
 			{% if vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state" == "running" %}
-				<a href="#" target="_blank"><button type="button" class="btn btn-default">Amazon EC2 link</button></a>
+				<a href="#" target="_blank"><button type="button" class="btn btn-default">Amazon EC2</button></a>
 				<div class="btn-group dropup">
 					<button type="button" class="btn btn-warning">Remote desktop</button>
 					<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
@@ -268,7 +268,7 @@ Console output:
 			{% if vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state" == "stopped" %}
 				<a href="/aws/{{vm_name}}/start/"><button type="button" class="btn btn-success">Start</button></a>
 				<a href="/aws/{{vm_name}}/terminate/"><button type="button" class="btn btn-danger">Terminate</button></a>
-				<a href="#" target="_blank"><button type="button" class="btn btn-default">Amazon EC2 link</button></a>
+				<a href="#" target="_blank"><button type="button" class="btn btn-default">Amazon EC2</button></a>
 				<a href="#"></a>
 				<a href="#"></a>
 			{% endif %}
