@@ -110,10 +110,11 @@ Now that you have the User Interface (Admin Dashboard) up and running you'd need
 
 11) Configuring the web server (NGINX without the SSL support)
 
-First and foremost install the NGINX, like so:
+First and foremost install the NGINX (and flup), like so:
 
 <pre>
 $ apt-get install nginx
+$ apt-get install python-flup
 </pre>
 
 TBD
