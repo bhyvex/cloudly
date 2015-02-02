@@ -41,7 +41,8 @@ $ apt-get install python-openssl
 
 <pre>
 $ apt-get install mongodb
-$ apt-get install python-pymongo
+$ apt-get install python-pip
+$ pip install pymongo
 </pre>
 
 ..and configure your server to meet your specific requirements.
