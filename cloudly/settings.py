@@ -42,7 +42,7 @@ INSTALLED_APPS = (
 	'vms',
 	'admin',
 	# devel
-	'devel',
+	#'devel',
 )
 
 MIDDLEWARE_CLASSES = (
