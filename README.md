@@ -117,7 +117,56 @@ $ apt-get install nginx
 $ apt-get install python-flup
 </pre>
 
+Open your nginx domain config file:
+
+<pre>
+$ vi /etc/nginx/sites-available/cloudly.com
+</pre>
+
+..and add in the following configuration:
+
+<pre>
+server
+{
+    listen   80;
+
+    server_name cloudly.loc;
+    access_log /var/www/log/cloudly-access.log;
+    error_log /var/www/log/cloudly-error.log;
+    root /var/www/cloudly;
+
+    location /site_media
+    {
+        root /var/www/cloudly/static;
+    }
+
+    location /
+    {
+        # host and port to fastcgi server
+        fastcgi_pass 127.0.0.1:8081;
+        fastcgi_param PATH_INFO $fastcgi_script_name;
+        fastcgi_param REQUEST_METHOD $request_method;
+        fastcgi_param QUERY_STRING $query_string;
+        fastcgi_param CONTENT_TYPE $content_type;
+        fastcgi_param CONTENT_LENGTH $content_length;
+        fastcgi_pass_header Authorization;
+        fastcgi_intercept_errors off;
+    }
+}
+</pre>
+
+Then on create the following nginx folders structure:
+
+<pre>
+mkdir /var/www
+mkdir /var/www/log
+mkdir /var/www/cloudly
+</pre>
+
+..and make sure that you copy over cloudly files into the /var/www/cloudly and/or set up a symlink accordingly.
+
 TBD
+
 
 
 12) Configuring NGINX (with the SSL support)
