@@ -116,6 +116,13 @@ First and foremost install the NGINX, like so:
 $ apt-get install nginx
 </pre>
 
+You'd also need to install the uWSGI (Django's core communication protocol to your web server):
+
+<pre>
+$ apt-get install uwsgi
+</pre>
+
+
 12) Configuring NGINX (with the SSL support)
 
 You'd need to contact me about this one. You can reach me on jparicka@gmail.com, or Skype: jparicka
