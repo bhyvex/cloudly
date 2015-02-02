@@ -121,7 +121,7 @@ $ apt-get install python-flup
 Open your nginx domain config file:
 
 <pre>
-$ vi /etc/nginx/sites-available/cloudly.com
+$ vi /etc/nginx/sites-available/cloudly.loc
 </pre>
 
 ..and add in the following configuration:
