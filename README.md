@@ -144,7 +144,7 @@ server
     location /
     {
         # host and port to fastcgi server
-        fastcgi_pass 127.0.0.1:8081;
+        fastcgi_pass 127.0.0.1:8080;
         fastcgi_param PATH_INFO $fastcgi_script_name;
         fastcgi_param REQUEST_METHOD $request_method;
         fastcgi_param QUERY_STRING $query_string;
