@@ -122,6 +122,12 @@ You'd also need to install the uWSGI (Django's core communication protocol to yo
 $ apt-get install uwsgi
 </pre>
 
+For the time being, while we configure the nginx, we'll stop the recently installed uWSGI, like so:
+
+<pre>
+service uwsgi stop
+</pre>
+
 
 12) Configuring NGINX (with the SSL support)
 
