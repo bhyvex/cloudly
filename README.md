@@ -169,6 +169,9 @@ TBD
 
 
 
+For more information about the nginx configuration see the NGINX Wiki on <a>http://wiki.nginx.org/DjangoFastCGI</a>
+
+
 12) Configuring NGINX (with the SSL support)
 
 You'd need to contact me about this one. You can reach me on jparicka@gmail.com, or Skype: jparicka
