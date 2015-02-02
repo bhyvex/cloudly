@@ -110,7 +110,11 @@ Now that you have the User Interface (Admin Dashboard) up and running you'd need
 
 11) Configuring the web server (NGINX without the SSL support)
 
-TBD...
+First and foremost install the NGINX, like so:
+
+<pre>
+$ apt-get install nginx
+</pre>
 
 12) Configuring NGINX (with the SSL support)
 
