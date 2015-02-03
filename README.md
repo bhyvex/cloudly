@@ -166,7 +166,7 @@ mkdir /var/www/cloudly
 
 ..and make sure that you copy over cloudly files into the /var/www/cloudly and/or set up a symlink accordingly.
 
-TBD
+TBD 
 
 
 
