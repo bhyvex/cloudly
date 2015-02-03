@@ -78,12 +78,13 @@
 								<td>{{server|dict_get:"cpu_info"}}</td>
 							</tr>
 							<tr>
+								<td>Memory</td>
+								<td>{{server|dict_get:"memory_usage"|dict_get:"memory_total"}}</td>
+							</tr>
+
+							<tr>
 								<td>Load Average</td>
 								<td>{{server|dict_get:"loadavg"}}</td>
-							</tr>
-							<tr>
-								<td></td>
-								<td></td>
 							</tr>
 							
 						</tbody>
