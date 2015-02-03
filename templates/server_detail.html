@@ -39,8 +39,8 @@
 					<table id="user" class="table table-bordered table-striped" style="clear: both">
 						<tbody> 
 							<tr>         
-								<td width="30%">Name</td>
-								<td width="70%">{{server|dict_get:"uuid"}}</td>
+								<td width="40%">Name</td>
+								<td width="60%">{{server|dict_get:"uuid"}}</td>
 							</tr>
 							<tr>         
 								<td>IP Address</td>
@@ -56,9 +56,30 @@
 								<td>Last seen</td>
 								<td>{{server|dict_get:"last_seen"}}</td>
 							</tr>
+														<tr>
+								<td>Agent Version</td>
+								<td>v{{server|dict_get:"agent_version"}}</td>
+							</tr>
+
+							<tr>
+								<td>Status</td>
+								<td>xxx</td>
+							</tr>
 							<tr>         
 								<td>CPU Virtualization</td>
 								<td>{{server|dict_get:"cpu_virtualization"}}</td>
+							</tr>
+							<tr>
+								<td>CPUs</td>
+								<td>xxx len CPUs</td>
+							</tr>
+							<tr>
+								<td>CPU info</td>
+								<td>{{server|dict_get:"cpu_info"}}</td>
+							</tr>
+							<tr>
+								<td>Load Average</td>
+								<td>{{server|dict_get:"loadavg"}}</td>
 							</tr>
 							<tr>
 								<td></td>
