@@ -37,6 +37,10 @@ def dict_get(h, key):
 def count(x):
 	return len(x)	
 
+@register.filter(name="times_hundred")
+def times_hundred(x):
+	return x*100
+
 @register.filter(name='clear_filename')
 def clear_filename(f):
 	try:
