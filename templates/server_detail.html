@@ -212,7 +212,14 @@
 				</div>
 
 				<div class="panel-body">
-				<b>disks_usage</b> {{disks_usage}}
+				
+				<b>physical_disks</b> {{server|dict_get:"physical_disks"}}
+				
+				<hr/>
+				
+				<b>disks_usage</b> {{server|dict_get:"disks_usage"}}
+				
+				<b>disks_usage graphs</b> {{disks_usage}}
 				{% for disks_metrics in disks_usage %}
 					{{disks_metrics}}
 				{% endfor %}
