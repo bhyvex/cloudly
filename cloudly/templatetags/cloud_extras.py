@@ -39,7 +39,7 @@ def count(x):
 
 @register.filter(name="times_hundred")
 def times_hundred(x):
-	return x*100
+	return float(x)*100
 
 @register.filter(name='clear_filename')
 def clear_filename(f):
