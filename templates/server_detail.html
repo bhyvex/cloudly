@@ -65,10 +65,6 @@
 								<td>Status</td>
 								<td>xxx</td>
 							</tr>
-							<tr>         
-								<td>CPU Virtualization</td>
-								<td>{{server|dict_get:"cpu_virtualization"}}</td>
-							</tr>
 							<tr>
 								<td>CPUs</td>
 								<td>xxx len CPUs</td>
@@ -77,8 +73,12 @@
 								<td>CPU info</td>
 								<td>{{server|dict_get:"cpu_info"}}</td>
 							</tr>
+							<tr>         
+								<td>CPU Virtualization</td>
+								<td>{{server|dict_get:"cpu_virtualization"}}</td>
+							</tr>
 							<tr>
-								<td>Memory</td>
+								<td>Memory Size</td>
 								<td>{{server|dict_get:"memory_usage"|dict_get:"memory_total"}}</td>
 							</tr>
 
