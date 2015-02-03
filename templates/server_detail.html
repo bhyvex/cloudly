@@ -79,7 +79,7 @@
 							</tr>
 							<tr>
 								<td>Memory Size</td>
-								<td>{{server|dict_get:"memory_usage"|dict_get:"memory_total"}}</td>
+								<td>{{server|dict_get:"memory_usage"|dict_get:"memory_total"|to_mb}} MB</td>
 							</tr>
 
 							<tr>
@@ -113,7 +113,7 @@
 					  </div>
 					</div>
 
-					<h6>Memory ({{server|dict_get:"memory_usage"|dict_get:"memory_used_percentage"}}% - {{server|dict_get:"memory_usage"|dict_get:"memory_used"|to_mb}}GB of {{server|dict_get:"memory_usage"|dict_get:"memory_total"|to_mb}}GB)</h6>
+					<h6>Memory ({{server|dict_get:"memory_usage"|dict_get:"memory_used_percentage"}}% - {{server|dict_get:"memory_usage"|dict_get:"memory_used"|to_mb}}MB of {{server|dict_get:"memory_usage"|dict_get:"memory_total"|to_mb}}MB)</h6>
 					<div class="progress thin">
 					  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{server|dict_get:"memory_usage"|dict_get:"memory_used_percentage"}}" aria-valuemin="0" aria-valuemax="100" style="width: {{server|dict_get:"memory_usage"|dict_get:"memory_used_percentage"}}%">
 						<span class="sr-only">{{server|dict_get:"memory_usage"|dict_get:"memory_used_percentage"}}% Memory used</span>
