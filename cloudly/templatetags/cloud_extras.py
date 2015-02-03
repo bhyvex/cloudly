@@ -32,7 +32,10 @@ def dict_get(h, key):
 	except: pass
 		
 	return None
-	
+
+@register.filter(name="count")
+def count(x):
+	return len(x)	
 
 @register.filter(name='clear_filename')
 def clear_filename(f):
