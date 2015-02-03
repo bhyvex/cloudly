@@ -40,33 +40,25 @@
 						<tbody> 
 							<tr>         
 								<td width="30%">Name</td>
-								<td width="70%"><a href="#" id="servername">{{vm_cache|dict_get:"instance"|dict_get:"id"}}</a></td>
+								<td width="70%"></td>
 							</tr>
 							<tr>         
 								<td>IP Address</td>
-								<td>
-									{% if vm_cache|dict_get:"instance"|dict_get:"ip_address" %}
-									<a href="http://www.infosniper.net/index.php?ip_address={{vm_cache|dict_get:"instance"|dict_get:"ip_address"}}&map_source=1&overview_map=1&lang=1&map_type=1&zoom_level=7" target="_blank">{{vm_cache|dict_get:"instance"|dict_get:"ip_address"}}</a>
-									{% else %}
-									-
-									{% endif %}
-								</td>
+								<td></td>
 							</tr>
 							
-							{% if vm_cache|dict_get:"instance"|dict_get:"dns_name" %}
 							<tr>
 								<td>DNS Name</td>
-								<td><a href="http://{{vm_cache|dict_get:"instance"|dict_get:"dns_name"}}" target="_blank">http://{{vm_cache|dict_get:"instance"|dict_get:"dns_name"}}</a></td>
+								<td></td>
 							</tr>
-							{% endif %}
 							
 							<tr>         
 								<td>Region</td>
-								<td>{{vm_cache|dict_get:"instance"|dict_get:"region"|dict_get:"name"}}</td>
+								<td></td>
 							</tr>
 							<tr>         
 								<td>AWS Image ID</td>
-								<td>{{vm_cache|dict_get:"instance"|dict_get:"image_id"}}</td>
+								<td></td>
 							</tr>
 						</tbody>
 					</table>	
@@ -75,21 +67,10 @@
 						<tbody> 
 							<tr>         
 								<td>Security Groups</td>
-								<td>
-								{% for group in vm_cache|dict_get:"instance"|dict_get:"groups" %}
-									{% for g in group %}
-										{{g}}{% if not forloop.last %},{% endif %}
-									{% endfor %}
-								{% endfor %}
-								</td>
-							</tr>                      
-							<tr>         
-								<td width="30%">Key Name</td>
-								<td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"key_name"}}</td>
+								<td></td>
 							</tr>                      
 						</tbody>
-					</table>
-					
+					</table>					
 					{{server}}
                 </div>
 			</div>
