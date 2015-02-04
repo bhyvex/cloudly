@@ -33,8 +33,8 @@ def dict_get(h, key):
 		
 	return None
 
-@register.filter(name="count")
-def count(x):
+@register.filter(name="count_list")
+def count_list(x):
 	return len(x)	
 
 @register.filter(name="times_hundred")
