@@ -258,6 +258,12 @@ def _get_disks_usage():
 def _get_hostname():
     return "XXX"
 
+def _get_distro():
+
+    distro = platform.linux_distribution()
+
+    return "XXX"
+
 def get_system_metrics( secret ):
 
 	print datetime.datetime.now(), SECRET, 'Collecting system metrics..'
