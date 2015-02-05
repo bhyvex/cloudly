@@ -83,7 +83,7 @@ def ping():
 		'last_seen': last_seen,
 	}
 
-	print 'API query from v'+str(agent_version), uuid
+	print ' API query from v'+str(agent_version), uuid
 	print ' '+unichr(746), secret, uuid, 'IP', ip_remote+'/'+ ip
 	print ' '+unichr(746), uuid, 'host machine uptime '+uptime+''
 
