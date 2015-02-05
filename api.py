@@ -65,6 +65,7 @@ def ping():
 	disks_usage = data['disks_usage']
 	agent_version = data['agent_version']
 	last_seen = datetime.datetime.utcnow()
+	hostname = data['hostname']
 
 	server = {
 		'secret': secret,
@@ -72,6 +73,7 @@ def ping():
 		'uuid': uuid,
 		'ip': ip,
 		'ip_remote': ip_remote,
+		'hostname': hostname,
 		'loadavg': loadavg,
 		'uptime': uptime,
 		'cpu_usage': cpu_usage,
