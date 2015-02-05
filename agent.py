@@ -256,7 +256,12 @@ def _get_disks_usage():
 
 
 def _get_hostname():
-    return "XXX"
+    
+    hostname = subprocess.Popen(["hostname"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+    hostname = hostname.replace("\n","")
+    
+    return hostname
+    
 
 def _get_distro():
 
