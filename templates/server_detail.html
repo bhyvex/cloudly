@@ -54,19 +54,24 @@
 								<td>Status</td>
 								<td>{{server_status}}</td>
 							</tr>
+
+							<tr>
+								<td>Hostname</td>
+								<td>XXX</td>
+							</tr>
 							
+							<tr>
+								<td>Distribution</td>
+								<td>XXX</td>
+							</tr>
 							<tr>
 								<td>Uptime</td>
 								<td>{{server|dict_get:"uptime"}}</td>
 							</tr>
 							
 							<tr>
-								<td>CPUs</td>
-								<td>{{server|dict_get:"cpu_info"|count_list}}</td>
-							</tr>
-							<tr>
 								<td>CPU info</td>
-								<td>{{server|dict_get:"cpu_info"|dict_get:"cpu0"|dict_get:"model_name"}}</td>
+								<td>{{server|dict_get:"cpu_info"|count_list}}x {{server|dict_get:"cpu_info"|dict_get:"cpu0"|dict_get:"model_name"}}</td>
 							</tr>
 							<tr>         
 								<td>CPU Virtualization</td>
