@@ -260,9 +260,14 @@ def _get_hostname():
 
 def _get_distro():
 
-    distro = platform.linux_distribution()
+    distro = ""
+    for i in platform.linux_distribution():
+        distro += i.title() + " "
 
-    return "XXX"
+    distro = distro[:-1]
+
+    return distro
+    
 
 def get_system_metrics( secret ):
 
@@ -279,11 +284,13 @@ def get_system_metrics( secret ):
 	physical_disks = _get_physical_disks()
 	disks_usage = _get_disks_usage()
 	hostname = _get_hostname()
+	distro = _get_distro()
 	
 	system_metrics_json = {
 		'uuid': uuid,
 		'ip': ip,
 		'hostname': hostname,
+		'distro': distro,
 		'secret': secret,
 		'loadavg': loadavg,
 		'uptime': uptime,
