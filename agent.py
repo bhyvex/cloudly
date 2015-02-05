@@ -44,7 +44,6 @@ def _get_sys_uptime():
 
 def _get_sys_cpu():
 	
-	#top_info = subprocess.Popen(["top","b","n","1"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 	cpu_info = subprocess.Popen(["ps","e","o","pcpu"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 
 	c=0
@@ -241,8 +240,8 @@ def _get_disks_usage():
 		
 		else:
 			try:
-				volume[2] = int(volume[2]) / 1024 / 1024 # Used
-				volume[3] = int(volume[3]) / 1024 / 1024 # Available
+				volume[2] = int(volume[2]) / 1024 / 1000 # Used
+				volume[3] = int(volume[3]) / 1024 / 1000 # Available
 			except IndexError:
 				pass
 			except KeyError:
