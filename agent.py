@@ -124,7 +124,7 @@ def _get_memory_usage():
 
 def _get_ip_address():
 	
-	ifconfig = subprocess.Popen(["/sbin/ifconfig","eth0"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+	ifconfig = subprocess.Popen(["ifconfig","eth0"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 	ip = re.search( r'inet addr:[^\s]+', ifconfig )
 	if not platform.system() == 'Darwin':
 		ip = ip.group().split(':')[-1]
@@ -152,7 +152,7 @@ def _get_physical_disks():
 
 	physical_disks = []
 
-	physical_disks_list = subprocess.Popen(["/sbin/fdisk","-l"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+	physical_disks_list = subprocess.Popen(["fdisk","-l"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 	physical_disks_list_ = physical_disks_list.split('\n')
 
 	physical_disks_list = []
@@ -168,7 +168,7 @@ def _get_physical_disks():
 	for hdd in physical_disks_list:
 	
 		FNULL = open(os.devnull, 'w')
-		disk_info = subprocess.Popen(["/sbin/hdparm","-I",hdd[0],], stderr=FNULL, stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+		disk_info = subprocess.Popen(["hdparm","-I",hdd[0],], stderr=FNULL, stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 		
 		model_number = "n/a"
 		serial_number = "n/a"
@@ -204,7 +204,7 @@ def _get_physical_disks():
 
 def _get_disks_usage():
 
-	proc = subprocess.Popen(['/bin/df', '-B 1'], stdout=subprocess.PIPE, close_fds=True)
+	proc = subprocess.Popen(['df', '-B 1'], stdout=subprocess.PIPE, close_fds=True)
 	df = proc.communicate()[0] 
 
 	try:
