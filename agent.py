@@ -132,6 +132,8 @@ def _get_ip_address():
 		ip = ip.group().split(':')[-1]
 	else:
 		ip = "127.0.0.1"
+	ip = ip.replace(" ","")
+	ip = ip.replace("inet","")
 	return ip
 	
 
