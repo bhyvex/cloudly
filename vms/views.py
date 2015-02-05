@@ -578,7 +578,9 @@ def server_view(request, hwaddr):
 	disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(20)
 	activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1)
 
-	return render_to_response('server_detail.html', {'hwaddr':hwaddr,'server':server,'cpu_usage':cpu_usage,'loadavg':loadavg,'mem_usage':mem_usage,'disks_usage':disks_usage,'activity':activity,}, context_instance=RequestContext(request))
+	server_status = "XXX"
+
+	return render_to_response('server_detail.html', {'hwaddr':hwaddr,'server':server,'server_status':server_status,cpu_usage':cpu_usage,'loadavg':loadavg,'mem_usage':mem_usage,'disks_usage':disks_usage,'activity':activity,}, context_instance=RequestContext(request))
     
 
 def ajax_virtual_machines_box(request):
