@@ -255,6 +255,9 @@ def _get_disks_usage():
 	return disks_usage
 
 
+def _get_hostname():
+    return "XXX"
+
 def get_system_metrics( secret ):
 
 	print datetime.datetime.now(), SECRET, 'Collecting system metrics..'
@@ -269,10 +272,12 @@ def get_system_metrics( secret ):
 	memory_usage = _get_memory_usage()
 	physical_disks = _get_physical_disks()
 	disks_usage = _get_disks_usage()
+	hostname = _get_hostname()
 	
 	system_metrics_json = {
 		'uuid': uuid,
 		'ip': ip,
+		'hostname': hostname,
 		'secret': secret,
 		'loadavg': loadavg,
 		'uptime': uptime,
