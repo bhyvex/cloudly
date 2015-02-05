@@ -578,7 +578,12 @@ def server_view(request, hwaddr):
 	disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(20)
 	activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1)
 
-	server_status = "XXX"
+	server_status = "running"
+	if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>20):
+		server_status = "stopped"
+		if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>1800):
+			server_status = "offline"		
+
 
 	return render_to_response('server_detail.html', {'hwaddr':hwaddr,'server':server,'server_status':server_status,'cpu_usage':cpu_usage,'loadavg':loadavg,'mem_usage':mem_usage,'disks_usage':disks_usage,'activity':activity,}, context_instance=RequestContext(request))
     
