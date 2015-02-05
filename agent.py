@@ -126,6 +126,8 @@ def _get_ip_address():
 	
 	ifconfig = subprocess.Popen(["ifconfig","eth0"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 	ip = re.search( r'inet addr:[^\s]+', ifconfig )
+	if(not ip):
+		ip = re.search( r'inet [^\s]+', ifconfig )
 	if not platform.system() == 'Darwin':
 		ip = ip.group().split(':')[-1]
 	else:
