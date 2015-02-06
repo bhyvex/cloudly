@@ -333,15 +333,15 @@ if __name__=="__main__":
 	print "AGENT: v"+AGENT_VERSION
 	print "Written By: Jan Paricka"
 
-	api_call = "/v10/activity/"
-	activity = {
-		'secret': SECRET,
-		'agent_version': AGENT_VERSION,
-		'uuid': UUID,
-		'activity': "Agent v"+AGENT_VERSION+" has started."
-	}
-	send_data(SECRET,api_call,activity)
-	
+	# Filing an activity: example
+	#api_call = "/v10/activity/"
+	#activity = {
+	#	'secret': SECRET,
+	#	'agent_version': AGENT_VERSION,
+	#	'uuid': UUID,
+	#	'activity': "Agent v"+AGENT_VERSION+" has started."
+	#}
+	#send_data(SECRET,api_call,activity)
 	
 	while True:
 	
