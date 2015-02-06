@@ -111,20 +111,20 @@ Now that you have the User Interface (Admin Dashboard) up and running you'd need
 
 11) Configuring the web server (NGINX without the SSL support)
 
-First and foremost install the NGINX (and flup), like so:
+First and foremost install the NGINX (and Python Flup modul), like so:
 
 <pre>
 $ apt-get install nginx
 $ apt-get install python-flup
 </pre>
 
-Open your nginx domain config file:
+Open up your nginx domain config file:
 
 <pre>
 $ vi /etc/nginx/sites-available/cloudly.loc
 </pre>
 
-..and add in the following configuration:
+..and paste in the following configuration:
 
 <pre>
 server
@@ -156,7 +156,7 @@ server
 }
 </pre>
 
-Then on create the following nginx folders structure:
+Save the file and create the requied nginx folders structure:
 
 <pre>
 mkdir /var/www
@@ -164,18 +164,16 @@ mkdir /var/www/log
 mkdir /var/www/cloudly
 </pre>
 
-..and make sure that you copy over cloudly files into the /var/www/cloudly and/or set up a symlink accordingly.
-
 TBD 
 
-
-
-For more information about the nginx configuration see the NGINX Wiki on <a>http://wiki.nginx.org/DjangoFastCGI</a>
+For more information about the Django and nginx configuration see the NGINX Wiki on <a>http://wiki.nginx.org/DjangoFastCGI</a>
 
 
 12) Configuring NGINX (with the SSL support)
 
-You'd need to contact me about this one. You can reach me on jparicka@gmail.com, or Skype: jparicka
+There are quite a few steps involved, you'd need to contact me about this one, I'd be happy to help. 
+You can reach me on jparicka@gmail.com, or Skype: jparicka
+
 
 13) Run the API
 
