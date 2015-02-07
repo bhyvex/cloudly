@@ -91,9 +91,8 @@ def ping():
 	print ' '+unichr(746), secret, uuid, 'IP', ip_remote+'/'+ ip
 	print ' '+unichr(746), uuid, 'host machine uptime '+uptime+''
 
-	#print server
-	#import random
-	#print '.'*random.randint(10,80)
+	import random
+	print '.'*random.randint(10,80)
 	
 	servers = mongo.servers
 	server_ = servers.find_one({'secret':secret, 'uuid':uuid,})
@@ -144,7 +143,6 @@ def ping():
 	disks_usage_ = mongo.disks_usage
 	disks_usage_.insert( disks_usage_metrics )
 
-	#return jsonify( { 'thanks': True, 'command': '', } ), 201
 	return ("thanks", 201)
 
 
