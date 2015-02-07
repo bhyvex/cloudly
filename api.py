@@ -52,7 +52,6 @@ def ping():
 
 	uuid = data['uuid']
 	ip = data['ip']
-	# XXX
 	ip_remote = ip_remote
 	secret = data['secret']
 	loadavg = data['loadavg']
