@@ -26,9 +26,6 @@ HWADDR = subprocess.Popen(["ifconfig","eth0"], stdout=subprocess.PIPE, close_fds
 UUID = re.search(r'([0-9A-F]{2}[:-]){5}([0-9A-F]{2})', HWADDR, re.I).group()
 
 
-# XXX hostname
-# XXX distro
-
 def _get_sys_loadavg():
 	
 	loadavg=subprocess.Popen(['uptime',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
