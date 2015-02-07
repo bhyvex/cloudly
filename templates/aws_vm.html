@@ -87,14 +87,14 @@
 
 						<table id="user" class="table table-bordered table-striped" style="clear: both">
 							<tbody> 
-								<tr>         
-									<td width="30%">Launch Time</td>
-									<td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"launch_time"}}</td>
-								</tr>     
 								<tr>      
 									<td width="30%">Tags</td>
 									<td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"tags"}}</td>
 								</tr>
+								<tr>         
+									<td width="30%">Launch Time</td>
+									<td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"launch_time"}}</td>
+								</tr>     
 								<tr>         
 									<td>State</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state"|title}}</td>
