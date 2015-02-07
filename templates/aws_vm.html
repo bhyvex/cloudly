@@ -102,7 +102,17 @@
 								</tr>
 								{% endif %}
 							</tbody>
-						</table>	
+						</table>
+						
+						<table id="tags" class="table table-bordered table-striped" style="clear: both">
+							<tbody>
+								<tr>      
+									<td width="30%">Tags</td>
+									<td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"tags"}}</td>
+								</tr>
+							</tbody>	
+						</table>
+
 
 					</div>
 					<div class="panel-body col-md-6">							
@@ -152,17 +162,7 @@
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"ramdisk"}}</td>
 								</tr>                      
 							</tbody>
-						</table>	
-
-						<table id="tags" class="table table-bordered table-striped" style="clear: both">
-							<tbody>
-								<tr>      
-									<td width="30%">Tags</td>
-									<td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"tags"}}</td>
-								</tr>
-							</tbody>	
 						</table>
-
                     </div>
                 </div>
 			</div>
