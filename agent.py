@@ -330,7 +330,6 @@ if __name__=="__main__":
 	print "AGENT: v"+AGENT_VERSION
 	print "Written By: Jan Paricka"
 
-	# Filing an activity: example
 	#api_call = "/v10/activity/"
 	#activity = {
 	#	'secret': SECRET,
