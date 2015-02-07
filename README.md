@@ -213,7 +213,3 @@ Screenshots & Live Demo
 
 
 More to come.  Stay tuned.
-
-TBD...
-
-
