@@ -59,7 +59,7 @@
 									-
 									{% endif %}
 								</td>
-																<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"region"|dict_get:"name"}}</td>
+								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"region"|dict_get:"name"}}</td>
 								<td>
 									{% if vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"ip_address" %}
 									{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"ip_address"}}
