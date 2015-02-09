@@ -23,11 +23,15 @@ if(not SECRET): SECRET = raw_input("Enter your secret: ")
 API_SERVER = "" # to be injected on download by Cloudly
 if(not API_SERVER): API_SERVER = "127.0.0.1:5000"
 
+
+if(not getpass.getuser()=="root"):
+    print 'Please run the agent as user root.'
+    sys.exit(0)
+
 HWADDR = subprocess.Popen(["ifconfig","eth0"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 UUID = re.search(r'([0-9A-F]{2}[:-]){5}([0-9A-F]{2})', HWADDR, re.I).group()
 
 
-# XXX working on this currently
 def _get_sys_loadavg():
 
 	threshold_values = {
