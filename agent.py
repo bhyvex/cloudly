@@ -25,7 +25,7 @@ if(not API_SERVER): API_SERVER = "127.0.0.1:5000"
 
 
 if(not getpass.getuser()=="root"):
-    print 'Please run the agent as user root.'
+    print 'Please re-run this script as user root.'
     sys.exit(0)
 
 HWADDR = subprocess.Popen(["ifconfig","eth0"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
