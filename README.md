@@ -7,7 +7,8 @@ It saves you money and the energies by taking away most of the usual servers' mo
 Cloudly also comes with numbers of ready to use plugins for packages and various software products.
 It's fully automated and does the servers monitoring for you with close to nothing to setup.
 
-To run your very own (enterprise) instance, follow the instructions below.
+To run your very own enterprise server, follow the instructions below.
+For hosted monitoring, visit us on http://...tbd.com
 
 Have fun monitoring!
 
