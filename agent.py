@@ -26,13 +26,20 @@ HWADDR = subprocess.Popen(["ifconfig","eth0"], stdout=subprocess.PIPE, close_fds
 UUID = re.search(r'([0-9A-F]{2}[:-]){5}([0-9A-F]{2})', HWADDR, re.I).group()
 
 
+# XXX working on this currently
 def _get_sys_loadavg():
+
+	threshold_values = {
+		"5-mins":None,
+		"10-mins":None,
+		"15-mins":None,
+	}
 	
 	loadavg=subprocess.Popen(['uptime',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 	loadavg = re.findall(r"(\d+\.\d{2})", loadavg)
 
+	#return loadavg, threshold_values
 	return loadavg
-
 
 def _get_sys_uptime():
 	
