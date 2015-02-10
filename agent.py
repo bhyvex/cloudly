@@ -268,7 +268,7 @@ def _get_distro():
 
     distro = distro[:-1]
 
-    # XXX check system commands goes here
+    # XXX Checking the core system commands
     
     return distro
     
