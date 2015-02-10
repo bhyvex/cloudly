@@ -8,9 +8,7 @@ Cloudly also comes with numbers of ready to use plugins for packages and various
 It's fully automated and does the servers monitoring for you with close to nothing to setup.
 
 To run your very own enterprise server, follow the instructions below.
-For hosted monitoring, visit us on http://...tbd.com
-
-Have fun monitoring!
+For hosted monitoring, visit us on <a href="#">http://...tbd.com</a>
 
 
 Installation Instructions
