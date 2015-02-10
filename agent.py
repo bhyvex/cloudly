@@ -268,14 +268,14 @@ def _get_distro():
 
     distro = distro[:-1]
 
-    # XXX Checking the core system commands
-    
     return distro
     
 
 def get_system_metrics( secret ):
 
-	print datetime.datetime.now(), SECRET, 'Collecting system metrics..'
+    # XXX Checking the core system commands
+
+    print datetime.datetime.now(), SECRET, 'Collecting system metrics..'
 
 	uuid = UUID
 	ip = _get_ip_address()
