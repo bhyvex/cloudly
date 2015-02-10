@@ -268,6 +268,8 @@ def _get_distro():
 
     distro = distro[:-1]
 
+    # XXX check system commands goes here
+    
     return distro
     
 
@@ -277,6 +279,7 @@ def get_system_metrics( secret ):
 
 	uuid = UUID
 	ip = _get_ip_address()
+	distro = _get_distro()
 	loadavg = _get_sys_loadavg()
 	uptime = _get_sys_uptime()
 	cpu_usage = _get_sys_cpu()
@@ -286,7 +289,6 @@ def get_system_metrics( secret ):
 	physical_disks = _get_physical_disks()
 	disks_usage = _get_disks_usage()
 	hostname = _get_hostname()
-	distro = _get_distro()
 	
 	system_metrics_json = {
 		'uuid': uuid,
