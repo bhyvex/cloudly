@@ -45,6 +45,7 @@ def _get_sys_loadavg():
 	#return loadavg, threshold_values
 	return loadavg
 
+
 def _get_sys_uptime():
 	
 	uptime = subprocess.Popen(['uptime',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
