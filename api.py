@@ -60,7 +60,6 @@ def ping():
 	cpu_info = data['cpu_info']
 	cpu_virtualization = data['cpu_virtualization']
 	memory_usage = data['memory_usage']
-	physical_disks = data['physical_disks']
 	disks_usage = data['disks_usage']
 	agent_version = data['agent_version']
 	last_seen = datetime.datetime.utcnow()
@@ -81,7 +80,6 @@ def ping():
 		'cpu_info': cpu_info,
 		'cpu_virtualization': cpu_virtualization,
 		'memory_usage': memory_usage,
-		'physical_disks': physical_disks,
 		'disks_usage': disks_usage,
 		'last_seen': last_seen,
 	}
