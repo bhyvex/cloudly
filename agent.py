@@ -261,28 +261,28 @@ def _get_disks_usage():
 
 def _get_hostname():
     
-    hostname = subprocess.Popen(["hostname"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
-    hostname = hostname.replace("\n","")
+	hostname = subprocess.Popen(["hostname"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+	hostname = hostname.replace("\n","")
     
-    return hostname
+	return hostname
     
 
 def _get_distro():
 
-    distro = ""
-    for i in platform.linux_distribution():
-        distro += i.title() + " "
+	distro = ""
+	for i in platform.linux_distribution():
+		distro += i.title() + " "
 
-    distro = distro[:-1]
+	distro = distro[:-1]
 
-    return distro
+	return distro
     
 
 def get_system_metrics( secret ):
 
-    # XXX Checking the core system commands
+	# XXX Checking the core system commands
 
-    print datetime.datetime.now(), SECRET, 'Collecting system metrics..'
+	print datetime.datetime.now(), SECRET, 'Collecting system metrics..'
 
 	uuid = UUID
 	ip = _get_ip_address()
