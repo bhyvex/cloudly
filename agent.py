@@ -23,7 +23,6 @@ if(not SECRET): SECRET = raw_input("Enter your secret: ")
 API_SERVER = "" # to be injected on download by Cloudly
 if(not API_SERVER): API_SERVER = "127.0.0.1:5000"
 
-
 if(not getpass.getuser()=="root"):
     print 'Please re-run this script as user root.'
     sys.exit(0)
