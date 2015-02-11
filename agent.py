@@ -163,60 +163,6 @@ def _get_sys_cpu_virtualization():
 	return virtualization_support
 
 
-def _get_physical_disks():
-
-	physical_disks = []
-
-	physical_disks_list = subprocess.Popen(["fdisk","-l"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
-	physical_disks_list_ = physical_disks_list.split('\n')
-
-	physical_disks_list = []
-	for line in physical_disks_list_:
-
-		if('Disk' in line):
-			disk = line.split(' ')[1].replace(':','')
-			try:
-				bsize = long(line.split(' ')[-2:-1][0])
-				physical_disks_list.append([disk,bsize])
-			except: pass
-
-	for hdd in physical_disks_list:
-	
-		FNULL = open(os.devnull, 'w')
-		disk_info = subprocess.Popen(["hdparm","-I",hdd[0],], stderr=FNULL, stdout=subprocess.PIPE, close_fds=True).communicate()[0]
-		
-		model_number = "n/a"
-		serial_number = "n/a"
-		firmware_revision = "n/a"
-				
-		for line in disk_info.split('\n'):
-		
-			if("Model Number" in line): model_number = line.split(':')[1].replace(' ','')
-			if("Serial Number" in line): serial_number = line.split(':')[1].replace(' ','')
-			if("Firmware Revision" in line): firmware_revision = line.split(':')[1].replace(' ','')
-		
-
-		try: model_number.decode('utf-8')
-		except UnicodeDecodeError: model_number = "n/a"
-
-		try: serial_number.decode('utf-8')
-		except UnicodeDecodeError: serial_number = "n/a"
-
-		try: firmware_revision.decode('utf-8')
-		except UnicodeDecodeError: firmware_revision = "n/a"
-				
-		disk_info = {
-			'device':hdd[0],
-			'size':hdd[1],
-			'model_number':model_number,
-			'serial_number':serial_number,
-			'firmware_revision':firmware_revision,
-		}
-		physical_disks.append(disk_info)
-		
-	return physical_disks
-
-
 def _get_disks_usage():
 
 	proc = subprocess.Popen(['df', '-B 1'], stdout=subprocess.PIPE, close_fds=True)
@@ -298,7 +244,6 @@ def get_system_metrics( secret ):
 	cpu_info = _get_sys_cpu_info()
 	cpu_virtualization = _get_sys_cpu_virtualization()
 	memory_usage = _get_memory_usage()
-	physical_disks = _get_physical_disks()
 	disks_usage = _get_disks_usage()
 	hostname = _get_hostname()
 	
@@ -314,7 +259,6 @@ def get_system_metrics( secret ):
 		'cpu_info': cpu_info,
 		'cpu_virtualization': cpu_virtualization,
 		'memory_usage': memory_usage,
-		'physical_disks': physical_disks,
 		'disks_usage': disks_usage,
 		'agent_version': AGENT_VERSION,
 	}
