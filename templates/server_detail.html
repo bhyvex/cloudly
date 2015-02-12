@@ -188,28 +188,24 @@
 
 				<div class="panel-body">
 				
-				
+					<b>cpu_usage</b> {{cpu_usage}}
+					<br/>
+					{% for cpu_metrics in cpu_usage %}
+					{{cpu_metrics}}
+					{% endfor %}
+					<hr/>
+					
+					<b>loadavg</b> {{loadavg}}
+					{% for loadavg_metrics in loadavg %}
+						{{loadavg_metrics}}
+					{% endfor %}
+					<hr/>
 
-<b>cpu_usage</b> {{cpu_usage}}
-<br/>
-{% for cpu_metrics in cpu_usage %}
-	{{cpu_metrics}}
-{% endfor %}
-<hr/>
-
-<b>loadavg</b> {{loadavg}}
-{% for loadavg_metrics in loadavg %}
-	{{loadavg_metrics}}
-{% endfor %}
-<hr/>
-
-<b>mem_usage</b> {{mem_usage}}
-{% for mem_metrics in mem_usage %}
-	{{mem_metrics}}
-{% endfor %}
-<hr/>
-
-				
+					<b>mem_usage</b> {{mem_usage}}
+					{% for mem_metrics in mem_usage %}
+					{{mem_metrics}}
+					{% endfor %}
+					<hr/>
 				</div>
 				
 			</div>
