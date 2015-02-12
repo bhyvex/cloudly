@@ -117,7 +117,7 @@
 					  </div>
 					</div>
 
-					<h6>Memory ({{server|dict_get:"memory_usage"|dict_get:"memory_used_percentage"}}% - {{server|dict_get:"memory_usage"|dict_get:"memory_used"|to_mb}}MB of {{server|dict_get:"memory_usage"|dict_get:"memory_total"|to_mb}}MB)</h6>
+					<h6>Memory ({{server|dict_get:"memory_usage"|dict_get:"memory_used_percentage"}}% - {{server|dict_get:"memory_usage"|dict_get:"memory_used"|to_mb}} MB of {{server|dict_get:"memory_usage"|dict_get:"memory_total"|to_mb}} MB)</h6>
 					<div class="progress thin">
 					  <div class="progress-bar 
 					  	{% if server|dict_get:"memory_usage"|dict_get:"memory_used_percentage" < 90 %}
