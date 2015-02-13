@@ -221,7 +221,12 @@ def _get_hostname():
 	return hostname
 
 def _get_processes():
-	return "XXX"
+
+	processes = subprocess.Popen(["ps","e","f"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+	processes = processes.split('\n')
+	
+	return processes
+
 
 def _get_distro():
 
