@@ -219,7 +219,9 @@ def _get_hostname():
 	hostname = hostname.replace("\n","")
     
 	return hostname
-    
+
+def _get_processes():
+	return "XXX"
 
 def _get_distro():
 
@@ -248,6 +250,7 @@ def get_system_metrics( secret ):
 	cpu_virtualization = _get_sys_cpu_virtualization()
 	memory_usage = _get_memory_usage()
 	disks_usage = _get_disks_usage()
+	processes = _get_processes()
 	hostname = _get_hostname()
 	
 	system_metrics_json = {
@@ -263,6 +266,7 @@ def get_system_metrics( secret ):
 		'cpu_virtualization': cpu_virtualization,
 		'memory_usage': memory_usage,
 		'disks_usage': disks_usage,
+		'processes': processes,
 		'agent_version': AGENT_VERSION,
 	}
 
