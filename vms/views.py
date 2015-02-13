@@ -594,15 +594,12 @@ def server_view(request, hwaddr):
 		if(c>0):
 			
 			line = line.split(' ')
+			if not line: break
 			
 			process_user = line[0]
-			
-			try:
-				process_pid = line[1]
-				process_cpu = line[2]
-				process_mem = line[3]
-			except: continue
-		
+			process_pid = line[1]
+			process_cpu = line[2]
+			process_mem = line[3]
 			process_vsz = line[4]
 			process_rss = line[5]
 			process_tty = line[6]
