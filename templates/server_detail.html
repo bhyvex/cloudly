@@ -254,12 +254,6 @@
 				</div>
 				<div class="panel-body">
 				
-					XXX Working on this currently.
-					{% for process in processes %}
-						{{process}}<hr/>
-					{% endfor %}
-					<hr/>
-				
 					<table class="table table-bordered table-striped bootstrap-datatable datatable">
 						  <thead>
 							  <tr>
@@ -272,14 +266,16 @@
 							  </tr>
 						  </thead>   
 						  <tbody>
+						  	{% for process in processes %}
 							<tr>
-								<td></td>
-								<td><span class="label label-success">root</span></td>
-								<td></td>                                       
-								<td></td>                                       
-								<td></td>                                       
-								<td></td>                                       
+								<td>{{process|dict_get:"pid"}}</td>
+								<td><span class="label label-success">{{process|dict_get:"user"}}</span></td>
+								<td>{{process|dict_get:"cpu"}}</td>                                       
+								<td>{{process|dict_get:"mem"}}</td>                                       
+								<td>{{process|dict_get:"start_time"}}</td>                                       
+								<td>{{process|dict_get:"command"}}</td>                                       
 							</tr>
+							{% endfor %}
 						  </tbody>
 					 </table>  
 
