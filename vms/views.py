@@ -596,9 +596,13 @@ def server_view(request, hwaddr):
 			line = line.split(' ')
 			
 			process_user = line[0]
-			process_pid = line[1]
-			process_cpu = line[2]
-			process_mem = line[3]
+			
+			try:
+				process_pid = line[1]
+				process_cpu = line[2]
+				process_mem = line[3]
+			except: continue
+		
 			process_vsz = line[4]
 			process_rss = line[5]
 			process_tty = line[6]
