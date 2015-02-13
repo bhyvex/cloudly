@@ -592,9 +592,11 @@ def server_view(request, hwaddr):
 	c=0
 	for line in processes:
 		
+		print line
+		
 		if(c>0):
 			
-			if not line: break
+			if not line:break
 			line = line.split(' ')
 			
 			process_user = line[0]
@@ -622,6 +624,7 @@ def server_view(request, hwaddr):
 				}
 			
 			print process
+			print '-'*80
 			processes_.append(process)
 			
 		c+=1
