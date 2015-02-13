@@ -255,7 +255,9 @@
 				<div class="panel-body">
 				
 					XXX Working on this currently.
-					{{server|dict_get:"processes"}}
+					{% for process in server|dict_get:"processes" %}
+						{{process}}</br>
+					{% endfor %}
 					<hr/>
 				
 					<table class="table table-bordered table-striped bootstrap-datatable datatable">
