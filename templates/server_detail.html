@@ -257,10 +257,10 @@
 					<table class="table table-bordered table-striped bootstrap-datatable datatable">
 						  <thead>
 							  <tr>
-								  <th>PID</th>
-								  <th>User</th>
 								  <th>% CPU</th>
 								  <th>% MEM</th>                                          
+								  <th>PID</th>
+								  <th>User</th>
 								  <th>Started</th>
 								  <td>Process</td>
 								  <th width="40%">Command</th>                                          
@@ -269,10 +269,10 @@
 						  <tbody>
 						  	{% for process in processes %}
 							<tr>
-								<td>{{process|dict_get:"pid"}}</td>
-								<td><span class="label label-success">{{process|dict_get:"user"}}</span></td>
 								<td>{{process|dict_get:"cpu"}}</td>                                       
 								<td>{{process|dict_get:"mem"}}</td>                                       
+								<td>{{process|dict_get:"pid"}}</td>
+								<td><span class="label label-success">{{process|dict_get:"user"}}</span></td>
 								<td>{{process|dict_get:"start_time"}}</td>
 								<td>xxx e.g. apached</td>
 								<td>{{process|dict_get:"command"}}</td>                                       
