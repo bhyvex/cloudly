@@ -261,8 +261,8 @@
 								  <th>% MEM</th>                                          
 								  <th>PID</th>
 								  <th>User</th>
-								  <th>Started</th>
 								  <td>Process</td>
+								  <th>Started</th>
 								  <th width="40%">Command</th>                                          
 							  </tr>
 						  </thead>   
@@ -273,8 +273,8 @@
 								<td>{{process|dict_get:"mem"}}</td>                                       
 								<td>{{process|dict_get:"pid"}}</td>
 								<td><span class="label label-success">{{process|dict_get:"user"}}</span></td>
-								<td>{{process|dict_get:"start_time"}}</td>
 								<td>xxx e.g. apached</td>
+								<td>{{process|dict_get:"start_time"}}</td>
 								<td>{{process|dict_get:"command"}}</td>                                       
 							</tr>
 							{% endfor %}
