@@ -621,7 +621,7 @@ def server_view(request, hwaddr):
 				
 			processes_.append(process)
 			
-		c_+=1
+		c+=1
 
 	processes = processes_
 
