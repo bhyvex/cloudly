@@ -65,6 +65,7 @@ def ping():
 	last_seen = datetime.datetime.utcnow()
 	hostname = data['hostname']
 	distro = data['distro']
+	processes = data['processes']
 
 	server = {
 		'secret': secret,
@@ -74,6 +75,7 @@ def ping():
 		'ip_remote': ip_remote,
 		'hostname': hostname,
 		'distro': distro,
+		'processes': processes,
 		'loadavg': loadavg,
 		'uptime': uptime,
 		'cpu_usage': cpu_usage,
