@@ -592,8 +592,6 @@ def server_view(request, hwaddr):
 	c=0
 	for line in processes:
 		
-		print line
-		
 		if(c>0):
 			
 			if not line:break
@@ -627,9 +625,6 @@ def server_view(request, hwaddr):
 				'start_time': process_start_time,
 				'command': process_command,
 				}
-			
-			print process
-			print '-'*80
 			processes_.append(process)
 			
 		c+=1
