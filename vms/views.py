@@ -599,6 +599,11 @@ def server_view(request, hwaddr):
 			if not line:break
 			line = line.split(' ')
 			
+			line_ = []
+			for i in line:
+				if i: line_.append(i)
+			line = line_
+			
 			process_user = line[0]
 			process_pid = line[1]
 			process_cpu = line[2]
