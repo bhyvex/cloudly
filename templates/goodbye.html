@@ -2,38 +2,37 @@
 
 <html>
 <head>
-<title>Goodbye</title>
+	<title>Goodbye</title>
 </head>
 <body bgcolor="azure">
 
 <center>
-<h2>You've logged out.</h2>
+	<h2>You've logged out.</h2>
 
-{% if 'fuckme' in request.META|dict_get:"HTTP_HOST" %}
-<a href="/"><img src="/static/images/cloudly.jpg"></a>
-{% else %}
-<a href="/"><img src="/static/images/cloudly.png"></a>
-{% endif %}
+	{% if 'fuckme' in request.META|dict_get:"HTTP_HOST" %}
+		<a href="/"><img src="/static/images/cloudly.jpg"></a>
+	{% else %}
+		<a href="/"><img src="/static/images/cloudly.png"></a>
+	{% endif %}
 
-<br/>
-<br/>
+	<br/>
+	<br/>
 
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_donations">
-<input type="hidden" name="business" value="jparicka@gmail.com">
-<input type="hidden" name="lc" value="CZ">
-<input type="hidden" name="item_name" value="F*ckmecloudly">
-<input type="hidden" name="no_note" value="0">
-<input type="hidden" name="currency_code" value="USD">
-<input type="hidden" name="bn" value="PP-DonationsBF:btn_donate_SM.gif:NonHostedGuest">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
+	<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+		<input type="hidden" name="cmd" value="_donations">
+		<input type="hidden" name="business" value="jparicka@gmail.com">
+		<input type="hidden" name="lc" value="CZ">
+		<input type="hidden" name="item_name" value="F*ckmecloudly">
+		<input type="hidden" name="no_note" value="0">
+		<input type="hidden" name="currency_code" value="USD">
+		<input type="hidden" name="bn" value="PP-DonationsBF:btn_donate_SM.gif:NonHostedGuest">
+		<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+		<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+	</form>
 
-Remember to donate.
-<br/>
-Thank you.
-
+	Remember to donate.
+	<br/>
+	Thank you.
 </center>
 
 {% include "google_analytics.html" %}

@@ -13,111 +13,105 @@
 	  	<li class="active">Amazon AWS</li>
 	</ol>
 
-		<div class="row">
+	<div class="row">
 									
-			<div class="col-xs-12">
-			
-				<div class="panel panel-default">
-						<div class="panel-heading">
-							<h2><i class="fa fa-picture-o"></i>Amazon AWS Settings</h2>
-							<div class="panel-actions">
-								<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-								<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-								<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+		<div class="col-xs-12">
+		
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2><i class="fa fa-picture-o"></i>Amazon AWS Settings</h2>
+					<div class="panel-actions">
+						<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+					</div>
+				</div>
+				<div class="panel-body">
+		
+					<form name="input" action="/cloud/settings/credentials/update/" method="POST" class="form-horizontal ">{% csrf_token %}
+						{% if err %}
+						<div class="alert alert-danger">
+							<button type="button" class="close" data-dismiss="alert">×</button>
+							<strong>Error:</strong> {{err}}
+						</div>
+						{% endif %}
+								
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="hf-email">AWS Access Key</label>
+							<div class="col-md-9">
+								<input id="hf-email" name="aws_access_key" class="form-control" placeholder="" value="{{profile.aws_access_key}}">
+								{% if not profile.aws_access_key %}<span class="help-block">Please provide your AWS Access Key</span>{% endif %}
 							</div>
 						</div>
-						<div class="panel-body">
-			
-								<form name="input" action="/cloud/settings/credentials/update/" method="POST" class="form-horizontal ">{% csrf_token %}
-									
-									{% if err %}
-									<div class="alert alert-danger">
-										<button type="button" class="close" data-dismiss="alert">×</button>
-										<strong>Error:</strong> {{err}}
-									</div>
-									{% endif %}
-									
-									
-					                <div class="form-group">
-					                    <label class="col-md-3 control-label" for="hf-email">AWS Access Key</label>
-					                    <div class="col-md-9">
-					                        <input id="hf-email" name="aws_access_key" class="form-control" placeholder="" value="{{profile.aws_access_key}}">
-					                        {% if not profile.aws_access_key %}<span class="help-block">Please provide your AWS Access Key</span>{% endif %}
-					                    </div>
-					                </div>
-					                <div class="form-group">
-					                    <label class="col-md-3 control-label" for="hf-password">AWS Secret</label>
-					                    <div class="col-md-9">
-					                        <input type="password" id="hf-password" name="aws_access_secret" class="form-control" placeholder="" value="{{profile.aws_secret_key}}">
-					                        {% if not profile.aws_secret_key %}<span class="help-block">Please provide your AWS Secret</span>{% endif %}
-					                    </div>
-					                </div>
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="hf-password">AWS Secret</label>
+							<div class="col-md-9">
+								<input type="password" id="hf-password" name="aws_access_secret" class="form-control" placeholder="" value="{{profile.aws_secret_key}}">
+								{% if not profile.aws_secret_key %}<span class="help-block">Please provide your AWS Secret</span>{% endif %}
+							</div>
+						</div>
+
+						{% if not aws_ec2_verified %}
+						<button type="submit" class="btn btn-sm btn-warning"><i class="fa fa-dot-circle-o"></i> Update AWS Key and Secret</button>
+						{% else %}
+						<a href="/cloud/settings/reset/">Reset settings</a>
+						{% endif %}
 	
-							{% if not aws_ec2_verified %}
-		                    <button type="submit" class="btn btn-sm btn-warning"><i class="fa fa-dot-circle-o"></i> Update AWS Key and Secret</button>
-							{% else %}
-							<a href="/cloud/settings/reset/">Reset settings</a>
-							{% endif %}
-		
-							</form>
-	 					</div><!--/col-->
-				</div><!--/row-->	
+					</form>
+				</div>
+			</div>
 
 {% if aws_ec2_verified %}
-				<div class="panel panel-default">
-						<div class="panel-heading">
-							<h2><i class="fa fa-picture-o"></i>Cloud Regions</h2>
-							<div class="panel-actions">
-								<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-								<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-								<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2><i class="fa fa-picture-o"></i>Cloud Regions</h2>
+					<div class="panel-actions">
+						<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+					</div>
+				</div>
+				<div class="panel-body">
+						
+					<form name="input" action="/cloud/settings/regions/update/" method="POST" class="form-horizontal ">{% csrf_token %}
+						
+						<div class="form-group">
+
+							<label class="col-md-3 control-label"></label>
+							
+							{% if updated_regions %}
+							<div class="alert alert-success">
+								<button type="button" class="close" data-dismiss="alert">×</button>
+								<strong>Well done!</strong> You successfully updated your cloud regions.
+							</div>
+							{% endif %}
+							
+							<div class="col-md-9">
+								{% for region in aws_regions %}
+								<div class="checkbox">
+									<label for="checkbox{{forloop.counter}}">
+										<input type="checkbox" id="{{region}}" name="checkboxes" value="{{region}}" {% if region in profile_regions %}checked{% endif %}> <a href="#">{{region}}</a> {{aws_regions|dict_get:region}}
+									</label>
+								</div>
+								{% endfor %}
 							</div>
 						</div>
-						<div class="panel-body">
-							
-							<form name="input" action="/cloud/settings/regions/update/" method="POST" class="form-horizontal ">{% csrf_token %}
-							
-							<div class="form-group">
-
-				                <label class="col-md-3 control-label"></label>
-								
-								{% if updated_regions %}
-								<div class="alert alert-success">
-									<button type="button" class="close" data-dismiss="alert">×</button>
-									<strong>Well done!</strong> You successfully updated your cloud regions.
-								</div>
-								{% endif %}
-								
-				                <div class="col-md-9">
-									{% for region in aws_regions %}
-				                    <div class="checkbox">
-				                        <label for="checkbox{{forloop.counter}}">
-				                        	<input type="checkbox" id="{{region}}" name="checkboxes" value="{{region}}" {% if region in profile_regions %}checked{% endif %}> <a href="#">{{region}}</a> {{aws_regions|dict_get:region}}
-				                        </label>
-				                    </div>
-									{% endfor %}
-				                </div>
-				            </div>
-							<p>
-								* It's recommended to enable only those regions that you actually utilise.
-							</p>
-				
-		                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Update Regions</button>
-							
-							
-				            </form>
-				
-	 					</div><!--/col-->
-				</div><!--/row-->	
+						<p>
+							* It's recommended to enable only those regions that you actually utilise.
+						</p>
+			
+						<button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Update Regions</button>
+						
+						
+					</form>
+			
+				</div>
+			</div>
 {% endif %}
 
-			</div>
-		</div>
+		</div><!--/col-->
+	</div><!--/row-->
 				
-		<!-- end: Content -->
-		</div><!--/row-->		
-	</div><!--/container-->
-
+	<!-- end: Content -->
 </div>
 {% endblock page_content %}
-

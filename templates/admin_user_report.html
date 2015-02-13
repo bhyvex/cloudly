@@ -19,33 +19,33 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="panel panel-default">
-					<div class="panel-heading">
-						<h2><i class="fa fa-picture-o"></i>Virtual Machines</h2>
-						<div class="panel-actions">
-							<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-						</div>
+				<div class="panel-heading">
+					<h2><i class="fa fa-picture-o"></i>Virtual Machines</h2>
+					<div class="panel-actions">
+						<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
 					</div>
-					<div class="panel-body">
-						<table class="table table-bordered">
-						  <thead>
-							  <tr>
-								  <th>id</th>
-								  <th>state</th>
-								  <th>instance_type</th>
-								  <th>name</th>
-								  <th>public_dns_name</th>
-								  <th>region</th>
-								  <th>ip_address</th>
-								  <th>key_name</th>
-								  <th>launch_time</th>
-								  <th>virtualization_type</th>
-								  <th>architecture</th>
-								  <th>hypervisor</th>
-							  </tr>
-						  </thead>   
-						  <tbody>
+				</div>
+				<div class="panel-body">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>id</th>
+								<th>state</th>
+								<th>instance_type</th>
+								<th>name</th>
+								<th>public_dns_name</th>
+								<th>region</th>
+								<th>ip_address</th>
+								<th>key_name</th>
+								<th>launch_time</th>
+								<th>virtualization_type</th>
+								<th>architecture</th>
+								<th>hypervisor</th>
+							</tr>
+						</thead>   
+						<tbody>
 							{% for i in vms_cached_response %}
 							<tr>
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"id"}}</td>
@@ -74,36 +74,36 @@
 								<td>{{vms_cached_response|dict_get:i|dict_get:"instance"|dict_get:"hypervisor"}}</td>
 							</tr>
 							{% endfor %}
-						  </tbody>
-					 </table>
-					</div>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 
 		<div class="col-xs-12">
 			<div class="panel panel-default">
-					<div class="panel-heading">
-						<h2><i class="fa fa-picture-o"></i>Private Servers</h2>
-						<div class="panel-actions">
-							<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-						</div>
+				<div class="panel-heading">
+					<h2><i class="fa fa-picture-o"></i>Private Servers</h2>
+					<div class="panel-actions">
+						<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
 					</div>
-					<div class="panel-body">
-						<table class="table table-bordered">
-						  <thead>
-							  <tr>
-								  <th>agent</th>
-								  <th>name</th>
-								  <th>uuid</th>
-								  <th>IP_remote</th>
-								  <th>IP</th>
-								  <th>uptime</th>                                          
-								  <th>last_seen</th>
-							  </tr>
-						  </thead>   
-						  <tbody>
+				</div>
+				<div class="panel-body">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>agent</th>
+								<th>name</th>
+								<th>uuid</th>
+								<th>IP_remote</th>
+								<th>IP</th>
+								<th>uptime</th>                                          
+								<th>last_seen</th>
+							</tr>
+						</thead>   
+						<tbody>
 							{% for server in servers %}
 							<tr>
 								<td>v{{server|dict_get:"agent_version"}}</td>
@@ -115,35 +115,34 @@
 								<td>{{server|dict_get:"last_seen"}}</td>
 							</tr>
 							{% endfor %}
-						  </tbody>
-					 </table>
-					</div>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	
 	
 		<div class="col-xs-4">
 			<div class="panel panel-default">
-					<div class="panel-heading">
-						<h2><i class="fa fa-picture-o"></i>Activity (clicked)</h2>
-						<div class="panel-actions">
-							<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-						</div>
+				<div class="panel-heading">
+					<h2><i class="fa fa-picture-o"></i>Activity (clicked)</h2>
+					<div class="panel-actions">
+						<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
 					</div>
-					<div class="panel-body">
-						
-						
-						<table class="table table-bordered">
-						  <thead>
-							  <tr>
-								  <th>IP Address</th>
-								  <th>When</th>
-								  <th>Link</th>
-							  </tr>
-						  </thead>   
-						  <tbody>
+				</div>
+				
+				<div class="panel-body">						
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>IP Address</th>
+								<th>When</th>
+								<th>Link</th>
+							</tr>
+						</thead>   
+						<tbody>
 							{% for a in user_activity_clicks %} 
 							<tr>
 								<td><font size=1><a href="http://www.infosniper.net/index.php?ip_address={{a.ip_addr}}&map_source=1&overview_map=1&lang=1&map_type=1&zoom_level=7" target="_blank">{{a.ip_addr}}</a></font></td>
@@ -151,36 +150,35 @@
 								<td><a href="{{a.link}}">{{a.link}}</a></td>
 							</tr>
 							{% endfor %}
-						  </tbody>
-					 </table>
-						
-
-					</div>
+						</tbody>
+					</table>
+				</div>
+				
 			</div>
 		</div>
 
 		<div class="col-xs-8">
 			<div class="panel panel-default">
-					<div class="panel-heading">
-						<h2><i class="fa fa-picture-o"></i>Activity (other)</h2>
-						<div class="panel-actions">
-							<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-						</div>
+				<div class="panel-heading">
+					<h2><i class="fa fa-picture-o"></i>Activity (other)</h2>
+					<div class="panel-actions">
+						<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
 					</div>
-					<div class="panel-body">
-						<table class="table table-bordered">
-						  <thead>
-							  <tr>
-								  <th>Date</th>
-								  <th>Activity</th>
-								  <th>Meta</th>
-								  <th>Function</th>                                          
-								  <th>Link</th>
-							  </tr>
-						  </thead>   
-						  <tbody>
+				</div>
+				<div class="panel-body">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>Activity</th>
+								<th>Meta</th>
+								<th>Function</th>                                          
+								<th>Link</th>
+							</tr>
+						</thead>   
+						<tbody>
 							{% for a in user_activity_other %}
 							<tr>
 								<td><font size=2>{{a.date_created}}</font></td>
@@ -190,33 +188,33 @@
 								<td>{{a.link}}</td>
 							</tr>
 							{% endfor %}
-						  </tbody>
-					 </table>
-					</div>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 
 		<div class="col-xs-8">
 			<div class="panel panel-default">
-					<div class="panel-heading">
-						<h2><i class="fa fa-picture-o"></i>Files</h2>
-						<div class="panel-actions">
-							<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-						</div>
+				<div class="panel-heading">
+					<h2><i class="fa fa-picture-o"></i>Files</h2>
+					<div class="panel-actions">
+						<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
 					</div>
-					<div class="panel-body">
-						<table class="table table-bordered">
-						  <thead>
-							  <tr>
-								  <th>Date created</th>
-								  <th>Size</th>
-								  <th>Filename</th>
-								  <th>Type</th>                                          
-							  </tr>
-						  </thead>   
-						  <tbody>
+				</div>
+				<div class="panel-body">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Date created</th>
+								<th>Size</th>
+								<th>Filename</th>
+								<th>Type</th>                                          
+							</tr>
+						</thead>   
+						<tbody>
 							{% for f in user_files %}
 							<tr>
 								<td><font size=2>{{f.date_created}}</font></td>
@@ -227,23 +225,14 @@
 								</td>                                       
 							</tr>
 							{% endfor %}
-						  </tbody>
-					 </table>
-					</div>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 
 
 	</div>
-	</div>
-
-
-	</div>
-	
 </div>
 
-
-
-
 {% endblock page_content %}
-

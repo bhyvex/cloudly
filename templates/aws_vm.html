@@ -32,11 +32,11 @@
 					
 						<table id="user" class="table table-bordered table-striped" style="clear: both">
 							<tbody> 
-								<tr>         
+								<tr>		 
 									<td width="30%">Name</td>
 									<td width="70%"><a href="#" id="servername">{{vm_cache|dict_get:"instance"|dict_get:"id"}}</a></td>
 								</tr>
-								<tr>         
+								<tr>		 
 									<td>IP Address</td>
 									<td>
 										{% if vm_cache|dict_get:"instance"|dict_get:"ip_address" %}
@@ -54,20 +54,20 @@
 								</tr>
 								{% endif %}
 								
-								<tr>         
+								<tr>		 
 									<td>Region</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"region"|dict_get:"name"}}</td>
 								</tr>
-								<tr>         
+								<tr>		 
 									<td>AWS Image ID</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"image_id"}}</td>
 								</tr>
-			                </tbody>
-			            </table>	
+							</tbody>
+						</table>	
 
 						<table id="user" class="table table-bordered table-striped" style="clear: both">
 							<tbody> 
-								<tr>         
+								<tr>		 
 									<td>Security Groups</td>
 									<td>
 									{% for group in vm_cache|dict_get:"instance"|dict_get:"groups" %}
@@ -76,26 +76,26 @@
 										{% endfor %}
 									{% endfor %}
 									</td>
-								</tr>                      
-								<tr>         
+								</tr>					  
+								<tr>		 
 									<td width="30%">Key Name</td>
 									<td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"key_name"}}</td>
-								</tr>                      
+								</tr>					  
 							</tbody>
 						</table>	
 
 
 						<table id="user" class="table table-bordered table-striped" style="clear: both">
 							<tbody> 
-								<tr>      
+								<tr>	  
 									<td width="30%">Tags</td>
 									<td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"tags"}}</td>
 								</tr>
-								<tr>         
+								<tr>		 
 									<td width="30%">Launch Time</td>
 									<td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"launch_time"}}</td>
-								</tr>     
-								<tr>         
+								</tr>	 
+								<tr>		 
 									<td>State</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state"|title}}</td>
 								</tr>
@@ -113,24 +113,24 @@
 							
 						<table id="user" class="table table-bordered table-striped" style="clear: both">
 							<tbody> 
-								<tr>         
+								<tr>		 
 									<td width="30%">Instance Type</td>
 									<td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"instance_type"}}</td>
 								</tr> 
-								<tr>         
+								<tr>		 
 									<td>Architecture</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"architecture"}}</td>
 								</tr> 
-								<tr>         
+								<tr>		 
 									<td>Virtualization Type</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"virtualization_type"}}</td>
 								</tr>
-								<tr>         
+								<tr>		 
 									<td>Hypervisor</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"hypervisor"}}</td>
-								</tr>                    
+								</tr>					
 
-								<tr>         
+								<tr>		 
 									<td>Persistent</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"persistent"}}</td>
 								</tr>  
@@ -139,26 +139,26 @@
 
 						<table id="user" class="table table-bordered table-striped" style="clear: both">
 							<tbody> 
-								<tr>         
+								<tr>		 
 									<td width="30%">Root Device Name</td>
 									<td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"root_device_name"}}</td>
-								</tr>                      
-								<tr>         
+								</tr>					  
+								<tr>		 
 									<td>Root Device Type</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"root_device_type"}}</td>
-								</tr>                      
-								<tr>         
+								</tr>					  
+								<tr>		 
 									<td>Block Device Mapping</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:""}}</td>
-								</tr>                      
-								<tr>         
+								</tr>					  
+								<tr>		 
 									<td>Ramdisk</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"ramdisk"}}</td>
-								</tr>                      
+								</tr>					  
 							</tbody>
 						</table>
-                    </div>
-                </div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div><!--/row-->
@@ -175,7 +175,7 @@
 					</div>
 				</div>
 				<div class="panel-body">
-               
+			   
 					<div id="CPU-Metrics"></div>
 					<br />
 					<div id="network-metrics"></div>
@@ -290,8 +290,6 @@ Console output:
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-</div>
-</div>
 
 {% endblock page_content %}
 
@@ -300,41 +298,41 @@ Console output:
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
 <script type="text/javascript">
-    <!--
-    
-    $(function () {
-        //CPU metrics
-        $('#CPU-Metrics').highcharts({
-            chart: {
-                type: 'spline'
-            },
-            title: {
-                text: 'CPU Utilisation'
-            },
-            subtitle: {
-                text: 'Percentage of CPU usage across all cores'
-            },
-            xAxis: {
-                type: 'datetime',
-                title: {
-                    text: 'Date and time'
-                }
-            },
-            tooltip: {
-                headerFormat: '<b>{series.name}:</b> %{point.y:.2f}<br>',
-                pointFormat: '{point.x:%Y-%m-%d %H:%M}'
-            },
-            yAxis: {
-                title: {
-                    text: 'CPU %'
-                },
-                min: 0
-            },
-            
+	<!--
+	
+	$(function () {
+		//CPU metrics
+		$('#CPU-Metrics').highcharts({
+			chart: {
+				type: 'spline'
+			},
+			title: {
+				text: 'CPU Utilisation'
+			},
+			subtitle: {
+				text: 'Percentage of CPU usage across all cores'
+			},
+			xAxis: {
+				type: 'datetime',
+				title: {
+					text: 'Date and time'
+				}
+			},
+			tooltip: {
+				headerFormat: '<b>{series.name}:</b> %{point.y:.2f}<br>',
+				pointFormat: '{point.x:%Y-%m-%d %H:%M}'
+			},
+			yAxis: {
+				title: {
+					text: 'CPU %'
+				},
+				min: 0
+			},
+			
 
-            series: [{
-                name: 'Average',
-                data: [
+			series: [{
+				name: 'Average',
+				data: [
 					{% for graph in vm_cache %}
 					{% if graph == "cpu_utilization_datapoints" %}
 						{% for value in vm_cache|dict_get:graph|make_json_sorted %}
@@ -342,12 +340,12 @@ Console output:
 						{% endfor %}
 					{% endif %}
 					{% endfor %}
-                ]
-            }
-        ]
-        });
-});
+				]
+			}
+		]
+		});
+	});
 
-    //-->
+	//-->
 </script>
 {% endblock extra_js %}
