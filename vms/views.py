@@ -587,7 +587,8 @@ def server_view(request, hwaddr):
 			server_status = "Offline"		
 
 	print 'debug processes'
-	print type(server['processes']), server['processes']
+	processes = server['processes'].split('\n','')
+	print processes[0]
 
 	return render_to_response('server_detail.html', {'hwaddr':hwaddr,'server':server,'server_status':server_status,'cpu_usage':cpu_usage,'loadavg':loadavg,'mem_usage':mem_usage,'disks_usage':disks_usage,'activity':activity,}, context_instance=RequestContext(request))
     
