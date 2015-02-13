@@ -574,11 +574,11 @@ def server_view(request, hwaddr):
 	server = mongo.servers.find_one({'secret':profile.secret,'uuid':hwaddr,})
 
 	uuid = server['uuid']		
-	cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(20)
-	loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(20)
-	mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(20)
-	disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(20)
-	activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1)
+	cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(5)
+	loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(5)
+	mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(5)
+	disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(5)
+	activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
 
 	server_status = "Running"
 	if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>20):
