@@ -107,7 +107,7 @@
 					<h6>CPU ({{server|dict_get:"cpu_usage"|dict_get:"cpu_used"}}%)</h6>
 					<div class="progress thin">
 					  <div class="progress-bar 
-					  		{% if server|dict_get:"cpu_usage"|dict_get:"cpu_used" < 80 %}
+					  		{% if server|dict_get:"cpu_usage"|dict_get:"cpu_used" < 85 %}
 					  		progress-bar-success
 					  		{% else %}
 					  		progress-bar-danger
@@ -120,7 +120,7 @@
 					<h6>Memory ({{server|dict_get:"memory_usage"|dict_get:"memory_used_percentage"}}% - {{server|dict_get:"memory_usage"|dict_get:"memory_used"|to_mb|intcomma}} MB of {{server|dict_get:"memory_usage"|dict_get:"memory_total"|to_mb|intcomma}} MB)</h6>
 					<div class="progress thin">
 					  <div class="progress-bar 
-					  	{% if server|dict_get:"memory_usage"|dict_get:"memory_used_percentage" < 97 %}
+					  	{% if server|dict_get:"memory_usage"|dict_get:"memory_used_percentage" < 98 %}
 					  	progress-bar-info
 					  	{% else %}
 					  	progress-bar-danger
