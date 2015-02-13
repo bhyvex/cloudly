@@ -67,6 +67,7 @@ def ping():
 	distro = data['distro']
 	
 	processes = data['processes']
+	processes = processes.replace('\t',' ')
 	processes = processes.split('\n')
 
 	server = {
