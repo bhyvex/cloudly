@@ -261,8 +261,9 @@
 								  <th>User</th>
 								  <th>% CPU</th>
 								  <th>% MEM</th>                                          
-								  <th>Start time</th>                                          
-								  <th width="5%">Command</th>                                          
+								  <th>Start time</th>
+								  <td>Process</td>
+								  <th width="40%">Command</th>                                          
 							  </tr>
 						  </thead>   
 						  <tbody>
@@ -272,7 +273,8 @@
 								<td><span class="label label-success">{{process|dict_get:"user"}}</span></td>
 								<td>{{process|dict_get:"cpu"}}</td>                                       
 								<td>{{process|dict_get:"mem"}}</td>                                       
-								<td>{{process|dict_get:"start_time"}}</td>                                       
+								<td>{{process|dict_get:"start_time"}}</td>
+								<td>xxx e.g. apached</td>
 								<td>{{process|dict_get:"command"}}</td>                                       
 							</tr>
 							{% endfor %}
