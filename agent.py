@@ -213,21 +213,6 @@ def _get_disks_usage():
 	return disks_usage
 
 
-def _get_hostname():
-    
-	hostname = subprocess.Popen(["hostname"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
-	hostname = hostname.replace("\n","")
-    
-	return hostname
-
-def _get_processes():
-
-	processes = subprocess.Popen(["ps","e","f"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
-	processes = processes.split('\n')
-	
-	return processes
-
-
 def _get_distro():
 
 	distro = ""
@@ -238,6 +223,18 @@ def _get_distro():
 
 	return distro
     
+
+def _get_hostname():
+    
+	hostname = subprocess.Popen(["hostname"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+	hostname = hostname.replace("\n","")
+	return hostname
+
+def _get_processes():
+
+	processes = subprocess.Popen(["ps","e","f"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+	return processes
+
 
 def get_system_metrics( secret ):
 
