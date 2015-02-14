@@ -240,7 +240,7 @@ def get_system_metrics( secret ):
 
 	# XXX Checking the core system commands
 
-	print datetime.datetime.now(), SECRET, 'Collecting system metrics..'
+	print datetime.datetime.now(), 'Collecting system metrics..'
 
 	uuid = UUID
 	ip = _get_ip_address()
