@@ -311,6 +311,6 @@ if __name__=="__main__":
 		api_call = "/v10/ping/"
 		system_metrics = get_system_metrics(SECRET)
 		api_response = send_data(SECRET,api_call,system_metrics)
-		time.sleep(3)
+		time.sleep(2)
 
 	print "ze end."
