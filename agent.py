@@ -27,7 +27,7 @@ if(not SECRET): SECRET = raw_input("Enter your secret: ")
 API_SERVER = "" # to be injected on download by Cloudly
 if(not API_SERVER): API_SERVER = "127.0.0.1:5001"
 
-HWADDR = subprocess.Popen(["ifconfig","eth0"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+HWADDR = subprocess.Popen(["ifconfig","a"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 UUID = re.search(r'([0-9A-F]{2}[:-]){5}([0-9A-F]{2})', HWADDR, re.I).group()
 
 
@@ -134,7 +134,7 @@ def _get_memory_usage():
 
 def _get_ip_address():
 	
-	ifconfig = subprocess.Popen(["ifconfig","eth0"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+	ifconfig = subprocess.Popen(["ifconfig","a"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 	ip = re.search( r'inet addr:[^\s]+', ifconfig )
 	
 	if(not ip):
