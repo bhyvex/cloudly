@@ -286,12 +286,8 @@
 			</div>
 		</div><!--/col-->
 	</div><!--/row-->
-
-{% else %}
-<div class="panel-body">
-	This server is offline. Or the monitoring agent has been killed. Or the connection have been lost.
-</div>
 {% endif %}
+
 
 	<div class="row">
 		<div class="col-xs-12">
@@ -319,6 +315,12 @@
 			</div>
 		</div>				
 	</div><!--/row-->
+
+{% if not server_status|lower = "running" %}
+<div class="panel-body">
+	This server is offline. Or the monitoring agent has been killed. Or the connection have been lost.
+</div>
+{% endif %}
 
 
 </div><!--/leave britney alone-->
