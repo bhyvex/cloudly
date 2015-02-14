@@ -612,7 +612,10 @@ def server_view(request, hwaddr):
 			process_stat = line[7]
 			process_start_time = line[8]+'-'+line[9]
 			process_command = line[10:]
-        
+			
+			process_name = ""
+			# XXX work in process name
+			
 			process = {            
 				'user': process_user,
 				'pid': process_pid,
@@ -624,6 +627,7 @@ def server_view(request, hwaddr):
 				'stat': process_stat,
 				'start_time': process_start_time,
 				'command': process_command,
+				'name': process_name,
 				}
 			processes_.append(process)
 			
