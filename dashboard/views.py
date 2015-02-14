@@ -85,7 +85,7 @@ def download_agent(request):
 	api_server_url = server_url
 	api_server_url = api_server_url.replace('http://','').replace('https://','')
 	api_server_url = api_server_url.split(':')[0]
-	api_server_url = api_server_url + ":5000"
+	api_server_url = api_server_url + ":5001"
 
 	ip = request.META['REMOTE_ADDR']
 	
