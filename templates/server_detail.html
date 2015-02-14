@@ -77,7 +77,11 @@
 
 							<tr>
 								<td>Load Average</td>
-								<td>{{server|dict_get:"loadavg"}}</td>
+								<td>
+								{% for i in server|dict_get:"loadavg" %}
+								{{i}}&nbsp;
+								{% endfor %}
+								</td>
 							</tr>
 
 							<tr>
