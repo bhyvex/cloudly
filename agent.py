@@ -289,8 +289,8 @@ def send_data( secret, api_call, data ):
 	
 	return response_data
 	
-	
-if __name__=="__main__":
+
+def main():
 
 	os.system("clear")
 		
@@ -314,3 +314,8 @@ if __name__=="__main__":
 		time.sleep(2)
 
 	print "ze end."
+
+
+if __name__=="__main__":
+
+	main()
