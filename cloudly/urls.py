@@ -36,7 +36,7 @@ urlpatterns = patterns('',
 	url(r'^admin/$', 'admin.views.admin', name='admin'),
 	url(r'^admin/user/(?P<user_id>\d+)/activity/$', 'admin.views.user_activity_report', name='user_activity_report'),	
 	# devel
-	url(r'^devel/$', 'devel.views.devel', name='devel'),    
+	#url(r'^devel/$', 'devel.views.devel', name='devel'),    
 )
 
 
