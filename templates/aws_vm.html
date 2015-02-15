@@ -18,7 +18,11 @@
 		<div class="col-xs-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
+					{% if vm_cache|dict_get:"instance"|dict_get:"tags"|dict_get:"Name" %}
+					<h2><i class="fa fa-truck"></i>{{vm_cache|dict_get:"instance"|dict_get:"tags"|dict_get:"Name"}}</h2>
+					{% else %}
 					<h2><i class="fa fa-truck"></i>Server Details</h2>
+					{% endif %}
 					<div class="panel-actions">
 						<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
 						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
