@@ -180,9 +180,11 @@
 			   
 					<div id="cpu_utilization_datapoints"></div>
 					<br />
-					<div id="networkin_datapoints"></div>
+					<div id="networking_datapoints"></div>
 					<br />
-					<div id="hdd-metrics"></div>
+					<div id="disk_ops_datapoints"></div>
+					<br />
+					<div id="disk_bytes_datapoints"></div>
 					
 					{% comment %}
 					{% for graph in vm_cache %}
@@ -349,7 +351,97 @@ Console output:
 	});
 
 	$(function () {
-		$('#networkin_datapoints').highcharts({
+		$('#networking_datapoints').highcharts({
+			chart: {
+				type: 'spline'
+			},
+			title: {
+				text: 'Networking'
+			},
+			subtitle: {
+				text: 'tbd'
+			},
+			xAxis: {
+				type: 'datetime',
+				title: {
+					text: 'Date and time'
+				}
+			},
+			tooltip: {
+				headerFormat: '<b>{series.name}:</b> %{point.y:.2f}<br>',
+				pointFormat: '{point.x:%Y-%m-%d %H:%M}'
+			},
+			yAxis: {
+				title: {
+					text: 'xxx %'
+				},
+				min: 0
+			},
+			
+
+			series: [{
+				name: 'Average',
+				data: [
+					{% for graph in vm_cache %}
+					{% if graph == "networkin_datapoints" %}
+						{% for value in vm_cache|dict_get:graph|make_json_sorted %}
+							[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"hour"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"minute"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"second"}}), {{value|dict_get:"Average"}}],
+						{% endfor %}
+					{% endif %}
+					{% endfor %}
+				]
+			}
+		]
+		});
+	});
+	
+		$(function () {
+		$('#disk_ops_datapoints').highcharts({
+			chart: {
+				type: 'spline'
+			},
+			title: {
+				text: 'Networking'
+			},
+			subtitle: {
+				text: 'tbd'
+			},
+			xAxis: {
+				type: 'datetime',
+				title: {
+					text: 'Date and time'
+				}
+			},
+			tooltip: {
+				headerFormat: '<b>{series.name}:</b> %{point.y:.2f}<br>',
+				pointFormat: '{point.x:%Y-%m-%d %H:%M}'
+			},
+			yAxis: {
+				title: {
+					text: 'xxx %'
+				},
+				min: 0
+			},
+			
+
+			series: [{
+				name: 'Average',
+				data: [
+					{% for graph in vm_cache %}
+					{% if graph == "networkin_datapoints" %}
+						{% for value in vm_cache|dict_get:graph|make_json_sorted %}
+							[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"hour"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"minute"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"second"}}), {{value|dict_get:"Average"}}],
+						{% endfor %}
+					{% endif %}
+					{% endfor %}
+				]
+			}
+		]
+		});
+	});
+	
+		$(function () {
+		$('#disk_bytes_datapoints').highcharts({
 			chart: {
 				type: 'spline'
 			},
