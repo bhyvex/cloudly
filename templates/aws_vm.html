@@ -71,9 +71,9 @@
 									<td>Security Groups</td>
 									<td>
 									{% for group in vm_cache|dict_get:"instance"|dict_get:"groups" %}
-										{% for g in group %}
-											{{g}}{% if not forloop.last %},{% endif %}
-										{% endfor %}
+									{% for g in group %}
+									{{g}}{% if not forloop.last %},{% endif %}
+									{% endfor %}
 									{% endfor %}
 									</td>
 								</tr>					  
