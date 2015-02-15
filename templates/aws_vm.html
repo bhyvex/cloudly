@@ -163,6 +163,8 @@
 		</div>
 	</div><!--/row-->
 
+
+{% if vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state"|title = "Running" %}
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="panel panel-default">
@@ -181,9 +183,7 @@
 					<div id="network-metrics"></div>
 					<br />
 					<div id="hdd-metrics"></div>
-
-					<strong>Debug:</strong> vm_cache<br/>
-
+					
 					{% comment %}
 					{% for graph in vm_cache %}
 					{% if graph == "cpu_utilization_datapoints" %}
@@ -212,7 +212,7 @@ disk_readbytes_datapoints
 			</div>
 		</div>
 	</div><!--/row -->
-
+{% endif %}
 
 	<div class="row">
 		<div class="col-xs-12">
