@@ -92,7 +92,7 @@
 									{{p.mobile}}
 									{% else %}-{% endif %}
 								</td>
-								<td>{{p.aws_enabled_regions}}</td>
+								<td>{% if p.aws_ec2_verified %}{{p.aws_enabled_regions}}{% endif %}</td>
 								<td>
 									{% if p.aws_access_key %}
 									{{p.aws_access_key|shorten_key}}
