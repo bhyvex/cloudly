@@ -88,6 +88,11 @@
 								<td>Status</td>
 								<td>{{server_status|lower}}</td>
 							</tr>
+							{% if server_status|lower = "offline" %}
+							<tr>
+								<td>Last seen</td>
+								<td>{{server|dict_get:"last_seen"}}</td>
+							</tr>
 							
 						</tbody>
 					</table>	
