@@ -178,7 +178,7 @@
 				</div>
 				<div class="panel-body">
 			   
-					<div id="CPU-Metrics"></div>
+					<div id="cpu_utilization_datapoints"></div>
 					<br />
 					<div id="network-metrics"></div>
 					<br />
@@ -304,8 +304,7 @@ Console output:
 	<!--
 	
 	$(function () {
-		//CPU metrics
-		$('#CPU-Metrics').highcharts({
+		$('#cpu_utilization_datapoints').highcharts({
 			chart: {
 				type: 'spline'
 			},
