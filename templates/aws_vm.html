@@ -101,7 +101,7 @@
 								</tr>
 								{% if vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state_reason" %}
 								<tr>
-									<td>State reason</td>
+									<td>Reason</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state_reason"|dict_get:"message"}}</td>
 								</tr>
 								{% endif %}
