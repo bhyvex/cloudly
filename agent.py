@@ -17,6 +17,7 @@ import subprocess
 
 AGENT_VERSION = "0.1"
 
+
 SECRET = "" # to be injected on download by Cloudly
 if(not SECRET): SECRET = raw_input("Enter your secret: ")
 
