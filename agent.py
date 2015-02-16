@@ -27,9 +27,6 @@ if(not SECRET): SECRET = raw_input("Enter your secret: ")
 API_SERVER = "" # to be injected on download by Cloudly
 if(not API_SERVER): API_SERVER = "127.0.0.1:5001"
 
-HWADDR = subprocess.Popen(["ifconfig","a"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
-UUID = re.search(r'([0-9A-F]{2}[:-]){5}([0-9A-F]{2})', HWADDR, re.I).group()
-
 
 def _get_sys_loadavg():
 
@@ -236,13 +233,13 @@ def _get_processes():
 	return processes
 
 
-def get_system_metrics( secret ):
+def get_system_metrics( uuid, secret ):
 
 	# XXX Checking the core system commands
 
 	print datetime.datetime.now(), 'Collecting system metrics..'
 
-	uuid = UUID
+	uuid = uuid
 	ip = _get_ip_address()
 	distro = _get_distro()
 	loadavg = _get_sys_loadavg()
@@ -296,6 +293,10 @@ def main():
 		
 	print "AGENT: v"+AGENT_VERSION
 	print "Written By: Jan Paricka"
+	
+	HWADDR = subprocess.Popen(["ifconfig","a"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+	UUID = re.search(r'([0-9A-F]{2}[:-]){5}([0-9A-F]{2})', HWADDR, re.I).group()
+
 
 	#api_call = "/v10/activity/"
 	#activity = {
@@ -309,7 +310,7 @@ def main():
 	while True:
 	
 		api_call = "/v10/ping/"
-		system_metrics = get_system_metrics(SECRET)
+		system_metrics = get_system_metrics(UUID, SECRET)
 		api_response = send_data(SECRET,api_call,system_metrics)
 		time.sleep(2)
 
