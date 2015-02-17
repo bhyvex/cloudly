@@ -155,6 +155,7 @@ http {
     client_header_buffer_size 1k;
     large_client_header_buffers 4 2k;
     request_pool_size 4k;
+    
     gzip on;
     gzip_min_length 1100;
     gzip_buffers 4 8k;
