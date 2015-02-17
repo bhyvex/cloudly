@@ -21,8 +21,7 @@ Optionally configure your MySQL server to meet your specific requirements.
 
 As for the user/password, this one needs to match the entries in the cloudly/cloudly/settings.py file.
 
-Create Database
----------------
+###### Create Database
 
 <pre>
 $ mysql -u root -p
@@ -30,8 +29,7 @@ mysql> create database cloudly;
 </pre>
 
 
-Install various python modules
-------------------------------
+###### Install various python modules
 
 <pre>
 $ apt-get install python-dev 
@@ -40,8 +38,7 @@ $ apt-get install python-openssl
 </pre>
 
 
-Install the MongoDB and it's python connectors
-----------------------------------------------
+###### Install the MongoDB and it's python connectors
 
 <pre>
 $ apt-get install mongodb
@@ -51,16 +48,14 @@ $ pip install pymongo
 
 ..and configure your server to meet your specific requirements.
 
-Download the latest version of the Cloudly project
---------------------------------------------------
+###### Download the latest version of the Cloudly Project from github:
 
 <pre>
 $ apt-get install git
 $ git clone https://github.com/jparicka/cloudly.git cloudly
 </pre>
 
-Create the ORM database tables
-------------------------------
+###### Create the ORM database tables
 
 <pre>
 $ cd cloudly
@@ -79,7 +74,7 @@ Would you like to create one now? (yes/no): no
 Answer "no" to this question.
 
 
-7) Enable utf-8 characters on the database
+###### Enable utf-8 characters on the database
 
 <pre>
 $ mysql -u root -p
@@ -88,7 +83,7 @@ mysql> ALTER DATABASE cloudly charset=utf8;
 mysql> ALTER TABLE userprofile_profile CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
 </pre>
 
-8) Install Amazon Boto - Python Interface to Amazon Web Services
+###### Install Amazon Boto - Python Interface to Amazon Web Services
 
 <pre>
 $ apt-get install python-boto
