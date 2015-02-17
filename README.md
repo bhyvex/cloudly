@@ -119,51 +119,96 @@ $ apt-get install nginx
 $ apt-get install python-flup
 </pre>
 
-Open up your nginx domain config file:
+Open up your nginx config file:
 
 <pre>
-$ vi /etc/nginx/sites-available/cloudly.loc
+$ vi /etc/nginx/nginx.conf
 </pre>
 
 ..and paste in the following configuration:
 
 <pre>
-server
-{
-    listen   80;
+user  apache apache;
+worker_processes  2;
 
-    server_name cloudly.loc;
-    access_log /var/www/log/cloudly-access.log;
-    error_log /var/www/log/cloudly-error.log;
-    root /var/www/cloudly;
+error_log /var/log/nginx/error_log info;
 
-    location /site_media
-    {
-        root /var/www/cloudly/static;
-    }
-
-    location /
-    {
-        # host and port to fastcgi server
-        fastcgi_pass 127.0.0.1:8080;
-        fastcgi_param PATH_INFO $fastcgi_script_name;
-        fastcgi_param REQUEST_METHOD $request_method;
-        fastcgi_param QUERY_STRING $query_string;
-        fastcgi_param CONTENT_TYPE $content_type;
-        fastcgi_param CONTENT_LENGTH $content_length;
-        fastcgi_pass_header Authorization;
-        fastcgi_intercept_errors off;
-    }
+events {
+    worker_connections  1024;
+    use epoll;
 }
+
+http {
+    include     /etc/nginx/mime.types;
+    default_type    application/octet-stream;
+
+    log_format main
+        '$remote_addr - $remote_user [$time_local] '
+        '"$request" $status $bytes_sent '
+        '"$http_referer" "$http_user_agent" '
+        '"$gzip_ratio"';
+
+    client_header_timeout   10m;
+    client_body_timeout 10m;
+    send_timeout        10m;
+
+    connection_pool_size        256;
+    client_header_buffer_size   1k;
+    large_client_header_buffers 4 2k;
+    request_pool_size       4k;
+
+    gzip on;
+    gzip_min_length 1100;
+    gzip_buffers    4 8k;
+    gzip_types  text/plain;
+
+    output_buffers  1 32k;
+    postpone_output 1460;
+
+    sendfile    on;
+    tcp_nopush  on;
+    tcp_nodelay on;
+
+    keepalive_timeout   75 20;
+
+    ignore_invalid_headers  on;
+    index index.html;
+
+    server {
+        listen 80;
+        server_name projectcloudly.com;
+        # site_media - folder in uri for static files
+        location /site_media  {
+            alias /static/;
+            }
+        location ~* ^.+\.(jpg|jpeg|gif|png|ico|css|zip|tgz|gz|rar|bz2|doc|xls|exe|pdf|ppt|txt|tar|mid|midi|wav|bmp|rtf|js|mov|counters) {
+            access_log   off;
+            expires      30d; 
+            }
+        location / {
+            # host and port to fastcgi server
+            fastcgi_pass 127.0.0.1:8080;
+            fastcgi_param  SERVER_ADDR $server_addr;
+            fastcgi_param  SERVER_PORT $server_port;
+            fastcgi_param  SERVER_NAME $server_name;
+            fastcgi_param  SERVER_PROTOCOL $server_protocol;
+            fastcgi_param PATH_INFO $fastcgi_script_name;
+            fastcgi_param REQUEST_METHOD $request_method;
+            fastcgi_param QUERY_STRING $query_string;
+            fastcgi_param CONTENT_TYPE $content_type;
+            fastcgi_param CONTENT_LENGTH $content_length;
+            fastcgi_pass_header Authorization;
+            fastcgi_param REMOTE_ADDR $remote_addr;
+            fastcgi_param X_FORWADRD_FOR $proxy_add_x_forwarded_for;
+            fastcgi_intercept_errors off;
+            }
+        access_log  /var/log/nginx/cloudly.access_log main;
+        error_log   /var/log/nginx/cloudly.error_log;
+        }
+    }
 </pre>
 
-Save the file and create the requied nginx folders structure:
 
-<pre>
-mkdir /var/www
-mkdir /var/www/log
-mkdir /var/www/cloudly
-</pre>
 
 TBD 
 
