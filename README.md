@@ -119,7 +119,7 @@ $ apt-get install nginx
 $ apt-get install python-flup
 </pre>
 
-Open up your nginx config file:
+Open up your NGINX config file:
 
 <pre>
 $ vi /etc/nginx/nginx.conf
@@ -201,9 +201,9 @@ http {
     }
 </pre>
 
-Great! Now you should be able to run the nginx server using the WSGI protocol on your very own server (effectively a Django server with the MySQL for the user data and Mongodb for the graphs/logging DB).
+Great! Now you should be able to run the NGINX server using the WSGI protocol on your very own server (effectively a Django server with the MySQL for the user data and Mongodb for the graphs/logging DB).
 
-For more information about the Django and nginx configuration see the NGINX Wiki on <a>http://wiki.nginx.org/DjangoFastCGI</a>
+For more information about the Django and NGINX configuration see the NGINX Wiki on <a>http://wiki.nginx.org/DjangoFastCGI</a>
 
 For information about the MongoDB visit <a>http://www.mongodb.org/</a>
 
