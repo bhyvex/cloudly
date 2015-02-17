@@ -52,14 +52,16 @@ $ pip install pymongo
 
 ..and configure your server to meet your specific requirements.
 
-5) Download the latest version of Cloudly
+Download the latest version of the Cloudly project
+--------------------------------------------------
 
 <pre>
 $ apt-get install git
 $ git clone https://github.com/jparicka/cloudly.git cloudly
 </pre>
 
-6) Create Cloudly ORM database tables
+Create the ORM database tables
+------------------------------
 
 <pre>
 $ cd cloudly
