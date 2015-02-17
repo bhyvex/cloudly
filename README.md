@@ -175,7 +175,7 @@ http {
         location /site_media  {
             alias /static/;
             }
-        location ~* ^.+\.(jpg|jpeg|gif|png|ico|css|zip|tgz|gz|rar|bz2|doc|xls||pdf|ppt|txt||rtf|js|counters) {
+        location ~* ^.+\.(jpg|jpeg|gif|png|ico|css|zip|tgz|gz|rar|bz2|doc|xls||pdf|js|counters) {
             access_log   off;
             expires      30d; 
             }
