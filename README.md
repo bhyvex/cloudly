@@ -176,7 +176,7 @@ http {
 
     server {
         listen 80;
-        server_name alpha.beepl.com;
+        server_name projectcloudly.com;
         # site_media - folder in uri for static files
         location /site_media  {
             alias /media/;
