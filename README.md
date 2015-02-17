@@ -179,7 +179,7 @@ http {
         server_name projectcloudly.com;
         # site_media - folder in uri for static files
         location /site_media  {
-            alias /media/;
+            alias /static/;
             }
         location ~* ^.+\.(jpg|jpeg|gif|png|ico|css|zip|tgz|gz|rar|bz2|doc|xls|exe|pdf|ppt|txt|tar|mid|midi|wav|bmp|rtf|js|mov|counters) {
             access_log   off;
@@ -198,12 +198,12 @@ http {
             fastcgi_param CONTENT_TYPE $content_type;
             fastcgi_param CONTENT_LENGTH $content_length;
             fastcgi_pass_header Authorization;
-            fastcgi_intercept_errors off;
             fastcgi_param REMOTE_ADDR $remote_addr;
             fastcgi_param X_FORWADRD_FOR $proxy_add_x_forwarded_for;
+            fastcgi_intercept_errors off;
             }
-        access_log  /var/log/nginx/localhost.access_log main;
-        error_log   /var/log/nginx/localhost.error_log;
+        access_log  /var/log/nginx/cloudly.access_log main;
+        error_log   /var/log/nginx/cloudly.error_log;
         }
     }
 </pre>
