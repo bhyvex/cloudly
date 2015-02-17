@@ -209,9 +209,6 @@ http {
 </pre>
 
 
-
-TBD 
-
 For more information about the Django and nginx configuration see the NGINX Wiki on <a>http://wiki.nginx.org/DjangoFastCGI</a>
 
 
