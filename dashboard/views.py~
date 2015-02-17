@@ -67,9 +67,7 @@ def home(request):
 @login_required()
 def welcome(request):
 
-	print '--  welcome page:', request.user
-	
-	print 'req.meta', request.META
+	print '--  welcome page:'
 
 	ip = request.META['REMOTE_ADDR']
 	profile = userprofile.objects.get(user=request.user)
