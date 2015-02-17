@@ -206,7 +206,7 @@ http {
     }
 </pre>
 
-Now you should be able to run the Nginx over WSGI.
+Now you should be able to run the Nginx server over the WSGI to our django server.
 
 For more information about the Django and nginx configuration see the NGINX Wiki on <a>http://wiki.nginx.org/DjangoFastCGI</a>
 
