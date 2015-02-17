@@ -11,8 +11,8 @@ It's fully automated and does the servers monitoring for you with close to nothi
 Installation Instructions
 =========================
 
-1) Install MySQL server and Python MySQLdb
-------------------------------------------
+Install MySQL server and Python MySQLdb
+---------------------------------------
 
 <pre>
 $ apt-get install mysql-server python-mysqldb
@@ -22,7 +22,8 @@ Optionally configure your MySQL server to meet your specific requirements.
 
 As for the user/password, this one needs to match the entries in the cloudly/cloudly/settings.py file.
 
-2) Create Cloudly Database
+Create Database
+---------------
 
 <pre>
 $ mysql -u root -p
