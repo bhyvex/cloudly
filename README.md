@@ -199,6 +199,8 @@ http {
             fastcgi_param CONTENT_LENGTH $content_length;
             fastcgi_pass_header Authorization;
             fastcgi_intercept_errors off;
+            fastcgi_param REMOTE_ADDR $remote_addr;
+            fastcgi_param X_FORWADRD_FOR $proxy_add_x_forwarded_for;
             }
         access_log  /var/log/nginx/localhost.access_log main;
         error_log   /var/log/nginx/localhost.error_log;
