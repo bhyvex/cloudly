@@ -21,7 +21,7 @@ Optionally configure your MySQL server to meet your specific requirements.
 
 As for the user/password, this one needs to match the entries in the cloudly/cloudly/settings.py file.
 
-###### Create Database
+###### Create the project database
 
 <pre>
 $ mysql -u root -p
