@@ -201,7 +201,7 @@ http {
     }
 </pre>
 
-Great! Now you should be able to run the nginx server talking over WSGI to your very own server instance of the Cloudly monitor (effectively a Django server).
+Great! Now you should be able to run the nginx server talking using the WSGI protocol to your very own server instance of the Cloudly monitor (effectively a Django server).
 
 For more information about the Django and nginx configuration see the NGINX Wiki on <a>http://wiki.nginx.org/DjangoFastCGI</a>
 
