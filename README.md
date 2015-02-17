@@ -148,14 +148,6 @@ http {
         '"$http_referer" "$http_user_agent"'
         '"$gzip_ratio"';
 
-    client_header_timeout 10m;
-    client_body_timeout 10m;
-    send_timeout 10m;
-    connection_pool_size 256;
-    client_header_buffer_size 1k;
-    large_client_header_buffers 4 2k;
-    request_pool_size 4k;
-    
     gzip on;
     gzip_min_length 1100;
     gzip_buffers 4 8k;
@@ -168,6 +160,14 @@ http {
     keepalive_timeout 75 20;
     ignore_invalid_headers on;
     index index.xhtml;
+
+    client_header_timeout 10m;
+    client_body_timeout 10m;
+    send_timeout 10m;
+    connection_pool_size 256;
+    client_header_buffer_size 1k;
+    large_client_header_buffers 4 2k;
+    request_pool_size 4k;
 
     server {
         listen 80;
