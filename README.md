@@ -201,9 +201,11 @@ http {
     }
 </pre>
 
-Great! Now you should be able to run the nginx server using the WSGI protocol to your very own server instance of the Cloudly monitor (effectively a Django server).
+Great! Now you should be able to run the nginx server using the WSGI protocol on your very own server (effectively a Django server with the MySQL for the user data and Mongodb for the graphs/logging DB).
 
 For more information about the Django and nginx configuration see the NGINX Wiki on <a>http://wiki.nginx.org/DjangoFastCGI</a>
+
+For information about the MongoDB visit <a>http://www.mongodb.org/</a>
 
 
 12) Configuring NGINX (with the SSL support)
