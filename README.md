@@ -31,7 +31,8 @@ mysql> create database cloudly;
 </pre>
 
 
-3) Install various python modules
+Install various python modules
+------------------------------
 
 <pre>
 $ apt-get install python-dev 
@@ -40,7 +41,8 @@ $ apt-get install python-openssl
 </pre>
 
 
-4) Install MongoDB and it's python connector
+Install the MongoDB and it's python connectors
+----------------------------------------------
 
 <pre>
 $ apt-get install mongodb
