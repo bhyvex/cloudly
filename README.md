@@ -11,7 +11,7 @@ It's fully automated and does the servers monitoring for you with close to nothi
 Installation Instructions
 -------------------------
 
-##### Install MySQL server and Python MySQLdb
+###### Install MySQL server and Python MySQLdb
 
 <pre>
 $ apt-get install mysql-server python-mysqldb
