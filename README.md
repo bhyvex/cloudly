@@ -48,7 +48,7 @@ $ pip install pymongo
 
 ..and configure your server to meet your specific requirements.
 
-###### Download the latest version of the Cloudly Project from github:
+###### Download the latest version of the Cloudly Project from github
 
 <pre>
 $ apt-get install git
@@ -74,7 +74,7 @@ Would you like to create one now? (yes/no): no
 Answer "no" to this question.
 
 
-###### Enable utf-8 characters on the database
+###### Enable UTF-8 encoding on the database
 
 <pre>
 $ mysql -u root -p
