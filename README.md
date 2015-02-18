@@ -74,7 +74,7 @@ Would you like to create one now? (yes/no): no
 Answer "no" to this question.
 
 
-###### Enable UTF-8 encoding on the database
+###### Enable Unicode on the database
 
 <pre>
 $ mysql -u root -p
