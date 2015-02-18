@@ -89,7 +89,7 @@ mysql> ALTER TABLE userprofile_profile CONVERT TO CHARACTER SET utf8 COLLATE utf
 $ apt-get install python-boto
 </pre>
 
-9) Run MongoDB
+###### Run the MongoDB
 
 <pre>
 $ sudo mkdir /data
@@ -99,7 +99,7 @@ $ mongod
 
 ..and configure your server to meet your specific requirements.
 
-10) Run the development server
+###### Run the development server
 
 At this point you should be able to run the administration dashboard (Django App):
 
@@ -110,7 +110,7 @@ $ ./run_devel.sh
 
 Now that you have the User Interface (Admin Dashboard) up and running you'd need to get the API started.  You can do so by following the instructions in the next step.
 
-11) Configuring the web server (NGINX without the SSL support)
+###### Configure the web server (NGINX without the SSL support)
 
 First and foremost install the NGINX (and Python Flup module), like so:
 
@@ -208,13 +208,13 @@ For more information about the Django and NGINX configuration see the NGINX Wiki
 For information about the MongoDB visit <a>http://www.mongodb.org/</a>
 
 
-12) Configuring NGINX (with the SSL support)
+###### Configure the NGINX (with the SSL support)
 
 There are quite a few steps involved, you'd need to contact me about this one, I'd be happy to help. 
 You can reach me on jparicka@gmail.com, or Skype: jparicka
 
 
-13) Run the API
+###### Run the API
 
 API server runs off of Flask therefore you'd need to install Python Flask first.  To do so simply copy and paste the following into your terminal window:
 
@@ -229,7 +229,7 @@ $ python api.py
 </pre>
 
 
-14) The Server Monitor Agent
+###### The Server Monitor Agent
 
 To add a private server to monitor simply copy and paste the following into server's terminal window:
 
@@ -237,7 +237,7 @@ To add a private server to monitor simply copy and paste the following into serv
 curl https://raw.githubusercontent.com/jparicka/cloudly/master/agent.py > ~$USER/agent.py; sudo sh -c "while true; do python ~$USER/agent.py; sleep 3; done"
 </pre>
 
-15) ..and that's that!  :)
+..and that's that!  :)
 
 Enjoy!
 
