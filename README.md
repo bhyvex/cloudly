@@ -208,12 +208,6 @@ For more information about the Django and NGINX configuration see the NGINX Wiki
 For information about the MongoDB visit <a>http://www.mongodb.org/</a>
 
 
-###### Configure the NGINX (with the SSL support)
-
-There are quite a few steps involved, you'd need to contact me about this one, I'd be happy to help. 
-You can reach me on jparicka@gmail.com, or Skype: jparicka
-
-
 ###### Run the API
 
 API server runs off of Flask therefore you'd need to install Python Flask first.  To do so simply copy and paste the following into your terminal window:
