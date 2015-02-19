@@ -69,8 +69,6 @@ def welcome(request):
 
 	print '--  welcome page:', request.user
 	
-	print 'req.meta', request.META
-
 	ip = request.META['REMOTE_ADDR']
 	profile = userprofile.objects.get(user=request.user)
 	_log_user_activity(profile,"click","/welcome/","welcome",ip=ip)
