@@ -320,8 +320,14 @@ def aws_vm_view(request,vm_name):
 			console_output = ""
 		vms_cache.vms_console_output_cache = console_output
 		vms_cache.save()
-				
-	return render_to_response('aws_vm.html', {'vm_name':vm_name,'vm_cache':vm_cache,'console_output':console_output,}, context_instance=RequestContext(request))
+	
+	metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="NetworkIn")[0]
+	networkin_datapoints = metric.query(start, end, 'Average', '')
+
+	metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="NetworkOut")[0]
+	networkout_datapoints = metric.query(start, end, 'Average', '')
+	
+	return render_to_response('aws_vm.html', {'vm_name':vm_name,'vm_cache':vm_cache,'console_output':console_output,'networkin_datapoints':networkin_datapoints,'networkout_datapoints':networkout_datapoints,}, context_instance=RequestContext(request))
 
 
 @login_required()
