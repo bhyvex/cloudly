@@ -331,7 +331,7 @@ def aws_vm_view(request,vm_name):
 	metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id']}, metric_name="NetworkIn")[0]
 	networkin_datapoints = metric.query(start, end, 'Average', '')
 
-	metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id'}, metric_name="NetworkOut")[0]
+	metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id']}, metric_name="NetworkOut")[0]
 	networkout_datapoints = metric.query(start, end, 'Average', '')
 
 	networkin_datapoints = json.dumps(networkin_datapoints,default=date_handler)
