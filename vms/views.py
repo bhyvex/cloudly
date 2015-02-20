@@ -321,6 +321,9 @@ def aws_vm_view(request,vm_name):
 		vms_cache.vms_console_output_cache = console_output
 		vms_cache.save()
 	
+	
+	cloudwatch = boto.ec2.cloudwatch.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
+
 	metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="NetworkIn")[0]
 	networkin_datapoints = metric.query(start, end, 'Average', '')
 
