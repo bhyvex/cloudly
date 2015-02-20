@@ -339,6 +339,28 @@ def aws_vm_view(request,vm_name):
 	networkin_datapoints = json.dumps(networkin_datapoints,default=date_handler)
 	networkout_datapoints = json.dumps(networkout_datapoints,default=date_handler)
 
+
+	# DiskReadOps
+	#metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskReadOps")[0]
+	#disk_readops_datapoints = metric.query(start, end, 'Average', '')
+	#instance_metrics['disk_readops_datapoints'] = json.dumps(disk_readops_datapoints,default=date_handler)
+
+	# DiskWriteOps
+	#metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskWriteOps")[0]
+	#disk_writeops_datapoints = metric.query(start, end, 'Average', '')
+	#instance_metrics['disk_writeops_datapoints'] = json.dumps(disk_writeops_datapoints,default=date_handler)
+
+	# DiskReadBytes
+	#metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskReadBytes")[0]
+	#disk_readbytes_datapoints = metric.query(start, end, 'Average', '')
+	#instance_metrics['disk_readbytes_datapoints'] = json.dumps(disk_readbytes_datapoints,default=date_handler)
+
+	# DiskWriteBytes
+	#metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskWriteBytes")[0]
+	#disk_writebytes_datapoints = metric.query(start, end, 'Average', '')
+	#instance_metrics['disk_writebytes_datapoints'] = json.dumps(disk_writebytes_datapoints,default=date_handler)
+
+
 	return render_to_response('aws_vm.html', {'vm_name':vm_name,'vm_cache':vm_cache,'console_output':console_output,'networkin_datapoints':networkin_datapoints,'networkout_datapoints':networkout_datapoints,}, context_instance=RequestContext(request))
 
 
