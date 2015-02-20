@@ -324,7 +324,9 @@ def aws_vm_view(request,vm_name):
 		vms_cache.vms_console_output_cache = console_output
 		vms_cache.save()
 	
-	
+	end = datetime.datetime.utcnow()
+	start = end - datetime.timedelta(minutes=60)
+					
 	ec2conn = boto.ec2.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
 	cloudwatch = boto.ec2.cloudwatch.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
 
