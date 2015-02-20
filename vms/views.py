@@ -323,9 +323,11 @@ def aws_vm_view(request,vm_name):
 	
 	metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="NetworkIn")[0]
 	networkin_datapoints = metric.query(start, end, 'Average', '')
+	#instance_metrics['networkin_datapoints'] = json.dumps(networkin_datapoints,default=date_handler)
 
 	metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="NetworkOut")[0]
 	networkout_datapoints = metric.query(start, end, 'Average', '')
+	#instance_metrics['networkout_datapoints'] = json.dumps(networkout_datapoints,default=date_handler)
 	
 	return render_to_response('aws_vm.html', {'vm_name':vm_name,'vm_cache':vm_cache,'console_output':console_output,'networkin_datapoints':networkin_datapoints,'networkout_datapoints':networkout_datapoints,}, context_instance=RequestContext(request))
 
