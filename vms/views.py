@@ -289,12 +289,12 @@ def aws_vm_view(request,vm_name):
 	vm_cache =  vms_cache.vms_response
 	vm_cache = base64.b64decode(vm_cache)
 
-	ec2_region = vm_cache[vm_name]['region']['name']
-
 	try:
 		vm_cache = pickle.loads(vm_cache)[vm_name]
 	except:
 		return HttpResponse("XXX " + vm_name)
+
+	ec2_region = vm_cache['region']['name']
 
 	if(vm_cache['user_id']!=request.user.id):
 		return HttpResponse("access denied")
