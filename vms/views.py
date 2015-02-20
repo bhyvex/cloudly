@@ -330,6 +330,8 @@ def aws_vm_view(request,vm_name):
 	vm_cache[vm_name]['networkin_datapoints'] = json.dumps(networkin_datapoints,default=date_handler)
 	vm_cache[vm_name]['networkout_datapoints'] = json.dumps(networkout_datapoints,default=date_handler)
 
+	print 'vm_cache', vm_cache
+
 	return render_to_response('aws_vm.html', {'vm_name':vm_name,'vm_cache':vm_cache,'console_output':console_output,'networkin_datapoints':networkin_datapoints,'networkout_datapoints':networkout_datapoints,}, context_instance=RequestContext(request))
 
 
