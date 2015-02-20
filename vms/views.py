@@ -289,7 +289,7 @@ def aws_vm_view(request,vm_name):
 	vm_cache =  vms_cache.vms_response
 	vm_cache = base64.b64decode(vm_cache)
 
-	ec2_region = vm_cache['instance']['region']['name']
+	ec2_region = vm_cache[vm_name]['region']['name']
 
 	try:
 		vm_cache = pickle.loads(vm_cache)[vm_name]
