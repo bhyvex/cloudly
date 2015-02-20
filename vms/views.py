@@ -285,11 +285,12 @@ def aws_vm_view(request,vm_name):
 	ip = request.META['REMOTE_ADDR']
 	_log_user_activity(profile,"click","/aws/"+vm_name,"aws_vm_view",ip=ip)
 
-	ec2_region = vm_cache['instance']['region']['name']
-
 	vms_cache = Cache.objects.get(user=user)
 	vm_cache =  vms_cache.vms_response
 	vm_cache = base64.b64decode(vm_cache)
+
+	ec2_region = vm_cache['instance']['region']['name']
+
 	try:
 		vm_cache = pickle.loads(vm_cache)[vm_name]
 	except:
