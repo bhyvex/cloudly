@@ -294,8 +294,7 @@ def aws_vm_view(request,vm_name):
 	except:
 		return HttpResponse("XXX " + vm_name)
 
-	print 'debug', vm_cache
-	ec2_region = vm_cache['region']['name']
+	ec2_region = vm_cache['instance']['region']['name']
 
 	if(vm_cache['user_id']!=request.user.id):
 		return HttpResponse("access denied")
