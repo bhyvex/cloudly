@@ -357,10 +357,10 @@ Console output:
 				type: 'spline'
 			},
 			title: {
-				text: 'CPU Utilisation'
+				text: 'Inbound Network Traffic'
 			},
 			subtitle: {
-				text: 'Percentage of CPU usage across all cores'
+				text: 'TBD subtitle'
 			},
 			xAxis: {
 				type: 'datetime',
@@ -374,7 +374,7 @@ Console output:
 			},
 			yAxis: {
 				title: {
-					text: 'CPU %'
+					text: 'TBD'
 				},
 				min: 0
 			},
@@ -384,12 +384,6 @@ Console output:
 				name: 'networkin_datapoints',
 				data: [
 					{% for value in networkin_datapoints|make_json_sorted %}
-						[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"hour"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"minute"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"second"}}), {{value|dict_get:"Average"}}],						
-					{% endfor %}
-				],
-				name: 'networkout_datapoints',
-				data: [
-					{% for value in networkout_datapoints|make_json_sorted %}
 						[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"hour"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"minute"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"second"}}), {{value|dict_get:"Average"}}],						
 					{% endfor %}
 				]
