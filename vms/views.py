@@ -281,6 +281,9 @@ def aws_vm_view(request,vm_name):
 	profile = userprofile.objects.get(user=request.user)
 	user.last_login = datetime.datetime.now()
 	user.save()
+	
+	aws_access_key = profile.aws_access_key
+	aws_secret_key = profile.aws_secret_key
 
 	ip = request.META['REMOTE_ADDR']
 	_log_user_activity(profile,"click","/aws/"+vm_name,"aws_vm_view",ip=ip)
