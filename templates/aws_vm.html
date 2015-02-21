@@ -194,30 +194,6 @@
 					<br />
 					<div id="disk_writebytes_datapoints"></div>
 
-					{% comment %}
-					{% for graph in vm_cache %}
-					{% if graph == "cpu_utilization_datapoints" %}
-						<strong>{{graph}} data</strong>
-						<br/>
-						{% for value in vm_cache|dict_get:graph|make_json %}
-							{{value|dict_get:"Timestamp"|format_datetime_special}}, value: {{value|dict_get:"Average"}}<br/>
-						{% endfor %}
-					{% endif %}
-					{% endfor %}
-					<br/>
-					{% endcomment %}
-{% comment %}
-<pre>
-<strong>(Only) Available metrics from the ec2.cloudwatch:</strong>
-cpu_utilization_datapoints
-networkin_datapoints
-networkout_datapoints
-disk_readops_datapoints
-disk_writeops_datapoints
-disk_readbytes_datapoints
-disk_writebytes_datapoints
-</pre>
-{% endcomment %}
 				</div>
 			</div>
 		</div>
