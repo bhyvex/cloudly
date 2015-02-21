@@ -57,7 +57,7 @@
 								<td>Distribution</td>
 								<td>{{server|dict_get:"distro"}}</td>
 							</tr>
-							{% server_status|lower = "running" %}
+							{% if server_status|lower = "running" %}
 							<tr>
 								<td>Uptime</td>
 								<td>{{server|dict_get:"uptime"}}</td>
