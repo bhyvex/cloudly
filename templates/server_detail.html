@@ -57,11 +57,12 @@
 								<td>Distribution</td>
 								<td>{{server|dict_get:"distro"}}</td>
 							</tr>
+							{% server_status|lower = "running" %}
 							<tr>
 								<td>Uptime</td>
 								<td>{{server|dict_get:"uptime"}}</td>
 							</tr>
-							
+							{% endif %}
 							<tr>
 								<td>CPU info</td>
 								<td>{{server|dict_get:"cpu_info"|count_list}}x {{server|dict_get:"cpu_info"|dict_get:"cpu0"|dict_get:"model_name"}}</td>
