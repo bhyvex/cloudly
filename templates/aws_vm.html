@@ -185,8 +185,10 @@
 					<div id="networkout_datapoints"></div>
 					<br />
 					<div id="disk_readops_datapoints"></div>
-
-					
+					<br />
+					<div id="disk_readops_datapoints"></div>
+					<br />
+					<div id="disk_writeops_datapoints"></div>
 					
 					
 					{% comment %}
@@ -478,6 +480,47 @@ Console output:
 		});
 	});
 	
+
+	$(function () {
+		$('#disk_writeops_datapoints').highcharts({
+			chart: {
+				type: 'spline'
+			},
+			title: {
+				text: 'disk_writeops_datapoints'
+			},
+			subtitle: {
+				text: 'TBD subtitle'
+			},
+			xAxis: {
+				type: 'datetime',
+				title: {
+					text: 'Date and time'
+				}
+			},
+			tooltip: {
+				headerFormat: '<b>{series.name}:</b> {point.y:.2f}<br>',
+				pointFormat: '{point.x:%Y-%m-%d %H:%M}'
+			},
+			yAxis: {
+				title: {
+					text: 'TBD'
+				},
+				min: 0
+			},
+			
+
+			series: [{
+				name: 'disk_writeops_datapoints',
+				data: [
+					{% for value in disk_writeops_datapoints|make_json_sorted %}
+						[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"hour"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"minute"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"second"}}), {{value|dict_get:"Average"}}],						
+					{% endfor %}
+				]
+			}
+		]
+		});
+	});
 
 	
 	//-->
