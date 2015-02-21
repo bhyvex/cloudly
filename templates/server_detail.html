@@ -75,7 +75,7 @@
 								<td>Memory Size</td>
 								<td>{{server|dict_get:"memory_usage"|dict_get:"memory_total"|to_mb|intcomma}} MB</td>
 							</tr>
-
+							{% if server_status|lower = "running" %}
 							<tr>
 								<td>Load Average</td>
 								<td>
@@ -84,7 +84,7 @@
 								{% endfor %}
 								</td>
 							</tr>
-
+							{% endif %}
 							<tr>
 								<td>Status</td>
 								<td>{{server_status|lower}}</td>
