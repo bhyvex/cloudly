@@ -339,16 +339,16 @@ def aws_vm_view(request,vm_name):
 	networkin_datapoints = json.dumps(networkin_datapoints,default=date_handler)
 	networkout_datapoints = json.dumps(networkout_datapoints,default=date_handler)
 
-	metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskReadOps")[0]
+	metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id']}, metric_name="DiskReadOps")[0]
 	disk_readops_datapoints = metric.query(start, end, 'Average', '')
 
-	metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskWriteOps")[0]
+	metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id']}, metric_name="DiskWriteOps")[0]
 	disk_writeops_datapoints = metric.query(start, end, 'Average', '')
 
-	metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskReadBytes")[0]
+	metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id']}, metric_name="DiskReadBytes")[0]
 	disk_readbytes_datapoints = metric.query(start, end, 'Average', '')
 
-	metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="DiskWriteBytes")[0]
+	metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id']}, metric_name="DiskWriteBytes")[0]
 	disk_writebytes_datapoints = metric.query(start, end, 'Average', '')
 	
 
