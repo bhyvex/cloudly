@@ -10,4 +10,3 @@ export LC_ALL=
 
 python -c 'import locale; print(locale.getdefaultlocale());'
 echo ales gut.
-
