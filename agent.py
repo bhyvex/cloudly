@@ -133,7 +133,7 @@ def _get_memory_usage():
 
 def _get_ip_address():
 	
-	ifconfig = subprocess.Popen(['ifconfig -a | grep inet | grep -v inet6 | grep -v "127.0.0.1"'], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+	ifconfig = subprocess.Popen(["ifconfig","a"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 	ip = re.search( r'inet addr:[^\s]+', ifconfig )
 	
 	if(not ip):
@@ -296,7 +296,7 @@ def main():
 	print "AGENT: v"+AGENT_VERSION
 	print "Written By: Jan Paricka"
 	
-	HWADDR = subprocess.Popen(['ifconfig -a | grep inet | grep -v inet6 | grep -v "127.0.0.1"'], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+	HWADDR = subprocess.Popen(["ifconfig","a"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 	UUID = re.search(r'([0-9A-F]{2}[:-]){5}([0-9A-F]{2})', HWADDR, re.I).group()
 
 	#api_call = "/v10/activity/"
