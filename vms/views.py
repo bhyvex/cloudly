@@ -330,14 +330,12 @@ def aws_vm_view(request,vm_name):
 	ec2conn = boto.ec2.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
 	cloudwatch = boto.ec2.cloudwatch.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
 
+
 	metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id']}, metric_name="NetworkIn")[0]
 	networkin_datapoints = metric.query(start, end, 'Average', '')
 
 	metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id']}, metric_name="NetworkOut")[0]
 	networkout_datapoints = metric.query(start, end, 'Average', '')
-
-	networkin_datapoints = json.dumps(networkin_datapoints,default=date_handler)
-	networkout_datapoints = json.dumps(networkout_datapoints,default=date_handler)
 
 	metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id']}, metric_name="DiskReadOps")[0]
 	disk_readops_datapoints = metric.query(start, end, 'Average', '')
@@ -350,7 +348,14 @@ def aws_vm_view(request,vm_name):
 
 	metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id']}, metric_name="DiskWriteBytes")[0]
 	disk_writebytes_datapoints = metric.query(start, end, 'Average', '')
-	
+
+	networkin_datapoints = json.dumps(networkin_datapoints,default=date_handler)
+	networkout_datapoints = json.dumps(networkout_datapoints,default=date_handler)
+	disk_readops_datapoints = json.dumps(disk_readops_datapoints,default=date_handler)
+	disk_writeops_datapoints = json.dumps(disk_writeops_datapoints,default=date_handler)
+	disk_readbytes_datapoints = json.dumps(disk_readbytes_datapoints,default=date_handler)
+	disk_writebytes_datapoints = json.dumps(disk_writebytes_datapoints,default=date_handler)
+
 
 	return render_to_response('aws_vm.html', {'vm_name':vm_name,'vm_cache':vm_cache,'console_output':console_output,'networkin_datapoints':networkin_datapoints,'networkout_datapoints':networkout_datapoints,'disk_readops_datapoints':disk_readops_datapoints,'disk_writeops_datapoints':disk_writeops_datapoints,'disk_readbytes_datapoints':disk_readbytes_datapoints,'disk_writebytes_datapoints':disk_writebytes_datapoints,}, context_instance=RequestContext(request))
 
