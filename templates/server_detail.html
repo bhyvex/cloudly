@@ -177,9 +177,11 @@
 				<div class="panel-body">
 				
 					<b>loadavg</b> {{loadavg}}
+					<br/>
 					{% for loadavg_metrics in loadavg %}
 						{{loadavg_metrics}}
 					{% endfor %}
+					<hr/>
 
 					<b>cpu_usage</b> {{cpu_usage}}
 					<br/>
@@ -189,13 +191,12 @@
 					<hr/>
 					
 					<b>mem_usage</b> {{mem_usage}}
+					<br/>
 					{% for mem_metrics in mem_usage %}
 					{{mem_metrics}}
 					{% endfor %}
 					<hr/>
 					
-					<hr/>
-
 				</div>
 				
 			</div>
