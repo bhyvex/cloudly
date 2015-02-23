@@ -127,7 +127,7 @@ var cloudlyVMSmanager  = {
 
 $(document).ready (function() {
 	
-	var btns = ['all','critical','offline', 'windows', 'linux', 'bsd', 'cloud'];
+	var btns = ['all','critical','offline', 'busy', 'windows', 'linux', 'bsd', 'cloud'];
 	for (var i = 0; i < btns.length; ++i) {
 	    (function(){
 		var type = btns[i];
