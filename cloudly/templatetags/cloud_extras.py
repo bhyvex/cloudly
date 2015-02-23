@@ -89,6 +89,15 @@ def get_tags(package):
 @register.filter(name='to_mb')
 def to_mb(x):
 	return x/1024/1000
+	
+	
+@register.filter(name="clean_ps_command")
+def clean_ps_command(command):
+
+	command = command.replace('[','')
+	command = command.replace(']','')
+	return command
+
 
 @register.filter(name='format_datetime_special')
 def format_datetime_special(date):
