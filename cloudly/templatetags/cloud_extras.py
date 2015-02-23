@@ -101,6 +101,9 @@ def clean_ps_command(command):
 	if(command[-1:]==":"):
 		command = command[:-1]
 
+	if(command[0]=="-"):
+		command = command[1:]
+
 	command = re.sub("([a-z|0-9]*)([A-Z][a-zA-Z]*)", "\\1 \\2", command)
 	command = command.split(' ')[0]
 
@@ -113,9 +116,6 @@ def clean_ps_command(command):
 	command = command.replace('/usr/sbin/','')
 	command = command.replace('/bin/','')
 	command = command.replace('/sbin/','')
-	
-	if(command[0]=="-"):
-		command = command[1:]
 	
 	return command
 
