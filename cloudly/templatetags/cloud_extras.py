@@ -112,6 +112,14 @@ def clean_ps_command(command):
 	
 	return command
 
+@register.filter(name="work_single_ps_command")
+def work_single_ps_command(cmd):
+
+	command = ""
+	for i in cmd: command += i + " "
+	command = command[:-1]
+
+	return command
 
 @register.filter(name='format_datetime_special')
 def format_datetime_special(date):
