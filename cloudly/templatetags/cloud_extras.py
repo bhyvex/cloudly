@@ -96,6 +96,10 @@ def clean_ps_command(command):
 
 	command = command.replace('[','')
 	command = command.replace(']','')
+	
+	if(command[-1:]==":"):
+		command = command[:-1]
+	
 	return command
 
 
