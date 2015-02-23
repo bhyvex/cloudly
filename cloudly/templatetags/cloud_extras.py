@@ -104,6 +104,9 @@ def clean_ps_command(command):
 	if(command[0]=="-"):
 		command = command[1:]
 
+	if(command[0]==" "):
+		command = command[1:]
+		
 	command = re.sub("([a-z|0-9]*)([A-Z][a-zA-Z]*)", "\\1 \\2", command)
 	command = command.split(' ')[0]
 
