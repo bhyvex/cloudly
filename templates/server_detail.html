@@ -283,7 +283,7 @@
 								<td>{{process|dict_get:"pid"}}</td>
 								<td><span class="label label-success">{{process|dict_get:"user"}}</span></td>
 								<td>{{process|dict_get:"command"|dict_get:0|clean_ps_command}}</td>
-								<td>{{process|dict_get:"command"|work_single_ps_command|shorten_string:100}}</td>                                       
+								<td>{{process|dict_get:"command"|work_single_ps_command|shorten_string:150}}</td>                                       
 							</tr>
 							{% endfor %}
 						  </tbody>
