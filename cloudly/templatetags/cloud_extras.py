@@ -27,11 +27,11 @@ def _seconds_since_epoch(d):
 @register.filter(name='dict_get')
 def dict_get(h, key):
 
-	try:
-		return h[key]
+	try: return h[key]
 	except: pass
 		
 	return None
+
 
 @register.filter(name="count_list")
 def count_list(x):
