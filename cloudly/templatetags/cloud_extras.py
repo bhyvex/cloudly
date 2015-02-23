@@ -98,14 +98,14 @@ def to_mb(x):
 @register.filter(name="clean_ps_command")
 def clean_ps_command(command):
 
+	if(command[-1:]==":"):
+		command = command[:-1]
+
 	command = re.sub("([a-z|0-9]*)([A-Z][a-zA-Z]*)", "\\1 \\2", command)
 	command = command.split(' ')[0]
 
 	command = command.replace('[','')
 	command = command.replace(']','')
-	
-	if(command[-1:]==":"):
-		command = command[:-1]
 	
 	command = command.replace('/usr/local/bin/','')
 	command = command.replace('/usr/local/sbin/','')
