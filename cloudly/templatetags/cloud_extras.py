@@ -58,6 +58,9 @@ def clear_filename(f):
 def shorten_key(key):
 	return key[:11]+'..'
 
+@register.filter(name='shorten_string')
+def shorten_string(x,shorten):
+	return x[:shorten]
 	
 @register.filter(name='get_file_extension')
 def get_file_extension(f):
