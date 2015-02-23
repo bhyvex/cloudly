@@ -488,7 +488,6 @@ def ajax_virtual_machines(request):
 				ajax_vms_response += "/server/"+vm+"/"
 			else:
 				ajax_vms_response += "/aws/"+vm+"/"
-				isotope_filter_classes += " cloud"
 			ajax_vms_response += "\""
 
 			ajax_vms_response += "},"
