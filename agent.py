@@ -299,14 +299,14 @@ def main():
 	HWADDR = subprocess.Popen(["ifconfig","-a"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 	UUID = re.search(r'([0-9A-F]{2}[:-]){5}([0-9A-F]{2})', HWADDR, re.I).group()
 
-	#api_call = "/v10/activity/"
-	#activity = {
-	#	'secret': SECRET,
-	#	'agent_version': AGENT_VERSION,
-	#	'uuid': UUID,
-	#	'activity': "Agent v"+AGENT_VERSION+" has started."
-	#}
-	#send_data(SECRET,api_call,activity)
+	api_call = "/v10/activity/"
+	activity = {
+		'secret': SECRET,
+		'agent_version': AGENT_VERSION,
+		'uuid': UUID,
+		'activity': "Agent v"+AGENT_VERSION+" started."
+	}
+	send_data(SECRET,api_call,activity)
 	
 	while True:
 	
