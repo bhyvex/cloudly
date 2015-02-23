@@ -99,7 +99,9 @@ def clean_ps_command(command):
 	
 	if(command[-1:]==":"):
 		command = command[:-1]
-		
+	
+	command = command.replace('/usr/local/bin/','')
+	command = command.replace('/usr/local/sbin/','')
 	command = command.replace('/usr/bin/','')
 	command = command.replace('/usr/sbin/','')
 	command = command.replace('/bin/','')
