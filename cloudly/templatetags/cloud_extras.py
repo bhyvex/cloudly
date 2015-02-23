@@ -107,6 +107,9 @@ def clean_ps_command(command):
 	command = command.replace('/bin/','')
 	command = command.replace('/sbin/','')
 	
+	if(command[0]=="-"):
+		command = command[1:]
+	
 	return command
 
 
