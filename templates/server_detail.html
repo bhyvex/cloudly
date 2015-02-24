@@ -294,7 +294,7 @@
 								
 								<td>{{process|dict_get:"cpu"}}</td>                                       
 								<td>{{process|dict_get:"mem"}}</td>                                       
-								<td>{{process|dict_get:"command"|dict_get:0|clean_ps_command}}</td>
+								<td>{{process|dict_get:"command"|dict_get:0|clean_ps_command|lower}}</td>
 								<td>{{process|dict_get:"command"|work_single_ps_command}}</td>                                       
 							</tr>
 							{% endfor %}
