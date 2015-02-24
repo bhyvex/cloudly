@@ -282,7 +282,7 @@
 								
 								
 								<td>
-									{% if process|dict_get:"cpu" > 50 %}
+									{% if process|dict_get:"cpu"|make_float > 50 %}
 									<span class="label label-danger">
 									{% else %}
 									<span class="label label-success">
