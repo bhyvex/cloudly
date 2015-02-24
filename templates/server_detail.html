@@ -279,8 +279,6 @@
 						  	{% for process in processes %}
 							<tr>
 								<td>{{process|dict_get:"pid"}}</td>
-								
-								
 								<td>
 									{% if process|dict_get:"cpu"|make_float > 50 %}
 									<span class="label label-danger">
@@ -290,8 +288,6 @@
 									{{process|dict_get:"user"}}
 									</span>
 								</td>
-								
-								
 								<td>{{process|dict_get:"cpu"}}</td>                                       
 								<td>{{process|dict_get:"mem"}}</td>                                       
 								<td>{{process|dict_get:"command"|dict_get:0|clean_ps_command|lower}}</td>
