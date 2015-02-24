@@ -72,6 +72,11 @@ def get_file_extension(f):
 def replace_dots(text):
 	return text.replace(':','-')
 
+@register.filter(name='make_float')
+def make_float(value):
+	return float(value)
+
+
 @register.filter(name='make_json')
 def make_json(json_):
 	try:
