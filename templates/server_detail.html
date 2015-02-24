@@ -283,8 +283,10 @@
 								
 								<td>
 									{% if process|dict_get:"cpu" > 50 or process|dict_get:"mem" > 30 %}
+									<span class="label label-danger">
+									{% else %}
 									<span class="label label-success">
-								
+									{% endif %}
 									{{process|dict_get:"user"}}
 									</span>
 								</td>
