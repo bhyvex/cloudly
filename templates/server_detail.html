@@ -262,7 +262,8 @@
 				
 				<b>disks_usage graphs</b> {{disks_usage}}
 				{% for disks_metrics in disks_usage %}
-					{{disks_metrics}}
+					{{disks_metrics|pprint}}
+					<br/>
 				{% endfor %}
 				</div>
 				
