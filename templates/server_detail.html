@@ -249,14 +249,16 @@
 						</tr>
 					</thead>   
 					<tbody>
+						{% for disk in server|dict_get:"disks_usage" %}
 						<tr>
-							<td>Samppa Nori</td>
-							<td>2012/01/01</td>
-							<td>Member</td>
-							<td>xxx</td>                                       
-							<td>xxx</td>                                       
-							<td>xxx</td>                                       
+							<td>{{disk|dict_get:0}}</td>
+							<td>{{disk|dict_get:1}}</td>
+							<td>{{disk|dict_get:2}}</td>
+							<td>{{disk|dict_get:3}}</td>
+							<td>{{disk|dict_get:4}}</td>
+							<td>{{disk|dict_get:5}}</td>
 						</tr>
+						{% endfor %}
 					</tbody>
 					</table>  
 
