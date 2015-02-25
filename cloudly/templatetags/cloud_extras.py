@@ -180,4 +180,5 @@ def get_server_activities(server_uuid):
 
 @register.filter(name='substract_one')
 def substract_one(x):
+	x = int(x)
 	return x-1
