@@ -444,10 +444,13 @@ def ajax_virtual_machines(request):
 					color = "lightBlue "
 				if(data_median>=17 and data_median<=35):
 					color = "green "
+					isotope_filter_classes += " busy"
 				if(data_median>35 and data_median<=50):
 					color = "darkGreen "
+					isotope_filter_classes += " busy"
 				if(data_median>50 and data_median<=70):
 					color = "lightOrange "
+					isotope_filter_classes += " busy"
 				if(data_median>70):
 					isotope_filter_classes += " critical"
 					color = "red "
