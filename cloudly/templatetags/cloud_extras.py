@@ -178,3 +178,6 @@ def get_server_activities(server_uuid):
 
 	return activities
 
+@register.filter(name='substract_one')
+def substract_one(x):
+	return x-1
