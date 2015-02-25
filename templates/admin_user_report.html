@@ -182,7 +182,11 @@
 							{% for a in user_activity_other %}
 							<tr>
 								<td><font size=2>{{a.date_created}}</font></td>
+								{% if a.activity == "download" %}
+								<td>downloaded server monitor agent</td>
+								{% else %}
 								<td>{{a.activity}}<td>
+								{% endif %}
 								<td>{{a.meta}}</td>
 								<td>{{a.function}}</td>                                       
 								<td>{{a.link}}</td>
