@@ -462,7 +462,10 @@ def ajax_virtual_machines(request):
 				color = "pink "
 			if(vm_state=="Stopped"):
 				isotope_filter_classes += " offline"
-						
+			
+			if(vm_cache[vm]['provider']!='agent'):
+				isotope_filter_classes += " cloud"
+			
 			ajax_vms_response += "\""
 			ajax_vms_response += instance_name
 			ajax_vms_response += "\": {"
