@@ -252,9 +252,9 @@
 						{% for disk in server|dict_get:"disks_usage" %}
 						<tr>
 							<td>{{disk|dict_get:0}}</td>
-							<td>{{disk|dict_get:1}}</td>
-							<td>{{disk|dict_get:2}}</td>
-							<td>{{disk|dict_get:3}}</td>
+							<td>{{disk|dict_get:1|filesizeformat}}</td>
+							<td>{{disk|dict_get:2|filesizeformat}}</td>
+							<td>{{disk|dict_get:3|filesizeformat}}</td>
 							<td>{{disk|dict_get:4}}</td>
 							<td>{{disk|dict_get:5}}</td>
 						</tr>
