@@ -452,7 +452,7 @@ def ajax_virtual_machines(request):
 					color = "lightOrange "
 					isotope_filter_classes += " busy"
 				if(data_median>70):
-					isotope_filter_classes += " critical"
+					isotope_filter_classes += " busy critical"
 					color = "red "
 					if data_median>85:
 						vm_state = "Hot hot hot!"
