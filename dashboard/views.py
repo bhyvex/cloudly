@@ -91,7 +91,6 @@ def download_agent(request):
 	
 	try:
 		profile = userprofile.objects.get(user=request.user)
-		_log_user_activity(profile,"download","/download/agent/","download_agent",ip=ip)
 	except: pass
 
 	print 'server_url', server_url
@@ -104,6 +103,8 @@ def download_agent(request):
 			profile = userprofile.objects.get(agent_hash=xuuid)
 		except:
 			return HttpResponseForbidden()
+
+		_log_user_activity(profile,"download","/download/agent/","download_agent",ip=ip)
 	
 		agent_code = ""
 		for line in open('agent.py'):
