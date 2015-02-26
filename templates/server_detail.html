@@ -386,12 +386,8 @@ $(function () {
         },
         xAxis: {
             type: 'datetime',
-            dateTimeLabelFormats: { // don't display the dummy year
-                month: '%e. %b',
-                year: '%b'
-            },
             title: {
-                text: 'Date'
+                text: 'Date and time'
             }
         },
         yAxis: {
@@ -401,16 +397,8 @@ $(function () {
             min: 0
         },
         tooltip: {
-            headerFormat: '<b>{series.name}</b><br>',
-            pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
-        },
-
-        plotOptions: {
-            spline: {
-                marker: {
-                    enabled: true
-                }
-            }
+            headerFormat: '<b>{series.name}:</b> {point.y:.2f}<br>',
+            pointFormat: '{point.x:%Y-%m-%d %H:%M}'
         },
 
         series: [{
