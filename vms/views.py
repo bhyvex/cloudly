@@ -516,7 +516,6 @@ def ajax_virtual_machines(request):
 def ajax_aws_graphs(request, instance_id, graph_type="all"):
 	
 	print '-- ajax_aws_graphs', request.user
-
 			
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
