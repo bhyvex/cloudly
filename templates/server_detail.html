@@ -208,8 +208,21 @@
 		{% for x in loadavg %}
 			{{x}}<\br>
 		{% endfor %}
+		<br/>
 
 		
+					<b>cpu_usage</b> {{cpu_usage}}
+					<br/>
+					{% for cpu_metrics in cpu_usage %}
+					{{cpu_metrics}}
+					{% endfor %}
+					<hr/>
+					<b>cpu_usage</b> {{cpu_usage}}
+					<br/>
+					{% for cpu_metrics in cpu_usage %}
+					{{cpu_metrics}}
+					{% endfor %}
+					<hr/>
 					<b>cpu_usage</b> {{cpu_usage}}
 					<br/>
 					{% for cpu_metrics in cpu_usage %}
