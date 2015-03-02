@@ -617,7 +617,7 @@ def server_view(request, hwaddr):
 	uuid = server['uuid']		
 	cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(5)
 	loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(5)
-	loadavg.rewind()
+	loadavg = loadavg.rewind()
 	
 	mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(5)
 	disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(5)
