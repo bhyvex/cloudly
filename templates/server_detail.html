@@ -383,7 +383,7 @@ $(function () {
             type: 'spline'
         },
         title: {
-            text: '{{loadavg}}'
+            text: 'Server Load Average'
         },
         subtitle: {
             text: 'TBD X'
@@ -419,14 +419,14 @@ $(function () {
             name: '10-mins',
             data: [
 		{% for y in loadavg %}
-		   [Date.UTC({{y|dict_get:"date_created"|date:"Y"}}, {{y|dict_get:"date_created"|date:"n"}}, {{y|dict_get:"date_created"|date:"j"}}, {{y|dict_get:"date_created"|date:"H"}}, {{y|dict_get:"date_created"|date:"m"}}, {{y|dict_get:"date_created"|date:"s"}}), {{y|dict_get:"loadavg"|dict_get:0}}   ],
+		   [Date.UTC({{y|dict_get:"date_created"|date:"Y"}}, {{y|dict_get:"date_created"|date:"n"}}, {{y|dict_get:"date_created"|date:"j"}}, {{y|dict_get:"date_created"|date:"H"}}, {{y|dict_get:"date_created"|date:"m"}}, {{y|dict_get:"date_created"|date:"s"}}), {{y|dict_get:"loadavg"|dict_get:1}}   ],
 		{% endfor %}
             ]
         }, {
             name: '15-mins',
             data: [
 		{% for z in loadavg %}
-		   [Date.UTC({{z|dict_get:"date_created"|date:"Y"}}, {{z|dict_get:"date_created"|date:"n"}}, {{z|dict_get:"date_created"|date:"j"}}, {{z|dict_get:"date_created"|date:"H"}}, {{z|dict_get:"date_created"|date:"m"}}, {{z|dict_get:"date_created"|date:"s"}}), {{z|dict_get:"loadavg"|dict_get:0}}   ],
+		   [Date.UTC({{z|dict_get:"date_created"|date:"Y"}}, {{z|dict_get:"date_created"|date:"n"}}, {{z|dict_get:"date_created"|date:"j"}}, {{z|dict_get:"date_created"|date:"H"}}, {{z|dict_get:"date_created"|date:"m"}}, {{z|dict_get:"date_created"|date:"s"}}), {{z|dict_get:"loadavg"|dict_get:2}}   ],
 		{% endfor %}
             ]
         }]
