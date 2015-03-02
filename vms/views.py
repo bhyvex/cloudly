@@ -675,9 +675,12 @@ def server_view(request, hwaddr):
 		c+=1
 
 	processes = processes_
+	
+	loadavg0 = loadavg
+	loadavg1 = loadavg
+	loadavg2 = loadavg
 
-
-	return render_to_response('server_detail.html', {'hwaddr':hwaddr,'server':server,'server_status':server_status,'processes':processes,'cpu_usage':cpu_usage,'loadavg':loadavg,'mem_usage':mem_usage,'disks_usage':disks_usage,'activity':activity,}, context_instance=RequestContext(request))
+	return render_to_response('server_detail.html', {'hwaddr':hwaddr,'server':server,'server_status':server_status,'processes':processes,'cpu_usage':cpu_usage,'loadavg':loadavg,'loadavg0':loadavg0,'loadavg1':loadavg1,mem_usage':mem_usage,'disks_usage':disks_usage,'activity':activity,}, context_instance=RequestContext(request))
     
 
 def ajax_virtual_machines_box(request):
