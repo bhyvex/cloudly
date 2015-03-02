@@ -375,14 +375,7 @@
 </div><!--/leave britney alone-->
 </div><!--/container-->
 
-DEBUG1 {{loadavg}}
 
-{% endblock page_content %}
-
-DEBUG2 {{loadavg}}
-
-
-{% block extra_js %}
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
@@ -394,7 +387,7 @@ $(function () {
             type: 'spline'
         },
         title: {
-            text: 'Snow depth at Vikjafjellet, Norway'
+            text: '{{loadavg}}'
         },
         subtitle: {
             text: 'Irregular time data in Highcharts JS'
@@ -467,5 +460,4 @@ $(function () {
 
 </script>
 
-{% endblock extra_js %}
-
+{% endblock page_content %}
