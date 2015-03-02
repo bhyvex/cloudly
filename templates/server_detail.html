@@ -175,19 +175,22 @@
 					<div id="loadavg"></div>
 					<br/>
 					
-					debug:
+					debug1:
 		{% for x in loadavg %}
 		   [Date.UTC({{x|dict_get:"date_created"|date:"Y"}}, {{x|dict_get:"date_created"|date:"n"}}, {{x|dict_get:"date_created"|date:"j"}}, {{x|dict_get:"date_created"|date:"H"}}, {{x|dict_get:"date_created"|date:"m"}}, {{x|dict_get:"date_created"|date:"s"}}), {{x|dict_get:"loadavg"|dict_get:0}}   ],
 		{% endfor %}
 		<br/>
+					debug2:
 
 		{% for y in loadavg %}
-		   [Date.UTC({{y|dict_get:"date_created"|date:"Y"}}, {{y|dict_get:"date_created"|date:"n"}}, {{y|dict_get:"date_created"|date:"j"}}, {{y|dict_get:"date_created"|date:"H"}}, {{y|dict_get:"date_created"|date:"m"}}, {{y|dict_get:"date_created"|date:"s"}}), {{y|dict_get:"loadavg"|dict_get:0}}   ],
+		   [Date.UTC({{y|dict_get:"date_created"|date:"Y"}}, {{y|dict_get:"date_created"|date:"n"}}, {{y|dict_get:"date_created"|date:"j"}}, {{y|dict_get:"date_created"|date:"H"}}, {{y|dict_get:"date_created"|date:"m"}}, {{y|dict_get:"date_created"|date:"s"}}), {{y|dict_get:"loadavg"|dict_get:1}}   ],
 		{% endfor %}
 		<br/>
 
+					debug3:
+
 		{% for z in loadavg %}
-		   [Date.UTC({{z|dict_get:"date_created"|date:"Y"}}, {{z|dict_get:"date_created"|date:"n"}}, {{z|dict_get:"date_created"|date:"j"}}, {{z|dict_get:"date_created"|date:"H"}}, {{z|dict_get:"date_created"|date:"m"}}, {{z|dict_get:"date_created"|date:"s"}}), {{z|dict_get:"loadavg"|dict_get:0}}   ],
+		   [Date.UTC({{z|dict_get:"date_created"|date:"Y"}}, {{z|dict_get:"date_created"|date:"n"}}, {{z|dict_get:"date_created"|date:"j"}}, {{z|dict_get:"date_created"|date:"H"}}, {{z|dict_get:"date_created"|date:"m"}}, {{z|dict_get:"date_created"|date:"s"}}), {{z|dict_get:"loadavg"|dict_get:2}}   ],
 		{% endfor %}
 		<br/>
 		
