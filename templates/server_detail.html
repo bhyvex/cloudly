@@ -409,21 +409,21 @@ $(function () {
             // that in JavaScript, months start at 0 for January, 1 for February etc.
             data: [
 		{% for x in loadavg %}
-		   [Date.UTC({{x|dict_get:"date_created"|date:"Y"}}, {{x|dict_get:"date_created"|date:"n"|substract_one}}, {{x|dict_get:"date_created"|date:"j"}}, {{x|dict_get:"date_created"|date:"H"}}, {{x|dict_get:"date_created"|date:"m"}}, {{x|dict_get:"date_created"|date:"s"}}), {{x|dict_get:"loadavg"|dict_get:0}}   ],
+		   [Date.UTC({{x|dict_get:"date_created"|date:"Y"}}, {{x|dict_get:"date_created"|date:"n"|substract_one}}, {{x|dict_get:"date_created"|date:"j"}}, {{x|dict_get:"date_created"|date:"H"}}, {{x|dict_get:"date_created"|date:"i"}}, {{x|dict_get:"date_created"|date:"s"}}), {{x|dict_get:"loadavg"|dict_get:0}}   ],
 		{% endfor %}
             ]
         }, {
             name: '10-mins',
             data: [
 		{% for y in loadavg %}
-		   [Date.UTC({{y|dict_get:"date_created"|date:"Y"}}, {{y|dict_get:"date_created"|date:"n"|substract_one}}, {{y|dict_get:"date_created"|date:"j"}}, {{y|dict_get:"date_created"|date:"H"}}, {{y|dict_get:"date_created"|date:"m"}}, {{y|dict_get:"date_created"|date:"s"}}), {{y|dict_get:"loadavg"|dict_get:1}}   ],
+		   [Date.UTC({{y|dict_get:"date_created"|date:"Y"}}, {{y|dict_get:"date_created"|date:"n"|substract_one}}, {{y|dict_get:"date_created"|date:"j"}}, {{y|dict_get:"date_created"|date:"H"}}, {{y|dict_get:"date_created"|date:"i"}}, {{y|dict_get:"date_created"|date:"s"}}), {{y|dict_get:"loadavg"|dict_get:1}}   ],
 		{% endfor %}
             ]
         }, {
             name: '15-mins',
             data: [
 		{% for z in loadavg %}
-		   [Date.UTC({{z|dict_get:"date_created"|date:"Y"}}, {{z|dict_get:"date_created"|date:"n"|substract_one}}, {{z|dict_get:"date_created"|date:"j"}}, {{z|dict_get:"date_created"|date:"H"}}, {{z|dict_get:"date_created"|date:"m"}}, {{z|dict_get:"date_created"|date:"s"}}), {{z|dict_get:"loadavg"|dict_get:2}}   ],
+		   [Date.UTC({{z|dict_get:"date_created"|date:"Y"}}, {{z|dict_get:"date_created"|date:"n"|substract_one}}, {{z|dict_get:"date_created"|date:"j"}}, {{z|dict_get:"date_created"|date:"H"}}, {{z|dict_get:"date_created"|date:"i"}}, {{z|dict_get:"date_created"|date:"s"}}), {{z|dict_get:"loadavg"|dict_get:2}}   ],
 		{% endfor %}
             ]
         }]
