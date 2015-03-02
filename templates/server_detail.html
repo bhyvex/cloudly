@@ -175,13 +175,6 @@
 					<div id="loadavg"></div>
 					<br/>
 					
-		debug:
-		{{loadavg}}
-		{% for x in loadavg %}
-			{{x}}<\br>
-		{% endfor %}
-		<br/>
-
 					<b>cpu_usage</b> {{cpu_usage}}
 					<br/>
 					{% for cpu_metrics in cpu_usage %}
