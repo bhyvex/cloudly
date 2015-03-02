@@ -431,5 +431,50 @@ $(function () {
     });
 });
 
+
+$(function () {
+    $('#cpu_usage').highcharts({
+        chart: {
+            type: 'spline'
+        },
+        title: {
+            text: 'CPU Usage'
+        },
+        subtitle: {
+            text: 'TBD X'
+        },
+        xAxis: {
+            type: 'datetime',
+            title: {
+                text: 'Date and time'
+            }
+        },
+        yAxis: {
+            title: {
+                text: 'TBD Y'
+            },
+            min: 0
+        },
+        tooltip: {
+            headerFormat: '<b>{series.name}:</b> {point.y:.2f}<br>',
+            pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}'
+        },
+
+        series: [{
+            name: '5-mins',
+            // Define the data points. All series have a dummy year
+            // of 1970/71 in order to be compared on the same x axis. Note
+            // that in JavaScript, months start at 0 for January, 1 for February etc.
+            data: [
+		{% for x in cpu_usage %}
+		   [Date.UTC({{x|dict_get:"date_created"|date:"Y"}}, {{x|dict_get:"date_created"|date:"n"|substract_one}}, {{x|dict_get:"date_created"|date:"j"}}, {{x|dict_get:"date_created"|date:"H"}}, {{x|dict_get:"date_created"|date:"m"}}, {{x|dict_get:"date_created"|date:"s"}}), {{x|dict_get:"cpu_usage"|dict_get:"cpu_used"}}   ],
+		{% endfor %}
+            ]
+        }, 
+        }]
+    });
+});
+
+
 </script>
 {% endblock extra_js %}
