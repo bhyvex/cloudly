@@ -175,52 +175,13 @@
 					<div id="loadavg"></div>
 					<br/>
 					
-		debug1:
-		{{loadavg}}
-		{% for x in loadavg %}
-			{{x}}<\br>
-		{% endfor %}
-		<br/>
-		
-		debug2:
+		debug:
 		{{loadavg}}
 		{% for x in loadavg %}
 			{{x}}<\br>
 		{% endfor %}
 		<br/>
 
-		debug3:
-		{{loadavg}}
-		{% for x in loadavg %}
-			{{x}}<\br>
-		{% endfor %}
-		<br/>
-
-		debug4:
-		{{loadavg}}
-		{% for x in loadavg %}
-		   [Date.UTC({{x|dict_get:"date_created"|date:"Y"}}, {{x|dict_get:"date_created"|date:"n"}}, {{x|dict_get:"date_created"|date:"j"}}, {{x|dict_get:"date_created"|date:"H"}}, {{x|dict_get:"date_created"|date:"m"}}, {{x|dict_get:"date_created"|date:"s"}}), {{x|dict_get:"loadavg"|dict_get:0}}   ],
-		{% endfor %}
-		<br/>
-		
-		debug5
-		{{loadavg}}
-		{% for x in loadavg %}
-			{{x}}<\br>
-		{% endfor %}
-		<br/>
-
-		
-					<b>cpu_usage</b> {{cpu_usage}}
-					<br/>
-					{% for cpu_metrics in cpu_usage %}
-					{{cpu_metrics}}
-					{% endfor %}
-					<b>cpu_usage</b> {{cpu_usage}}
-					<br/>
-					{% for cpu_metrics in cpu_usage %}
-					{{cpu_metrics}}
-					{% endfor %}
 					<b>cpu_usage</b> {{cpu_usage}}
 					<br/>
 					{% for cpu_metrics in cpu_usage %}
@@ -228,21 +189,6 @@
 					{% endfor %}
 
 					<hr>
-					<b>mem_usage</b> {{mem_usage}}
-					<br/>
-					{% for mem_metrics in mem_usage %}
-					{{mem_metrics}}
-					{% endfor %}
-					<b>mem_usage</b> {{mem_usage}}
-					<br/>
-					{% for mem_metrics in mem_usage %}
-					{{mem_metrics}}
-					{% endfor %}
-					<b>mem_usage</b> {{mem_usage}}
-					<br/>
-					{% for mem_metrics in mem_usage %}
-					{{mem_metrics}}
-					{% endfor %}
 					<b>mem_usage</b> {{mem_usage}}
 					<br/>
 					{% for mem_metrics in mem_usage %}
