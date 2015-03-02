@@ -176,29 +176,35 @@
 					<br/>
 					
 		debug1:
+		{{loadavg}}
 		{% for x in loadavg %}
 			{{x}}<\br>
 		{% endfor %}
 		<br/>
 		
 		debug2:
+		{{loadavg}}
 		{% for x in loadavg %}
 			{{x}}<\br>
 		{% endfor %}
 		<br/>
 
 		debug3:
+		{{loadavg}}
 		{% for x in loadavg %}
 			{{x}}<\br>
 		{% endfor %}
+		<br/>
 
-		debug4
+		debug4:
+		{{loadavg}}
 		{% for x in loadavg %}
 		   [Date.UTC({{x|dict_get:"date_created"|date:"Y"}}, {{x|dict_get:"date_created"|date:"n"}}, {{x|dict_get:"date_created"|date:"j"}}, {{x|dict_get:"date_created"|date:"H"}}, {{x|dict_get:"date_created"|date:"m"}}, {{x|dict_get:"date_created"|date:"s"}}), {{x|dict_get:"loadavg"|dict_get:0}}   ],
 		{% endfor %}
 		<br/>
 		
 		debug5
+		{{loadavg}}
 		{% for x in loadavg %}
 			{{x}}<\br>
 		{% endfor %}
