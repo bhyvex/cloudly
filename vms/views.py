@@ -616,7 +616,7 @@ def server_view(request, hwaddr):
 
 	uuid = server['uuid']		
 	cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(5)
-	loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(100)
 	mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(5)
 	disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(5)
 	activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
@@ -677,7 +677,9 @@ def server_view(request, hwaddr):
 	processes = processes_
 	
 	loadavg_ = []
-	for i in loadavg: loadavg_.append(i)
+	for i in loadavg:
+		print 'debug - check order', i
+		loadavg_.append(i)
 	loadavg = loadavg_
 
 	return render_to_response('server_detail.html', {'hwaddr':hwaddr,'server':server,'server_status':server_status,'processes':processes,'cpu_usage':cpu_usage,'loadavg':loadavg,'mem_usage':mem_usage,'disks_usage':disks_usage,'activity':activity,}, context_instance=RequestContext(request))
