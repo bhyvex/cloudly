@@ -406,13 +406,7 @@ $(function () {
             data: [
 		{% for loadavg_metrics in loadavg %}
 		   [Date.UTC({{loadavg_metrics|dict_get:"date_created"|date:"Y"}},  
-		   {{loadavg_metrics|dict_get:"date_created"|date:"n"}}, 
-		   {{loadavg_metrics|dict_get:"date_created"|date:"j"}}, 
-		   {{loadavg_metrics|dict_get:"date_created"|date:"H"}}, 
-		   {{loadavg_metrics|dict_get:"date_created"|date:"m"}},
-		   {{loadavg_metrics|dict_get:"date_created"|date:"s"}}), 
-		   {{loadavg_metrics|dict_get:"loadavg"|dict_get:0}}   ],
-		   <br/>
+		   {{loadavg_metrics|dict_get:"date_created"|date:"n"}}, {{loadavg_metrics|dict_get:"date_created"|date:"j"}}, {{loadavg_metrics|dict_get:"date_created"|date:"H"}}, {{loadavg_metrics|dict_get:"date_created"|date:"m"}}, {{loadavg_metrics|dict_get:"date_created"|date:"s"}}), {{loadavg_metrics|dict_get:"loadavg"|dict_get:0}}   ],
 		{% endfor %}
             ]
         }, {
