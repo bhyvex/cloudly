@@ -678,12 +678,7 @@ def server_view(request, hwaddr):
 	
 	loadavg_ = []
 	for i in loadavg: loadavg_.append(i)
-
-	print '*'*100
-	print 'here debug'
-	print 'loadavg_1', loadavg_
-	print 'loadavg_2', loadavg_
-	print 'loadavg_3', loadavg_
+	loadavg = loadavg_
 
 	return render_to_response('server_detail.html', {'hwaddr':hwaddr,'server':server,'server_status':server_status,'processes':processes,'cpu_usage':cpu_usage,'loadavg':loadavg,'mem_usage':mem_usage,'disks_usage':disks_usage,'activity':activity,}, context_instance=RequestContext(request))
     
