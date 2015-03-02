@@ -412,14 +412,14 @@ $(function () {
             name: '10-mins',
             data: [
 		{% for loadavg_metrics in loadavg %}
-		   [Date.UTC({{loadavg_metrics|dict_get:"date_created"|date:"Y"}}, {{loadavg_metrics|dict_get:"date_created"|date:"n"}}, {{loadavg_metrics|dict_get:"date_created"|date:"j"}}, {{loadavg_metrics|dict_get:"date_created"|date:"H"}}, {{loadavg_metrics|dict_get:"date_created"|date:"m"}}, {{loadavg_metrics|dict_get:"date_created"|date:"s"}}), {{loadavg_metrics|dict_get:"loadavg"|dict_get:1}}   ],
+		   [Date.UTC({{loadavg_metrics|dict_get:"date_created"|date:"Y"}}, {{loadavg_metrics|dict_get:"date_created"|date:"n"}}, {{loadavg_metrics|dict_get:"date_created"|date:"j"}}, {{loadavg_metrics|dict_get:"date_created"|date:"H"}}, {{loadavg_metrics|dict_get:"date_created"|date:"m"}}, {{loadavg_metrics|dict_get:"date_created"|date:"s"}}), {{loadavg_metrics|dict_get:"loadavg"|dict_get:0}}   ],
 		{% endfor %}
             ]
         }, {
             name: '15-mins',
             data: [
 		{% for loadavg_metrics in loadavg %}
-		   [Date.UTC({{loadavg_metrics|dict_get:"date_created"|date:"Y"}}, {{loadavg_metrics|dict_get:"date_created"|date:"n"}}, {{loadavg_metrics|dict_get:"date_created"|date:"j"}}, {{loadavg_metrics|dict_get:"date_created"|date:"H"}}, {{loadavg_metrics|dict_get:"date_created"|date:"m"}}, {{loadavg_metrics|dict_get:"date_created"|date:"s"}}), {{loadavg_metrics|dict_get:"loadavg"|dict_get:2}}   ],
+		   [Date.UTC({{loadavg_metrics|dict_get:"date_created"|date:"Y"}}, {{loadavg_metrics|dict_get:"date_created"|date:"n"}}, {{loadavg_metrics|dict_get:"date_created"|date:"j"}}, {{loadavg_metrics|dict_get:"date_created"|date:"H"}}, {{loadavg_metrics|dict_get:"date_created"|date:"m"}}, {{loadavg_metrics|dict_get:"date_created"|date:"s"}}), {{loadavg_metrics|dict_get:"loadavg"|dict_get:0}}   ],
 		{% endfor %}
             ]
         }]
