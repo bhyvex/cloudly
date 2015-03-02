@@ -429,17 +429,32 @@ $(function () {
 		{% endfor %}
             ]
         }, {
-            name: 'Winter 2008-2009',
+            name: '10-mins',
             data: [
-                [Date.UTC(1970,  9, 18), 0   ],
-                [Date.UTC(1970,  9, 26), 0.2 ],
-                [Date.UTC(1970, 11,  1), 0.47],
+		{% for loadavg_metrics in loadavg %}
+		   [Date.UTC({{loadavg_metrics|dict_get:"date_created"|date:"Y"}},  
+		   {{loadavg_metrics|dict_get:"date_created"|date:"n"}}, 
+		   {{loadavg_metrics|dict_get:"date_created"|date:"j"}}, 
+		   {{loadavg_metrics|dict_get:"date_created"|date:"H"}}, 
+		   {{loadavg_metrics|dict_get:"date_created"|date:"m"}},
+		   {{loadavg_metrics|dict_get:"date_created"|date:"s"}}), 
+		   {{loadavg_metrics|dict_get:"loadavg"|dict_get:1}}   ],
+		   <br/>
+		{% endfor %}
             ]
         }, {
-            name: 'Winter 2009-2010',
+            name: '15-mins',
             data: [
-                [Date.UTC(1970,  9,  9), 0   ],
-                [Date.UTC(1971,  4, 21), 0   ]
+		{% for loadavg_metrics in loadavg %}
+		   [Date.UTC({{loadavg_metrics|dict_get:"date_created"|date:"Y"}},  
+		   {{loadavg_metrics|dict_get:"date_created"|date:"n"}}, 
+		   {{loadavg_metrics|dict_get:"date_created"|date:"j"}}, 
+		   {{loadavg_metrics|dict_get:"date_created"|date:"H"}}, 
+		   {{loadavg_metrics|dict_get:"date_created"|date:"m"}},
+		   {{loadavg_metrics|dict_get:"date_created"|date:"s"}}), 
+		   {{loadavg_metrics|dict_get:"loadavg"|dict_get:2}}   ],
+		   <br/>
+		{% endfor %}
             ]
         }]
     });
