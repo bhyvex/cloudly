@@ -680,9 +680,9 @@ def server_view(request, hwaddr):
 	loadavg_2 = {}
 	loadavg_3 = {}
 	
-	for i in loadavg: loadavg_1.append(i)
-	for i in loadavg: loadavg_2.append(i)
-	for i in loadavg: loadavg_3.append(i)
+	for i in loadavg: loadavg_1.add(i)
+	for i in loadavg: loadavg_2.add(i)
+	for i in loadavg: loadavg_3.add(i)
 
 	print '*'*100
 	print 'here debug'
