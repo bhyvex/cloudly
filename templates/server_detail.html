@@ -178,7 +178,7 @@
 					<b>loadavg</b> {{loadavg}}
 					<br/>
 					{% for loadavg_metrics in loadavg %}
-						{{loadavg_metrics|dict_get:"date_created"}} - {{loadavg_metrics|dict_get:"loadavg"}}
+						{{loadavg_metrics|dict_get:"date_created"|date:"c"}} - {{loadavg_metrics|dict_get:"loadavg"}}
 					{% endfor %}
 					<hr/>
 
