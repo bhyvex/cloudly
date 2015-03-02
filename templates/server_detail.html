@@ -499,7 +499,7 @@ $(function () {
             // that in JavaScript, months start at 0 for January, 1 for February etc.
             data: [
 		{% for x in mem_usage %}
-		   [Date.UTC({{x|dict_get:"date_created"|date:"Y"}}, {{x|dict_get:"date_created"|date:"n"|substract_one}}, {{x|dict_get:"date_created"|date:"j"}}, {{x|dict_get:"date_created"|date:"H"}}, {{x|dict_get:"date_created"|date:"i"}}, {{x|dict_get:"date_created"|date:"s"}}), {{x|dict_get:"memory_usage"|dict_get:"memory_used_percentage"}}   ],
+		   [Date.UTC({{x|dict_get:"date_created"|date:"Y"}}, {{x|dict_get:"date_created"|date:"n"|substract_one}}, {{x|dict_get:"date_created"|date:"j"}}, {{x|dict_get:"date_created"|date:"H"}}, {{x|dict_get:"date_created"|date:"i"}}, {{x|dict_get:"date_created"|date:"s"}}), {{x|dict_get:"memory_usage"|dict_get:"memory_used"}}   ],
 		{% endfor %}
             ]
         }, 
