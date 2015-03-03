@@ -245,12 +245,15 @@
 					</table> 
 					
 
-				{% comment %}
-					{% for disk in server|dict_get:"disks_usage" %}
-						<div id="disk_graph_{{forloop.counter}}"></div>
-						<hr/>
-					{% endfor %}
+				{% for disk in server|dict_get:"disks_usage" %}
+					<div id="disk_{{forloop.counter}}"></div>
+					{% if not forloop.last %}
+					<hr/>
+					{% endif %}
+				{% endfor %}
 				
+				{% comment %}
+
 					<b>disks_usage graphs debug</b>
 					<br/>
 					{% for disks_metrics in disks_usage %}
@@ -522,11 +525,10 @@ $(function () {
 });
 
 
-{% comment %}
 {% for disk in server|dict_get:"disks_usage" %}
 
 $(function () {
-    $('#disk_graph_{{forloop.counter}}').highcharts({
+    $('#disk_{{forloop.counter}}').highcharts({
         chart: {
             type: 'spline'
         },
@@ -570,7 +572,6 @@ $(function () {
 
 {% endfor %}
 
-{% endcomment %}
 
 </script>
 {% endblock extra_js %}
