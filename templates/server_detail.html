@@ -254,14 +254,12 @@
 				{% endfor %}
 				
 				{% comment %}
-
 					<b>disks_usage graphs debug</b>
 					<br/>
 					{% for disks_metrics in disks_usage %}
 						{{disks_metrics|pprint}}
 						<br/>
 					{% endfor %}
-				
 					<b>tmp js graph construct</b>
 					{% for disk in server|dict_get:"disks_usage" %}
 						id = disk_graph_{{forloop.counter}}</br>
