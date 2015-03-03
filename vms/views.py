@@ -3,6 +3,7 @@
 import os
 import time
 import logging
+import string
 import unicodedata
 
 import base64
