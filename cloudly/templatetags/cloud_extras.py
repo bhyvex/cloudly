@@ -47,8 +47,10 @@ def times_hundred(x):
 
 @register.filter(name="times_hundred_rounded")
 def times_hundred_rounded(x):
-	return int(float(x)*100)
-
+	try:
+		return int(float(x)*100)
+	except:
+		return "error"
 
 @register.filter(name='clear_filename')
 def clear_filename(f):
