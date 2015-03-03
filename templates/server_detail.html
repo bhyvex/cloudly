@@ -247,8 +247,7 @@
 					</tbody>
 					</table> 
 					
-				<hr/>
-				
+
 				{% comment %}
 					{% for disk in server|dict_get:"disks_usage" %}
 						<div id="disk_graph_{{forloop.counter}}"></div>
@@ -526,6 +525,7 @@ $(function () {
 });
 
 
+{% comment %}
 {% for disk in server|dict_get:"disks_usage" %}
 
 $(function () {
@@ -571,10 +571,9 @@ $(function () {
     });
 });
 
-
-
 {% endfor %}
 
+{% endcomment %}
 
 </script>
 {% endblock extra_js %}
