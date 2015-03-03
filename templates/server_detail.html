@@ -526,5 +526,55 @@ $(function () {
 });
 
 
+{% for disk in server|dict_get:"disks_usage" %}
+
+$(function () {
+    $('#disk|dict_get:0').highcharts({
+        chart: {
+            type: 'spline'
+        },
+        title: {
+            text: 'Disk Usage'
+        },
+        subtitle: {
+            text: 'TBD X'
+        },
+        xAxis: {
+            type: 'datetime',
+            title: {
+                text: 'Date and time'
+            }
+        },
+        yAxis: {
+            title: {
+                text: 'TBD Y'
+            },
+            min: 0
+        },
+        tooltip: {
+            headerFormat: '<b>{series.name}:</b> {point.y:.2f}<br>',
+            pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}'
+        },
+
+        series: [{
+            name: 'Memory Used',
+            // Define the data points. All series have a dummy year
+            // of 1970/71 in order to be compared on the same x axis. Note
+            // that in JavaScript, months start at 0 for January, 1 for February etc.
+            data: [
+		{% for disks_metrics in disks_usage %}
+			[Date.UTC({{disks_metrics.date_created|date:"Y"}}, {{disks_metrics.date_created|date:"n"|substract_one}}, {{disks_metrics.date_created|date:"j"}}, {{disks_metrics.date_created|date:"H"}}, {{disks_metrics.date_created|date:"i"}}, {{disks_metrics.date_created|date:"s"}}), {{disks_metrics|dict_get:"disks_usage"|dict_get:forloop.parentloop.counter0|dict_get:4}} ],
+		{% endfor %}
+            ]
+        }, 
+        ]
+    });
+});
+
+
+
+{% endfor %}
+
+
 </script>
 {% endblock extra_js %}
