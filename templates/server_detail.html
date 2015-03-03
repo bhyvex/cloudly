@@ -244,6 +244,7 @@
 					</tbody>
 					</table> 
 					
+				<hr/>
 
 				{% for disk in server|dict_get:"disks_usage" %}
 					<div id="disk_{{forloop.counter}}"></div>
@@ -556,7 +557,7 @@ $(function () {
         },
 
         series: [{
-            name: 'Disk Usage Percentage',
+            name: '{{disk|dict_get:0}}',
             data: [
 		{% for disks_metrics in disks_usage %}
 			[Date.UTC({{disks_metrics.date_created|date:"Y"}}, {{disks_metrics.date_created|date:"n"|substract_one}}, {{disks_metrics.date_created|date:"j"}}, {{disks_metrics.date_created|date:"H"}}, {{disks_metrics.date_created|date:"i"}}, {{disks_metrics.date_created|date:"s"}}), {{disks_metrics|dict_get:"disks_usage"|dict_get:forloop.parentloop.counter0|dict_get:4|clean_percentage}} ],
