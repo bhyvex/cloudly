@@ -91,7 +91,8 @@ def ajax_vms_refresh(request):
 			instance_metrics['instance']['user_id'] = request.user.id
 			instance_metrics['instance']['state'] = {}
 			instance_metrics['instance']['tags'] = {}
-			instance_metrics["instance"]['tags']['Name'] = server['hostname']
+			
+			instance_metrics["instance"]['tags']['Name'] = ''.join(x for x in unicodedata.normalize('NFKD', server['hostname']) if x in string.ascii_letters).lower()
 
 			uuid = server['uuid']		
 			cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
