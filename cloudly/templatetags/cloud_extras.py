@@ -40,7 +40,10 @@ def count_list(x):
 
 @register.filter(name="times_hundred")
 def times_hundred(x):
-	return float(x)*100
+	try:
+		return float(x)*100
+	except:
+		return "error"
 
 @register.filter(name="times_hundred_rounded")
 def times_hundred_rounded(x):
