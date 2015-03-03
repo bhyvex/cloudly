@@ -182,3 +182,7 @@ def get_server_activities(server_uuid):
 def substract_one(x):
 	x = int(x)
 	return x-1
+
+@register.filter(name='clean_percentage')
+def clean_percentage(x):
+	return str(x).replace('%','')
