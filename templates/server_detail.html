@@ -249,30 +249,30 @@
 					
 				<hr/>
 				
-				{% for disk in server|dict_get:"disks_usage" %}
-					<div id="disk_graph_{{forloop.counter}}"></div>
-					<hr/>
-				{% endfor %}
-				
-				<b>disks_usage graphs debug</b>
-				<br/>
-				{% for disks_metrics in disks_usage %}
-					{{disks_metrics|pprint}}
-					<br/>
-				{% endfor %}
-				
-				<hr/>
-				<hr/>
-				<b>tmp js graph construct</b>
-				{% for disk in server|dict_get:"disks_usage" %}
-					id = disk_graph_{{forloop.counter}}</br>
-					particular_disk_data {{disk|dict_get:0}}<br/>
-					{% for disks_metrics in disks_usage %}
-						[Date.UTC({{disks_metrics.date_created|date:"Y"}}, {{disks_metrics.date_created|date:"n"|substract_one}}, {{disks_metrics.date_created|date:"j"}}, {{disks_metrics.date_created|date:"H"}}, {{disks_metrics.date_created|date:"i"}}, {{disks_metrics.date_created|date:"s"}}), {{disks_metrics|dict_get:"disks_usage"|dict_get:forloop.parentloop.counter0|dict_get:4}} ],
+				{% comment %}
+					{% for disk in server|dict_get:"disks_usage" %}
+						<div id="disk_graph_{{forloop.counter}}"></div>
+						<hr/>
 					{% endfor %}
-					<hr/>
-				{% endfor %}
-
+				
+					<b>disks_usage graphs debug</b>
+					<br/>
+					{% for disks_metrics in disks_usage %}
+						{{disks_metrics|pprint}}
+						<br/>
+					{% endfor %}
+				
+					<b>tmp js graph construct</b>
+					{% for disk in server|dict_get:"disks_usage" %}
+						id = disk_graph_{{forloop.counter}}</br>
+						particular_disk_data {{disk|dict_get:0}}<br/>
+						{% for disks_metrics in disks_usage %}
+							[Date.UTC({{disks_metrics.date_created|date:"Y"}}, {{disks_metrics.date_created|date:"n"|substract_one}}, {{disks_metrics.date_created|date:"j"}}, {{disks_metrics.date_created|date:"H"}}, {{disks_metrics.date_created|date:"i"}}, {{disks_metrics.date_created|date:"s"}}), {{disks_metrics|dict_get:"disks_usage"|dict_get:forloop.parentloop.counter0|dict_get:4}} ],
+						{% endfor %}
+						<hr/>
+					{% endfor %}
+				{% endcomment %}
+				
 				</div>
 				
 			</div>
