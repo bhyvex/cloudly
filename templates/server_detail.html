@@ -268,7 +268,7 @@
 					id = disk_graph_{{forloop.counter}}"></br>
 					particular_disk_data {{disk}}<br/>
 					{% for disks_metrics in disks_usage %}
-						- {{forloop.parentloop.counter}} {{disks_metrics|dict_get:"disks_usage"|dict_get:forloop.parentloop.counter|substract_one}}<br/>
+						- {{forloop.parentloop}} {{disks_metrics|dict_get:"disks_usage"|dict_get:forloop.parentloop.counter}}<br/>
 					{% endfor %}
 					<hr/>
 				{% endfor %}
