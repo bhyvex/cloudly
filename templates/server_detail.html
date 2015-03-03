@@ -529,7 +529,7 @@ $(function () {
 {% for disk in server|dict_get:"disks_usage" %}
 
 $(function () {
-    $('#disk|dict_get:0').highcharts({
+    $('#{{disk|dict_get:0}}').highcharts({
         chart: {
             type: 'spline'
         },
