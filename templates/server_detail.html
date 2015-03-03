@@ -266,7 +266,10 @@
 				<b>tmp js graph construct</b>
 				{% for disk in server|dict_get:"disks_usage" %}
 					id = disk_graph_{{forloop.counter}}"></br>
-					particular_disk_data XXX<br/>
+					particular_disk_data<br/>
+					{% for disks_metrics in disks_usage %}
+						- {{disks_metrics|dict_get:forloop.counter}}<br/>
+					{% endfor %}
 					<hr/>
 				{% endfor %}
 
