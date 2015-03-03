@@ -3,6 +3,7 @@
 import os
 import time
 import logging
+import unicodedata
 
 import base64
 try: import cPickle as pickle
