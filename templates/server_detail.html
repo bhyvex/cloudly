@@ -260,6 +260,15 @@
 					{{disks_metrics|pprint}}
 					<br/>
 				{% endfor %}
+				
+				<hr/>
+				<hr/>
+				<b>tmp js graph construct</b>
+				{% for disk in server|dict_get:"disks_usage" %}
+					id = disk_graph_{{forloop.counter}}"></br>
+					particular_disk_data XXX<br/>
+					<hr/>
+				{% endfor %}
 
 				</div>
 				
