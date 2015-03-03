@@ -249,8 +249,9 @@
 					
 				<hr/>
 				
-				{% for disk in disks_usage|dict_get:"disks_usage" %}
-					Debug {{disk}}
+				Debug<br/>
+				{% for disk in disks_usage %}
+					{{disk}}
 					<hr/>
 				{% endfor %}
 				
