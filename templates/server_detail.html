@@ -249,6 +249,11 @@
 					
 				<hr/>
 				
+				{% for disk in disks_usage|dict_get:"disks_usage" %}
+					<div id="{{disk}}"></div>
+					<hr/>
+				{% endfor %}
+				
 				<b>disks_usage graphs</b>
 				<br/>
 				{% for disks_metrics in disks_usage %}
