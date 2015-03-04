@@ -617,7 +617,11 @@ def server_view(request, hwaddr):
 	hwaddr = hwaddr.replace('-',':')
 	server = mongo.servers.find_one({'secret':profile.secret,'uuid':hwaddr,})
 
-	uuid = server['uuid']		
+	try:
+		uuid = server['uuid']		
+	except:
+		return HttpResponse("access denied")
+		
 	cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 	loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 	mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
