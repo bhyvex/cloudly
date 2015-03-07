@@ -103,10 +103,10 @@ def _get_sys_cpu_info():
 
 def _get_memory_usage():
 	
-	memory_info = subprocess.Popen(["cat","/proc/meminfo"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
-
-	memory_total = ""
 	memory_free = ""
+	memory_total = ""
+
+	memory_info = subprocess.Popen(["cat","/proc/meminfo"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 
 	for element in memory_info.split('\n'):
 		if("MemTotal" in element): memory_total = element
