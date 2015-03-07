@@ -108,6 +108,7 @@ def _get_memory_usage():
 
 	memory_total = ""
 	memory_free = ""
+
 	for element in memory_info.split('\n'):
 		if("MemTotal" in element): memory_total = element
 		if("MemFree" in element): memory_free = element
