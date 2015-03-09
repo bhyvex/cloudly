@@ -172,7 +172,6 @@ def ajax_vms_refresh(request):
 					for group in instance.__dict__['groups']:
 						groups.append([group.id, group.name,])
 
-
 					instance_metrics['id'] = instance.id
 					instance_metrics['user_id'] = request.user.id
 					instance_metrics['provider'] = "aws-ec2"
