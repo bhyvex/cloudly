@@ -511,6 +511,7 @@ def ajax_virtual_machines(request):
 	
 	return render_to_response('ajax_virtual_machines.html', {'user':user,'ajax_vms_response':ajax_vms_response,'vms_cached_response':vm_cache,}, context_instance=RequestContext(request))
 
+
 @login_required()
 def ajax_aws_graphs(request, instance_id, graph_type="all"):
 	
@@ -542,7 +543,6 @@ def ajax_aws_graphs(request, instance_id, graph_type="all"):
 
 	reservations = ec2conn.get_all_instances(instance_ids=[instance_id,])
 	instance = reservations[0].instances[0]
-
 
 	end = datetime.datetime.utcnow()
 	start = end - datetime.timedelta(days=10)
@@ -593,9 +593,8 @@ def control_aws_vm(request, vm_name, action):
 	if(action=="terminate"):
 		ec2conn.terminate_instances([vm_name,])
 
-	# XXX duplicate, auto-scaling on, auto-scaling off, backup
-
 	return HttpResponseRedirect("/")
+
 
 @login_required()
 def server_view(request, hwaddr):
@@ -683,10 +682,6 @@ def server_view(request, hwaddr):
 	for i in loadavg: loadavg_.append(i)
 	loadavg = loadavg_
 	
-	#mem_usage_ = []
-	#for i in mem_usage: mem_usage_.append(i)
-	#mem_usage = mem_usage_
-	
 	disks_usage_ = []
 	for i in disks_usage: disks_usage_.append(i)
 	disks_usage = disks_usage_
@@ -697,6 +692,4 @@ def server_view(request, hwaddr):
 def ajax_virtual_machines_box(request):
 			
 	return render_to_response('ajax_virtual_machines_box.html', locals(), context_instance=RequestContext(request))
-
-
 
