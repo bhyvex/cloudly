@@ -62,7 +62,6 @@ def date_handler(obj):
 def ajax_vms_refresh(request):
 	
 	user = request.user
-	
 	profile = userprofile.objects.get(user=request.user)
 
 	print 'Refreshing', user, 'VMs cache..'
