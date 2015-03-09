@@ -436,7 +436,6 @@ def ajax_virtual_machines(request):
 			if(vm_state=="Running"): 
 				
 				#print 'data_median', data_median
-				
 				isotope_filter_classes = " linux "
 							
 				if(data_median<17):
@@ -523,6 +522,7 @@ def ajax_aws_graphs(request, instance_id, graph_type="all"):
 	vms_cache = Cache.objects.get(user=user)
 	vm_cache =  vms_cache.vms_response
 	vm_cache = base64.b64decode(vm_cache)
+
 	try:
 		vm_cache = pickle.loads(vm_cache)[instance_id]
 	except:
@@ -530,8 +530,8 @@ def ajax_aws_graphs(request, instance_id, graph_type="all"):
 
 	if(vm_cache['user_id']!=request.user.id):
 		return HttpResponse("access denied")
-		
 	
+		
 	aws_access_key = profile.aws_access_key
 	aws_secret_key = profile.aws_secret_key
 	aws_ec2_verified = profile.aws_ec2_verified
@@ -576,7 +576,6 @@ def control_aws_vm(request, vm_name, action):
 	if(vm_cache['user_id']!=request.user.id):
 		return HttpResponse("access denied")
 
-
 	aws_access_key = profile.aws_access_key
 	aws_secret_key = profile.aws_secret_key
 	aws_ec2_verified = profile.aws_ec2_verified
@@ -600,7 +599,6 @@ def control_aws_vm(request, vm_name, action):
 def server_view(request, hwaddr):
 
 	print '-- server_view'
-	
 	print request.user
 
 	user = request.user
