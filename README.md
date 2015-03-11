@@ -249,4 +249,4 @@ Donate
 
 A lot of time and effort went into making Project Cloudly as it is right now. If you feel Cloudly is useful to you or your business and want to support its future development please consider donating me (Jan Paricka) some money. I only ask for a small donation, but of course I appreciate any amount.
 
-Don't want to donate money? Then maybe you could write me a recommendation on <a href="https://www.linkedin.com/in/jparicka">Linkedin</a>.
+Don't want to donate money? Then maybe you could <a href="https://www.linkedin.com/in/jparicka">write me a recommendation on >Linkedin</a>.
