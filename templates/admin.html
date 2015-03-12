@@ -59,6 +59,7 @@
 							<tr>
 								<td>#</td>
 								<th>Name</th>
+								<th>Servers</th>
 								<th>Email</th>
 								<th>Twitter</th>
 								<th>Mobile</th>
@@ -81,6 +82,7 @@
 							<tr>
 								<td>{{p.user.id}}</td>
 								<td><a href="/admin/user/{{p.user.id}}/activity/">{{p.name}}</a></td>
+								<td>{{p.user|count_user_servers}}</td>
 								<td>{{p.user.email}}</td>
 								<td>
 									{% if p.twitter %}
