@@ -2,6 +2,7 @@ import re
 import time
 import json
 import datetime
+import base64, pickle
 
 from django import template
 register = template.Library()
@@ -162,16 +163,11 @@ def format_datetime_special(date):
 def count_user_servers(user):
 	
 	try:
-		print '*'*200
 		vms_cache = Cache.objects.get(user=user)
-		print vms_cache
 		vms_response = vms_cache.vms_response
-		print vms_response
 		vms_response = base64.b64decode(vms_response)
 		vms_response = pickle.loads(vms_response)
-		print vms_response
 		vms_cached_response = vms_response
-		print vms_cached_response
 	except: vms_cached_response = []
 
 	return len(vms_cached_response)
