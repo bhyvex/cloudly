@@ -59,8 +59,8 @@
 							<tr>
 								<td>#</td>
 								<th>Name</th>
-								<th>Servers</th>
 								<th>Email</th>
+								<th>Servers</th>
 								<th>AWS Regions</th>
 								<th>Access Key</th>
 								<th>EC2 <font size=1>verified</font></th>
@@ -80,8 +80,8 @@
 							<tr>
 								<td>{{p.user.id}}</td>
 								<td><a href="/admin/user/{{p.user.id}}/activity/">{{p.name}}</a></td>
-								<td>{{p.user|count_user_servers}}</td>
 								<td>{{p.user.email}}</td>
+								<td>{{p.user|count_user_servers}}</td>
 								<td>{% if p.aws_ec2_verified %}{{p.aws_enabled_regions}}{% else %}-{% endif %}</td>
 								<td>
 									{% if p.aws_access_key %}
