@@ -81,7 +81,11 @@
 								<td>{{p.user.id}}</td>
 								<td><a href="/admin/user/{{p.user.id}}/activity/">{{p.name}}</a></td>
 								<td>{{p.user.email}}</td>
-								<td>{{p.user|count_user_servers}}</td>
+								<td>
+									{% if p.user|count_user_servers %}
+									{{p.user|count_user_servers}}
+									{% else %}-{% endif %}
+								</td>
 								<td>{% if p.aws_ec2_verified %}{{p.aws_enabled_regions}}{% else %}-{% endif %}</td>
 								<td>
 									{% if p.aws_access_key %}
