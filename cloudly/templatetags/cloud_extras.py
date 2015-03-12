@@ -167,6 +167,8 @@ def count_user_servers(user):
 		vms_response = base64.b64decode(vms_response)
 		vms_response = pickle.loads(vms_response)
 		vms_cached_response = vms_response
+		print 'here'*100
+		print vms_cached_response
 	except: vms_cached_response = []
 
 	return len(vms_cached_response)
