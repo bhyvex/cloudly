@@ -160,7 +160,17 @@ def format_datetime_special(date):
 
 @register.filter(name='count_user_servers')
 def count_user_servers(user):
-	return "XXX"
+	
+	try:
+		vms_cache = Cache.objects.get(user=user)
+		vms_response = vms_cache.vms_response
+		vms_response = base64.b64decode(vms_response)
+		vms_response = pickle.loads(vms_response)
+		vms_cached_response = vms_response
+	except: vms_cached_response = None
+
+	return len(vms_cached_response)
+
 
 @register.filter(name='count_user_files')
 def count_user_files(user):
