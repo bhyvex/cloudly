@@ -15,6 +15,7 @@ from pymongo import ASCENDING, DESCENDING
 client = MongoClient('localhost', 27017)
 
 mongo = client.cloudly
+from vms.models import Cache
 
 def _seconds_since_epoch(d):
 
@@ -157,6 +158,10 @@ def format_datetime_special(date):
 	return {'year':year, 'month':month, 'day':day, 'hour':hour, 'minute':minute, 'second':second}
 
 
+@register.filter(name='count_user_servers')
+def count_user_servers(user):
+	return "XXX"
+
 @register.filter(name='count_user_files')
 def count_user_files(user):
 	
@@ -169,7 +174,6 @@ def count_user_files(user):
 def count_user_files_size(user):
 	
 	total_size = 0
-
 	#for user_file in Uploaded_Files.objects.filter(user=user):
 	#	total_size += user_file.size
 	
@@ -178,9 +182,7 @@ def count_user_files_size(user):
 
 @register.filter(name='get_server_activities')
 def get_server_activities(server_uuid):
-
 	activities = mongo.activity.find({'uuid':server_uuid,}).sort('_id',-1)
-
 	return activities
 
 @register.filter(name='substract_one')
