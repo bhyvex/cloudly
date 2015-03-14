@@ -246,13 +246,6 @@
 					
 				<hr/>
 
-				{% for disk in server|dict_get:"disks_usage" %}
-					<div id="disk_{{forloop.counter}}"></div>
-					{% if not forloop.last %}
-					<hr/>
-					{% endif %}
-				{% endfor %}
-				
 				{% comment %}
 					<b>disks_usage graphs debug</b>
 					<br/>
