@@ -290,7 +290,12 @@
 				</div>
 
 				<div class="panel-body" style="display: none;">
-				<p>XXX</p>
+					{% for disk in server|dict_get:"disks_usage" %}
+						<div id="disk_{{forloop.counter}}"></div>
+						{% if not forloop.last %}
+						<hr/>
+						{% endif %}
+					{% endfor %}
 				</div>
 				
 			</div>
