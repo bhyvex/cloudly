@@ -281,16 +281,16 @@
 						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
 					</div>
 				</div>
-
 				<div class="panel-body" style="display: none;">
+				
 					{% for disk in server|dict_get:"disks_usage" %}
 						<div id="disk_{{forloop.counter}}"></div>
 						{% if not forloop.last %}
 						<hr/>
 						{% endif %}
 					{% endfor %}
+					
 				</div>
-				
 			</div>
 		</div>				
 	</div><!--/row-->
