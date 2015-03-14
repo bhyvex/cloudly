@@ -309,18 +309,18 @@
 				</div>
 				<div class="panel-body">
 				
-					<table class="table table-bordered table-striped bootstrap-datatable datatable">
-						  <thead>
-							  <tr>
-								  <th>PID</th>
-								  <th>User</th>
-								  <th>%CPU</th>
-								  <th>%MEM</th>                                          
-								  <th>Process</th>
-								  <th>Command</th>                                          
-							  </tr>
-						  </thead>   
-						  <tbody>
+					<table id="running_processes_table" class="table table-bordered table-striped bootstrap-datatable datatable">
+						<thead>
+							<tr>
+								<th>PID</th>
+								<th>User</th>
+								<th>%CPU</th>
+								<th>%MEM</th>                                          
+								<th>Process</th>
+								<th>Command</th>                                          
+							</tr>
+						</thead>   
+						<tbody>
 						  	{% for process in processes %}
 							<tr>
 								<td>{{process|dict_get:"pid"}}</td>
@@ -339,8 +339,18 @@
 								<td>{{process|dict_get:"command"|work_single_ps_command}}</td>                                       
 							</tr>
 							{% endfor %}
-						  </tbody>
-					 </table>  
+						</tbody>
+					</table>
+					<script>
+						$(document).ready( function() {
+							$('#running_processes_table').dataTable( {
+								"lengthMenu": [[25, 50, 100], [25, 50, 100]]
+							} );
+							$('#running_processes_table').dataTable( {
+								"order": [[ 3, "desc" ]]
+							} );
+						} );					
+					</script>
 
 				</div>
 			</div>
