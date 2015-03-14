@@ -584,14 +584,12 @@ $(function () {
     });
 });
 
-{% endfor %}
+{% endfor %}	
 
 
-function() {
-	$('#running_processes_table').dataTable( {
-		lengthMenu: [[25, 50, 100], [25, 50, 100]],
-		order: [[ 2, "desc" ]]
-	} );
-}				
+$('#running_processes_table').dataTable( {
+	lengthMenu: [[25, 50, 100], [25, 50, 100]],
+	order: [[ 2, "desc" ]]
+} );			
 </script>
 {% endblock extra_js %}
