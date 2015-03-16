@@ -200,8 +200,8 @@ def _get_disks_usage():
 		
 		else:
 			try:
-				volume[2] = int(volume[2]) / 1024 / 1000 # Used
-				volume[3] = int(volume[3]) / 1024 / 1000 # Available
+				volume[2] = int(volume[2]) # Used
+				volume[3] = int(volume[3]) # Available
 			except IndexError:
 				pass
 			except KeyError:
