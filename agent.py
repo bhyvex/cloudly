@@ -237,7 +237,6 @@ def _get_processes():
 
 def get_system_metrics( uuid, secret ):
 
-	# XXX Check the core system commands
 	print datetime.datetime.now(), 'Collecting system metrics..'
 
 	uuid = uuid
