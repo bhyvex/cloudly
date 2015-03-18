@@ -72,6 +72,8 @@ def _get_sys_cpu():
 		'cpu_used':round(cpu_total,2),
 		'cpu_free':round(float(100-cpu_total),2)
 	}
+	
+	print 'debug cpu_usage', cpu_usage
 
 	return cpu_usage
 
