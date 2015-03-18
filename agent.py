@@ -63,9 +63,11 @@ def _get_sys_cpu():
 		line = line.replace(' ','')
 		
 		try:
+			print line
 			cpu_process_usage = float(line)
 			cpu_total += cpu_process_usage
 		except:
+			print 'failed.'
 			pass
 	
 	cpu_usage = {
