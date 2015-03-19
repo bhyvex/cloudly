@@ -53,7 +53,7 @@ def _get_sys_uptime():
 
 def _get_sys_cpu():
 	
-	cpu_info = subprocess.Popen(["ps","e","o","pcpu"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+	cpu_info = subprocess.Popen(["ps","axo","pcpu"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 
 	c=0
 	cpu_total = float(0)
