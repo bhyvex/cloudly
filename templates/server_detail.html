@@ -287,9 +287,11 @@
 				<div class="panel-body">
 
 					{% for disk in server|dict_get:"disks_usage" %}
+						{% if disk|dict_get:0 != "none" %}
 						<div id="disk_{{forloop.counter}}"></div>
 						{% if not forloop.last %}
 						<hr/>
+						{% endif %}
 						{% endif %}
 					{% endfor %}
 
