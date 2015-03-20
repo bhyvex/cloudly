@@ -117,7 +117,7 @@ def parse_output(data):
     outbound_traffic = {}
     forward_traffic = {}
 
-    return
+    return "xxx at this point you have only inbound traffic data"
 
 
 parse_output(data1)
