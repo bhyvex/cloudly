@@ -80,13 +80,6 @@ def parse_output(data):
 
         if(len(line)==0): psc += 1
 
-    #print '-'*10
-    #print 'inbound_text', inbound_text
-    #print '-'*10
-    #print 'forward_text', forward_text
-    #print '-'*10
-    #print 'outbound_text', outbound_text
-    #print '-'*10
 
     inbound_traffic = {}
 
