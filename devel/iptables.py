@@ -96,12 +96,18 @@ def parse_output(data):
     input_accept_packets = 0
     input_accept_bytes = 0
 
-    # XXX count packets, bytes manually
+    if(len(inbound_text.split('\n'))>3):
 
+        c=0
+        for line in inbound_text.split('\n'):
+            if(c>3 and c<len(inbound_text.split('\n'))-1):
+                # xxx here counter bytes packets ++
+                print line
+            c+=1
     
     # XXX compare values and preferably go for those which are counted
 
-    print 'inbound_traffic', inbound_traffic
+    #print 'inbound_traffic', inbound_traffic
 
     outbound_traffic = {}
     forward_traffic = {}
@@ -117,3 +123,5 @@ parse_output(data3)
 print '*'*80
 parse_output(data4)
 print '*'*80
+
+
