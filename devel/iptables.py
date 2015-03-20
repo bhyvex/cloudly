@@ -52,6 +52,16 @@ Chain OUTPUT (policy ACCEPT 12 packets, 9943 bytes)
     pkts      bytes target     prot opt in     out     source               destination
 """
 
+data5 = """Chain INPUT (policy ACCEPT 3355 packets, 628519 bytes)
+    pkts      bytes target     prot opt in     out     source               destination
+
+Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+    pkts      bytes target     prot opt in     out     source               destination
+
+Chain OUTPUT (policy ACCEPT 2973 packets, 3130420 bytes)
+    pkts      bytes target     prot opt in     out     source               destination
+"""
+
 def parse_output(data):
 
     inbound_text = ""
@@ -88,10 +98,9 @@ def parse_output(data):
             input_accept_bytes = input_accept[2]
             break
 
-    inbound_traffic['input_accept_packets_counted'] = 0
-    inbound_traffic['input_accept_bytes_counted'] = 0
-    inbound_traffic['input_accept_packets_from_header'] = input_accept_packets
-    inbound_traffic['input_accept_bytes_from_header'] = input_accept_bytes
+
+    inbound_traffic['input_accept_packets'] = input_accept_packets
+    inbound_traffic['input_accept_bytes'] = input_accept_bytes
 
     input_accept_packets = 0
     input_accept_bytes = 0
@@ -101,13 +110,16 @@ def parse_output(data):
         c=0
         for line in inbound_text.split('\n'):
             if(c>3 and c<len(inbound_text.split('\n'))-1):
-                # xxx here counter bytes packets ++
-                print line
-            c+=1
-    
-    # XXX compare values and preferably go for those which are counted
 
-    #print 'inbound_traffic', inbound_traffic
+                input_accept_packets += int(line.split(' ')[0])
+                input_accept_bytes += int(line.split(' ')[1])
+                
+            c+=1
+
+    if(input_accept_packets>0): inbound_traffic['input_accept_packets'] = input_accept_packets
+    if(input_accept_bytes>0): inbound_traffic['input_accept_bytes'] = input_accept_bytes
+
+    print 'inbound_traffic', inbound_traffic
 
     outbound_traffic = {}
     forward_traffic = {}
@@ -123,5 +135,5 @@ parse_output(data3)
 print '*'*80
 parse_output(data4)
 print '*'*80
-
+parse_output(data5)
 
