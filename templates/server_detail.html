@@ -207,6 +207,8 @@
 					<p>
 						Debug:
 						<br/>
+						{{networking}}
+						<br/>
 						{% for data in networking|dict_get:"inbound_bytes" %}
 						{{data}}<br/>
 						{% endfor %}
