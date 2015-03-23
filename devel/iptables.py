@@ -86,16 +86,47 @@ def _get_networking_stats():
 
     print 'inbound_traffic', inbound_traffic
 
-    # XXX
+
     outbound_traffic = {}
 
     for line in outbound_text.split('\n'):
-        print line
+    
+        if("OUTPUT" in line):
+            output_accept = line.split('policy ACCEPT ')[1]
+            output_accept = output_accept.split(' ')
+            output_accept_packets = output_accept[0]
+            output_accept_bytes = output_accept[2]
+            break
 
+    outbound_traffic['output_accept_packets'] = output_accept_packets
+    outbound_traffic['output_accept_bytes'] = output_accept_bytes
+
+    output_accept_packets = 0
+    output_accept_bytes = 0
+
+    if(len(outbound_text.split('\n'))>3):
+
+        c=0
+        for line in outbound_text.split('\n'):
+            
+            if(c>3 and c<len(outbound_text.split('\n'))-1):
+                output_accept_packets += int(line.split(' ')[0])
+                output_accept_bytes += int(line.split(' ')[1])
+                
+            c+=1
+
+    if(output_accept_packets>0): outbound_traffic['output_accept_packets'] = output_accept_packets
+    if(output_accept_bytes>0): outbound_traffic['output_accept_bytes'] = output_accept_bytes
+
+    print 'outbound_traffic', outbound_traffic
+
+
+    #XXXXXX
+                                                                
     forward_traffic = {}
 
-    for line in forward_text.split('\n'):
-        print line
+    #for line in forward_text.split('\n'):
+    #    print line
 
     # XXX reset iptables
 
