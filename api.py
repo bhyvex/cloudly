@@ -65,6 +65,7 @@ def ping():
 	last_seen = datetime.datetime.utcnow()
 	hostname = data['hostname']
 	distro = data['distro']
+	networking = data['networking']
 	
 	processes = data['processes']
 	processes = processes.replace('\t',' ')
