@@ -88,9 +88,17 @@ def _get_networking_stats():
 
     # XXX
     outbound_traffic = {}
+
+    for line in outbound_text.split('\n'):
+        print line
+
     forward_traffic = {}
 
+    for line in forward_text.split('\n'):
+        print line
+
     # XXX reset iptables
+
 
     return
 
