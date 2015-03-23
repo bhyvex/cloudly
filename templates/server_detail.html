@@ -208,11 +208,8 @@
 						Debug:
 						<br/>
 
-						{{networking}}
-						<hr/>
-
-						{% for data in networking|dict_get:"networking"|dict_get:"inbound_traffic"|dict_get:"input_accept_bytes" %}
-						{{data}}<br/>
+						{% for data in networking|dict_get:"networking" %}
+						{{data|dict_get:"output_accept_bytes"}}<br/>
 						{% endfor %}
 					</p>
 					
