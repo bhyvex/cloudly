@@ -2,67 +2,6 @@ import os
 import re
 import subprocess
 
-data1 = """Chain INPUT (policy ACCEPT 2606360 packets, 1157611388 bytes)
-pkts bytes target prot opt in out source destination
-716412 215078536 all -- eth0 * 0.0.0.0/0 0.0.0.0/0
-
-Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
-pkts bytes target prot opt in out source destination
-
-Chain OUTPUT (policy ACCEPT 2568282 packets, 1334805872 bytes)
-pkts bytes target prot opt in out source destination
-678334 392273020 all -- * eth0 0.0.0.0/0 0.0.0.0/0
-"""
-
-data2 = """Chain INPUT (policy ACCEPT 7176 packets, 488039 bytes)
-pkts bytes target prot opt in out source destination
-7194 489261 all -- eth0 * 0.0.0.0/0 0.0.0.0/0
-
-Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
-pkts bytes target prot opt in out source destination
-
-Chain OUTPUT (policy ACCEPT 7161 packets, 5772399 bytes)
-pkts bytes target prot opt in out source destination
-7161 5772399 all -- * eth0 0.0.0.0/0 0.0.0.0/0
-"""
-
-data3 = """Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
-pkts bytes target prot opt in out source destination
-25576 1430552 all -- eth0 * 0.0.0.0/0 0.0.0.0/0
-78644 4415632 ACCEPT all -- * * 0.0.0.0/0 0.0.0.0/0 state RELATED,ESTABLISHED
-499 39920 ACCEPT icmp -- * * 0.0.0.0/0 0.0.0.0/0
-3 360 ACCEPT all -- lo * 0.0.0.0/0 0.0.0.0/0
-3 156 ACCEPT tcp -- * * 0.0.0.0/0 0.0.0.0/0 state NEW tcp dpt:22
-8938 728746 REJECT all -- * * 0.0.0.0/0 0.0.0.0/0 reject-with icmp-host-prohibited
-
-Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
-pkts bytes target prot opt in out source destination
-0 0 REJECT all -- * * 0.0.0.0/0 0.0.0.0/0 reject-with icmp-host-prohibited
-
-Chain OUTPUT (policy ACCEPT 25765 packets, 44644747 bytes)
-pkts bytes target prot opt in out source destination
-"""
-
-data4 = """Chain INPUT (policy ACCEPT 17 packets, 1175 bytes)
-    pkts      bytes target     prot opt in     out     source               destination
-
-Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
-    pkts      bytes target     prot opt in     out     source               destination
-
-Chain OUTPUT (policy ACCEPT 12 packets, 9943 bytes)
-    pkts      bytes target     prot opt in     out     source               destination
-"""
-
-data5 = """Chain INPUT (policy ACCEPT 3355 packets, 628519 bytes)
-    pkts      bytes target     prot opt in     out     source               destination
-
-Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
-    pkts      bytes target     prot opt in     out     source               destination
-
-Chain OUTPUT (policy ACCEPT 2973 packets, 3130420 bytes)
-    pkts      bytes target     prot opt in     out     source               destination
-"""
-
 def _get_networking_stats():
 
     proc = subprocess.Popen(['which','iptables'], stdout=subprocess.PIPE, close_fds=True)
@@ -92,15 +31,10 @@ def _get_networking_stats():
 
         os.system(installer+" install iptables")
 
-    #XXX run the iptables here
-    #XXX get the statistics
-    #XXX reset the iptables here
-
-    return
-
-
-def parse_output(data):
-
+    
+    proc = subprocess.Popen(['iptables','-L','-vxn'], stdout=subprocess.PIPE, close_fds=True)
+    data = proc.communicate()[0]
+    
     inbound_text = ""
     outbound_text = ""
     forward_text = ""
@@ -152,20 +86,13 @@ def parse_output(data):
 
     print 'inbound_traffic', inbound_traffic
 
+    # XXX
     outbound_traffic = {}
     forward_traffic = {}
 
+    # XXX reset iptables
+
     return
 
-
-#parse_output(data1)
-#print '*'*80
-#parse_output(data2)
-#print '*'*80
-#parse_output(data3)
-#print '*'*80
-#parse_output(data4)
-#print '*'*80
-#parse_output(data5)
 
 _get_networking_stats()
