@@ -211,6 +211,7 @@ def _get_disks_usage():
 	
 	return disks_usage
 
+
 def _get_networking_stats():
 
     proc = subprocess.Popen(['which','iptables'], stdout=subprocess.PIPE, close_fds=True)
@@ -370,6 +371,7 @@ def get_system_metrics( uuid, secret ):
 	disks_usage = _get_disks_usage()
 	processes = _get_processes()
 	hostname = _get_hostname()
+	networking = _get_networking_stats()
 	
 	system_metrics_json = {
 		'uuid': uuid,
@@ -385,6 +387,7 @@ def get_system_metrics( uuid, secret ):
 		'memory_usage': memory_usage,
 		'disks_usage': disks_usage,
 		'processes': processes,
+		'networking': networking,
 		'agent_version': AGENT_VERSION,
 	}
 
