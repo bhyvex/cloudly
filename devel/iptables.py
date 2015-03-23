@@ -84,8 +84,6 @@ def _get_networking_stats():
     if(input_accept_packets>0): inbound_traffic['input_accept_packets'] = input_accept_packets
     if(input_accept_bytes>0): inbound_traffic['input_accept_bytes'] = input_accept_bytes
 
-    print 'inbound_traffic', inbound_traffic
-
 
     outbound_traffic = {}
 
@@ -118,20 +116,15 @@ def _get_networking_stats():
     if(output_accept_packets>0): outbound_traffic['output_accept_packets'] = output_accept_packets
     if(output_accept_bytes>0): outbound_traffic['output_accept_bytes'] = output_accept_bytes
 
-    print 'outbound_traffic', outbound_traffic
+    #XXX
+    #forward_traffic = {}
+
+    networking = {'inbound_traffic':inbound_traffic,'outbound_traffic':outbound_traffic,}
+
+    return networking
+    
 
 
-    #XXXXXX
-                                                                
-    forward_traffic = {}
+networking = _get_networking_stats()
+print 'networking', networking
 
-    #for line in forward_text.split('\n'):
-    #    print line
-
-    # XXX reset iptables
-
-
-    return
-
-
-_get_networking_stats()
