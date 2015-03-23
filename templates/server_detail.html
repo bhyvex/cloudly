@@ -208,10 +208,10 @@
 						Debug:
 						<br/>
 						{% for data in networking %}
-						{{data|dict_get:"networking"|dict_get:"input_accept_packets"}} 
-						{{data|dict_get:"networking"|dict_get:"input_accept_bytes"}} 
-						{{data|dict_get:"networking"|dict_get:"output_accept_packets"}} 
-						{{data|dict_get:"networking"|dict_get:"output_accept_bytes"}}<br/>
+						{{data|dict_get:"input_accept_packets"}} 
+						{{data|dict_get:"input_accept_bytes"}} 
+						{{data|dict_get:"output_accept_packets"}} 
+						{{data|dict_get:"output_accept_bytes"}}<br/>
 						{% endfor %}
 					</p>
 					
