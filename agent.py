@@ -15,8 +15,7 @@ import urllib
 import httplib
 import subprocess
 
-# XXX the networking feature moves up the agent version
-AGENT_VERSION = "0.2"
+AGENT_VERSION = "0.3"
 
 SECRET = "" # to be injected on download by Cloudly
 if(not SECRET): SECRET = raw_input("Enter your secret: ")
