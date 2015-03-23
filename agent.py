@@ -326,7 +326,7 @@ def _get_networking_stats():
     if(output_accept_packets>0): outbound_traffic['output_accept_packets'] = output_accept_packets
     if(output_accept_bytes>0): outbound_traffic['output_accept_bytes'] = output_accept_bytes
 
-    networking = {'inbound_traffic':inbound_traffic,'outbound_traffic':outbound_traffic,}
+    networking = {'input_accept_packets':input_accept_packets,'input_accept_bytes':input_accept_bytes,'output_accept_packets':output_accept_packets,'output_accept_byte':output_accept_byte,}
     proc = subprocess.Popen(['iptables','-Z'], stdout=subprocess.PIPE, close_fds=True)
 
     return networking
