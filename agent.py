@@ -433,7 +433,7 @@ def main():
 		api_call = "/v10/ping/"
 		system_metrics = get_system_metrics(UUID, SECRET)
 		api_response = send_data(SECRET,api_call,system_metrics)
-		time.sleep(2)
+		time.sleep(3)
 
 	print "ze end."
 
