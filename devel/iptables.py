@@ -62,6 +62,38 @@ Chain OUTPUT (policy ACCEPT 2973 packets, 3130420 bytes)
     pkts      bytes target     prot opt in     out     source               destination
 """
 
+def _get_networking_stats():
+
+    proc = subprocess.Popen(['which','iptables'], stdout=subprocess.PIPE, close_fds=True)
+    proc = proc.communicate()[0]
+
+    if(not 'iptables' in proc):
+
+        print 'Installing iptables..'
+        installer = ""
+
+        proc = subprocess.Popen(['which','yum'], stdout=subprocess.PIPE, close_fds=True)
+        proc = proc.communicate()[0]
+        if('yum' in proc): installer = proc
+
+        if(not installer):
+                        
+            proc = subprocess.Popen(['which','apt-get'], stdout=subprocess.PIPE, close_fds=True)
+            proc = proc.communicate()[0]
+            if('apt-get' in proc): installer = proc
+
+        installer = installer.replace('\n','')
+
+        if(not installer):
+
+            print 'Please install the iptables and re-run the agent.'
+            sys.exit(0)
+
+        os.system(installer+" install iptables")
+
+    return
+
+
 def parse_output(data):
 
     inbound_text = ""
@@ -117,7 +149,7 @@ def parse_output(data):
     outbound_traffic = {}
     forward_traffic = {}
 
-    return "xxx at this point you have only inbound traffic data"
+    return
 
 
 parse_output(data1)
