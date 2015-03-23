@@ -151,7 +151,10 @@ def ping():
 		'secret': secret,
 		'agent_version': agent_version,
 		'uuid': uuid,
-		'networking': networking,
+		'input_accept_packets': networking['input_accept_packets'],
+		'input_accept_bytes': networking['input_accept_bytes'],
+		'output_accept_packets': networking['output_accept_packets'],
+		'output_accept_bytes': networking['output_accept_bytes'],
 		'date_created': datetime.datetime.utcnow(),
 	}
 	networking_ = mongo.networking
