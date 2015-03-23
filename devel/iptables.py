@@ -120,6 +120,7 @@ def _get_networking_stats():
     #forward_traffic = {}
 
     networking = {'inbound_traffic':inbound_traffic,'outbound_traffic':outbound_traffic,}
+    proc = subprocess.Popen(['iptables','-Z'], stdout=subprocess.PIPE, close_fds=True)
 
     return networking
     
