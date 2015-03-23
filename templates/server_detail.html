@@ -204,6 +204,14 @@
 					<div id="inbound_packets"></div>
 					<div id="outbound_packets"></div>
 					
+					<p>
+						Debug:
+						<br/>
+						{% for data in networking|dict_get:"inbound_bytes" %}
+						{{data}}<br/>
+						{% endfor %}
+					</p>
+					
 				</div>
 				
 			</div>
