@@ -9,29 +9,29 @@ def _get_networking_stats():
 
     if(not 'iptables' in proc):
   
-      print 'Installing iptables..'
+        print 'Installing iptables..'
   
-      installer = ""
+        installer = ""
   
-      proc = subprocess.Popen(['which','yum'], stdout=subprocess.PIPE, close_fds=True)
-      proc = proc.communicate()[0]    
-      if('yum' in proc): installer = proc
+        proc = subprocess.Popen(['which','yum'], stdout=subprocess.PIPE, close_fds=True)
+        proc = proc.communicate()[0]    
+        if('yum' in proc): installer = proc
     
-      if(not installer):
+        if(not installer):
   
-        proc = subprocess.Popen(['which','apt-get'], stdout=subprocess.PIPE, close_fds=True)
-        proc = proc.communicate()[0]
-        if('apt-get' in proc): installer = proc
+            proc = subprocess.Popen(['which','apt-get'], stdout=subprocess.PIPE, close_fds=True)
+            proc = proc.communicate()[0]
+            if('apt-get' in proc): installer = proc
     
-      installer = installer.replace('\n','')
+        installer = installer.replace('\n','')
     
-      if(not installer):
+        if(not installer):
     
-        print 'Please install the iptables and re-run the agent.'
-        sys.exit(0)
+            print 'Please install the iptables and re-run the agent.'
+            sys.exit(0)
     
-      os.system(installer+" install iptables")
-      # XXX make iptables init here
+        os.system(installer+" install iptables")
+        # XXX make iptables init here
     
     # XXX pull iptables data
     # XXX reset iptables counters
