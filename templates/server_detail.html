@@ -207,9 +207,8 @@
 					<p>
 						Debug:
 						<br/>
-						{{networking}}
-						<br/>
-						{% for data in networking|dict_get:"inbound_bytes" %}
+
+						{% for data in networking|dict_get:"inbound_traffic"|dict_get:"input_accept_packets" %}
 						{{data}}<br/>
 						{% endfor %}
 					</p>
