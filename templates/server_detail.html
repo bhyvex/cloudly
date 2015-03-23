@@ -208,8 +208,8 @@
 						Debug:
 						<br/>
 
-						{% for data in networking|dict_get:"output_accept_bytes" %}
-						{{data}}<br/>
+						{% for data in networking %}
+						{{data|dict_get:"output_accept_bytes"}}<br/>
 						{% endfor %}
 					</p>
 					
