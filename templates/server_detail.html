@@ -211,7 +211,7 @@
 						{{networking}}
 						<hr/>
 
-						{% for data in networking|dict_get:"inbound_traffic"|dict_get:"input_accept_bytes" %}
+						{% for data in networking|dict_get:"networking"|dict_get:"inbound_traffic"|dict_get:"input_accept_bytes" %}
 						{{data}}<br/>
 						{% endfor %}
 					</p>
