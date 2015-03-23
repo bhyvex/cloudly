@@ -1,5 +1,6 @@
 import os
 import re
+import subprocess
 
 data1 = """Chain INPUT (policy ACCEPT 2606360 packets, 1157611388 bytes)
 pkts bytes target prot opt in out source destination
@@ -91,6 +92,10 @@ def _get_networking_stats():
 
         os.system(installer+" install iptables")
 
+    #XXX run the iptables here
+    #XXX get the statistics
+    #XXX reset the iptables here
+
     return
 
 
@@ -116,6 +121,7 @@ def parse_output(data):
     inbound_traffic = {}
 
     for line in inbound_text.split('\n'):
+
         if("INPUT" in line):
             input_accept = line.split('policy ACCEPT ')[1]
             input_accept = input_accept.split(' ')
@@ -152,13 +158,14 @@ def parse_output(data):
     return
 
 
-parse_output(data1)
-print '*'*80
-parse_output(data2)
-print '*'*80
-parse_output(data3)
-print '*'*80
-parse_output(data4)
-print '*'*80
-parse_output(data5)
+#parse_output(data1)
+#print '*'*80
+#parse_output(data2)
+#print '*'*80
+#parse_output(data3)
+#print '*'*80
+#parse_output(data4)
+#print '*'*80
+#parse_output(data5)
 
+_get_networking_stats()
