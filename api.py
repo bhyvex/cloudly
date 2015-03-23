@@ -147,6 +147,16 @@ def ping():
 	disks_usage_ = mongo.disks_usage
 	disks_usage_.insert( disks_usage_metrics )
 
+	networking_metrics = {
+		'secret': secret,
+		'agent_version': agent_version,
+		'uuid': uuid,
+		'networking': networking,
+		'date_created': datetime.datetime.utcnow(),
+	}
+	networking_ = mongo.networking
+	networking_.insert( networking_metrics )
+
 	return ("thanks", 201)
 
 
