@@ -134,8 +134,8 @@ def parse_output(data):
 
         c=0
         for line in inbound_text.split('\n'):
+            
             if(c>3 and c<len(inbound_text.split('\n'))-1):
-
                 input_accept_packets += int(line.split(' ')[0])
                 input_accept_bytes += int(line.split(' ')[1])
                 
