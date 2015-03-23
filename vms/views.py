@@ -588,6 +588,7 @@ def server_view(request, hwaddr):
 	loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 	mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 	disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	networking = mongo.networking.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 	activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
 
 	server_status = "Running"
@@ -652,6 +653,10 @@ def server_view(request, hwaddr):
 	disks_usage_ = []
 	for i in disks_usage: disks_usage_.append(i)
 	disks_usage = disks_usage_
+	
+	networking_ = []
+	for i in networking: networking_.append(i)
+	networking = networking_
 
 	return render_to_response('server_detail.html', {'hwaddr':hwaddr,'server':server,'server_status':server_status,'processes':processes,'cpu_usage':cpu_usage,'loadavg':loadavg,'mem_usage':mem_usage,'disks_usage':disks_usage,'activity':activity,}, context_instance=RequestContext(request))
     
