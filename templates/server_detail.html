@@ -200,9 +200,12 @@
 					
 					<div id="inbound_bytes"></div>
 					<div id="outbound_bytes"></div>
-					<hr/>
-					<div id="inbound_packets"></div>
-					<div id="outbound_packets"></div>
+
+					{% comment %}
+						<hr/>
+						<div id="inbound_packets"></div>
+						<div id="outbound_packets"></div>
+					{% endcomment %}
 					
 				</div>
 				
@@ -644,7 +647,7 @@ $(function () {
 });
 
 
-
+{% comment %}
 $(function () {
     $('#inbound_packets').highcharts({
         chart: {
@@ -732,7 +735,7 @@ $(function () {
         ]
     });
 });
-
+{% endcomment %}
 
 
 {% for disk in server|dict_get:"disks_usage" %}
