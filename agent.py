@@ -25,7 +25,7 @@ if(not API_SERVER): API_SERVER = "127.0.0.1:5001"
 
 
 if(not getpass.getuser()=="root"):
-    print 'Please re-run this script as user root.'
+    print 'You must be root to run this script.'
     sys.exit(0)
 
 
