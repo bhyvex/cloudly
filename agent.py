@@ -36,7 +36,6 @@ def _get_sys_loadavg():
 		"10-mins":None,
 		"15-mins":None,
 	}
-	
 	loadavg=subprocess.Popen(['uptime',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 	loadavg = re.findall(r"(\d+\.\d{2})", loadavg)
 
