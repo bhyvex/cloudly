@@ -470,7 +470,7 @@ def ajax_virtual_machines(request):
 			
 		c+=1
 		
-		print '-_'*80
+		#print '-_'*80
 		print vm_cache[vm]["instance"]["state"]["state"].title(), vm
 
 	ajax_vms_response = ajax_vms_response.replace(",}","}")
