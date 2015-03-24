@@ -645,6 +645,51 @@ $(function () {
 
 
 
+$(function () {
+    $('#inbound_packets').highcharts({
+        chart: {
+            type: 'spline'
+        },
+        title: {
+            text: 'Inbound Traffic'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            type: 'datetime',
+            title: {
+                text: 'Datetime'
+            }
+        },
+        yAxis: {
+            title: {
+                text: 'bytes'
+            },
+            min: 0
+        },
+        tooltip: {
+            headerFormat: '<b>{series.name}:</b> {point.y:.2f}<br>',
+            pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}'
+        },
+
+        series: [{
+            name: 'input_accept_packets',
+            // Define the data points. All series have a dummy year
+            // of 1970/71 in order to be compared on the same x axis. Note
+            // that in JavaScript, months start at 0 for January, 1 for February etc.
+            data: [
+		{% for x in networking %}
+		   [Date.UTC({{x|dict_get:"date_created"|date:"Y"}}, {{x|dict_get:"date_created"|date:"n"|substract_one}}, {{x|dict_get:"date_created"|date:"j"}}, {{x|dict_get:"date_created"|date:"H"}}, {{x|dict_get:"date_created"|date:"i"}}, {{x|dict_get:"date_created"|date:"s"}}), {{x|dict_get:"input_accept_packets"}}   ],
+		{% endfor %}
+            ]
+        }, 
+        ]
+    });
+});
+
+
+
 
 {% for disk in server|dict_get:"disks_usage" %}
 
