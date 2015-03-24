@@ -150,7 +150,7 @@ def ajax_vms_refresh(request):
 					vms_cache.save()
 					print vms_cache.is_updating
 					print vms_cache.vms_response
-					return HttpResponse("access denied")
+					#return HttpResponse("access denied")
 					
 				instances = [i for r in reservations for i in r.instances]
 
