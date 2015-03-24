@@ -15,12 +15,10 @@
 	<hr/>
 	
 	
-	{% if 'fuckme' in request.META|dict_get:"HTTP_HOST" %}
-	<img src="/static/images/cloudly.jpg">
-	{% else %}
+	<a href="/login">
 	<img src="/static/images/cloudly.png">
-	{% endif %}
-	
+	</a>
+
 	<hr/>
 
 	<a href="/login/">Login</a>
