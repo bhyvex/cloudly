@@ -9,11 +9,7 @@
 <center>
 	<h2>You've logged out.</h2>
 
-	{% if 'fuckme' in request.META|dict_get:"HTTP_HOST" %}
-		<a href="/"><img src="/static/images/cloudly.jpg"></a>
-	{% else %}
-		<a href="/"><img src="/static/images/cloudly.png"></a>
-	{% endif %}
+	<a href="/"><img src="/static/images/cloudly.png"></a>
 
 	<br/>
 	<br/>
