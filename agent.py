@@ -256,7 +256,10 @@ def _get_networking_stats():
             print 'Please install the iptables and re-run the agent.'
             sys.exit(0)
 
-        os.system(installer+" install iptables")
+	if(installer == "emerge"):
+	    os.system(installer+" iptables")
+	else:
+            os.system(installer+" install iptables")
 
     
     proc = subprocess.Popen(['iptables','-L','-vxn'], stdout=subprocess.PIPE, close_fds=True)
