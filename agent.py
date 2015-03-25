@@ -240,7 +240,7 @@ def _get_networking_stats():
             proc = proc.communicate()[0]
             if('emerge' in proc): installer = proc
         
-            installer = installer.relpace('\n')
+            installer = installer.replace('\n')
 
         if(not installer):
         
@@ -248,7 +248,7 @@ def _get_networking_stats():
             proc = proc.communicate()[0]
             if('zypper' in proc): installer = proc
             
-            installer = installer.relpace('\n')
+            installer = installer.replace('\n')
 
 
         if(not installer):
