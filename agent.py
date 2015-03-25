@@ -259,7 +259,7 @@ def _get_networking_stats():
 	if("emerge" in installer):
 	    os.system(installer+" iptables")
 	else:
-            os.system(installer+" install iptables")
+	    os.system(installer+" install iptables")
 
     
     proc = subprocess.Popen(['iptables','-L','-vxn'], stdout=subprocess.PIPE, close_fds=True)
