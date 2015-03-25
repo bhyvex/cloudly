@@ -256,7 +256,7 @@ def _get_networking_stats():
             print 'Please install the iptables and re-run the agent.'
             sys.exit(0)
 
-	if(installer == "emerge"):
+	if("emerge" in installer):
 	    os.system(installer+" iptables")
 	else:
             os.system(installer+" install iptables")
