@@ -86,8 +86,8 @@ def login_as_demo_user(request):
 	user = User.objects.get(username='demo@demo.com')
 	user.set_password('demo')
 	user.save()
-	user = authenticate(username='demo@demo.com', password='secret')
-	login(request, user)
+	
+	login(request, authenticate(username='demo@demo.com', password='demo'))
 	
 	return HttpResponseRedirect("/")
 
