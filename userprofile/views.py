@@ -81,6 +81,17 @@ def _simple_email_validation(email):
 	return False
 
 
+def login_as_demo_user(request):
+	
+	user = User.objects.get(username='demo@demo.com')
+	user.set_password('demo')
+	user.save()
+	user = authenticate(username='demo@demo.com', password='secret')
+	login(request, user)
+	
+	return HttpResponseRedirect("/")
+
+
 def user_logout(request):
 	
 	print '-- logout'
