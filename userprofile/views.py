@@ -42,7 +42,7 @@ AWS_REGIONS = {
 	"ap-southeast-1":"Asia Pacific (Singapore) Region",
 	"ap-southeast-2":"Asia Pacific (Sydney) Region",
 	"eu-west-1":"EU (Ireland) Region",
-	#"eu-central-1":"EU (Frankfurt) Region",
+	"eu-central-1":"EU (Frankfurt) Region",
 	"sa-east-1":"South America (Sao Paulo) Region",
 	"us-east-1":"US East (Northern Virginia) Region",
 	"us-west-1":"US West (Northern California) Region",
