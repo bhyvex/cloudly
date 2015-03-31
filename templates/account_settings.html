@@ -32,8 +32,8 @@
 						<li class="list-group-item"><strong>E-mail:</strong> {{user.email}}</li>
 						<br/>
 						<li class="list-group-item"><strong>Secret</strong> {{profile.secret}}</li>
-						<li class="list-group-item"><strong>Password:</strong> 
 							{% if user.username != "demo@demo.com" %}
+							<li class="list-group-item"><strong>Password:</strong> 
 							<a href="/account/password/"><button type="button" class="btn btn-xs btn-warning">Change Password</button></a></li>
 							{% endif %}
 						<br/>
