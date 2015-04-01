@@ -101,6 +101,10 @@ STATICFILES_FINDERS = (
 
 MEDIA_ROOT = 'media'
 
+EMAIL_HOST = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 LOGGING = {
