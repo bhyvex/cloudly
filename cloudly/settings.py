@@ -9,7 +9,7 @@ SECRET_KEY = 'h9w5qat*mdxuwjrn+z3=$s3c_f1_Jan_Paricka_mcz+@#u%^z24jdkdc5b!=$'
 ADMINS = (('Jan Paricka', 'jparicka@gmail.com'),)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['*']
