@@ -142,9 +142,9 @@ def _get_memory_usage():
 
         if('swap' in line.lower()):
             mem_info = re.findall("(\d+)", line)
-            memory_usage['swap_total'] = mem_info[0]
-            memory_usage['swap_used'] = mem_info[1]
-            memory_usage['swap_free'] = mem_info[2]
+            memory_usage['swap_total'] = long(mem_info[0])
+            memory_usage['swap_used'] = long(mem_info[1])
+            memory_usage['swap_free'] = long(mem_info[2])
             memory_usage['swap_used_percentage'] = round(float(mem_info[1])/float(mem_info[0])*100,2)
     
     
