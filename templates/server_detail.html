@@ -193,7 +193,7 @@
 					<p>Debug swap_usage:
 						<br/>
 						{% for x in mem_usage %}
-						{{x}}
+						{{xx|dict_get:"memory_usage"|dict_get:"swap_used"}}
 						{% endfor %}
 
 					</p>
