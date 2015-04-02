@@ -187,8 +187,10 @@
 					<hr/>
 					<div id="mem_usage"></div>
 					
+					{% if server|dict_get:"memory_usage"|dict_get:"swap_total" %}
 					<hr/>
 					<div id="swap_usage"></div>
+					{% endif %}
 
 				</div>
 				
