@@ -145,7 +145,9 @@ def _get_memory_usage():
             memory_usage['swap_used'] = mem_info[1]
             memory_usage['swap_free'] = mem_info[2]
     
-        
+    
+    print 'debug memory_usage', memory_usage
+    
     return memory_usage
 
 
