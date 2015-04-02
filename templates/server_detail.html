@@ -190,10 +190,10 @@
 					<hr/>
 					<div id="swap_usage"></div>
 					
-					<p>Debug mem_usage:
+					<p>Debug swap_usage:
 						<br/>
 						{% for x in mem_usage %}
-						{{x}}
+						{{x|dict_get:"swap_used"}}
 						{% endfor %}
 
 					</p>
