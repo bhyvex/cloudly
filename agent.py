@@ -129,7 +129,22 @@ def _get_memory_usage():
         'memory_free': memory_free,
         'memory_used': memory_used,        
         'memory_used_percentage': round(float(memory_used)/float(memory_total)*100,2),
+        'swap_total': 0,
+        'swap_used': 0,
+        'swap_free': 0,
     }
+
+    
+    mem_info = subprocess.Popen(['free',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+    
+    for line in mem_info.split('\n'):
+
+        if('swap' in line.lower()):
+            mem_info = re.findall("(\d+)", line)
+            memory_usage['swap_total'] = mem_info[0]
+            memory_usage['swap_used'] = mem_info[1]
+            memory_usage['swap_free'] = mem_info[2]
+    
         
     return memory_usage
 
