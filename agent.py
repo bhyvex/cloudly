@@ -145,8 +145,10 @@ def _get_memory_usage():
             memory_usage['swap_total'] = long(mem_info[0]) * 1024
             memory_usage['swap_used'] = long(mem_info[1]) * 1024
             memory_usage['swap_free'] = long(mem_info[2]) * 1024
-            memory_usage['swap_used_percentage'] = round(float(mem_info[1])/float(mem_info[0])*100,2)
-    
+            try:
+                memory_usage['swap_used_percentage'] = round(float(mem_info[1])/float(mem_info[0])*100,2)
+            except:
+                memory_usage['swap_used_percentage'] = 0
     
     return memory_usage
 
