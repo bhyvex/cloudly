@@ -104,9 +104,6 @@ def get_tags(package):
 
 @register.filter(name='to_mb')
 def to_mb(x):
-	print 'debug to_mb', x
-	print 'debug to_mb', long(x)
-	print 'debug to_mb', long(x)/1024/1000
 	return long(x)/1024/1000
 	
 	
