@@ -104,7 +104,7 @@ def get_tags(package):
 
 @register.filter(name='to_mb')
 def to_mb(x):
-	return x/1024/1000
+	return long(x)/1024/1000
 	
 	
 @register.filter(name="clean_ps_command")
