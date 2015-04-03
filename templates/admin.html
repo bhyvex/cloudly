@@ -100,7 +100,7 @@
 								<td>{{p.user|count_user_files_size|filesizeformat}}</td>
 								<td><font size=2>{{p.user.date_joined|naturaltime}}</font></td>
 								<td><font size=2>{{p.user.last_login|naturaltime}}</font></td>
-								<td><center><a href="/admin/user/{{p.id}}/activity/">{{p.clicks}}</a></center></td>
+								<td><center><a href="/admin/user/{{p.user.id}}/activity/">{{p.clicks}}</a></center></td>
 							</tr>
 							{% endfor %}
 						</tbody>
