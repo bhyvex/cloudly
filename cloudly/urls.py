@@ -21,12 +21,11 @@ urlpatterns = patterns('',
 	url(r'^goodbye/$', 'userprofile.views.goodbye', name='goodbye'),
 	# ajax
 	url(r'^ajax/cloud/vms/$', 'vms.views.ajax_virtual_machines', name='ajax_virtual_machines'),
-	url(r'^ajax/cloud/box-template/$', 'vms.views.ajax_virtual_machines_box', name='ajax_virtual_machines_box'),
 	url(r'^ajax/cloud/vms/refresh/$', 'vms.views.ajax_vms_refresh', name='ajax_vms_refresh'),
+	url(r'^ajax/cloud/box-template/$', 'vms.views.ajax_virtual_machines_box', name='ajax_virtual_machines_box'),
 	# aws ec2 stuff
 	url(r'^aws/(?P<vm_name>[\w\-\.]+)/$', 'vms.views.aws_vm_view', name='aws_vm_view'),
 	url(r'^aws/(?P<vm_name>[\w\-\.]+)/(?P<action>[\w\-\.]+)/$', 'vms.views.control_aws_vm', name='control_aws_vm'),
-	url(r'^aws/(?P<instance_id>[\w\-\.]+)/request/help/$', 'support.views.support_new_aws', name='support_new_aws'),
 	url(r'^ajax/aws/(?P<instance_id>[\w\-\.]+)/metrics/$', 'vms.views.ajax_aws_graphs', name='ajax_aws_graphs'),
 	url(r'^ajax/aws/(?P<instance_id>[\w\-\.]+)/metrics/(?P<graph_type>[\w\-\.]+)/$', 'vms.views.ajax_aws_graphs', name='ajax_aws_graphs'),
 	# servers
