@@ -14,7 +14,8 @@
 	</ol>
 
 	<div class="row">
-
+		
+	
 		<div class="col-xs-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -27,35 +28,26 @@
 				</div>
 
 				<div class="panel-body">
-					<ul class="list-group">
-						<li class=""><strong>Name:</strong> {{profile.name}}</li>
-						<li class=""><strong>E-mail:</strong> {{user.email}}</li>
-						<li class=""><strong>Secret</strong> {{profile.secret}}</li>
-							{% if user.username != "demo@demo.com" %}
-							<li class=""><strong>Password:</strong> 
-							<a href="/account/password/"><button type="button" class="btn btn-xs btn-warning">Change Password</button></a></li>
-							{% endif %}
-						<li class=""><strong>Twitter</strong> {{profile.twitter}}</li>
-						<li class=""><strong>Mobile</strong> {{profile.mobile}}</li>
-						<li class=""><strong>Email Notfications</strong>
-							<form class="form-horizontal" action="/test">
-								<label class="switch switch-info">
-									<input type="checkbox" class="switch-input">
-									<span class="switch-label" data-on="On" data-off="Off"></span>
-									<span class="switch-handle"></span>
-								</label>
-							</form>
-						</li>
-						<li class="list-group-item"><strong>Twitter Notifications</strong>
-							<form class="form-horizontal" action="/test">
-								<label class="switch">
-									<input type="checkbox" class="switch-input">
-									<span class="switch-label" data-on="On" data-off="Off"></span>
-									<span class="switch-handle"></span>
-								</label>
-							</form>
-						</li>
-					</ul>
+
+
+					<p>
+						Name: {{profile.name}}<br/>
+						E-mail: {{user.email}}<br/>
+						Secret: {{profile.secret}}<br/>
+
+						{% if user.username != "demo@demo.com" %}
+						Password:
+						<a href="/account/password/"><button type="button" class="btn btn-xs btn-warning">Change Password</button></a>
+						<br/>
+						{% endif %}
+					
+						Twitter: {{profile.twitter}}<br/>
+						Mobile: {{profile.mobile}}<br/>
+						Email notifications: False<br/>
+						Twitter notifications: False<br/>
+						
+					</p>
+
 				</div>
 			</div>
 		</div><!--/container-->
