@@ -245,6 +245,10 @@ Screenshots & Live Demo
 
 ![alt screen1](https://raw.githubusercontent.com/jparicka/cloudly/master/static/screenshots/screenshot1.png)
 
+###### Demo
+
+Project can be currently seen on http://52.16.33.60/register
+
 
 Donate
 ------
@@ -254,3 +258,4 @@ A lot of time and effort went into making Project Cloudly as it is right now. If
 Don't want to donate money? Then maybe you could <a href="https://www.linkedin.com/in/jparicka">write me a recommendation on Linkedin</a>.
 
 Thank you.
+
