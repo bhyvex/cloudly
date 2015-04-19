@@ -130,7 +130,7 @@ $ vi /etc/nginx/nginx.conf
 ..and paste in the following configuration:
 
 <pre>
-user apache apache;
+user cloudly cloudly;
 worker_processes  2;
 
 error_log /var/log/nginx/error_log info;
