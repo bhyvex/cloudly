@@ -396,7 +396,12 @@ def _get_processes():
 
     processes = subprocess.Popen(["ps","a","u","x"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
     return processes
-
+    
+    
+# XXX
+# class nginx
+# class mysql
+# class mwah
 
 def get_system_metrics( uuid, secret ):
 
