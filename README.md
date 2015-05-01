@@ -210,6 +210,13 @@ For more information about the Django and NGINX configuration see the NGINX Wiki
 For information about the MongoDB visit <a>http://www.mongodb.org/</a>
 
 
+###### Install OpenTSDB
+
+Install OpenTSDB as per http://opentsdb.net/docs/build/html/installation.html
+
+This will enable you goodies such as Hadoop, HBase from Apache and first and foremost the almighty OpenTSDB!   :)
+
+
 ###### Run the API
 
 API server runs off of Flask therefore you'd need to install Python Flask first.  To do so simply copy and paste the following into your terminal window:
