@@ -212,9 +212,9 @@ For information about the MongoDB visit <a>http://www.mongodb.org/</a>
 
 ###### Install OpenTSDB
 
-Install OpenTSDB as per http://opentsdb.net/docs/build/html/installation.html
+Install the OpenTSDB as per http://opentsdb.net/docs/build/html/installation.html
 
-This will enable you goodies such as Hadoop, HBase from Apache and first and foremost the almighty OpenTSDB!   :)
+This will enable goodies such as Hadoop, HBase from Apache and first and foremost the almighty OpenTSDB!  :)
 
 
 ###### Run the API
