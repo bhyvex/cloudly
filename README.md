@@ -254,7 +254,7 @@ Screenshots & Live Demo
 
 ###### Demo
 
-Project can be currently seen on http://52.16.33.60/register
+Project can be currently seen on http://projectcloudly.com/register
 
 
 Donate
