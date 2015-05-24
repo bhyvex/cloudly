@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.conf import settings
 
 urlpatterns = patterns('',
+
 	# common views
 	url(r'^$', 'dashboard.views.home', name='home'),
 	url(r'^welcome/$', 'dashboard.views.welcome', name='welcome'),
