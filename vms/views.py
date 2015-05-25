@@ -689,9 +689,11 @@ def ajax_server_graphs(request, hwaddr, graph_type="all", extra=""):
 	for i in mem_usage: mem_usage_.append(i)
 	mem_usage = mem_usage_
 	
-	graphs_response = {'foo':123,}
+	
+	
+	graphs_mixed_response = {'foo':123,}
 
-	return HttpResponse(json.dumps(graphs_response), content_type="application/json")
+	return HttpResponse(json.dumps(graphs_mixed_response), content_type="application/json")
 	#return render_to_response('ajax_server_graphs.html', {'hwaddr':hwaddr,'server':server,'server_status':server_status,'graphs_response':graphs_response,'graph_type':graph_type,'processes':processes,'cpu_usage':cpu_usage,'loadavg':loadavg,'mem_usage':mem_usage,'disks_usage':disks_usage,'networking':networking,'activity':activity,}, context_instance=RequestContext(request))
 
 
