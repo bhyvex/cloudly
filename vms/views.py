@@ -567,22 +567,13 @@ def control_aws_vm(request, vm_name, action):
 
 @login_required()
 def ajax_server_graphs(request, hwaddr, graph_type="all"):
-	return HttpResponse("working on this currently")
 
-
-
-@login_required()
-def server_view(request, hwaddr):
-
-	print '-- server_view'
+	print '-- ajax_server_graphs'
 	print request.user
 
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
-	
-	ip = request.META['REMOTE_ADDR']
-	_log_user_activity(profile,"click","/server/"+hwaddr,"server_view",ip=ip)
-	
+
 	hwaddr = hwaddr.replace('-',':')
 	server = mongo.servers.find_one({'secret':profile.secret,'uuid':hwaddr,})
 
@@ -590,7 +581,15 @@ def server_view(request, hwaddr):
 		uuid = server['uuid']		
 	except:
 		return HttpResponse("access denied")
-		
+
+
+	cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	networking = mongo.networking.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
+
 	cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 	loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 	mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
@@ -668,8 +667,35 @@ def server_view(request, hwaddr):
 	mem_usage_ = []
 	for i in mem_usage: mem_usage_.append(i)
 	mem_usage = mem_usage_
+	
 
-	return render_to_response('server_detail.html', {'hwaddr':hwaddr,'server':server,'server_status':server_status,'processes':processes,'cpu_usage':cpu_usage,'loadavg':loadavg,'mem_usage':mem_usage,'disks_usage':disks_usage,'networking':networking,'activity':activity,}, context_instance=RequestContext(request))
+	# XXX request only those requested.........
+
+	return render_to_response('ajax_server_graphs.html', {'hwaddr':hwaddr,'server':server,'server_status':server_status,'processes':processes,'cpu_usage':cpu_usage,'loadavg':loadavg,'mem_usage':mem_usage,'disks_usage':disks_usage,'networking':networking,'activity':activity,}, context_instance=RequestContext(request))
+
+
+
+@login_required()
+def server_view(request, hwaddr):
+
+	print '-- server_view'
+	print request.user
+
+	user = request.user
+	profile = userprofile.objects.get(user=request.user)
+	
+	ip = request.META['REMOTE_ADDR']
+	_log_user_activity(profile,"click","/server/"+hwaddr,"server_view",ip=ip)
+	
+	hwaddr = hwaddr.replace('-',':')
+	server = mongo.servers.find_one({'secret':profile.secret,'uuid':hwaddr,})
+
+	try:
+		uuid = server['uuid']		
+	except:
+		return HttpResponse("access denied")
+
+	return render_to_response('server_detail.html', {'hwaddr':hwaddr,'server':server,}, context_instance=RequestContext(request))
     
 
 def ajax_virtual_machines_box(request):
