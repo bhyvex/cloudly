@@ -521,6 +521,8 @@ def ajax_aws_graphs(request, instance_id, graph_type="all"):
 	
 	print cpu_utilization_datapoints
 	
+	# XXX TBD
+
 	return HttpResponse("data " + instance_id + "=" + str(instance) + " ** " + graph_type.upper())
 
 
