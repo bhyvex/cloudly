@@ -570,6 +570,20 @@ def ajax_server_graphs(request, hwaddr, graph_type="all"):
 
 	print '-- ajax_server_graphs'
 	print request.user
+	
+	supported_graph_types = [
+		'cpu_usage', 
+		'loadavg', 
+		'mem_usage',
+		'disks_usage',
+		'networking',
+		'activity',
+		'processes',
+		'server_status',
+		#'nginx',
+		#'mysql',
+		#'...',
+	]
 
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
