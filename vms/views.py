@@ -566,7 +566,7 @@ def control_aws_vm(request, vm_name, action):
 
 
 @login_required()
-def ajax_server_graphs(request, hwaddr, graph_type="all"):
+def ajax_server_graphs(request, hwaddr, graph_type="all", extra=""):
 
 	print '-- ajax_server_graphs'
 	print request.user
