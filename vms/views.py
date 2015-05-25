@@ -526,11 +526,6 @@ def ajax_aws_graphs(request, instance_id, graph_type="all"):
 
 
 @login_required()
-def ajax_server_graphs(request, instance_id, graph_type="all"):
-	return HttpResponse("working on this currently")
-
-
-@login_required()
 def control_aws_vm(request, vm_name, action):
 	
 	print request.user
@@ -568,6 +563,12 @@ def control_aws_vm(request, vm_name, action):
 		ec2conn.terminate_instances([vm_name,])
 
 	return HttpResponseRedirect("/")
+
+
+@login_required()
+def ajax_server_graphs(request, instance_id, graph_type="all"):
+	return HttpResponse("working on this currently")
+
 
 
 @login_required()
