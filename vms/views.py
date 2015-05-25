@@ -710,6 +710,7 @@ def server_view(request, hwaddr):
 	ip = request.META['REMOTE_ADDR']
 	_log_user_activity(profile,"click","/server/"+hwaddr,"server_view",ip=ip)
 	
+	hwaddr_orig = hwaddr
 	hwaddr = hwaddr.replace('-',':')
 	server = mongo.servers.find_one({'secret':profile.secret,'uuid':hwaddr,})
 
@@ -724,7 +725,7 @@ def server_view(request, hwaddr):
 	except:
 		return HttpResponse("access denied")
 
-	return render_to_response('server_detail.html', {'hwaddr':hwaddr,'server':server,'server_status':server_status,}, context_instance=RequestContext(request))
+	return render_to_response('server_detail.html', {'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,}, context_instance=RequestContext(request))
     
 
 def ajax_virtual_machines_box(request):
