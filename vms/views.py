@@ -697,12 +697,18 @@ def server_view(request, hwaddr):
 	hwaddr = hwaddr.replace('-',':')
 	server = mongo.servers.find_one({'secret':profile.secret,'uuid':hwaddr,})
 
+	server_status = "Running"
+	if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>20):
+		server_status = "Stopped"
+		if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>1800):
+			server_status = "Offline"		
+
 	try:
 		uuid = server['uuid']		
 	except:
 		return HttpResponse("access denied")
 
-	return render_to_response('server_detail.html', {'hwaddr':hwaddr,'server':server,}, context_instance=RequestContext(request))
+	return render_to_response('server_detail.html', {'hwaddr':hwaddr,'server':server,'server_status':server_status,}, context_instance=RequestContext(request))
     
 
 def ajax_virtual_machines_box(request):
