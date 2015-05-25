@@ -678,7 +678,7 @@ def ajax_server_graphs(request, hwaddr, graph_type="all"):
 
 	# XXX request only those requested.........
 
-	return render_to_response('ajax_server_graphs.html', {'hwaddr':hwaddr,'server':server,'server_status':server_status,'processes':processes,'cpu_usage':cpu_usage,'loadavg':loadavg,'mem_usage':mem_usage,'disks_usage':disks_usage,'networking':networking,'activity':activity,}, context_instance=RequestContext(request))
+	return render_to_response('ajax_server_graphs.html', {'hwaddr':hwaddr,'server':server,'server_status':server_status,'graph_type':graph_type,'processes':processes,'cpu_usage':cpu_usage,'loadavg':loadavg,'mem_usage':mem_usage,'disks_usage':disks_usage,'networking':networking,'activity':activity,}, context_instance=RequestContext(request))
 
 
 
