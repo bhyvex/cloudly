@@ -522,13 +522,13 @@ def ajax_aws_graphs(request, instance_id, graph_type="all"):
 	print cpu_utilization_datapoints
 	
 	# XXX TBD
-
 	return HttpResponse("data " + instance_id + "=" + str(instance) + " ** " + graph_type.upper())
 
 
 @login_required()
 def ajax_server_graphs(request, instance_id, graph_type="all"):
 	return HttpResponse("working on this currently")
+
 
 @login_required()
 def control_aws_vm(request, vm_name, action):
