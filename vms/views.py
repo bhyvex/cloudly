@@ -590,13 +590,6 @@ def ajax_server_graphs(request, hwaddr, graph_type="all"):
 	networking = mongo.networking.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 	activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
 
-	cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-	loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-	mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-	disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-	networking = mongo.networking.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-	activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
-
 	server_status = "Running"
 	if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>20):
 		server_status = "Stopped"
