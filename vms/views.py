@@ -704,6 +704,8 @@ def ajax_server_graphs(request, hwaddr, graph_type="all", extra=""):
 	
 	print '*'*5000
 	
+	# XXX mrdka
+	
 	for i in graphs_mixed_respose:
 		for x in i:
 			print x, i[x]
