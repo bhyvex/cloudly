@@ -1,9 +1,10 @@
 {% load cloud_extras %}
 
 {% if graph_type == "cpu_usage" %}
-{% for x in cpu_usage %}
-[Date.UTC({{x|dict_get:"date_created"|date:"Y"}}, {{x|dict_get:"date_created"|date:"n"|substract_one}}, {{x|dict_get:"date_created"|date:"j"}}, {{x|dict_get:"date_created"|date:"H"}}, {{x|dict_get:"date_created"|date:"i"}}, {{x|dict_get:"date_created"|date:"s"}}), {{x|dict_get:"cpu_usage"|dict_get:"cpu_used"}}   ],
-{% endfor %}
+{'foo':123,'x':1,}
 {% endif %}
 
+{% if graph_type == "test" %}
+{'foo':123,'x':1,}
+{% endif %}
 
