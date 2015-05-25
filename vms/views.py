@@ -597,7 +597,6 @@ def ajax_server_graphs(request, hwaddr, graph_type="all"):
 	#mysql = []
 	
 	
-
 	user = request.user
 	profile = userprofile.objects.get(user=request.user)
 
@@ -609,6 +608,8 @@ def ajax_server_graphs(request, hwaddr, graph_type="all"):
 	except:
 		return HttpResponse("access denied")
 
+
+	# XXX limit requests to only those requested in the graph_type.........
 
 	cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 	loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
@@ -688,8 +689,6 @@ def ajax_server_graphs(request, hwaddr, graph_type="all"):
 	for i in mem_usage: mem_usage_.append(i)
 	mem_usage = mem_usage_
 	
-
-	# XXX request only those requested.........
 
 	return render_to_response('ajax_server_graphs.html', {'hwaddr':hwaddr,'server':server,'server_status':server_status,'graph_type':graph_type,'processes':processes,'cpu_usage':cpu_usage,'loadavg':loadavg,'mem_usage':mem_usage,'disks_usage':disks_usage,'networking':networking,'activity':activity,}, context_instance=RequestContext(request))
 
