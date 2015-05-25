@@ -13,6 +13,10 @@
 
 
 <input type='hidden' name='hwaddr' value='{{hwaddr_orig}}' />
+<input type='hidden' name='secret' value='{{secret}}' />
+
+here
+{{crsf_token}}
 
 
 <div class="col-md-10 col-sm-11 main ">
@@ -518,45 +522,9 @@ $(function () {
 });
 
 
-$(function () {
-    $('#cpu_usage').highcharts({
-        chart: {
-            type: 'spline'
-        },
-        title: {
-            text: 'CPU Usage'
-        },
-        subtitle: {
-            text: ''
-        },
-        xAxis: {
-            type: 'datetime',
-            title: {
-                text: 'Datetime'
-            }
-        },
-        yAxis: {
-            title: {
-                text: 'CPU %'
-            },
-            min: 0
-        },
-        tooltip: {
-            headerFormat: '<b>{series.name}:</b> {point.y:.2f}<br>',
-            pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}'
-        },
 
-        series: [{
-            name: 'CPU Used',
-            // Define the data points. All series have a dummy year
-            // of 1970/71 in order to be compared on the same x axis. Note
-            // that in JavaScript, months start at 0 for January, 1 for February etc.
-            data: [
-	            ]
-        }, 
-        ]
-    });
-});
+
+
 
 
 $(function () {

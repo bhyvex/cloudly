@@ -571,6 +571,10 @@ def ajax_server_graphs(request, hwaddr, graph_type="all", extra=""):
 	print '-- ajax_server_graphs'
 	print request.user
 	
+	print 'request'
+	print request
+	
+
 	supported_graph_types = [
 		'cpu_usage', 
 		'loadavg', 
@@ -596,12 +600,11 @@ def ajax_server_graphs(request, hwaddr, graph_type="all", extra=""):
 	#nginx = []
 	#mysql = []
 	
-	
-	user = request.user
-	profile = userprofile.objects.get(user=request.user)
+	secret = request.POST['secret']
+	uuid = request.POST['server']
+	uuid = uuid.replace('-',':')
 
-	hwaddr = hwaddr.replace('-',':')
-	server = mongo.servers.find_one({'secret':profile.secret,'uuid':hwaddr,})
+	server = mongo.servers.find_one({'secret':secret,'uuid':uuid,})
 
 	try:
 		uuid = server['uuid']		
@@ -690,10 +693,26 @@ def ajax_server_graphs(request, hwaddr, graph_type="all", extra=""):
 	mem_usage = mem_usage_
 	
 	
+	# XXX pozor cpu-specificka
 	
-	graphs_mixed_response = {'foo':123,}
+	cpu_usage_ = []
+	for i in cpu_usage: cpu_usage_.append(i)
+	cpu_usage = cpu_usage_
+	
+	graphs_mixed_respose_ = {}
+	graphs_mixed_respose = cpu_usage
+	
+	print '*'*5000
+	
+	for i in graphs_mixed_respose:
+		for x in i:
+			print x, i[x]
+			print '-'*100
 
-	return HttpResponse(json.dumps(graphs_mixed_response), content_type="application/json")
+	#graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
+	
+
+	return HttpResponse(graphs_mixed_respose, content_type="application/json")
 	#return render_to_response('ajax_server_graphs.html', {'hwaddr':hwaddr,'server':server,'server_status':server_status,'graphs_response':graphs_response,'graph_type':graph_type,'processes':processes,'cpu_usage':cpu_usage,'loadavg':loadavg,'mem_usage':mem_usage,'disks_usage':disks_usage,'networking':networking,'activity':activity,}, context_instance=RequestContext(request))
 
 
@@ -725,7 +744,7 @@ def server_view(request, hwaddr):
 	except:
 		return HttpResponse("access denied")
 
-	return render_to_response('server_detail.html', {'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,}, context_instance=RequestContext(request))
+	return render_to_response('server_detail.html', {'secret':profile.secret,'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,}, context_instance=RequestContext(request))
     
 
 def ajax_virtual_machines_box(request):

@@ -144,6 +144,8 @@ def register(request):
 	err = None
 
 	if request.POST:
+		
+		print request.POST
 
 		name = request.POST[u'username']
 		email = request.POST[u'email']
