@@ -2,7 +2,6 @@ from django.conf.urls import patterns, include, url
 from django.conf import settings
 
 urlpatterns = patterns('',
-
 	# common views
 	url(r'^$', 'dashboard.views.home', name='home'),
 	url(r'^welcome/$', 'dashboard.views.welcome', name='welcome'),
@@ -20,28 +19,24 @@ urlpatterns = patterns('',
 	url(r'^cloud/settings/credentials/update/$', 'userprofile.views.cloud_settings_update_credentials', name='cloud_settings_update_credentials'),
 	url(r'^demo/$', 'userprofile.views.login_as_demo_user', name='demo'),
 	url(r'^goodbye/$', 'userprofile.views.goodbye', name='goodbye'),
-	# aws ec2 stuff
-	url(r'^aws/(?P<vm_name>[\w\-\.]+)/$', 'vms.views.aws_vm_view', name='aws_vm_view'),
-	url(r'^aws/(?P<vm_name>[\w\-\.]+)/(?P<action>[\w\-\.]+)/$', 'vms.views.control_aws_vm', name='control_aws_vm'),
 	# servers
 	url(r'^server/(?P<hwaddr>[\w\-\.]+)/$', 'vms.views.server_view', name='server_view'),
+	# aws ec2 servers
+	url(r'^aws/(?P<vm_name>[\w\-\.]+)/$', 'vms.views.aws_vm_view', name='aws_vm_view'),
+	url(r'^aws/(?P<vm_name>[\w\-\.]+)/(?P<action>[\w\-\.]+)/$', 'vms.views.control_aws_vm', name='control_aws_vm'),
 	# incidents
 	url(r'^incidents/$', 'incidents.views.incidents', name='incidents'),
-
 	# ajax
 	url(r'^ajax/cloud/vms/$', 'vms.views.ajax_virtual_machines', name='ajax_virtual_machines'),
 	url(r'^ajax/cloud/vms/refresh/$', 'vms.views.ajax_vms_refresh', name='ajax_vms_refresh'),
 	url(r'^ajax/cloud/box-template/$', 'vms.views.ajax_virtual_machines_box', name='ajax_virtual_machines_box'),
 	url(r'^ajax/aws/(?P<instance_id>[\w\-\.]+)/metrics/$', 'vms.views.ajax_aws_graphs', name='ajax_aws_graphs'),
 	url(r'^ajax/aws/(?P<instance_id>[\w\-\.]+)/metrics/(?P<graph_type>[\w\-\.]+)/$', 'vms.views.ajax_aws_graphs', name='ajax_aws_graphs'),
-
 	# admin
 	url(r'^admin/$', 'admin.views.admin', name='admin'),
 	url(r'^admin/user/(?P<user_id>\d+)/activity/$', 'admin.views.user_activity_report', name='user_activity_report'),	
-
 	# devel stuff
 	#url(r'^devel/$', 'devel.views.devel', name='devel'),    
-
 )
 
 
