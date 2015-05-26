@@ -693,8 +693,7 @@ def ajax_server_graphs(request, hwaddr, graph_type="all", extra=""):
 	mem_usage = mem_usage_
 	
 	
-	# XXX pozor cpu-specificka
-	
+	# XXX pozor cpu-specificka zalezitost...
 	cpu_usage_ = []
 	for i in cpu_usage: cpu_usage_.append(i)
 	cpu_usage = cpu_usage_
@@ -702,11 +701,9 @@ def ajax_server_graphs(request, hwaddr, graph_type="all", extra=""):
 	graphs_mixed_respose_ = []
 	graphs_mixed_respose = cpu_usage
 	
-	
-	# XXX zformatovat date_created do ajaxy data zalezitosit
+	# XXX zformatovat date_created do ajaxy data zalezitosit..
 	for x in graphs_mixed_respose:
 		for i in x:
-			#if(i!="_id"): aa[i] = x[i]
 			aa = {'date_created': x['date_created'],'value':1}
 			graphs_mixed_respose_.append(aa)
 		
