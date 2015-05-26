@@ -233,14 +233,6 @@ Install the OpenTSDB as per http://opentsdb.net/docs/build/html/installation.htm
 This will enable goodies such as Hadoop, HBase from Apache and first and foremost the almighty OpenTSDB!  :)
 
 
-###### The Server Monitor Agent
-
-To add a private server to monitor simply copy and paste the following into server's terminal window:
-
-<pre>
-curl https://raw.githubusercontent.com/jparicka/cloudly/master/agent.py > ~$USER/agent.py; sudo sh -c "while true; do python ~$USER/agent.py; sleep 3; done"
-</pre>
-
 ..and that's that!  :)
 
 Enjoy!
