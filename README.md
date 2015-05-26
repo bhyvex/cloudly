@@ -112,6 +112,22 @@ $ ./run_devel.sh
 
 Now that you have the User Interface (Admin Dashboard) up and running you'd need to get the API started.  You can do so by following the instructions in the next step.
 
+
+###### Run the API
+
+API server runs off of Flask therefore you'd need to install Python Flask first.  To do so simply copy and paste the following into your terminal window:
+
+<pre>
+$ apt-get install python-flask
+</pre>
+
+Once you have the Flask installed, simply run the API like so:
+
+<pre>
+$ python api.py
+</pre>
+
+
 ###### (optional) Configure the web server (NGINX without the SSL support)
 
 First and foremost install the NGINX (and Python Flup module), like so:
@@ -215,21 +231,6 @@ For information about the MongoDB visit <a>http://www.mongodb.org/</a>
 Install the OpenTSDB as per http://opentsdb.net/docs/build/html/installation.html
 
 This will enable goodies such as Hadoop, HBase from Apache and first and foremost the almighty OpenTSDB!  :)
-
-
-###### Run the API
-
-API server runs off of Flask therefore you'd need to install Python Flask first.  To do so simply copy and paste the following into your terminal window:
-
-<pre>
-$ apt-get install python-flask
-</pre>
-
-Once you have the Flask installed, simply run the API like so:
-
-<pre>
-$ python api.py
-</pre>
 
 
 ###### The Server Monitor Agent
