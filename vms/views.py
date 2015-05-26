@@ -703,15 +703,15 @@ def ajax_server_graphs(request, hwaddr, graph_type="all", extra=""):
 	graphs_mixed_respose = cpu_usage
 	
 	for x in graphs_mixed_respose:
-		aa = {}
 		for i in x:
-			if(i!="_id"): aa[i] = x[i]
+			#if(i!="_id"): aa[i] = x[i]
+			aa = {'date_created': x['date_created'],'value':1}
 			graphs_mixed_respose_.append(aa)
-
+		
 	graphs_mixed_respose = graphs_mixed_respose_
 	graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
 	
-	pprint(graphs_mixed_respose)
+	#pprint(graphs_mixed_respose)
 	
 	return HttpResponse(graphs_mixed_respose, content_type="application/json")
 	#return render_to_response('ajax_server_graphs.html', {'hwaddr':hwaddr,'server':server,'server_status':server_status,'graphs_response':graphs_response,'graph_type':graph_type,'processes':processes,'cpu_usage':cpu_usage,'loadavg':loadavg,'mem_usage':mem_usage,'disks_usage':disks_usage,'networking':networking,'activity':activity,}, context_instance=RequestContext(request))
