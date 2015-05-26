@@ -1,7 +1,10 @@
 $(document).ready(function() {
-	cpu_usage_fn(cpu_usage);
+	setInterval(cpu_usage_fn(), 2000);	
 });
-function cpu_usage_fn(graph) {
+
+function cpu_usage_fn() {
+	var data = load_cpu_usage_graph_ajax();
+	
 	$('#cpu_usage').highcharts({
 		chart: {
 			type: 'spline'
@@ -34,18 +37,19 @@ function cpu_usage_fn(graph) {
 			      	// of 1970/71 in order to be compared on the same x axis. Note
 			      	// that in JavaScript, months start at 0 for January, 1 for February etc.
 			      	data: [
-					setInterval(load_cpu_usage_graph_ajax(graph), 2000)
-			      	]
+						(function () {
+						console.log(data.responseText);	
+						})
+					]
 			} 
 		]
 	});
 }
 	
-function load_cpu_usage_graph_ajax(graph) {
+function load_cpu_usage_graph_ajax() {
 	var server = $('input[name="hwaddr"]').val();
 	var csrf = $('input[name="csrfmiddlewaretoken"]').val();
 	var secret = $('input[name="secret"]').val();
-	var graph = $('#cpu_usage');
 
 	var address = '/ajax/server/' + server + '/metrics/cpu_usage/'; 
 
@@ -62,15 +66,13 @@ function load_cpu_usage_graph_ajax(graph) {
 			'secret': secret
 		},
 		success: function(data) {
-			console.log(data);
 			return data;
 		},
 		error: function(data) {
-			console.log(data);
-			return false; 
+			console.log(data.responseText);
+			return data.responseText; 
 		}
 	});
 			
 	return true;
-	console.log(address);
 }

@@ -699,21 +699,20 @@ def ajax_server_graphs(request, hwaddr, graph_type="all", extra=""):
 	for i in cpu_usage: cpu_usage_.append(i)
 	cpu_usage = cpu_usage_
 	
-	graphs_mixed_respose_ = {}
+	graphs_mixed_respose_ = []
 	graphs_mixed_respose = cpu_usage
 	
-	print '*'*5000
-	
-	# XXX mrdka
-	
-	for i in graphs_mixed_respose:
-		for x in i:
-			print x, i[x]
-			print '-'*100
+	for x in graphs_mixed_respose:
+		aa = {}
+		for i in x:
+			if(i!="_id"): aa[i] = x[i]
+			graphs_mixed_respose_.append(aa)
 
-	#graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
+	graphs_mixed_respose = graphs_mixed_respose_
+	graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
 	
-
+	pprint(graphs_mixed_respose)
+	
 	return HttpResponse(graphs_mixed_respose, content_type="application/json")
 	#return render_to_response('ajax_server_graphs.html', {'hwaddr':hwaddr,'server':server,'server_status':server_status,'graphs_response':graphs_response,'graph_type':graph_type,'processes':processes,'cpu_usage':cpu_usage,'loadavg':loadavg,'mem_usage':mem_usage,'disks_usage':disks_usage,'networking':networking,'activity':activity,}, context_instance=RequestContext(request))
 
