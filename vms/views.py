@@ -702,6 +702,8 @@ def ajax_server_graphs(request, hwaddr, graph_type="all", extra=""):
 	graphs_mixed_respose_ = []
 	graphs_mixed_respose = cpu_usage
 	
+	
+	# XXX zformatovat date_created do ajaxy data zalezitosit
 	for x in graphs_mixed_respose:
 		for i in x:
 			#if(i!="_id"): aa[i] = x[i]
