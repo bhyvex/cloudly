@@ -112,7 +112,7 @@ $ ./run_devel.sh
 
 Now that you have the User Interface (Admin Dashboard) up and running you'd need to get the API started.  You can do so by following the instructions in the next step.
 
-###### Configure the web server (NGINX without the SSL support)
+###### (optional) Configure the web server (NGINX without the SSL support)
 
 First and foremost install the NGINX (and Python Flup module), like so:
 
