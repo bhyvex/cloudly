@@ -570,21 +570,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
 	print '-- ajax_server_graphs, type', graph_type
 	print request.user
-	
-	supported_graph_types = [
-		'cpu_usage', 
-		'loadavg', 
-		'mem_usage',
-		'disks_usage',
-		'networking',
-		'activity',
-		'processes',
-		'server_status',
-		#'nginx',
-		#'mysql',
-		#'...',
-	]
-	
+		
 	graphs_mixed_respose = []
 	
 	secret = request.POST['secret']
