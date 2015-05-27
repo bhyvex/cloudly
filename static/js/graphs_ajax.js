@@ -9,14 +9,15 @@ function cpu_usage_fn() {
             events: {
                 load: function() {
                     var series = this.series[0];
+                    console.log('series');
+                    console.log(series);
 
                     setInterval(function () {
-                        var data = load_cpu_usage_graph_ajax();
-
-                        console.log(data);
-                        var element = data[0];
-                        console.log(element);
-                        series.addPoint(element, true, true);
+                        load_cpu_usage_graph_ajax().done(function(data) {
+                            console.log('load data');
+                            console.log(data[0]);
+                            series.addPoint(data[0], true, true);
+                        });
                     }, 2000);
                 }
             }
@@ -45,7 +46,9 @@ function cpu_usage_fn() {
 			 },
         series: [{
             name: 'CPU Used',
-            data: load_cpu_usage_graph_ajax()
+            data: load_cpu_usage_graph_ajax().done(function(data) {
+                return data;
+            })
         }]
     });
 }
@@ -57,7 +60,7 @@ function load_cpu_usage_graph_ajax() {
 
 	var address = '/ajax/server/' + server + '/metrics/cpu_usage/';
 
-	$.ajax({
+	return $.ajax({
 		url: address,
 		type: 'POST',
 		dataType: 'json',
@@ -68,14 +71,6 @@ function load_cpu_usage_graph_ajax() {
 		data: {
 			'server': server,
 			'secret': secret
-		},
-		success: function(data) {
-			return data;
-		},
-		error: function(data) {
-			return data;
 		}
 	});
-
-	return true;
 }
