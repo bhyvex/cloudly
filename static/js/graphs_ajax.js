@@ -1,8 +1,4 @@
 $(document).ready(function() {
-	cpu_usage_fn();
-});
-
-function cpu_usage_fn() {
 	$('#cpu_usage').highcharts({
 		chart: {
             type: 'spline',
@@ -15,8 +11,9 @@ function cpu_usage_fn() {
                     setInterval(function () {
                         load_cpu_usage_graph_ajax().done(function(data) {
                             console.log('load data');
-                            console.log(data[0]);
-                            series.addPoint(data[0], true, true);
+                            console.log(data);
+
+                            series.setData(data);
                         });
                     }, 2000);
                 }
@@ -46,12 +43,15 @@ function cpu_usage_fn() {
 			 },
         series: [{
             name: 'CPU Used',
-            data: load_cpu_usage_graph_ajax().done(function(data) {
-                return data;
-            })
+            data:
+		load_cpu_usage_graph_ajax().done(function(data) {
+			console.log('initialize data');
+			console.log(data);
+			return data;
+		})
         }]
     });
-}
+});
 
 function load_cpu_usage_graph_ajax() {
 	var server = $('input[name="hwaddr"]').val();
