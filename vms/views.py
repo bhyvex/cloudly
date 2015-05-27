@@ -599,14 +599,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 		return HttpResponse("access denied")
 
 
-	# XXX limit requests to only those requested in the graph_type.........
-
-	loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-	mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-	disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-	networking = mongo.networking.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-	activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
-
 	server_status = "Running"
 	if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>20):
 		server_status = "Stopped"
@@ -661,6 +653,14 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 		c+=1
 
 	processes = processes_
+
+
+	# XXX limit requests to only those requested in the graph_type.........
+	loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	networking = mongo.networking.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
 	
 	loadavg_ = []
 	for i in loadavg: loadavg_.append(i)
@@ -679,22 +679,23 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 	mem_usage = mem_usage_
 	
 	
-	# XXX pozor cpu-specificka zalezitost...
-	cpu_usage_ = []
-	cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	if(graph_type=="cpu_usage"):
+
+		cpu_usage_ = []
+		cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 	
-	for i in cpu_usage: cpu_usage_.append(i)
-	cpu_usage = cpu_usage_
+		for i in cpu_usage: cpu_usage_.append(i)
+		cpu_usage = cpu_usage_
 	
-	graphs_mixed_respose_ = []
-	graphs_mixed_respose = cpu_usage
+		graphs_mixed_respose_ = []
+		graphs_mixed_respose = cpu_usage
 	
-	for x in graphs_mixed_respose:
-		aa = [int(x['date_created'].strftime("%s")), x['cpu_usage']['cpu_used']]
-		graphs_mixed_respose_.append(aa)
+		for x in graphs_mixed_respose:
+			aa = [int(x['date_created'].strftime("%s")), x['cpu_usage']['cpu_used']]
+			graphs_mixed_respose_.append(aa)
 		
-	graphs_mixed_respose = graphs_mixed_respose_
-	graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
+		graphs_mixed_respose = graphs_mixed_respose_
+		graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
 	
 	
 	return HttpResponse(graphs_mixed_respose, content_type="application/json")
