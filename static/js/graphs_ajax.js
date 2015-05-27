@@ -41,7 +41,7 @@ function cpu_usage_fn() {
 			 },
         series: [{
             name: 'CPU Used',
-            data: (load_cpu_usage_graph_ajax())()
+            data: load_cpu_usage_graph_ajax()
         }]
     });
 }
