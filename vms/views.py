@@ -674,6 +674,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 	#for i in mem_usage: mem_usage_.append(i)
 	#mem_usage = mem_usage_
 
+	#activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
 	
 	if(graph_type=="cpu_usage"):
 
@@ -694,7 +695,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 		graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
 	
 	
-	#activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
 
 	return HttpResponse(graphs_mixed_respose, content_type="application/json")
 
