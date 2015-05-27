@@ -653,31 +653,27 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 		c+=1
 
 	processes = processes_
+	
+	#loadavg_ = []
+	#loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	#for i in loadavg: loadavg_.append(i)
+	#loadavg = loadavg_
+	
+	#disks_usage_ = []
+	#disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	#for i in disks_usage: disks_usage_.append(i)
+	#disks_usage = disks_usage_
+	
+	#networking_ = []
+	#networking = mongo.networking.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	#for i in networking: networking_.append(i)
+	#networking = networking_
+	
+	#mem_usage_ = []
+	#mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	#for i in mem_usage: mem_usage_.append(i)
+	#mem_usage = mem_usage_
 
-
-	# XXX limit requests to only those requested in the graph_type.........
-	loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-	mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-	disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-	networking = mongo.networking.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-	activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
-	
-	loadavg_ = []
-	for i in loadavg: loadavg_.append(i)
-	loadavg = loadavg_
-	
-	disks_usage_ = []
-	for i in disks_usage: disks_usage_.append(i)
-	disks_usage = disks_usage_
-	
-	networking_ = []
-	for i in networking: networking_.append(i)
-	networking = networking_
-	
-	mem_usage_ = []
-	for i in mem_usage: mem_usage_.append(i)
-	mem_usage = mem_usage_
-	
 	
 	if(graph_type=="cpu_usage"):
 
@@ -698,6 +694,8 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 		graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
 	
 	
+	#activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
+
 	return HttpResponse(graphs_mixed_respose, content_type="application/json")
 
 
