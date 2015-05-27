@@ -571,10 +571,6 @@ def ajax_server_graphs(request, hwaddr, graph_type="all", extra=""):
 	print '-- ajax_server_graphs'
 	print request.user
 	
-	print 'request'
-	print request
-	
-
 	supported_graph_types = [
 		'cpu_usage', 
 		'loadavg', 
@@ -597,8 +593,6 @@ def ajax_server_graphs(request, hwaddr, graph_type="all", extra=""):
 	activity = []
 	processes = []
 	server_status = ""
-	#nginx = []
-	#mysql = []
 	
 	secret = request.POST['secret']
 	uuid = request.POST['server']
@@ -701,11 +695,9 @@ def ajax_server_graphs(request, hwaddr, graph_type="all", extra=""):
 	graphs_mixed_respose_ = []
 	graphs_mixed_respose = cpu_usage
 	
-	# XXX zformatovat date_created do ajaxy data zalezitosit..
 	for x in graphs_mixed_respose:
-		for i in x:
-			aa = {'date_created': x['date_created'],'value':1}
-			graphs_mixed_respose_.append(aa)
+		aa = x['date_created'].strftime("%s"), x['cpu_usage']['cpu_used']
+		graphs_mixed_respose_.append(aa)
 		
 	graphs_mixed_respose = graphs_mixed_respose_
 	graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
@@ -713,7 +705,6 @@ def ajax_server_graphs(request, hwaddr, graph_type="all", extra=""):
 	#pprint(graphs_mixed_respose)
 	
 	return HttpResponse(graphs_mixed_respose, content_type="application/json")
-	#return render_to_response('ajax_server_graphs.html', {'hwaddr':hwaddr,'server':server,'server_status':server_status,'graphs_response':graphs_response,'graph_type':graph_type,'processes':processes,'cpu_usage':cpu_usage,'loadavg':loadavg,'mem_usage':mem_usage,'disks_usage':disks_usage,'networking':networking,'activity':activity,}, context_instance=RequestContext(request))
 
 
 
