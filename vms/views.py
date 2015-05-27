@@ -608,7 +608,6 @@ def ajax_server_graphs(request, hwaddr, graph_type="all"):
 
 	# XXX limit requests to only those requested in the graph_type.........
 
-	cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 	loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 	mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 	disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
@@ -689,6 +688,8 @@ def ajax_server_graphs(request, hwaddr, graph_type="all"):
 	
 	# XXX pozor cpu-specificka zalezitost...
 	cpu_usage_ = []
+	cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	
 	for i in cpu_usage: cpu_usage_.append(i)
 	cpu_usage = cpu_usage_
 	
