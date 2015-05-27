@@ -566,7 +566,7 @@ def control_aws_vm(request, vm_name, action):
 
 
 @login_required()
-def ajax_server_graphs(request, hwaddr, graph_type="all"):
+def ajax_server_graphs(request, hwaddr, graph_type=""):
 
 	print '-- ajax_server_graphs, type', graph_type
 	print request.user
@@ -585,14 +585,7 @@ def ajax_server_graphs(request, hwaddr, graph_type="all"):
 		#'...',
 	]
 	
-	cpu_usage = []
-	loadavg = []
-	mem_usage = []
-	disks_usage = []
-	networking = []
-	activity = []
-	processes = []
-	server_status = ""
+	graphs_mixed_respose = []
 	
 	secret = request.POST['secret']
 	uuid = request.POST['server']
