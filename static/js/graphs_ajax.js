@@ -12,7 +12,11 @@ function cpu_usage_fn() {
 
                     setInterval(function () {
                         var data = load_cpu_usage_graph_ajax();
-                        series.addPoint([data[0][0], data[0][1]], true, true);
+
+                        console.log(data);
+                        var element = data[0];
+                        console.log(element);
+                        series.addPoint(element, true, true);
                     }, 2000);
                 }
             }
