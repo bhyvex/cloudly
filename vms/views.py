@@ -566,7 +566,7 @@ def control_aws_vm(request, vm_name, action):
 
 
 @login_required()
-def ajax_server_graphs(request, hwaddr, graph_type="all", extra=""):
+def ajax_server_graphs(request, hwaddr, graph_type="all"):
 
 	print '-- ajax_server_graphs'
 	print request.user
@@ -702,7 +702,6 @@ def ajax_server_graphs(request, hwaddr, graph_type="all", extra=""):
 	graphs_mixed_respose = graphs_mixed_respose_
 	graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
 	
-	pprint(graphs_mixed_respose)
 	
 	return HttpResponse(graphs_mixed_respose, content_type="application/json")
 
