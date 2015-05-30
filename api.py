@@ -17,10 +17,6 @@ client = MongoClient('localhost', 27017)
 
 mongo = client.cloudly
 
-hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-hbase.connect(("hbase", 4242))
-
-
 @app.route('/test/', methods = ['GET'])
 def test():
 	return jsonify( { 'test': True } )
@@ -128,7 +124,10 @@ def ping():
 		",secret=" + secret + \
 		",agent_version=" + str(agent_version)
 
+	hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	hbase.connect(("hbase", 4242))
 	hbase.send(cpu_usage_tsdb_cmd)
+	hbase.close()
 
 	loadavg_metrics = {
 		'secret': secret,
