@@ -2,6 +2,7 @@
 
 import os
 import sys
+import socket
 import datetime
 
 from flask import Flask, jsonify, abort
@@ -15,6 +16,9 @@ from pymongo import ASCENDING, DESCENDING
 client = MongoClient('localhost', 27017)
 
 mongo = client.cloudly
+
+hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+hbase.connect(("hbase", 4242))
 
 
 @app.route('/test/', methods = ['GET'])
