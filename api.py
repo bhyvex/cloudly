@@ -140,6 +140,16 @@ def ping():
 	loadavg_ = mongo.loadavg
 	loadavg_.insert( loadavg_metrics )
 
+	#loadavg_tsdb_cmd = "put " + \
+	#	uuid.replace(':','-') + ".sys.loadavg " + \
+	#	str(int(time.time())) + " " + \
+	#	str(cpu_usage['cpu_used']) + \
+	#	" avg=1-min" + \
+	#	"\n"
+
+	print 'debug: loadavg', loadavg
+
+
 	memory_usage_metrics = {
 		'secret': secret,
 		'agent_version': agent_version,
