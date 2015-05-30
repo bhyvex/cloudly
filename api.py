@@ -117,23 +117,23 @@ def ping():
 	cpu_usage_ = mongo.cpu_usage
 	cpu_usage_.insert( cpu_usage_metrics )
 
-	cpu_usage_tsdb_cmd = "put " + \
-		uuid.replace(':','-') + ".sys.cpu " + \
-		str(int(time.time())) + " " + \
-		str(cpu_usage['cpu_used']) + " " + \
-		"cpu=0" + \
-		", secret=" + '"'+secret+'"' + \
-		", agent_version=" + str(agent_version)
-
-	hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	hbase.connect(("hbase", 4242))
-	hbase.send(cpu_usage_tsdb_cmd)
-	hbase.close()
+	#cpu_usage_tsdb_cmd = "put " + \
+	#	uuid.replace(':','-') + ".sys.cpu " + \
+	#	str(int(time.time())) + " " + \
+	#	str(cpu_usage['cpu_used']) + " " + \
+	#	"cpu=0" + \
+	#	",secret=" + '"'+secret+'"' + \
+	#	",agent_version=" + str(agent_version)
+	#
+	#hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	#hbase.connect(("hbase", 4242))
+	#hbase.send(cpu_usage_tsdb_cmd)
+	#hbase.close()
 	
-	print
-	print 'cpu_usage_tsdb_cmd'
-	print cpu_usage_tsdb_cmd
-	print
+	#print
+	#print 'cpu_usage_tsdb_cmd'
+	#print cpu_usage_tsdb_cmd
+	#print
 
 	loadavg_metrics = {
 		'secret': secret,
