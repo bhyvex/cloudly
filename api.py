@@ -128,6 +128,11 @@ def ping():
 	hbase.connect(("hbase", 4242))
 	hbase.send(cpu_usage_tsdb_cmd)
 	hbase.close()
+	
+	print
+	print 'cpu_usage_tsdb_cmd'
+	print cpu_usage_tsdb_cmd
+	print
 
 	loadavg_metrics = {
 		'secret': secret,
