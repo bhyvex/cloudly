@@ -111,16 +111,6 @@ def ping():
 		servers.insert(server)
 
 	
-	loadavg_metrics = {
-		'secret': secret,
-		'agent_version': agent_version,
-		'uuid': uuid,
-		'loadavg': loadavg,
-		'date_created': datetime.datetime.utcnow(),
-	}
-	loadavg_ = mongo.loadavg
-	loadavg_.insert( loadavg_metrics )
-
 	cpu_usage_metrics = {
 		'secret': secret,
 		'agent_version': agent_version,
@@ -130,6 +120,16 @@ def ping():
 	}
 	cpu_usage_ = mongo.cpu_usage
 	cpu_usage_.insert( cpu_usage_metrics )
+
+	loadavg_metrics = {
+		'secret': secret,
+		'agent_version': agent_version,
+		'uuid': uuid,
+		'loadavg': loadavg,
+		'date_created': datetime.datetime.utcnow(),
+	}
+	loadavg_ = mongo.loadavg
+	loadavg_.insert( loadavg_metrics )
 
 	memory_usage_metrics = {
 		'secret': secret,
