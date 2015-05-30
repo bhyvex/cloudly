@@ -140,14 +140,32 @@ def ping():
 	loadavg_ = mongo.loadavg
 	loadavg_.insert( loadavg_metrics )
 
-	#loadavg_tsdb_cmd = "put " + \
-	#	uuid.replace(':','-') + ".sys.loadavg " + \
-	#	str(int(time.time())) + " " + \
-	#	str(cpu_usage['cpu_used']) + \
-	#	" avg=1-min" + \
-	#	"\n"
+	loadavg_tsdb_cmd = "put " + \
+		uuid.replace(':','-') + ".sys.loadavg " + \
+		str(int(time.time())) + " " + \
+		str(loadavg[0]) + \
+		" avg=1-min" + \
+		"\n"
 
-	print 'debug: loadavg', loadavg
+	loadavg_tsdb_cmd += "put " + \
+		uuid.replace(':','-') + ".sys.loadavg " + \
+		str(int(time.time())) + " " + \
+		str(loadavg[0]) + \
+		" avg=5-min" + \
+		"\n"
+
+	loadavg_tsdb_cmd += "put " + \
+		uuid.replace(':','-') + ".sys.loadavg " + \
+		str(int(time.time())) + " " + \
+		str(loadavg[0]) + \
+		" avg=15-min" + \
+		"\n"
+
+	hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	hbase.connect(("hbase", 4242))
+	hbase.send(loadavg_tsdb_cmd)
+	hbase.close()
+
 
 
 	memory_usage_metrics = {
