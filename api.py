@@ -161,11 +161,6 @@ def ping():
 		" avg=15-min" + \
 		"\n"
 
-	print
-	print 'debug'
-	print 'loadavg_tsdb_cmd'
-	print loadavg_tsdb_cmd
-
 	hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	hbase.connect(("hbase", 4242))
 	hbase.send(loadavg_tsdb_cmd)
