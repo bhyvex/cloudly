@@ -3,7 +3,7 @@
 import os
 import sys
 import socket
-import datetime
+import time, datetime
 
 from flask import Flask, jsonify, abort
 from flask import render_template, request, url_for
@@ -120,6 +120,15 @@ def ping():
 	}
 	cpu_usage_ = mongo.cpu_usage
 	cpu_usage_.insert( cpu_usage_metrics )
+
+	cpu_usage_tsdb_cmd = "put " \
+		+ uuid+".sys.cpu " \
+		+ str(int(time.time)) \
+		+ "cpu=0 " +
+		+ "secret=" + secret + \
+		+ "agent_version=" + str(agent_version)
+	print 'DEBUG: cpu_usage_tsdb_cmd', cpu_usage_tsdb_cmd
+
 
 	loadavg_metrics = {
 		'secret': secret,
