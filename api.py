@@ -122,8 +122,6 @@ def ping():
 		str(int(time.time())) + " " + \
 		str(cpu_usage['cpu_used']) + \
 		" cpu=0" + \
-		" secret=" + secret + \
-		" agent_version=" + str(agent_version) + \
 		"\n"
 	
 	hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
