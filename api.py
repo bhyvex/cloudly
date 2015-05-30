@@ -118,7 +118,7 @@ def ping():
 	cpu_usage_.insert( cpu_usage_metrics )
 
 	cpu_usage_tsdb_cmd = "put " + \
-		uuid + ".sys.cpu " + \
+		uuid.replace(':','-') + ".sys.cpu " + \
 		str(int(time.time())) + " " +\
 		"cpu=0" + \
 		",secret=" + secret + \
