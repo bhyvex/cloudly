@@ -138,7 +138,7 @@ def ping():
 	loadavg_metrics = {
 		'secret': secret,
 		'agent_version': agent_version,
-		'uuid': uuid,
+		'uuid': '"'+uuid+'"',
 		'loadavg': loadavg,
 		'date_created': datetime.datetime.utcnow(),
 	}
