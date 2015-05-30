@@ -123,6 +123,7 @@ def ping():
 		str(cpu_usage['cpu_used']) + \
 		" cpu=0" + \
 		" secret=" + secret + \
+		" ip=" + ip + \
 		" agent_version=" + str(agent_version) + \
 		"\n"
 	
