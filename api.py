@@ -151,14 +151,14 @@ def ping():
 		uuid.replace(':','-') + ".sys.loadavg " + \
 		str(int(time.time())) + " " + \
 		str(loadavg[1]) + \
-		" avg=5-min" + \
+		" avg=5-mins" + \
 		"\n"
 
 	loadavg_tsdb_cmd += "put " + \
 		uuid.replace(':','-') + ".sys.loadavg " + \
 		str(int(time.time())) + " " + \
 		str(loadavg[2]) + \
-		" avg=15-min" + \
+		" avg=15-mins" + \
 		"\n"
 
 	hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
