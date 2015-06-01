@@ -93,9 +93,6 @@ def ping():
 
 	print ' API query from agent version', str(agent_version), uuid, 'IP', ip_remote+'/'+ ip, 'uptime '+uptime+''
 
-	import random
-	print '.'*random.randint(10,80)
-	
 	servers = mongo.servers
 	server_ = servers.find_one({'secret':secret, 'uuid':uuid,})
 
