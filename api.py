@@ -91,8 +91,7 @@ def ping():
 		'last_seen': last_seen,
 	}
 
-	print ' API query from agent version', str(agent_version), uuid, 'IP', ip_remote+'/'+ ip,
-	print 'host machine uptime '+uptime+''
+	print ' API query from agent version', str(agent_version), uuid, 'IP', ip_remote+'/'+ ip, 'uptime '+uptime+''
 
 	import random
 	print '.'*random.randint(10,80)
