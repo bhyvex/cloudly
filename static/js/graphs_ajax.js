@@ -1,76 +1,101 @@
-$(document).ready(function() {
-	$('#cpu_usage').highcharts({
-		chart: {
-            type: 'spline',
-            events: {
-                load: function() {
-                    var series = this.series[0];
-                    console.log('series');
-                    console.log(series);
+$(function () {
+    $(document).ready(function () {
+        var server = $('input[name="hwaddr"]').val();
+        var csrf = $('input[name="csrfmiddlewaretoken"]').val();
+        var secret = $('input[name="secret"]').val();
+        var address = '/ajax/server/' + server + '/metrics/cpu_usage/';
 
-                    setInterval(function () {
-                        load_cpu_usage_graph_ajax().done(function(data) {
-                            console.log('load data');
-                            console.log(data);
-
-                            series.setData(data);
-                        });
-                    }, 2000);
+        function requestCpuUsageData(series) {
+            $.ajax({
+                url: address,
+                type: 'POST',
+                dataType: 'json',
+                headers: {
+                    //         'X-CSRFToken': csrf
+                },
+                cache: false,
+                data: {
+                    //         'server': server,
+                    //         'secret': secret
+                },
+                success: function(data) {
+                    series.addPoint(data[0], true, true);
                 }
+            });
+        }
+
+        function updateChart(series) {
+            setInterval(function() {
+                requestCpuUsageData(series, 'point');
+            }, 1000);
+        }
+
+        Highcharts.setOptions({
+            global: {
+                useUTC: false
             }
-        },
-		title: {
-			text: 'CPU Usage'
-		},
-		subtitle: {
-			text: ''
-		},
-		xAxis: {
-			type: 'datetime',
-			title: {
-				text: 'Datetime'
-			}
-		},
-		yAxis: {
-			title: {
-				text: 'CPU %'
-			},
-		},
-		min: 0,
-		tooltip: {
-			headerFormat: '<b>{series.name}:</b> {point.y:.2f}<br>',
-			      pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}'
-			 },
-        series: [{
-            name: 'CPU Used',
-            data:
-		load_cpu_usage_graph_ajax().done(function(data) {
-			console.log('initialize data');
-			console.log(data);
-			return data;
-		})
-        }]
+        });
+
+        $.ajax({
+            url: address,
+            type: 'POST',
+            dataType: 'json',
+            headers: {
+                //         'X-CSRFToken': csrf
+            },
+            cache: false,
+            data: {
+                //         'server': server,
+                //         'secret': secret
+            },
+            success: function(data) {
+                var cpuUsageChart = new Highcharts.Chart({
+                    chart: {
+                        renderTo: 'cpu_usage',
+                        type: 'spline',
+                        marginRight: 10,
+                        events: {
+                            load: function() {
+                                updateChart(this.series[0]);
+                            }
+                        }
+                    },
+                    title: {
+                        text: 'Live random data'
+                    },
+                    xAxis: {
+                        type: 'datetime',
+                        tickPixelInterval: 150
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Value'
+                        },
+                    plotLines: [{
+                        value: 0,
+                    width: 1,
+                    color: '#808080'
+                    }]
+                    },
+                    tooltip: {
+                        formatter: function () {
+                            return '<b>' + this.series.name + '</b><br/>' +
+                                Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+                                Highcharts.numberFormat(this.y, 2);
+                        }
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+                    series: [{
+                        name: 'Random data',
+                        data: data
+                    }]
+                });
+            }
+        });
     });
 });
-
-function load_cpu_usage_graph_ajax() {
-	var server = $('input[name="hwaddr"]').val();
-	var csrf = $('input[name="csrfmiddlewaretoken"]').val();
-	var secret = $('input[name="secret"]').val();
-
-	var address = '/ajax/server/' + server + '/metrics/cpu_usage/';
-
-	return $.ajax({
-		url: address,
-		type: 'POST',
-		dataType: 'json',
-		headers: {
-			'X-CSRFToken': csrf
-		},
-		cache: false,
-		data: {
-			'server': server,
-			'secret': secret
-		}
-	});
-}
