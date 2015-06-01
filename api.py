@@ -148,7 +148,6 @@ def ping():
 		str(loadavg[1]) + \
 		" avg=5-mins" + \
 		"\n"
-
 	loadavg_tsdb_cmd += "put " + \
 		uuid.replace(':','-') + ".sys.loadavg " + \
 		str(int(time.time())) + " " + \
