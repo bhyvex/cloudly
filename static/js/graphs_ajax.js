@@ -1,69 +1,101 @@
-var server = $('input[name="hwaddr"]').val();
-var csrf = $('input[name="csrfmiddlewaretoken"]').val();
-var secret = $('input[name="secret"]').val();
+$(function () {
+    $(document).ready(function () {
+        var server = $('input[name="hwaddr"]').val();
+        var csrf = $('input[name="csrfmiddlewaretoken"]').val();
+        var secret = $('input[name="secret"]').val();
+        var address = '/ajax/server/' + server + '/metrics/cpu_usage/';
 
-function requestCpuUsageData() {
-    var address = '/ajax/server/' + server + '/metrics/cpu_usage/';
-
-    $.ajax({
-        url: address,
-        type: 'POST',
-        dataType: 'json',
-        headers: {
-            'X-CSRFToken': csrf
-        },
-        cache: false,
-        data: {
-            'server': server,
-            'secret': secret
-        },
-        success: function(point) {
-            var series = cpuUsagechart.series[0];
-            var shift = series.data.length > 60;
-
-            // add the point
-            cpuUsagechart.series[0].addPoint(point, true, shift);
-
-            // call it again after one second
-            setTimeout(requestCpuUsageData, 1000);
+        function requestCpuUsageData(series) {
+            $.ajax({
+                url: address,
+                type: 'POST',
+                dataType: 'json',
+                headers: {
+                    //         'X-CSRFToken': csrf
+                },
+                cache: false,
+                data: {
+                    //         'server': server,
+                    //         'secret': secret
+                },
+                success: function(data) {
+                    series.addPoint(data[0], true, true);
+                }
+            });
         }
-    });
-}
 
-$(document).ready(function() {
-    var cpuUsagechart = new Highcharts.Chart({
-        chart: {
-            renderTo: '#cpu_usage',
-            type: 'spline',
-            events: {
-                load: requestCpuUsageData
+        function updateChart(series) {
+            setInterval(function() {
+                requestCpuUsageData(series, 'point');
+            }, 1000);
+        }
+
+        Highcharts.setOptions({
+            global: {
+                useUTC: false
             }
-        },
-        title: {
-            text: 'CPU Usage'
-        },
-        subtitle: {
-            text: ''
-        },
-        xAxis: {
-            type: 'datetime',
-            title: {
-                text: 'Datetime'
-            }
-        },
-        yAxis: {
-            title: {
-                text: 'CPU %'
+        });
+
+        $.ajax({
+            url: address,
+            type: 'POST',
+            dataType: 'json',
+            headers: {
+                //         'X-CSRFToken': csrf
             },
-        },
-        min: 0,
-        tooltip: {
-            headerFormat: '<b>{series.name}:</b> {point.y:.2f}<br>',
-            pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}'
-        },
-        series: [{
-            name: 'CPU Used',
-            data: []
-        }]
+            cache: false,
+            data: {
+                //         'server': server,
+                //         'secret': secret
+            },
+            success: function(data) {
+                var cpuUsageChart = new Highcharts.Chart({
+                    chart: {
+                        renderTo: 'cpu_usage',
+                        type: 'spline',
+                        marginRight: 10,
+                        events: {
+                            load: function() {
+                                updateChart(this.series[0]);
+                            }
+                        }
+                    },
+                    title: {
+                        text: 'Live random data'
+                    },
+                    xAxis: {
+                        type: 'datetime',
+                        tickPixelInterval: 150
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Value'
+                        },
+                    plotLines: [{
+                        value: 0,
+                    width: 1,
+                    color: '#808080'
+                    }]
+                    },
+                    tooltip: {
+                        formatter: function () {
+                            return '<b>' + this.series.name + '</b><br/>' +
+                                Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+                                Highcharts.numberFormat(this.y, 2);
+                        }
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+                    series: [{
+                        name: 'Random data',
+                        data: data
+                    }]
+                });
+            }
+        });
     });
 });
