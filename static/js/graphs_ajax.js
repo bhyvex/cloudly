@@ -5,28 +5,35 @@ $(function () {
         var secret = $('input[name="secret"]').val();
         var address = '/ajax/server/' + server + '/metrics/cpu_usage/';
 
-        function requestCpuUsageData(series) {
+        function requestCpuUsageData(series, csrf, server, secret) {
+		var address = '/ajax/server/' + server + '/metrics/cpu_usage/';
             $.ajax({
                 url: address,
                 type: 'POST',
                 dataType: 'json',
                 headers: {
-                    //         'X-CSRFToken': csrf
+                     'X-CSRFToken': csrf
                 },
                 cache: false,
                 data: {
-                    //         'server': server,
-                    //         'secret': secret
+                    'server': server,
+                    'secret': secret
                 },
                 success: function(data) {
-                    series.addPoint(data[0], true, true);
+			if (typeof element === 'undefined')
+			    var element = [1,1];
+
+			if (element[0] != data[0]) 
+			    series.addPoint(data[0], true, true);
+
+			element [0] = data [0];
                 }
             });
         }
 
-        function updateChart(series) {
+        function updateChart(series, csrf, server, secret) {
             setInterval(function() {
-                requestCpuUsageData(series, 'point');
+                requestCpuUsageData(series, csrf, server, secret);
             }, 1000);
         }
 
@@ -41,31 +48,29 @@ $(function () {
             type: 'POST',
             dataType: 'json',
             headers: {
-                //         'X-CSRFToken': csrf
+                'X-CSRFToken': csrf
             },
             cache: false,
             data: {
-                //         'server': server,
-                //         'secret': secret
+                'server': server,
+                'secret': secret
             },
             success: function(data) {
                 var cpuUsageChart = new Highcharts.Chart({
                     chart: {
                         renderTo: 'cpu_usage',
-                        type: 'spline',
-                        marginRight: 10,
                         events: {
                             load: function() {
-                                updateChart(this.series[0]);
+                                updateChart(this.series[0], csrf, server, secret);
                             }
                         }
                     },
                     title: {
-                        text: 'Live random data'
+                        text: 'CPU Usage'
                     },
                     xAxis: {
                         type: 'datetime',
-                        tickPixelInterval: 150
+                        tickPixelInterval: 1000
                     },
                     yAxis: {
                         title: {
@@ -92,7 +97,7 @@ $(function () {
                     },
                     series: [{
                         name: 'Random data',
-                        data: data
+                        data: data.reverse()
                     }]
                 });
             }

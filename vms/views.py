@@ -579,6 +579,8 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
 	server = mongo.servers.find_one({'secret':secret,'uuid':uuid,})
 
+	print 'debug', secret, uuid
+
 	try:
 		uuid = server['uuid']		
 	except:
@@ -679,7 +681,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 		
 		graphs_mixed_respose = graphs_mixed_respose_
 		graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
-	
 	
 
 	return HttpResponse(graphs_mixed_respose, content_type="application/json")
