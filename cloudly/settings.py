@@ -62,7 +62,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'cloudly',
         'USER': 'cloudly',
-        'PASSWORD': '',
+        'PASSWORD': 'cloudly',
         'HOST': '',                      
         'PORT': '',                      
     }
