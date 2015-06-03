@@ -79,7 +79,7 @@ function cpu_usage_set (csrf, server, secret) {
 			},
 			xAxis: {
 				type: 'datetime',
-			tickPixelInterval: 1000
+				tickPixelInterval: 1000
 			},
 			yAxis: {
 				title: {
@@ -94,7 +94,7 @@ function cpu_usage_set (csrf, server, secret) {
 			tooltip: {
 				formatter: function () {
 					return '<b>' + this.series.name + '</b><br/>' +
-						Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+						Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x*1000) + '<br/>' +
 						Highcharts.numberFormat(this.y, 2);
 				}
 			},
