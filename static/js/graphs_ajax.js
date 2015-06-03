@@ -96,7 +96,7 @@ $(function () {
                         enabled: false
                     },
                     series: [{
-                        name: 'Random data',
+                        name: 'CPU Usage',
                         data: data.reverse()
                     }]
                 });
