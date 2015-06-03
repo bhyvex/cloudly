@@ -79,7 +79,11 @@ function cpu_usage_set (csrf, server, secret) {
 			},
 			xAxis: {
 				type: 'datetime',
-				tickPixelInterval: 1000
+				labels: {
+					formatter: function() {
+						return Highcharts.dateFormat('%H:%M:%S', this.value*1000);
+					}
+				}
 			},
 			yAxis: {
 				title: {
