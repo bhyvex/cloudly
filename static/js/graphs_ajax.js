@@ -110,7 +110,20 @@ function cpu_usage_set (csrf, server, secret) {
 			},
 			series: [{
 				name: '% CPU used',
-				data: data.reverse()
+				data: data.reverse(),
+				zones: [{
+						value: 10,
+						color: '#7cb5ec'
+					}, {
+						value: 80,
+						color: '#90ed7d'
+					},{
+						value: 95,
+						color: 'orange'
+					},{
+						color: 'red'
+					}
+				]
 			}]
 			});
 		}
