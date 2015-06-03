@@ -96,7 +96,7 @@ $(function () {
                         enabled: false
                     },
                     series: [{
-                        name: '%CPU',
+                        name: '% CPU used',
                         data: data.reverse()
                     }]
                 });
