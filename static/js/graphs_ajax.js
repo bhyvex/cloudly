@@ -11,8 +11,9 @@ $(function () {
 
 function cpu_usage_set (csrf, server, secret) {
 	var address = '/ajax/server/' + server + '/metrics/cpu_usage/';
+	var lastValue = null;
 
-	function requestCpuUsageData(series, csrf, server, secret) {
+	function requestCpuUsageData(series, lastValue, csrf, server, secret) {
 		var address = '/ajax/server/' + server + '/metrics/cpu_usage/';
 		$.ajax({
 			url: address,
@@ -24,7 +25,8 @@ function cpu_usage_set (csrf, server, secret) {
 			cache: false,
 			data: {
 				'server': server,
-				'secret': secret
+				'secret': secret,
+				'lastvalue': lastValue
 			},
 			success: function(data) {
 				if (typeof element === 'undefined') {
@@ -40,9 +42,9 @@ function cpu_usage_set (csrf, server, secret) {
 		});
 	}
 
-	function updateCpuUsageChart(series, csrf, server, secret) {
+	function updateCpuUsageChart(series, lastValue, csrf, server, secret) {
 		setInterval(function() {
-			requestCpuUsageData(series, csrf, server, secret);
+			requestCpuUsageData(series, lastValue, csrf, server, secret);
 		}, 1000);
 	}
 
@@ -62,7 +64,8 @@ function cpu_usage_set (csrf, server, secret) {
 		cache: false,
 		data: {
 			'server': server,
-		'secret': secret
+			'secret': secret,
+			'lastvalue': lastValue
 		},
 		success: function(data) {
 			var cpuUsageChart = new Highcharts.Chart({
@@ -70,61 +73,67 @@ function cpu_usage_set (csrf, server, secret) {
 					renderTo: 'cpu_usage',
 					events: {
 						load: function() {
-							updateCpuUsageChart(this.series[0], csrf, server, secret);
+							updateCpuUsageChart(
+								this.series[0],
+							    data[0][0],
+						   	    csrf,
+							    server,
+							    secret
+							);
 						}
 					}
 				},
-			title: {
-				text: 'CPU Usage'
-			},
-			xAxis: {
-				type: 'datetime',
-				labels: {
-					formatter: function() {
-						return Highcharts.dateFormat('%H:%M:%S', this.value*1000);
-					}
-				}
-			},
-			yAxis: {
 				title: {
-					text: 'Value'
+					text: 'CPU Usage'
 				},
-			plotLines: [{
-				value: 0,
-				width: 1,
-				color: '#808080'
-			}]
-			},
-			tooltip: {
-				formatter: function () {
-					return '<b>' + this.series.name + '</b><br/>' +
-						Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x*1000) + '<br/>' +
-						Highcharts.numberFormat(this.y, 2);
-				}
-			},
-			legend: {
-				enabled: false
-			},
-			exporting: {
-				enabled: false
-			},
-			series: [{
-				name: '% CPU used',
-				data: data.reverse(),
-				zones: [{
-						value: 10,
-						color: '#7cb5ec'
-					}, {
-						value: 80,
-						color: '#90ed7d'
-					},{
-						value: 95,
-						color: 'orange'
-					},{
-						color: 'red'
+				xAxis: {
+					type: 'datetime',
+					labels: {
+						formatter: function() {
+							return Highcharts.dateFormat('%H:%M:%S', this.value*1000);
+						}
 					}
-				]
-			}]
+				},
+				yAxis: {
+					title: {
+						text: 'Value'
+					},
+				plotLines: [{
+					value: 0,
+					width: 1,
+					color: '#808080'
+				}]
+				},
+				tooltip: {
+					formatter: function () {
+						return '<b>' + this.series.name + '</b><br/>' +
+							Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x*1000) + '<br/>' +
+							Highcharts.numberFormat(this.y, 2);
+					}
+				},
+				legend: {
+					enabled: false
+				},
+				exporting: {
+					enabled: false
+				},
+				series: [{
+					name: '% CPU used',
+					data: data.reverse(),
+					zones: [{
+							value: 10,
+							color: '#7cb5ec'
+						}, {
+							value: 80,
+							color: '#90ed7d'
+						},{
+							value: 95,
+							color: 'orange'
+						},{
+							color: 'red'
+						}
+					]
+				}]
 			});
 		}
 	});
