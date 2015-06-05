@@ -30,14 +30,13 @@ function cpu_usage_set (csrf, server, secret) {
 			},
 			success: function(data) {
 				if (typeof element === 'undefined') {
-					var element = [1,1];
+					var element = [null, null];
 				}
 
 				if (element[0] != data[0]) {
 					series.addPoint(data[0], true, true);
 				}
-
-				element [0] = data [0];
+				element[0] = data[0];
 			}
 		});
 	}
@@ -68,6 +67,18 @@ function cpu_usage_set (csrf, server, secret) {
 			'lastvalue': lastValue
 		},
 		success: function(data) {
+			console.log('naplneni daty');
+			var optionalData = [];
+			var optionalLength = 60;
+			var dataLength = data.length;
+			data.reverse();
+			for(var i = 0; i < (optionalLength - dataLength); i++) {
+				optionalData.push([
+						(data[0][0] - (i + 1) * 5),
+						null
+					]);
+			}
+			optionalData = optionalData.concat(data);
 			var cpuUsageChart = new Highcharts.Chart({
 				chart: {
 					renderTo: 'cpu_usage',
@@ -90,7 +101,7 @@ function cpu_usage_set (csrf, server, secret) {
 					type: 'datetime',
 					labels: {
 						formatter: function() {
-							return Highcharts.dateFormat('%H:%M:%S', this.value*1000);
+							return Highcharts.dateFormat('%H:%M:%S', this.value * 1000);
 						}
 					}
 				},
@@ -119,7 +130,7 @@ function cpu_usage_set (csrf, server, secret) {
 				},
 				series: [{
 					name: '% CPU used',
-					data: data.reverse(),
+					data: optionalData,
 					zones: [{
 							value: 10,
 							color: '#7cb5ec'
