@@ -641,12 +641,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 		c+=1
 
 	processes = processes_
-	
-	#loadavg_ = []
-	#loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-	#for i in loadavg: loadavg_.append(i)
-	#loadavg = loadavg_
-	
+		
 	#disks_usage_ = []
 	#disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 	#for i in disks_usage: disks_usage_.append(i)
@@ -663,6 +658,30 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 	#mem_usage = mem_usage_
 
 	#activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
+	
+	
+	
+	if(graph_type=="loadavg"):
+		
+		loadavg_ = []
+		loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+		
+		for i in loadavg: 
+			loadavg_.append(i)
+		loadavg = loadavg_
+	
+
+		graphs_mixed_respose_ = []
+		graphs_mixed_respose = cpu_usage
+
+		for x in graphs_mixed_respose:
+			#aa = [int(x['date_created'].strftime("%s")), x['cpu_usage']['cpu_used']]
+			#graphs_mixed_respose_.append(aa)
+			print x
+
+		graphs_mixed_respose = graphs_mixed_respose_
+		graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
+	
 	
 	if(graph_type=="cpu_usage"):
 
