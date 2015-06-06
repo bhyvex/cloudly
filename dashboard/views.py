@@ -77,6 +77,23 @@ def welcome(request):
 	return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
 
 
+
+def credits(request):
+
+	try:
+		print '--  credits page:', request.user
+	except:
+		print '--  credits page: anonymous'
+
+	ip = request.META['REMOTE_ADDR']
+	profile = userprofile.objects.get(user=request.user)
+	_log_user_activity(profile,"click","/credits/","credits",ip=ip)
+
+	print request.user
+	return render_to_response('credits.html', locals(), context_instance=RequestContext(request))
+
+
+
 def download_agent(request):
 
 	print '-- download agent:'
