@@ -627,7 +627,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 		graphs_mixed_respose = cpu_usage
 
 		for x in graphs_mixed_respose:
-			#aa = [int(x['date_created'].strftime("%s")), x['cpu_usage']['cpu_used']]
+			#aa = [int(x['date_created'].strftime("%s")), x['?','?','?']]
 			#graphs_mixed_respose_.append(aa)
 			print x
 
