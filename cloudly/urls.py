@@ -26,7 +26,7 @@ urlpatterns = patterns('',
 	url(r'^admin/user/(?P<user_id>\d+)/activity/$', 'admin.views.user_activity_report', name='user_activity_report'),	
 
 	# credits
-	url(r'^credits/$', 'dasboard.views.credits', name='credits'),
+	url(r'^credits/$', 'dashboard.views.credits', name='credits'),
 
 	# servers
 	url(r'^server/(?P<hwaddr>[\w\-\.]+)/$', 'vms.views.server_view', name='server_view'),
