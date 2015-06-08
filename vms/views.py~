@@ -704,11 +704,6 @@ def server_view(request, hwaddr):
 	for i in mem_usage: mem_usage_.append(i)
 	mem_usage = mem_usage_
 
-	loadavg_ = []
-	loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-	for i in loadavg: loadavg_.append(i)
-	loadavg = loadavg_
-
 	activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
 
 
@@ -762,7 +757,7 @@ def server_view(request, hwaddr):
 	processes = processes_
 
 
-	return render_to_response('server_detail.html', {'secret':profile.secret,'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'processes':processes,'disks_usage':disks_usage,'mem_usage':mem_usage,'loadavg':loadavg,'networking':networking,}, context_instance=RequestContext(request))
+	return render_to_response('server_detail.html', {'secret':profile.secret,'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'processes':processes,'disk_usage':disk_usage,'mem_usage':mem_usage,'networking':networking,}, context_instance=RequestContext(request))
     
 
 def ajax_virtual_machines_box(request):
