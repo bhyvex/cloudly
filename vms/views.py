@@ -616,7 +616,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 	if(graph_type=="loadavg"):
 		
 		loadavg_ = []
-		loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+		loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(30)
 		
 		for i in loadavg: 
 			loadavg_.append(i)
@@ -638,7 +638,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 	if(graph_type=="cpu_usage"):
 
 		cpu_usage_ = []
-		cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+		cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(30)
 	
 		for i in cpu_usage: cpu_usage_.append(i)
 		cpu_usage = cpu_usage_
