@@ -616,7 +616,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 	if(graph_type=="loadavg"):
 		
 		loadavg_ = []
-		loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(30)
+		loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 		
 		for i in loadavg: 
 			loadavg_.append(i)
@@ -638,18 +638,21 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 	if(graph_type=="cpu_usage"):
 
 		cpu_usage_ = []
-		cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(30)
+		cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 	
 		for i in cpu_usage: cpu_usage_.append(i)
 		cpu_usage = cpu_usage_
 	
 		graphs_mixed_respose_ = []
 		graphs_mixed_respose = cpu_usage
-	
+
+                print 'debug cpu_usage data'
+
 		for x in graphs_mixed_respose:
 			aa = [int(x['date_created'].strftime("%s")), x['cpu_usage']['cpu_used']]
 			graphs_mixed_respose_.append(aa)
-		
+		        print aa
+
 		graphs_mixed_respose = graphs_mixed_respose_
 		graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
 	
@@ -684,6 +687,29 @@ def server_view(request, hwaddr):
 		uuid = server['uuid']		
 	except:
 		return HttpResponse("access denied")
+
+
+	disks_usage_ = []
+	disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	for i in disks_usage: disks_usage_.append(i)
+	disks_usage = disks_usage_
+	
+	networking_ = []
+	networking = mongo.networking.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	for i in networking: networking_.append(i)
+	networking = networking_
+	
+	mem_usage_ = []
+	mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	for i in mem_usage: mem_usage_.append(i)
+	mem_usage = mem_usage_
+
+	loadavg_ = []
+	loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+	for i in loadavg: loadavg_.append(i)
+	loadavg = loadavg_
+
+	activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
 
 
 	processes_ = []
@@ -736,7 +762,7 @@ def server_view(request, hwaddr):
 	processes = processes_
 
 
-	return render_to_response('server_detail.html', {'secret':profile.secret,'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'processes':processes,}, context_instance=RequestContext(request))
+	return render_to_response('server_detail.html', {'secret':profile.secret,'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'processes':processes,'disks_usage':disks_usage,'mem_usage':mem_usage,'loadavg':loadavg,'networking':networking,}, context_instance=RequestContext(request))
     
 
 def ajax_virtual_machines_box(request):
