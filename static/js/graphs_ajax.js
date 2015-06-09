@@ -33,10 +33,10 @@ function cpu_usage_set (csrf, server, secret) {
 					var element = [null, null];
 				}
 
-				if (element[0] != data[0]) {
+				if (data[0] != element[0]) {
 					series.addPoint(data[0], true, true);
+					element[0] = data[0];
 				}
-				element[0] = data[0];
 			}
 		});
 	}
@@ -49,7 +49,7 @@ function cpu_usage_set (csrf, server, secret) {
 
 	Highcharts.setOptions({
 		global: {
-			useUTC: false
+			useUTC: true 
 		}
 	});
 
