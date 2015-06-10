@@ -663,6 +663,8 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
 		processes = processes_
 		
+		print 'debug processes', processes
+		
 		return HttpResponse(processes, content_type="application/json")
 
 
