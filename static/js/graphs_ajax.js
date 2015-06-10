@@ -117,9 +117,9 @@ function cpu_usage_set (csrf, server, secret) {
 				},
 				tooltip: {
 					formatter: function () {
-						return '<b>' + this.series.name + '</b><br/>' +
-							Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x*1000) + '<br/>' +
-							Highcharts.numberFormat(this.y, 2);
+						return '<b>' + Highcharts.numberFormat(this.y, 0) + this.series.name + '</b><br/>' +
+							Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x*1000);
+							
 					}
 				},
 				legend: {
