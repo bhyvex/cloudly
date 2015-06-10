@@ -669,9 +669,9 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 		return HttpResponse(processes, content_type="application/json")
 
 
-		graphs_mixed_respose_ = []
-		graphs_mixed_respose = processes
-		graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
+	graphs_mixed_respose_ = []
+	graphs_mixed_respose = processes
+	graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
 
 	return HttpResponse(graphs_mixed_respose, content_type="application/json")
 
