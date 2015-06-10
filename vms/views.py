@@ -665,17 +665,9 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
 		graphs_mixed_respose_ = []
 		graphs_mixed_respose = processes
-
-		for x in graphs_mixed_respose:
-			#aa = [int(x['date_created'].strftime("%s")), x['cpu_usage']['cpu_used']]
-			#graphs_mixed_respose_.append(aa)
-			pass
-
-		graphs_mixed_respose = graphs_mixed_respose_
 		graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
 
-
-	return HttpResponse(graphs_mixed_respose, content_type="application/json")
+		return HttpResponse(graphs_mixed_respose, content_type="application/json")
 
 	
 	if(graph_type=="loadavg"):
