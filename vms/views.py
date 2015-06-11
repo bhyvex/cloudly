@@ -664,16 +664,9 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 		processes = processes_
 		processes = str(processes).replace("u'","'")
 		
-		print 'debug processes', processes
-		
 		return HttpResponse(processes, content_type="application/json")
 
 
-	graphs_mixed_respose_ = []
-	graphs_mixed_respose = processes
-	graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
-
-	return HttpResponse(graphs_mixed_respose, content_type="application/json")
 
 	
 	if(graph_type=="loadavg"):
