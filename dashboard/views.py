@@ -86,8 +86,11 @@ def credits(request):
 		print '--  credits page: anonymous'
 
 	ip = request.META['REMOTE_ADDR']
-	profile = userprofile.objects.get(user=request.user)
-	_log_user_activity(profile,"click","/credits/","credits",ip=ip)
+	try:
+		profile = userprofile.objects.get(user=request.user)
+		_log_user_activity(profile,"click","/credits/","credits",ip=ip)
+	except:
+		return HttpResponseRedirect("https://github.com/jparicka/cloudly")
 
 	print request.user
 	return render_to_response('credits.html', locals(), context_instance=RequestContext(request))
