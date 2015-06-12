@@ -664,6 +664,8 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 		processes = processes_
 		processes = str(processes).replace("u'","'")
 		
+		print processes
+		
 		return HttpResponse(processes, content_type="application/json")
 
 
