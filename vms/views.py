@@ -663,6 +663,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
 		processes = processes_
 		processes = str(processes).replace("u'","'").replace("/u","")
+		processes = str(processes).replace("'",'"')
 		
 		print processes
 		
