@@ -54,6 +54,7 @@ function processes(csrf, server, secret) {
 			$('#running_processes_table').find('<tbody>').html(html);
 		}
 	});
+	*/
 }
 
 
@@ -85,6 +86,10 @@ function cpu_usage_set (csrf, server, secret) {
 					series.addPoint(data[0], true, true);
 					element[0] = data[0];
 				}
+			},
+			error: function(data, textStatus, errorThrown) {
+				console.log('error: ' + textStatus);
+				console.log('error: ' + errorThrown);
 			}
 		});
 	}
@@ -97,7 +102,7 @@ function cpu_usage_set (csrf, server, secret) {
 
 	Highcharts.setOptions({
 		global: {
-			useUTC: true 
+			useUTC: false 
 		}
 	});
 
@@ -118,7 +123,7 @@ function cpu_usage_set (csrf, server, secret) {
 			console.log('naplneni daty');
 			if (data != null) {
 				var optionalData = [];
-				var optionalLength = 60;
+				var optionalLength = 30;
 				console.log(data);
 				var dataLength = data.length;
 				data.reverse();
@@ -197,6 +202,10 @@ function cpu_usage_set (csrf, server, secret) {
 					}]
 				});
 			}
+		},
+		error: function(data, textStatus, errorThrown) {
+			console.log('error: ' + textStatus);
+			console.log('error: ' + errorThrown);
 		}
 	});
 }
@@ -228,6 +237,10 @@ function loadavg_set (csrf, server, secret)
 				}
 
 				element [0] = data [0];
+			},
+			error: function(data, textStatus, errorThrown) {
+				console.log('error: ' + textStatus);
+				console.log('error: ' + errorThrown);
 			}
 		});
 	}
@@ -295,6 +308,10 @@ function loadavg_set (csrf, server, secret)
 				data: data.reverse()
 			}]
 			});
+		},
+		error: function(data, textStatus, errorThrown) {
+			console.log('error: ' + textStatus);
+			console.log('error: ' + errorThrown);
 		}
 	});
 	*/
