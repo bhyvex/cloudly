@@ -5,7 +5,7 @@ $(function () {
 		var secret = $('input[name="secret"]').val();
 
 		cpu_usage_set(csrf, server, secret);
-		setInterval(processes(csrf, server, secret), 500);
+//		setInterval(processes(csrf, server, secret), 500);
 //		loadavg_set (csrf, server, secret);
 	});
 });
@@ -13,45 +13,23 @@ $(function () {
 function processes(csrf, server, secret) {
 	var address = '/ajax/server/' + server + '/metrics/processes/';
 
-	function displayTable(data) {
-		var html = '';
-		for (var i = 0; i < data.length; i++) {
-			html += '<tr>';
-			html += '<td>' + data[i].pid + '</td>';
-			html += '<td>';
-			if (data[i].cpu > 50) {
-				html += '<span class="label label-danger">';
-			} else {
-				html += '<span class="label label-success">';
+	/*
+	console.log('adfadsfasd');
+	$('#running_processes_table').dataTable({
+		"processing": true,
+		"serverSide": true,
+		"ajax": {
+			url: address,
+			type: 'POST',
+			dataType: 'json',
+			headers: {
+				'X-CSRFToken': csrf,
+				'server': server,
+				'secret': secret
+			},
+			data: function(data) {
+				return data;
 			}
-			html += data[i].user + '</span></td>';
-			html += '<td>' + data[i].cpu + '</td>';                                       
-			html += '<td>' + data[i].mem + '</td>';                                       
-			html += '<td>' + data[i].name + '</td>';                                       
-			html += '<td>' + data[i].command + '</td>';
-			html += '</tr>';
-		}
-		return html;
-	}	
-
-	console.log(address, csrf, server, secret);
-	$.ajax({
-		url: address,
-		type: 'POST',
-		dataType: 'json',
-		headers: {
-			'X-CSRFToken': csrf
-		},
-		cache: false,
-		data: {
-			'server': server,
-			'secret': secret
-		},
-		success: function(data) {
-			var tableData = JSON.parse(data);
-			console.log(tableData);
-			html = displayTable(tableData);
-			$('#running_processes_table').find('<tbody>').html(html);
 		}
 	});
 	*/
