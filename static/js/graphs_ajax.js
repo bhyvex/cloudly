@@ -54,7 +54,6 @@ function processes(csrf, server, secret) {
 			$('#running_processes_table').find('<tbody>').html(html);
 		}
 	});
-	*/
 }
 
 
