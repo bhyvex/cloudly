@@ -662,9 +662,19 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 			c+=1
 
 		processes = processes_
-		processes = str(processes).replace("u'","'").replace("/u","")
-		processes = str(processes).replace("'",'"')
+
+                print processes
+
+                processes_length = len(processes)
+                processes_string = "{"
+                processes_string += "'draw': 1,"
+                processes_string += "'recordsTotal': " + str(processes_length) + ","
+                processes_string += "'recordsFiltered': " + str(processes_length) + ","
+                processes_string += "'data': " + str(processes)
+                processes_string += "}"
 		
+                processes = str(processes_string).replace(" u'"," '").replace("[u'","['").replace("'",'"')
+
 		print processes
 		
 		return HttpResponse(processes, content_type="application/json")
