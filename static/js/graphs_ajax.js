@@ -25,24 +25,28 @@ function processes(csrf, server, secret) {
 			dataType: 'json',
 			dataSrc: function(json) {
 				var data = [];
-				for (var i = 0; i < json.length; i++) {
+				for (var i = 0; i < json.data.length; i++) {
 
 					var user = '';
-					if (json[i]['cp']  > 50) {
+					if (json.data[i]['cpu']  > 50) {
 						user += '<span class="label label-danger">';
 					} else {
 						user += '<span class="label label-success">';
 					}
-					user += json[i]['user'];
+					user += json.data[i]['user'];
 					user += '</span>';
 
 					data.push([
-						json[i]['pid'],
+						json.data[i]['pid'],
 						user,
-						json[i]['cp'],
-						json[i]['mem'],
-						json[i]['command'][0],
-						json[i]['command'].join(' ')
+						json.data[i]['cpu'],
+						json.data[i]['mem'],
+						json.data[i]['command'][0]
+							.replace('[','')
+							.replace(']',''),
+						json.data[i]['command'].join(' ')
+							.replace('[','')
+							.replace(']','')
 					]);
 				}
 				console.log(data);
