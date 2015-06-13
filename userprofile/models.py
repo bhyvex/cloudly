@@ -5,7 +5,7 @@ from django.conf import settings
 class Activity(models.Model):
 	
 	user = models.ForeignKey(User)
-	ip_addr = models.GenericIPAddressField(blank=True,default="n/a")
+	ip_addr = models.GenericIPAddressField(default="n/a")
 	link = models.URLField(blank=True, verbose_name="links")
 	activity = models.CharField(max_length=100, blank=True, verbose_name="activities", db_index=True)
 	function = models.CharField(max_length=100, blank=True, verbose_name="function", db_index=True)
