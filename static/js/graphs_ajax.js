@@ -5,7 +5,7 @@ $(function () {
 		var secret = $('input[name="secret"]').val();
 
 		cpu_usage_set(csrf, server, secret);
-//		setInterval(processes(csrf, server, secret), 500);
+		processes(csrf, server, secret);
 //		loadavg_set (csrf, server, secret);
 	});
 });
@@ -13,28 +13,56 @@ $(function () {
 function processes(csrf, server, secret) {
 	var address = '/ajax/server/' + server + '/metrics/processes/';
 
-	/*
-	console.log('adfadsfasd');
 	$('#running_processes_table').dataTable({
-		"processing": true,
-		"serverSide": true,
-		"ajax": {
+		lengthMenu: [[15, 50, 100], [15, 50, 100]],
+		order: [[ 2, "desc" ]],
+		draw: 1,
+		processing: true,
+		serverSide: true,
+		ajax: {
 			url: address,
 			type: 'POST',
 			dataType: 'json',
+			dataSrc: function(json) {
+				var data = [];
+				for (var i = 0; i < json.data.length; i++) {
+
+					var user = '';
+					if (json.data[i]['cpu']  > 50) {
+						user += '<span class="label label-danger">';
+					} else {
+						user += '<span class="label label-success">';
+					}
+					user += json.data[i]['user'];
+					user += '</span>';
+
+					data.push([
+						json.data[i]['pid'],
+						user,
+						json.data[i]['cpu'],
+						json.data[i]['mem'],
+						json.data[i]['command'][0]
+							.replace('[','')
+							.replace(']',''),
+						json.data[i]['command'].join(' ')
+							.replace('[','')
+							.replace(']','')
+					]);
+				}
+				console.log(data);
+				return data;
+			},
 			headers: {
-				'X-CSRFToken': csrf,
+				'X-CSRFToken': csrf
+			},
+			cache: false,
+			data: {
 				'server': server,
 				'secret': secret
-			},
-			data: function(data) {
-				return data;
 			}
 		}
-	});
-	*/
+	}); //dataTable function end
 }
-
 
 function cpu_usage_set (csrf, server, secret) {
 	var address = '/ajax/server/' + server + '/metrics/cpu_usage/';
@@ -80,7 +108,7 @@ function cpu_usage_set (csrf, server, secret) {
 
 	Highcharts.setOptions({
 		global: {
-			useUTC: false 
+			useUTC: false
 		}
 	});
 
@@ -152,7 +180,7 @@ function cpu_usage_set (csrf, server, secret) {
 						formatter: function () {
 							return '<b>' + Highcharts.numberFormat(this.y, 0) + this.series.name + '</b><br/>' +
 								Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x*1000);
-								
+
 						}
 					},
 					legend: {
