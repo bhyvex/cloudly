@@ -247,5 +247,5 @@ Screenshots & Live Demo
 
 ###### Demo
 
-Project can be currently seen on http://projectcloudly.com/register
+Project can be currently seen on http://master.projectcloudly.com:8001/demo/r
 
