@@ -40,6 +40,9 @@
 								<th>Name</th>
 								<th>Email</th>
 								<th>Servers</th>
+								<th>Registered</th>
+								<th>Last Seen</th>
+								<th>Clicks</th>                                          
 								<th>AWS Regions</th>
 								<th>Access Key</th>
 								<th>EC2 <font size=1>verified</font></th>
@@ -48,10 +51,6 @@
 								<th>Backups</th>
 								<th>Files</th>
 								<th>Size</th>
-								<th>Registered</th>
-								<th>Last Seen</th>
-								<th>clicks</th>                                          
-								
 							</tr>
 						</thead>   
 						<tbody>
@@ -65,6 +64,9 @@
 									{{p.user|count_user_servers}}
 									{% else %}-{% endif %}
 								</td>
+								<td><font size=2>{{p.user.date_joined|naturaltime}}</font></td>
+								<td><font size=2>{{p.user.last_login|naturaltime}}</font></td>
+								<td><center><a href="/admin/user/{{p.user.id}}/activity/">{{p.clicks}}</a></center></td>
 								<td>{% if p.aws_ec2_verified %}{{p.aws_enabled_regions}}{% else %}-{% endif %}</td>
 								<td>
 									{% if p.aws_access_key %}
@@ -77,9 +79,6 @@
 								<td>{% if p.aws_automatic_backups %}Enabled{% else %}Disabled{% endif %}</td>
 								<td>{{p.user|count_user_files}}</td>
 								<td>{{p.user|count_user_files_size|filesizeformat}}</td>
-								<td><font size=2>{{p.user.date_joined|naturaltime}}</font></td>
-								<td><font size=2>{{p.user.last_login|naturaltime}}</font></td>
-								<td><center><a href="/admin/user/{{p.user.id}}/activity/">{{p.clicks}}</a></center></td>
 							</tr>
 							{% endfor %}
 						</tbody>
