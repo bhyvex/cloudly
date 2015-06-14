@@ -702,8 +702,11 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
 		graphs_mixed_respose = graphs_mixed_respose_
 		graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
+
+		return HttpResponse(graphs_mixed_respose, content_type="application/json")
 	
 	
+		
 	if(graph_type=="cpu_usage"):
 
 		cpu_usage_ = []
@@ -722,9 +725,12 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
 		graphs_mixed_respose = graphs_mixed_respose_
 		graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
-	
 
-	return HttpResponse(graphs_mixed_respose, content_type="application/json")
+		return HttpResponse(graphs_mixed_respose, content_type="application/json")
+
+
+
+	return HttpResponse("sorry I don't understand")
 
 
 
