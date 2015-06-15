@@ -42,6 +42,8 @@ from django.contrib.auth.decorators import login_required
 from django.template.defaultfilters import filesizeformat, upper
 from django.contrib.humanize.templatetags.humanize import naturalday
 
+from operator import itemgetter, attrgetter, methodcaller
+
 from cloudly.templatetags.cloud_extras import clear_filename, get_file_extension
 from vms.models import Cache
 
@@ -741,7 +743,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 		for i in tsdb_response:
 			graphs_mixed_respose.append([int(i),round(float(tsdb_response[i]),2)])
 		
-		graphs_mixed_respose = graphs_mixed_respose[::-1]
+		graphs_mixed_respose = sorted(graphs_mixed_respose, key=itemgetter(0))
 		print len(graphs_mixed_respose)
 
 		graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
