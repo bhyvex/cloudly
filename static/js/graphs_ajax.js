@@ -12,6 +12,8 @@ $(function () {
 function cpu_usage_set (csrf, server, secret) {
 	var address = '/ajax/server/' + server + '/metrics/cpu_usage/';
 	var lastValue = null;
+    var intervalIdentifier = $('input[name="intervalIdentifier"]').val();
+    var interval = $('input[name="intervalDuration"]').val();
 
 	function requestCpuUsageData(series, lastValue, csrf, server, secret) {
 		var address = '/ajax/server/' + server + '/metrics/cpu_usage/';
@@ -26,7 +28,9 @@ function cpu_usage_set (csrf, server, secret) {
 			data: {
 				'server': server,
 				'secret': secret,
-				'lastvalue': lastValue
+				'lastvalue': lastValue,
+                'intervalDuration': interval,
+                'intervalIdentifier': intervalIdentifier
 			},
 			success: function(data) {
 				if (typeof element === 'undefined') {
@@ -45,10 +49,31 @@ function cpu_usage_set (csrf, server, secret) {
 		});
 	}
 
-	function updateCpuUsageChart(series, lastValue, csrf, server, secret) {
+    if (intervalIdentifier == '3m') {
+        var interval = '3000';
+        var duration = '3s';
+    } else if (intervalIdentifier == '15m') {
+        var interval = '15000'; 
+        var duration = '15s';
+    } else if (intervalIdentifier == '1h') {
+        var interval = '60000';
+        var duration = '1m';
+    }
+    $('intervalDuration').val(duration);
+
+	function updateCpuUsageChart(
+            series, 
+            lastValue, 
+            csrf, 
+            server, 
+            secret
+    ) {
 		setInterval(function() {
+			console.log('naplneni daty');
+			console.log(interval);
+			console.log(duration);
 			requestCpuUsageData(series, lastValue, csrf, server, secret);
-		}, 1000);
+		}, interval);
 	}
 
 	Highcharts.setOptions({
@@ -68,16 +93,16 @@ function cpu_usage_set (csrf, server, secret) {
 		data: {
 			'server': server,
 			'secret': secret,
-			'lastvalue': lastValue
+			'lastvalue': lastValue,
+            'intervalIdentifier': intervalIdentifier,
+            'interval': duration,
 		},
 		success: function(data) {
-			console.log('naplneni daty');
 			if (data != null) {
 				var optionalData = [];
 				var optionalLength = 30;
 				console.log(data);
 				var dataLength = data.length;
-				data.reverse();
 				for(var i = 0; i < (optionalLength - dataLength); i++) {
 					optionalData.push([
 							(data[0][0] - (i + 1) * 5),
@@ -104,6 +129,7 @@ function cpu_usage_set (csrf, server, secret) {
 						text: 'CPU Usage'
 					},
 					xAxis: {
+                        tickPixelInterval: interval,
 						type: 'datetime',
 						labels: {
 							formatter: function() {
@@ -136,7 +162,7 @@ function cpu_usage_set (csrf, server, secret) {
 					},
 					series: [{
 						name: '% CPU used',
-						data: optionalData,
+						data: optionalData.reverse(),
 						zones: [{
 								value: 10,
 								color: '#7cb5ec'
@@ -229,7 +255,6 @@ function loadavg_set (csrf, server, secret)
 			},
 			xAxis: {
 				type: 'datetime',
-			tickPixelInterval: 1000
 			},
 			yAxis: {
 				title: {
