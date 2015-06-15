@@ -302,7 +302,7 @@
 
 	<div class="row">
 		<div class="col-xs-12">
-			<div class="panel panel-default">
+			<div id="diskGraphs" class="panel panel-default">
 				<div class="panel-heading">
 					<h2><i class="fa fa-database"></i>Disk Graphs</h2>
 					<div class="panel-actions">
@@ -367,7 +367,7 @@
 {% if server_status|lower = "running" %}
 <div class="row">
 	<div class="col-xs-12">
-		<div class="panel panel-default">
+		<div id="serviceDiscovery" class="panel panel-default">
 			<div class="panel-heading">
 				<h2><i class="fa fa-skyatlas"></i>Services Discovery</h2>
 				<div class="panel-actions">
@@ -390,7 +390,7 @@
 
 	<div class="row">
 		<div class="col-xs-12">
-			<div class="panel panel-default">
+			<div id="serverActivity" class="panel panel-default">
 				<div class="panel-heading">
 					{% if server_status|lower = "running" %}
 					<h2><i class="fa fa-forumbee"></i>Server Activity</h2>
@@ -404,7 +404,7 @@
 					</div>
 				</div>
 
-				<div class="panel-body" style="display: none;">
+				<div class="panel-body">
 
 				<b>Incidents</b> TBD
 				<br/>
@@ -449,6 +449,7 @@
 
 <script src="/static/highcharts/highcharts.js"></script>
 <script src="/static/highcharts/exporting.js"></script>
+<script src="/static/js/server_detail.js"></script>
 <script src="/static/js/graphs_ajax.js"></script>
 <script src="/static/js/processes_table_ajax.js"></script>
 
