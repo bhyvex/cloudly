@@ -4,6 +4,7 @@ import os
 import time
 import logging
 import string
+import requests
 import unicodedata
 
 import base64
