@@ -727,7 +727,19 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 		#graphs_mixed_respose = graphs_mixed_respose_
 		#graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
 
+
+		params = {'start':'1h-ago','m':'avg:1m-avg:06-3b-a1-99-8f-09.sys.cpu'}
+
+		tsdb = requests.get('http://hbase:4242/api/query',params=params)
+		tsdb_response = json.loads(tsdb.text)
+		tsdb_response = tsdb_response[0]['dps']
+
 		graphs_mixed_respose = []
+		
+		for i in tsdb_response:
+			graphs_mixed_respose.append([i,tsdb_response[i]])
+		
+		graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
 
 		return HttpResponse(graphs_mixed_respose, content_type="application/json")
 
