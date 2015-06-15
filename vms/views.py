@@ -740,7 +740,9 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 			graphs_mixed_respose.append([i,tsdb_response[i]])
 		
 		graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
-
+		print 'graphs_mixed_respose'*100
+		print graphs_mixed_respose
+		
 		return HttpResponse(graphs_mixed_respose, content_type="application/json")
 
 
