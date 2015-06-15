@@ -710,22 +710,25 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 		
 	if(graph_type=="cpu_usage"):
 
-		#cpu_usage_ = []
-		#cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+		cpu_usage_ = []
+		cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
 	
-		#for i in cpu_usage: cpu_usage_.append(i)
-		#cpu_usage = cpu_usage_
+		for i in cpu_usage: cpu_usage_.append(i)
+		cpu_usage = cpu_usage_
 	
-		#graphs_mixed_respose_ = []
-		#graphs_mixed_respose = cpu_usage
+		graphs_mixed_respose_ = []
+		graphs_mixed_respose = cpu_usage
 
-		#for x in graphs_mixed_respose:
-		#	aa = [int(x['date_created'].strftime("%s")), x['cpu_usage']['cpu_used']]
-		#	graphs_mixed_respose_.append(aa)
-		#        #print aa
+		for x in graphs_mixed_respose:
+			aa = [int(x['date_created'].strftime("%s")), x['cpu_usage']['cpu_used']]
+			graphs_mixed_respose_.append(aa)
+		        #print aa
 
-		#graphs_mixed_respose = graphs_mixed_respose_
-		#graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
+		graphs_mixed_respose = graphs_mixed_respose_
+		graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
+
+		print 'graphs_mixed_respose PRIOR'*100
+		print graphs_mixed_respose
 
 
 		params = {'start':'1h-ago','m':'avg:1m-avg:06-3b-a1-99-8f-09.sys.cpu'}
