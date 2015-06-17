@@ -58,7 +58,7 @@
 							<tr>
 								<td>{{p.user.id}}</td>
 								<td><a href="/admin/user/{{p.user.id}}/activity/">{{p.name}}</a></td>
-								<td>{{p.user.email}}</td>
+								<td><a href="/admin/user/{{p.user.id}}/activity/">{{p.user.email}}</a></td>
 								<td><center><a href="/admin/user/{{p.user.id}}/activity/">{{p.clicks}}</a></center></td>
 								<td>
 									{% if p.user|count_user_servers %}
