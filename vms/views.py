@@ -714,6 +714,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
 		params = None
 		graph_interval = request.POST['interval']
+		graphs_mixed_respose = []
 
 		if(graph_interval=="3m"):
 			params = {'start':'3m-ago','m':'avg:3s-avg:' + hwaddr + '.sys.cpu'}
@@ -722,10 +723,9 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 		if(graph_interval=="1h"):
 			params = {'start':'1h-ago','m':'avg:1m-avg:' + hwaddr + '.sys.cpu'}
 
-		graphs_mixed_respose = []
-
 
 		if(params):
+
 			tsdb = requests.get('http://hbase:4242/api/query',params=params)
 			tsdb_response = json.loads(tsdb.text)
 			tsdb_response = tsdb_response[0]['dps']
