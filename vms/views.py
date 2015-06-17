@@ -715,6 +715,8 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 		params = {'start':'3m-ago','m':'avg:3s-avg:' + hwaddr + '.sys.cpu'}
 		#params = {'start':'3m-ago','m':'avg:'+hwaddr+'.sys.cpu'}
 
+		#1h-1m res, 15min-25s resolution 
+
 		tsdb = requests.get('http://hbase:4242/api/query',params=params)
 		tsdb_response = json.loads(tsdb.text)
 		tsdb_response = tsdb_response[0]['dps']
