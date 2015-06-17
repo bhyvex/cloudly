@@ -714,7 +714,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
 		print "HERE"*100
 		params = None
-		graph_interval = request.POST
+		graph_interval = request.POST['interval']
 
 		if(graph_interval=="3m"):
 			params = {'start':'3m-ago','m':'avg:3s-avg:' + hwaddr + '.sys.cpu'}
