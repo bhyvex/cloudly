@@ -712,27 +712,34 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 		
 	if(graph_type=="cpu_usage"):
 
-		params = {'start':'3m-ago','m':'avg:3s-avg:' + hwaddr + '.sys.cpu'}
-		#params = {'start':'3m-ago','m':'avg:'+hwaddr+'.sys.cpu'}
+		print "HERE"*100
+		params = None
+		graph_interval = request.POST
 
-		#1h-1m res, 15min-25s resolution 
-
-		tsdb = requests.get('http://hbase:4242/api/query',params=params)
-		tsdb_response = json.loads(tsdb.text)
-		tsdb_response = tsdb_response[0]['dps']
+		if(graph_interval=="3m"):
+			params = {'start':'3m-ago','m':'avg:3s-avg:' + hwaddr + '.sys.cpu'}
+		if(graph_interval=="15m"):
+			params = {'start':'15m-ago','m':'avg:25s-avg:' + hwaddr + '.sys.cpu'}
+		if(graph_interval=="1h"):
+			params = {'start':'1h-ago','m':'avg:1m-avg:' + hwaddr + '.sys.cpu'}
 
 		graphs_mixed_respose = []
-		
-		for i in tsdb_response:
-			graphs_mixed_respose.append([int(i),round(float(tsdb_response[i]),2)])
-		
-		graphs_mixed_respose = sorted(graphs_mixed_respose, key=itemgetter(0))
-		graphs_mixed_respose = graphs_mixed_respose[::-1]
-		print len(graphs_mixed_respose)
 
-		graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
-		print 'graphs_mixed_respose'*100
-		print graphs_mixed_respose
+		if(params):
+			tsdb = requests.get('http://hbase:4242/api/query',params=params)
+			tsdb_response = json.loads(tsdb.text)
+			tsdb_response = tsdb_response[0]['dps']
+		
+			for i in tsdb_response:
+				graphs_mixed_respose.append([int(i),round(float(tsdb_response[i]),2)])
+		
+			graphs_mixed_respose = sorted(graphs_mixed_respose, key=itemgetter(0))
+			graphs_mixed_respose = graphs_mixed_respose[::-1]
+			print len(graphs_mixed_respose)
+
+			graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
+			print 'graphs_mixed_respose'*100
+			print graphs_mixed_respose
 		
 		return HttpResponse(graphs_mixed_respose, content_type="application/json")
 
