@@ -712,7 +712,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 		
 	if(graph_type=="cpu_usage"):
 
-		print "HERE"*100
 		params = None
 		graph_interval = request.POST['interval']
 
@@ -724,6 +723,10 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 			params = {'start':'1h-ago','m':'avg:1m-avg:' + hwaddr + '.sys.cpu'}
 
 		graphs_mixed_respose = []
+
+		print "HERE"*100
+		print params
+		print '-'*80
 
 		if(params):
 			tsdb = requests.get('http://hbase:4242/api/query',params=params)
