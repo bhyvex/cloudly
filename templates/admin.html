@@ -39,8 +39,8 @@
 								<td>#</td>
 								<th>Name</th>
 								<th>Email</th>
-								<th>Servers</th>
 								<th>Clicks</th>                                          
+								<th>Servers</th>
 								<th>Registered</th>
 								<th>Last Seen</th>
 								<th>AWS Regions</th>
@@ -59,12 +59,12 @@
 								<td>{{p.user.id}}</td>
 								<td><a href="/admin/user/{{p.user.id}}/activity/">{{p.name}}</a></td>
 								<td>{{p.user.email}}</td>
+								<td><center><a href="/admin/user/{{p.user.id}}/activity/">{{p.clicks}}</a></center></td>
 								<td>
 									{% if p.user|count_user_servers %}
 									{{p.user|count_user_servers}}
 									{% else %}-{% endif %}
 								</td>
-								<td><center><a href="/admin/user/{{p.user.id}}/activity/">{{p.clicks}}</a></center></td>
 								<td><font size=2>{{p.user.date_joined|naturaltime}}</font></td>
 								<td><font size=2>{{p.user.last_login|naturaltime}}</font></td>
 								<td>{% if p.aws_ec2_verified %}{{p.aws_enabled_regions}}{% else %}-{% endif %}</td>
