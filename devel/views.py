@@ -22,4 +22,4 @@ from userprofile.views import _log_user_activity
 
 
 def devel(request):
-  return render_to_response('devel.html', {'request':request,}, context_instance=RequestContext(request))
+    return render_to_response('devel.html', {'request':request,}, context_instance=RequestContext(request))
