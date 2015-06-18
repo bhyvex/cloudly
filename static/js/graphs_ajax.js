@@ -1,73 +1,17 @@
-$(function () {
-    $(document).ready(function () {
-        var server = $('input[name="hwaddr"]').val();
-        var csrf = $('input[name="csrfmiddlewaretoken"]').val();
-        var secret = $('input[name="secret"]').val();
+/**
+ * CPU Usage
+ *
+ * Set all action for CPU Usage chart
+ * (code standards: http://javascript.crockford.com/code.html)
+ */
 
-        Highcharts.setOptions({
-            global: {
-                useUTC: false
-            }
-        });
+var cpuUsageInterval = {};  // set interval globally
 
-        var interval = '3m';
-        var duration = '3s';
-        cpu_usage_set(csrf, server, secret, interval, duration);
-        $('#cpu_usage_interval a').on('click', function() {
-            var link = this;
-            interval = $(link).attr('data-interval');
-            duration = $(link).attr('data-duration');
-            console.log('click');
-            console.log(interval);
-            console.log(duration);
-            cpu_usage_set(csrf, server, secret, interval, duration);
-        });
-    });
-});
-
-function cpu_usage_set(csrf, server, secret, interval, duration) {
-    var address = '/ajax/server/' + server + '/metrics/cpu_usage/';
-
-    function requestCpuUsageData(series, csrf, server, secret) {
-        var address = '/ajax/server/' + server + '/metrics/cpu_usage/';
-        $.ajax({
-            url: address,
-            type: 'POST',
-            dataType: 'json',
-            headers: {
-                'X-CSRFToken': csrf
-            },
-            cache: false,
-            data: {
-                'server': server,
-                'secret': secret,
-                'duration': duration,
-                'interval': interval
-            },
-            success: function(data) {
-                series.addPoint(data[0], true, true);
-            },
-            error: function(data, textStatus, errorThrown) {
-                console.log('error: ' + textStatus);
-                console.log('error: ' + errorThrown);
-            }
-        });
-    }
-
-    if (interval == '3m') {
-        var timeout = '3000';
-    } else if (interval == '15m') {
-        var timeout = '15000';
-    } else if (interval == '1h') {
-        var timeout = '60000';
-    }
-
-    function updateCpuUsageChart(series, csrf, server, secret)
-    {
-        setInterval(function() {
-            requestCpuUsageData(series, csrf, server, secret);
-        }, timeout);
-    }
+/**
+ * Get new data via ajax call and set it to given serie
+ */
+function requestCpuUsageChartData(series, csrf, server, secret, interval) {
+    var address = '/ajax/server/' + server + '/metrics/cpu_usage/'; // ajax call adress
 
     $.ajax({
         url: address,
@@ -80,135 +24,38 @@ function cpu_usage_set(csrf, server, secret, interval, duration) {
         data: {
             'server': server,
             'secret': secret,
-            'interval': interval,
-            'duration': duration
+            'interval': interval
         },
         success: function(data) {
-            if (data != null) {
-                var optionalData = [];
-                var optionalLength = 55;
-                console.log(data);
-                var dataLength = data.length;
-                for(var i = 0; i < (optionalLength - dataLength); i++) {
-                    optionalData.push([
-                            (data[0][0] - (i + 1) * 5),
-                            null
-                        ]);
-                }
-                optionalData = optionalData.concat(data);
-                var cpuUsageChart = new Highcharts.Chart({
-                    chart: {
-                        renderTo: 'cpu_usage',
-                        events: {
-                            load: function() {
-                                updateCpuUsageChart(
-                                    this.series[0],
-                                    csrf,
-                                    server,
-                                    secret
-                                );
-                            }
-                        }
-                    },
-                    xAxis: {
-                        type: 'datetime',
-                        labels: {
-                            formatter: function() {
-                                return Highcharts.dateFormat('%H:%M:%S', this.value * 1000);
-                            }
-                        }
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Value'
-                        },
-                    plotLines: [{
-                        value: 0,
-                        width: 1,
-                        color: '#808080'
-                    }]
-                    },
-                    tooltip: {
-                        formatter: function () {
-                            return '<b>' + Highcharts.numberFormat(this.y, 0) + this.series.name + '</b><br/>' +
-                                Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x*1000);
-
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    exporting: {
-                        enabled: false
-                    },
-                    series: [{
-                        name: '% CPU used',
-                        data: optionalData.reverse(),
-                        zones: [{
-                                value: 10,
-                                color: '#7cb5ec'
-                            }, {
-                                value: 80,
-                                color: '#90ed7d'
-                            },{
-                                value: 95,
-                                color: 'orange'
-                            },{
-                                color: 'red'
-                            }
-                        ]
-                    }]
-                });
-            }
+            series.addPoint(data[0], true, true);
         },
         error: function(data, textStatus, errorThrown) {
-            console.log('error: ' + textStatus);
-            console.log('error: ' + errorThrown);
+            // console.log('error: ' + textStatus);
+            // console.log('error: ' + errorThrown);
         }
     });
 }
 
-function loadavg_set (csrf, server, secret)
-{
-    /*
-    function requestLoadAvgData(series, csrf, server, secret) {
-        var address = '/ajax/server/' + server + '/metrics/loadavg/';
-        $.ajax({
-            url: address,
-            type: 'POST',
-            dataType: 'json',
-            headers: {
-                'X-CSRFToken': csrf
-            },
-            cache: false,
-            data: {
-                'server': server,
-            'secret': secret
-            },
-            success: function(data) {
-                if (typeof element === 'undefined') {
-                    var element = [null,null];
-                }
-
-                if (element[0] != data[0]) {
-                    series.addPoint(data[0], true, true);
-                }
-
-                element [0] = data [0];
-            },
-            error: function(data, textStatus, errorThrown) {
-                console.log('error: ' + textStatus);
-                console.log('error: ' + errorThrown);
-            }
-        });
+/**
+ * Call or stop interval update action (via parameter updateChart parameter)
+ */
+function updateCpuUsageChart(series, csrf, server, secret, interval, timeout, updateChart) {
+    if (updateChart) {
+        cpuUsageInterval = setInterval(function () {
+            requestCpuUsageChartData(series, csrf, server, secret, interval)
+        }, timeout);
+    } else {
+        window.clearInterval(cpuUsageInterval);
     }
+}
 
-    function updateLoadAvgChart(series, csrf, server, secret) {
-        setInterval(function() {
-            requestLoadAvgData(series, csrf, server, secret);
-        }, 1000);
-    }
+/**
+ * Display given chart with actual data
+ */
+function displayCpuUsageChart(chart, csrf, server, secret, interval) {
+    var address = '/ajax/server/' + server + '/metrics/cpu_usage/'; // ajax call adress
 
+    // ajax for actual chart data
     $.ajax({
         url: address,
         type: 'POST',
@@ -219,39 +66,106 @@ function loadavg_set (csrf, server, secret)
         cache: false,
         data: {
             'server': server,
-            'secret': secret
+            'secret': secret,
+            'interval': interval
         },
         success: function(data) {
-            var cpuUsageChart = new Highcharts.Chart({
-                chart: {
-                    renderTo: 'cpu_usage',
-            events: {
-                load: function() {
-                    updateChart(this.series[0], csrf, server, secret);
+            if (data != null) {
+                var optionalData = [],
+                    optionalLength = 55,
+                    dataLength = data.length;
+
+                for (var i = 0; i < (optionalLength - dataLength); i++) {
+                    optionalData.push([
+                        (data[0][0] - (i + 1) * 5),
+                        null
+                    ]);
                 }
+
+                optionalData = optionalData.concat(data);
+                chart.series[0].setData(data.reverse());
             }
-                },
+        },
+        error: function(data, textStatus, errorThrown) {
+            // console.log('error: ' + textStatus);
+            // console.log('error: ' + errorThrown);
+        }
+    });
+}
+
+/**
+ * Set duration by interval value
+ */
+function setDuration(interval) {
+    var duration = '3000';      // base duration value
+    if (interval == '15m') {
+        duration = '15000';
+    } else if (interval == '1h') {
+        duration = '60000';
+    }
+    return duration;
+}
+
+
+$(function () {
+    $(document).ready(function () {
+        var server = $('input[name="hwaddr"]').val(),           // server identifier
+            csrf = $('input[name="csrfmiddlewaretoken"]').val(),// request middlevare secure
+            secret = $('input[name="secret"]').val(),           // request authenticate
+            interval = '3m';                                    // base interval setting
+
+        // set global chart options
+        Highcharts.setOptions({
+            global: {
+                useUTC: false   // set for TSDB
+            }
+        });
+
+        // create chart object
+        var cpuUsageChart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'cpu_usage',
+                events: {
+                    load: function() {
+                        updateCpuUsageChart(    // set chart first draw update action
+                            this.series[0],
+                            csrf,
+                            server,
+                            secret,
+                            interval,
+                            setDuration(interval),
+                            true
+                       );
+                    }
+                }
+            },
             title: {
-                text: 'CPU Usage'
+                text: ''
             },
             xAxis: {
                 type: 'datetime',
+                labels: {
+                    formatter: function() {
+                        return Highcharts.dateFormat('%H:%M:%S', this.value * 1000);
+                    }
+                }
             },
             yAxis: {
                 title: {
-                    text: 'Value'
+                    text: 'CPU Usage value %'
                 },
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
             },
             tooltip: {
                 formatter: function () {
-                    return '<b>' + this.series.name + '</b><br/>' +
-                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
-                        Highcharts.numberFormat(this.y, 2);
+                    return '<b>' + Highcharts.numberFormat(this.y, 0)
+                        + this.series.name + '</b><br/>'
+                        + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x*1000);
+
                 }
             },
             legend: {
@@ -261,15 +175,75 @@ function loadavg_set (csrf, server, secret)
                 enabled: false
             },
             series: [{
-                name: '%CPU Usage',
-                data: data.reverse()
+                name: '% CPU used',
+                data: [],
+                zones: [
+                    {
+                        value: 10,
+                        color: '#7cb5ec'
+                    },
+                    {
+                        value: 80,
+                        color: '#90ed7d'
+                    },
+                    {
+                        value: 95,
+                        color: 'orange'
+                    },
+                    {
+                        color: 'red'
+                    }
+                ]
             }]
-            });
-        },
-        error: function(data, textStatus, errorThrown) {
-            console.log('error: ' + textStatus);
-            console.log('error: ' + errorThrown);
-        }
+        });
+
+        // check update interval action
+        $('#cpu_usage_interval a').on('click', function() {
+            var link = this,                                // create current object
+                interval = $(link).attr('data-interval'),   // get interval from data attribute
+                duration = setDuration(interval);           // set duration
+
+            // stop last ajax chart update
+            updateCpuUsageChart(
+                cpuUsageChart,
+                csrf,
+                server,
+                secret,
+                interval,
+                duration,
+                false
+            );
+
+            // display chart with new interval
+            displayCpuUsageChart(
+                cpuUsageChart,
+                csrf,
+                server,
+                secret,
+                interval,
+                duration
+            );
+
+            // call new interval chart ajax update
+            updateCpuUsageChart(
+                cpuUsageChart.series[0],
+                csrf,
+                server,
+                secret,
+                interval,
+                duration,
+                true
+            );
+        });
+
+        // draw chart
+        displayCpuUsageChart(
+            cpuUsageChart,
+            csrf,
+            server,
+            secret,
+            interval,
+            setDuration(interval)
+        );
     });
-    */
-}
+});
