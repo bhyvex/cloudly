@@ -31,121 +31,121 @@ from amazon import ec2_funcs
 from vms.models import Cache
 
 def home(request):
-		
-	if not request.user.is_authenticated():
-		print '--  web:'
-		return render_to_response('web.html', {'request':request,}, context_instance=RequestContext(request))
+        
+    if not request.user.is_authenticated():
+        print '--  web:'
+        return render_to_response('web.html', {'request':request,}, context_instance=RequestContext(request))
 
-	print '--  dashboard:'
-	print request.user
-	
-	user = request.user
-	user.last_login = datetime.datetime.now()
-	user.save()
-	
-	profile = userprofile.objects.get(user=request.user)
-	secret = profile.secret
-	
-	ip = request.META['REMOTE_ADDR']
-	_log_user_activity(profile,"click","/","home",ip=ip)
-	
-	is_updating = False
-	
-	try:
-		vms_cache = Cache.objects.get(user=request.user)
-		vms_response = vms_cache.vms_response
-		vms_response = base64.b64decode(vms_response)
-		vms_response = pickle.loads(vms_response)
-		vms_cached_response = vms_response
-		vms_cached_response['last_seen'] = vms_cache.last_seen
-		is_updating = vms_cache.is_updating
-	except: vms_cached_response = None
+    print '--  dashboard:'
+    print request.user
+    
+    user = request.user
+    user.last_login = datetime.datetime.now()
+    user.save()
+    
+    profile = userprofile.objects.get(user=request.user)
+    secret = profile.secret
+    
+    ip = request.META['REMOTE_ADDR']
+    _log_user_activity(profile,"click","/","home",ip=ip)
+    
+    is_updating = False
+    
+    try:
+        vms_cache = Cache.objects.get(user=request.user)
+        vms_response = vms_cache.vms_response
+        vms_response = base64.b64decode(vms_response)
+        vms_response = pickle.loads(vms_response)
+        vms_cached_response = vms_response
+        vms_cached_response['last_seen'] = vms_cache.last_seen
+        is_updating = vms_cache.is_updating
+    except: vms_cached_response = None
 
-	return render_to_response('dashboard.html', {'is_updating':is_updating,'vms_cached_response':vms_cached_response,}, context_instance=RequestContext(request))
+    return render_to_response('dashboard.html', {'is_updating':is_updating,'vms_cached_response':vms_cached_response,}, context_instance=RequestContext(request))
 
 
 @login_required()
 def welcome(request):
 
-	print '--  welcome page:', request.user
-	
-	ip = request.META['REMOTE_ADDR']
-	profile = userprofile.objects.get(user=request.user)
-	_log_user_activity(profile,"click","/welcome/","welcome",ip=ip)
-	
-	print request.user
-	return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
+    print '--  welcome page:', request.user
+    
+    ip = request.META['REMOTE_ADDR']
+    profile = userprofile.objects.get(user=request.user)
+    _log_user_activity(profile,"click","/welcome/","welcome",ip=ip)
+    
+    print request.user
+    return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
 
 
 
 def credits(request):
 
-	try:
-		print '--  credits page:', request.user
-	except:
-		print '--  credits page: anonymous'
+    try:
+        print '--  credits page:', request.user
+    except:
+        print '--  credits page: anonymous'
 
-	ip = request.META['REMOTE_ADDR']
-	try:
-		profile = userprofile.objects.get(user=request.user)
-		_log_user_activity(profile,"click","/credits/","credits",ip=ip)
-	except:
-		return HttpResponseRedirect("https://github.com/jparicka/cloudly")
+    ip = request.META['REMOTE_ADDR']
+    try:
+        profile = userprofile.objects.get(user=request.user)
+        _log_user_activity(profile,"click","/credits/","credits",ip=ip)
+    except:
+        return HttpResponseRedirect("https://github.com/jparicka/cloudly")
 
-	print request.user
-	return render_to_response('credits.html', locals(), context_instance=RequestContext(request))
+    print request.user
+    return render_to_response('credits.html', locals(), context_instance=RequestContext(request))
 
 
 
 def download_agent(request):
 
-	print '-- download agent:'
+    print '-- download agent:'
 
-	server_url = request.build_absolute_uri('/')
-	api_server_url = server_url
-	api_server_url = api_server_url.replace('http://','').replace('https://','')
-	api_server_url = api_server_url.split(':')[0].replace('/','')
-	api_server_url = api_server_url + ":5001"
+    server_url = request.build_absolute_uri('/')
+    api_server_url = server_url
+    api_server_url = api_server_url.replace('http://','').replace('https://','')
+    api_server_url = api_server_url.split(':')[0].replace('/','')
+    api_server_url = api_server_url + ":5001"
 
-	if('projectcloudly.com' in api_server_url):
-		api_server_url = "api.projectcloudly.com:5001"
+    if('projectcloudly.com' in api_server_url):
+        api_server_url = "api.projectcloudly.com:5001"
 
-	ip = request.META['REMOTE_ADDR']
-	
-	try:
-		profile = userprofile.objects.get(user=request.user)
-	except: pass
+    ip = request.META['REMOTE_ADDR']
+    
+    try:
+        profile = userprofile.objects.get(user=request.user)
+    except: pass
 
-	print 'server_url', server_url
-	print 'api_server_url', api_server_url
+    print 'server_url', server_url
+    print 'api_server_url', api_server_url
 
-	if(request.GET):
+    if(request.GET):
 
-		try:
-			xuuid = request.GET['xuuid']
-			profile = userprofile.objects.get(agent_hash=xuuid)
-		except:
-			return HttpResponseForbidden()
+        try:
+            xuuid = request.GET['xuuid']
+            profile = userprofile.objects.get(agent_hash=xuuid)
+        except:
+            return HttpResponseForbidden()
 
-		_log_user_activity(profile,"download","/download/agent/","download_agent",ip=ip)
-	
-		agent_code = ""
-		for line in open('agent.py'):
-			if("SECRET = \"\"" in line):
-				agent_code += "SECRET = \""+profile.secret+"\"\n"
-				continue
-			if("API_SERVER = \"\"" in line):
-				agent_code += "API_SERVER = \""+api_server_url+"\"\n"
-				continue
-			agent_code += line
-			
-		return HttpResponse(agent_code)	
+        _log_user_activity(profile,"download","/download/agent/","download_agent",ip=ip)
+    
+        agent_code = ""
+        for line in open('agent.py'):
+            if("SECRET = \"\"" in line):
+                agent_code += "SECRET = \""+profile.secret+"\"\n"
+                continue
+            if("API_SERVER = \"\"" in line):
+                agent_code += "API_SERVER = \""+api_server_url+"\"\n"
+                continue
+            agent_code += line
+            
+        return HttpResponse(agent_code)    
 
-	try:
-		agent_download_url = server_url + "download/agent?xuuid="+profile.agent_hash
-		print 'agent_download_url', agent_download_url
-	except:
-		return HttpResponseRedirect("https://raw.githubusercontent.com/jparicka/cloudly/master/agent.py")
-    	
+    try:
+        agent_download_url = server_url + "download/agent?xuuid="+profile.agent_hash
+        print 'agent_download_url', agent_download_url
+    except:
+        return HttpResponseRedirect("https://raw.githubusercontent.com/jparicka/cloudly/master/agent.py")
+        
 
-	return render_to_response('agent_download.html', {'profile':profile,'agent_download_url':agent_download_url,}, context_instance=RequestContext(request))    	
+    return render_to_response('agent_download.html', {'profile':profile,'agent_download_url':agent_download_url,}, context_instance=RequestContext(request))        
