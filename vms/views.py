@@ -718,7 +718,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         if(graph_interval=="3m"):
             params = {'start':'3m-ago','m':'avg:3s-avg:' + hwaddr + '.sys.cpu'}
         if(graph_interval=="15m"):
-            params = {'start':'15m-ago','m':'avg:25s-avg:' + hwaddr + '.sys.cpu'}
+            params = {'start':'15m-ago','m':'avg:15s-avg:' + hwaddr + '.sys.cpu'}
         if(graph_interval=="1h"):
             params = {'start':'1h-ago','m':'avg:1m-avg:' + hwaddr + '.sys.cpu'}
 
