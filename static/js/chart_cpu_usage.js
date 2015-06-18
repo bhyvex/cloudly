@@ -27,7 +27,7 @@ function requestCpuUsageChartData(series, csrf, server, secret, interval) {
             'interval': interval
         },
         success: function(data) {
-            series.addPoint(data[0], true, true);
+            series.addPoint(data[0], true, true);   // add new point to chart serie
         },
         error: function(data, textStatus, errorThrown) {
             // console.log('error: ' + textStatus);
@@ -39,13 +39,13 @@ function requestCpuUsageChartData(series, csrf, server, secret, interval) {
 /**
  * Call or stop interval update action (via parameter updateChart parameter)
  */
-function updateCpuUsageChart(series, csrf, server, secret, interval, timeout, updateChart) {
+function updateCpuUsageChart(series, csrf, server, secret, interval, duration, updateChart) {
     if (updateChart) {
-        cpuUsageInterval = setInterval(function () {
-            requestCpuUsageChartData(series, csrf, server, secret, interval)
-        }, timeout);
+        cpuUsageInterval = setInterval(function () {    // start update by duration
+            requestCpuUsageChartData(series, csrf, server, secret, interval)    // update chart data
+        }, duration);
     } else {
-        window.clearInterval(cpuUsageInterval);
+        window.clearInterval(cpuUsageInterval);         // stop current interval
     }
 }
 
@@ -55,8 +55,7 @@ function updateCpuUsageChart(series, csrf, server, secret, interval, timeout, up
 function displayCpuUsageChart(chart, csrf, server, secret, interval) {
     var address = '/ajax/server/' + server + '/metrics/cpu_usage/'; // ajax call adress
 
-    // ajax for actual chart data
-    $.ajax({
+    $.ajax({    // ajax for actual chart data
         url: address,
         type: 'POST',
         dataType: 'json',
@@ -70,20 +69,20 @@ function displayCpuUsageChart(chart, csrf, server, secret, interval) {
             'interval': interval
         },
         success: function(data) {
-            if (data != null) {
-                var optionalData = [],
-                    optionalLength = 55,
-                    dataLength = data.length;
+            if (data != null) {                 // check data and fill if needed
+                var optionalData = [],          // empty optional data array
+                    optionalLength = 55,        // optional data lenght
+                    dataLength = data.length;   // current data lenght
 
                 for (var i = 0; i < (optionalLength - dataLength); i++) {
                     optionalData.push([
-                        (data[0][0] - (i + 1) * 5),
-                        null
+                        (data[0][0] - (i + 1) * 3), // set timestamp value
+                        null                        // set cpu usage value
                     ]);
                 }
 
-                optionalData = optionalData.concat(data);
-                chart.series[0].setData(data.reverse());
+                optionalData = optionalData.concat(data);   // fill data to optional lenght
+                chart.series[0].setData(data.reverse());    // chart need reverted data
             }
         },
         error: function(data, textStatus, errorThrown) {
@@ -114,15 +113,13 @@ $(function () {
             secret = $('input[name="secret"]').val(),           // request authenticate
             interval = '3m';                                    // base interval setting
 
-        // set global chart options
-        Highcharts.setOptions({
+        Highcharts.setOptions({ // set global chart options
             global: {
-                useUTC: false   // set for TSDB
+                useUTC: false   // set UTC by TSDB setting
             }
         });
 
-        // create chart object
-        var cpuUsageChart = new Highcharts.Chart({
+        var cpuUsageChart = new Highcharts.Chart({  // create chart object
             chart: {
                 renderTo: 'cpu_usage',
                 events: {
@@ -146,7 +143,7 @@ $(function () {
                 type: 'datetime',
                 labels: {
                     formatter: function() {
-                        return Highcharts.dateFormat('%H:%M:%S', this.value * 1000);
+                        return Highcharts.dateFormat('%H:%M:%S', this.value * 1000);    // chart need value in milisecond
                     }
                 }
             },
@@ -177,7 +174,7 @@ $(function () {
             series: [{
                 name: '% CPU used',
                 data: [],
-                zones: [
+                zones: [    // set zones color setting
                     {
                         value: 10,
                         color: '#7cb5ec'
@@ -197,15 +194,13 @@ $(function () {
             }]
         });
 
-        // check update interval action
-        $('#cpu_usage_interval a').on('click', function() {
+        $('#cpu_usage_interval a').on('click', function() { // catch interval change action
             var link = this,                                // create current object
                 interval = $(link).attr('data-interval'),   // get interval from data attribute
                 duration = setDuration(interval);           // set duration
 
-            // stop last ajax chart update
-            updateCpuUsageChart(
-                cpuUsageChart,
+            updateCpuUsageChart(    // stop last ajax chart update
+                cpuUsageChart.series[0],
                 csrf,
                 server,
                 secret,
@@ -214,8 +209,7 @@ $(function () {
                 false
             );
 
-            // display chart with new interval
-            displayCpuUsageChart(
+            displayCpuUsageChart(   // display chart with new interval
                 cpuUsageChart,
                 csrf,
                 server,
@@ -224,8 +218,7 @@ $(function () {
                 duration
             );
 
-            // call new interval chart ajax update
-            updateCpuUsageChart(
+            updateCpuUsageChart(    // call new interval chart ajax update
                 cpuUsageChart.series[0],
                 csrf,
                 server,
@@ -236,8 +229,7 @@ $(function () {
             );
         });
 
-        // draw chart
-        displayCpuUsageChart(
+        displayCpuUsageChart(       // draw first chart
             cpuUsageChart,
             csrf,
             server,
