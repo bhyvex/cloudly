@@ -5,12 +5,13 @@
  * (code standards: http://javascript.crockford.com/code.html)
  */
 
-var cpuUsageInterval = {};  // set interval globally
+var cpuUsageInterval = {},  // set interval globally
+    optionalLength = 55;    // set optional data lenght globally
 
 /**
  * Get new data via ajax call and set it to given serie
  */
-function requestCpuUsageChartData(series, csrf, server, secret, interval) {
+function requestCpuUsageChartData(series, csrf, server, secret, interval, updateChart) {
     var address = '/ajax/server/' + server + '/metrics/cpu_usage/'; // ajax call adress
 
     $.ajax({
@@ -27,7 +28,11 @@ function requestCpuUsageChartData(series, csrf, server, secret, interval) {
             'interval': interval
         },
         success: function(data) {
-            series.addPoint(data[0], true, true);   // add new point to chart serie
+            if (updateChart) {
+                series.addPoint(data[0], true, true);   // add new point to chart serie
+            } else {
+                series.setData(addFirstChartData(data)) // add data set to chart serie
+            }
         },
         error: function(data, textStatus, errorThrown) {
             // console.log('error: ' + textStatus);
@@ -37,12 +42,30 @@ function requestCpuUsageChartData(series, csrf, server, secret, interval) {
 }
 
 /**
+ * Check, fill and sort given data with global parametrs
+ */
+function addFirstChartData(data) {
+    var optionalData = [],          // empty optional data array
+        dataLength = data.length;   // current data lenght
+
+    for (var i = 0; i < (optionalLength - dataLength); i++) {
+        optionalData.push([
+            (data[0][0] - (i + 1) * 3), // set timestamp value
+            null                        // set cpu usage value
+        ]);
+    }
+
+    optionalData = optionalData.concat(data);   // fill data to optional lenght
+    return data.reverse();          // chart need reverted data
+}
+
+/**
  * Call or stop interval update action (via parameter updateChart parameter)
  */
 function updateCpuUsageChart(series, csrf, server, secret, interval, duration, updateChart) {
     if (updateChart) {
         cpuUsageInterval = setInterval(function () {    // start update by duration
-            requestCpuUsageChartData(series, csrf, server, secret, interval)    // update chart data
+            requestCpuUsageChartData(series, csrf, server, secret, interval, true)    // update chart data
         }, duration);
     } else {
         window.clearInterval(cpuUsageInterval);         // stop current interval
@@ -53,43 +76,14 @@ function updateCpuUsageChart(series, csrf, server, secret, interval, duration, u
  * Display given chart with actual data
  */
 function displayCpuUsageChart(chart, csrf, server, secret, interval) {
-    var address = '/ajax/server/' + server + '/metrics/cpu_usage/'; // ajax call adress
-
-    $.ajax({    // ajax for actual chart data
-        url: address,
-        type: 'POST',
-        dataType: 'json',
-        headers: {
-            'X-CSRFToken': csrf
-        },
-        cache: false,
-        data: {
-            'server': server,
-            'secret': secret,
-            'interval': interval
-        },
-        success: function(data) {
-            if (data != null) {                 // check data and fill if needed
-                var optionalData = [],          // empty optional data array
-                    optionalLength = 55,        // optional data lenght
-                    dataLength = data.length;   // current data lenght
-
-                for (var i = 0; i < (optionalLength - dataLength); i++) {
-                    optionalData.push([
-                        (data[0][0] - (i + 1) * 3), // set timestamp value
-                        null                        // set cpu usage value
-                    ]);
-                }
-
-                optionalData = optionalData.concat(data);   // fill data to optional lenght
-                chart.series[0].setData(data.reverse());    // chart need reverted data
-            }
-        },
-        error: function(data, textStatus, errorThrown) {
-            // console.log('error: ' + textStatus);
-            // console.log('error: ' + errorThrown);
-        }
-    });
+    requestCpuUsageChartData(   // add new data to selected chart series
+        chart.series[0],
+        csrf,
+        server,
+        secret,
+        interval,
+        false
+    );
 }
 
 /**
