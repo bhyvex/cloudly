@@ -15,34 +15,34 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 TEMPLATE_DIRS = (
-	os.path.abspath(os.path.join(BASE_DIR, '..', 'templates')),
+    os.path.abspath(os.path.join(BASE_DIR, '..', 'templates')),
 )
 
 TEMPLATE_LOADERS = (
-	'django.template.loaders.filesystem.Loader', 
-	'django.template.loaders.app_directories.Loader',
+    'django.template.loaders.filesystem.Loader', 
+    'django.template.loaders.app_directories.Loader',
 )
 
 # Application definition
 
 INSTALLED_APPS = (
-	'django.contrib.auth',
-	'django.contrib.contenttypes',
-	'django.contrib.sessions',
-	'django.contrib.sites',
-	'django.contrib.messages',
-	'django.contrib.staticfiles',
-	'django.contrib.humanize',
-	# global templatetags
-	'cloudly',
-	# views
-	'amazon',
-	'dashboard',
-	'userprofile',
-	'vms',
-	'admin',
-	# devel
-	#'devel',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django.contrib.humanize',
+    # global templatetags
+    'cloudly',
+    # views
+    'amazon',
+    'dashboard',
+    'userprofile',
+    'vms',
+    'admin',
+    # devel
+    #'devel',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -69,7 +69,7 @@ DATABASES = {
 }
 
 TEMPLATE_DIRS = (
-	os.path.abspath(os.path.join(BASE_DIR, 'templates')),
+    os.path.abspath(os.path.join(BASE_DIR, 'templates')),
 )
 
 # Internationalization
@@ -91,7 +91,7 @@ LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
 
 STATICFILES_DIRS = (
-	os.path.abspath(os.path.join(BASE_DIR, 'static')),
+    os.path.abspath(os.path.join(BASE_DIR, 'static')),
 )
 
 STATICFILES_FINDERS = (
