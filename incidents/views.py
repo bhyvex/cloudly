@@ -25,21 +25,21 @@ from userprofile.views import _log_user_activity
 from django.contrib.auth.decorators import login_required
 
 @login_required()
-def incidents(request):	
+def incidents(request):    
 
-	print '-- system logs:'
+    print '-- system logs:'
 
-	user = request.user
-	profile = Profile.objects.get(user=request.user)
-	secret = profile.secret
+    user = request.user
+    profile = Profile.objects.get(user=request.user)
+    secret = profile.secret
 
-	print request.user
-	
-	ip = request.META['REMOTE_ADDR']
-	_log_user_activity(profile,"click","/logs/","logs",ip=ip)
+    print request.user
+    
+    ip = request.META['REMOTE_ADDR']
+    _log_user_activity(profile,"click","/logs/","logs",ip=ip)
 
-	user = request.user
-	user.last_login = datetime.datetime.now()
-	user.save()
-	
-	return render_to_response('incidents.html', {'profile':profile,}, context_instance=RequestContext(request))
+    user = request.user
+    user.last_login = datetime.datetime.now()
+    user.save()
+    
+    return render_to_response('incidents.html', {'profile':profile,}, context_instance=RequestContext(request))
