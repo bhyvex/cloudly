@@ -25,32 +25,32 @@ from userprofile.views import _log_user_activity
 
 
 def aws_test(request):
-	
-	aws = AWS.objects.get(user=request.user)
-	AWS_ACCESS_KEY=aws.AWS_ACCESS_KEY
-	AWS_ACCESS_SECRET=aws.AWS_SECRET_KEY
+    
+    aws = AWS.objects.get(user=request.user)
+    AWS_ACCESS_KEY=aws.AWS_ACCESS_KEY
+    AWS_ACCESS_SECRET=aws.AWS_SECRET_KEY
 
-	aws_conn = boto.ec2.connect_to_region("us-west-2",aws_access_key_id=AWS_ACCESS_KEY,aws_secret_access_key=AWS_ACCESS_SECRET)
+    aws_conn = boto.ec2.connect_to_region("us-west-2",aws_access_key_id=AWS_ACCESS_KEY,aws_secret_access_key=AWS_ACCESS_SECRET)
 
-	reservations = aws_conn.get_all_reservations()
+    reservations = aws_conn.get_all_reservations()
 
-	cloudwatch = boto.connect_cloudwatch()
-	metrics = cloudwatch.list_metrics()	
+    cloudwatch = boto.connect_cloudwatch()
+    metrics = cloudwatch.list_metrics()    
 
-	print 'AWS IMs metrics', metrics
+    print 'AWS IMs metrics', metrics
 
-	import datetime
-	user = request.user
-	user.last_login = datetime.datetime.now()
-	user.save()
-	
-	
-	for reservation in reservations:
+    import datetime
+    user = request.user
+    user.last_login = datetime.datetime.now()
+    user.save()
+    
+    
+    for reservation in reservations:
 
-		instances = reservation.instances
-		for instance in instances:
-			
-			print 'id', instance.id
-			print 'attributes', instance.__dict__
+        instances = reservation.instances
+        for instance in instances:
+            
+            print 'id', instance.id
+            print 'attributes', instance.__dict__
 
-	return HttpResponse(True)
+    return HttpResponse(True)
