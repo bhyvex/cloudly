@@ -208,8 +208,7 @@ $(function () {
                 csrf,
                 server,
                 secret,
-                interval,
-                duration
+                interval
             );
 
             updateCpuUsageChart(    // call new interval chart ajax update
@@ -228,8 +227,7 @@ $(function () {
             csrf,
             server,
             secret,
-            interval,
-            setDuration(interval)
+            interval
         );
     });
 });
