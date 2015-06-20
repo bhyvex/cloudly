@@ -666,8 +666,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
         processes = processes_
 
-        print processes
-
         processes_length = len(processes)
         processes_string = "{"
         processes_string += "'draw': 1,"
@@ -677,11 +675,8 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         processes_string += "}"
         
         processes = str(processes_string).replace(" u'"," '").replace("[u'","['").replace("'",'"')
-        #print processes
         
         return HttpResponse(processes, content_type="application/json")
-
-
 
     
     if(graph_type=="loadavg"):
@@ -709,6 +704,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
             tsdb_response = tsdb_response[0]['dps']
         
             for i in tsdb_response:
+                # XXX
                 #graphs_mixed_respose.append([int(i),round(float(tsdb_response[i]),2)])
                 print i
         
@@ -722,7 +718,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
         return HttpResponse(graphs_mixed_respose, content_type="application/json")
     
-    
+
         
     if(graph_type=="cpu_usage"):
 
