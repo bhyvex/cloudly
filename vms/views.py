@@ -691,6 +691,16 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         graph_interval = request.POST['interval']
 
         graphs_mixed_respose = []
+
+        if(graph_interval=="3m"):
+            params = {'start':'3m-ago','m':'avg:3s-avg:' + hwaddr + '.sys.loadavg'}
+        if(graph_interval=="15m"):
+            params = {'start':'15m-ago','m':'avg:15s-avg:' + hwaddr + '.sys.loadavg'}
+        if(graph_interval=="1h"):
+            params = {'start':'1h-ago','m':'avg:1m-avg:' + hwaddr + '.sys.loadavg'}
+        if(graph_interval=="1d"):
+            params = {'start':'1d-ago','m':'avg:30m-avg:' + hwaddr + '.sys.loadavg'}
+
                 
         graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
 
