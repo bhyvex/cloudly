@@ -686,22 +686,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
     
     if(graph_type=="loadavg"):
         
-        loadavg_ = []
-        loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-        
-        for i in loadavg: 
-            loadavg_.append(i)
-        loadavg = loadavg_
-    
-
         graphs_mixed_respose_ = []
-        graphs_mixed_respose = cpu_usage
-
-        for x in graphs_mixed_respose:
-            #aa = [int(x['date_created'].strftime("%s")), x['?','?','?']]
-            #graphs_mixed_respose_.append(aa)
-            pass
-
         graphs_mixed_respose = graphs_mixed_respose_
         graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
 
@@ -721,6 +706,8 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
             params = {'start':'15m-ago','m':'avg:15s-avg:' + hwaddr + '.sys.cpu'}
         if(graph_interval=="1h"):
             params = {'start':'1h-ago','m':'avg:1m-avg:' + hwaddr + '.sys.cpu'}
+        if(graph_interval=="1d"):
+            params = {'start':'1d-ago','m':'avg:30m-avg:' + hwaddr + '.sys.cpu'}
 
 
         if(params):
