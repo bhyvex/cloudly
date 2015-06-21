@@ -82,7 +82,7 @@ $(function () {
                 }
             },
             title: {
-                text: 'Server Load Average'
+                text: ''
             },
             subtitle: {
                 text: ''
