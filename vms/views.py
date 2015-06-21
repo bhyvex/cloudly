@@ -811,8 +811,8 @@ def server_view(request, hwaddr):
     networking = networking_
     
     mem_usage_ = []
-    mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-    for i in mem_usage: mem_usage_.append(i)
+    #mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+    #for i in mem_usage: mem_usage_.append(i)
     mem_usage = mem_usage_
 
     loadavg_ = []
