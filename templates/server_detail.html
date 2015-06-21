@@ -183,15 +183,23 @@
 
                 <div class="panel-body">
 
-                    <div id="loadavg"></div>
-                    <hr/>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Load Average
+                            <ul id="loadavg_interval" class="nav nav-tabs">
+                                <li><a href="#" data-interval="1h">1 hour</a></li>
+                                <li><a href="#" data-interval="15m">15 min</a></li>
+                                <li><a href="#" data-interval="3m" class="active">3 min</a></li>
+                        </div>
+                        <div id="loadavg"></div>
+                    </div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             CPU Usage
                             <ul id="cpu_usage_interval" class="nav nav-tabs">
-                                <li><a href="#" data-interval="1h" data-duration="3m">1 hour</a></li>
-                                <li><a href="#" data-interval="15m" data-duration="15s">15 min</a></li>
-                                <li><a href="#" data-interval="3m" data-duration="3s" class="active">3 min</a></li>
+                                <li><a href="#" data-interval="1h">1 hour</a></li>
+                                <li><a href="#" data-interval="15m">15 min</a></li>
+                                <li><a href="#" data-interval="3m" class="active">3 min</a></li>
                         </div>
                         <div id="cpu_usage"></div>
                     </div>

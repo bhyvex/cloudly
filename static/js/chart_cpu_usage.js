@@ -11,7 +11,7 @@ var cpuUsageInterval = {},  // set interval globally
 /**
  * Get new data via ajax call and set it to given serie
  */
-function requestCpuUsageChartData(series, csrf, server, secret, interval, updateChart) {
+function requestChartData(series, csrf, server, secret, interval, updateChart) {
     var address = '/ajax/server/' + server + '/metrics/cpu_usage/'; // ajax call adress
 
     $.ajax({
@@ -28,10 +28,12 @@ function requestCpuUsageChartData(series, csrf, server, secret, interval, update
             'interval': interval
         },
         success: function(data) {
-            if (updateChart) {
-                series.addPoint(data[0], true, true);   // add new point to chart serie
-            } else {
-                series.setData(addFirstChartData(data)) // add data set to chart serie
+            for (var i = 0; i < data.length; i++) {
+                if (updateChart) {
+                    series[i].addPoint(data[i][0], true, true);   // add new point to chart serie
+                } else {
+                    series[i].setData(addFirstChartData(data[i])) // add data set to chart serie
+                }
             }
         },
         error: function(data, textStatus, errorThrown) {
@@ -65,7 +67,7 @@ function addFirstChartData(data) {
 function updateCpuUsageChart(series, csrf, server, secret, interval, duration, updateChart) {
     if (updateChart) {
         cpuUsageInterval = setInterval(function () {    // start update by duration
-            requestCpuUsageChartData(series, csrf, server, secret, interval, true)    // update chart data
+            requestChartData(series, csrf, server, secret, interval, true)    // update chart data
         }, duration);
     } else {
         window.clearInterval(cpuUsageInterval);         // stop current interval
@@ -76,8 +78,8 @@ function updateCpuUsageChart(series, csrf, server, secret, interval, duration, u
  * Display given chart with actual data
  */
 function displayCpuUsageChart(chart, csrf, server, secret, interval) {
-    requestCpuUsageChartData(   // add new data to selected chart series
-        chart.series[0],
+    requestChartData(   // add new data to selected chart series
+        chart.series,
         csrf,
         server,
         secret,
@@ -119,7 +121,7 @@ $(function () {
                 events: {
                     load: function() {
                         updateCpuUsageChart(    // set chart first draw update action
-                            this.series[0],
+                            this.series,
                             csrf,
                             server,
                             secret,
@@ -194,7 +196,7 @@ $(function () {
                 duration = setDuration(interval);           // set duration
 
             updateCpuUsageChart(    // stop last ajax chart update
-                cpuUsageChart.series[0],
+                cpuUsageChart.series,
                 csrf,
                 server,
                 secret,
@@ -212,7 +214,7 @@ $(function () {
             );
 
             updateCpuUsageChart(    // call new interval chart ajax update
-                cpuUsageChart.series[0],
+                cpuUsageChart.series,
                 csrf,
                 server,
                 secret,
