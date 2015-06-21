@@ -465,72 +465,10 @@
 <script src="/static/highcharts/exporting.js"></script>
 <script src="/static/js/server_detail.js"></script>
 <script src="/static/js/chart_cpu_usage.js"></script>
+<script src="/static/js/chart_loadavg.js"></script>
 <script src="/static/js/processes_table_ajax.js"></script>
 
 <script type="text/javascript">
-
-$(function () {
-    $('#loadavg').highcharts({
-        chart: {
-            type: 'spline'
-        },
-        title: {
-            text: 'Server Load Average'
-        },
-        subtitle: {
-            text: ''
-        },
-        xAxis: {
-            type: 'datetime',
-            title: {
-                text: 'Datetime'
-            }
-        },
-        yAxis: {
-            title: {
-                text: 'Load'
-            },
-            min: 0
-        },
-        tooltip: {
-            headerFormat: '<b>{series.name}:</b> {point.y:.2f}<br>',
-            pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}'
-        },
-
-        series: [{
-            name: '5-mins',
-            // Define the data points. All series have a dummy year
-            // of 1970/71 in order to be compared on the same x axis. Note
-            // that in JavaScript, months start at 0 for January, 1 for February etc.
-            data: [
-        {% for x in loadavg %}
-           [Date.UTC({{x|dict_get:"date_created"|date:"Y"}}, {{x|dict_get:"date_created"|date:"n"|substract_one}}, {{x|dict_get:"date_created"|date:"j"}}, {{x|dict_get:"date_created"|date:"H"}}, {{x|dict_get:"date_created"|date:"i"}}, {{x|dict_get:"date_created"|date:"s"}}), {{x|dict_get:"loadavg"|dict_get:0}}   ],
-        {% endfor %}
-            ]
-        }, {
-            name: '10-mins',
-            data: [
-        {% for y in loadavg %}
-           [Date.UTC({{y|dict_get:"date_created"|date:"Y"}}, {{y|dict_get:"date_created"|date:"n"|substract_one}}, {{y|dict_get:"date_created"|date:"j"}}, {{y|dict_get:"date_created"|date:"H"}}, {{y|dict_get:"date_created"|date:"i"}}, {{y|dict_get:"date_created"|date:"s"}}), {{y|dict_get:"loadavg"|dict_get:1}}   ],
-        {% endfor %}
-            ]
-        }, {
-            name: '15-mins',
-            data: [
-        {% for z in loadavg %}
-           [Date.UTC({{z|dict_get:"date_created"|date:"Y"}}, {{z|dict_get:"date_created"|date:"n"|substract_one}}, {{z|dict_get:"date_created"|date:"j"}}, {{z|dict_get:"date_created"|date:"H"}}, {{z|dict_get:"date_created"|date:"i"}}, {{z|dict_get:"date_created"|date:"s"}}), {{z|dict_get:"loadavg"|dict_get:2}}   ],
-        {% endfor %}
-            ]
-        }]
-    });
-});
-
-
-
-
-
-
-
 $(function () {
     $('#mem_usage').highcharts({
         chart: {
