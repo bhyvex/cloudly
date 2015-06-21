@@ -98,6 +98,8 @@ function setDuration(interval) {
         duration = '15000';
     } else if (interval == '1h') {
         duration = '60000';
+    } else if (interval == '1d') {
+        duration = '30000';
     }
     return duration;
 }
