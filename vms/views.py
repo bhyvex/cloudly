@@ -682,39 +682,51 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
     if(graph_type=="loadavg"):
         
         params = None
-        params = None
         graph_interval = request.POST['interval']
 
-        graphs_mixed_respose = []
+        graphs_mixed_respose = [[],[],[]]
 
-        if(graph_interval=="3m"):
-            params = {'start':'3m-ago','m':'avg:3s-avg:' + hwaddr + '.sys.loadavg'}
-        if(graph_interval=="15m"):
-            params = {'start':'15m-ago','m':'avg:15s-avg:' + hwaddr + '.sys.loadavg'}
-        if(graph_interval=="1h"):
-            params = {'start':'1h-ago','m':'avg:1m-avg:' + hwaddr + '.sys.loadavg'}
-        if(graph_interval=="1d"):
-            params = {'start':'1d-ago','m':'avg:30m-avg:' + hwaddr + '.sys.loadavg'}
+
+        loadavg_specific_queries = ['1-min','5-mins','15-mins']
+       
+        count = 0
+
+        for i in loadavg_specific_queries:
+            
+            if(graph_interval=="3m"):
+                params = {'start':'3m-ago','m':'avg:3s-avg:' + hwaddr + '.sys.loadavg'}
+            if(graph_interval=="15m"):
+                params = {'start':'15m-ago','m':'avg:15s-avg:' + hwaddr + '.sys.loadavg'}
+            if(graph_interval=="1h"):
+                params = {'start':'1h-ago','m':'avg:1m-avg:' + hwaddr + '.sys.loadavg'}
+            if(graph_interval=="1d"):
+                params = {'start':'1d-ago','m':'avg:30m-avg:' + hwaddr + '.sys.loadavg'}
 
                 
-        if(params):
-
-            tsdb = requests.get('http://hbase:4242/api/query',params=params)
-            tsdb_response = json.loads(tsdb.text)
+            
+            params_ = params
+            m = params['m'] + "{avg="+i+"}"
+            params_['m'] = m
+            
+            
+            tsdb = requests.get('http://hbase:4242/api/query', params=params_)
+            params = params_
+            
+            tsdb_response = json.loads(tsdb.text)                
             tsdb_response = tsdb_response[0]['dps']
-        
+            
             for i in tsdb_response:
-                # XXX
-                #graphs_mixed_respose.append([int(i),round(float(tsdb_response[i]),2)])
-                print i
-        
-            graphs_mixed_respose = sorted(graphs_mixed_respose, key=itemgetter(0))
-            graphs_mixed_respose = graphs_mixed_respose[::-1]
-            graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
+                graphs_mixed_respose[count].append([int(i),round(float(tsdb_response[i]),2)])
+            
+            graphs_mixed_respose[count] = sorted(graphs_mixed_respose[count], key=itemgetter(0))
+            graphs_mixed_respose[count] = graphs_mixed_respose[count][::-1]
 
-        
-        print 'graphs_mixed_respose'
-        print graphs_mixed_respose
+            count += 1
+
+
+        graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")                                                                                                           
+
+        pprint(graphs_mixed_respose)
 
         return HttpResponse(graphs_mixed_respose, content_type="application/json")
     
@@ -749,8 +761,8 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
             graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
 
         
-        print 'graphs_mixed_respose'
-        print graphs_mixed_respose
+        #print 'graphs_mixed_respose'
+        #print graphs_mixed_respose
         
         return HttpResponse(graphs_mixed_respose, content_type="application/json")
 
@@ -804,8 +816,8 @@ def server_view(request, hwaddr):
     mem_usage = mem_usage_
 
     loadavg_ = []
-    loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-    for i in loadavg: loadavg_.append(i)
+    #loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+    #for i in loadavg: loadavg_.append(i)
     loadavg = loadavg_
 
     activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
