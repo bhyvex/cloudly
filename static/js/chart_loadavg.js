@@ -22,9 +22,22 @@ function updateLoadAvgChart(address, series, csrf, server, secret, interval, dur
 }
 
 /**
+ * Call or stop interval update action (via parameter updateChart parameter)
+ */
+function updateLoadavgChart(address, series, csrf, server, secret, interval, duration, updateChart) {
+    if (updateChart) {
+        loadavgInterval = setInterval(function () {    // start update by duration
+            requestChartData(address, series, csrf, server, secret, interval, true)    // update chart data
+        }, duration);
+    } else {
+        window.clearInterval(loadavgInterval);         // stop current interval
+    }
+}
+
+/**
  * Display given chart with actual data
  */
-function displayLoadAvgChart(address, chart, csrf, server, secret, interval) {
+function displayLoadavgChart(address, chart, csrf, server, secret, interval) {
     requestChartData(   // add new data to selected chart series
         address, 
         chart.series,
@@ -111,8 +124,46 @@ $(function () {
                 }
             ]
         });
+        
+        $('#loadavg_interval a').on('click', function() { // catch interval change action
+            var link = this,                                // create current object
+                interval = $(link).attr('data-interval'),   // get interval from data attribute
+                duration = setDuration(interval);           // set duration
 
-        displayLoadAvgChart(
+            updateLoadavgChart(    // stop last ajax chart update
+                addressLoadavg,
+                loadavgChart.series,
+                csrf,
+                server,
+                secret,
+                interval,
+                duration,
+                false
+            );
+
+            displayLoadavgChart(   // display chart with new interval
+                addressLoadavg,
+                loadavgChart,
+                csrf,
+                server,
+                secret,
+                interval
+            );
+
+            updateLoadavgChart(    // stop last ajax chart update
+                addressLoadavg,
+                loadavgChart.series,
+                csrf,
+                server,
+                secret,
+                interval,
+                duration,
+                true
+            );
+
+        });
+
+        displayLoadavgChart(   // display chart with new interval
             addressLoadavg,
             loadavgChart,
             csrf,
