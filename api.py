@@ -171,8 +171,17 @@ def ping():
     memory_usage_ = mongo.memory_usage
     memory_usage_.insert( memory_usage_metrics )
 
+    print '-'*100
+    print memory_usage
 
-
+    memory_tsdb_cmd = "put " + \
+        uuid.replace(':','-') + ".sys.memory " + \
+        str(int(time.time())) + " " + \
+        str(memory_usage['memory_used']) + \
+        " metric=memory_used" + \
+        "\n"
+        
+    print memory_tsdb_cmd
 
 
     disks_usage_metrics = {
