@@ -26,7 +26,7 @@ function requestChartData(address, series, csrf, server, secret, interval, updat
             'interval': interval
         },
         success: function(data) {
-            if (data !== undefined && data[0].length > 0) {
+            if (data !== undefined && data !== null && data[0].length > 0) {
                 for (var i = 0; i < data.length; i++) {
                     if (updateChart) {
                         series[i].addPoint(data[i][0], true, true);   // add new point to chart serie
@@ -99,7 +99,13 @@ function setDuration(interval) {
     } else if (interval == '1h') {
         duration = '60000';
     } else if (interval == '1d') {
-        duration = '30000';
+        duration = '300000';
+    } else if (interval == '7d') {
+        duration = '1800000';
+    } else if (interval == '30d') {
+        duration = '43200000';
+    } else if (interval == 'at') {
+        duration = '1800000';
     }
     return duration;
 }
