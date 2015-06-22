@@ -141,7 +141,6 @@ def ping():
         str(loadavg[0]) + \
         " avg=1-min" + \
         "\n"
-
     loadavg_tsdb_cmd += "put " + \
         uuid.replace(':','-') + ".sys.loadavg " + \
         str(int(time.time())) + " " + \
@@ -180,7 +179,50 @@ def ping():
         str(memory_usage['memory_used']) + \
         " metric=memory_used" + \
         "\n"
+    memory_tsdb_cmd += "put " + \
+        uuid.replace(':','-') + ".sys.memory " + \
+        str(int(time.time())) + " " + \
+        str(memory_usage['swap_used']) + \
+        " metric=swap_used" + \
+        "\n"
+    memory_tsdb_cmd += "put " + \
+        uuid.replace(':','-') + ".sys.memory " + \
+        str(int(time.time())) + " " + \
+        str(memory_usage['memory_free']) + \
+        " metric=memory_free" + \
+        "\n"
+    memory_tsdb_cmd += "put " + \
+        uuid.replace(':','-') + ".sys.memory " + \
+        str(int(time.time())) + " " + \
+        str(memory_usage['swap_free']) + \
+        " metric=swap_free" + \
+        "\n"
+    memory_tsdb_cmd += "put " + \
+        uuid.replace(':','-') + ".sys.memory " + \
+        str(int(time.time())) + " " + \
+        str(memory_usage['swap_total']) + \
+        " metric=swap_total" + \
+        "\n"
+    memory_tsdb_cmd += "put " + \
+        uuid.replace(':','-') + ".sys.memory " + \
+        str(int(time.time())) + " " + \
+        str(memory_usage['swap_used_percentag']) + \
+        " metric=swap_used_percentag" + \
+        "\n"
+    memory_tsdb_cmd += "put " + \
+        uuid.replace(':','-') + ".sys.memory " + \
+        str(int(time.time())) + " " + \
+        str(memory_usage['memory_total']) + \
+        " metric=memory_total" + \
+        "\n"
+    memory_tsdb_cmd += "put " + \
+        uuid.replace(':','-') + ".sys.memory " + \
+        str(int(time.time())) + " " + \
+        str(memory_usage['memory_used_percentag']) + \
+        " metric=memory_used_percentag" + \
+        "\n"
         
+    
     print memory_tsdb_cmd
 
 
