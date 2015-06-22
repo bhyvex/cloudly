@@ -683,7 +683,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         loadavg_specific_queries = ['1-min','5-mins','15-mins']
        
         count = 0
-
         for i in loadavg_specific_queries:
             
             if(graph_interval=="3m"):
@@ -695,7 +694,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
             if(graph_interval=="1d"):
                 params = {'start':'1d-ago','m':'avg:30m-avg:' + hwaddr + '.sys.loadavg'}
 
-            
             params_ = params
             params_['m'] = params['m'] + "{avg="+i+"}"
             
