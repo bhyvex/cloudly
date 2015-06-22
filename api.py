@@ -218,7 +218,10 @@ def ping():
         str(memory_usage['memory_used_percentage']) + \
         " metric=memory_used_percentage"
     
-    print memory_tsdb_cmd
+    hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    hbase.connect(("hbase", 4242))
+    hbase.send(memory_tsdb_cmd)
+    hbase.close()
 
 
     disks_usage_metrics = {
