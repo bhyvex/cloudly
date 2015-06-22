@@ -218,8 +218,8 @@ def ping():
     memory_tsdb_cmd += "put " + \
         uuid.replace(':','-') + ".sys.memory " + \
         str(int(time.time())) + " " + \
-        str(memory_usage['memory_used_percentag']) + \
-        " metric=memory_used_percentag" + \
+        str(memory_usage['memory_used_percentage']) + \
+        " metric=memory_used_percentage" + \
         "\n"
         
     
