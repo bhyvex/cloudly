@@ -170,9 +170,6 @@ def ping():
     memory_usage_ = mongo.memory_usage
     memory_usage_.insert( memory_usage_metrics )
 
-    print '-'*100
-    print memory_usage
-
     memory_tsdb_cmd = "put " + \
         uuid.replace(':','-') + ".sys.memory " + \
         str(int(time.time())) + " " + \
@@ -221,7 +218,6 @@ def ping():
         str(memory_usage['memory_used_percentage']) + \
         " metric=memory_used_percentage" + \
         "\n"
-        
     
     print memory_tsdb_cmd
 
