@@ -161,7 +161,6 @@ def ping():
     hbase.close()
 
 
-
     memory_usage_metrics = {
         'secret': secret,
         'agent_version': agent_version,
@@ -171,6 +170,10 @@ def ping():
     }
     memory_usage_ = mongo.memory_usage
     memory_usage_.insert( memory_usage_metrics )
+
+
+
+
 
     disks_usage_metrics = {
         'secret': secret,
