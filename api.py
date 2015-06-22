@@ -206,8 +206,8 @@ def ping():
     memory_tsdb_cmd += "put " + \
         uuid.replace(':','-') + ".sys.memory " + \
         str(int(time.time())) + " " + \
-        str(memory_usage['swap_used_percentag']) + \
-        " metric=swap_used_percentag" + \
+        str(memory_usage['swap_used_percentage']) + \
+        " metric=swap_used_percentage" + \
         "\n"
     memory_tsdb_cmd += "put " + \
         uuid.replace(':','-') + ".sys.memory " + \
