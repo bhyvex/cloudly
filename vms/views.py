@@ -607,11 +607,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
     #for i in networking: networking_.append(i)
     #networking = networking_
     
-    #mem_usage_ = []
-    #mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-    #for i in mem_usage: mem_usage_.append(i)
-    #mem_usage = mem_usage_
-
     #activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
     
     
@@ -685,8 +680,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         graph_interval = request.POST['interval']
 
         graphs_mixed_respose = [[],[],[]]
-
-
         loadavg_specific_queries = ['1-min','5-mins','15-mins']
        
         count = 0
@@ -702,12 +695,9 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
             if(graph_interval=="1d"):
                 params = {'start':'1d-ago','m':'avg:30m-avg:' + hwaddr + '.sys.loadavg'}
 
-                
             
             params_ = params
-            m = params['m'] + "{avg="+i+"}"
-            params_['m'] = m
-            
+            params_['m'] = params['m'] + "{avg="+i+"}"
             
             tsdb = requests.get('http://hbase:4242/api/query', params=params_)
             params = params_
@@ -720,13 +710,9 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
             
             graphs_mixed_respose[count] = sorted(graphs_mixed_respose[count], key=itemgetter(0))
             graphs_mixed_respose[count] = graphs_mixed_respose[count][::-1]
-
             count += 1
 
-
         graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")                                                                                                           
-
-        pprint(graphs_mixed_respose)
 
         return HttpResponse(graphs_mixed_respose, content_type="application/json")
     
@@ -761,12 +747,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
             graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
 
         
-        #print 'graphs_mixed_respose'
-        #print graphs_mixed_respose
-        
         return HttpResponse(graphs_mixed_respose, content_type="application/json")
-
-
 
     return HttpResponse("sorry I don't understand")
 
