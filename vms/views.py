@@ -697,8 +697,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
                 params = {'start':'7d-ago','m':'avg:3h-avg:' + hwaddr + '.sys.loadavg'}
             if(graph_interval=="30d"):
                 params = {'start':'30d-ago','m':'avg:12h-avg:' + hwaddr + '.sys.loadavg'}
-            if(graph_interval=="at"):
-                params = {'start':'1d-ago','m':'avg:30m-avg:' + hwaddr + '.sys.loadavg'}
 
             params_ = params
             params_['m'] = params['m'] + "{avg="+i+"}"
@@ -740,8 +738,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
             params = {'start':'7d-ago','m':'avg:3h-avg:' + hwaddr + '.sys.cpu'}
         if(graph_interval=="30d"):
             params = {'start':'30d-ago','m':'avg:12h-avg:' + hwaddr + '.sys.cpu'}
-        if(graph_interval=="at"):
-            params = {'start':'1d-ago','m':'avg:30m-avg:' + hwaddr + '.sys.cpu'}
+
 
         if(params):
 
