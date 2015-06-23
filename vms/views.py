@@ -763,6 +763,20 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         graph_interval = request.POST['interval']
         graphs_mixed_respose = []
 
+        if(graph_interval=="3m"):
+            params = {'start':'3m-ago','m':'avg:3s-avg:' + hwaddr + '.sys.memory:{metric=memory_used}'}
+        if(graph_interval=="15m"):
+            params = {'start':'15m-ago','m':'avg:15s-avg:' + hwaddr + '.sys.memory:{metric=memory_used}'}
+        if(graph_interval=="1h"):
+            params = {'start':'1h-ago','m':'avg:1m-avg:' + hwaddr + '.sys.memory:{metric=memory_used}'}
+        if(graph_interval=="1d"):
+            params = {'start':'1d-ago','m':'avg:30m-avg:' + hwaddr + '.sys.memory:{metric=memory_used}'}
+        if(graph_interval=="7d"):
+            params = {'start':'7d-ago','m':'avg:3h-avg:' + hwaddr + '.sys.memory:{metric=memory_used}'}
+        if(graph_interval=="30d"):
+            params = {'start':'30d-ago','m':'avg:12h-avg:' + hwaddr + '.sys.memory:{metric=memory_used}'}
+
+
 
 
         graphs_mixed_respose = sorted(graphs_mixed_respose, key=itemgetter(0))
