@@ -756,7 +756,12 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         
         return HttpResponse(graphs_mixed_respose, content_type="application/json")
 
-    return HttpResponse("sorry I don't understand")
+
+    #if(graph_type=="mem_usage"):
+    #if(graph_type=="swap_usage"):
+
+
+    return HttpResponse("I'm sorry I don't understand")
 
 
 
