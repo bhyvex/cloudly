@@ -251,7 +251,10 @@ def ping():
         " metric=output_accept_bytes" + \
         "\n"
 
-    print networking_tsdb_cmd
+    hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    hbase.connect(("hbase", 4242))
+    hbase.send(networking_tsdb_cmd)
+    hbase.close()
 
 
     disks_usage_metrics = {
