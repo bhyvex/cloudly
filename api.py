@@ -197,26 +197,15 @@ def ping():
     memory_tsdb_cmd += "put " + \
         uuid.replace(':','-') + ".sys.memory " + \
         str(int(time.time())) + " " + \
-        str(memory_usage['swap_total']) + \
-        " metric=swap_total" + \
-        "\n"
-    memory_tsdb_cmd += "put " + \
-        uuid.replace(':','-') + ".sys.memory " + \
-        str(int(time.time())) + " " + \
-        str(memory_usage['swap_used_percentage']) + \
-        " metric=swap_used_percentage" + \
-        "\n"
-    memory_tsdb_cmd += "put " + \
-        uuid.replace(':','-') + ".sys.memory " + \
-        str(int(time.time())) + " " + \
         str(memory_usage['memory_total']) + \
         " metric=memory_total" + \
         "\n"
     memory_tsdb_cmd += "put " + \
         uuid.replace(':','-') + ".sys.memory " + \
         str(int(time.time())) + " " + \
-        str(memory_usage['memory_used_percentage']) + \
-        " metric=memory_used_percentage"
+        str(memory_usage['swap_total']) + \
+        " metric=swap_total" + \
+        "\n"
     
     hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     hbase.connect(("hbase", 4242))
