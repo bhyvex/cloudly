@@ -718,7 +718,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
         return HttpResponse(graphs_mixed_respose, content_type="application/json")
     
-
         
     if(graph_type=="cpu_usage"):
 
