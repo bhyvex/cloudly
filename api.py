@@ -226,6 +226,14 @@ def ping():
     networking_ = mongo.networking
     networking_.insert( networking_metrics )
 
+    networking_tsdb_cmd = "put " + \
+        uuid.replace(':','-') + ".sys.network " + \
+        str(int(time.time())) + " " + \
+        #str(memory_usage['memory_used']) + \
+        #" metric=memory_used" + \
+        "\n"
+
+
 
     disks_usage_metrics = {
         'secret': secret,
