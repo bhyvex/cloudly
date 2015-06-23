@@ -751,8 +751,8 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         
             graphs_mixed_respose = sorted(graphs_mixed_respose, key=itemgetter(0))
             graphs_mixed_respose = [graphs_mixed_respose[::-1],]
-            graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
 
+        graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
         
         return HttpResponse(graphs_mixed_respose, content_type="application/json")
 
@@ -777,7 +777,8 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
             params = {'start':'30d-ago','m':'avg:12h-avg:' + hwaddr + '.sys.memory:{metric=memory_used}'}
 
 
-
+        if(params):
+            pass
 
         graphs_mixed_respose = sorted(graphs_mixed_respose, key=itemgetter(0))
         graphs_mixed_respose = [graphs_mixed_respose[::-1],]
