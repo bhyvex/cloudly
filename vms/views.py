@@ -763,6 +763,12 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         graph_interval = request.POST['interval']
         graphs_mixed_respose = []
 
+
+
+        graphs_mixed_respose = sorted(graphs_mixed_respose, key=itemgetter(0))
+        graphs_mixed_respose = [graphs_mixed_respose[::-1],]
+        graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
+
         return HttpResponse(graphs_mixed_respose, content_type="application/json")
 
 
