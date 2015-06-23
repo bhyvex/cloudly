@@ -267,7 +267,6 @@ def ping():
     disks_usage_ = mongo.disks_usage
     disks_usage_.insert( disks_usage_metrics )
 
-
     return ("thanks", 201)
 
 
