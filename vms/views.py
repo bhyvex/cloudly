@@ -757,7 +757,15 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         return HttpResponse(graphs_mixed_respose, content_type="application/json")
 
 
-    #if(graph_type=="mem_usage"):
+    if(graph_type=="mem_usage"):
+
+        params = None
+        graph_interval = request.POST['interval']
+        graphs_mixed_respose = []
+
+        return HttpResponse(graphs_mixed_respose, content_type="application/json")
+
+
     #if(graph_type=="swap_usage"):
 
 
