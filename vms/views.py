@@ -775,7 +775,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         if(graph_interval=="30d"):
             params = {'start':'30d-ago','m':'avg:12h-avg:' + hwaddr + '.sys.memory'}
 
-
         if(graph_type=="mem_usage"):
             params['m'] += ":{metric=memory_used}"
  
