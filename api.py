@@ -213,16 +213,6 @@ def ping():
     hbase.close()
 
 
-    disks_usage_metrics = {
-        'secret': secret,
-        'agent_version': agent_version,
-        'uuid': uuid,
-        'disks_usage': disks_usage,
-        'date_created': datetime.datetime.utcnow(),
-    }
-    disks_usage_ = mongo.disks_usage
-    disks_usage_.insert( disks_usage_metrics )
-
     networking_metrics = {
         'secret': secret,
         'agent_version': agent_version,
@@ -235,6 +225,18 @@ def ping():
     }
     networking_ = mongo.networking
     networking_.insert( networking_metrics )
+
+
+    disks_usage_metrics = {
+        'secret': secret,
+        'agent_version': agent_version,
+        'uuid': uuid,
+        'disks_usage': disks_usage,
+        'date_created': datetime.datetime.utcnow(),
+    }
+    disks_usage_ = mongo.disks_usage
+    disks_usage_.insert( disks_usage_metrics )
+
 
     return ("thanks", 201)
 
