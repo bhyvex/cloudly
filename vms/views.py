@@ -602,11 +602,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
     #for i in disks_usage: disks_usage_.append(i)
     #disks_usage = disks_usage_
     
-    #networking_ = []
-    #networking = mongo.networking.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-    #for i in networking: networking_.append(i)
-    #networking = networking_
-    
     #activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
     
     
