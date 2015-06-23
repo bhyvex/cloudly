@@ -228,11 +228,30 @@ def ping():
 
     networking_tsdb_cmd = "put " + \
         uuid.replace(':','-') + ".sys.network " + \
-        str(int(time.time())) + " "
-        #str(memory_usage['memory_used'])
-        #" metric=memory_used"
-        #"\n"
+        str(int(time.time())) + " " + \
+        str(networking['input_accept_packets']) + \
+        " metric=input_accept_packets" + \
+        "\n"
+    networking_tsdb_cmd += "put " + \
+        uuid.replace(':','-') + ".sys.network " + \
+        str(int(time.time())) + " " + \
+        str(networking['input_accept_bytes']) + \
+        " metric=input_accept_bytes" + \
+        "\n"
+    networking_tsdb_cmd += "put " + \
+        uuid.replace(':','-') + ".sys.network " + \
+        str(int(time.time())) + " " + \
+        str(networking['output_accept_packets']) + \
+        " metric=output_accept_packets" + \
+        "\n"
+    networking_tsdb_cmd += "put " + \
+        uuid.replace(':','-') + ".sys.network " + \
+        str(int(time.time())) + " " + \
+        str(networking['output_accept_bytes']) + \
+        " metric=output_accept_bytes" + \
+        "\n"
 
+    print networking_tsdb_cmd
 
 
     disks_usage_metrics = {
