@@ -229,8 +229,8 @@ def ping():
     networking_tsdb_cmd = "put " + \
         uuid.replace(':','-') + ".sys.network " + \
         str(int(time.time())) + " " + \
-        #str(memory_usage['memory_used']) + \
-        #" metric=memory_used" + \
+        #str(memory_usage['memory_used']) + 
+        #" metric=memory_used" + 
         "\n"
 
 
