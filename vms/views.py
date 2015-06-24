@@ -798,7 +798,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         return HttpResponse(graphs_mixed_respose, content_type="application/json")
 
 
-    if(graph_type=="networking"):
+    if(graph_type=="network_input_packets" or graph_type=="network_input_bytes" or graph_type=="network_output_packets" or graph_type=="network_output_bytes"):
 
         params = None
         graph_interval = request.POST['interval']
