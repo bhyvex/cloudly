@@ -60,6 +60,188 @@ mongo = client.cloudly
 def date_handler(obj):
     return obj.isoformat() if hasattr(obj, 'isoformat') else obj
 
+  
+@login_required()
+def aws_vm_view(request,vm_name):
+
+    print '-- aws_vm_view'
+
+    print request.user
+            
+    user = request.user
+    profile = userprofile.objects.get(user=request.user)
+    user.last_login = datetime.datetime.now()
+    user.save()
+    
+    aws_access_key = profile.aws_access_key
+    aws_secret_key = profile.aws_secret_key
+
+    ip = request.META['REMOTE_ADDR']
+    _log_user_activity(profile,"click","/aws/"+vm_name,"aws_vm_view",ip=ip)
+
+    vms_cache = Cache.objects.get(user=user)
+    vm_cache =  vms_cache.vms_response
+    vm_cache = base64.b64decode(vm_cache)
+
+    try:
+        vm_cache = pickle.loads(vm_cache)[vm_name]
+    except:
+        return HttpResponse("XXX " + vm_name)
+
+    ec2_region = vm_cache['instance']['region']['name']
+
+    if(vm_cache['user_id']!=request.user.id):
+        return HttpResponse("access denied")
+        
+    
+    if(vms_cache.vms_console_output_cache):
+        
+        console_output = vms_cache.vms_console_output_cache
+    else:
+                
+        aws_access_key = profile.aws_access_key
+        aws_secret_key = profile.aws_secret_key
+        aws_ec2_verified = profile.aws_ec2_verified
+
+        ec2conn = boto.ec2.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
+        reservations = ec2conn.get_all_instances(instance_ids=[vm_name,])
+        instance = reservations[0].instances[0]
+
+        console_output = instance.get_console_output()
+        console_output = console_output.output
+
+        if(not console_output):
+            console_output = ""
+        vms_cache.vms_console_output_cache = console_output
+        vms_cache.save()
+    
+    end = datetime.datetime.utcnow()
+    start = end - datetime.timedelta(minutes=60)
+                    
+    ec2conn = boto.ec2.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
+    cloudwatch = boto.ec2.cloudwatch.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
+
+    metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id']}, metric_name="NetworkIn")[0]
+    networkin_datapoints = metric.query(start, end, 'Average', '')
+
+    metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id']}, metric_name="NetworkOut")[0]
+    networkout_datapoints = metric.query(start, end, 'Average', '')
+
+    metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id']}, metric_name="DiskReadOps")[0]
+    disk_readops_datapoints = metric.query(start, end, 'Average', '')
+
+    metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id']}, metric_name="DiskWriteOps")[0]
+    disk_writeops_datapoints = metric.query(start, end, 'Average', '')
+
+    metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id']}, metric_name="DiskReadBytes")[0]
+    disk_readbytes_datapoints = metric.query(start, end, 'Average', '')
+
+    metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id']}, metric_name="DiskWriteBytes")[0]
+    disk_writebytes_datapoints = metric.query(start, end, 'Average', '')
+
+    networkin_datapoints = json.dumps(networkin_datapoints,default=date_handler)
+    networkout_datapoints = json.dumps(networkout_datapoints,default=date_handler)
+    disk_readops_datapoints = json.dumps(disk_readops_datapoints,default=date_handler)
+    disk_writeops_datapoints = json.dumps(disk_writeops_datapoints,default=date_handler)
+    disk_readbytes_datapoints = json.dumps(disk_readbytes_datapoints,default=date_handler)
+    disk_writebytes_datapoints = json.dumps(disk_writebytes_datapoints,default=date_handler)
+
+    return render_to_response('aws_vm.html', {'vm_name':vm_name,'vm_cache':vm_cache,'console_output':console_output,'networkin_datapoints':networkin_datapoints,'networkout_datapoints':networkout_datapoints,'disk_readops_datapoints':disk_readops_datapoints,'disk_writeops_datapoints':disk_writeops_datapoints,'disk_readbytes_datapoints':disk_readbytes_datapoints,'disk_writebytes_datapoints':disk_writebytes_datapoints,}, context_instance=RequestContext(request))
+
+
+@login_required()
+def control_aws_vm(request, vm_name, action):
+    
+    print request.user
+
+    user = request.user
+    profile = userprofile.objects.get(user=request.user)
+    user.last_login = datetime.datetime.now()
+    user.save()
+
+    ip = request.META['REMOTE_ADDR']
+    _log_user_activity(profile,"click","/aws/"+vm_name+"/"+action+"/","control_aws_vm",ip=ip)
+    
+    vms_cache = Cache.objects.get(user=user)
+    vm_cache =  vms_cache.vms_response
+    vm_cache = base64.b64decode(vm_cache)
+    vm_cache = pickle.loads(vm_cache)[vm_name]
+
+    if(vm_cache['user_id']!=request.user.id):
+        return HttpResponse("access denied")
+
+    aws_access_key = profile.aws_access_key
+    aws_secret_key = profile.aws_secret_key
+    aws_ec2_verified = profile.aws_ec2_verified
+
+    ec2_region = vm_cache['instance']['region']['name']
+    ec2conn = boto.ec2.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
+
+    if(action=="reboot"):
+        ec2conn.reboot_instances([vm_name,])
+    if(action=="start"):
+        ec2conn.start_instances([vm_name,])
+    if(action=="stop"):
+        ec2conn.stop_instances([vm_name,])        
+    if(action=="terminate"):
+        ec2conn.terminate_instances([vm_name,])
+
+    return HttpResponseRedirect("/")
+
+
+@login_required()
+def server_view(request, hwaddr):
+
+    print '-- server_view'
+    print request.user
+
+    user = request.user
+    profile = userprofile.objects.get(user=request.user)
+    
+    ip = request.META['REMOTE_ADDR']
+    _log_user_activity(profile,"click","/server/"+hwaddr,"server_view",ip=ip)
+    
+    hwaddr_orig = hwaddr
+    hwaddr = hwaddr.replace('-',':')
+    server = mongo.servers.find_one({'secret':profile.secret,'uuid':hwaddr,})
+
+    server_status = "Running"
+    if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>20):
+        server_status = "Stopped"
+        if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>1800):
+            server_status = "Offline"        
+
+    try:
+        uuid = server['uuid']        
+    except:
+        return HttpResponse("access denied")
+
+
+    disks_usage_ = []
+    disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+    for i in disks_usage: disks_usage_.append(i)
+    disks_usage = disks_usage_
+    
+    networking_ = []
+    #networking = mongo.networking.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+    #for i in networking: networking_.append(i)
+    networking = networking_
+    
+    mem_usage_ = []
+    #mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+    #for i in mem_usage: mem_usage_.append(i)
+    mem_usage = mem_usage_
+
+    loadavg_ = []
+    #loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+    #for i in loadavg: loadavg_.append(i)
+    loadavg = loadavg_
+
+    activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
+
+    return render_to_response('server_detail.html', {'secret':profile.secret,'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'disks_usage':disks_usage,'mem_usage':mem_usage,'loadavg':loadavg,'networking':networking,}, context_instance=RequestContext(request))
+ 
+
 @login_required()
 def ajax_vms_refresh(request):
     
@@ -242,94 +424,6 @@ def ajax_vms_refresh(request):
     print 'VMs cache was succesfully updated.'
 
     return HttpResponse("ALLDONE")
-    
-
-@login_required()
-def aws_vm_view(request,vm_name):
-
-    print '-- aws_vm_view'
-
-    print request.user
-            
-    user = request.user
-    profile = userprofile.objects.get(user=request.user)
-    user.last_login = datetime.datetime.now()
-    user.save()
-    
-    aws_access_key = profile.aws_access_key
-    aws_secret_key = profile.aws_secret_key
-
-    ip = request.META['REMOTE_ADDR']
-    _log_user_activity(profile,"click","/aws/"+vm_name,"aws_vm_view",ip=ip)
-
-    vms_cache = Cache.objects.get(user=user)
-    vm_cache =  vms_cache.vms_response
-    vm_cache = base64.b64decode(vm_cache)
-
-    try:
-        vm_cache = pickle.loads(vm_cache)[vm_name]
-    except:
-        return HttpResponse("XXX " + vm_name)
-
-    ec2_region = vm_cache['instance']['region']['name']
-
-    if(vm_cache['user_id']!=request.user.id):
-        return HttpResponse("access denied")
-        
-    
-    if(vms_cache.vms_console_output_cache):
-        
-        console_output = vms_cache.vms_console_output_cache
-    else:
-                
-        aws_access_key = profile.aws_access_key
-        aws_secret_key = profile.aws_secret_key
-        aws_ec2_verified = profile.aws_ec2_verified
-
-        ec2conn = boto.ec2.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
-        reservations = ec2conn.get_all_instances(instance_ids=[vm_name,])
-        instance = reservations[0].instances[0]
-
-        console_output = instance.get_console_output()
-        console_output = console_output.output
-
-        if(not console_output):
-            console_output = ""
-        vms_cache.vms_console_output_cache = console_output
-        vms_cache.save()
-    
-    end = datetime.datetime.utcnow()
-    start = end - datetime.timedelta(minutes=60)
-                    
-    ec2conn = boto.ec2.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
-    cloudwatch = boto.ec2.cloudwatch.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
-
-    metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id']}, metric_name="NetworkIn")[0]
-    networkin_datapoints = metric.query(start, end, 'Average', '')
-
-    metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id']}, metric_name="NetworkOut")[0]
-    networkout_datapoints = metric.query(start, end, 'Average', '')
-
-    metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id']}, metric_name="DiskReadOps")[0]
-    disk_readops_datapoints = metric.query(start, end, 'Average', '')
-
-    metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id']}, metric_name="DiskWriteOps")[0]
-    disk_writeops_datapoints = metric.query(start, end, 'Average', '')
-
-    metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id']}, metric_name="DiskReadBytes")[0]
-    disk_readbytes_datapoints = metric.query(start, end, 'Average', '')
-
-    metric = cloudwatch.list_metrics(dimensions={'InstanceId':vm_cache['id']}, metric_name="DiskWriteBytes")[0]
-    disk_writebytes_datapoints = metric.query(start, end, 'Average', '')
-
-    networkin_datapoints = json.dumps(networkin_datapoints,default=date_handler)
-    networkout_datapoints = json.dumps(networkout_datapoints,default=date_handler)
-    disk_readops_datapoints = json.dumps(disk_readops_datapoints,default=date_handler)
-    disk_writeops_datapoints = json.dumps(disk_writeops_datapoints,default=date_handler)
-    disk_readbytes_datapoints = json.dumps(disk_readbytes_datapoints,default=date_handler)
-    disk_writebytes_datapoints = json.dumps(disk_writebytes_datapoints,default=date_handler)
-
-    return render_to_response('aws_vm.html', {'vm_name':vm_name,'vm_cache':vm_cache,'console_output':console_output,'networkin_datapoints':networkin_datapoints,'networkout_datapoints':networkout_datapoints,'disk_readops_datapoints':disk_readops_datapoints,'disk_writeops_datapoints':disk_writeops_datapoints,'disk_readbytes_datapoints':disk_readbytes_datapoints,'disk_writebytes_datapoints':disk_writebytes_datapoints,}, context_instance=RequestContext(request))
 
 
 @login_required()
@@ -526,46 +620,6 @@ def ajax_aws_graphs(request, instance_id, graph_type="all"):
     
     # XXX TBD
     return HttpResponse("data " + instance_id + "=" + str(instance) + " ** " + graph_type.upper())
-
-
-@login_required()
-def control_aws_vm(request, vm_name, action):
-    
-    print request.user
-
-    user = request.user
-    profile = userprofile.objects.get(user=request.user)
-    user.last_login = datetime.datetime.now()
-    user.save()
-
-    ip = request.META['REMOTE_ADDR']
-    _log_user_activity(profile,"click","/aws/"+vm_name+"/"+action+"/","control_aws_vm",ip=ip)
-    
-    vms_cache = Cache.objects.get(user=user)
-    vm_cache =  vms_cache.vms_response
-    vm_cache = base64.b64decode(vm_cache)
-    vm_cache = pickle.loads(vm_cache)[vm_name]
-
-    if(vm_cache['user_id']!=request.user.id):
-        return HttpResponse("access denied")
-
-    aws_access_key = profile.aws_access_key
-    aws_secret_key = profile.aws_secret_key
-    aws_ec2_verified = profile.aws_ec2_verified
-
-    ec2_region = vm_cache['instance']['region']['name']
-    ec2conn = boto.ec2.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
-
-    if(action=="reboot"):
-        ec2conn.reboot_instances([vm_name,])
-    if(action=="start"):
-        ec2conn.start_instances([vm_name,])
-    if(action=="stop"):
-        ec2conn.stop_instances([vm_name,])        
-    if(action=="terminate"):
-        ec2conn.terminate_instances([vm_name,])
-
-    return HttpResponseRedirect("/")
 
 
 @login_required()
@@ -849,61 +903,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
 
     return HttpResponse("I'm sorry I don't understand")
-
-
-
-@login_required()
-def server_view(request, hwaddr):
-
-    print '-- server_view'
-    print request.user
-
-    user = request.user
-    profile = userprofile.objects.get(user=request.user)
-    
-    ip = request.META['REMOTE_ADDR']
-    _log_user_activity(profile,"click","/server/"+hwaddr,"server_view",ip=ip)
-    
-    hwaddr_orig = hwaddr
-    hwaddr = hwaddr.replace('-',':')
-    server = mongo.servers.find_one({'secret':profile.secret,'uuid':hwaddr,})
-
-    server_status = "Running"
-    if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>20):
-        server_status = "Stopped"
-        if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>1800):
-            server_status = "Offline"        
-
-    try:
-        uuid = server['uuid']        
-    except:
-        return HttpResponse("access denied")
-
-
-    disks_usage_ = []
-    disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-    for i in disks_usage: disks_usage_.append(i)
-    disks_usage = disks_usage_
-    
-    networking_ = []
-    #networking = mongo.networking.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-    #for i in networking: networking_.append(i)
-    networking = networking_
-    
-    mem_usage_ = []
-    #mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-    #for i in mem_usage: mem_usage_.append(i)
-    mem_usage = mem_usage_
-
-    loadavg_ = []
-    #loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-    #for i in loadavg: loadavg_.append(i)
-    loadavg = loadavg_
-
-    activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
-
-    return render_to_response('server_detail.html', {'secret':profile.secret,'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'disks_usage':disks_usage,'mem_usage':mem_usage,'loadavg':loadavg,'networking':networking,}, context_instance=RequestContext(request))
-    
+   
 
 def ajax_virtual_machines_box(request):
             
