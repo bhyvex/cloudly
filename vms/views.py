@@ -830,8 +830,17 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
             params['m'] += ":{metric=network_output_bytes}"
 
             
-        # XXX 
+        if(params):
 
+            tsdb = requests.get('http://hbase:4242/api/query',params=params)
+            tsdb_response = json.loads(tsdb.text)
+            tsdb_response = tsdb_response[0]['dps']
+        
+            for i in tsdb_response:
+                graphs_mixed_respose.append([int(i),round(float(tsdb_response[i]),2)])
+        
+            graphs_mixed_respose = sorted(graphs_mixed_respose, key=itemgetter(0))
+            graphs_mixed_respose = [graphs_mixed_respose[::-1],]
 
         graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
 
