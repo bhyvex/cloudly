@@ -453,7 +453,6 @@ def ajax_virtual_machines(request):
         if(vm_cache[vm]["instance"]["state"]["state"].lower()!="terminated"):
 
             data_median = 0
-            # XXX reset isotope_filter_classes to "" here...
             isotope_filter_classes = " offline linux "
             
             try:
@@ -616,9 +615,8 @@ def ajax_aws_graphs(request, instance_id, graph_type="all"):
     metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance_id}, metric_name="CPUUtilization")[0]
     cpu_utilization_datapoints = metric.query(start, end, 'Average', 'Percent',period=3600)
     
-    print cpu_utilization_datapoints
+    #print cpu_utilization_datapoints
     
-    # XXX TBD
     return HttpResponse("data " + instance_id + "=" + str(instance) + " ** " + graph_type.upper())
 
 
