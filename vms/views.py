@@ -405,7 +405,6 @@ def ajax_vms_refresh(request):
                     # This is how you list all possible values on the response....
                     # print ec2conn.list_metrics()
                     
-                    # CPUUtilization
                     try:
                         metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="CPUUtilization")[0]
                     except: continue
@@ -614,9 +613,7 @@ def ajax_aws_graphs(request, instance_id, graph_type="all"):
 
     metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance_id}, metric_name="CPUUtilization")[0]
     cpu_utilization_datapoints = metric.query(start, end, 'Average', 'Percent',period=3600)
-    
-    #print cpu_utilization_datapoints
-    
+        
     return HttpResponse("data " + instance_id + "=" + str(instance) + " ** " + graph_type.upper())
 
 
@@ -897,7 +894,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
 
         return HttpResponse(graphs_mixed_respose, content_type="application/json")
-
 
 
     return HttpResponse("I'm sorry I don't understand")
