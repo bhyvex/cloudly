@@ -634,8 +634,8 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
                 process_start_time = line[8]+'-'+line[9]
                 process_command = line[10:]
 
-                process_name = ""
                 # XXX work in process name
+                process_name = "XXX"
 
                 process = {            
                     'user': process_user,
