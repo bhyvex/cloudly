@@ -174,37 +174,37 @@ def ping():
         uuid.replace(':','-') + ".sys.memory " + \
         str(int(time.time())) + " " + \
         str(memory_usage['memory_used']) + \
-        " metric=memory_used" + \
+        " mm=memory_used" + \
         "\n"
     memory_tsdb_cmd += "put " + \
         uuid.replace(':','-') + ".sys.memory " + \
         str(int(time.time())) + " " + \
         str(memory_usage['swap_used']) + \
-        " metric=swap_used" + \
+        " mm=swap_used" + \
         "\n"
     memory_tsdb_cmd += "put " + \
         uuid.replace(':','-') + ".sys.memory " + \
         str(int(time.time())) + " " + \
         str(memory_usage['memory_free']) + \
-        " metric=memory_free" + \
+        " mm=memory_free" + \
         "\n"
     memory_tsdb_cmd += "put " + \
         uuid.replace(':','-') + ".sys.memory " + \
         str(int(time.time())) + " " + \
         str(memory_usage['swap_free']) + \
-        " metric=swap_free" + \
+        " mm=swap_free" + \
         "\n"
     memory_tsdb_cmd += "put " + \
         uuid.replace(':','-') + ".sys.memory " + \
         str(int(time.time())) + " " + \
         str(memory_usage['memory_total']) + \
-        " metric=memory_total" + \
+        " mm=memory_total" + \
         "\n"
     memory_tsdb_cmd += "put " + \
         uuid.replace(':','-') + ".sys.memory " + \
         str(int(time.time())) + " " + \
         str(memory_usage['swap_total']) + \
-        " metric=swap_total" + \
+        " mm=swap_total" + \
         "\n"
     
     hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -230,25 +230,25 @@ def ping():
         uuid.replace(':','-') + ".sys.network " + \
         str(int(time.time())) + " " + \
         str(networking['input_accept_packets']) + \
-        " metric=input_accept_packets" + \
+        " mm=input_accept_packets" + \
         "\n"
     networking_tsdb_cmd += "put " + \
         uuid.replace(':','-') + ".sys.network " + \
         str(int(time.time())) + " " + \
         str(networking['input_accept_bytes']) + \
-        " metric=input_accept_bytes" + \
+        " mm=input_accept_bytes" + \
         "\n"
     networking_tsdb_cmd += "put " + \
         uuid.replace(':','-') + ".sys.network " + \
         str(int(time.time())) + " " + \
         str(networking['output_accept_packets']) + \
-        " metric=output_accept_packets" + \
+        " mm=output_accept_packets" + \
         "\n"
     networking_tsdb_cmd += "put " + \
         uuid.replace(':','-') + ".sys.network " + \
         str(int(time.time())) + " " + \
         str(networking['output_accept_bytes']) + \
-        " metric=output_accept_bytes" + \
+        " mm=output_accept_bytes" + \
         "\n"
 
     hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

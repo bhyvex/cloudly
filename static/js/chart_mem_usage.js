@@ -55,7 +55,7 @@ $(function () {
             csrf = $('input[name="csrfmiddlewaretoken"]').val(),// request middlevare secure
             secret = $('input[name="secret"]').val(),           // request authenticate
             interval = '3m',                                    // base interval setting
-            addressMemUsage = '/ajax/server/' + server + '/metrics/memUsage/'; // ajax call adress
+            addressMemUsage = '/ajax/server/' + server + '/metrics/mem_usage/'; // ajax call adress
 
         Highcharts.setOptions({ // set global chart options
             global: {
@@ -103,21 +103,21 @@ $(function () {
             },
             tooltip: {
                 formatter: function () {
-                    return '<b>' + Highcharts.numberFormat(this.y, 0)
-                        + this.series.name + '</b><br/>'
+                    return '<strong>' + Highcharts.numberFormat((this.y/1024/1000), 0, '.', ',') + ' MB ' 
+                        + 'used</strong><br/>'
                         + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x*1000);
 
                 }
             },
             series: [
                 {
-                    name: '',
+                    name: 'Memery Usage',
                     data: []
                 }
             ]
         });
         
-        $('#memUsage_interval a').on('click', function() { // catch interval change action
+        $('#mem_usage_interval a').on('click', function() { // catch interval change action
             var link = this,                                // create current object
                 interval = $(link).attr('data-interval'),   // get interval from data attribute
                 duration = setDuration(interval);           // set duration

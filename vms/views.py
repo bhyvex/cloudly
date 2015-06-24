@@ -786,7 +786,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         if(graph_interval=="30d"):
             params = {'start':'30d-ago','m':'avg:12h-avg:' + hwaddr + '.sys.cpu'}
 
-
         if(params):
 
             tsdb = requests.get('http://hbase:4242/api/query',params=params)
@@ -824,14 +823,12 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
             params = {'start':'30d-ago','m':'avg:12h-avg:' + hwaddr + '.sys.memory'}
 
         if(graph_type=="mem_usage"):
-            params['m'] += ":{metric=memory_used}"
+            params['m'] += "{mm=memory_used}"
  
         if(graph_type=="swap_usage"):
-            params['m'] += ":{metric=swap_used}"
-        
+            params['m'] += "{mm=swap_used}"
         
         if(params):
-
             tsdb = requests.get('http://hbase:4242/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
             tsdb_response = tsdb_response[0]['dps']
@@ -867,16 +864,16 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
             params = {'start':'30d-ago','m':'avg:12h-avg:' + hwaddr + '.sys.network'}
 
         if(graph_type=="network_input_packets"):
-            params['m'] += ":{metric=network_input_packets}"
+            params['m'] += "{mm=network_input_packets}"
 
         if(graph_type=="network_input_bytes"):
-            params['m'] += ":{metric=network_input_bytes}"
+            params['m'] += "{mm=network_input_bytes}"
 
         if(graph_type=="network_output_packets"):
-            params['m'] += ":{metric=network_output_packets}"
+            params['m'] += "{mm=network_output_packets}"
 
         if(graph_type=="network_output_bytes"):
-            params['m'] += ":{metric=network_output_bytes}"
+            params['m'] += "{mm=network_output_bytes}"
 
             
         if(params):

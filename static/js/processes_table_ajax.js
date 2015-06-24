@@ -1,6 +1,6 @@
-//
-// Pipelining function for DataTables. To be used to the `ajax` option of DataTables
-//
+/**
+ * Pipelining function for DataTables. To be used to the `ajax` option of DataTables
+ */
 $.fn.dataTable.pipeline = function (opts) {
 	// Configuration options
 	var conf = $.extend({
