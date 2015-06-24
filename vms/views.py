@@ -799,7 +799,17 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
 
     if(graph_type=="networking"):
-        pass
+
+        params = None
+        graph_interval = request.POST['interval']
+        graphs_mixed_respose = []
+
+
+
+        graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
+
+        return HttpResponse(graphs_mixed_respose, content_type="application/json")
+
 
 
     return HttpResponse("I'm sorry I don't understand")
