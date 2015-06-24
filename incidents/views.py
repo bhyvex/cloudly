@@ -27,14 +27,12 @@ from django.contrib.auth.decorators import login_required
 @login_required()
 def incidents(request):    
 
-    print '-- system logs:'
-
+    print '-- system logs:', request.user
+    
     user = request.user
     profile = Profile.objects.get(user=request.user)
     secret = profile.secret
 
-    print request.user
-    
     ip = request.META['REMOTE_ADDR']
     _log_user_activity(profile,"click","/logs/","logs",ip=ip)
 
