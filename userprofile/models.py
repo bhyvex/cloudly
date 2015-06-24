@@ -47,7 +47,7 @@ class Profile(models.Model):
     aws_s3_verified = models.BooleanField(default=False)    
     aws_cloudfront_verified = models.BooleanField(default=False)    
     
-    aws_automatic_backups = models.BooleanField(default=True)
+    aws_automatic_backups = models.BooleanField(default=False)
 
     pricing_plan = models.IntegerField(default=0)
     
