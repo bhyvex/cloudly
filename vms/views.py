@@ -749,11 +749,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
             params = params_
             
             tsdb_response = json.loads(tsdb.text)              
-            try:
-                tsdb_response = tsdb_response[0]['dps']
-            except:
-                print '*** WTF ERRROR '*500, tsdb_response
-                tsdb_response = []
+            tsdb_response = tsdb_response[0]['dps']
             
             for i in tsdb_response:
                 graphs_mixed_respose[count].append([int(i),round(float(tsdb_response[i]),2)])
