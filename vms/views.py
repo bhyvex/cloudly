@@ -860,16 +860,16 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
             params = {'start':'30d-ago','m':'avg:12h-avg:' + hwaddr + '.sys.network'}
 
         if(graph_type=="network_input_packets"):
-            params['m'] += "{mm=network_input_packets}"
+            params['m'] += "{mm=input_accept_packets}"
 
         if(graph_type=="network_input_bytes"):
-            params['m'] += "{mm=network_input_bytes}"
+            params['m'] += "{mm=input_accept_bytes}"
 
         if(graph_type=="network_output_packets"):
-            params['m'] += "{mm=network_output_packets}"
+            params['m'] += "{mm=output_accept_packets}"
 
         if(graph_type=="network_output_bytes"):
-            params['m'] += "{mm=network_output_bytes}"
+            params['m'] += "{mm=output_accept_bytes}"
 
             
         if(params):
