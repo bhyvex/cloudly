@@ -4,6 +4,7 @@ var server = $('input[name="hwaddr"]').val(),           // server identifier
     secret = $('input[name="secret"]').val(),           // request authenticate
     interval = '3m',                                    // base interval setting
     optionalLength = 55,                                // set optional data lenght globally
+    addressServerInfo = '/ajax/server/' + server + '/metrics/server_info/', // ajax call adress
     addressLoadavg = '/ajax/server/' + server + '/metrics/loadavg/', // ajax call adress
     addressCpuUsage = '/ajax/server/' + server + '/metrics/cpu_usage/', // ajax call adress
     addressMemUsage = '/ajax/server/' + server + '/metrics/mem_usage/'; // ajax call adress
@@ -23,7 +24,36 @@ var server = $('input[name="hwaddr"]').val(),           // server identifier
     };
 })(jQuery);
 
-function deactivePanel() {
+(function($) { 
+    $.fn.updateProgressBar = function(data) {
+        console.log(this);
+    };
+})(jQuery);
+
+function updateServerInfo(csrf, server, secret) {
+    console.log(csrf);
+    $.ajax({
+        url: addressServerInfo,
+        type: 'POST',
+        dataType: 'json',
+        headers: {
+            'X-CSRFToken': csrf
+        },
+        cache: false,
+        data: {
+            'server': server,
+            'secret': secret
+        },
+        success: function(data) {
+            console.log(data);
+            $('.cpu_usage_progess_bar').updateProgressBar(data);
+        },
+        error: function(data, textStatus, errorThrown) {
+            console.log('error: ' + textStatus);
+            console.log('error: ' + errorThrown);
+        }
+    });
+
 };
 
 /**
@@ -111,6 +141,6 @@ $(document).ready(function() {
         }
     });
 
-    //   updateServerInfo();
+    updateServerInfo(csrf, server, secret);
 });
 
