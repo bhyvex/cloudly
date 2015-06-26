@@ -247,9 +247,37 @@
                 </div>
 
                 <div class="panel-body">
-
+                    
                     <div id="inbound_bytes"></div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Inbound Traffic
+                            <ul id="inbound_traffic_interval" class="nav nav-tabs">
+                                <li><a href="#" data-interval="30d">30 days</a></li>
+                                <li><a href="#" data-interval="7d">7 days</a></li>
+                                <li><a href="#" data-interval="1d">1 day</a></li>
+                                <li><a href="#" data-interval="1h">1 hour</a></li>
+                                <li><a href="#" data-interval="15m">15 min</a></li>
+                                <li><a href="#" data-interval="3m" class="active">3 min</a></li>
+                        </div>
+                        <div id="inbound_traffic"></div>
+                    </div>
+
+
                     <div id="outbound_bytes"></div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Outbound Traffic
+                            <ul id="outbound_traffic_interval" class="nav nav-tabs">
+                                <li><a href="#" data-interval="30d">30 days</a></li>
+                                <li><a href="#" data-interval="7d">7 days</a></li>
+                                <li><a href="#" data-interval="1d">1 day</a></li>
+                                <li><a href="#" data-interval="1h">1 hour</a></li>
+                                <li><a href="#" data-interval="15m">15 min</a></li>
+                                <li><a href="#" data-interval="3m" class="active">3 min</a></li>
+                        </div>
+                        <div id="outbound_traffic"></div>
+                    </div>
 
                     {% comment %}
                         <hr/>
@@ -499,7 +527,6 @@
 
 
 
-
 {% if not server_status|lower = "running" %}
 <div class="panel-body">
     Server agent has gone offline.
@@ -523,6 +550,8 @@
 <script src="/static/js/chart_cpu_usage.js"></script>
 <script src="/static/js/chart_loadavg.js"></script>
 <script src="/static/js/chart_mem_usage.js"></script>
+<script src="/static/js/chart_outbound_traffic.js"></script>
+<script src="/static/js/chart_inbound_traffic.js"></script>
 <script src="/static/js/processes_table_ajax.js"></script>
 
 <script type="text/javascript">
@@ -568,188 +597,6 @@ $(function () {
         ]
     });
 });
-
-
-
-$(function () {
-    $('#inbound_bytes').highcharts({
-        chart: {
-            type: 'spline'
-        },
-        title: {
-            text: 'Inbound Traffic'
-        },
-        subtitle: {
-            text: ''
-        },
-        xAxis: {
-            type: 'datetime',
-            title: {
-                text: 'Datetime'
-            }
-        },
-        yAxis: {
-            title: {
-                text: 'bytes'
-            },
-            min: 0
-        },
-        tooltip: {
-            headerFormat: '<b>{series.name}:</b> {point.y:.2f}<br>',
-            pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}'
-        },
-
-        series: [{
-            name: 'input_accept_bytes',
-            // Define the data points. All series have a dummy year
-            // of 1970/71 in order to be compared on the same x axis. Note
-            // that in JavaScript, months start at 0 for January, 1 for February etc.
-            data: [
-        {% for x in networking %}
-           [Date.UTC({{x|dict_get:"date_created"|date:"Y"}}, {{x|dict_get:"date_created"|date:"n"|substract_one}}, {{x|dict_get:"date_created"|date:"j"}}, {{x|dict_get:"date_created"|date:"H"}}, {{x|dict_get:"date_created"|date:"i"}}, {{x|dict_get:"date_created"|date:"s"}}), {{x|dict_get:"input_accept_bytes"}}   ],
-        {% endfor %}
-            ]
-        },
-        ]
-    });
-});
-
-
-
-$(function () {
-    $('#outbound_bytes').highcharts({
-        chart: {
-            type: 'spline'
-        },
-        title: {
-            text: 'Outbound Traffic'
-        },
-        subtitle: {
-            text: ''
-        },
-        xAxis: {
-            type: 'datetime',
-            title: {
-                text: 'Datetime'
-            }
-        },
-        yAxis: {
-            title: {
-                text: 'bytes'
-            },
-            min: 0
-        },
-        tooltip: {
-            headerFormat: '<b>{series.name}:</b> {point.y:.2f}<br>',
-            pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}'
-        },
-
-        series: [{
-            name: 'output_accept_bytes',
-            // Define the data points. All series have a dummy year
-            // of 1970/71 in order to be compared on the same x axis. Note
-            // that in JavaScript, months start at 0 for January, 1 for February etc.
-            data: [
-        {% for x in networking %}
-           [Date.UTC({{x|dict_get:"date_created"|date:"Y"}}, {{x|dict_get:"date_created"|date:"n"|substract_one}}, {{x|dict_get:"date_created"|date:"j"}}, {{x|dict_get:"date_created"|date:"H"}}, {{x|dict_get:"date_created"|date:"i"}}, {{x|dict_get:"date_created"|date:"s"}}), {{x|dict_get:"output_accept_bytes"}}   ],
-        {% endfor %}
-            ]
-        },
-        ]
-    });
-});
-
-
-{% comment %}
-$(function () {
-    $('#inbound_packets').highcharts({
-        chart: {
-            type: 'spline'
-        },
-        title: {
-            text: 'Inbound Traffic (packets)'
-        },
-        subtitle: {
-            text: ''
-        },
-        xAxis: {
-            type: 'datetime',
-            title: {
-                text: 'Datetime'
-            }
-        },
-        yAxis: {
-            title: {
-                text: 'packets'
-            },
-            min: 0
-        },
-        tooltip: {
-            headerFormat: '<b>{series.name}:</b> {point.y:.2f}<br>',
-            pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}'
-        },
-
-        series: [{
-            name: 'input_accept_packets',
-            // Define the data points. All series have a dummy year
-            // of 1970/71 in order to be compared on the same x axis. Note
-            // that in JavaScript, months start at 0 for January, 1 for February etc.
-            data: [
-        {% for x in networking %}
-           [Date.UTC({{x|dict_get:"date_created"|date:"Y"}}, {{x|dict_get:"date_created"|date:"n"|substract_one}}, {{x|dict_get:"date_created"|date:"j"}}, {{x|dict_get:"date_created"|date:"H"}}, {{x|dict_get:"date_created"|date:"i"}}, {{x|dict_get:"date_created"|date:"s"}}), {{x|dict_get:"input_accept_packets"}}   ],
-        {% endfor %}
-            ]
-        },
-        ]
-    });
-});
-
-
-
-$(function () {
-    $('#outbound_packets').highcharts({
-        chart: {
-            type: 'spline'
-        },
-        title: {
-            text: 'Outbound Traffic (packets)'
-        },
-        subtitle: {
-            text: ''
-        },
-        xAxis: {
-            type: 'datetime',
-            title: {
-                text: 'Datetime'
-            }
-        },
-        yAxis: {
-            title: {
-                text: 'packets'
-            },
-            min: 0
-        },
-        tooltip: {
-            headerFormat: '<b>{series.name}:</b> {point.y:.2f}<br>',
-            pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}'
-        },
-
-        series: [{
-            name: 'output_accept_packets',
-            // Define the data points. All series have a dummy year
-            // of 1970/71 in order to be compared on the same x axis. Note
-            // that in JavaScript, months start at 0 for January, 1 for February etc.
-            data: [
-        {% for x in networking %}
-           [Date.UTC({{x|dict_get:"date_created"|date:"Y"}}, {{x|dict_get:"date_created"|date:"n"|substract_one}}, {{x|dict_get:"date_created"|date:"j"}}, {{x|dict_get:"date_created"|date:"H"}}, {{x|dict_get:"date_created"|date:"i"}}, {{x|dict_get:"date_created"|date:"s"}}), {{x|dict_get:"output_accept_packets"}}   ],
-        {% endfor %}
-            ]
-        },
-        ]
-    });
-});
-{% endcomment %}
-
 
 {% for disk in server|dict_get:"disks_usage" %}
 
