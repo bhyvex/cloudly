@@ -481,6 +481,31 @@
         </div>
     </div><!--/row-->
 
+    <div class="row">
+        <div class="col-xs-12">
+            <div id="serverActivity" class="panel panel-default">
+                <div class="panel-heading">
+                    {% if server_status|lower = "running" %}
+                    <h2><i class="fa fa-forumbee"></i>Fixed Problems</h2>
+                    {% else %}
+                    <h2><i class="fa fa-forumbee"></i>Last Server Words</h2>
+                    {% endif %}
+                    <div class="panel-actions">
+                        <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+                        <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                        <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                TBD
+                </div>
+
+            </div>
+        </div>
+    </div><!--/row-->
+
+
 
 
 
