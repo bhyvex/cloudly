@@ -11,7 +11,7 @@ var memUsageInterval = {},  // set interval globally
 /**
  * Call or stop interval update action (via parameter updateChart parameter)
  */
-function updateLoadAvgChart(address, series, csrf, server, secret, interval, duration, updateChart) {
+function updateMemUsageChart(address, series, csrf, server, secret, interval, duration, updateChart) {
     if (updateChart) {
         memUsageInterval = setInterval(function () {    // start update by duration
             requestChartData(address, series, csrf, server, secret, interval, true)    // update chart data
@@ -68,7 +68,7 @@ $(function () {
                 renderTo: 'mem_usage',
                 events: {
                     load: function() {
-                        updateLoadAvgChart(    // set chart first draw update action
+                        updateMemUsageChart(    // set chart first draw update action
                             addressMemUsage,
                             this.series,
                             csrf,
@@ -106,7 +106,6 @@ $(function () {
                     return '<strong>' + Highcharts.numberFormat((this.y/1024/1000), 0, '.', ',') + ' MB ' 
                         + 'used</strong><br/>'
                         + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x*1000);
-
                 }
             },
             series: [
