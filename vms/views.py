@@ -653,6 +653,12 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
     
     #activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
     
+    if(graph_type=="server_info"):
+    
+        print 'server', server
+        graphs_mixed_respose = str(server).replace("u'","'")                                                                                                           
+        return HttpResponse(graphs_mixed_respose, content_type="application/json")
+
     
     if(graph_type=="processes"):
 
