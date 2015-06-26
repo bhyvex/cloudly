@@ -54,6 +54,8 @@ $ pip install pymongo
 
 <pre>
 $ apt-get install git
+$ sudo adduser cloudly
+$ su - cloudly
 $ git clone https://github.com/jparicka/cloudly.git cloudly
 </pre>
 
