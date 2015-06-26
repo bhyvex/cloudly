@@ -292,12 +292,36 @@
                     <tbody>
                         {% for disk in server|dict_get:"disks_usage" %}
                         <tr>
-                            <td>{{disk|dict_get:0}}</td>
-                            <td>{{disk|dict_get:1|filesizeformat}}</td>
-                            <td>{{disk|dict_get:2|filesizeformat}}</td>
-                            <td>{{disk|dict_get:3|filesizeformat}}</td>
-                            <td>{{disk|dict_get:4}}</td>
-                            <td>{{disk|dict_get:5}}</td>
+                            <td>
+                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}<font color="red">{% endif %}
+                                    {{disk|dict_get:0}}
+                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}</font>{% endif %}
+                            </td>
+                            <td>
+                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}<font color="red">{% endif %}
+                                    {{disk|dict_get:1|filesizeformat}}
+                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}</font>{% endif %}
+                            </td>
+                            <td>
+                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}<font color="red">{% endif %}
+                                    {{disk|dict_get:2|filesizeformat}}
+                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}</font>{% endif %}
+                            </td>
+                            <td>
+                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}<font color="red">{% endif %}
+                                    {{disk|dict_get:3|filesizeformat}}
+                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}</font>{% endif %}
+                            </td>
+                            <td>
+                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}<font color="red">{% endif %}
+                                    {{disk|dict_get:4}}
+                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}</font>{% endif %}
+                            </td>
+                            <td>
+                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}<font color="red">{% endif %}
+                                    {{disk|dict_get:5}}
+                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}</font>{% endif %}
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
