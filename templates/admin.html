@@ -43,8 +43,8 @@
 								<th>Servers</th>
 								<th>Registered</th>
 								<th>Last Seen</th>
-								<th>AWS Regions</th>
 								<th>Access Key</th>
+								<th>AWS Regions</th>
 								<th>EC2 <font size=1>verified</font></th>
 								<th>S3 <font size=1>verified</font></th>
 								<th>CF <font size=1>verified</font></th>
@@ -67,12 +67,12 @@
 								</td>
 								<td><font size=2>{{p.user.date_joined|naturaltime}}</font></td>
 								<td><font size=2>{{p.user.last_login|naturaltime}}</font></td>
-								<td>{% if p.aws_ec2_verified %}{{p.aws_enabled_regions}}{% else %}-{% endif %}</td>
 								<td>
 									{% if p.aws_access_key %}
 									{{p.aws_access_key|shorten_key}}
 									{% else %}-{% endif %}
 								</td>
+								<td>{% if p.aws_ec2_verified %}{{p.aws_enabled_regions}}{% else %}-{% endif %}</td>
 								<td>{{p.aws_ec2_verified}}</td>
 								<td>{{p.aws_s3_verified}}</td>
 								<td>{{p.aws_cloudfront_verified}}</td>
