@@ -684,6 +684,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
                 process_command = line[10:]
 
                 # XXX work in process name
+                # XXX employ clean_ps_command from cloudly extra tags over here...
                 process_name = "XXX"
 
                 process = {            
