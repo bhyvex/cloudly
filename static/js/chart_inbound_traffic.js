@@ -5,21 +5,7 @@
  * (code standards: http://javascript.crockford.com/code.html)
  */
 
-var inboundTrafficInterval = {},  // set interval globally
-    optionalLength = 55;   // set optional data lenght globally
-
-/**
- * Call or stop interval update action (via parameter updateChart parameter)
- */
-function updateInboundTrafficChart(address, series, csrf, server, secret, interval, duration, updateChart) {
-    if (updateChart) {
-        inboundTrafficInterval = setInterval(function () {    // start update by duration
-            requestChartData(address, series, csrf, server, secret, interval, true)    // update chart data
-        }, duration);
-    } else {
-        window.clearInterval(inboundTrafficInterval);         // stop current interval
-    }
-}
+var inboundTrafficInterval = {};  // set interval globally
 
 /**
  * Call or stop interval update action (via parameter updateChart parameter)
@@ -51,19 +37,6 @@ function displayInboundTrafficChart(address, chart, csrf, server, secret, interv
 
 $(function () {
     $(document).ready(function () {
-        console.log('aksdjhfkasjdhfkashdfiuhweIUFHAS');
-        var server = $('input[name="hwaddr"]').val(),           // server identifier
-            csrf = $('input[name="csrfmiddlewaretoken"]').val(),// request middlevare secure
-            secret = $('input[name="secret"]').val(),           // request authenticate
-            interval = '3m',                                    // base interval setting
-            addressInboundTraffic = '/ajax/server/' + server + '/metrics/network_input_bytes/'; // ajax call adress
-
-        Highcharts.setOptions({ // set global chart options
-            global: {
-                useUTC: false   // set UTC by TSDB setting
-            }
-        });
-
         var inboundTrafficChart = new Highcharts.Chart({  // create chart object
             chart: {
                 renderTo: 'inbound_traffic',

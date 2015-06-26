@@ -5,21 +5,7 @@
  * (code standards: http://javascript.crockford.com/code.html)
  */
 
-var memUsageInterval = {},  // set interval globally
-    optionalLength = 55;   // set optional data lenght globally
-
-/**
- * Call or stop interval update action (via parameter updateChart parameter)
- */
-function updateMemUsageChart(address, series, csrf, server, secret, interval, duration, updateChart) {
-    if (updateChart) {
-        memUsageInterval = setInterval(function () {    // start update by duration
-            requestChartData(address, series, csrf, server, secret, interval, true)    // update chart data
-        }, duration);
-    } else {
-        window.clearInterval(memUsageInterval);         // stop current interval
-    }
-}
+var memUsageInterval = {};  // set interval globally
 
 /**
  * Call or stop interval update action (via parameter updateChart parameter)
@@ -51,18 +37,6 @@ function displayMemUsageChart(address, chart, csrf, server, secret, interval) {
 
 $(function () {
     $(document).ready(function () {
-        var server = $('input[name="hwaddr"]').val(),           // server identifier
-            csrf = $('input[name="csrfmiddlewaretoken"]').val(),// request middlevare secure
-            secret = $('input[name="secret"]').val(),           // request authenticate
-            interval = '3m',                                    // base interval setting
-            addressMemUsage = '/ajax/server/' + server + '/metrics/mem_usage/'; // ajax call adress
-
-        Highcharts.setOptions({ // set global chart options
-            global: {
-                useUTC: false   // set UTC by TSDB setting
-            }
-        });
-
         var memUsageChart = new Highcharts.Chart({  // create chart object
             chart: {
                 renderTo: 'mem_usage',
