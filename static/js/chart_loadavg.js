@@ -11,7 +11,7 @@ var loadavgInterval = {},  // set interval globally
 /**
  * Call or stop interval update action (via parameter updateChart parameter)
  */
-function updateLoadAvgChart(address, series, csrf, server, secret, interval, duration, updateChart) {
+function updateLoadavgChart(address, series, csrf, server, secret, interval, duration, updateChart) {
     if (updateChart) {
         loadavgInterval = setInterval(function () {    // start update by duration
             requestChartData(address, series, csrf, server, secret, interval, true)    // update chart data
@@ -68,7 +68,7 @@ $(function () {
                 renderTo: 'loadavg',
                 events: {
                     load: function() {
-                        updateLoadAvgChart(    // set chart first draw update action
+                        updateLoadavgChart(    // set chart first draw update action
                             addressLoadavg,
                             this.series,
                             csrf,
