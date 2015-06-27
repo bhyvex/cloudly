@@ -282,6 +282,7 @@ Finally, install the python-redis and django-redis bindings, like so:
 <pre>
 $ sudo pip install redis
 $ sudo pip install django-redis-cache
+$ sudo pip install django-redis-sessions
 </pre>
 
 
