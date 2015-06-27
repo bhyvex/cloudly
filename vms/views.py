@@ -60,19 +60,19 @@ mongo = client.cloudly
 def date_handler(obj):
     return obj.isoformat() if hasattr(obj, 'isoformat') else obj
 
-  
+
 @login_required()
 def aws_vm_view(request,vm_name):
 
     print '-- aws_vm_view'
 
     print request.user
-            
+
     user = request.user
     profile = userprofile.objects.get(user=request.user)
     user.last_login = datetime.datetime.now()
     user.save()
-    
+
     aws_access_key = profile.aws_access_key
     aws_secret_key = profile.aws_secret_key
 
@@ -92,13 +92,13 @@ def aws_vm_view(request,vm_name):
 
     if(vm_cache['user_id']!=request.user.id):
         return HttpResponse("access denied")
-        
-    
+
+
     if(vms_cache.vms_console_output_cache):
-        
+
         console_output = vms_cache.vms_console_output_cache
     else:
-                
+
         aws_access_key = profile.aws_access_key
         aws_secret_key = profile.aws_secret_key
         aws_ec2_verified = profile.aws_ec2_verified
@@ -114,10 +114,10 @@ def aws_vm_view(request,vm_name):
             console_output = ""
         vms_cache.vms_console_output_cache = console_output
         vms_cache.save()
-    
+
     end = datetime.datetime.utcnow()
     start = end - datetime.timedelta(minutes=60)
-                    
+
     ec2conn = boto.ec2.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
     cloudwatch = boto.ec2.cloudwatch.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
 
@@ -151,7 +151,7 @@ def aws_vm_view(request,vm_name):
 
 @login_required()
 def control_aws_vm(request, vm_name, action):
-    
+
     print request.user
 
     user = request.user
@@ -161,7 +161,7 @@ def control_aws_vm(request, vm_name, action):
 
     ip = request.META['REMOTE_ADDR']
     _log_user_activity(profile,"click","/aws/"+vm_name+"/"+action+"/","control_aws_vm",ip=ip)
-    
+
     vms_cache = Cache.objects.get(user=user)
     vm_cache =  vms_cache.vms_response
     vm_cache = base64.b64decode(vm_cache)
@@ -182,7 +182,7 @@ def control_aws_vm(request, vm_name, action):
     if(action=="start"):
         ec2conn.start_instances([vm_name,])
     if(action=="stop"):
-        ec2conn.stop_instances([vm_name,])        
+        ec2conn.stop_instances([vm_name,])
     if(action=="terminate"):
         ec2conn.terminate_instances([vm_name,])
 
@@ -197,10 +197,10 @@ def server_view(request, hwaddr):
 
     user = request.user
     profile = userprofile.objects.get(user=request.user)
-    
+
     ip = request.META['REMOTE_ADDR']
     _log_user_activity(profile,"click","/server/"+hwaddr,"server_view",ip=ip)
-    
+
     hwaddr_orig = hwaddr
     hwaddr = hwaddr.replace('-',':')
     server = mongo.servers.find_one({'secret':profile.secret,'uuid':hwaddr,})
@@ -209,10 +209,10 @@ def server_view(request, hwaddr):
     if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>20):
         server_status = "Stopped"
         if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>1800):
-            server_status = "Offline"        
+            server_status = "Offline"
 
     try:
-        uuid = server['uuid']        
+        uuid = server['uuid']
     except:
         return HttpResponse("access denied")
 
@@ -221,12 +221,12 @@ def server_view(request, hwaddr):
     disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
     for i in disks_usage: disks_usage_.append(i)
     disks_usage = disks_usage_
-    
+
     networking_ = []
     #networking = mongo.networking.find({'uuid':uuid,}).sort('_id',-1).limit(60)
     #for i in networking: networking_.append(i)
     networking = networking_
-    
+
     mem_usage_ = []
     #mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
     #for i in mem_usage: mem_usage_.append(i)
@@ -240,30 +240,30 @@ def server_view(request, hwaddr):
     activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
 
     return render_to_response('server_detail.html', {'secret':profile.secret,'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'disks_usage':disks_usage,'mem_usage':mem_usage,'loadavg':loadavg,'networking':networking,}, context_instance=RequestContext(request))
- 
+
 
 @login_required()
 def ajax_vms_refresh(request):
-    
+
     user = request.user
     profile = userprofile.objects.get(user=request.user)
 
     print 'Refreshing', user, 'VMs cache..'
-    
+
     aws_access_key = profile.aws_access_key
     aws_secret_key = profile.aws_secret_key
     aws_ec2_verified = profile.aws_ec2_verified
 
     virtual_machines = {}
     servers = mongo.servers.find({'secret':profile.secret,}).sort('_id',-1)
-    
+
     vms_cache = Cache.objects.get_or_create(user=user)
     vms_cache = vms_cache[0]
     vms_cache.is_updating = True
     vms_cache.save()
-                                    
+
     if(servers.count()):
-    
+
         print 'servers count', servers.count()
 
         for server in servers:
@@ -276,11 +276,11 @@ def ajax_vms_refresh(request):
             instance_metrics['instance']['user_id'] = request.user.id
             instance_metrics['instance']['state'] = {}
             instance_metrics['instance']['tags'] = {}
-            
+
             #instance_metrics["instance"]['tags']['Name'] = ''.join(x for x in unicodedata.normalize('NFKD', server['hostname']) if x in string.ascii_letters).lower()
             instance_metrics["instance"]['tags']['Name'] = server['hostname'].replace('.','-').lower()
 
-            uuid = server['uuid']        
+            uuid = server['uuid']
             cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
             #loadavg = mongo.loadavg.find({'uuid':uuid,}).sort('_id',-1).limit(60)
             #mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
@@ -296,32 +296,32 @@ def ajax_vms_refresh(request):
 
             print '** SERVER ', server['uuid'], 'last seen', (datetime.datetime.utcnow()-server['last_seen']).total_seconds(), 'secongs ago..'
 
-            
+
             cpu_usage_ = ""
             for usage in cpu_usage:
                 cpu_usage_ += str(usage['cpu_usage']['cpu_used'])
                 cpu_usage_ += ","
             cpu_usage = cpu_usage_[:-1]
-            
+
             cpu_usage_reversed = ""
             cpu_usage_array_reversed = []
             for i in cpu_usage.split(','): cpu_usage_array_reversed.insert(0,i)
             for i in cpu_usage_array_reversed: cpu_usage_reversed += str(i)+","
             cpu_usage_reversed = cpu_usage_reversed[:-1]
-            
+
             instance_metrics['cpu_utilization_datapoints'] = cpu_usage_reversed
             virtual_machines[server['uuid'].replace(':','-')] = instance_metrics
 
         #print 'virtual_machines', virtual_machines
-        
+
 
     if aws_ec2_verified:
-                
+
         aws_regions = profile.aws_enabled_regions.split(',')
         print 'AWS regions', aws_regions
-        
+
         for ec2_region in aws_regions:
-            
+
             if(ec2_region):
 
                 ec2conn = boto.ec2.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
@@ -336,18 +336,18 @@ def ajax_vms_refresh(request):
                     print vms_cache.is_updating
                     print vms_cache.vms_response
                     #return HttpResponse("access denied")
-                    
+
                 instances = [i for r in reservations for i in r.instances]
 
                 for instance in instances:
-                        
+
                     if not instance: continue
-                                            
+
                     instance_metrics = {}
                     instance_metrics['instance'] = {}
-                                            
+
                     print '** instance', instance.id, instance.private_ip_address
-                    
+
                     volumes = []
                     for volume in ec2conn.get_all_volumes(filters={'attachment.instance-id': instance.id}):
                         volumes.append([volume.id, volume.iops, volume.size,])
@@ -382,11 +382,11 @@ def ajax_vms_refresh(request):
                     instance_metrics['instance']['tags'] = instance.tags
                     instance_metrics['instance']['virtualization_type'] = instance.virtualization_type
                     instance_metrics['instance']['vpc_id'] = instance.vpc_id
-                    instance_metrics['instance']['region'] = {"endpoint":instance.region.endpoint,"name":instance.region.name,}                
+                    instance_metrics['instance']['region'] = {"endpoint":instance.region.endpoint,"name":instance.region.name,}
                     instance_metrics['instance']['state'] = {"state":instance.state,"code":instance.state_code,"state_reason":instance.state_reason,}
-                    
+
                     virtual_machines[instance.id] = instance_metrics
-                    
+
                     print 'Updating', request.user, 'cache..'
                     print instance.platform, instance.product_codes
 
@@ -396,30 +396,30 @@ def ajax_vms_refresh(request):
                         print instance.id, 'instance not in a monitorable state!!'.upper()
                         #pprint(instance_metrics)
                         continue
-                    
+
 
                     # Here is where you define start - end for the Logs...............
                     end = datetime.datetime.utcnow()
                     start = end - datetime.timedelta(minutes=60)
-                
+
                     # This is how you list all possible values on the response....
                     # print ec2conn.list_metrics()
-                    
+
                     try:
                         metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance.id}, metric_name="CPUUtilization")[0]
                     except: continue
-                    
+
                     cpu_utilization_datapoints = metric.query(start, end, 'Average', 'Percent')
 
                     instance_metrics['cpu_utilization_datapoints'] = json.dumps(cpu_utilization_datapoints,default=date_handler)
                     virtual_machines[instance.id] = instance_metrics
 
 
-    vms_cache.vms_response = base64.b64encode(pickle.dumps(virtual_machines, pickle.HIGHEST_PROTOCOL))    
+    vms_cache.vms_response = base64.b64encode(pickle.dumps(virtual_machines, pickle.HIGHEST_PROTOCOL))
     vms_cache.last_seen = timezone.now()
     vms_cache.is_updating = False
     vms_cache.save()
-    
+
     print 'VMs cache was succesfully updated.'
 
     return HttpResponse("ALLDONE")
@@ -427,13 +427,13 @@ def ajax_vms_refresh(request):
 
 @login_required()
 def ajax_virtual_machines(request):
-    
+
     print '-- ajax virtual machines'
     print request.user
-    
+
     user = request.user
     profile = userprofile.objects.get(user=request.user)
-    
+
     try:
         vms_cache = Cache.objects.get(user=user)
         vm_cache =  vms_cache.vms_response
@@ -444,7 +444,7 @@ def ajax_virtual_machines(request):
         vm_cache = pickle.loads(vm_cache)
     except: vm_cache = {}
 
-    
+
     c=0
     ajax_vms_response = "{"
     for vm in vm_cache:
@@ -453,7 +453,7 @@ def ajax_virtual_machines(request):
 
             data_median = 0
             isotope_filter_classes = " offline linux "
-            
+
             try:
                 data = ""
                 cpu_utilization_datapoints = vm_cache[vm]["cpu_utilization_datapoints"]
@@ -465,13 +465,13 @@ def ajax_virtual_machines(request):
                         data_median += float(i["Average"])
                     except: pass
 
-                    if(len(cpu_utilization_datapoints)-1>z): 
+                    if(len(cpu_utilization_datapoints)-1>z):
                         data += ","
                     #print data
                     z+=1
-                try: 
+                try:
                     data_median = data_median/z
-                except: data_median = 0 
+                except: data_median = 0
             except:
                 try:
                     data = vm_cache[vm]["cpu_utilization_datapoints"]
@@ -482,7 +482,7 @@ def ajax_virtual_machines(request):
                         z+=1
                         data_median += float(i)
                     data_median = data_median/z
-                        
+
                 except: data = ""
 
 
@@ -496,12 +496,12 @@ def ajax_virtual_machines(request):
 
             color = "silver "
             vm_state = vm_cache[vm]["instance"]["state"]["state"].title()
-                        
-            if(vm_state=="Running"): 
-                
+
+            if(vm_state=="Running"):
+
                 #print 'data_median', data_median
                 isotope_filter_classes = " linux "
-                            
+
                 if(data_median<17):
                     color = "lightBlue "
                 if(data_median>=17 and data_median<=35):
@@ -518,19 +518,19 @@ def ajax_virtual_machines(request):
                     color = "red "
                     if data_median>85:
                         vm_state = "Hot hot hot!"
-                
-            if(vm_state=="Stopping"): 
+
+            if(vm_state=="Stopping"):
                 color = "pink "
-            if(vm_state=="Pending"): 
+            if(vm_state=="Pending"):
                 color = "pink "
-            if(vm_state=="Shutting-Down"): 
+            if(vm_state=="Shutting-Down"):
                 color = "pink "
             if(vm_state=="Stopped"):
                 isotope_filter_classes += " offline"
-            
+
             if(vm_cache[vm]['provider']!='agent'):
                 isotope_filter_classes += " cloud"
-            
+
             ajax_vms_response += "\""
             ajax_vms_response += instance_name
             ajax_vms_response += "\": {"
@@ -542,7 +542,7 @@ def ajax_virtual_machines(request):
             ajax_vms_response += "\"vmtitle\":\""
             ajax_vms_response += isotope_filter_classes
             ajax_vms_response += "\","
-        
+
             ajax_vms_response += "\"averge\":\""
             ajax_vms_response += data
             ajax_vms_response += "\","
@@ -562,27 +562,27 @@ def ajax_virtual_machines(request):
 
         if(c==len(vm_cache)-1):
             ajax_vms_response += "}"
-            
+
         c+=1
-        
+
         #print '-_'*80
         print vm_cache[vm]["instance"]["state"]["state"].title(), vm
 
     ajax_vms_response = ajax_vms_response.replace(",}","}")
-    
+
     if(not vm_cache): ajax_vms_response = {}
-    
+
     return render_to_response('ajax_virtual_machines.html', {'user':user,'ajax_vms_response':ajax_vms_response,'vms_cached_response':vm_cache,}, context_instance=RequestContext(request))
 
 
 @login_required()
 def ajax_aws_graphs(request, instance_id, graph_type="all"):
-    
+
     print '-- ajax_aws_graphs', request.user
-            
+
     user = request.user
     profile = userprofile.objects.get(user=request.user)
-    
+
     vms_cache = Cache.objects.get(user=user)
     vm_cache =  vms_cache.vms_response
     vm_cache = base64.b64decode(vm_cache)
@@ -594,8 +594,8 @@ def ajax_aws_graphs(request, instance_id, graph_type="all"):
 
     if(vm_cache['user_id']!=request.user.id):
         return HttpResponse("access denied")
-    
-        
+
+
     aws_access_key = profile.aws_access_key
     aws_secret_key = profile.aws_secret_key
     aws_ec2_verified = profile.aws_ec2_verified
@@ -613,7 +613,7 @@ def ajax_aws_graphs(request, instance_id, graph_type="all"):
 
     metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance_id}, metric_name="CPUUtilization")[0]
     cpu_utilization_datapoints = metric.query(start, end, 'Average', 'Percent',period=3600)
-        
+
     return HttpResponse("data " + instance_id + "=" + str(instance) + " ** " + graph_type.upper())
 
 
@@ -622,9 +622,9 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
     print '-- ajax_server_graphs, type', graph_type
     print request.user
-        
+
     graphs_mixed_respose = []
-    
+
     secret = request.POST['secret']
     uuid = request.POST['server']
     uuid = uuid.replace('-',':')
@@ -634,7 +634,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
     print 'debug', secret, uuid
 
     try:
-        uuid = server['uuid']        
+        uuid = server['uuid']
     except:
         return HttpResponse("access denied")
 
@@ -643,23 +643,31 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
     if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>20):
         server_status = "Stopped"
         if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>1800):
-            server_status = "Offline"        
+            server_status = "Offline"
 
 
     #disks_usage_ = []
     #disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
     #for i in disks_usage: disks_usage_.append(i)
     #disks_usage = disks_usage_
-    
+
     #activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
-    
+
     if(graph_type=="server_info"):
-    
-        print 'server', server
-        graphs_mixed_respose = str(server).replace("u'","'")                                                                                                           
+
+        graphs_mixed_respose = {}
+        graphs_mixed_respose['cpu_used'] = server['cpu_usage']['cpu_used']
+        graphs_mixed_respose = str(graphs_mixed_respose).replace('u"','"')
+        graphs_mixed_respose = graphs_mixed_respose.replace("'",'"')
+
+        pprint(server)
+        print '-'*100
+        pprint(graphs_mixed_respose)
+        print '-'*100
+
         return HttpResponse(graphs_mixed_respose, content_type="application/json")
 
-    
+
     if(graph_type=="processes"):
 
         processes_ = []
@@ -693,7 +701,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
                 # XXX employ clean_ps_command from cloudly extra tags over here...
                 process_name = "XXX"
 
-                process = {            
+                process = {
                     'user': process_user,
                     'pid': process_pid,
                     'cpu': process_cpu,
@@ -706,7 +714,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
                     'command': process_command,
                     'name': process_name,
                     }
-                processes_.append(process)                
+                processes_.append(process)
 
             c+=1
 
@@ -719,23 +727,23 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         processes_string += "'recordsFiltered': " + str(processes_length) + ","
         processes_string += "'data': " + str(processes)
         processes_string += "}"
-        
+
         processes = str(processes_string).replace(" u'"," '").replace("[u'","['").replace("'",'"')
-        
+
         return HttpResponse(processes, content_type="application/json")
 
-    
+
     if(graph_type=="loadavg"):
-        
+
         params = None
         graph_interval = request.POST['interval']
 
         graphs_mixed_respose = [[],[],[]]
         loadavg_specific_queries = ['1-min','5-mins','15-mins']
-       
+
         count = 0
         for i in loadavg_specific_queries:
-            
+
             if(graph_interval=="3m"):
                 params = {'start':'3m-ago','m':'avg:3s-avg:' + hwaddr + '.sys.loadavg'}
             if(graph_interval=="15m"):
@@ -751,25 +759,25 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
             params_ = params
             params_['m'] = params['m'] + "{avg="+i+"}"
-            
+
             tsdb = requests.get('http://hbase:4242/api/query', params=params_)
             params = params_
-            
-            tsdb_response = json.loads(tsdb.text)              
+
+            tsdb_response = json.loads(tsdb.text)
             tsdb_response = tsdb_response[0]['dps']
-            
+
             for i in tsdb_response:
                 graphs_mixed_respose[count].append([int(i),round(float(tsdb_response[i]),2)])
-            
+
             graphs_mixed_respose[count] = sorted(graphs_mixed_respose[count], key=itemgetter(0))
             graphs_mixed_respose[count] = graphs_mixed_respose[count][::-1]
             count += 1
 
-        graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")                                                                                                           
+        graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
 
         return HttpResponse(graphs_mixed_respose, content_type="application/json")
-    
-        
+
+
     if(graph_type=="cpu_usage"):
 
         params = None
@@ -794,15 +802,15 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
             tsdb = requests.get('http://hbase:4242/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
             tsdb_response = tsdb_response[0]['dps']
-        
+
             for i in tsdb_response:
                 graphs_mixed_respose.append([int(i),round(float(tsdb_response[i]),2)])
-        
+
             graphs_mixed_respose = sorted(graphs_mixed_respose, key=itemgetter(0))
             graphs_mixed_respose = [graphs_mixed_respose[::-1],]
 
         graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
-        
+
         return HttpResponse(graphs_mixed_respose, content_type="application/json")
 
 
@@ -827,18 +835,18 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
         if(graph_type=="mem_usage"):
             params['m'] += "{mm=memory_used}"
- 
+
         if(graph_type=="swap_usage"):
             params['m'] += "{mm=swap_used}"
-        
+
         if(params):
             tsdb = requests.get('http://hbase:4242/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
             tsdb_response = tsdb_response[0]['dps']
-        
+
             for i in tsdb_response:
                 graphs_mixed_respose.append([int(i),round(float(tsdb_response[i]),2)])
-        
+
             graphs_mixed_respose = sorted(graphs_mixed_respose, key=itemgetter(0))
             graphs_mixed_respose = [graphs_mixed_respose[::-1],]
 
@@ -878,16 +886,16 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         if(graph_type=="network_output_bytes"):
             params['m'] += "{mm=output_accept_bytes}"
 
-            
+
         if(params):
 
             tsdb = requests.get('http://hbase:4242/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
             tsdb_response = tsdb_response[0]['dps']
-        
+
             for i in tsdb_response:
                 graphs_mixed_respose.append([int(i),round(float(tsdb_response[i]),2)])
-        
+
             graphs_mixed_respose = sorted(graphs_mixed_respose, key=itemgetter(0))
             graphs_mixed_respose = [graphs_mixed_respose[::-1],]
 
@@ -897,8 +905,8 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
 
     return HttpResponse("I'm sorry I don't understand")
-   
+
 
 def ajax_virtual_machines_box(request):
-            
+
     return render_to_response('ajax_virtual_machines_box.html', locals(), context_instance=RequestContext(request))

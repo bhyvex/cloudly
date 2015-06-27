@@ -7,13 +7,13 @@ var server = $('input[name="hwaddr"]').val(),           // server identifier
     addressServerInfo = '/ajax/server/' + server + '/metrics/server_info/', // ajax call adress
     addressLoadavg = '/ajax/server/' + server + '/metrics/loadavg/', // ajax call adress
     addressCpuUsage = '/ajax/server/' + server + '/metrics/cpu_usage/', // ajax call adress
-    addressMemUsage = '/ajax/server/' + server + '/metrics/mem_usage/'; // ajax call adress
+    addressMemUsage = '/ajax/server/' + server + '/metrics/mem_usage/', // ajax call adress
     addressOutboundTraffic = '/ajax/server/' + server + '/metrics/network_output_bytes/', // ajax call adress
     addressInboundTraffic = '/ajax/server/' + server + '/metrics/network_input_bytes/'; // ajax call adress
 
-(function($) { 
+(function($) {
     $.fn.deactivePanel = function() {
-        this    
+        this
             .find('.btn-minimize')
             .find('i')
             .attr('class','fa fa-chevron-down');
@@ -24,14 +24,26 @@ var server = $('input[name="hwaddr"]').val(),           // server identifier
     };
 })(jQuery);
 
-(function($) { 
-    $.fn.updateProgressBar = function(data) {
-        console.log(this);
+(function($) {
+    $.fn.updateProgressBar = function(data, title) {
+        var progressBar = $(this).find('.progress-bar');
+        var progressBarTitle = $(this).find('h6');
+
+        if (data < 85) {
+            progressBar.removeClass('progress-bar-danger');
+            progressBar.addClass('progress-bar-success');
+        } else {
+            progressBar.removeClass('progress-bar-success');
+            progressBar.addClass('progress-bar-danger');
+        }
+
+        progressBar.attr('aria-valuenow', data);
+        progressBar.css('width', data + '%');
+        progressBarTitle.text(title + ' (' + data +'%)');
     };
 })(jQuery);
 
-function updateServerInfo(csrf, server, secret) {
-    console.log(csrf);
+function updateServerInfo() {
     $.ajax({
         url: addressServerInfo,
         type: 'POST',
@@ -45,15 +57,16 @@ function updateServerInfo(csrf, server, secret) {
             'secret': secret
         },
         success: function(data) {
-            console.log(data);
-            $('.cpu_usage_progess_bar').updateProgressBar(data);
+            $('.cpu_usage_progress_bar').updateProgressBar(data['cpu_used'], 'CPU')
+            setTimeout(function() {
+                updateServerInfo();
+            }, 1000);
         },
         error: function(data, textStatus, errorThrown) {
             console.log('error: ' + textStatus);
             console.log('error: ' + errorThrown);
         }
     });
-
 };
 
 /**
@@ -134,13 +147,13 @@ $(document).ready(function() {
     $('#diskGraphs').deactivePanel();
     $('#serviceDiscovery').deactivePanel();
     $('#serverActivity').deactivePanel();
-    
+
     Highcharts.setOptions({ // set global chart options
         global: {
             useUTC: false   // set UTC by TSDB setting
         }
     });
 
-    updateServerInfo(csrf, server, secret);
+    updateServerInfo();
 });
 
