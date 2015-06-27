@@ -227,6 +227,21 @@ For more information about the Django and NGINX configuration see the NGINX Wiki
 
 For information about the MongoDB visit <a>http://www.mongodb.org/</a>
 
+Install Redis
+-------------
+
+On Cloudly, we utilize Redis primarily to store web sesssions data.  To get the Redis up and running on your system, simply pull it off of your distro repo, like so:
+
+<pre>
+$ sudo apt-get install redis-server
+$ redis-server --version
+Redis server v=2.8.4 malloc=jemalloc-3.4.1 bits=64 build=a44a05d76f06a5d9
+</pre>
+
+###### Configure Redis to connect over a socket
+
+
+
 
 ###### Install OpenTSDB
 
