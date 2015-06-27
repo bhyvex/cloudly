@@ -57,7 +57,11 @@ function updateServerInfo() {
             'secret': secret
         },
         success: function(data) {
-            var LoadavgProgressBarValue = Math.round((data['loadavg_used'] * 100));
+            var loadavgProgressBarValue = Math.round((data['loadavg_used'] * 100)),
+                loadavgServerInfoValue = data['server_info_loadavg'].join();
+
+            loadavgServerInfoValue = loadavgServerInfoValue.replace(/,/g," ");  // replace all coma to space
+
             $('.cpu_usage_progress_bar').updateProgressBar(
                 data['cpu_used'],
                 'CPU',
@@ -77,11 +81,14 @@ function updateServerInfo() {
                 'progress-bar-info'
             );
             $('.loadavg_usage_progress_bar').updateProgressBar(
-                LoadavgProgressBarValue,
+                loadavgProgressBarValue,
                 'Load average',
                 100,
                 'progress-bar-info'
             );
+            $('.server_info_uptime').text(data['server_info_uptime']);
+            $('.server_info_loadavg').text(loadavgServerInfoValue);
+            $('.server_info_status').text(data['server_info_status'].toLowerCase());
             setTimeout(function() {
                 updateServerInfo();
             }, 1000);

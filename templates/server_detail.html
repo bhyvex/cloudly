@@ -60,7 +60,7 @@
                             {% if server_status|lower = "running" %}
                             <tr>
                                 <td>Uptime</td>
-                                <td>{{server|dict_get:"uptime"}}</td>
+                                <td class="server_info_uptime">{{server|dict_get:"uptime"}}</td>
                             </tr>
                             {% endif %}
                             <tr>
@@ -78,7 +78,7 @@
                             {% if server_status|lower = "running" %}
                             <tr>
                                 <td>Load Average</td>
-                                <td>
+                                <td class="server_info_loadavg">
                                 {% for i in server|dict_get:"loadavg" %}
                                 {{i}}&nbsp;
                                 {% endfor %}
@@ -87,7 +87,7 @@
                             {% endif %}
                             <tr>
                                 <td>Status</td>
-                                <td>{{server_status|lower}}</td>
+                                <td class="server_info_status">{{server_status|lower}}</td>
                             </tr>
                             {% if server_status|lower = "offline" %}
                             <tr>
@@ -97,7 +97,7 @@
                             {% endif %}
                         </tbody>
                     </table>
-                        </div>
+                </div>
             </div>
         </div>
 
