@@ -79,7 +79,7 @@ function updateServerInfo() {
             $('.loadavg_usage_progress_bar').updateProgressBar(
                 LoadavgProgressBarValue,
                 'Load average',
-                80,
+                100,
                 'progress-bar-info'
             );
             setTimeout(function() {
