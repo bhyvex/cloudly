@@ -227,8 +227,8 @@ For more information about the Django and NGINX configuration see the NGINX Wiki
 
 For information about the MongoDB visit <a>http://www.mongodb.org/</a>
 
-Install DB Backends
--------------------
+DB Backends
+-----------
 
 ###### Install Redis
 
