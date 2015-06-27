@@ -242,7 +242,47 @@ Redis server v=2.8.4 malloc=jemalloc-3.4.1 bits=64 build=a44a05d76f06a5d9
 
 ###### Configure Redis to connect over a socket
 
+You can connect to a local Redis instance over the network layer (TCP to the loopback interface) or through a unix socket file.
 
+In order to avoid the small overhead of TCP, we can configure Redis to accept direct socket connections. To do this, edit your /etc/redis/redis.conf file, comment out the bind and port directives and uncomment the two unixsocket directives.
+
+Once you've done that, your redis.conf file should look something like this - 
+
+<pre>
+# Accept connections on the specified port, default is 6379.
+# If port 0 is specified Redis will not listen on a TCP socket.
+# port 6379
+# If you want you can bind a single interface, if the bind option is not
+# specified all the interfaces will listen for incoming connections.
+#
+# bind 127.0.0.1
+# Specify the path for the unix socket that will be used to listen for
+# incoming connections. There is no default, so Redis will not listen
+# on a unix socket when not specified.
+#
+unixsocket /var/run/redis/redis.sock
+unixsocketperm 777
+</pre>
+
+After making changes to its configuration you will need to restart Redis:
+
+<pre>
+$ sudo service redis-server restart
+</pre>
+
+You can now check if Redis is up and accepting connections:
+
+<pre>
+$ redis-cli ping
+PONG
+</pre>
+
+Finally, install the python-redis and django-redis bindings, like so:
+
+<pre>
+$ sudo pip install redis
+$ sudo pip install django-redis-cache
+</pre>
 
 
 ###### Install OpenTSDB
