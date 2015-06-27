@@ -57,6 +57,7 @@ function updateServerInfo() {
             'secret': secret
         },
         success: function(data) {
+            var LoadavgProgressBarValue = Math.round((data['loadavg_used'] * 100));
             $('.cpu_usage_progress_bar').updateProgressBar(
                 data['cpu_used'],
                 'CPU',
@@ -67,6 +68,18 @@ function updateServerInfo() {
                 data['memory_used'],
                 'Memory',
                 98,
+                'progress-bar-info'
+            );
+            $('.swap_usage_progress_bar').updateProgressBar(
+                data['swap_used'],
+                'Swap',
+                80,
+                'progress-bar-info'
+            );
+            $('.loadavg_usage_progress_bar').updateProgressBar(
+                LoadavgProgressBarValue,
+                'Load average',
+                80,
                 'progress-bar-info'
             );
             setTimeout(function() {
