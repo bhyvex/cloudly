@@ -227,8 +227,10 @@ For more information about the Django and NGINX configuration see the NGINX Wiki
 
 For information about the MongoDB visit <a>http://www.mongodb.org/</a>
 
-Install Redis
--------------
+Install DB Backends
+-------------------
+
+###### Install Redis
 
 On Cloudly, we utilize Redis primarily to store web sesssions data.  To get the Redis up and running on your system, simply pull it off of your distro repo, like so:
 
