@@ -657,6 +657,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
         graphs_mixed_respose = {}
         graphs_mixed_respose['cpu_used'] = server['cpu_usage']['cpu_used']
+        graphs_mixed_respose['memory_used'] = server['memory_usage']['memory_used_percentage']
         graphs_mixed_respose = str(graphs_mixed_respose).replace('u"','"')
         graphs_mixed_respose = graphs_mixed_respose.replace("'",'"')
 

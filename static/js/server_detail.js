@@ -25,15 +25,15 @@ var server = $('input[name="hwaddr"]').val(),           // server identifier
 })(jQuery);
 
 (function($) {
-    $.fn.updateProgressBar = function(data, title) {
+    $.fn.updateProgressBar = function(data, title, dangerValue, stdClass) {
         var progressBar = $(this).find('.progress-bar');
         var progressBarTitle = $(this).find('h6');
 
-        if (data < 85) {
+        if (data < dangerValue) {
             progressBar.removeClass('progress-bar-danger');
-            progressBar.addClass('progress-bar-success');
+            progressBar.addClass(stdClass);
         } else {
-            progressBar.removeClass('progress-bar-success');
+            progressBar.removeClass(stdClass);
             progressBar.addClass('progress-bar-danger');
         }
 
@@ -57,7 +57,18 @@ function updateServerInfo() {
             'secret': secret
         },
         success: function(data) {
-            $('.cpu_usage_progress_bar').updateProgressBar(data['cpu_used'], 'CPU')
+            $('.cpu_usage_progress_bar').updateProgressBar(
+                data['cpu_used'],
+                'CPU',
+                85,
+                'progress-bar-success'
+            );
+            $('.memory_usage_progress_bar').updateProgressBar(
+                data['memory_used'],
+                'Memory',
+                98,
+                'progress-bar-info'
+            );
             setTimeout(function() {
                 updateServerInfo();
             }, 1000);
