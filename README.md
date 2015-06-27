@@ -230,9 +230,9 @@ For information about the MongoDB visit <a>http://www.mongodb.org/</a>
 DB Backends
 -----------
 
-On Cloudly, we utilize Redis primarily to store web sesssions data.
-
 ###### Install Redis
+
+On Cloudly, we utilize Redis primarily to store web sesssions data.
 
 To get the Redis up and running on your system, simply pull it off of your distro repo..
 
