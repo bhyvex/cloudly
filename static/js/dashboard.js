@@ -7,6 +7,56 @@ function filterMachines(f) {
 	$('#machines-loader').isotope( { filter: f } );
 }
 
+function init() {
+    var list = $('vms-machine');
+    list.isotope({
+        transformsenabled: true,
+        animationengine:'jquery' // enable animation with jquery
+        , itemselector: '.isotopey'
+        , onlayout: function() {
+            list.css('overflow', 'visible');
+        }
+    });
+    list.sortable({
+        cursor: 'move'
+        , start: function(event, ui) {
+            ui.item.addclass('grabbing moving').removeclass('isotopey');
+            ui.placeholder
+        .addclass('starting')
+        .removeclass('moving')
+        .css({
+            top: ui.originalposition.top
+            , left: ui.originalposition.left
+        })
+    ;
+    list.isotope('reloaditems');
+        }
+    , change: function(event, ui) {
+        ui.placeholder.removeclass('starting');
+        list
+        .isotope('reloaditems')
+        .isotope({ sortby: 'original-order'})
+        ;
+    }
+    , beforestop: function(event, ui) {
+        ui.placeholder.after(ui.item);
+    }
+    , stop: function(event, ui) {
+        ui.item.removeclass('grabbing').addclass('isotopey');
+        list
+            .isotope('reloaditems')
+            .isotope({ sortby: 'original-order' }, function(){
+                console.log(ui.item.is('.grabbing'));
+                if (!ui.item.is('.grabbing')) {
+                    ui.item.removeclass('moving');
+                }
+            })
+        ;
+    }
+    });
+}
+
+
 var cloudlyVMSmanager  = {
     template: '',
     actualMachines: '',
@@ -38,19 +88,19 @@ var cloudlyVMSmanager  = {
             }
         });
     },
-    loadMachinesData: function(){ 
+    loadMachinesData: function(){
         var actualMachines = $(".vms-machine");
-        
+
         var $this = this;
         $.ajax({
             type: 'GET',
             url: '/ajax/cloud/vms/',
             data: '',
-            success: function(res){                
+            success: function(res){
                 var jsonData = $.parseJSON(res);
                 $this.checkRemoved(jsonData,actualMachines);
                 $this.parseMachinesData(jsonData);
-                
+
             }
         });
     },
@@ -73,15 +123,15 @@ var cloudlyVMSmanager  = {
         $('#'+vms).find('.value').html(data.state);
 
         var panel = $("#"+vms).find('.panel');
-        
+
         $.each(this.colors,function(code,color){
                 if(panel.hasClass(color) && panel.attr('class').indexOf(data.vmcolor) === -1){
                         $(panel).removeClass(color).addClass(data.vmcolor)
                         //console.log('VM '+vms+' changed color: '+color+' to: '+data.vmcolor+' and actual has class: '+panel.attr('class'));
                         return;
                 }
-        }); 
-		
+        });
+
     },
     addVMS: function(vms,data){
         var template = this.template;
@@ -91,15 +141,15 @@ var cloudlyVMSmanager  = {
         template = template.replace('{@vmtitle@}',data.vmtitle);
         template = template.replace('{@vmcolor@}',data.vmcolor);
         template = template.replace('{@averge@}',data.averge);
-        template = template.replace("{@state@}", data.state); 
-        
+        template = template.replace("{@state@}", data.state);
+
         template = $(template);
         //console.log(template);
         var prepend = $('#machines-loader').prepend(template);
         chartStatElement($('#'+vms).find('.chart').html(data.averge));
         prepend.isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' });
-        
-        
+
+
     },
     checkRemoved: function(machines,actualMachines){
         var machineIds = 'testVMS';
@@ -107,11 +157,11 @@ var cloudlyVMSmanager  = {
         $.each(machines,function(vms,value){
             machineIds += vms+',';
         });
-        
+
         $.each(actualMachines,function(index,item){
             var id = $(item).attr('id');
-            if(machineIds.indexOf(id) < 0){                
-                $container.isotope( 'remove', item ).isotope('layout');                
+            if(machineIds.indexOf(id) < 0){
+                $container.isotope( 'remove', item ).isotope('layout');
             }
         });
 
@@ -121,22 +171,22 @@ var cloudlyVMSmanager  = {
     },
     addBlank: function(){
         this.addVMS('testVMS',{"averge":"0.0,0.0,0.0,0.0","state":"Running"});
-    
+
     }
 }
 
 $(document).ready (function() {
-	
+
 	var btns = ['all','critical','offline', 'busy', 'windows', 'linux', 'bsd', 'cloud'];
 	for (var i = 0; i < btns.length; ++i) {
 	    (function(){
-		var type = btns[i];
-		var btn = $('.machines-buttons .btn-'+type);
-		btn.click(function() { filterMachines(type); });
+            var type = btns[i];
+            var btn = $('.machines-buttons .btn-'+type);
+            btn.click(function() { filterMachines(type); });
 	    })();
 	}
-        
-        cloudlyVMSmanager.initAction();
-        
+
+    cloudlyVMSmanager.initAction();
+    init();
 });
 

@@ -23,6 +23,15 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
 )
 
+CACHES = {
+    'default': {
+       'BACKEND': 'redis_cache.RedisCache',
+       'LOCATION': '/var/run/redis/redis.sock',
+     },
+}
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -47,11 +56,13 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
 ROOT_URLCONF = 'cloudly.urls'
