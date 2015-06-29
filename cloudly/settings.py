@@ -23,6 +23,7 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
 )
 
+
 CACHES = {
     'default': {
        'BACKEND': 'redis_cache.RedisCache',
@@ -30,9 +31,9 @@ CACHES = {
      },
 }
 
-SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_ENGINE = 'redis_sessions.session'
+SESSION_REDIS_UNIX_DOMAIN_SOCKET_PATH = '/var/run/redis/redis.sock'
 
-# Application definition
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -50,13 +51,11 @@ INSTALLED_APPS = (
     'userprofile',
     'vms',
     'admin',
-    # devel
-    #'devel',
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.cache.UpdateCacheMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
