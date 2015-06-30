@@ -6,6 +6,7 @@
 {% block title %}Cloudly | Server Detail{% endblock %}
 
 {% block extra_css%}
+	<link href="/static/admin-assets/css/server_detail.css" rel="stylesheet">
 {% endblock %}
 
 
@@ -173,7 +174,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Load Average
-                            <ul id="loadavg_interval" class="nav nav-tabs">
+                            <ul id="loadavg_interval" class="nav nav-tabs nav-interval">
                                 {% include "partials/chart_interval.html" %}
                             </ul>
                         </div>
@@ -182,7 +183,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             CPU Usage
-                            <ul id="cpu_usage_interval" class="nav nav-tabs">
+                            <ul id="cpu_usage_interval" class="nav nav-tabs nav-interval">
                                 {% include "partials/chart_interval.html" %}
                             </ul>
                         </div>
@@ -191,7 +192,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Memory Usage
-                            <ul id="mem_usage_interval" class="nav nav-tabs">
+                            <ul id="mem_usage_interval" class="nav nav-tabs nav-interval">
                                 {% include "partials/chart_interval.html" %}
                             </ul>
                         </div>
@@ -227,7 +228,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Inbound Traffic
-                            <ul id="inbound_traffic_interval" class="nav nav-tabs">
+                            <ul id="inbound_traffic_interval" class="nav nav-tabs nav-interval">
                                 {% include "partials/chart_interval.html" %}
                             </ul>
                         </div>
@@ -239,7 +240,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Outbound Traffic
-                            <ul id="outbound_traffic_interval" class="nav nav-tabs">
+                            <ul id="outbound_traffic_interval" class="nav nav-tabs nav-interval">
                                 {% include "partials/chart_interval.html" %}
                             </ul>
                         </div>
