@@ -7,56 +7,6 @@ function filterMachines(f) {
 	$('#machines-loader').isotope( { filter: f } );
 }
 
-function init() {
-    var list = $('vms-machine');
-    list.isotope({
-        transformsenabled: true,
-        animationengine:'jquery' // enable animation with jquery
-        , itemselector: '.isotopey'
-        , onlayout: function() {
-            list.css('overflow', 'visible');
-        }
-    });
-    list.sortable({
-        cursor: 'move'
-        , start: function(event, ui) {
-            ui.item.addclass('grabbing moving').removeclass('isotopey');
-            ui.placeholder
-        .addclass('starting')
-        .removeclass('moving')
-        .css({
-            top: ui.originalposition.top
-            , left: ui.originalposition.left
-        })
-    ;
-    list.isotope('reloaditems');
-        }
-    , change: function(event, ui) {
-        ui.placeholder.removeclass('starting');
-        list
-        .isotope('reloaditems')
-        .isotope({ sortby: 'original-order'})
-        ;
-    }
-    , beforestop: function(event, ui) {
-        ui.placeholder.after(ui.item);
-    }
-    , stop: function(event, ui) {
-        ui.item.removeclass('grabbing').addclass('isotopey');
-        list
-            .isotope('reloaditems')
-            .isotope({ sortby: 'original-order' }, function(){
-                console.log(ui.item.is('.grabbing'));
-                if (!ui.item.is('.grabbing')) {
-                    ui.item.removeclass('moving');
-                }
-            })
-        ;
-    }
-    });
-}
-
-
 var cloudlyVMSmanager  = {
     template: '',
     actualMachines: '',
@@ -187,6 +137,5 @@ $(document).ready (function() {
 	}
 
     cloudlyVMSmanager.initAction();
-    init();
 });
 
