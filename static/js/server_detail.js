@@ -124,7 +124,7 @@ function setDuration(interval) {
 /**
  * Get new data via ajax call and set it to given serie
  */
-function requestChartData(address, series, csrf, server, secret, interval, updateChart) {
+function requestChartData(address, series, interval, updateChart) {
     $.ajax({
         url: address,
         type: 'POST',

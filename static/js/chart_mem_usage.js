@@ -10,10 +10,10 @@ var memUsageInterval = {};  // set interval globally
 /**
  * Call or stop interval update action (via parameter updateChart parameter)
  */
-function updateMemUsageChart(address, series, csrf, server, secret, interval, duration, updateChart) {
+function updateMemUsageChart(address, series, interval, duration, updateChart) {
     if (updateChart) {
         memUsageInterval = setInterval(function () {    // start update by duration
-            requestChartData(address, series, csrf, server, secret, interval, true)    // update chart data
+            requestChartData(address, series, interval, true)    // update chart data
         }, duration);
     } else {
         window.clearInterval(memUsageInterval);         // stop current interval
@@ -23,13 +23,10 @@ function updateMemUsageChart(address, series, csrf, server, secret, interval, du
 /**
  * Display given chart with actual data
  */
-function displayMemUsageChart(address, chart, csrf, server, secret, interval) {
+function displayMemUsageChart(address, chart, interval) {
     requestChartData(   // add new data to selected chart series
-        address, 
+        address,
         chart.series,
-        csrf,
-        server,
-        secret,
         interval,
         false
     );
@@ -45,9 +42,6 @@ $(function () {
                         updateMemUsageChart(    // set chart first draw update action
                             addressMemUsage,
                             this.series,
-                            csrf,
-                            server,
-                            secret,
                             interval,
                             setDuration(interval),
                             true
@@ -77,7 +71,7 @@ $(function () {
             },
             tooltip: {
                 formatter: function () {
-                    return '<strong>' + Highcharts.numberFormat((this.y/1024/1000), 0, '.', ',') + ' MB ' 
+                    return '<strong>' + Highcharts.numberFormat((this.y/1024/1000), 0, '.', ',') + ' MB '
                         + 'used</strong><br/>'
                         + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x*1000);
                 }
@@ -89,7 +83,7 @@ $(function () {
                 }
             ]
         });
-        
+
         $('#mem_usage_interval a').on('click', function() { // catch interval change action
             var link = this,                                // create current object
                 interval = $(link).attr('data-interval'),   // get interval from data attribute
@@ -98,9 +92,6 @@ $(function () {
             updateMemUsageChart(    // stop last ajax chart update
                 addressMemUsage,
                 memUsageChart.series,
-                csrf,
-                server,
-                secret,
                 interval,
                 duration,
                 false
@@ -109,18 +100,12 @@ $(function () {
             displayMemUsageChart(   // display chart with new interval
                 addressMemUsage,
                 memUsageChart,
-                csrf,
-                server,
-                secret,
                 interval
             );
 
             updateMemUsageChart(    // stop last ajax chart update
                 addressMemUsage,
                 memUsageChart.series,
-                csrf,
-                server,
-                secret,
                 interval,
                 duration,
                 true
@@ -131,11 +116,8 @@ $(function () {
         displayMemUsageChart(   // display chart with new interval
             addressMemUsage,
             memUsageChart,
-            csrf,
-            server,
-            secret,
             interval
         );
     });
 });
-                
+

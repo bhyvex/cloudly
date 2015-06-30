@@ -10,10 +10,10 @@ var inboundTrafficInterval = {};  // set interval globally
 /**
  * Call or stop interval update action (via parameter updateChart parameter)
  */
-function updateInboundTrafficChart(address, series, csrf, server, secret, interval, duration, updateChart) {
+function updateInboundTrafficChart(address, series, interval, duration, updateChart) {
     if (updateChart) {
         inboundTrafficInterval = setInterval(function () {    // start update by duration
-            requestChartData(address, series, csrf, server, secret, interval, true)    // update chart data
+            requestChartData(address, series, interval, true)    // update chart data
         }, duration);
     } else {
         window.clearInterval(inboundTrafficInterval);         // stop current interval
@@ -23,13 +23,10 @@ function updateInboundTrafficChart(address, series, csrf, server, secret, interv
 /**
  * Display given chart with actual data
  */
-function displayInboundTrafficChart(address, chart, csrf, server, secret, interval) {
+function displayInboundTrafficChart(address, chart, interval) {
     requestChartData(   // add new data to selected chart series
-        address, 
+        address,
         chart.series,
-        csrf,
-        server,
-        secret,
         interval,
         false
     );
@@ -45,9 +42,6 @@ $(function () {
                         updateInboundTrafficChart(    // set chart first draw update action
                             addressInboundTraffic,
                             this.series,
-                            csrf,
-                            server,
-                            secret,
                             interval,
                             setDuration(interval),
                             true
@@ -89,7 +83,7 @@ $(function () {
                 }
             ]
         });
-        
+
         $('#inbound_traffic_interval a').on('click', function() { // catch interval change action
             var link = this,                                // create current object
                 interval = $(link).attr('data-interval'),   // get interval from data attribute
@@ -98,9 +92,6 @@ $(function () {
             updateInboundTrafficChart(    // stop last ajax chart update
                 addressInboundTraffic,
                 inboundTrafficChart.series,
-                csrf,
-                server,
-                secret,
                 interval,
                 duration,
                 false
@@ -109,18 +100,12 @@ $(function () {
             displayInboundTrafficChart(   // display chart with new interval
                 addressInboundTraffic,
                 inboundTrafficChart,
-                csrf,
-                server,
-                secret,
                 interval
             );
 
             updateInboundTrafficChart(    // stop last ajax chart update
                 addressInboundTraffic,
                 inboundTrafficChart.series,
-                csrf,
-                server,
-                secret,
                 interval,
                 duration,
                 true
@@ -131,11 +116,8 @@ $(function () {
         displayInboundTrafficChart(   // display chart with new interval
             addressInboundTraffic,
             inboundTrafficChart,
-            csrf,
-            server,
-            secret,
             interval
         );
     });
 });
-                
+

@@ -10,10 +10,10 @@ var loadavgInterval = {};  // set interval globally
 /**
  * Call or stop interval update action (via parameter updateChart parameter)
  */
-function updateLoadavgChart(address, series, csrf, server, secret, interval, duration, updateChart) {
+function updateLoadavgChart(address, series, interval, duration, updateChart) {
     if (updateChart) {
         loadavgInterval = setInterval(function () {    // start update by duration
-            requestChartData(address, series, csrf, server, secret, interval, true)    // update chart data
+            requestChartData(address, series, interval, true)    // update chart data
         }, duration);
     } else {
         window.clearInterval(loadavgInterval);         // stop current interval
@@ -23,13 +23,10 @@ function updateLoadavgChart(address, series, csrf, server, secret, interval, dur
 /**
  * Display given chart with actual data
  */
-function displayLoadavgChart(address, chart, csrf, server, secret, interval) {
+function displayLoadavgChart(address, chart, interval) {
     requestChartData(   // add new data to selected chart series
-        address, 
+        address,
         chart.series,
-        csrf,
-        server,
-        secret,
         interval,
         false
     );
@@ -45,9 +42,6 @@ $(function () {
                         updateLoadavgChart(    // set chart first draw update action
                             addressLoadavg,
                             this.series,
-                            csrf,
-                            server,
-                            secret,
                             interval,
                             setDuration(interval),
                             true
@@ -87,18 +81,18 @@ $(function () {
                 {
                     name: '1-min',
                     data: []
-                }, 
+                },
                 {
                     name: '5-mins',
                     data: []
-                }, 
+                },
                 {
                     name: '15-mins',
                     data: []
                 }
             ]
         });
-        
+
         $('#loadavg_interval a').on('click', function() { // catch interval change action
             var link = this,                                // create current object
                 interval = $(link).attr('data-interval'),   // get interval from data attribute
@@ -107,9 +101,6 @@ $(function () {
             updateLoadavgChart(    // stop last ajax chart update
                 addressLoadavg,
                 loadavgChart.series,
-                csrf,
-                server,
-                secret,
                 interval,
                 duration,
                 false
@@ -118,18 +109,12 @@ $(function () {
             displayLoadavgChart(   // display chart with new interval
                 addressLoadavg,
                 loadavgChart,
-                csrf,
-                server,
-                secret,
                 interval
             );
 
             updateLoadavgChart(    // stop last ajax chart update
                 addressLoadavg,
                 loadavgChart.series,
-                csrf,
-                server,
-                secret,
                 interval,
                 duration,
                 true
@@ -140,11 +125,8 @@ $(function () {
         displayLoadavgChart(   // display chart with new interval
             addressLoadavg,
             loadavgChart,
-            csrf,
-            server,
-            secret,
             interval
         );
     });
 });
-                
+

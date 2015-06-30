@@ -10,10 +10,10 @@ var cpuUsageInterval = {}  // set interval globally
 /**
  * Call or stop interval update action (via parameter updateChart parameter)
  */
-function updateCpuUsageChart(address, series, csrf, server, secret, interval, duration, updateChart) {
+function updateCpuUsageChart(address, series, interval, duration, updateChart) {
     if (updateChart) {
         cpuUsageInterval = setInterval(function () {    // start update by duration
-            requestChartData(address, series, csrf, server, secret, interval, true)    // update chart data
+            requestChartData(address, series, interval, true)    // update chart data
         }, duration);
     } else {
         window.clearInterval(cpuUsageInterval);         // stop current interval
@@ -23,13 +23,10 @@ function updateCpuUsageChart(address, series, csrf, server, secret, interval, du
 /**
  * Display given chart with actual data
  */
-function displayCpuUsageChart(address, chart, csrf, server, secret, interval) {
+function displayCpuUsageChart(address, chart, interval) {
     requestChartData(   // add new data to selected chart series
         address,
         chart.series,
-        csrf,
-        server,
-        secret,
         interval,
         false
     );
@@ -45,9 +42,6 @@ $(function () {
                         updateCpuUsageChart(    // set chart first draw update action
                             addressCpuUsage,
                             this.series,
-                            csrf,
-                            server,
-                            secret,
                             interval,
                             setDuration(interval),
                             true
@@ -121,9 +115,6 @@ $(function () {
             updateCpuUsageChart(    // stop last ajax chart update
                 addressCpuUsage,
                 cpuUsageChart.series,
-                csrf,
-                server,
-                secret,
                 interval,
                 duration,
                 false
@@ -132,18 +123,12 @@ $(function () {
             displayCpuUsageChart(   // display chart with new interval
                 addressCpuUsage,
                 cpuUsageChart,
-                csrf,
-                server,
-                secret,
                 interval
             );
 
             updateCpuUsageChart(    // call new interval chart ajax update
                 addressCpuUsage,
                 cpuUsageChart.series,
-                csrf,
-                server,
-                secret,
                 interval,
                 duration,
                 true
@@ -153,9 +138,6 @@ $(function () {
         displayCpuUsageChart(       // draw first chart
             addressCpuUsage,
             cpuUsageChart,
-            csrf,
-            server,
-            secret,
             interval
         );
     });
