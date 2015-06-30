@@ -98,9 +98,7 @@ $.fn.dataTable.pipeline = function (opts) {
 							user,
 							json.data[i]['cpu'],
 							json.data[i]['mem'],
-							json.data[i]['command'][0]
-								.replace('[','')
-								.replace(']',''),
+							json.data[i]['name'],
 							json.data[i]['command'].join(' ')
 								.replace('[','')
 								.replace(']','')
