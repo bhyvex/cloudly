@@ -89,6 +89,9 @@ $(function () {
                 interval = $(link).attr('data-interval'),   // get interval from data attribute
                 duration = setDuration(interval);           // set duration
 
+            $('#mem_usage_interval a.active').removeClass('active');
+            $(link).addClass('active');
+
             updateMemUsageChart(    // stop last ajax chart update
                 addressMemUsage,
                 memUsageChart.series,

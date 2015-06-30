@@ -98,6 +98,9 @@ $(function () {
                 interval = $(link).attr('data-interval'),   // get interval from data attribute
                 duration = setDuration(interval);           // set duration
 
+            $('#loadavg_interval a.active').removeClass('active');
+            $(link).addClass('active');
+
             updateLoadavgChart(    // stop last ajax chart update
                 addressLoadavg,
                 loadavgChart.series,

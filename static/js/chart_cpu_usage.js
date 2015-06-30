@@ -112,6 +112,9 @@ $(function () {
                 interval = $(link).attr('data-interval'),   // get interval from data attribute
                 duration = setDuration(interval);           // set duration
 
+            $('#cpu_usage_interval a.active').removeClass('active');
+            $(link).addClass('active');
+
             updateCpuUsageChart(    // stop last ajax chart update
                 addressCpuUsage,
                 cpuUsageChart.series,

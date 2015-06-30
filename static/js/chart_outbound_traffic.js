@@ -89,6 +89,9 @@ $(function () {
                 interval = $(link).attr('data-interval'),   // get interval from data attribute
                 duration = setDuration(interval);           // set duration
 
+            $('#outbound_traffic_interval a.active').removeClass('active');
+            $(link).addClass('active');
+
             updateOutboundTrafficChart(    // stop last ajax chart update
                 addressOutboundTraffic,
                 outboundTrafficChart.series,
