@@ -41,7 +41,7 @@ from amazon import s3_funcs_shortcuts
 from django.contrib.auth.decorators import login_required
 from django.template.defaultfilters import filesizeformat, upper
 from django.contrib.humanize.templatetags.humanize import naturalday
-from cloudly.templatetags.clean_ps_command import clean_ps_command
+from cloudly.templatetags.cloud_extras import clean_ps_command
 
 from operator import itemgetter, attrgetter, methodcaller
 
@@ -700,7 +700,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
                 process_start_time = line[8]+'-'+line[9]
                 process_command = line[10:]
                 
-                process_name = clean_ps_command(process_command)
+                process_name = clean_ps_command(process_command[0])
 
                 process = {
                     'user': process_user,
@@ -718,7 +718,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
                 processes_.append(process)
 
                 print '-'*100
-                print processes_
+                print process_name
                 print '-'*100
 
             c+=1
