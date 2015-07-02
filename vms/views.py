@@ -699,6 +699,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
                 process_stat = line[7]
                 process_start_time = line[8]+'-'+line[9]
                 process_command = line[10:]
+                
                 process_name = clean_ps_command(process_command)
 
                 process = {
