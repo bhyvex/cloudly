@@ -717,6 +717,10 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
                     }
                 processes_.append(process)
 
+                print '-'*100
+                print processes_
+                print '-'*100
+
             c+=1
 
         processes = processes_
