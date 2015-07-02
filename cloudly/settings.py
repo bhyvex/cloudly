@@ -24,15 +24,15 @@ TEMPLATE_LOADERS = (
 )
 
 
-CACHES = {
-    'default': {
-       'BACKEND': 'redis_cache.RedisCache',
-       'LOCATION': '/var/run/redis/redis.sock',
-     },
-}
+#CACHES = {
+#    'default': {
+#       'BACKEND': 'redis_cache.RedisCache',
+#       'LOCATION': '/var/run/redis/redis.sock',
+#     },
+#}
 
-SESSION_ENGINE = 'redis_sessions.session'
-SESSION_REDIS_UNIX_DOMAIN_SOCKET_PATH = '/var/run/redis/redis.sock'
+#SESSION_ENGINE = 'redis_sessions.session'
+#SESSION_REDIS_UNIX_DOMAIN_SOCKET_PATH = '/var/run/redis/redis.sock'
 
 
 INSTALLED_APPS = (
@@ -54,14 +54,14 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.middleware.cache.UpdateCacheMiddleware',
+    #'django.middleware.cache.UpdateCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.cache.FetchFromCacheMiddleware',
+    #'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
 ROOT_URLCONF = 'cloudly.urls'

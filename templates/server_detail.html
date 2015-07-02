@@ -6,7 +6,8 @@
 {% block title %}Cloudly | Server Detail{% endblock %}
 
 {% block extra_css%}
-	<link href="/static/admin-assets/css/server_detail.css" rel="stylesheet">
+    <link href="/static/admin-assets/css/bootstrap-editable.css" rel="stylesheet">
+    <link href="/static/admin-assets/css/server_detail.css" rel="stylesheet">
 {% endblock %}
 
 
@@ -43,7 +44,10 @@
                         <tbody>
                             <tr>
                                 <td width="40%">Name</td>
-                                <td width="60%">{{server|dict_get:"uuid"}}</td>
+                                <td width="60%">
+                                    <a href="#" id="username" data-type="text" data-csfr="{%csrf_token%}"  data-pk="1" data-original-title="Enter username" class="editable editable-click editable-open">{{server|dict_get:"uuid"}}</a>
+
+                                   </td>
                             </tr>
                             <tr>
                                 <td>IP Address</td>
@@ -512,6 +516,7 @@
 
 {% block extra_js %}
 
+<script src="/static/admin-assets/js/bootstrap-editable.min.js"></script>
 <script src="/static/highcharts/highcharts.js"></script>
 <script src="/static/highcharts/exporting.js"></script>
 <script src="/static/js/server_detail.js"></script>
@@ -564,5 +569,22 @@
         });
     });
 {% endfor %}
+
+//turn to inline mode
+$.fn.editable.defaults.mode = 'inline';
+
+$('#username').editable({
+    csfr: 'csfr',
+    type: 'text',
+    pk: 1,
+    url: '/post',
+    title: 'Enter name',
+    success: function(response, newValue) {
+        if(response.status == 'error') return response.msg; //msg will be shown in editable form
+    }
+});
+
+
+
 </script>
 {% endblock extra_js %}
