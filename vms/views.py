@@ -41,6 +41,7 @@ from amazon import s3_funcs_shortcuts
 from django.contrib.auth.decorators import login_required
 from django.template.defaultfilters import filesizeformat, upper
 from django.contrib.humanize.templatetags.humanize import naturalday
+from cloudly.templatetags.clean_ps_command import clean_ps_command
 
 from operator import itemgetter, attrgetter, methodcaller
 
@@ -667,11 +668,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         graphs_mixed_respose = graphs_mixed_respose.replace("'",'"')
         graphs_mixed_respose = str(graphs_mixed_respose).replace('u"','"')
 
-        pprint(server)
-        print '-'*100
-        pprint(graphs_mixed_respose)
-        print '-'*100
-
         return HttpResponse(graphs_mixed_respose, content_type="application/json")
 
 
@@ -703,10 +699,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
                 process_stat = line[7]
                 process_start_time = line[8]+'-'+line[9]
                 process_command = line[10:]
-
-                # XXX work in process name
-                # XXX employ clean_ps_command from cloudly extra tags over here...
-                process_name = "XXX"
+                process_name = clean_ps_command(process_command)
 
                 process = {
                     'user': process_user,
