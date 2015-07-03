@@ -59,10 +59,13 @@
                                 <td>{{server|dict_get:"hostname"}}</td>
                             </tr>
 
+                            {% if server|dict_get:"distro" != "?" %}
                             <tr>
                                 <td>Distribution</td>
                                 <td>{{server|dict_get:"distro"}}</td>
                             </tr>
+                            {% endif %}
+                            
                             {% if server_status|lower = "running" %}
                             <tr>
                                 <td>Uptime</td>
