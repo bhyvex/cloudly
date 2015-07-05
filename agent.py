@@ -18,6 +18,7 @@ try:
     import json
 except: pass
 
+
 AGENT_VERSION = "0.1"
 
 SECRET = "" # to be injected on download by Cloudly
@@ -30,6 +31,86 @@ if(not API_SERVER): API_SERVER = "127.0.0.1:5001"
 if(not getpass.getuser()=="root"):
     print "You must be root to run this script."
     sys.exit(0)
+
+
+def setup_system():
+
+    installer = ""
+
+    proc = subprocess.Popen(['which','yum'], stdout=subprocess.PIPE, close_fds=True)
+    proc = proc.communicate()[0]
+    if('yum' in proc): installer = proc
+
+    if(not installer):
+                    
+        proc = subprocess.Popen(['which','apt-get'], stdout=subprocess.PIPE, close_fds=True)
+        proc = proc.communicate()[0]
+        if('apt-get' in proc): installer = proc
+
+    if(not installer):
+    
+        proc = subprocess.Popen(['which','emerge'], stdout=subprocess.PIPE, close_fds=True)
+        proc = proc.communicate()[0]
+        if('emerge' in proc): installer = proc
+    
+
+    if(not installer):
+    
+        proc = subprocess.Popen(['which','zypper'], stdout=subprocess.PIPE, close_fds=True)
+        proc = proc.communicate()[0]
+        if('zypper' in proc): installer = proc
+        
+    installer = installer.replace('\n','')
+
+
+    # iptables..
+
+    proc = subprocess.Popen(['which','iptables'], stdout=subprocess.PIPE, close_fds=True)
+    proc = proc.communicate()[0]
+
+    if(not 'iptables' in proc):
+
+        print 'Installing iptables..'
+
+        if(not installer):
+            print 'Please install the iptables and re-run the agent.'
+            sys.exit(0)
+
+        if("emerge" in installer):
+            os.system(installer+" iptables") # there is no install param in emerge
+        else:
+            os.system(installer+" install iptables")
+    
+
+    
+    # old versions of python such as python 2.5.1 do not come with json nor they have support for one..
+
+    try:
+    
+        import json
+        
+    except: 
+    
+        try:
+            
+            import simplejson as json
+            
+            print 'here'*100
+                    
+        except:
+    
+            print 'Installing python-simplejson..'
+        
+            if(not installer):
+                print 'Please install the python-simplejson and re-run the agent.'
+                sys.exit(0)
+
+            if("emerge" in installer):
+                os.system(installer+" python-simplejson") # there is no install param in emerge
+            else:
+                os.system(installer+" install python-simplejson")       
+    
+    return True
 
 
 def _get_sys_loadavg():
@@ -420,87 +501,7 @@ def send_data( secret, api_call, data ):
     conn.close()
     
     return response_data
-    
-
-def setup_system():
-
-    installer = ""
-
-    proc = subprocess.Popen(['which','yum'], stdout=subprocess.PIPE, close_fds=True)
-    proc = proc.communicate()[0]
-    if('yum' in proc): installer = proc
-
-    if(not installer):
-                    
-        proc = subprocess.Popen(['which','apt-get'], stdout=subprocess.PIPE, close_fds=True)
-        proc = proc.communicate()[0]
-        if('apt-get' in proc): installer = proc
-
-    if(not installer):
-    
-        proc = subprocess.Popen(['which','emerge'], stdout=subprocess.PIPE, close_fds=True)
-        proc = proc.communicate()[0]
-        if('emerge' in proc): installer = proc
-    
-
-    if(not installer):
-    
-        proc = subprocess.Popen(['which','zypper'], stdout=subprocess.PIPE, close_fds=True)
-        proc = proc.communicate()[0]
-        if('zypper' in proc): installer = proc
         
-    installer = installer.replace('\n','')
-
-
-    # iptables..
-
-    proc = subprocess.Popen(['which','iptables'], stdout=subprocess.PIPE, close_fds=True)
-    proc = proc.communicate()[0]
-
-    if(not 'iptables' in proc):
-
-        print 'Installing iptables..'
-
-        if(not installer):
-            print 'Please install the iptables and re-run the agent.'
-            sys.exit(0)
-
-        if("emerge" in installer):
-            os.system(installer+" iptables") # there is no install param in emerge
-        else:
-            os.system(installer+" install iptables")
-    
-
-    
-    # old versions of python such as python 2.5.1 do not come with json nor they have support for one..
-
-    try:
-    
-        import json
-        
-    except: 
-    
-        try:
-            
-            import simplejson as json
-            
-            print 'here'*100
-                    
-        except:
-    
-            print 'Installing python-simplejson..'
-        
-            if(not installer):
-                print 'Please install the python-simplejson and re-run the agent.'
-                sys.exit(0)
-
-            if("emerge" in installer):
-                os.system(installer+" python-simplejson") # there is no install param in emerge
-            else:
-                os.system(installer+" install python-simplejson")       
-    
-    return True
-    
 
 def main():
 
