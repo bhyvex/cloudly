@@ -10,10 +10,13 @@ import datetime
 import platform
 import base64, pickle
 
-import json
 import urllib
 import httplib
 import subprocess
+
+try:
+    import json
+except: pass
 
 AGENT_VERSION = "0.1"
 
@@ -463,7 +466,9 @@ def setup_system():
     
     # old versions of python such as python 2.5.1 do not come with json nor they have support for one..
 
-    # XXX improvise for the simplejson on the agent
+    try:
+        import json
+    except: pass
     
     
 
