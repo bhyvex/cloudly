@@ -423,15 +423,12 @@ def setup_system():
         proc = proc.communicate()[0]
         if('apt-get' in proc): installer = proc
 
-        installer = installer.replace('\n','')
-
     if(not installer):
     
         proc = subprocess.Popen(['which','emerge'], stdout=subprocess.PIPE, close_fds=True)
         proc = proc.communicate()[0]
         if('emerge' in proc): installer = proc
     
-        installer = installer.replace('\n','')
 
     if(not installer):
     
@@ -439,7 +436,7 @@ def setup_system():
         proc = proc.communicate()[0]
         if('zypper' in proc): installer = proc
         
-        installer = installer.replace('\n','')
+    installer = installer.replace('\n','')
 
 
     # iptables..
