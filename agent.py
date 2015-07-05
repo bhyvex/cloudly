@@ -94,8 +94,10 @@ def setup_system():
         try:
             
             import simplejson as json
-            
-            print 'here'*100
+
+            print 'testing simplejson.....'
+            x = {1,2}
+            print json.dumps(x)
                     
         except:
     
