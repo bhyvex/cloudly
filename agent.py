@@ -457,6 +457,10 @@ def send_data( secret, api_call, data ):
     return response_data
     
 
+def setup_system():
+
+    pass
+
 def main():
 
     os.system("clear")
