@@ -467,9 +467,14 @@ def setup_system():
     # old versions of python such as python 2.5.1 do not come with json nor they have support for one..
 
     try:
-        import json
-    except: pass
     
+        import json
+        
+    except: 
+    
+        pass
+    
+    return True
     
 
 def main():
