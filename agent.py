@@ -155,9 +155,9 @@ def _get_memory_usage():
 def _get_ip_address():
     
     try:
-        ifconfig = subprocess.Popen(["ifconfig","-a"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
-    except:
         ifconfig = subprocess.Popen(["/sbin/ifconfig","-a"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+    except:
+        ifconfig = subprocess.Popen(["ifconfig","-a"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
     
     ip = re.search( r'inet addr:[^\s]+', ifconfig )
     
