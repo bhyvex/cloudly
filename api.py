@@ -270,7 +270,7 @@ def ping():
 
     print '-'*100
     for disk in disks_usage:
-        print disk
+        print 'mount_point', disk[5]
         
     #loadavg_tsdb_cmd = "put " + \
     #uuid.replace(':','-') + ".sys.disks " + \
