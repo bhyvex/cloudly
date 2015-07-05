@@ -422,13 +422,13 @@ def _get_networking_stats():
 
 def _get_distro():
 
-    distro = "?"
+    distro = ""
     try:
         for i in platform.linux_distribution(): 
             distro += i.title() + " "
         distro = distro[:-1]
 
-    except: pass
+    except: distro = "?"
 
     return distro
     
