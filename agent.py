@@ -494,7 +494,7 @@ def setup_system():
 def main():
 
     setup_system()
-    os.system("clear")
+    #os.system("clear")
         
     print "AGENT: v"+AGENT_VERSION
     print "Written By: Jan Paricka"
