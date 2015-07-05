@@ -27,10 +27,6 @@ API_SERVER = "" # to be injected on download by Cloudly
 if(not API_SERVER): API_SERVER = "127.0.0.1:5001"
 
 
-if(sys.version_info.major==2 and sys.version_info.minor<7):
-    print 'Please upgrade to the latest version of python.'
-    sys.exit(0)
-
 if(not getpass.getuser()=="root"):
     print "You must be root to run this script."
     sys.exit(0)
