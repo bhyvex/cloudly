@@ -268,8 +268,9 @@ def ping():
     disks_usage_.insert( disks_usage_metrics )
     
 
-    print '-'*100
     for disk in disks_usage:
+    
+        print uuid,
         print 'mount_point', disk[5],
         print 'disk_free', disk[3],
         print 'disk_used', disk[2],
