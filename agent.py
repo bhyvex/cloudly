@@ -154,7 +154,11 @@ def _get_memory_usage():
 
 def _get_ip_address():
     
-    ifconfig = subprocess.Popen(["ifconfig","-a"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+    try:
+        ifconfig = subprocess.Popen(["ifconfig","-a"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+    except:
+        ifconfig = subprocess.Popen(["/sbin/ifconfig","-a"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+    
     ip = re.search( r'inet addr:[^\s]+', ifconfig )
     
     if(not ip):
@@ -457,6 +461,7 @@ def setup_system():
         else:
             os.system(installer+" install iptables")
     
+
     
     # old versions of python such as python 2.5.1 do not come with json nor they have support for one..
 
