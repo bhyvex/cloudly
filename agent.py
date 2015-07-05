@@ -427,7 +427,6 @@ def _get_distro():
         for i in platform.linux_distribution(): 
             distro += i.title() + " "
         distro = distro[:-1]
-
     except: distro = "?"
 
     return distro
