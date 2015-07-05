@@ -270,7 +270,6 @@ def ping():
 
     for disk in disks_usage:
     
-        print uuid,
         mount_point = disk[5]
         disk_free = disk[3]
         disk_used = disk[2]
@@ -283,6 +282,27 @@ def ping():
         str(disk_free) + \
         " mount_point=" + mount_point + \
         " mm=disk_free" + \
+        "\n"
+        disks_tsdb_cmd += "put " + \
+        uuid.replace(':','-') + ".sys.disks " + \
+        str(int(time.time())) + " " + \
+        str(disk_used) + \
+        " mount_point=" + mount_point + \
+        " mm=disk_used" + \
+        "\n"
+        disks_tsdb_cmd += "put " + \
+        uuid.replace(':','-') + ".sys.disks " + \
+        str(int(time.time())) + " " + \
+        str(disk_total) + \
+        " mount_point=" + mount_point + \
+        " mm=disk_total" + \
+        "\n"
+        disks_tsdb_cmd += "put " + \
+        uuid.replace(':','-') + ".sys.disks " + \
+        str(int(time.time())) + " " + \
+        str(disk_usage) + \
+        " mount_point=" + mount_point + \
+        " mm=disk_usage" + \
         "\n"
         
         print 'disks_tsdb_cmd'
