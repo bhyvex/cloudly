@@ -270,10 +270,10 @@ def ping():
 
     print '-'*100
     for disk in disks_usage:
-        print 'mount_point', disk[5]
-        print 'disk_free', disk[3]
-        print 'disk_used', disk[2]
-        print 'disk_total', disk[1]
+        print 'mount_point', disk[5],
+        print 'disk_free', disk[3],
+        print 'disk_used', disk[2],
+        print 'disk_total', disk[1],
         print 'disk_usage', disk[4]
         
         #loadavg_tsdb_cmd = "put " + \
