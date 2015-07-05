@@ -239,7 +239,11 @@ def _get_disks_usage():
 
 def _get_networking_stats():
 
-    proc = subprocess.Popen(['iptables','-L','-vxn'], stdout=subprocess.PIPE, close_fds=True)
+    try:
+        proc = subprocess.Popen(['/sbin/iptables','-L','-vxn'], stdout=subprocess.PIPE, close_fds=True)
+    except:
+        proc = subprocess.Popen(['iptables','-L','-vxn'], stdout=subprocess.PIPE, close_fds=True)
+    
     data = proc.communicate()[0]
     
     inbound_text = ""
@@ -324,7 +328,12 @@ def _get_networking_stats():
     if(output_accept_bytes>0): outbound_traffic['output_accept_bytes'] = output_accept_bytes
 
     networking = {'input_accept_packets':inbound_traffic['input_accept_packets'],'input_accept_bytes':inbound_traffic['input_accept_bytes'],'output_accept_packets':outbound_traffic['output_accept_packets'],'output_accept_bytes':outbound_traffic['output_accept_bytes'],}
-    proc = subprocess.Popen(['iptables','-Z'], stdout=subprocess.PIPE, close_fds=True)
+
+    try:
+        proc = subprocess.Popen(['/sbin/iptables','-Z'], stdout=subprocess.PIPE, close_fds=True)
+    except:
+        proc = subprocess.Popen(['iptables','-Z'], stdout=subprocess.PIPE, close_fds=True)
+    
 
     return networking
 
