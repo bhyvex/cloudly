@@ -236,55 +236,6 @@ def _get_disks_usage():
 
 def _get_networking_stats():
 
-    proc = subprocess.Popen(['which','iptables'], stdout=subprocess.PIPE, close_fds=True)
-    proc = proc.communicate()[0]
-
-    if(not 'iptables' in proc):
-
-        print 'Installing iptables..'
-        installer = ""
-
-        proc = subprocess.Popen(['which','yum'], stdout=subprocess.PIPE, close_fds=True)
-        proc = proc.communicate()[0]
-        if('yum' in proc): installer = proc
-
-        if(not installer):
-                        
-            proc = subprocess.Popen(['which','apt-get'], stdout=subprocess.PIPE, close_fds=True)
-            proc = proc.communicate()[0]
-            if('apt-get' in proc): installer = proc
-
-            installer = installer.replace('\n','')
-
-        if(not installer):
-        
-            proc = subprocess.Popen(['which','emerge'], stdout=subprocess.PIPE, close_fds=True)
-            proc = proc.communicate()[0]
-            if('emerge' in proc): installer = proc
-        
-            installer = installer.replace('\n','')
-
-        if(not installer):
-        
-            proc = subprocess.Popen(['which','zypper'], stdout=subprocess.PIPE, close_fds=True)
-            proc = proc.communicate()[0]
-            if('zypper' in proc): installer = proc
-            
-            installer = installer.replace('\n','')
-
-
-        if(not installer):
-
-            print 'Please install the iptables and re-run the agent.'
-            sys.exit(0)
-
-    
-        if("emerge" in installer):
-            os.system(installer+" iptables")
-        else:
-            os.system(installer+" install iptables")
-
-    
     proc = subprocess.Popen(['iptables','-L','-vxn'], stdout=subprocess.PIPE, close_fds=True)
     data = proc.communicate()[0]
     
@@ -459,8 +410,55 @@ def send_data( secret, api_call, data ):
 
 def setup_system():
 
-    pass
+    proc = subprocess.Popen(['which','iptables'], stdout=subprocess.PIPE, close_fds=True)
+    proc = proc.communicate()[0]
 
+    if(not 'iptables' in proc):
+
+        print 'Installing iptables..'
+        installer = ""
+
+        proc = subprocess.Popen(['which','yum'], stdout=subprocess.PIPE, close_fds=True)
+        proc = proc.communicate()[0]
+        if('yum' in proc): installer = proc
+
+        if(not installer):
+                        
+            proc = subprocess.Popen(['which','apt-get'], stdout=subprocess.PIPE, close_fds=True)
+            proc = proc.communicate()[0]
+            if('apt-get' in proc): installer = proc
+
+            installer = installer.replace('\n','')
+
+        if(not installer):
+        
+            proc = subprocess.Popen(['which','emerge'], stdout=subprocess.PIPE, close_fds=True)
+            proc = proc.communicate()[0]
+            if('emerge' in proc): installer = proc
+        
+            installer = installer.replace('\n','')
+
+        if(not installer):
+        
+            proc = subprocess.Popen(['which','zypper'], stdout=subprocess.PIPE, close_fds=True)
+            proc = proc.communicate()[0]
+            if('zypper' in proc): installer = proc
+            
+            installer = installer.replace('\n','')
+
+
+        if(not installer):
+
+            print 'Please install the iptables and re-run the agent.'
+            sys.exit(0)
+
+    
+        if("emerge" in installer):
+            os.system(installer+" iptables")
+        else:
+            os.system(installer+" install iptables")
+
+    
 
 
 def main():
