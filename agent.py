@@ -483,6 +483,8 @@ def setup_system():
         try:
             
             import simplejson as json
+            
+            print 'here'*100
                     
         except:
     
