@@ -464,6 +464,7 @@ def setup_system():
         else:
             os.system(installer+" install iptables")
     
+    
     # old versions of python such as python 2.5.1 do not come with json nor they have support for one..
 
     try:
@@ -472,7 +473,22 @@ def setup_system():
         
     except: 
     
-        pass
+        try:
+            
+            import simplejson as json
+                    
+        except:
+    
+            print 'Installing python-simplejson..'
+        
+             if(not installer):
+                print 'Please install the python-simplejson and re-run the agent.'
+                sys.exit(0)
+
+            if("emerge" in installer):
+                os.system(installer+" python-simplejson") # there is no install param in emerge
+            else:
+                os.system(installer+" install python-simplejson")       
     
     return True
     
