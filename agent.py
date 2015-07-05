@@ -441,6 +441,7 @@ def setup_system():
         installer = installer.replace('\n','')
 
 
+    # iptables..
 
     proc = subprocess.Popen(['which','iptables'], stdout=subprocess.PIPE, close_fds=True)
     proc = proc.communicate()[0]
@@ -458,7 +459,11 @@ def setup_system():
         else:
             os.system(installer+" install iptables")
     
+    # old versions of such as python 2.5.1 do not come with json nor they have support for one..
 
+    # XXX improvise for the simplejson on the agent
+    
+    
 
 def main():
 
