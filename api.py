@@ -266,6 +266,20 @@ def ping():
     }
     disks_usage_ = mongo.disks_usage
     disks_usage_.insert( disks_usage_metrics )
+    
+
+    print '-'*100
+    for disk in disks_usage:
+        print disk
+        
+    #loadavg_tsdb_cmd = "put " + \
+    #uuid.replace(':','-') + ".sys.disks " + \
+    #str(int(time.time())) + " " + \
+    #str(loadavg[0]) + \
+    #" mount_point=" + \
+    #" mm=disk_free" + \
+    #"\n"
+
 
     return ("thanks", 201)
 
