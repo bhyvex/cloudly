@@ -271,19 +271,22 @@ def ping():
     for disk in disks_usage:
     
         print uuid,
-        print 'mount_point', disk[5],
-        print 'disk_free', disk[3],
-        print 'disk_used', disk[2],
-        print 'disk_total', disk[1],
-        print 'disk_usage', disk[4]
+        mount_point = disk[5]
+        disk_free = disk[3]
+        disk_used = disk[2]
+        disk_total = disk[1]
+        disk_usage = disk[4]
         
-        #loadavg_tsdb_cmd = "put " + \
-        #uuid.replace(':','-') + ".sys.disks " + \
-        #str(int(time.time())) + " " + \
-        #str(loadavg[0]) + \
-        #" mount_point=" + \
-        #" mm=disk_free" + \
-        #"\n"
+        disks_tsdb_cmd = "put " + \
+        uuid.replace(':','-') + ".sys.disks " + \
+        str(int(time.time())) + " " + \
+        str(disk_free) + \
+        " mount_point=" + mount_point + \
+        " mm=disk_free" + \
+        "\n"
+        
+        print 'disks_tsdb_cmd'
+        print disks_tsdb_cmd
 
 
     return ("thanks", 201)
