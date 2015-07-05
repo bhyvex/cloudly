@@ -96,8 +96,11 @@ def setup_system():
             import simplejson as json
 
             print 'testing simplejson.....'
-            x = {'test'=True,}
+ 
+            x = {}
+            x['test']=True
             print json.dumps(x)
+
 
         except:
     
