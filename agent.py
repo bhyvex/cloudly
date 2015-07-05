@@ -96,8 +96,8 @@ def setup_system():
             import simplejson as json
 
             print 'testing simplejson.....'
-            print json.dumps({1,0,})
-                    
+            print json.dumps({'test'=1,})
+
         except:
     
             print 'Installing python-simplejson..'
