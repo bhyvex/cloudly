@@ -499,7 +499,11 @@ def main():
     print "AGENT: v"+AGENT_VERSION
     print "Written By: Jan Paricka"
     
-    HWADDR = subprocess.Popen(["ifconfig","-a"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+    try:
+        HWADDR = subprocess.Popen(["/sbin/ifconfig","-a"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+    except:
+        HWADDR = subprocess.Popen(["ifconfig","-a"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+    
     UUID = re.search(r'([0-9A-F]{2}[:-]){5}([0-9A-F]{2})', HWADDR, re.I).group()
 
     api_call = "/v10/activity/"
