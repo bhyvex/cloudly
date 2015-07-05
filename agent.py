@@ -481,7 +481,7 @@ def setup_system():
     
             print 'Installing python-simplejson..'
         
-             if(not installer):
+            if(not installer):
                 print 'Please install the python-simplejson and re-run the agent.'
                 sys.exit(0)
 
