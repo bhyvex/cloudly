@@ -786,6 +786,51 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
         return HttpResponse(graphs_mixed_respose, content_type="application/json")
 
+    
+    if(graph_type=="disks"):
+    
+        mount_ponit = request.POST[u'mountPoint']
+
+        graph_interval = request.POST['interval']
+        graphs_mixed_respose = []
+
+        if(graph_interval=="3m"):
+            params = {'start':'3m-ago','m':'avg:3s-avg:' + hwaddr + '.sys.disks'}
+        if(graph_interval=="15m"):
+            params = {'start':'15m-ago','m':'avg:15s-avg:' + hwaddr + '.sys.disks'}
+        if(graph_interval=="1h"):
+            params = {'start':'1h-ago','m':'avg:1m-avg:' + hwaddr + '.sys.disks'}
+        if(graph_interval=="1d"):
+            params = {'start':'1d-ago','m':'avg:30m-avg:' + hwaddr + '.sys.disks'}
+        if(graph_interval=="7d"):
+            params = {'start':'7d-ago','m':'avg:3h-avg:' + hwaddr + '.sys.disks'}
+        if(graph_interval=="30d"):
+            params = {'start':'30d-ago','m':'avg:12h-avg:' + hwaddr + '.sys.disks'}
+
+
+        params['m'] += "{mm=disk_used,mount_point="+mount_ponit+"}"
+
+
+        if(params):
+            tsdb = requests.get('http://hbase:4242/api/query',params=params)
+            tsdb_response = json.loads(tsdb.text)
+            tsdb_response = tsdb_response[0]['dps']
+
+            for i in tsdb_response:
+                graphs_mixed_respose.append([int(i),round(float(tsdb_response[i]),2)])
+
+            graphs_mixed_respose = sorted(graphs_mixed_respose, key=itemgetter(0))
+            graphs_mixed_respose = [graphs_mixed_respose[::-1],]
+
+        graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
+
+        print '-'*100
+        print graphs_mixed_respose
+
+        return HttpResponse(graphs_mixed_respose, content_type="application/json")     
+        
+        
+
 
     if(graph_type=="cpu_usage"):
 
