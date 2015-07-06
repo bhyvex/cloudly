@@ -14,6 +14,9 @@ import urllib
 import httplib
 import subprocess
 
+try:
+    import json
+except: pass
 
 AGENT_VERSION = "0.1"
 
@@ -489,6 +492,10 @@ def get_system_metrics( uuid, secret ):
 
 
 def send_data( secret, api_call, data ):
+    
+    try:
+        import simplejson as json
+    except: pass
     
     params = urllib.urlencode(data)
     headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
