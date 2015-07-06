@@ -224,8 +224,8 @@ def ping():
         'output_accept_bytes': networking['output_accept_bytes'],
         'date_created': datetime.datetime.utcnow(),
     }
-    networking_ = mongo.networking
-    networking_.insert( networking_metrics )
+    #networking_ = mongo.networking
+    #networking_.insert( networking_metrics )
 
     networking_tsdb_cmd = "put " + \
         uuid.replace(':','-') + ".sys.network " + \
