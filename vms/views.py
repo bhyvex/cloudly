@@ -241,9 +241,10 @@ def server_view(request, hwaddr):
     activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
 
     disks = []
+    disks_ = server[u'disks_usage']
 
-    for disk in server[u'disks_usage']:
-        if not disk in disks:
+    for disk in disks_:
+        if not disk[5] in disks:
             disks.append(disk[5])
         
     return render_to_response('server_detail.html', {'secret':profile.secret,'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'disks_usage':disks_usage,'disks':disks,'mem_usage':mem_usage,'loadavg':loadavg,'networking':networking,'activity':activity,}, context_instance=RequestContext(request))
