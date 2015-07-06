@@ -35,6 +35,17 @@ def dict_get(h, key):
 		
 	return None
 
+@register.filter(name='replace')
+def replace(str, x):
+
+    try: 
+        y = x[y]
+        x = x[x]
+        return str.replace(x,y)
+    except: pass
+
+	return None
+
 
 @register.filter(name="count_list")
 def count_list(x):
