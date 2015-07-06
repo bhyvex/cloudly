@@ -503,11 +503,6 @@ def send_data( secret, api_call, data ):
     return response_data
         
 
-try:
-    import json
-except:
-    import simplejson as json
-
 
 def main():
 
