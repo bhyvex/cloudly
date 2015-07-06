@@ -133,8 +133,8 @@ def ping():
         'loadavg': loadavg,
         'date_created': datetime.datetime.utcnow(),
     }
-    loadavg_ = mongo.loadavg
-    loadavg_.insert( loadavg_metrics )
+    #loadavg_ = mongo.loadavg
+    #loadavg_.insert( loadavg_metrics )
 
     loadavg_tsdb_cmd = "put " + \
         uuid.replace(':','-') + ".sys.loadavg " + \
