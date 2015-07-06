@@ -168,8 +168,8 @@ def ping():
         'memory_usage': memory_usage,
         'date_created': datetime.datetime.utcnow(),
     }
-    memory_usage_ = mongo.memory_usage
-    memory_usage_.insert( memory_usage_metrics )
+    #memory_usage_ = mongo.memory_usage
+    #memory_usage_.insert( memory_usage_metrics )
 
     memory_tsdb_cmd = "put " + \
         uuid.replace(':','-') + ".sys.memory " + \
