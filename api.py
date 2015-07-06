@@ -89,6 +89,7 @@ def ping():
         'memory_usage': memory_usage,
         'disks_usage': disks_usage,
         'last_seen': last_seen,
+        'sessions': "XXX",
     }
 
     print ' API query from agent version', str(agent_version), uuid, 'IP', ip_remote+'/'+ ip, 'uptime '+uptime+''
