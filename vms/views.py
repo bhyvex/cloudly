@@ -244,8 +244,8 @@ def server_view(request, hwaddr):
     disks_ = server[u'disks_usage']
 
     for disk in disks_:
-        if not disk[5].replace('/','-slash-') in disks:
-            disks.append(disk[5].replace('/','-slash-'))
+        if not disk[5] in disks:
+            disks.append(disk[5])
         
     return render_to_response('server_detail.html', {'secret':profile.secret,'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'disks_usage':disks_usage,'disks':disks,'mem_usage':mem_usage,'loadavg':loadavg,'networking':networking,'activity':activity,}, context_instance=RequestContext(request))
 
@@ -626,7 +626,7 @@ def ajax_aws_graphs(request, instance_id, graph_type="all"):
 
 
 @login_required()
-def ajax_server_graphs(request, hwaddr, graph_type="", extra_param=""):
+def ajax_server_graphs(request, hwaddr, graph_type=""):
 
     print '-- ajax_server_graphs, type', graph_type
     print request.user
