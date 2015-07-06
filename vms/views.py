@@ -219,8 +219,8 @@ def server_view(request, hwaddr):
 
 
     disks_usage_ = []
-    disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-    for i in disks_usage: disks_usage_.append(i)
+    #disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
+    #for i in disks_usage: disks_usage_.append(i)
     disks_usage = disks_usage_
 
     networking_ = []
@@ -239,6 +239,8 @@ def server_view(request, hwaddr):
     loadavg = loadavg_
 
     activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
+
+    
 
     return render_to_response('server_detail.html', {'secret':profile.secret,'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'disks_usage':disks_usage,'mem_usage':mem_usage,'loadavg':loadavg,'networking':networking,}, context_instance=RequestContext(request))
 
