@@ -392,16 +392,17 @@
                 </div>
 
                 <div class="panel-body">
-
-                    {% for disk in server|dict_get:"disks_usage" %}
-                        {% if disk|dict_get:0 != "none" %}
-                        <div id="disk_{{forloop.counter}}"></div>
-                        {% if not forloop.last %}
-                        <hr/>
-                        {% endif %}
-                        {% endif %}
+                    {% for disk in disks %}
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                {{disk}}
+                                <ul id="{{disk}}_interval" class="nav nav-tabs nav-interval">
+                                    {% include "partials/chart_interval.html" %}
+                                </ul>
+                            </div>
+                            <div id="{{disk}}_chart_id"></div>
+                        </div>
                     {% endfor %}
-
                 </div>
 
             </div>
