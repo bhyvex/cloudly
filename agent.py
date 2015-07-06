@@ -507,7 +507,7 @@ def send_data( secret, api_call, data ):
 def main():
 
     setup_system()
-    os.system("clear")
+    #os.system("clear")
     
         
     print "AGENT: v"+AGENT_VERSION
