@@ -65,7 +65,7 @@ $(function () {
             },
             yAxis: {
                 title: {
-                    text: 'Load'
+                    text: 'Inbound'
                 },
                 min: 0
             },

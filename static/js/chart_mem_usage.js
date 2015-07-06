@@ -65,7 +65,7 @@ $(function () {
             },
             yAxis: {
                 title: {
-                    text: 'Load'
+                    text: 'Memory'
                 },
                 min: 0
             },

@@ -71,8 +71,8 @@ $(function () {
             },
             tooltip: {
                 formatter: function () {
-                    return '<b>' + Highcharts.numberFormat(this.y, 0)
-                        + this.series.name + '</b><br/>'
+                    return '<strong>' + Highcharts.numberFormat(this.y, 2,'.',',')
+                        + ' in average</strong> (' + this.series.name + ')<br/>'
                         + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x*1000);
 
                 }
