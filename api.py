@@ -265,8 +265,8 @@ def ping():
         'disks_usage': disks_usage,
         'date_created': datetime.datetime.utcnow(),
     }
-    disks_usage_ = mongo.disks_usage
-    disks_usage_.insert( disks_usage_metrics )
+    #disks_usage_ = mongo.disks_usage
+    #disks_usage_.insert( disks_usage_metrics )
     
 
     for disk in disks_usage:
