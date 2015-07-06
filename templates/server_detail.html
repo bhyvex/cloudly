@@ -395,7 +395,7 @@
                     {% for disk in disks %}
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                {{disk}}
+                                Filesystem "{{disk}}"
                                 <ul id="{{disk|convert_disk_name}}_interval" class="nav nav-tabs nav-interval">
                                     {% include "partials/chart_interval.html" %}
                                 </ul>
