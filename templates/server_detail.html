@@ -16,7 +16,7 @@
 
 <input type='hidden' name='hwaddr' value='{{hwaddr_orig}}' />
 <input type='hidden' name='secret' value='{{secret}}' />
-<input type='hidden' name='disks' value='[{% for disk in disks %}"{{disk}}"{% if not forloop.last %},{% endif %}{% endfor %}]' />
+<input type='hidden' name='disks_mount_points' value='[{% for disk in disks %}"{{disk}}"{% if not forloop.last %},{% endif %}{% endfor %}]' />
 
 
 <div class="col-md-10 col-sm-11 main ">
