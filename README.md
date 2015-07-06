@@ -232,10 +232,7 @@ DB Backends
 
 ###### Install OpenTSDB
 
-The core of DB backend runs off of the OpenTSBD.  Please refer to the official OpenTSDB on how to install it - http://opentsdb.net/docs/build/html/installation.html
-
-This will enable goodies such as Hadoop, HBase from Apache and first and foremost the almighty OpenTSDB!  :)
-
+Cloudly runs off of Hadoop and is powered by the OpenTSBD.  Please refer to the official OpenTSDB documentation for installation instructions - http://opentsdb.net/docs/build/html/installation.html
 
 ..and that's that!  :)
 
