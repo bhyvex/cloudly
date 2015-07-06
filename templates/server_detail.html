@@ -554,63 +554,18 @@
 <script src="/static/js/processes_table_ajax.js"></script>
 
 <script type="text/javascript">
-{% for disk in server|dict_get:"disks_usage" %}
-    $(function () {
-        $('#disk_{{forloop.counter}}').highcharts({
-            chart: {
-                type: 'spline'
-            },
-            title: {
-                text: '{{disk|dict_get:5}}'
-            },
-            subtitle: {
-                text: ''
-            },
-            xAxis: {
-                type: 'datetime',
-                title: {
-                    text: 'Date and time'
-                }
-            },
-            yAxis: {
-                title: {
-                    text: '% used'
-                },
-                min: 0
-            },
-            tooltip: {
-                headerFormat: '<b>{series.name}:</b> {point.y:.2f}<br>',
-                pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}'
-            },
+    //turn to inline mode
+    $.fn.editable.defaults.mode = 'inline';
 
-            series: [{
-                name: '{{disk|dict_get:0}}',
-                data: [
-            {% for disks_metrics in disks_usage %}
-                [Date.UTC({{disks_metrics.date_created|date:"Y"}}, {{disks_metrics.date_created|date:"n"|substract_one}}, {{disks_metrics.date_created|date:"j"}}, {{disks_metrics.date_created|date:"H"}}, {{disks_metrics.date_created|date:"i"}}, {{disks_metrics.date_created|date:"s"}}), {{disks_metrics|dict_get:"disks_usage"|dict_get:forloop.parentloop.counter0|dict_get:4|clean_percentage}} ],
-            {% endfor %}
-                ]
-            },
-            ]
-        });
+    $('#username').editable({
+        csfr: 'csfr',
+        type: 'text',
+        pk: 1,
+        url: '/post',
+        title: 'Enter name',
+        success: function(response, newValue) {
+            if(response.status == 'error') return response.msg; //msg will be shown in editable form
+        }
     });
-{% endfor %}
-
-//turn to inline mode
-$.fn.editable.defaults.mode = 'inline';
-
-$('#username').editable({
-    csfr: 'csfr',
-    type: 'text',
-    pk: 1,
-    url: '/post',
-    title: 'Enter name',
-    success: function(response, newValue) {
-        if(response.status == 'error') return response.msg; //msg will be shown in editable form
-    }
-});
-
-
-
 </script>
 {% endblock extra_js %}
