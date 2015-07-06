@@ -626,7 +626,7 @@ def ajax_aws_graphs(request, instance_id, graph_type="all"):
 
 
 @login_required()
-def ajax_server_graphs(request, hwaddr, graph_type=""):
+def ajax_server_graphs(request, hwaddr, graph_type="", extra_param=""):
 
     print '-- ajax_server_graphs, type', graph_type
     print request.user
