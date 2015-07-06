@@ -94,12 +94,10 @@ def setup_system():
             
             import simplejson as json
 
-            print 'testing simplejson.....'
- 
-            x = {}
-            x['test']=True
-            print json.dumps(x)
-
+            #print 'json test..' 
+            #x = {}
+            #x['test']=True
+            #print json.dumps(x)
 
         except:
     
@@ -514,7 +512,7 @@ def send_data( secret, api_call, data ):
 def main():
 
     setup_system()
-    #os.system("clear")
+    os.system("clear")
     
         
     print "AGENT: v"+AGENT_VERSION
