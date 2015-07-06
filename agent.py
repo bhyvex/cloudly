@@ -487,8 +487,11 @@ def get_system_metrics( uuid, secret ):
 def send_data( secret, api_call, data ):
     
     try:
-        import simplejson as json
-    except: pass
+        import json
+    except:
+        try:
+            import simplejson as json
+        except: pass
     
     params = urllib.urlencode(data)
     headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
