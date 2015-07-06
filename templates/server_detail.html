@@ -396,11 +396,11 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 {{disk}}
-                                <ul id="{{disk}}_interval" class="nav nav-tabs nav-interval">
+                                <ul id="{{disk|convert_disk_name}}_interval" class="nav nav-tabs nav-interval">
                                     {% include "partials/chart_interval.html" %}
                                 </ul>
                             </div>
-                            <div id="{{disk}}_chart_id"></div>
+                            <div id="{{disk|convert_disk_name}}_chart_id"></div>
                         </div>
                     {% endfor %}
                 </div>
@@ -550,6 +550,7 @@
 <script src="/static/js/chart_mem_usage.js"></script>
 <script src="/static/js/chart_inbound_traffic.js"></script>
 <script src="/static/js/chart_outbound_traffic.js"></script>
+<script src="/static/js/chart_disks.js"></script>
 <script src="/static/js/processes_table_ajax.js"></script>
 
 <script type="text/javascript">

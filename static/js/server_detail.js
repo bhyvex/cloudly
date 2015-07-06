@@ -9,7 +9,8 @@ var server = $('input[name="hwaddr"]').val(),           // server identifier
     addressCpuUsage = '/ajax/server/' + server + '/metrics/cpu_usage/', // ajax call adress
     addressMemUsage = '/ajax/server/' + server + '/metrics/mem_usage/', // ajax call adress
     addressOutboundTraffic = '/ajax/server/' + server + '/metrics/network_output_bytes/', // ajax call adress
-    addressInboundTraffic = '/ajax/server/' + server + '/metrics/network_input_bytes/'; // ajax call adress
+    addressInboundTraffic = '/ajax/server/' + server + '/metrics/network_input_bytes/', // ajax call adress
+    addressDisks = '/ajax/server/' + server + '/metrics/disks/'; // ajax call adress
 
 (function($) {
     $.fn.deactivePanel = function() {
@@ -124,7 +125,7 @@ function setDuration(interval) {
 /**
  * Get new data via ajax call and set it to given serie
  */
-function requestChartData(address, series, interval, updateChart) {
+function requestChartData(address, series, interval, updateChart, mountPoint) {
     $.ajax({
         url: address,
         type: 'POST',
@@ -136,7 +137,8 @@ function requestChartData(address, series, interval, updateChart) {
         data: {
             'server': server,
             'secret': secret,
-            'interval': interval
+            'interval': interval,
+            'mountPoint': mountPoint
         },
         success: function(data) {
             if (data !== undefined && data !== null && data[0].length > 0) {

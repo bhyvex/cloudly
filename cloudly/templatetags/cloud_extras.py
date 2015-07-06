@@ -35,13 +35,11 @@ def dict_get(h, key):
 		
 	return None
 
-@register.filter(name='replace')
-def replace(str, x):
+@register.filter(name='convert_disk_name')
+def convert_disk_name(x):
 
     try: 
-        y = x[y]
-        x = x[x]
-        return str.replace(x,y)
+        return x.replace('/','slash')
     except: pass
 
     return None
