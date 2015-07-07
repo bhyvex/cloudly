@@ -577,7 +577,6 @@ def ajax_virtual_machines(request):
         print vm_cache[vm]["instance"]["state"]["state"].title(), vm
 
     ajax_vms_response = ajax_vms_response.replace(",}","}")
-
     if(not vm_cache): ajax_vms_response = {}
 
     return render_to_response('ajax_virtual_machines.html', {'user':user,'ajax_vms_response':ajax_vms_response,'vms_cached_response':vm_cache,}, context_instance=RequestContext(request))
@@ -653,11 +652,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>1800):
             server_status = "Offline"
 
-
-    #disks_usage_ = []
-    #disks_usage = mongo.disks_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-    #for i in disks_usage: disks_usage_.append(i)
-    #disks_usage = disks_usage_
 
     #activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
 
