@@ -187,6 +187,19 @@ $(document).ready(function() {
         }
     });
 
+    $('#servername').editable({
+        csrf: csrf,
+        type: 'text',
+        pk: 1,
+        url: '/post',
+        title: 'Enter new server name',
+        success: function(response, newValue) {
+            if (response.status == 'error') {
+                console.log(response.msg); //msg will be shown in editable form
+            }
+        }
+    });
+
     updateServerInfo();
 });
 

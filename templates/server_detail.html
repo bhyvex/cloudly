@@ -46,7 +46,7 @@
                             <tr>
                                 <td width="40%">Name</td>
                                 <td width="60%">
-                                    <a href="#" id="username" data-type="text" data-csfr="{%csrf_token%}"  data-pk="1" data-original-title="Enter username" class="editable editable-click editable-open">{{server|dict_get:"uuid"}}</a>
+                                    <a href="#" id="servername" class="editable editable-click editable-open">{{server|dict_get:"uuid"}}</a>
 
                                    </td>
                             </tr>
@@ -553,19 +553,4 @@
 <script src="/static/js/chart_disks.js"></script>
 <script src="/static/js/processes_table_ajax.js"></script>
 
-<script type="text/javascript">
-    //turn to inline mode
-    $.fn.editable.defaults.mode = 'inline';
-
-    $('#username').editable({
-        csfr: 'csfr',
-        type: 'text',
-        pk: 1,
-        url: '/post',
-        title: 'Enter name',
-        success: function(response, newValue) {
-            if(response.status == 'error') return response.msg; //msg will be shown in editable form
-        }
-    });
-</script>
 {% endblock extra_js %}
