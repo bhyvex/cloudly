@@ -24,7 +24,11 @@ def _get_network_sessions():
         netstat = subprocess.Popen(["/usr/sbin/netstat","-atn"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 
 
-    print netstat
+    for line in netstat.split('\n'):
+    
+        if("tcp4" in line or "udp4" in line):
+            print line
+        
     
     return "XXX"
     
