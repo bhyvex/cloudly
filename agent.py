@@ -417,7 +417,7 @@ def _get_networking_stats():
     return networking
 
 
-def _get_sessions():
+def _get_network_sessions():
     pass
 
 
@@ -467,6 +467,7 @@ def get_system_metrics( uuid, secret ):
     processes = _get_processes()
     hostname = _get_hostname()
     networking = _get_networking_stats()
+    sessions = _get_network_sessions()
     
     system_metrics_json = {
         'uuid': uuid,
