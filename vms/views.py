@@ -807,7 +807,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         if(graph_interval=="30d"):
             params = {'start':'30d-ago','m':'avg:12h-avg:' + hwaddr + '.sys.disks'}
 
-
         params['m'] += "{mm=disk_used,mount_point="+mount_ponit+"}"
 
 
@@ -824,8 +823,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
         graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
 
-        print '-'*100
-        print graphs_mixed_respose
 
         return HttpResponse(graphs_mixed_respose, content_type="application/json")     
         
