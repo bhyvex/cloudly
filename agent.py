@@ -18,6 +18,7 @@ try:
     import json
 except: pass
 
+
 AGENT_VERSION = "0.1"
 
 SECRET = "" # to be injected on download by Cloudly
@@ -414,6 +415,10 @@ def _get_networking_stats():
     
 
     return networking
+
+
+def _get_sessions():
+    pass
 
 
 def _get_distro():
