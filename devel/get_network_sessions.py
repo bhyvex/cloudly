@@ -15,6 +15,7 @@ import subprocess
 def _get_network_sessions():
     print 'Active Internet Connections (including servers)
     
+    # XXX filter out all but tcp4 records
     # XXX resolve services
     
     return ""
