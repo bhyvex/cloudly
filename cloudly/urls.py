@@ -44,7 +44,7 @@ urlpatterns = patterns('',
     url(r'^ajax/cloud/vms/refresh/$', 'vms.views.ajax_vms_refresh', name='ajax_vms_refresh'),
     url(r'^ajax/cloud/box-template/$', 'vms.views.ajax_virtual_machines_box', name='ajax_virtual_machines_box'),
     url(r'^ajax/server/(?P<hwaddr>[\w\-\.]+)/metrics/(?P<graph_type>[\w\-\.]+)/$', 'vms.views.ajax_server_graphs', name='ajax_server_graphs'),
-    url(r'^ajax/update/server/name/$', 'vms.views.ajax_update_server_name', name='ajax_update_server_name'),
+    url(r'^ajax/server/name/update/$', 'vms.views.ajax_update_server_name', name='ajax_update_server_name'),
     
     #url(r'^ajax/aws/(?P<instance_id>[\w\-\.]+)/metrics/(?P<graph_type>[\w\-\.]+)/$', 'vms.views.ajax_aws_graphs', name='ajax_aws_graphs'),
 
