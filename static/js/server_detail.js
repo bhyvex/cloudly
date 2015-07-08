@@ -191,7 +191,7 @@ $(document).ready(function() {
         csrf: csrf,
         type: 'text',
         pk: 1,
-        url: '/post',
+        url: '/ajax/server/name/update/',
         title: 'Enter new server name',
         success: function(response, newValue) {
             if (response.status == 'error') {
