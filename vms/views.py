@@ -251,6 +251,10 @@ def server_view(request, hwaddr):
 
 
 @login_required()
+def ajax_update_server_name(request):
+    return False
+
+@login_required()
 def ajax_vms_refresh(request):
 
     user = request.user
