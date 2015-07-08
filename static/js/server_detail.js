@@ -4,13 +4,18 @@ var server = $('input[name="hwaddr"]').val(),           // server identifier
     secret = $('input[name="secret"]').val(),           // request authenticate
     interval = '3m',                                    // base interval setting
     optionalLength = 55,                                // set optional data lenght globally
-    addressServerInfo = '/ajax/server/' + server + '/metrics/server_info/', // ajax call adress
-    addressLoadavg = '/ajax/server/' + server + '/metrics/loadavg/', // ajax call adress
-    addressCpuUsage = '/ajax/server/' + server + '/metrics/cpu_usage/', // ajax call adress
-    addressMemUsage = '/ajax/server/' + server + '/metrics/mem_usage/', // ajax call adress
-    addressOutboundTraffic = '/ajax/server/' + server + '/metrics/network_output_bytes/', // ajax call adress
-    addressInboundTraffic = '/ajax/server/' + server + '/metrics/network_input_bytes/', // ajax call adress
-    addressDisks = '/ajax/server/' + server + '/metrics/disks/'; // ajax call adress
+
+    // server info ajax calls
+    addressServerInfo = '/ajax/server/' + server + '/metrics/server_info/',
+    addressUpdateServerName ='/ajax/server/name/update/',
+
+    // graphs ajax calls
+    addressLoadavg = '/ajax/server/' + server + '/metrics/loadavg/',
+    addressCpuUsage = '/ajax/server/' + server + '/metrics/cpu_usage/',
+    addressMemUsage = '/ajax/server/' + server + '/metrics/mem_usage/',
+    addressOutboundTraffic = '/ajax/server/' + server + '/metrics/network_output_bytes/',
+    addressInboundTraffic = '/ajax/server/' + server + '/metrics/network_input_bytes/',
+    addressDisks = '/ajax/server/' + server + '/metrics/disks/';
 
 (function($) {
     $.fn.deactivePanel = function() {
@@ -188,10 +193,20 @@ $(document).ready(function() {
     });
 
     $('#servername').editable({
-        csrf: csrf,
+        ajaxOptions: {
+            type: 'POST',
+            headers: {
+                'X-CSRFToken': csrf
+            },
+            dataType: 'json',
+            data: {
+                'server': server,
+                'secret': secret
+            }
+        },
         type: 'text',
         pk: 1,
-        url: '/ajax/server/name/update/',
+        url: addressUpdateServerName,
         title: 'Enter new server name',
         success: function(response, newValue) {
             if (response.status == 'error') {

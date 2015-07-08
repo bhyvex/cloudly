@@ -23,7 +23,7 @@ urlpatterns = patterns('',
 
     # admin
     url(r'^admin/$', 'admin.views.admin', name='admin'),
-    url(r'^admin/user/(?P<user_id>\d+)/activity/$', 'admin.views.user_activity_report', name='user_activity_report'),    
+    url(r'^admin/user/(?P<user_id>\d+)/activity/$', 'admin.views.user_activity_report', name='user_activity_report'),
 
     # credits
     url(r'^credits/$', 'dashboard.views.credits', name='credits'),
@@ -45,11 +45,11 @@ urlpatterns = patterns('',
     url(r'^ajax/cloud/box-template/$', 'vms.views.ajax_virtual_machines_box', name='ajax_virtual_machines_box'),
     url(r'^ajax/server/(?P<hwaddr>[\w\-\.]+)/metrics/(?P<graph_type>[\w\-\.]+)/$', 'vms.views.ajax_server_graphs', name='ajax_server_graphs'),
     url(r'^ajax/server/name/update/$', 'vms.views.ajax_update_server_name', name='ajax_update_server_name'),
-    
+
     #url(r'^ajax/aws/(?P<instance_id>[\w\-\.]+)/metrics/(?P<graph_type>[\w\-\.]+)/$', 'vms.views.ajax_aws_graphs', name='ajax_aws_graphs'),
 
     # devel stuff
-    #url(r'^devel/$', 'devel.views.devel', name='devel'),    
+    #url(r'^devel/$', 'devel.views.devel', name='devel'),
 )
 
 

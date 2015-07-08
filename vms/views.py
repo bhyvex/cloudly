@@ -246,16 +246,19 @@ def server_view(request, hwaddr):
     for disk in disks_:
         if not disk[5] in disks:
             disks.append(disk[5])
-        
+
     return render_to_response('server_detail.html', {'secret':profile.secret,'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'disks_usage':disks_usage,'disks':disks,'mem_usage':mem_usage,'loadavg':loadavg,'networking':networking,'activity':activity,}, context_instance=RequestContext(request))
 
 
 @login_required()
 def ajax_update_server_name(request):
 
-    print 'ajax_update_server_name'
+    response = {}
+    response["success"] = "true"
+    response = str(response).replace('u"','"')
+    response = response.replace("'",'"')
 
-    return False
+    return HttpResponse(response, content_type="application/json")
 
 @login_required()
 def ajax_vms_refresh(request):
@@ -707,7 +710,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
                 process_stat = line[7]
                 process_start_time = line[8]+'-'+line[9]
                 process_command = line[10:]
-                
+
                 process_name = clean_ps_command(process_command[0])
 
                 process = {
@@ -787,9 +790,9 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
         return HttpResponse(graphs_mixed_respose, content_type="application/json")
 
-    
+
     if(graph_type=="disks"):
-    
+
         mount_ponit = request.POST[u'mountPoint']
 
         graph_interval = request.POST['interval']
@@ -825,9 +828,9 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         graphs_mixed_respose = str(graphs_mixed_respose).replace("u'","'")
 
 
-        return HttpResponse(graphs_mixed_respose, content_type="application/json")     
-        
-        
+        return HttpResponse(graphs_mixed_respose, content_type="application/json")
+
+
 
 
     if(graph_type=="cpu_usage"):
