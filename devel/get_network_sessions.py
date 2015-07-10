@@ -11,6 +11,7 @@ import urllib
 import httplib
 import subprocess
 
+import socket
 
 def _get_network_sessions():
 
@@ -41,9 +42,11 @@ def _get_network_sessions():
             foreign_address = line[4]
             state = line[5]
 
-            local_address_port = local_address.split('.')[-1:]
-            foreign_address_port = foreign_address.split('.')[-1:]
+            local_address_port = local_address.split('.')[-1:][0]
+            foreign_address_port = foreign_address.split('.')[-1:][0]
             
+            local_address_port_resolved = socket.getservbyport(local_address_port)
+            foreign_address_port_resolved = socket.getservbyport(foreign_address_port)
             
             if(state=="LISTEN"):
             
@@ -52,6 +55,10 @@ def _get_network_sessions():
             if(state=="ESTABLISHED"):
             
                 established_connections.append( [state, proto, recvq, sendq, local_address, local_address_port, foreign_address, foreign_address_port] )
+
+
+                print state, proto, recvq, sendq, local_address, local_address_port, foreign_address, foreign_address_port
+
 
 
     connections['listen'] = listen_connections
