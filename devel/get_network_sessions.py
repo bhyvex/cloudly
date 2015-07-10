@@ -16,13 +16,19 @@ def _get_network_sessions():
 
     print 'Active Internet Connections (including servers)'
     
-    # XXX resolve services
 
     try:
         netstat = subprocess.Popen(["/bin/netstat","-atn"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
     except:
         netstat = subprocess.Popen(["/usr/sbin/netstat","-atn"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 
+    
+
+    # XXX resolve services
+
+    connections = {}
+    listen_connections = []    
+    established_connections = []
 
     for line in netstat.split('\n'):
     
@@ -36,17 +42,25 @@ def _get_network_sessions():
             local_address = line[3]
             foreign_address = line[4]
             state = line[5]
-    
-            if(state):
             
-                print state, recvq, sendq, local_address, foreign_address
+
+            if(state=="LISTEN"):
+            
+                listen_connections.append( [state, proto, recvq, sendq, local_address, foreign_address] )
+
+            if(state=="ESTABLISHED"):
+            
+                established_connections.append( [state, proto, recvq, sendq, local_address, foreign_address] )
 
 
+    connections['listen'] = listen_connections
+    connections['established'] = established_connections
+
+
+    return connections
     
-    return "XXX"
     
     
-    
-_get_network_sessions()
+print _get_network_sessions()
 
     
