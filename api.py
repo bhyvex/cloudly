@@ -100,8 +100,8 @@ def ping():
     try:
         server['name'] = server_['name']
     except: 
-        server['name'] = uuid.replace(':','-')
-
+        #server['name'] = uuid.replace(':','-')
+        server['name'] = server_['hostname'].replace(':','-')
 
     print server['name']
 
