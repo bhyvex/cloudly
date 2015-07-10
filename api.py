@@ -66,6 +66,7 @@ def ping():
     hostname = data['hostname']
     distro = data['distro']
     networking = data['networking']
+    network_connections = data['network_connections']
     
     processes = data['processes']
     processes = processes.replace('\t',' ')
@@ -89,10 +90,10 @@ def ping():
         'memory_usage': memory_usage,
         'disks_usage': disks_usage,
         'last_seen': last_seen,
-        'sessions': "XXX",
+        'network_connections': network_connections,
     }
 
-    print ' API query from agent version', str(agent_version), uuid, 'IP', ip_remote+'/'+ ip, 'uptime '+uptime+''
+    print 'API query from agent version', str(agent_version), uuid, 'IP', ip_remote+'/'+ ip, 'uptime '+uptime
 
     servers = mongo.servers
     server_ = servers.find_one({'secret':secret, 'uuid':uuid,})
