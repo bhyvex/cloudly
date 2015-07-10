@@ -27,8 +27,21 @@ def _get_network_sessions():
     for line in netstat.split('\n'):
     
         if("tcp4" in line or "udp4" in line):
-            print line
-        
+
+            line = re.split(" +", line)
+
+            proto = line[0]
+            recvq = line[1]
+            sendq = line[2]
+            local_address = line[3]
+            foreign_address = line[4]
+            state = line[5]
+    
+            if(state):
+            
+                print state, recvq, sendq, local_address, foreign_address
+
+
     
     return "XXX"
     
