@@ -522,16 +522,13 @@ def ajax_virtual_machines(request):
                 instance_name = vm
 
 
-            print '-'*1000
             print 'instance_name', instance_name
-            print '-'*1000
 
             color = "silver "
             vm_state = vm_cache[vm]["instance"]["state"]["state"].title()
 
             if(vm_state=="Running"):
 
-                #print 'data_median', data_median
                 isotope_filter_classes = " linux "
 
                 if(data_median<17):
@@ -598,7 +595,7 @@ def ajax_virtual_machines(request):
         c+=1
 
         #print '-_'*80
-        print vm_cache[vm]["instance"]["state"]["state"].title(), vm
+        #print vm_cache[vm]["instance"]["state"]["state"].title(), vm
 
     ajax_vms_response = ajax_vms_response.replace(",}","}")
     if(not vm_cache): ajax_vms_response = {}
