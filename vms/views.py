@@ -324,8 +324,6 @@ def ajax_vms_refresh(request):
             else:
                 instance_metrics['instance']['state']['state'] = "Running"
 
-            print '******* SERVER ', server['uuid'], 'last seen', (datetime.datetime.utcnow()-server['last_seen']).total_seconds(), 'secongs ago..'
-
 
             cpu_usage_ = ""
             for usage in cpu_usage:
@@ -840,8 +838,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
 
         return HttpResponse(graphs_mixed_respose, content_type="application/json")
-
-
 
 
     if(graph_type=="cpu_usage"):
