@@ -185,6 +185,7 @@ $(document).ready(function() {
     $('#diskGraphs').deactivePanel();
     $('#serviceDiscovery').deactivePanel();
     $('#serverActivity').deactivePanel();
+    $('#activeNetworkSessions').deactivePanel();
 
     Highcharts.setOptions({ // set global chart options
         global: {
