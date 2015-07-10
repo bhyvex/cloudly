@@ -193,16 +193,19 @@ $(document).ready(function() {
     });
 
     $('#servername').editable({
+        params: function (params) {
+            var data = {};
+            data['id'] = params.pk;
+            data['server'] = server;
+            data['secret'] = secret;
+            data[params.name] = params.value;
+            return data;
+        },
         ajaxOptions: {
-            type: 'POST',
             headers: {
                 'X-CSRFToken': csrf
             },
             dataType: 'json',
-            data: {
-                'server': server,
-                'secret': secret
-            }
         },
         type: 'text',
         pk: 1,

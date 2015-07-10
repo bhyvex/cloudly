@@ -261,9 +261,9 @@ def ajax_update_server_name(request):
     server_ = request.POST['server']
     secret = request.POST['secret']
     server_ = server_.replace('-', ':')
-    
+
     server = mongo.servers.find_one({'secret':secret,'uuid':server_,})
-    server['name'] = "XXX"
+    server['name'] = request.POST["servername"]
     server = mongo.servers.update({'secret':secret, 'uuid':server_}, server)
 
     vms_cache = Cache.objects.get(user=request.user)
@@ -516,9 +516,8 @@ def ajax_virtual_machines(request):
 
             try:
                 instance_name = vm_cache[vm]["instance"]["tags"]["Name"]
-            except: 
+            except:
                 instance_name = vm
-
 
             print 'instance_name', instance_name
 
