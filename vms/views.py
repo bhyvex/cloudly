@@ -299,7 +299,7 @@ def ajax_vms_refresh(request):
         for server in servers:
 
             instance_metrics = {}
-            instance_metrics['id'] = server['name']
+            instance_metrics['id'] = server['uuid']
             instance_metrics['user_id'] = request.user.id
             instance_metrics['provider'] = 'agent'
             instance_metrics['instance'] = {}
