@@ -299,7 +299,7 @@ def ajax_vms_refresh(request):
         for server in servers:
 
             instance_metrics = {}
-            instance_metrics['id'] = server['uuid']
+            instance_metrics['id'] = server['name']
             instance_metrics['user_id'] = request.user.id
             instance_metrics['provider'] = 'agent'
             instance_metrics['instance'] = {}
@@ -308,7 +308,12 @@ def ajax_vms_refresh(request):
             instance_metrics['instance']['tags'] = {}
 
             #instance_metrics["instance"]['tags']['Name'] = ''.join(x for x in unicodedata.normalize('NFKD', server['hostname']) if x in string.ascii_letters).lower()
-            instance_metrics["instance"]['tags']['Name'] = server['hostname'].replace('.','-').lower()
+
+            try:
+                instance_metrics["instance"]['tags']['Name'] = server['name']
+            except:
+                instance_metrics["instance"]['tags']['Name'] = server['hostname'].replace('.','-').lower()
+
 
             uuid = server['uuid']
             cpu_usage = mongo.cpu_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
@@ -324,7 +329,7 @@ def ajax_vms_refresh(request):
             else:
                 instance_metrics['instance']['state']['state'] = "Running"
 
-            print '** SERVER ', server['uuid'], 'last seen', (datetime.datetime.utcnow()-server['last_seen']).total_seconds(), 'secongs ago..'
+            print '******* SERVER ', server['uuid'], 'last seen', (datetime.datetime.utcnow()-server['last_seen']).total_seconds(), 'secongs ago..'
 
 
             cpu_usage_ = ""
