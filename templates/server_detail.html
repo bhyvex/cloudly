@@ -279,7 +279,48 @@
                 </div>
 
                 <div class="panel-body">
-                    {{server|dict_get:"network_connections"}}
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Proto</th>
+                            <th>Recv-Q</th>
+                            <th>Send-Q</th>
+                            <th>Foreign Address</th>
+                            <th>Foreign Port</th>
+                            <th>Foreign Resolved Port</th>
+                            <th>Local Address</th>
+                            <th>Local Port</th>
+                            <th>Local Resolved Port</th>
+                            <th>State</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for conn in server|dict_get:"network_connections"|dict_get:"listen" %}
+                        <tr>
+                            <td>{{conn|dict_get:1}}</td>
+                            <td>{{conn|dict_get:2}}</td>
+                            <td>{{conn|dict_get:3}}</td>
+                            <td>{{conn|dict_get:4}}</td>
+                            <td>{{conn|dict_get:5}}</td>
+                            <td>{{conn|dict_get:6}}</td>
+                            <td>{{conn|dict_get:7}}</td>
+                            <td>{{conn|dict_get:8}}</td>
+                            <td>{{conn|dict_get:9}}</td>
+                            <td>{{conn|dict_get:0}}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>    
+                    
+                    
+                XXX<br/>
+                Established
+                    
+                {% for conn in server|dict_get:"network_connections"|dict_get:"established" %}
+                    {{conn}}
+                {% endfor %}
+                    
                 </div>
 
             </div>
