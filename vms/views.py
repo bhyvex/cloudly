@@ -263,11 +263,11 @@ def ajax_update_server_name(request):
     server_ = server_.replace('-', ':')
     
     server = mongo.servers.find_one({'secret':secret,'uuid':server_,})
-
     server['name'] = "XXX"
-
     server = mongo.servers.update({'secret':secret, 'uuid':server_}, server)
 
+    vms_cache = Cache.objects.get(user=request.user)
+    vms_cache.delete()
 
     return HttpResponse(response, content_type="application/json")
 
