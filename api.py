@@ -101,7 +101,7 @@ def ping():
         server['name'] = server_['name']
     except: 
         #server['name'] = uuid.replace(':','-')
-        server['name'] = server_['hostname'].replace(':','-')
+        server['name'] = hostname.replace(':','-')
 
     print server['name']
 
