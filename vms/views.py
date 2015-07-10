@@ -307,10 +307,9 @@ def ajax_vms_refresh(request):
             instance_metrics['instance']['state'] = {}
             instance_metrics['instance']['tags'] = {}
 
-            #instance_metrics["instance"]['tags']['Name'] = ''.join(x for x in unicodedata.normalize('NFKD', server['hostname']) if x in string.ascii_letters).lower()
-
             try:
                 instance_metrics["instance"]['tags']['Name'] = server['name']
+                #instance_metrics["instance"]['tags']['Name'] = ''.join(x for x in unicodedata.normalize('NFKD', server['hostname']) if x in string.ascii_letters).lower()
             except:
                 instance_metrics["instance"]['tags']['Name'] = server['hostname'].replace('.','-').lower()
 
@@ -518,12 +517,14 @@ def ajax_virtual_machines(request):
 
 
             try:
-                if(vm_cache[vm]["instance"]["tags"]["Name"]):
-                    instance_name = vm_cache[vm]["instance"]["tags"]["Name"]
-                else:
-                    instance_name = vm
-            except: instance_name = vm
+                instance_name = vm_cache[vm]["instance"]["tags"]["Name"]
+            except: 
+                instance_name = vm
 
+
+            print '-'*1000
+            print 'instance_name', instance_name
+            print '-'*1000
 
             color = "silver "
             vm_state = vm_cache[vm]["instance"]["state"]["state"].title()
