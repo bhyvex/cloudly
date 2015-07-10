@@ -43,7 +43,7 @@ def _get_network_sessions():
             foreign_address = line[4]
             state = line[5]
             
-
+            
             if(state=="LISTEN"):
             
                 listen_connections.append( [state, proto, recvq, sendq, local_address, foreign_address] )
@@ -55,12 +55,17 @@ def _get_network_sessions():
 
     connections['listen'] = listen_connections
     connections['established'] = established_connections
+    connections['description'] = "Active Internet Connections (including servers)"
 
 
     return connections
     
     
     
-print _get_network_sessions()
+network_sessions = _get_network_sessions()
+
+print network_sessions
+
+
 
     
