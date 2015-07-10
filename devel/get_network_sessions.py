@@ -43,28 +43,34 @@ def _get_network_sessions():
             state = line[5]
 
             local_address_port = local_address.split('.')[-1:][0]
-            foreign_address_port = foreign_address.split('.')[-1:][0]
+            foreign_address_port = foreign_address.split('.')[-1:][0]            
+
+            local_address_port_resolved = ""
+            foreign_address_port_resolved = ""
+ 
+            if(local_address_port!="*"):
+                try:
+                    local_address_port_resolved = socket.getservbyport(int(local_address_port))
+                except: pass
+                
+            if(foreign_address_port!="*"):
+                try:
+                    foreign_address_port_resolved = socket.getservbyport(int(foreign_address_port))
+                except: pass
             
-            local_address_port_resolved = socket.getservbyport(local_address_port)
-            foreign_address_port_resolved = socket.getservbyport(foreign_address_port)
-            
+           
             if(state=="LISTEN"):
-            
-                listen_connections.append( [state, proto, recvq, sendq, local_address, local_address_port, foreign_address, foreign_address_port] )
+                listen_connections.append( [state, proto, recvq, sendq, local_address, local_address_port, local_address_port_resolved, foreign_address, foreign_address_port, foreign_address_port_resolved] )
+                print state, proto, recvq, sendq, local_address, local_address_port, local_address_port_resolved, foreign_address, foreign_address_port, foreign_address_port_resolved
 
             if(state=="ESTABLISHED"):
-            
                 established_connections.append( [state, proto, recvq, sendq, local_address, local_address_port, foreign_address, foreign_address_port] )
-
-
-                print state, proto, recvq, sendq, local_address, local_address_port, foreign_address, foreign_address_port
-
+                print state, proto, recvq, sendq, local_address, local_address_port, local_address_port_resolved, foreign_address, foreign_address_port, foreign_address_port_resolved
 
 
     connections['listen'] = listen_connections
     connections['established'] = established_connections
     connections['description'] = "Active Internet Connections (including servers)"
-
 
     return connections
     
