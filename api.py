@@ -97,6 +97,14 @@ def ping():
     servers = mongo.servers
     server_ = servers.find_one({'secret':secret, 'uuid':uuid,})
 
+    try:
+        server['name'] = server_['name']
+    except: 
+        server['name'] = uuid
+
+
+    print server['name']
+
     if(server_): 
         server_ = servers.update({'secret':secret, 'uuid':uuid}, server)
     else:
