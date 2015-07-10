@@ -103,7 +103,6 @@ def ping():
         #server['name'] = uuid.replace(':','-')
         server['name'] = hostname.replace(':','-')
 
-    print server['name']
 
     if(server_): 
         server_ = servers.update({'secret':secret, 'uuid':uuid}, server)
