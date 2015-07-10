@@ -524,13 +524,10 @@ def ajax_virtual_machines(request):
             color = "silver "
             vm_state = vm_cache[vm]["instance"]["state"]["state"].title()
 
+            server_mac_address = vm_cache[vm]['id']
+            server_mac_address = str(server_mac_address).replace(':','-')
+
             if(vm_state=="Running"):
-
-                server_mac_address = vm_cache[vm]['id']
-                server_mac_address = str(server_mac_address).replace(':','-')
-
-                print 'server_mac_address' * 66
-                print server_mac_address
 
                 isotope_filter_classes = " linux "
 
