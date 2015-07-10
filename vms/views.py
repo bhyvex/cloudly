@@ -264,10 +264,10 @@ def ajax_update_server_name(request):
     
     server = mongo.servers.find_one({'secret':secret,'uuid':server_,})
 
-    print '-'*1000
-    print server_
-    print secret
-    print server
+    server['name'] = "XXX"
+
+    server = mongo.servers.update({'secret':secret, 'uuid':server_}, server)
+
 
     return HttpResponse(response, content_type="application/json")
 
