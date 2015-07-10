@@ -541,7 +541,7 @@ def get_system_metrics( uuid, secret ):
         'disks_usage': disks_usage,
         'processes': processes,
         'networking': networking,
-        'network_sessions': network_connections,
+        'network_connections': network_connections,
         'agent_version': AGENT_VERSION,
     }
 
