@@ -307,12 +307,6 @@
                             {% endif %}
 
                             <td>{{conn|dict_get:7}}</td>
-
-                            {% if conn|dict_get:9 %}
-                            <td>{{conn|dict_get:9}}/{{conn|dict_get:9}}</td>
-                            {% else %}
-                            <td>{{conn|dict_get:8}}</td>
-                            {% endif %}
                         </tr>
                     {% endfor %}
                     </tbody>
