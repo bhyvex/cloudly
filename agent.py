@@ -434,7 +434,7 @@ def _get_network_connections():
 
     for line in netstat.split('\n'):
     
-        if("tcp4" in line or "udp4" in line):
+        if("tcp" in line or "udp" in line):
 
             line = re.split(" +", line)
 
