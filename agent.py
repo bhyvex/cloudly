@@ -524,7 +524,7 @@ def get_system_metrics( uuid, secret ):
     processes = _get_processes()
     hostname = _get_hostname()
     networking = _get_networking_stats()
-    network_sessions = _get_network_sessions()
+    network_connections = _get_network_connections()
     
     system_metrics_json = {
         'uuid': uuid,
@@ -541,7 +541,7 @@ def get_system_metrics( uuid, secret ):
         'disks_usage': disks_usage,
         'processes': processes,
         'networking': networking,
-        'network_sessions': network_sessions,
+        'network_sessions': network_connections,
         'agent_version': AGENT_VERSION,
     }
 
