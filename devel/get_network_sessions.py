@@ -11,11 +11,10 @@ import urllib
 import httplib
 import subprocess
 
+import socket
 
 def _get_network_sessions():
 
-    print 'Active Internet Connections (including servers)'
-    
 
     try:
         netstat = subprocess.Popen(["/bin/netstat","-atn"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
@@ -23,8 +22,8 @@ def _get_network_sessions():
         netstat = subprocess.Popen(["/usr/sbin/netstat","-atn"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 
     
+    #print 'Active Internet Connections (including servers)'
 
-    # XXX resolve services
 
     connections = {}
     listen_connections = []    
@@ -42,25 +41,39 @@ def _get_network_sessions():
             local_address = line[3]
             foreign_address = line[4]
             state = line[5]
-            
 
+            local_address_port = local_address.split('.')[-1:][0]
+            foreign_address_port = foreign_address.split('.')[-1:][0]
+            
+            local_address_port_resolved = socket.getservbyport(local_address_port)
+            foreign_address_port_resolved = socket.getservbyport(foreign_address_port)
+            
             if(state=="LISTEN"):
             
-                listen_connections.append( [state, proto, recvq, sendq, local_address, foreign_address] )
+                listen_connections.append( [state, proto, recvq, sendq, local_address, local_address_port, foreign_address, foreign_address_port] )
 
             if(state=="ESTABLISHED"):
             
-                established_connections.append( [state, proto, recvq, sendq, local_address, foreign_address] )
+                established_connections.append( [state, proto, recvq, sendq, local_address, local_address_port, foreign_address, foreign_address_port] )
+
+
+                print state, proto, recvq, sendq, local_address, local_address_port, foreign_address, foreign_address_port
+
 
 
     connections['listen'] = listen_connections
     connections['established'] = established_connections
+    connections['description'] = "Active Internet Connections (including servers)"
 
 
     return connections
     
     
     
-print _get_network_sessions()
+network_sessions = _get_network_sessions()
+
+#print network_sessions
+
+
 
     
