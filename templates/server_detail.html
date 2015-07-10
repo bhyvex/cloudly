@@ -313,7 +313,6 @@
                             {% else %}
                             <td>{{conn|dict_get:8}}</td>
                             {% endif %}
-
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -348,10 +347,8 @@
                             <th>Send-Q</th>
                             <th>Foreign Address</th>
                             <th>Foreign Port</th>
-                            <th>Resolved Port</th>
                             <th>Local Address</th>
                             <th>Local Port</th>
-                            <th>Resolved Port</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -361,11 +358,20 @@
                             <td>{{conn|dict_get:2}}</td>
                             <td>{{conn|dict_get:3}}</td>
                             <td>{{conn|dict_get:4}}</td>
+
+                            {% if conn|dict_get:6 %}
+                            <td>{{conn|dict_get:5}}/{{conn|dict_get:6}}</td>
+                            {% else %}
                             <td>{{conn|dict_get:5}}</td>
-                            <td>{{conn|dict_get:6}}</td>
+                            {% endif %}
+
                             <td>{{conn|dict_get:7}}</td>
+
+                            {% if conn|dict_get:9 %}
+                            <td>{{conn|dict_get:9}}/{{conn|dict_get:9}}</td>
+                            {% else %}
                             <td>{{conn|dict_get:8}}</td>
-                            <td>{{conn|dict_get:9}}</td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                     </tbody>
