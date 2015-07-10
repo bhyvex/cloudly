@@ -100,7 +100,7 @@ def ping():
     try:
         server['name'] = server_['name']
     except: 
-        server['name'] = uuid
+        server['name'] = ""
 
 
     print server['name']
