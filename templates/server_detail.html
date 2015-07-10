@@ -312,10 +312,6 @@
                     {% endfor %}
                     </tbody>
                 </table>    
-
-                {% for conn in server|dict_get:"network_connections"|dict_get:"established" %}
-                    {{conn}}
-                {% endfor %}
                     
                 </div>
 
