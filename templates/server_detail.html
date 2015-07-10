@@ -286,10 +286,8 @@
                             <th>Proto</th>
                             <th>Recv-Q</th>
                             <th>Send-Q</th>
-                            <th>Foreign Address</th>
-                            <th>Foreign Port</th>
-                            <th>Local Address</th>
-                            <th>Local Port</th>
+                            <th>Address</th>
+                            <th>Port</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -305,8 +303,6 @@
                             {% else %}
                             <td>{{conn|dict_get:5}}</td>
                             {% endif %}
-
-                            <td>{{conn|dict_get:7}}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
