@@ -527,7 +527,7 @@ def ajax_virtual_machines(request):
             if(vm_state=="Running"):
 
                 isotope_filter_classes = " linux "
-                isotope_filter_classes = vm_cache[vm]["instance"]['id']
+                isotope_filter_classes += vm_cache[vm]['id']
 
                 if(data_median<17):
                     color = "lightBlue "
@@ -564,6 +564,10 @@ def ajax_virtual_machines(request):
 
             ajax_vms_response += "\"vmcolor\":\""
             ajax_vms_response += color
+            ajax_vms_response += "\","
+
+            ajax_vms_response += "\"vmname\":\""
+            ajax_vms_response += instance_name
             ajax_vms_response += "\","
 
             ajax_vms_response += "\"vmtitle\":\""
