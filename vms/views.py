@@ -526,8 +526,13 @@ def ajax_virtual_machines(request):
 
             if(vm_state=="Running"):
 
+                server_mac_address = vm_cache[vm]['id']
+                server_mac_address = str(server_mac_address).replace(':','-')
+
+                print 'server_mac_address' * 66
+                print server_mac_address
+
                 isotope_filter_classes = " linux "
-                isotope_filter_classes += vm_cache[vm]['id']
 
                 if(data_median<17):
                     color = "lightBlue "
@@ -559,7 +564,7 @@ def ajax_virtual_machines(request):
                 isotope_filter_classes += " cloud"
 
             ajax_vms_response += "\""
-            ajax_vms_response += instance_name
+            ajax_vms_response += server_mac_address
             ajax_vms_response += "\": {"
 
             ajax_vms_response += "\"vmcolor\":\""

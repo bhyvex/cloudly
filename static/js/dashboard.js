@@ -87,7 +87,7 @@ var cloudlyVMSmanager  = {
         var template = this.template;
         template = template.replace('{@vmlink@}',data.link);
         template = template.replace('{@vm@}',vms);
-        template = template.replace('{@vm@}',vms);
+        template = template.replace('{@server@}',data.vmname);
         template = template.replace('{@vmtitle@}',data.vmtitle);
         template = template.replace('{@vmcolor@}',data.vmcolor);
         template = template.replace('{@averge@}',data.averge);
@@ -103,7 +103,7 @@ var cloudlyVMSmanager  = {
     },
     checkRemoved: function(machines,actualMachines){
         var machineIds = 'testVMS';
-	var $container = $('#machines-loader');
+        var $container = $('#machines-loader');
         $.each(machines,function(vms,value){
             machineIds += vms+',';
         });
