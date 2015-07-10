@@ -258,7 +258,19 @@ def ajax_update_server_name(request):
     response = str(response).replace('u"','"')
     response = response.replace("'",'"')
 
+    server_ = request.POST['server']
+    secret = request.POST['secret']
+    server_ = server_.replace('-', ':')
+    
+    server = mongo.servers.find_one({'secret':secret,'uuid':server_,})
+
+    print '-'*1000
+    print server_
+    print secret
+    print server
+
     return HttpResponse(response, content_type="application/json")
+
 
 @login_required()
 def ajax_vms_refresh(request):
