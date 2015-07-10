@@ -445,8 +445,8 @@ def _get_network_connections():
             foreign_address = line[4]
             state = line[5]
 
-            local_address_port = local_address.split('.')[-1:][0]
-            foreign_address_port = foreign_address.split('.')[-1:][0]            
+            local_address_port = local_address.split(':')[-1:][0]
+            foreign_address_port = foreign_address.split(':')[-1:][0]            
 
             local_address_port_resolved = ""
             foreign_address_port_resolved = ""
@@ -464,11 +464,11 @@ def _get_network_connections():
            
             if(state=="LISTEN"):
                 listen_connections.append( [state, proto, recvq, sendq, local_address, local_address_port, local_address_port_resolved, foreign_address, foreign_address_port, foreign_address_port_resolved] )
-                print state, proto, recvq, sendq, local_address, local_address_port, local_address_port_resolved, foreign_address, foreign_address_port, foreign_address_port_resolved
+                #print state, proto, recvq, sendq, local_address, local_address_port, local_address_port_resolved, foreign_address, foreign_address_port, foreign_address_port_resolved
 
             if(state=="ESTABLISHED"):
                 established_connections.append( [state, proto, recvq, sendq, local_address, local_address_port, foreign_address, foreign_address_port] )
-                print state, proto, recvq, sendq, local_address, local_address_port, local_address_port_resolved, foreign_address, foreign_address_port, foreign_address_port_resolved
+                #print state, proto, recvq, sendq, local_address, local_address_port, local_address_port_resolved, foreign_address, foreign_address_port, foreign_address_port_resolved
 
 
     connections['listen'] = listen_connections
