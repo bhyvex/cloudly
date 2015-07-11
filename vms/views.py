@@ -761,6 +761,33 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         return HttpResponse(processes, content_type="application/json")
 
 
+    if(graph_type=="network_connections"):
+
+        network_connections_ = []
+        network_connections = server['network_connections']['listen']
+
+        for conn in network_connections:
+            connection = {}
+            connection['proto'] = conn[1]
+            connection['recv-q'] = conn[2]
+            connection['send-q'] = conn[3]
+            connection['address'] = conn[4]
+
+            if 6 in conn:
+                connection['port'] = conn[6] + "/" + conn[5]
+            else:
+                connection['port'] = conn[5]
+
+            network_connections_.append(connection)
+
+        network_connections = {}
+        network_connections['data'] = network_connections_
+
+        network_connections = str(network_connections).replace(" u'"," '")
+        network_connections = str(network_connections).replace("'",'"')
+
+        return HttpResponse(network_connections, content_type="application/json")
+
     if(graph_type=="loadavg"):
 
         params = None
