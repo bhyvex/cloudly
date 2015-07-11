@@ -767,13 +767,14 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         network_connections = server['network_connections']['listen']
 
         for conn in network_connections:
+        
             connection = {}
             connection['proto'] = conn[1]
             connection['recv-q'] = conn[2]
             connection['send-q'] = conn[3]
             connection['address'] = conn[4]
 
-            if 6 in conn:
+            if conn[6]:
                 connection['port'] = conn[6] + "/" + conn[5]
             else:
                 connection['port'] = conn[5]
@@ -795,25 +796,27 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         active_network_connections = server['network_connections']['established']
 
         for conn in active_network_connections:
+        
             connection = {}
             connection['proto'] = conn[1]
             connection['recv-q'] = conn[2]
             connection['send-q'] = conn[3]
             connection['foreign-address'] = conn[4]
 
-            if 6 in conn:
+            if conn[6]:
                 connection['foreign-port'] = conn[5] + "/" + conn[6]
             else:
                 connection['foreign-port'] = conn[5]
 
             connection['local-address'] = conn[7]
 
-            if 9 in conn:
+            if conn[9]:
                 connection['local-port'] = conn[9] + "/" + conn[8]
             else:
                 connection['local-port'] = conn[8]
 
             active_network_connections_.append(connection)
+
 
         active_network_connections = {}
         active_network_connections['data'] = active_network_connections_
@@ -822,6 +825,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         active_network_connections = str(active_network_connections).replace("'",'"')
 
         return HttpResponse(active_network_connections, content_type="application/json")
+
 
     if(graph_type=="loadavg"):
 
