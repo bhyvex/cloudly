@@ -279,35 +279,17 @@
                 </div>
 
                 <div class="panel-body">
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Proto</th>
-                            <th>Recv-Q</th>
-                            <th>Send-Q</th>
-                            <th>Address</th>
-                            <th>Port</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for conn in server|dict_get:"network_connections"|dict_get:"listen" %}
-                        <tr>
-                            <td>{{conn|dict_get:1}}</td>
-                            <td>{{conn|dict_get:2}}</td>
-                            <td>{{conn|dict_get:3}}</td>
-                            <td>{{conn|dict_get:4}}</td>
-
-                            {% if conn|dict_get:6 %}
-                            <td>{{conn|dict_get:5}}/{{conn|dict_get:6}}</td>
-                            {% else %}
-                            <td>{{conn|dict_get:5}}</td>
-                            {% endif %}
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-
+                    <table id="network_connections" class="table table-bordered table-striped bootstrap-datatable">
+                        <thead>
+                            <tr>
+                                <th>Proto</th>
+                                <th>Recv-Q</th>
+                                <th>Send-Q</th>
+                                <th>Address</th>
+                                <th>Port</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
 
             </div>
