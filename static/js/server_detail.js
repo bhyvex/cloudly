@@ -9,6 +9,9 @@ var server = $('input[name="hwaddr"]').val(),           // server identifier
     addressServerInfo = '/ajax/server/' + server + '/metrics/server_info/',
     addressUpdateServerName ='/ajax/server/name/update/',
 
+    // dataTable ajax call
+    addressProcessesTable = '/ajax/server/' + server + '/metrics/processes/',
+
     // graphs ajax calls
     addressLoadavg = '/ajax/server/' + server + '/metrics/loadavg/',
     addressCpuUsage = '/ajax/server/' + server + '/metrics/cpu_usage/',
@@ -218,6 +221,34 @@ $(document).ready(function() {
             }
         }
     });
+
+    var processTable = $('#running_processes_table').DataTable({
+        "lengthMenu": [[15, 50, 100, -1], [15, 50, 100, "All"]],
+        "order": [[ 2, "desc" ]],
+        "ajax": {
+            "url": addressProcessesTable,
+            "type": "POST",
+            "headers": {
+                "X-CSRFToken": csrf
+            },
+            "data": {
+                "secret": secret,
+                "server": server
+            }
+        },
+        "columns": [
+            { "data": "pid" },
+            { "data": "user" },
+            { "data": "cpu" },
+            { "data": "mem" },
+            { "data": "process" },
+            { "data": "command" }
+        ]
+    });
+
+    setInterval(function () {
+        processTable.ajax.reload(null, false);
+    }, 1000);
 
     updateServerInfo();
 });

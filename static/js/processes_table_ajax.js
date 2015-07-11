@@ -142,28 +142,4 @@ $.fn.dataTable.Api.register('clearPipeline()', function () {
 // DataTables initialisation
 //
 $(document).ready(function() {
-    var server = $('input[name="hwaddr"]').val();
-    var csrf = $('input[name="csrfmiddlewaretoken"]').val();
-    var secret = $('input[name="secret"]').val();
-    var address = '/ajax/server/' + server + '/metrics/processes/';
-
-    var processTable = $('#running_processes_table').DataTable({
-        lengthMenu: [[15, 50, 100, -1], [15, 50, 100, "All"]],
-        order: [[ 2, "desc" ]],
-        processing: true,
-        serverSide: true,
-        ajax: $.fn.dataTable.pipeline({
-            url: address,
-            pages: 10, // number of pages to cache
-            headers: {'X-CSRFToken': csrf},
-            data: {
-                secret: secret,
-                server: server
-            }
-        })
-    });
-
-    setInterval(function () {
-        processTable.ajax.reload();
-    }, 2000);
 });

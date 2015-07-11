@@ -729,34 +729,26 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
                 process_name = clean_ps_command(process_command[0])
 
                 process = {
-                    'user': process_user,
                     'pid': process_pid,
+                    'user': process_user,
                     'cpu': process_cpu,
                     'mem': process_mem,
-                    'vsz': process_vsz,
-                    'rss': process_rss,
-                    'tty': process_tty,
-                    'stat': process_stat,
-                    'start_time': process_start_time,
-                    'command': process_command,
-                    'name': process_name,
+                    # 'vsz': process_vsz,
+                    # 'rss': process_rss,
+                    # 'tty': process_tty,
+                    # 'stat': process_stat,
+                    # 'start_time': process_start_time,
+                    'process': process_name,
+                    'command': ' '.join(str(x) for x in process_command).replace("[", "").replace("]","")
                     }
                 processes_.append(process)
 
-
             c+=1
 
-        processes = processes_
+        processes = {}
+        processes['data'] = processes_
 
-        processes_length = len(processes)
-        processes_string = "{"
-        processes_string += "'draw': 1,"
-        processes_string += "'recordsTotal': " + str(processes_length) + ","
-        processes_string += "'recordsFiltered': " + str(processes_length) + ","
-        processes_string += "'data': " + str(processes)
-        processes_string += "}"
-
-        processes = str(processes_string).replace(" u'"," '").replace("[u'","['").replace("'",'"')
+        processes = str(processes).replace(" u'"," '").replace("[u'","['").replace("'",'"')
 
         return HttpResponse(processes, content_type="application/json")
 
@@ -959,8 +951,8 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
             tsdb = requests.get('http://hbase:4242/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
-            
-            
+
+
             try:
                 tsdb_response = tsdb_response[0]['dps']
             except:
