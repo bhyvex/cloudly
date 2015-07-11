@@ -756,7 +756,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         processes = {}
         processes['data'] = processes_
 
-        processes = str(processes).replace(" u'"," '").replace("[u'","['").replace("'",'"').replace("\\\\", "\\");
+        processes = str(processes).replace(" u'"," '").replace("[u'","['").replace("'",'"').replace("\\\\", "\\")
 
         return HttpResponse(processes, content_type="application/json")
 
