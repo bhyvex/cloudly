@@ -730,7 +730,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
                 process = {
                     'pid': process_pid,
-                    'user': process_user,
                     'cpu': process_cpu,
                     'mem': process_mem,
                     # 'vsz': process_vsz,
@@ -740,7 +739,16 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
                     # 'start_time': process_start_time,
                     'process': process_name,
                     'command': ' '.join(str(x) for x in process_command).replace("[", "").replace("]","")
-                    }
+                }
+
+                if int(float(process_cpu)) > 50:
+                    process['user'] = '<span class=\\"label label-danger\\">'
+                else:
+                    process['user'] = '<span class=\\"label label-success\\">'
+
+                process['user'] += process_user
+                process['user'] += '</span>'
+
                 processes_.append(process)
 
             c+=1
@@ -748,7 +756,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         processes = {}
         processes['data'] = processes_
 
-        processes = str(processes).replace(" u'"," '").replace("[u'","['").replace("'",'"')
+        processes = str(processes).replace(" u'"," '").replace("[u'","['").replace("'",'"').replace("\\\\", "\\");
 
         return HttpResponse(processes, content_type="application/json")
 
