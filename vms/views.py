@@ -775,7 +775,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
             connection['address'] = conn[4]
 
             if conn[6]:
-                connection['port'] = conn[5] + " / " + conn[6]
+                connection['port'] = conn[5] + "/" + conn[6]
             else:
                 connection['port'] = conn[5]
 
