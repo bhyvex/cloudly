@@ -12,6 +12,7 @@ var server = $('input[name="hwaddr"]').val(),           // server identifier
     // dataTable ajax call
     addressProcessesTable = '/ajax/server/' + server + '/metrics/processes/',
     addressNetworkConnectionsTable = '/ajax/server/' + server + '/metrics/network_connections/',
+    addressActiveNetworkConnectionsTable = '/ajax/server/' + server + '/metrics/active_network_connections/',
 
     // graphs ajax calls
     addressLoadavg = '/ajax/server/' + server + '/metrics/loadavg/',
@@ -270,9 +271,35 @@ $(document).ready(function() {
         ]
     });
 
+    var activeNetworkConnectionsTable = $('#active_network_connections').DataTable({
+        "lengthMenu": [[10, 30, 50, -1], [10, 30, 50, "All"]],
+        "order": [[ 3, "asc" ]],
+        "ajax": {
+            "url": addressActiveNetworkConnectionsTable,
+            "type": "POST",
+            "headers": {
+                "X-CSRFToken": csrf
+            },
+            "data": {
+                "secret": secret,
+                "server": server
+            }
+        },
+        "columns": [
+            { "data": "proto" },
+            { "data": "recv-q" },
+            { "data": "send-q" },
+            { "data": "foreign-address" },
+            { "data": "foreign-port" },
+            { "data": "local-address" },
+            { "data": "local-port" }
+        ]
+    });
+
     setInterval(function () {
         processTable.ajax.reload(null, false);
         networkConnectionsTable.ajax.reload(null, false);
+        activeNetworkConnectionsTable.ajax.reload(null, false);
     }, 1000);
 
     updateServerInfo();
