@@ -1031,15 +1031,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
             tsdb = requests.get('http://hbase:4242/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
-
-
-            try:
-                tsdb_response = tsdb_response[0]['dps']
-            except:
-                print 'do pice kde su data'*100
-                print tsdb_response
-                tsdb_response = []
-
+            tsdb_response = tsdb_response[0]['dps']
 
             for i in tsdb_response:
                 graphs_mixed_respose.append([int(i),round(float(tsdb_response[i]),2)])
