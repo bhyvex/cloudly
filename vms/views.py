@@ -324,7 +324,7 @@ def ajax_vms_refresh(request):
 
             if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>20):
                 instance_metrics['instance']['state']['state'] = "Stopped"
-                if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>600):
+                if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>1800):
                     cpu_usage = []
             else:
                 instance_metrics['instance']['state']['state'] = "Running"
