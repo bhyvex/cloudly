@@ -1,3 +1,30 @@
 #main {
     margin-top: 60px;
+    margin-left: 60px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 60px;
+}
+
+@media (min-width: 992px) {
+    #main {
+        margin-top: 60px;
+        margin-left: 204px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    #main {
+        margin-top: 60px;
+        margin-left: 70px;
+    }
+}
+
+@media (max-width: 767px) {
+    #main {
+        margin-top: 60px;
+        margin-left: 0px;
+    }
 }

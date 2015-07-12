@@ -10,6 +10,10 @@
     <link href="/static/admin-assets/css/server_detail.css" rel="stylesheet">
 {% endblock %}
 
+{% block nav-bar %}
+    {% include "partials/nav-bar-server_detail.html" %}
+{% endblock %}
+
 {% block page_content %}
 
 <input type='hidden' name='hwaddr' value='{{hwaddr_orig}}' />
@@ -631,8 +635,6 @@
     </div>
 
 </div><!--/leave britney alone-->
-</div><!--/leave britney alone-->
-</div><!--/container-->
 
 {% endblock page_content %}
 

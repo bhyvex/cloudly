@@ -4,10 +4,13 @@
 						
 {% block title %}Cloudly | Host &amp; Services Problems{% endblock %}
 
-{% block page_content %}
+{% block nav-bar %}
+    {% include "partials/nav-bar-classic.html" %}
+{% endblock %}
 
-<div class="col-md-10 col-sm-11 main " style="min-height: 464px;">			
-			
+{% block page_content %}
+<div id="main" class="col-md-10 col-sm-11 main ">
+
 	<div class="row page-todo">
 				
 		<div class="col-sm-7 tasks">

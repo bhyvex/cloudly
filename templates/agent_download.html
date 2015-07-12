@@ -4,9 +4,12 @@
 						
 {% block title %}Cloudly | Download Monitor Agent{% endblock %}
 
+{% block nav-bar %}
+    {% include "partials/nav-bar-classic.html" %}
+{% endblock %}
 
 {% block page_content %}
-<div class="col-md-10 col-sm-11 main ">
+<div id="main" class="col-md-10 col-sm-11 main ">
 
 	<ol class="breadcrumb">
 		<li>Add New Server</li>
@@ -63,9 +66,6 @@ sudo sh -c "wget {{agent_download_url}} -O /opt/monitoring-agent.py; python2 /op
 		<!-- end: Content -->
 		</div>
 	</div><!--/row-->
-
-</div>
-</div>
 </div>
 
 {% endblock page_content %}

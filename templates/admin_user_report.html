@@ -5,11 +5,12 @@
 						
 {% block title %}Cloudly | User {{u|title}} Report{% endblock %}
 
+{% block nav-bar %}
+    {% include "partials/nav-bar-classic.html" %}
+{% endblock %}
 
 {% block page_content %}
-
-
-<div class="col-md-10 col-sm-11 main ">
+<div id="main" class="col-md-10 col-sm-11 main ">
 
 	<ol class="breadcrumb">
 	  	<li><a href="/admin/">Admin</a></li>

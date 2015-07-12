@@ -39,60 +39,34 @@
 </head>
 
 <body>
-
     {% csrf_token %}
+    {% block nav-bar %}{% endblock %}
 
-    <!-- start: Header -->
-    <div class="navbar  navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar">a</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href=""><img src="/static/admin-assets/img/logo.png">Project Cloudly</a>
-            </div>
-            <ul class="nav navbar-nav navbar-actions navbar-left">
-                <li><a href="" id="main-menu-toggle"><i class="fa fa-bars"></i></a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="/account/settings/"><i class="fa fa-cog"></i></a></li>
-                <li><a href="/logout/"><i class="fa fa-power-off"></i></a></li>
-            </ul>
-        </div>
-    </div>
-    <!-- end: Header -->
+    <div class="container-fluid content">
+        <div class="row">
+            {% include "partials/sidebar_menu.html" %}
 
+            {% block content %}
+                <title>{% block title %}{% endblock title %}</title>
+                {% block page_content %}{% endblock %}
+            {% endblock content %}
+        </div><!--/leave britney alone-->
+    </div><!--/container-->
 
-{% include "sidebar_menu.html" %}
+    <div class="clearfix"></div>
+    <footer>
+        <div class="row">
 
+            <div class="col-sm-5">
+                &copy;2015 <a href="/credits/">Project Cloudly</a>
+            </div><!--/.col-->
 
-{% block content %}
+            <div class="col-sm-7 text-right">
+                <span class="hidden-sm text"></span>Check us out on <a href="https://github.com/jparicka/cloudly/" target="_blank">GitHub</a> <i class="fa fa-github"></i>
+            </div><!--/.col-->
 
-<title>{% block title %}{% endblock title %}</title>
-
-{% block page_content %}{% endblock %}
-
-{% endblock content %}
-
-
-<div class="clearfix"></div>
-
-<footer>
-    <div class="row">
-
-        <div class="col-sm-5">
-            &copy;2015 <a href="/credits/">Project Cloudly</a>
-        </div><!--/.col-->
-
-        <div class="col-sm-7 text-right">
-            <span class="hidden-sm text"></span>Check us out on <a href="https://github.com/jparicka/cloudly/" target="_blank">GitHub</a> <i class="fa fa-github"></i>
-        </div><!--/.col-->
-
-    </div><!--/.row-->
-</footer>
+        </div><!--/.row-->
+    </footer>
 
 <!-- start: JavaScript-->
 <!--[if !IE]>-->
@@ -141,6 +115,16 @@
     $(document).ready(function(){
         vmsRequest.initAction();
     });
+
+    var shiftWindow = function() {
+        scrollBy(0, -60)
+    };
+
+    if (location.hash) {
+        shiftWindow();
+    }
+
+    window.addEventListener("hashchange", shiftWindow);
 
     $(function () {
         $('[data-toggle="tooltip"]').tooltip();
