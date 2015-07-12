@@ -1,5 +1,6 @@
 
 var server = $('input[name="hwaddr"]').val(),           // server identifier
+    serverMacAddress = server.replace(/-/g, ":"),          // server mac address
     csrf = $('input[name="csrfmiddlewaretoken"]').val(),// request middlevare secure
     secret = $('input[name="secret"]').val(),           // request authenticate
     interval = '3m',                                    // base interval setting
@@ -73,12 +74,6 @@ function updateServerInfo() {
 
             loadavgServerInfoValue = loadavgServerInfoValue.replace(/,/g," ");  // replace all coma to space
 
-            var actualServername = $("#servername").text().trim();
-            if (actualServername != data["name"]) {
-                checkServerName(data["name"]);
-                $("#servername").text(data["name"]);
-            }
-
             $(".cpu_usage_progress_bar").updateProgressBar(
                 data["cpu_used"],
                 "CPU",
@@ -103,6 +98,12 @@ function updateServerInfo() {
                 100,
                 "progress-bar-info"
             );
+
+            var actualServername = $("#servername").text().trim();
+            if (actualServername != data["name"]) {
+                checkServerName(data["name"]);
+                $("#servername").text(data["name"]);
+            }
             $(".server_info_uptime").text(data["server_info_uptime"]);
             $(".server_info_loadavg").text(loadavgServerInfoValue);
             $(".server_info_status").text(data["server_info_status"].toLowerCase());
@@ -194,12 +195,12 @@ function addFirstChartData(data) {
  * info with mac address
  */
 function checkServerName(servername) {
-    if (servername == "" || servername == server) {               // show/hide info icon
+    if (servername == "" || servername == serverMacAddress) {       // show/hide info icon
         $("#mac-address-tooltip").hide();
-        $(".breadcrumb > li.servername").text(server);    // change breadcrumb value
+        $(".breadcrumb > li.servername").text(serverMacAddress);    // change breadcrumb value
     } else {
         $("#mac-address-tooltip").show();
-        $(".breadcrumb > li.servername").text(servername);    // change breadcrumb value
+        $(".breadcrumb > li.servername").text(servername);          // change breadcrumb value
     }
 }
 
@@ -208,6 +209,11 @@ $(document).ready(function() {
     $('#serviceDiscovery').deactivePanel();
     $('#serverActivity').deactivePanel();
     $('#activeNetworkSessions').deactivePanel();
+
+    $("#mac-address-tooltip").attr("title", "Mac address: " + serverMacAddress);
+    if ($("#servername").text().trim() != serverMacAddress) {
+        $("#mac-address-tooltip").show();
+    }
 
     Highcharts.setOptions({ // set global chart options
         global: {
@@ -230,8 +236,8 @@ $(document).ready(function() {
             },
             "dataType": "json",
         },
-        "defaultValue": server,
-        "emptytext": server,
+        "defaultValue": serverMacAddress,
+        "emptytext": serverMacAddress,
         "emptyclass": "",
         "type": "text",
         "pk": 1,

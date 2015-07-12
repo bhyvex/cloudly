@@ -265,7 +265,7 @@ def ajax_update_server_name(request):
     server = mongo.servers.find_one({'secret':secret,'uuid':server_,})
 
     if request.POST["servername"] == "":
-        server['name'] = request.POST['server']
+        server['name'] = request.POST['server'].replace("-", ":")
     else:
         server['name'] = request.POST["servername"]
 
