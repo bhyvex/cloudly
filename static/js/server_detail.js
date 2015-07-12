@@ -337,7 +337,7 @@ $(document).ready(function() {
     });
 
     var activeNetworkConnectionsTable = $("#active_network_connections").DataTable({
-        "lengthMenu": [[10, 30, 50, -1], [10, 30, 50, "All"]],
+        "lengthMenu": [[50, 10, 30, 50, 100, -1], [50, 10, 30, 100, "All"]],
         "order": [[ 3, "asc" ]],
         "ajax": {
             "url": addressActiveNetworkConnectionsTable,
