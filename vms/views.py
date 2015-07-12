@@ -688,6 +688,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
     if(graph_type=="server_info"):
 
         graphs_mixed_respose = {}
+        graphs_mixed_respose['name'] = server['name']
         graphs_mixed_respose['cpu_used'] = server['cpu_usage']['cpu_used']
         graphs_mixed_respose['memory_used'] = server['memory_usage']['memory_used_percentage']
         graphs_mixed_respose['swap_used'] = server['memory_usage']['swap_used_percentage']

@@ -56,54 +56,60 @@ var server = $('input[name="hwaddr"]').val(),           // server identifier
 
 function updateServerInfo() {
     $.ajax({
-        url: addressServerInfo,
-        type: 'POST',
-        dataType: 'json',
-        headers: {
+        "url": addressServerInfo,
+        "type": "POST",
+        "dataType": "json",
+        "headers": {
             'X-CSRFToken': csrf
         },
-        cache: false,
-        data: {
-            'server': server,
-            'secret': secret
+        "cache": false,
+        "data": {
+            "server": server,
+            "secret": secret
         },
-        success: function(data) {
-            var loadavgProgressBarValue = Math.round((data['loadavg_used'] * 100)),
-                loadavgServerInfoValue = data['server_info_loadavg'].join();
+        "success": function(data) {
+            var loadavgProgressBarValue = Math.round((data["loadavg_used"] * 100)),
+                loadavgServerInfoValue = data["server_info_loadavg"].join();
 
             loadavgServerInfoValue = loadavgServerInfoValue.replace(/,/g," ");  // replace all coma to space
 
-            $('.cpu_usage_progress_bar').updateProgressBar(
-                data['cpu_used'],
-                'CPU',
+            var actualServername = $("#servername").text().trim();
+            if (actualServername != data["name"]) {
+                checkServerName(data["name"]);
+                $("#servername").text(data["name"]);
+            }
+
+            $(".cpu_usage_progress_bar").updateProgressBar(
+                data["cpu_used"],
+                "CPU",
                 85,
-                'progress-bar-success'
+                "progress-bar-success"
             );
-            $('.memory_usage_progress_bar').updateProgressBar(
-                data['memory_used'],
-                'Memory',
+            $(".memory_usage_progress_bar").updateProgressBar(
+                data["memory_used"],
+                "Memory",
                 98,
-                'progress-bar-info'
+                "progress-bar-info"
             );
-            $('.swap_usage_progress_bar').updateProgressBar(
-                data['swap_used'],
-                'Swap',
+            $(".swap_usage_progress_bar").updateProgressBar(
+                data["swap_used"],
+                "Swap",
                 80,
-                'progress-bar-info'
+                "progress-bar-info"
             );
-            $('.loadavg_usage_progress_bar').updateProgressBar(
+            $(".loadavg_usage_progress_bar").updateProgressBar(
                 loadavgProgressBarValue,
-                'Load average',
+                "Load average",
                 100,
-                'progress-bar-info'
+                "progress-bar-info"
             );
-            $('.server_info_uptime').text(data['server_info_uptime']);
-            $('.server_info_loadavg').text(loadavgServerInfoValue);
-            $('.server_info_status').text(data['server_info_status'].toLowerCase());
+            $(".server_info_uptime").text(data["server_info_uptime"]);
+            $(".server_info_loadavg").text(loadavgServerInfoValue);
+            $(".server_info_status").text(data["server_info_status"].toLowerCase());
         },
-        error: function(data, textStatus, errorThrown) {
-            console.log('error: ' + textStatus);
-            console.log('error: ' + errorThrown);
+        "error": function(data, textStatus, errorThrown) {
+            console.log("error: " + textStatus);
+            console.log("error: " + errorThrown);
         }
     });
 };
@@ -183,6 +189,20 @@ function addFirstChartData(data) {
     return data.reverse();          // chart need reverted data
 }
 
+/**
+ * Check current and given servername, update breadcrumb info and show/hide
+ * info with mac address
+ */
+function checkServerName(servername) {
+    if (servername == "" || servername == server) {               // show/hide info icon
+        $("#mac-address-tooltip").hide();
+        $(".breadcrumb > li.servername").text(server);    // change breadcrumb value
+    } else {
+        $("#mac-address-tooltip").show();
+        $(".breadcrumb > li.servername").text(servername);    // change breadcrumb value
+    }
+}
+
 $(document).ready(function() {
     $('#diskGraphs').deactivePanel();
     $('#serviceDiscovery').deactivePanel();
@@ -201,7 +221,7 @@ $(document).ready(function() {
             data["id"] = params.pk;
             data["server"] = server;
             data["secret"] = secret;
-            data[params.name] = params.value;
+            data[params.name] = params.value.trim();
             return data;
         },
         "ajaxOptions": {
@@ -218,14 +238,7 @@ $(document).ready(function() {
         "url": addressUpdateServerName,
         "title": "Enter new server name",
         "success": function(response, newValue) {
-            if (newValue == "" || newValue == server) {               // show/hide info icon
-                $("#mac-address-tooltip").hide();
-                $(".breadcrumb > li.servername").text(server);    // change breadcrumb value
-            } else {
-                $("#mac-address-tooltip").show();
-                $(".breadcrumb > li.servername").text(newValue);    // change breadcrumb value
-            }
-
+            checkServerName(newValue.trim());
             if (response.status == "error") {
                 console.log(response.msg); //msg will be shown in editable form
             }
