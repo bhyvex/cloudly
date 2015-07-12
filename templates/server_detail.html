@@ -10,9 +10,7 @@
     <link href="/static/admin-assets/css/server_detail.css" rel="stylesheet">
 {% endblock %}
 
-
 {% block page_content %}
-
 
 <input type='hidden' name='hwaddr' value='{{hwaddr_orig}}' />
 <input type='hidden' name='secret' value='{{secret}}' />
@@ -20,12 +18,10 @@
 
 
 <div class="col-md-10 col-sm-11 main ">
-
     <ol class="breadcrumb">
         <li><a href="/">Servers</a></li>
         <li class="servername active">{{server|dict_get:"name"}}</li>
     </ol>
-
 
     <div class="row">
         <div class="col-xs-7">
@@ -40,7 +36,6 @@
                 </div>
 
                 <div class="panel-body">
-
                     <table id="user" class="table table-bordered table-striped" style="clear: both">
                         <tbody>
                             <tr>
@@ -60,7 +55,13 @@
                             </tr>
                             <tr>
                                 <td>IP Address</td>
-                                <td><a href="http://www.infosniper.net/index.php?ip_address={{server|dict_get:"ip"}}&map_source=1&overview_map=1&lang=1&map_type=1&zoom_level=7" target="_blank">{{server|dict_get:"ip"}}</td>
+                                <td>
+                                    <a href="http://www.infosniper.net/index.php?ip_address={{server|dict_get:"ip"}}&map_source=1&overview_map=1&lang=1&map_type=1&zoom_level=7"
+                                        target="_blank"
+                                    >
+                                        {{server|dict_get:"ip"}}
+                                    </a>
+                                </td>
                             </tr>
 
                             <tr>
@@ -75,12 +76,16 @@
                             </tr>
                             {% endif %}
 
-                            {% if server_status|lower = "running" %}
-                            <tr>
+                            <tr class="server_uptime"
+                                {% if server_status|lower = "offline" %}
+                                    style="display: none;"
+                                {% endif %}
+                                >
                                 <td>Uptime</td>
-                                <td class="server_info_uptime">{{server|dict_get:"uptime"}}</td>
+                                <td class="server_info_uptime">
+                                    {{server|dict_get:"uptime"}}
+                                </td>
                             </tr>
-                            {% endif %}
                             <tr>
                                 <td>CPU info</td>
                                 <td>{{server|dict_get:"cpu_info"|count_list}}x {{server|dict_get:"cpu_info"|dict_get:"cpu0"|dict_get:"model_name"}}</td>
@@ -93,34 +98,46 @@
                                 <td>Memory Size</td>
                                 <td>{{server|dict_get:"memory_usage"|dict_get:"memory_total"|to_mb|intcomma}} MB</td>
                             </tr>
-                            {% if server_status|lower = "running" %}
-                            <tr>
+                            <tr class="server_loadavg"
+                                {% if server_status|lower = "offline" %}
+                                    style="display: none;"
+                                {% endif %}
+                                >
                                 <td>Load Average</td>
                                 <td class="server_info_loadavg">
-                                {% for i in server|dict_get:"loadavg" %}
-                                {{i}}&nbsp;
-                                {% endfor %}
+                                    {% for i in server|dict_get:"loadavg" %}
+                                        {{i}}&nbsp;
+                                    {% endfor %}
                                 </td>
                             </tr>
-                            {% endif %}
                             <tr>
                                 <td>Status</td>
-                                <td class="server_info_status">{{server_status|lower}}</td>
+                                <td class="server_info_status">
+                                    {{server_status|lower}}
+                                </td>
                             </tr>
-                            {% if server_status|lower = "offline" %}
-                            <tr>
+                            <tr class="server_last_seen"
+                                {% if server_status|lower = "running" %}
+                                    style="display: none;"
+                                {% endif %}
+                                >
                                 <td>Last seen</td>
-                                <td>{{server|dict_get:"last_seen"|naturalday}}</td>
+                                <td class="server_info_last_seen">
+                                    {{server|dict_get:"last_seen"|naturalday}}
+                                </td>
                             </tr>
-                            {% endif %}
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
 
-{% if server_status|lower = "running" %}
-        <div class="col-xs-5">
+        <div id="current_load"
+            class="col-xs-5"
+            {% if server_status|lower = "offline" %}
+                style="display: none;"
+            {% endif %}
+            >
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h2><i class="fa fa-heartbeat"></i>Current Load</h2>
@@ -172,8 +189,12 @@
         </div>
     </div><!--/row-->
 
-
-    <div class="row">
+    <div id="system_metrics"
+        class="row"
+        {% if server_status|lower = "offline" %}
+            style="display: none;"
+        {% endif %}
+        >
         <div class="col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -226,7 +247,12 @@
         </div>
     </div><!--/row-->
 
-    <div class="row">
+    <div id="networking"
+        class="row"
+        {% if server_status|lower = "offline" %}
+            style="display: none;"
+        {% endif %}
+        >
         <div class="col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -275,7 +301,12 @@
         </div>
     </div><!--/row-->
 
-    <div class="row">
+    <div id="network_sessions"
+        class="row"
+        {% if server_status|lower = "offline" %}
+            style="display: none;"
+        {% endif %}
+        >
         <div class="col-xs-12">
             <div id="networkSessions" class="panel panel-default">
                 <div class="panel-heading">
@@ -305,8 +336,12 @@
         </div>
     </div><!--/row-->
 
-
-    <div class="row">
+    <div id="active_network_sessions"
+        class="row"
+        {% if server_status|lower = "offline" %}
+            style="display: none;"
+        {% endif %}
+        >
         <div class="col-xs-12">
             <div id="activeNetworkSessions" class="panel panel-default">
                 <div class="panel-heading">
@@ -339,9 +374,12 @@
         </div>
     </div><!--/row-->
 
-
-
-    <div class="row">
+    <div id="disks"
+        class="row"
+        {% if server_status|lower = "offline" %}
+            style="display: none;"
+        {% endif %}
+        >
         <div class="col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -430,9 +468,12 @@
         </div>
     </div><!--/row-->
 
-
-
-    <div class="row">
+    <div id="disk_graphs"
+        class="row"
+        {% if server_status|lower = "offline" %}
+            style="display: none;"
+        {% endif %}
+        >
         <div class="col-xs-12">
             <div id="diskGraphs" class="panel panel-default">
                 <div class="panel-heading">
@@ -462,8 +503,12 @@
         </div>
     </div><!--/row-->
 
-
-    <div class="row">
+    <div id="running_processes"
+        class="row"
+        {% if server_status|lower = "offline" %}
+            style="display: none;"
+        {% endif %}
+        >
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -475,7 +520,6 @@
                     </div>
                 </div>
                 <div class="panel-body">
-
                     <table id="running_processes_table" class="table table-bordered table-striped bootstrap-datatable">
                         <thead>
                             <tr>
@@ -492,34 +536,38 @@
             </div>
         </div><!--/col-->
     </div><!--/row-->
-{% endif %}
 
-
-{% if server_status|lower = "running" %}
-<div class="row">
-    <div class="col-xs-12">
-        <div id="serviceDiscovery" class="panel panel-default">
-            <div class="panel-heading">
-                <h2><i class="fa fa-skyatlas"></i>Services Discovery</h2>
-                <div class="panel-actions">
-                    <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-                    <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-                    <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+    <div id="services_discovery"
+        class="row"
+        {% if server_status|lower = "offline" %}
+            style="display: none;"
+        {% endif %}
+        >
+        <div class="col-xs-12">
+            <div id="serviceDiscovery" class="panel panel-default">
+                <div class="panel-heading">
+                    <h2><i class="fa fa-skyatlas"></i>Services Discovery</h2>
+                    <div class="panel-actions">
+                        <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+                        <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                        <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="panel-body">
-                TBD
-            </div>
+                <div class="panel-body">
+                    TBD
+                </div>
 
+            </div>
         </div>
-    </div>
-</div><!--/row-->
-{% endif %}
+    </div><!--/row-->
 
-
-
-    <div class="row">
+    <div id="server_activity"
+        class="row"
+        {% if server_status|lower = "offline" %}
+            style="display: none;"
+        {% endif %}
+        >
         <div class="col-xs-12">
             <div id="serverActivity" class="panel panel-default">
                 <div class="panel-heading">
@@ -551,7 +599,7 @@
         </div>
     </div><!--/row-->
 
-    <div class="row">
+    <div id="fixed_problems" class="row">
         <div class="col-xs-12">
             <div id="serverActivity" class="panel panel-default">
                 <div class="panel-heading">
@@ -571,18 +619,14 @@
         </div>
     </div><!--/row-->
 
-
-
-
-
-{% if not server_status|lower = "running" %}
-<div class="panel-body">
-    Server agent has gone offline.
-</div>
-</div><!--/leave britney alone-->
-</div><!--/leave britney alone-->
-{% endif %}
-
+    <div id="running_message"
+        class="panel-body"
+        {% if server_status|lower = "running" %}
+            style="display: none;"
+        {% endif %}
+        >
+        Server agent has gone offline.
+    </div>
 
 </div><!--/leave britney alone-->
 </div><!--/leave britney alone-->

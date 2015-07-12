@@ -69,44 +69,79 @@ function updateServerInfo() {
             "secret": secret
         },
         "success": function(data) {
-            var loadavgProgressBarValue = Math.round((data["loadavg_used"] * 100)),
-                loadavgServerInfoValue = data["server_info_loadavg"].join();
+            var actualServername = $("#servername").text().trim(),
+                serverStatus = data["server_info_status"].toLowerCase();
 
-            loadavgServerInfoValue = loadavgServerInfoValue.replace(/,/g," ");  // replace all coma to space
-
-            $(".cpu_usage_progress_bar").updateProgressBar(
-                data["cpu_used"],
-                "CPU",
-                85,
-                "progress-bar-success"
-            );
-            $(".memory_usage_progress_bar").updateProgressBar(
-                data["memory_used"],
-                "Memory",
-                98,
-                "progress-bar-info"
-            );
-            $(".swap_usage_progress_bar").updateProgressBar(
-                data["swap_used"],
-                "Swap",
-                80,
-                "progress-bar-info"
-            );
-            $(".loadavg_usage_progress_bar").updateProgressBar(
-                loadavgProgressBarValue,
-                "Load average",
-                100,
-                "progress-bar-info"
-            );
-
-            var actualServername = $("#servername").text().trim();
             if (actualServername != data["name"]) {
                 checkServerName(data["name"]);
                 $("#servername").text(data["name"]);
             }
-            $(".server_info_uptime").text(data["server_info_uptime"]);
-            $(".server_info_loadavg").text(loadavgServerInfoValue);
-            $(".server_info_status").text(data["server_info_status"].toLowerCase());
+
+            $(".server_info_status").text(serverStatus);
+            if (serverStatus != 'offline') {
+                var loadavgProgressBarValue = Math.round((data["loadavg_used"] * 100)),
+                    loadavgServerInfoValue = data["server_info_loadavg"].join();
+
+                $("#current_load").show();
+                $("#system_metrics").show();
+                $("#networking").show();
+                $("#network_sessions").show();
+                $("#active_network_sessions").show();
+                $("#disks").show();
+                $("#disk_graphs").show();
+                $("#running_processes").show();
+                $("#services_discovery").show();
+                $("#server_activity").show();
+                $("#running_message").hide();
+
+                loadavgServerInfoValue = loadavgServerInfoValue.replace(/,/g," ");  // replace all coma to space
+                $(".server_last_seen").hide();
+                $(".server_uptime").show();
+                $(".server_info_uptime").text(data["server_info_uptime"]);
+                $(".server_loadavg").show();
+                $(".server_info_loadavg").text(loadavgServerInfoValue);
+
+                $(".cpu_usage_progress_bar").updateProgressBar(
+                    data["cpu_used"],
+                    "CPU",
+                    85,
+                    "progress-bar-success"
+                );
+                $(".memory_usage_progress_bar").updateProgressBar(
+                    data["memory_used"],
+                    "Memory",
+                    98,
+                    "progress-bar-info"
+                );
+                $(".swap_usage_progress_bar").updateProgressBar(
+                    data["swap_used"],
+                    "Swap",
+                    80,
+                    "progress-bar-info"
+                );
+                $(".loadavg_usage_progress_bar").updateProgressBar(
+                    loadavgProgressBarValue,
+                    "Load average",
+                    100,
+                    "progress-bar-info"
+                );
+            } else {
+                $(".server_last_seen").show();
+                $(".server_uptime").hide();
+                $(".server_loadavg").hide();
+
+                $("#current_load").hide();
+                $("#system_metrics").hide();
+                $("#networking").hide();
+                $("#network_sessions").hide();
+                $("#active_network_sessions").hide();
+                $("#disks").hide();
+                $("#disk_graphs").hide();
+                $("#running_processes").hide();
+                $("#services_discovery").hide();
+                $("#server_activity").hide();
+                $("#running_message").show();
+            }
         },
         "error": function(data, textStatus, errorThrown) {
             console.log("error: " + textStatus);
@@ -205,6 +240,7 @@ function checkServerName(servername) {
 }
 
 $(document).ready(function() {
+    updateServerInfo();
     $('#diskGraphs').deactivePanel();
     $('#serviceDiscovery').deactivePanel();
     $('#serverActivity').deactivePanel();
