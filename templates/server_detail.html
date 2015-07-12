@@ -23,7 +23,7 @@
 
     <ol class="breadcrumb">
         <li><a href="/">Servers</a></li>
-        <li class="active">{{server|dict_get:"hostname"}}</li>
+        <li class="servername active">{{server|dict_get:"name"}}</li>
     </ol>
 
 
@@ -46,7 +46,15 @@
                             <tr>
                                 <td width="40%">Name</td>
                                 <td width="60%">
-                                    <a href="#" id="servername" class="editable editable-click editable-open">{{server|dict_get:"name"}}</a>
+                                    <a href="#" id="servername" class="editable editable-click editable-open">
+                                        {{server|dict_get:"name"}}
+                                    </a>
+                                    <i id="mac-address-tooltip" class="fa fa-info-circle" style="float: right;
+                                        {% if server|dict_get:"name" == hwaddr_orig %}
+                                            display: none;
+                                        {% endif %}
+                                        " data-toggle="tooltip" title="Mac address: {{hwaddr_orig}}" data-original-title="Server mac address">
+                                    </i>
                                </td>
                             </tr>
                             <tr>

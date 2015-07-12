@@ -263,7 +263,12 @@ def ajax_update_server_name(request):
     server_ = server_.replace('-', ':')
 
     server = mongo.servers.find_one({'secret':secret,'uuid':server_,})
-    server['name'] = request.POST["servername"]
+
+    if request.POST["servername"] == "":
+        server['name'] = request.POST['server']
+    else:
+        server['name'] = request.POST["servername"]
+
     server = mongo.servers.update({'secret':secret, 'uuid':server_}, server)
 
     vms_cache = Cache.objects.get(user=request.user)
@@ -767,7 +772,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         network_connections = server['network_connections']['listen']
 
         for conn in network_connections:
-        
+
             connection = {}
             connection['proto'] = conn[1]
             connection['recv-q'] = conn[2]
@@ -796,7 +801,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         active_network_connections = server['network_connections']['established']
 
         for conn in active_network_connections:
-        
+
             connection = {}
             connection['proto'] = conn[1]
             connection['recv-q'] = conn[2]

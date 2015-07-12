@@ -100,9 +100,6 @@ function updateServerInfo() {
             $('.server_info_uptime').text(data['server_info_uptime']);
             $('.server_info_loadavg').text(loadavgServerInfoValue);
             $('.server_info_status').text(data['server_info_status'].toLowerCase());
-            setTimeout(function() {
-                updateServerInfo();
-            }, 1000);
         },
         error: function(data, textStatus, errorThrown) {
             console.log('error: ' + textStatus);
@@ -199,32 +196,43 @@ $(document).ready(function() {
     });
 
     $('#servername').editable({
-        params: function (params) {
+        "params": function (params) {
             var data = {};
-            data['id'] = params.pk;
-            data['server'] = server;
-            data['secret'] = secret;
+            data["id"] = params.pk;
+            data["server"] = server;
+            data["secret"] = secret;
             data[params.name] = params.value;
             return data;
         },
-        ajaxOptions: {
-            headers: {
+        "ajaxOptions": {
+            "headers": {
                 'X-CSRFToken': csrf
             },
-            dataType: 'json',
+            "dataType": "json",
         },
-        type: 'text',
-        pk: 1,
-        url: addressUpdateServerName,
-        title: 'Enter new server name',
-        success: function(response, newValue) {
-            if (response.status == 'error') {
+        "defaultValue": server,
+        "emptytext": server,
+        "emptyclass": "",
+        "type": "text",
+        "pk": 1,
+        "url": addressUpdateServerName,
+        "title": "Enter new server name",
+        "success": function(response, newValue) {
+            if (newValue == "" || newValue == server) {               // show/hide info icon
+                $("#mac-address-tooltip").hide();
+                $(".breadcrumb > li.servername").text(server);    // change breadcrumb value
+            } else {
+                $("#mac-address-tooltip").show();
+                $(".breadcrumb > li.servername").text(newValue);    // change breadcrumb value
+            }
+
+            if (response.status == "error") {
                 console.log(response.msg); //msg will be shown in editable form
             }
         }
     });
 
-    var processTable = $('#running_processes_table').DataTable({
+    var processTable = $("#running_processes_table").DataTable({
         "lengthMenu": [[15, 50, 100, -1], [15, 50, 100, "All"]],
         "order": [[ 2, "desc" ]],
         "ajax": {
@@ -248,7 +256,7 @@ $(document).ready(function() {
         ]
     });
 
-    var networkConnectionsTable = $('#network_connections').DataTable({
+    var networkConnectionsTable = $("#network_connections").DataTable({
         "lengthMenu": [[10, 30, 50, -1], [10, 30, 50, "All"]],
         "order": [[ 3, "asc" ]],
         "ajax": {
@@ -271,7 +279,7 @@ $(document).ready(function() {
         ]
     });
 
-    var activeNetworkConnectionsTable = $('#active_network_connections').DataTable({
+    var activeNetworkConnectionsTable = $("#active_network_connections").DataTable({
         "lengthMenu": [[10, 30, 50, -1], [10, 30, 50, "All"]],
         "order": [[ 3, "asc" ]],
         "ajax": {
@@ -297,11 +305,10 @@ $(document).ready(function() {
     });
 
     setInterval(function () {
+        updateServerInfo();
         processTable.ajax.reload(null, false);
         networkConnectionsTable.ajax.reload(null, false);
         activeNetworkConnectionsTable.ajax.reload(null, false);
     }, 1000);
-
-    updateServerInfo();
 });
 
