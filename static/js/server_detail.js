@@ -86,7 +86,7 @@ function updateServerInfo() {
 
                 $("#running_message").hide();
                 $(".server_last_seen").hide();
-                
+
                 $("#current_load").show();
                 $("#system_metrics").show();
                 $("#networking").show();
@@ -99,7 +99,7 @@ function updateServerInfo() {
                 $("#server_activity").show();
                 $(".server_uptime").show();
                 $(".server_loadavg").show();
-                
+
                 $(".server_info_uptime").text(data["server_info_uptime"]);
                 $(".server_info_loadavg").text(loadavgServerInfoValue);
 
@@ -248,7 +248,7 @@ $(document).ready(function() {
     $('#serverActivity').deactivePanel();
     $('#activeNetworkSessions').deactivePanel();
 
-    $("#mac-address-tooltip").attr("title", "Mac address: " + serverMacAddress);
+    $("#mac-address-tooltip").attr("title", "MAC Address: " + serverMacAddress);
     if ($("#servername").text().trim() != serverMacAddress) {
         $("#mac-address-tooltip").show();
     }
