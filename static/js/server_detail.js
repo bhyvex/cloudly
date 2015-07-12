@@ -82,6 +82,11 @@ function updateServerInfo() {
                 var loadavgProgressBarValue = Math.round((data["loadavg_used"] * 100)),
                     loadavgServerInfoValue = data["server_info_loadavg"].join();
 
+                loadavgServerInfoValue = loadavgServerInfoValue.replace(/,/g," ");  // replace all coma to space
+
+                $("#running_message").hide();
+                $(".server_last_seen").hide();
+                
                 $("#current_load").show();
                 $("#system_metrics").show();
                 $("#networking").show();
@@ -92,13 +97,10 @@ function updateServerInfo() {
                 $("#running_processes").show();
                 $("#services_discovery").show();
                 $("#server_activity").show();
-                $("#running_message").hide();
-
-                loadavgServerInfoValue = loadavgServerInfoValue.replace(/,/g," ");  // replace all coma to space
-                $(".server_last_seen").hide();
                 $(".server_uptime").show();
-                $(".server_info_uptime").text(data["server_info_uptime"]);
                 $(".server_loadavg").show();
+                
+                $(".server_info_uptime").text(data["server_info_uptime"]);
                 $(".server_info_loadavg").text(loadavgServerInfoValue);
 
                 $(".cpu_usage_progress_bar").updateProgressBar(
@@ -127,9 +129,10 @@ function updateServerInfo() {
                 );
             } else {
                 $(".server_last_seen").show();
+                $("#running_message").show();
+
                 $(".server_uptime").hide();
                 $(".server_loadavg").hide();
-
                 $("#current_load").hide();
                 $("#system_metrics").hide();
                 $("#networking").hide();
@@ -140,7 +143,6 @@ function updateServerInfo() {
                 $("#running_processes").hide();
                 $("#services_discovery").hide();
                 $("#server_activity").hide();
-                $("#running_message").show();
             }
         },
         "error": function(data, textStatus, errorThrown) {

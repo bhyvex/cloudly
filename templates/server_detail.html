@@ -117,7 +117,7 @@
                                 </td>
                             </tr>
                             <tr class="server_last_seen"
-                                {% if server_status|lower = "running" %}
+                                {% if server_status|lower != "offline" %}
                                     style="display: none;"
                                 {% endif %}
                                 >
@@ -621,7 +621,7 @@
 
     <div id="running_message"
         class="panel-body"
-        {% if server_status|lower = "running" %}
+        {% if server_status|lower = "offline" %}
             style="display: none;"
         {% endif %}
         >
