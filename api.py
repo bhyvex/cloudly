@@ -133,8 +133,6 @@ def ping():
     hbase.send(cpu_usage_tsdb_cmd)
     hbase.close()
     
-    print cpu_usage_tsdb_cmd
-    
         
     loadavg_metrics = {
         'secret': secret,
@@ -165,10 +163,10 @@ def ping():
         " avg=15-mins" + \
         "\n"
 
-    #hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    #hbase.connect(("hbase", 4242))
-    #hbase.send(loadavg_tsdb_cmd)
-    #hbase.close()
+    hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    hbase.connect(("hbase", 4242))
+    hbase.send(loadavg_tsdb_cmd)
+    hbase.close()
 
 
     memory_usage_metrics = {
@@ -218,10 +216,10 @@ def ping():
         " mm=swap_total" + \
         "\n"
     
-    #hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    #hbase.connect(("hbase", 4242))
-    #hbase.send(memory_tsdb_cmd)
-    #hbase.close()
+    hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    hbase.connect(("hbase", 4242))
+    hbase.send(memory_tsdb_cmd)
+    hbase.close()
 
 
     networking_metrics = {
@@ -262,10 +260,10 @@ def ping():
         " mm=output_accept_bytes" + \
         "\n"
 
-    #hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    #hbase.connect(("hbase", 4242))
-    #hbase.send(networking_tsdb_cmd)
-    #hbase.close()
+    hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    hbase.connect(("hbase", 4242))
+    hbase.send(networking_tsdb_cmd)
+    hbase.close()
 
 
     disks_usage_metrics = {
@@ -316,10 +314,10 @@ def ping():
         " mm=disk_usage" + \
         "\n"
         
-        #hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        #hbase.connect(("hbase", 4242))
-        #hbase.send(disks_tsdb_cmd)
-        #hbase.close()
+        hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        hbase.connect(("hbase", 4242))
+        hbase.send(disks_tsdb_cmd)
+        hbase.close()
 
 
     return ("thanks", 201)
