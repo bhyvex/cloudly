@@ -347,14 +347,15 @@ def ajax_vms_refresh(request):
                 if(c==60): break
                 c+=1
                 
-            cpu_usage = cpu_usage_[:-1]
-            cpu_usage_reversed = ""
-            cpu_usage_array_reversed = []
-            for i in cpu_usage.split(','): cpu_usage_array_reversed.insert(0,i)
-            for i in cpu_usage_array_reversed: cpu_usage_reversed += str(i)+","
-            cpu_usage_reversed = cpu_usage_reversed[:-1]
+            #cpu_usage = cpu_usage_[:-1]
+            #cpu_usage_reversed = ""
+            #cpu_usage_array_reversed = []
+            #for i in cpu_usage.split(','): cpu_usage_array_reversed.insert(0,i)
+            #for i in cpu_usage_array_reversed: cpu_usage_reversed += str(i)+","
+            #cpu_usage_reversed = cpu_usage_reversed[:-1]
 
-            instance_metrics['cpu_utilization_datapoints'] = cpu_usage_reversed
+            #instance_metrics['cpu_utilization_datapoints'] = cpu_usage_reversed
+            instance_metrics['cpu_utilization_datapoints'] = cpu_usage
             virtual_machines[server['uuid'].replace(':','-')] = instance_metrics
 
         #print 'virtual_machines', virtual_machines
