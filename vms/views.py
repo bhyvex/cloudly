@@ -337,7 +337,7 @@ def ajax_vms_refresh(request):
                 cpu_usage_ += ","
             cpu_usage = cpu_usage_[:-1]
 
-            print uuid, 
+            print '-'
             print 'debug'
             print cpu_usage
 
@@ -350,7 +350,6 @@ def ajax_vms_refresh(request):
 
             # XXX pull the tsdb data and make them match the mongo above
 
-            print '-'*100
             params = {'start':'3m-ago','m':'avg:1s-avg:' + uuid.replace(':','-') + '.sys.cpu'}
 
             tsdb = requests.get('http://hbase:4242/api/query',params=params)
@@ -360,11 +359,11 @@ def ajax_vms_refresh(request):
             print 'tsdb data', len(tsdb_response), tsdb_response
             
             for i in tsdb_response:
-                #print i
-                pass
-
-
-
+                cpu_usage_ += str(round(tsdb_response[i],2))
+                cpu_usage_ += ","
+            cpu_usage = cpu_usage_[:-1]
+                
+            print cpu_usage
 
             instance_metrics['cpu_utilization_datapoints'] = cpu_usage_reversed
             virtual_machines[server['uuid'].replace(':','-')] = instance_metrics
