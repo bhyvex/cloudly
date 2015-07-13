@@ -335,7 +335,12 @@ def ajax_vms_refresh(request):
 
             tsdb = requests.get('http://hbase:4242/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
-            tsdb_response = tsdb_response[0]['dps']
+            try:           
+                tsdb_response = tsdb_response[0]['dps']
+            except:
+                print 'error'*5000
+                print tsdb_response
+                tsdb_response = []
             
             c=0
             for i in tsdb_response:
