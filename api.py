@@ -118,8 +118,8 @@ def ping():
         'cpu_usage': cpu_usage,
         'date_created': datetime.datetime.utcnow(),
     }
-    cpu_usage_ = mongo.cpu_usage
-    cpu_usage_.insert( cpu_usage_metrics )
+    #cpu_usage_ = mongo.cpu_usage
+    #cpu_usage_.insert( cpu_usage_metrics )
 
     cpu_usage_tsdb_cmd = "put " + \
         uuid.replace(':','-') + ".sys.cpu " + \
