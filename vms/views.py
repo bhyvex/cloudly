@@ -337,11 +337,22 @@ def ajax_vms_refresh(request):
                 cpu_usage_ += ","
             cpu_usage = cpu_usage_[:-1]
 
+            print 'debug'
+            print cpu_usage
+
             cpu_usage_reversed = ""
             cpu_usage_array_reversed = []
             for i in cpu_usage.split(','): cpu_usage_array_reversed.insert(0,i)
             for i in cpu_usage_array_reversed: cpu_usage_reversed += str(i)+","
             cpu_usage_reversed = cpu_usage_reversed[:-1]
+
+
+
+            # XXX pull the tsdb data and make them match the mongo above
+
+
+
+
 
             instance_metrics['cpu_utilization_datapoints'] = cpu_usage_reversed
             virtual_machines[server['uuid'].replace(':','-')] = instance_metrics
