@@ -331,17 +331,6 @@ def ajax_vms_refresh(request):
                 instance_metrics['instance']['state']['state'] = "Running"
 
             cpu_usage_ = ""
-            #for usage in cpu_usage:
-            #   cpu_usage_ += str(usage['cpu_usage']['cpu_used'])
-            #    cpu_usage_ += ","
-            #cpu_usage = cpu_usage_[:-1]
-
-            #cpu_usage_reversed = ""
-            #cpu_usage_array_reversed = []
-            #for i in cpu_usage.split(','): cpu_usage_array_reversed.insert(0,i)
-            #for i in cpu_usage_array_reversed: cpu_usage_reversed += str(i)+","
-            #cpu_usage_reversed = cpu_usage_reversed[:-1]
-
             params = {'start':'1m-ago','m':'sum:' + uuid.replace(':','-') + '.sys.cpu'}
 
             tsdb = requests.get('http://hbase:4242/api/query',params=params)
@@ -356,8 +345,13 @@ def ajax_vms_refresh(request):
                 c+=1
                 
             cpu_usage = cpu_usage_[:-1]
+            cpu_usage_reversed = ""
+            cpu_usage_array_reversed = []
+            for i in cpu_usage.split(','): cpu_usage_array_reversed.insert(0,i)
+            for i in cpu_usage_array_reversed: cpu_usage_reversed += str(i)+","
+            cpu_usage_reversed = cpu_usage_reversed[:-1]
 
-            instance_metrics['cpu_utilization_datapoints'] = cpu_usage
+            instance_metrics['cpu_utilization_datapoints'] = cpu_usage_reversed
             virtual_machines[server['uuid'].replace(':','-')] = instance_metrics
 
         #print 'virtual_machines', virtual_machines
