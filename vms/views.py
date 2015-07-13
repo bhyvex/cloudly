@@ -330,42 +330,30 @@ def ajax_vms_refresh(request):
             else:
                 instance_metrics['instance']['state']['state'] = "Running"
 
-
             cpu_usage_ = ""
-            for usage in cpu_usage:
-                cpu_usage_ += str(usage['cpu_usage']['cpu_used'])
-                cpu_usage_ += ","
-            cpu_usage = cpu_usage_[:-1]
+            #for usage in cpu_usage:
+            #   cpu_usage_ += str(usage['cpu_usage']['cpu_used'])
+            #    cpu_usage_ += ","
+            #cpu_usage = cpu_usage_[:-1]
 
-            print '-'
-            print 'debug'
-            print cpu_usage
+            #cpu_usage_reversed = ""
+            #cpu_usage_array_reversed = []
+            #for i in cpu_usage.split(','): cpu_usage_array_reversed.insert(0,i)
+            #for i in cpu_usage_array_reversed: cpu_usage_reversed += str(i)+","
+            #cpu_usage_reversed = cpu_usage_reversed[:-1]
 
-            cpu_usage_reversed = ""
-            cpu_usage_array_reversed = []
-            for i in cpu_usage.split(','): cpu_usage_array_reversed.insert(0,i)
-            for i in cpu_usage_array_reversed: cpu_usage_reversed += str(i)+","
-            cpu_usage_reversed = cpu_usage_reversed[:-1]
-
-
-            # XXX pull the tsdb data and make them match the mongo above
-
-            params = {'start':'3m-ago','m':'avg:1s-avg:' + uuid.replace(':','-') + '.sys.cpu'}
+            params = {'start':'5m-ago','m':'avg:1s-avg:' + uuid.replace(':','-') + '.sys.cpu'}
 
             tsdb = requests.get('http://hbase:4242/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
             tsdb_response = tsdb_response[0]['dps']
-
-            print 'tsdb data', len(tsdb_response), tsdb_response
             
             for i in tsdb_response:
                 cpu_usage_ += str(round(tsdb_response[i],2))
                 cpu_usage_ += ","
             cpu_usage = cpu_usage_[:-1]
-                
-            print cpu_usage
 
-            instance_metrics['cpu_utilization_datapoints'] = cpu_usage_reversed
+            instance_metrics['cpu_utilization_datapoints'] = cpu_usage
             virtual_machines[server['uuid'].replace(':','-')] = instance_metrics
 
         #print 'virtual_machines', virtual_machines
