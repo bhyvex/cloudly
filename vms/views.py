@@ -338,8 +338,6 @@ def ajax_vms_refresh(request):
             try:           
                 tsdb_response = tsdb_response[0]['dps']
             except:
-                print 'error'*5000
-                print tsdb_response
                 tsdb_response = []
             
             c=0
