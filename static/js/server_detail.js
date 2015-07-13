@@ -253,6 +253,16 @@ $(document).ready(function() {
         $("#mac-address-tooltip").show();
     }
 
+    var shiftWindow = function() {
+       scrollBy(0, -90);
+    }
+
+    if (location.hash) {
+        shiftWindow();
+    }
+
+    window.addEventListener("hashchange", shiftWindow);
+
     Highcharts.setOptions({ // set global chart options
         global: {
             useUTC: false   // set UTC by TSDB setting
