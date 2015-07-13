@@ -331,7 +331,7 @@ def ajax_vms_refresh(request):
                 instance_metrics['instance']['state']['state'] = "Running"
 
             cpu_usage_ = ""
-            params = {'start':'3m-ago','m':'sum:' + uuid.replace(':','-') + '.sys.cpu'}
+            params = {'start':'2m-ago','m':'sum:' + uuid.replace(':','-') + '.sys.cpu'}
 
             tsdb = requests.get('http://hbase:4242/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
