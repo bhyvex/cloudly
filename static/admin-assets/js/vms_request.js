@@ -1,5 +1,5 @@
 var vmsRequest = {
-	interval: 5000,
+	interval: 2000,
 	hasResponse: false,
 	firstRun: true,
         callbacks: new Array(),
