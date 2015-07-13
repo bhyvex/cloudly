@@ -347,7 +347,8 @@ def ajax_vms_refresh(request):
                 if(c==60): break
                 c+=1
                 
-            #cpu_usage = cpu_usage_[:-1]
+            cpu_usage = cpu_usage_[:-1]
+            
             #cpu_usage_reversed = ""
             #cpu_usage_array_reversed = []
             #for i in cpu_usage.split(','): cpu_usage_array_reversed.insert(0,i)
