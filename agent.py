@@ -571,7 +571,7 @@ def send_data( secret, api_call, data ):
             conn.close()
             break
         except:
-            print 'Connection Error. Retrying..'
+            print 'Connection Error. Retrying in 2 seconds..'
             time.sleep(2)
     
     return response_data
