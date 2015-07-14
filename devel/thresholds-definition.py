@@ -43,7 +43,7 @@ def _get_sys_loadavg():
     loadavg=subprocess.Popen(['uptime',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
     loadavg = re.findall(r"(\d+\.\d{2})", loadavg)
 
-    # XXX nagios like message
+    # XXX work nagios like output message
 
 
     return loadavg
