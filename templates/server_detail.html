@@ -75,7 +75,7 @@
                                 <td>{{server|dict_get:"hostname"}}</td>
                             </tr>
 
-                            {% if server|dict_get:"distro" != "?" %}
+                            {% if server|dict_get:"distro" != "?" and server|dict_get:"distro" != "" %}
                             <tr>
                                 <td>Distribution</td>
                                 <td>{{server|dict_get:"distro"}}</td>
