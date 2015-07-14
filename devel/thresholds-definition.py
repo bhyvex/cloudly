@@ -24,8 +24,27 @@ except: pass
 
 def _get_sys_loadavg():
 
+    threshold_values = {
+        "OK": {
+            'range_min': 0,
+            'range_max': 55,
+        },
+        "WARNING": {
+            'range_min': 56,
+            'range_max': 90,
+            'duration_in_seconds': 'tbd',
+        },
+        "CRITICAL": {
+            'range_min': 90,
+            'duration_in_seconds': 'tbd',
+        },
+    }
+
     loadavg=subprocess.Popen(['uptime',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
     loadavg = re.findall(r"(\d+\.\d{2})", loadavg)
+
+    # XXX nagios like message
+
 
     return loadavg
     
@@ -65,31 +84,8 @@ def _get_sys_cpu():
     return cpu_usage
     
 
-def threshold_values():
 
-    threshold_values = {
-        "OK": {
-            'range_min': 0,
-            'range_max': 55,
-        },
-        "WARNING": {
-            'range_min': 56,
-            'range_max': 90,
-            'duration_in_seconds': 'tbd',
-        },
-        "CRITICAL": {
-            'range_min': 90,
-            'duration_in_seconds': 'tbd',
-        },
-    }
-    
-    
-
-    return threshold_values
-
-
-
-print threshold_values()
+print _get_sys_loadavg()
 
 
 
