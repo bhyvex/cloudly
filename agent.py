@@ -560,12 +560,19 @@ def send_data( secret, api_call, data ):
     params = urllib.urlencode(data)
     headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
     api_url = "http://"+API_SERVER+api_call
-            
-    conn = httplib.HTTPConnection(API_SERVER)
-    conn.request("POST", api_call, json.dumps(data), headers)
-    response = conn.getresponse()
-    response_data = response.read()
-    conn.close()
+
+    while True:            
+
+        try:
+            conn = httplib.HTTPConnection(API_SERVER)
+            conn.request("POST", api_call, json.dumps(data), headers)
+            response = conn.getresponse()
+            response_data = response.read()
+            conn.close()
+            break
+        except:
+            print 'Connection Error. Retrying..'
+            time.sleep(2)
     
     return response_data
         
