@@ -26,7 +26,6 @@ def _get_sys_loadavg():
 
     threshold_values = {
         "OK": {
-            'range_min': 0,
             'range_max': 55,
         },
         "WARNING": {
