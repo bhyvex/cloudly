@@ -29,12 +29,10 @@ def _get_sys_loadavg():
             'range_max': 55,
         },
         "WARNING": {
-            'range_min': 56,
             'range_max': 90,
             'duration_in_seconds': 'tbd',
         },
         "CRITICAL": {
-            'range_min': 90,
             'duration_in_seconds': 'tbd',
         },
     }
