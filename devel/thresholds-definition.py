@@ -26,21 +26,21 @@ def _get_sys_loadavg():
 
     threshold_values = {
         "OK": {
-            'range_max': 55,
+            'range_max': 1,
         },
         "WARNING": {
-            'range_max': 90,
-            'duration_in_seconds': 'tbd',
+            'range_max': 1.5,
+            'duration_in_seconds': 60,
         },
         "CRITICAL": {
-            'duration_in_seconds': 'tbd',
+            'duration_in_seconds': 120,
         },
     }
 
     loadavg=subprocess.Popen(['uptime',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
     loadavg = re.findall(r"(\d+\.\d{2})", loadavg)
 
-    # XXX work nagios like output message
+    # XXX analyze and work in nagios like output message
 
 
     return loadavg
