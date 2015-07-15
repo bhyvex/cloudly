@@ -26,8 +26,8 @@ def _get_sys_loadavg():
     loadavg_thresholds = {
         "OK": {},
         "WARNING": {
-            'min_value': 1.5,
-            'max_value': 3.0,
+            'min_value': 2.5,
+            'max_value': 4.0,
             'min_duration_in_seconds': 60,
         },
         "CRITICAL": { # is everything above the warning range
@@ -52,12 +52,14 @@ def _get_sys_loadavg():
         status = 'CRITICAL'
 
 
-    message = 'System Load is'
-    if(status == 'OK'): message = 'The ' + message + ' within limits.'
-    if(status == 'WARNING' or status == 'CRITICAL'): 
-        message = 'Warning - ' + message + ' over the limit!'
-
+    message = 'The System Load is '
+    if(status == 'OK'): message = message + 'within limits: '
+    if(status == 'WARNING' or status == 'CRITICAL'): message = 'Warning - ' + message
+    for i in loadavg: message += str(i) + ' '
+    message = message[:-1] 
+    message += '.'
     
+
     service_status['status'] = status
     service_status['message'] = message
 
@@ -68,5 +70,8 @@ def _get_sys_loadavg():
     return loadavg, service_report
     
 
-print _get_sys_loadavg()
+x,y = _get_sys_loadavg()
+print y['service_status']['message']
+
+
 
