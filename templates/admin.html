@@ -61,7 +61,7 @@
 								<td>
 									{% if p.user|count_user_servers %}
 									{{p.user|count_user_servers}}
-									{% else %}-{% endif %}
+									{% else %}0{% endif %}
 								</td>
 								<td>{% if p.aws_ec2_verified %}{{p.aws_enabled_regions}}{% else %}-{% endif %}</td>
 							</tr>
