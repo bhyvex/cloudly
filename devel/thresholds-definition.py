@@ -27,12 +27,12 @@ def _get_sys_loadavg():
     threshold_definition = {
         "OK": {},
         "WARNING": {
-            'range_min': 1,
-            'range_max': 1.5,
+            'min_range': 1,
+            'max_range': 1.5,
             'min_duration_in_seconds': 60,
         },
         "CRITICAL": { # is everything above the warning range
-            'min_duration_in_seconds': 120,
+            'min_duration_in_seconds': 20,
         },
     }
 
