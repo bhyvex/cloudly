@@ -118,8 +118,8 @@ def _get_sys_loadavg():
     loadavg_thresholds_definition = {
         "OK": {},
         "WARNING": {
-            'min_value': 1,
-            'max_value': 1.5,
+            'min_value': 1.4,
+            'max_value': 2.0,
             'min_duration_in_seconds': 60,
         },
         "CRITICAL": { # is everything above the warning range
