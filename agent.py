@@ -115,6 +115,14 @@ def _get_processes():
     return processes
 
 
+def _get_sys_uptime():
+    
+    uptime = subprocess.Popen(['uptime',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+    uptime = re.findall("[ 0-9:]up[ ](.*)[,][ 0-9]+user", uptime)[0]
+
+    return uptime
+
+
 def _get_sys_loadavg():
 
     loadavg_thresholds = {
@@ -160,14 +168,6 @@ def _get_sys_loadavg():
     service_report['service_status'] = service_status
 
     return loadavg
-
-
-def _get_sys_uptime():
-    
-    uptime = subprocess.Popen(['uptime',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
-    uptime = re.findall("[ 0-9:]up[ ](.*)[,][ 0-9]+user", uptime)[0]
-
-    return uptime
 
 
 def _get_sys_cpu():
