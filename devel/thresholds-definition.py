@@ -71,7 +71,8 @@ def _get_sys_loadavg():
     
 
 x,y = _get_sys_loadavg()
+print x
+print y
 print y['service_status']['message']
-
 
 

@@ -118,13 +118,17 @@ def _get_sys_loadavg():
     loadavg_thresholds = {
         "OK": {},
         "WARNING": {
-            'min_value': 1.5,
-            'max_value': 3.0,
+            'min_value': 2.5,
+            'max_value': 4.0,
             'min_duration_in_seconds': 60,
         },
         "CRITICAL": { # is everything above the warning range
             'min_duration_in_seconds': 20,
         },
+    }
+    service_status = {
+        'status': '',
+        'service': 'system_loadavg',
     }
 
     loadavg=subprocess.Popen(['uptime',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
@@ -138,8 +142,20 @@ def _get_sys_loadavg():
         status = 'WARNING'
     else:
         status = 'CRITICAL'
-    
-    #print status
+
+    message = 'The System Load is '
+    if(status == 'OK'): message = message + 'within limits: '
+    if(status == 'WARNING' or status == 'CRITICAL'): message = 'Warning - ' + message
+    for i in loadavg: message += str(i) + ' '
+    message = message[:-1] 
+    message += '.'
+
+    service_status['status'] = status
+    service_status['message'] = message
+
+    service_report = {}
+    service_report['service_thresholds'] = loadavg_thresholds
+    service_report['service_status'] = service_status
 
     return loadavg
 
