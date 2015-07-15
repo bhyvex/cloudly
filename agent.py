@@ -21,6 +21,7 @@ except: pass
 
 AGENT_VERSION = "0.1"
 
+
 SECRET = "" # to be injected on download by Cloudly
 if(not SECRET): SECRET = raw_input("Enter your secret: ")
 
@@ -53,7 +54,6 @@ def setup_system():
         proc = proc.communicate()[0]
         if('emerge' in proc): installer = proc
     
-
     if(not installer):
     
         proc = subprocess.Popen(['which','zypper'], stdout=subprocess.PIPE, close_fds=True)
@@ -61,7 +61,6 @@ def setup_system():
         if('zypper' in proc): installer = proc
         
     installer = installer.replace('\n','')
-
 
     proc = subprocess.Popen(['which','iptables'], stdout=subprocess.PIPE, close_fds=True)
     proc = proc.communicate()[0]
@@ -78,7 +77,6 @@ def setup_system():
             os.system(installer+" iptables") # there is no install param in emerge
         else:
             os.system(installer+" install iptables")
-    
     
     # old versions of python such as python 2.5.1 do not come with json nor they have support for one..
     try:
@@ -253,7 +251,6 @@ def _get_memory_usage():
         'swap_used_percentage': 0,
     }
 
-    
     mem_info = subprocess.Popen(['free',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
     
     for line in mem_info.split('\n'):
@@ -381,7 +378,6 @@ def _get_networking_stats():
 
         if(len(line)==0): psc += 1
 
-
     inbound_traffic = {}
 
     for line in inbound_text.split('\n'):
@@ -392,7 +388,6 @@ def _get_networking_stats():
             input_accept_packets = input_accept[0]
             input_accept_bytes = input_accept[2]
             break
-
 
     inbound_traffic['input_accept_packets'] = input_accept_packets
     inbound_traffic['input_accept_bytes'] = input_accept_bytes
@@ -453,7 +448,6 @@ def _get_networking_stats():
     except:
         proc = subprocess.Popen(['iptables','-Z'], stdout=subprocess.PIPE, close_fds=True)
     
-
     return networking
 
 
