@@ -24,7 +24,7 @@ except: pass
 
 def _get_sys_loadavg():
 
-    threshold_definition = {
+    thresholds_definition = {
         "OK": {},
         "WARNING": {
             'min_value': 1,
