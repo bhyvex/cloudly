@@ -24,7 +24,7 @@ except: pass
 
 def _get_sys_loadavg():
 
-    thresholds_definition = {
+    loadavg_thresholds_definition = {
         "OK": {},
         "WARNING": {
             'min_value': 1,
@@ -39,7 +39,6 @@ def _get_sys_loadavg():
     loadavg=subprocess.Popen(['uptime',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
     loadavg = re.findall(r"(\d+\.\d{2})", loadavg)
 
-    # XXX analyze and work in nagios like output message
 
 
     return loadavg

@@ -115,11 +115,18 @@ def setup_system():
 
 def _get_sys_loadavg():
 
-    threshold_values = {
-        "5-mins":None,
-        "10-mins":None,
-        "15-mins":None,
+    loadavg_thresholds_definition = {
+        "OK": {},
+        "WARNING": {
+            'min_value': 1,
+            'max_value': 1.5,
+            'min_duration_in_seconds': 60,
+        },
+        "CRITICAL": { # is everything above the warning range
+            'min_duration_in_seconds': 20,
+        },
     }
+
     loadavg=subprocess.Popen(['uptime',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
     loadavg = re.findall(r"(\d+\.\d{2})", loadavg)
 
