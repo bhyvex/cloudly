@@ -19,6 +19,7 @@ try:
     import json
 except: pass
 
+
 AGENT_VERSION = "0.1"
 
 SECRET = "" # to be injected on download by Cloudly
@@ -517,7 +518,7 @@ def _get_distro():
     except: distro = "?"
 
     return distro
-        
+
 
 def send_data( secret, api_call, data ):
     
@@ -546,7 +547,7 @@ def send_data( secret, api_call, data ):
             time.sleep(2)
     
     return response_data
-        
+
 
 def get_system_metrics( uuid, secret ):
 
