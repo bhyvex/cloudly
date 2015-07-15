@@ -49,7 +49,6 @@
 								<th>Access Key</th>
 								<th>AWS Regions</th>
 								<th>EC2 <font size=1>verified</font></th>
-								<th>S3 <font size=1>verified</font></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -73,7 +72,6 @@
 								</td>
 								<td>{% if p.aws_ec2_verified %}{{p.aws_enabled_regions}}{% else %}-{% endif %}</td>
 								<td>{{p.aws_ec2_verified}}</td>
-								<td>{{p.aws_s3_verified}}</td>
 							</tr>
 							{% endfor %}
 						</tbody>
