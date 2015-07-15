@@ -43,8 +43,18 @@ def _get_sys_loadavg():
     loadavg=subprocess.Popen(['uptime',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
     loadavg = re.findall(r"(\d+\.\d{2})", loadavg)
 
-    print loadavg_thresholds['WARNING']['min_value']
-    print loadavg_thresholds['WARNING']['max_value']
+    status = 'UNKNOWN'
+    
+    if(loadavg[2] < loadavg_thresholds['WARNING']['min_value']:
+        status = 'OK'
+    if(not status):
+        if(loadavg[2] <= loadavg_thresholds['WARNING']['max_value']:
+            status = 'WARNING'
+        else:
+            status = 'CRITICAL
+    
+    print status
+    
 
     return loadavg
     
