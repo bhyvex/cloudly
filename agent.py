@@ -407,7 +407,6 @@ def _get_networking_stats():
     if(input_accept_packets>0): inbound_traffic['input_accept_packets'] = input_accept_packets
     if(input_accept_bytes>0): inbound_traffic['input_accept_bytes'] = input_accept_bytes
 
-
     outbound_traffic = {}
 
     for line in outbound_text.split('\n'):
