@@ -21,7 +21,6 @@ try:
 except: pass
 
 
-
 def _get_sys_loadavg():
 
     loadavg_thresholds = {
@@ -54,12 +53,13 @@ def _get_sys_loadavg():
     
     service_status['status'] = status
     service_status['message'] = "TODO"
-        
 
-    return loadavg
+    service_report = {}
+    service_report['service_thresholds'] = loadavg_thresholds
+    service_report['service_status'] = service_status
+        
+    return loadavg, service_report
     
 
 print _get_sys_loadavg()
-
-
 
