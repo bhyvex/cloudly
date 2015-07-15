@@ -46,8 +46,8 @@
 								<th>Servers</th>
 								<th>Registered</th>
 								<th>Last Seen</th>
-								<th>AWS Regions</th>
 								<th>EC2 <font size=1>verified</font></th>
+								<th>AWS Regions</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -64,8 +64,8 @@
 								</td>
 								<td><font size=2>{{p.user.date_joined|naturaltime}}</font></td>
 								<td><font size=2>{{p.user.last_login|naturaltime}}</font></td>
-								<td>{% if p.aws_ec2_verified %}{{p.aws_enabled_regions}}{% else %}-{% endif %}</td>
 								<td>{{p.aws_ec2_verified}}</td>
+								<td>{% if p.aws_ec2_verified %}{{p.aws_enabled_regions}}{% else %}-{% endif %}</td>
 							</tr>
 							{% endfor %}
 						</tbody>
