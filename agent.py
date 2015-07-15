@@ -106,6 +106,19 @@ def setup_system():
     return True
 
 
+def _get_hostname():
+    
+    hostname = subprocess.Popen(["hostname"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+    hostname = hostname.replace("\n","")
+    return hostname
+
+
+def _get_processes():
+
+    processes = subprocess.Popen(["ps","a","u","x"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+    return processes
+
+
 def _get_sys_loadavg():
 
     loadavg_thresholds = {
@@ -515,19 +528,7 @@ def _get_distro():
     except: distro = "?"
 
     return distro
-    
-
-def _get_hostname():
-    
-    hostname = subprocess.Popen(["hostname"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
-    hostname = hostname.replace("\n","")
-    return hostname
-
-def _get_processes():
-
-    processes = subprocess.Popen(["ps","a","u","x"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
-    return processes
-    
+        
 
 def send_data( secret, api_call, data ):
     
@@ -597,7 +598,6 @@ def get_system_metrics( uuid, secret ):
     }
 
     return system_metrics_json
-
 
 
 def main():
