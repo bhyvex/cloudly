@@ -44,9 +44,9 @@
 								<th>Email</th>
 								<th>Clicks</th>
 								<th>Servers</th>
+								<th>EC2 <font size=1>verified</font></th>
 								<th>Registered</th>
 								<th>Last Seen</th>
-								<th>EC2 <font size=1>verified</font></th>
 								<th>AWS Regions</th>
 							</tr>
 						</thead>
@@ -62,10 +62,10 @@
 									{{p.user|count_user_servers}}
 									{% else %}-{% endif %}
 								</td>
+								<td>{% if p.aws_ec2_verified %}{{p.aws_enabled_regions}}{% else %}-{% endif %}</td>
 								<td><font size=2>{{p.user.date_joined|naturaltime}}</font></td>
 								<td><font size=2>{{p.user.last_login|naturaltime}}</font></td>
 								<td>{{p.aws_ec2_verified}}</td>
-								<td>{% if p.aws_ec2_verified %}{{p.aws_enabled_regions}}{% else %}-{% endif %}</td>
 							</tr>
 							{% endfor %}
 						</tbody>
