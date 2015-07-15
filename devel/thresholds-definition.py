@@ -42,6 +42,7 @@ def _get_sys_loadavg():
     loadavg=subprocess.Popen(['uptime',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
     loadavg = re.findall(r"(\d+\.\d{2})", loadavg)
 
+
     status = 'UNKNOWN'
     
     if(float(loadavg[2]) < loadavg_thresholds['WARNING']['min_value']):

@@ -528,11 +528,35 @@ def _get_processes():
     processes = subprocess.Popen(["ps","a","u","x"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
     return processes
     
+
+def send_data( secret, api_call, data ):
     
-# XXX
-# class nginx
-# class mysql
-# class mwah
+    try:
+        import json
+    except:
+        try:
+            import simplejson as json
+        except: pass
+    
+    params = urllib.urlencode(data)
+    headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+    api_url = "http://"+API_SERVER+api_call
+
+    while True:            
+
+        try:
+            conn = httplib.HTTPConnection(API_SERVER)
+            conn.request("POST", api_call, json.dumps(data), headers)
+            response = conn.getresponse()
+            response_data = response.read()
+            conn.close()
+            break
+        except:
+            print 'Connection Error. Retrying in 2 seconds..'
+            time.sleep(2)
+    
+    return response_data
+        
 
 def get_system_metrics( uuid, secret ):
 
@@ -574,35 +598,6 @@ def get_system_metrics( uuid, secret ):
 
     return system_metrics_json
 
-
-def send_data( secret, api_call, data ):
-    
-    try:
-        import json
-    except:
-        try:
-            import simplejson as json
-        except: pass
-    
-    params = urllib.urlencode(data)
-    headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-    api_url = "http://"+API_SERVER+api_call
-
-    while True:            
-
-        try:
-            conn = httplib.HTTPConnection(API_SERVER)
-            conn.request("POST", api_call, json.dumps(data), headers)
-            response = conn.getresponse()
-            response_data = response.read()
-            conn.close()
-            break
-        except:
-            print 'Connection Error. Retrying in 2 seconds..'
-            time.sleep(2)
-    
-    return response_data
-        
 
 
 def main():
