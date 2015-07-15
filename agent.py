@@ -548,8 +548,6 @@ def send_data( secret, api_call, data ):
 
 def get_system_metrics( uuid, secret ):
 
-    print datetime.datetime.now(), 'Collecting system metrics..'
-
     uuid = uuid
     ip = _get_ip_address()
     distro = _get_distro()
@@ -583,6 +581,8 @@ def get_system_metrics( uuid, secret ):
         'network_connections': network_connections,
         'agent_version': AGENT_VERSION,
     }
+
+    print datetime.datetime.now(), 'Collected system metrics..'
 
     return system_metrics_json
 
