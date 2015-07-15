@@ -52,12 +52,10 @@ def _get_sys_loadavg():
         status = 'CRITICAL'
 
 
-    message = 'System Load is '
-    if(status == 'OK'): message += 'within limits.'
-    if(status == 'WARNING' or status == 'CRITICAL'): message = 'Warning - ' + message
-    for i in loadavg: message += str(i) + ' '
-    message = message[:-1] 
-    message += '.'
+    message = 'System Load is'
+    if(status == 'OK'): message = 'The ' + message + ' within limits.'
+    if(status == 'WARNING' or status == 'CRITICAL'): 
+        message = 'Warning - ' + message + ' over the limit!'
 
     
     service_status['status'] = status
