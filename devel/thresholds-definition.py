@@ -24,7 +24,7 @@ except: pass
 
 def _get_sys_loadavg():
 
-    loadavg_thresholds_definition = {
+    loadavg_thresholds = {
         "OK": {},
         "WARNING": {
             'min_value': 1.5,
@@ -35,10 +35,16 @@ def _get_sys_loadavg():
             'min_duration_in_seconds': 20,
         },
     }
+    service_status = {
+        'status': '',
+        'service': 'system_loadavg',
+    }
 
     loadavg=subprocess.Popen(['uptime',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
     loadavg = re.findall(r"(\d+\.\d{2})", loadavg)
 
+    print loadavg_thresholds['WARNING']['min_value']
+    print loadavg_thresholds['WARNING']['max_value']
 
     return loadavg
     

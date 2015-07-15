@@ -115,7 +115,7 @@ def setup_system():
 
 def _get_sys_loadavg():
 
-    loadavg_thresholds_definition = {
+    loadavg_thresholds = {
         "OK": {},
         "WARNING": {
             'min_value': 1.5,
