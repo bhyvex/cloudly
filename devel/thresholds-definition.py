@@ -24,16 +24,15 @@ except: pass
 
 def _get_sys_loadavg():
 
-    threshold_values = {
-        "OK": {
-            'range_max': 1,
-        },
+    threshold_definition = {
+        "OK": {},
         "WARNING": {
+            'range_min': 1,
             'range_max': 1.5,
-            'duration_in_seconds': 60,
+            'min_duration_in_seconds': 60,
         },
-        "CRITICAL": {
-            'duration_in_seconds': 120,
+        "CRITICAL": { # is everything above the warning range
+            'min_duration_in_seconds': 120,
         },
     }
 
