@@ -52,8 +52,9 @@ def _get_sys_loadavg():
     else:
         status = 'CRITICAL'
     
-    print status
-    
+    service_status['status'] = status
+    service_status['message'] = "TODO"
+        
 
     return loadavg
     
