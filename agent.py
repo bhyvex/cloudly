@@ -453,13 +453,11 @@ def _get_networking_stats():
 
 def _get_network_connections():
 
-
     try:
         netstat = subprocess.Popen(["/bin/netstat","-atn"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
     except:
         netstat = subprocess.Popen(["/usr/sbin/netstat","-atn"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 
-    
     connections = {}
     listen_connections = []    
     established_connections = []
