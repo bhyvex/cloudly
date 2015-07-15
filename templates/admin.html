@@ -46,7 +46,6 @@
 								<th>Registered</th>
 								<th>Last Seen</th>
 								<th>Servers</th>
-								<th>EC2 <font size=1>verified</font></th>
 								<th>AWS Regions</th>
 							</tr>
 						</thead>
@@ -64,7 +63,6 @@
 									{{p.user|count_user_servers}}
 									{% else %}-{% endif %}
 								</td>
-								<td>{{p.aws_ec2_verified}}</td>
 								<td>{% if p.aws_ec2_verified %}{{p.aws_enabled_regions}}{% else %}-{% endif %}</td>
 							</tr>
 							{% endfor %}
