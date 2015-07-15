@@ -50,10 +50,6 @@
 								<th>AWS Regions</th>
 								<th>EC2 <font size=1>verified</font></th>
 								<th>S3 <font size=1>verified</font></th>
-								<th>CF <font size=1>verified</font></th>
-								<th>Backups</th>
-								<th>Files</th>
-								<th>Size</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -78,10 +74,6 @@
 								<td>{% if p.aws_ec2_verified %}{{p.aws_enabled_regions}}{% else %}-{% endif %}</td>
 								<td>{{p.aws_ec2_verified}}</td>
 								<td>{{p.aws_s3_verified}}</td>
-								<td>{{p.aws_cloudfront_verified}}</td>
-								<td>{% if p.aws_automatic_backups %}Enabled{% else %}Disabled{% endif %}</td>
-								<td>{{p.user|count_user_files}}</td>
-								<td>{{p.user|count_user_files_size|filesizeformat}}</td>
 							</tr>
 							{% endfor %}
 						</tbody>
