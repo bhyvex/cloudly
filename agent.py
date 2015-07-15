@@ -15,11 +15,9 @@ import urllib
 import httplib
 import subprocess
 
-
 try:
     import json
 except: pass
-
 
 AGENT_VERSION = "0.1"
 
