@@ -77,10 +77,9 @@ def setup_system():
         else:
             os.system(installer+" install iptables")
     
-    # old versions of python such as python 2.5.1 do not come with json nor they have support for one..
     try:
         import json
-
+        # old versions of python such as python 2.5.1 do not come with json nor they have support for one..
     except: 
         try:
             import simplejson as json
