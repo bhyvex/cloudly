@@ -50,9 +50,18 @@ def _get_sys_loadavg():
         status = 'WARNING'
     else:
         status = 'CRITICAL'
+
+
+    message = 'System Load is '
+    if(status == 'OK'): message += 'within limits.'
+    if(status == 'WARNING' or status == 'CRITICAL'): message = 'Warning - ' + message
+    for i in loadavg: message += str(i) + ' '
+    message = message[:-1] 
+    message += '.'
+
     
     service_status['status'] = status
-    service_status['message'] = "TODO"
+    service_status['message'] = message
 
     service_report = {}
     service_report['service_thresholds'] = loadavg_thresholds
