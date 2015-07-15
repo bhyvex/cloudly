@@ -19,7 +19,6 @@ try:
     import json
 except: pass
 
-
 AGENT_VERSION = "0.1"
 
 SECRET = "" # to be injected on download by Cloudly
