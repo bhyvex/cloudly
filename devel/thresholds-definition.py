@@ -28,7 +28,7 @@ def _get_sys_loadavg():
         "OK": {},
         "WARNING": {
             'min_value': 1.5,
-            'max_value': 2.5,
+            'max_value': 3.0,
             'min_duration_in_seconds': 60,
         },
         "CRITICAL": { # is everything above the warning range
@@ -45,13 +45,12 @@ def _get_sys_loadavg():
 
     status = 'UNKNOWN'
     
-    if(loadavg[2] < loadavg_thresholds['WARNING']['min_value']:
+    if(float(loadavg[2]) < loadavg_thresholds['WARNING']['min_value']):
         status = 'OK'
-    if(not status):
-        if(loadavg[2] <= loadavg_thresholds['WARNING']['max_value']:
-            status = 'WARNING'
-        else:
-            status = 'CRITICAL
+    elif(float(loadavg[2]) > loadavg_thresholds['WARNING']['min_value'] and float(loadavg[2]) <= loadavg_thresholds['WARNING']['max_value']):
+        status = 'WARNING'
+    else:
+        status = 'CRITICAL'
     
     print status
     
