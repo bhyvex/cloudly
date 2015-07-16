@@ -20,8 +20,7 @@
 <input type='hidden' name='secret' value='{{secret}}' />
 <input type='hidden' name='available_disks_graphs' value='[{% for disk in disks %}"{{disk}}"{% if not forloop.last %},{% endif %}{% endfor %}]' />
 
-
-<div id="main" class="col-md-10 col-sm-11 main ">
+<div class="col-md-10 col-sm-11 main ">
     <ol class="breadcrumb">
         <li><a href="/">Servers</a></li>
         <li class="servername active">{{server|dict_get:"name"}}</li>
@@ -570,9 +569,6 @@
 
     <div id="server_activity"
         class="row"
-        {% if server_status|lower = "offline" %}
-            style="display: none;"
-        {% endif %}
         >
         <div class="col-xs-12">
             <div id="serverActivity" class="panel panel-default">
@@ -605,7 +601,12 @@
         </div>
     </div><!--/row-->
 
-    <div id="fixed_problems" class="row">
+    <div id="fixed_problems" 
+        class="row"
+        {% if server_status|lower = "offline" %}
+            style="display: none;"
+        {% endif %}
+        >
         <div class="col-xs-12">
             <div id="serverActivity" class="panel panel-default">
                 <div class="panel-heading">

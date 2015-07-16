@@ -1,5 +1,4 @@
-
-#main {
+.main {
     margin-top: 60px;
 }
 
@@ -20,30 +19,42 @@ footer {
 }
 
 @media (min-width: 767px) and (max-width: 991px) {
-    #main {
+    .main {
         margin-left: 70px;
     }
 
     .sidebar {
         position: fixed;
         margin-top: 60px;
-        width: 70px;
+        min-width: 60px;
+        width: 60px;
     }
 }
 
 @media (min-width: 992px) {
-    #main {
-        margin-left: 210px;
-        margin-top: 60px;
-    }
-
-    #main.sidebar-minified {
-        margin-left: 0px;
+    .main {
+        width: 83.333333333%;
+        float: right;
     }
 
     .sidebar {
         position: fixed;
         margin-top: 60px;
-        width: 210px;
+        min-width: 210px;
+        width: 16.66666667%;
+    }
+    
+    .minified {
+        width: 60px;
+        min-width: 60px;
+    }
+
+    .sidebar-minified {
+        width: 100%;;
+    }
+
+    #main-menu-min.minified {
+        width: 30px;
+        min-width: 30px;
     }
 }

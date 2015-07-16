@@ -96,7 +96,7 @@ function updateServerInfo() {
                 $("#disk_graphs").show();
                 $("#running_processes").show();
                 $("#services_discovery").show();
-                $("#server_activity").show();
+                $("#fixed_problems").show();
                 $(".server_uptime").show();
                 $(".server_loadavg").show();
 
@@ -142,7 +142,7 @@ function updateServerInfo() {
                 $("#disk_graphs").hide();
                 $("#running_processes").hide();
                 $("#services_discovery").hide();
-                $("#server_activity").hide();
+                $("#fixed_problems").hide();
             }
         },
         "error": function(data, textStatus, errorThrown) {
