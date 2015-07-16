@@ -365,9 +365,7 @@ $(document).ready(function() {
             { "data": "recv-q" },
             { "data": "send-q" },
             { "data": "foreign-address" },
-            { "data": "foreign-port" },
-            { "data": "local-address" },
-            { "data": "local-port" }
+            { "data": "local-address" }
         ]
     });
 
