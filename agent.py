@@ -552,16 +552,17 @@ def get_system_metrics( uuid, secret ):
     uuid = uuid
     ip = _get_ip_address()
     distro = _get_distro()
-
-    loadavg, loadavg_service_report = _get_sys_loadavg()
     uptime = _get_sys_uptime()
+    hostname = _get_hostname()
     cpu_usage = _get_sys_cpu()
     cpu_info = _get_sys_cpu_info()
     cpu_virtualization = _get_sys_cpu_virtualization()
+
+    loadavg, loadavg_service_report = _get_sys_loadavg()
+    
     memory_usage = _get_memory_usage()
     disks_usage = _get_disks_usage()
     processes = _get_processes()
-    hostname = _get_hostname()
     networking = _get_networking_stats()
     network_connections = _get_network_connections()
     
