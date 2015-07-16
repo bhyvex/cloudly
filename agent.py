@@ -165,8 +165,9 @@ def _get_sys_loadavg():
     service_report = {}
     service_report['service_thresholds'] = loadavg_thresholds
     service_report['service_status'] = service_status
+    loadavg_service_report = service_report
 
-    return loadavg
+    return loadavg, service_report
 
 
 def _get_sys_cpu():
@@ -551,7 +552,8 @@ def get_system_metrics( uuid, secret ):
     uuid = uuid
     ip = _get_ip_address()
     distro = _get_distro()
-    loadavg = _get_sys_loadavg()
+
+    loadavg, loadavg_service_report = _get_sys_loadavg()
     uptime = _get_sys_uptime()
     cpu_usage = _get_sys_cpu()
     cpu_info = _get_sys_cpu_info()
