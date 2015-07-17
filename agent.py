@@ -165,7 +165,6 @@ def _get_sys_loadavg():
     service_report = {}
     service_report['service_thresholds'] = loadavg_thresholds
     service_report['service_status'] = service_status
-    loadavg_service_report = service_report
 
     return loadavg, service_report
 
