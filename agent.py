@@ -171,6 +171,22 @@ def _get_sys_loadavg():
 
 def _get_sys_cpu():
     
+    cpu_thresholds = {
+        "OK": {},
+        "WARNING": {
+            'min_value': 95,
+            'max_value': 99,
+            'min_duration_in_seconds': 60,
+        },
+        "CRITICAL": { # is everything above the warning range
+            'min_duration_in_seconds': 120,
+        },
+    }
+    service_status = {
+        'status': '',
+        'service': 'system_cpu',
+    }
+
     cpu_info = subprocess.Popen(["ps","axo","pcpu"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 
     c=0
