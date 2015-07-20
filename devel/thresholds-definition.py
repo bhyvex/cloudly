@@ -138,6 +138,22 @@ def _get_sys_cpu():
 
 def _get_memory_usage():
     
+    memory_thresholds = {
+        "OK": {},
+        "WARNING": {
+            'min_value': 70, # used mem in percentage
+            'max_value': 85, # used mem in percentage
+            'min_duration_in_seconds': 60,
+        },
+        "CRITICAL": { # is everything above the warning range
+            'min_duration_in_seconds': 120,
+        },
+    }
+    service_status = {
+        'status': '',
+        'service': 'system_memory',
+    }
+
     memory_free = ""
     memory_total = ""
 
@@ -180,6 +196,9 @@ def _get_memory_usage():
                 memory_usage['swap_used_percentage'] = round(float(mem_info[1])/float(mem_info[0])*100,2)
             except:
                 memory_usage['swap_used_percentage'] = 0
+
+    # XXX work any swap usage as critical
+
     
     return memory_usage
 
