@@ -207,6 +207,10 @@ def _get_sys_cpu():
         'cpu_free':round(float(100-cpu_total),2)
     }
     
+    status = 'UNKNOWN'
+
+    # XXX
+    
     return cpu_usage
 
 
