@@ -208,10 +208,29 @@ def _get_sys_cpu():
     }
     
     status = 'UNKNOWN'
-
-    # XXX
     
-    return cpu_usage
+    if(float(cpu_usage['cpu_used']) < cpu_thresholds['WARNING']['min_value']):
+        status = 'OK'
+    elif(float(cpu_usage['cpu_used']) > cpu_thresholds['WARNING']['min_value'] and float(cpu_usage['cpu_used']) <= cpu_thresholds['WARNING']['max_value']):
+        status = 'WARNING'
+    else:
+        status = 'CRITICAL'
+
+    message = 'The CPU(s) are '
+    if(status == 'OK'): message = message + 'within limits: '
+    if(status == 'WARNING' or status == 'CRITICAL'): 
+        message = status + ' - ' + message + 'quite heavily utilized: '
+
+    message += str(cpu_usage)
+
+    service_status['status'] = status
+    service_status['message'] = message
+
+    service_report = {}
+    service_report['service_thresholds'] = cpu_thresholds
+    service_report['service_status'] = service_status
+    
+    return cpu_usage, service_report
 
 
 def _get_sys_cpu_info():
