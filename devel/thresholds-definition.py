@@ -135,7 +135,58 @@ def _get_sys_cpu():
     return cpu_usage, service_report
     
 
+
+def _get_memory_usage():
+    
+    memory_free = ""
+    memory_total = ""
+
+    memory_info = subprocess.Popen(["cat","/proc/meminfo"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+
+    for element in memory_info.split('\n'):
+        if("MemTotal" in element): memory_total = element
+        if("MemFree" in element): memory_free = element
+
+    try:
+        memory_total = long(memory_total.split(' ')[-2:-1][0]) * 1024
+        memory_free = long(memory_free.split(' ')[-2:-1][0]) * 1024
+        memory_used = long(memory_total-memory_free)
+    except:
+        memory_total = -1
+        memory_free = -1
+        memory_used = -1
+
+    memory_usage = {
+        'memory_total': memory_total,
+        'memory_free': memory_free,
+        'memory_used': memory_used,        
+        'memory_used_percentage': round(float(memory_used)/float(memory_total)*100,2),
+        'swap_total': 0,
+        'swap_used': 0,
+        'swap_free': 0,
+        'swap_used_percentage': 0,
+    }
+
+    mem_info = subprocess.Popen(['free',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+    
+    for line in mem_info.split('\n'):
+
+        if('swap' in line.lower()):
+            mem_info = re.findall("(\d+)", line)
+            memory_usage['swap_total'] = long(mem_info[0]) * 1024
+            memory_usage['swap_used'] = long(mem_info[1]) * 1024
+            memory_usage['swap_free'] = long(mem_info[2]) * 1024
+            try:
+                memory_usage['swap_used_percentage'] = round(float(mem_info[1])/float(mem_info[0])*100,2)
+            except:
+                memory_usage['swap_used_percentage'] = 0
+    
+    return memory_usage
+
+
+
+
 import pprint
-pprint.pprint( _get_sys_cpu() )
+pprint.pprint( _get_memory_usage() )
 
 
