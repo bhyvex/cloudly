@@ -197,11 +197,9 @@ def _get_memory_usage():
             except:
                 memory_usage['swap_used_percentage'] = 0
 
-    # XXX work any swap usage as critical
-
+    # XXX work any swap usage as CRITICAL
     
     return memory_usage
-
 
 
 
