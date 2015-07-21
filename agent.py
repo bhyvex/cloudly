@@ -146,6 +146,21 @@ def _get_sys_cpu_info():
     return cpu_info
 
 
+def _get_sys_cpu_virtualization():
+
+    virtualization_support = False
+
+    cpuinfo = open('/proc/cpuinfo','rt').readlines()
+    for line in cpuinfo:
+        
+        if("vmx" in line): 
+            virtualization_support = True
+        if("svm" in line): 
+            virtualization_support = True
+        
+    return virtualization_support
+
+
 def _get_sys_cpu():
     
     cpu_thresholds = {
@@ -377,21 +392,6 @@ def _get_ip_address():
     
     return ip
     
-
-def _get_sys_cpu_virtualization():
-
-    virtualization_support = False
-
-    cpuinfo = open('/proc/cpuinfo','rt').readlines()
-    for line in cpuinfo:
-        
-        if("vmx" in line): 
-            virtualization_support = True
-        if("svm" in line): 
-            virtualization_support = True
-        
-    return virtualization_support
-
 
 def _get_disks_usage():
 
