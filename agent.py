@@ -260,6 +260,22 @@ def _get_sys_cpu_info():
 
 def _get_memory_usage():
     
+    memory_thresholds = {
+        "OK": {},
+        "WARNING": {
+            'min_value': 80, # mem used in percentage
+            'max_value': 90, # mem used in percentage
+            'min_duration_in_seconds': 60,
+        },
+        "CRITICAL": { # is everything above the warning range
+            'min_duration_in_seconds': 120,
+        },
+    }
+    service_status = {
+        'status': '',
+        'service': 'system_memory',
+    }
+
     memory_free = ""
     memory_total = ""
 
@@ -302,8 +318,41 @@ def _get_memory_usage():
                 memory_usage['swap_used_percentage'] = round(float(mem_info[1])/float(mem_info[0])*100,2)
             except:
                 memory_usage['swap_used_percentage'] = 0
+
     
-    return memory_usage
+    status = 'UNKNOWN'
+    message = ''
+    
+    if(long(memory_usage['swap_used'])>0):
+        status = 'WARNING'
+        message = 'Swap memory is being utilized: ' + str(memory_usage)
+
+    if(long(memory_usage['swap_used_percentage'])>90):
+        status = 'CRITICAL'
+        message = 'Memory and the swap space is running out: ' + str(memory_usage)
+
+
+    if(status=='UNKNOWN'):
+
+        if(float(memory_usage['memory_used_percentage']) < memory_thresholds['WARNING']['min_value']):
+            status = 'OK'
+            message = 'Memory is within limits: ' + str(memory_usage)
+        elif(float(memory_usage['memory_used_percentage']) > memory_thresholds['WARNING']['min_value'] and float(memory_usage['memory_used_percentage']) <= memory_thresholds['WARNING']['max_value']):
+            status = 'WARNING'
+            message = 'You are running out of memory: ' + str(memory_usage)
+        else:
+            status = 'CRITICAL'
+            message = 'You have ran out of memory: ' + str(memory_usage)
+
+
+    service_status['status'] = status
+    service_status['message'] = message
+
+    service_report = {}
+    service_report['service_thresholds'] = memory_thresholds
+    service_report['service_status'] = service_status
+
+    return memory_usage, service_report
 
 
 def _get_ip_address():
@@ -597,8 +646,9 @@ def get_system_metrics( uuid, secret ):
 
     loadavg, loadavg_service_report = _get_sys_loadavg()
     cpu_usage, cpu_usage_service_report = _get_sys_cpu()
+    memory_usage, memory_usage_service_report = _get_memory_usage()
     
-    memory_usage = _get_memory_usage()
+        
     disks_usage = _get_disks_usage()
     processes = _get_processes()
     networking = _get_networking_stats()
