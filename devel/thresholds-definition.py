@@ -198,8 +198,7 @@ def _get_memory_usage():
                 memory_usage['swap_used_percentage'] = 0
 
     
-    # XXX work any swap usage as CRITICAL and from there work the rest of the messages based on ram
-    
+
     status = 'UNKNOWN'
     
     if(long(memory_usage['swap_used'])>0):
@@ -207,6 +206,7 @@ def _get_memory_usage():
 
     if(long(memory_usage['swap_used_percentage'])>90):
         status = 'CRITICAL - Memory and the swap space is running out: ' + str(memory_usage)
+
 
     if(status=='UNKNOWN'):
         print 'here'
