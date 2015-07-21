@@ -209,8 +209,14 @@ def _get_memory_usage():
 
 
     if(status=='UNKNOWN'):
-        print 'here'
-        print status    
+
+        if(float(memory_usage['memory_used_percentage']) < memory_thresholds['WARNING']['min_value']):
+            status = 'OK'
+        elif(float(memory_usage['memory_used_percentage']) > memory_thresholds['WARNING']['min_value'] and float(memory_usage['memory_used_percentage']) <= memory_thresholds['WARNING']['max_value']):
+            status = 'WARNING'
+        else:
+            status = 'CRITICAL'
+
 
 
     print 'status'
