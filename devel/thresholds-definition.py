@@ -200,6 +200,12 @@ def _get_memory_usage():
     
     # XXX work any swap usage as CRITICAL and from there work the rest of the messages based on ram
     
+    status = 'UNKNOWN'
+    
+    if(long(memory_usage['swap_used'])>0):
+        print 'CRITICAL'
+    
+    
     return memory_usage
 
 
