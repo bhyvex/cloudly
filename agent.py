@@ -121,52 +121,29 @@ def _get_sys_uptime():
     return uptime
 
 
-def _get_sys_loadavg():
+def _get_sys_cpu_info():
 
-    loadavg_thresholds = {
-        "OK": {},
-        "WARNING": {
-            'min_value': 1.5,
-            'max_value': 3.5,
-            'min_duration_in_seconds': 60,
-        },
-        "CRITICAL": { # is everything above the warning range
-            'min_duration_in_seconds': 20,
-        },
-    }
-    service_status = {
-        'status': '',
-        'service': 'system_loadavg',
-    }
+    cpu = 0
+    cpu_info = {}
 
-    loadavg=subprocess.Popen(['uptime',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
-    loadavg = re.findall(r"(\d+\.\d{2})", loadavg)
+    for line in open('/proc/cpuinfo').readlines():
 
-    status = 'UNKNOWN'
-    
-    if(float(loadavg[2]) < loadavg_thresholds['WARNING']['min_value']):
-        status = 'OK'
-    elif(float(loadavg[2]) > loadavg_thresholds['WARNING']['min_value'] and float(loadavg[2]) <= loadavg_thresholds['WARNING']['max_value']):
-        status = 'WARNING'
-    else:
-        status = 'CRITICAL'
+        element = re.findall(r"^(.+)\s+[:][ ](.*)$", line)
 
-    message = 'The System Load is '
-    if(status == 'OK'): message = message + 'within limits: '
-    if(status == 'WARNING' or status == 'CRITICAL'): message = status + ' - ' + message
+        if(element):
 
-    for i in loadavg: message += str(i) + ' '
-    message = message[:-1] 
-    message += '.'
+            key = element[0][0].replace('\t','').replace(' ','_')
+            value = element[0][1]
 
-    service_status['status'] = status
-    service_status['message'] = message
+            try:
+                cpu_info['cpu'+str(cpu)][key] = value
+            except:
+                cpu_info['cpu'+str(cpu)] = {}
+                cpu_info['cpu'+str(cpu)][key] = value
 
-    service_report = {}
-    service_report['service_thresholds'] = loadavg_thresholds
-    service_report['service_status'] = service_status
+        if(len(line)==1): cpu += 1
 
-    return loadavg, service_report
+    return cpu_info
 
 
 def _get_sys_cpu():
@@ -233,29 +210,52 @@ def _get_sys_cpu():
     return cpu_usage, service_report
 
 
-def _get_sys_cpu_info():
+def _get_sys_loadavg():
 
-    cpu = 0
-    cpu_info = {}
+    loadavg_thresholds = {
+        "OK": {},
+        "WARNING": {
+            'min_value': 1.5,
+            'max_value': 3.5,
+            'min_duration_in_seconds': 60,
+        },
+        "CRITICAL": { # is everything above the warning range
+            'min_duration_in_seconds': 20,
+        },
+    }
+    service_status = {
+        'status': '',
+        'service': 'system_loadavg',
+    }
 
-    for line in open('/proc/cpuinfo').readlines():
+    loadavg=subprocess.Popen(['uptime',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+    loadavg = re.findall(r"(\d+\.\d{2})", loadavg)
 
-        element = re.findall(r"^(.+)\s+[:][ ](.*)$", line)
+    status = 'UNKNOWN'
+    
+    if(float(loadavg[2]) < loadavg_thresholds['WARNING']['min_value']):
+        status = 'OK'
+    elif(float(loadavg[2]) > loadavg_thresholds['WARNING']['min_value'] and float(loadavg[2]) <= loadavg_thresholds['WARNING']['max_value']):
+        status = 'WARNING'
+    else:
+        status = 'CRITICAL'
 
-        if(element):
+    message = 'The System Load is '
+    if(status == 'OK'): message = message + 'within limits: '
+    if(status == 'WARNING' or status == 'CRITICAL'): message = status + ' - ' + message
 
-            key = element[0][0].replace('\t','').replace(' ','_')
-            value = element[0][1]
+    for i in loadavg: message += str(i) + ' '
+    message = message[:-1] 
+    message += '.'
 
-            try:
-                cpu_info['cpu'+str(cpu)][key] = value
-            except:
-                cpu_info['cpu'+str(cpu)] = {}
-                cpu_info['cpu'+str(cpu)][key] = value
+    service_status['status'] = status
+    service_status['message'] = message
 
-        if(len(line)==1): cpu += 1
+    service_report = {}
+    service_report['service_thresholds'] = loadavg_thresholds
+    service_report['service_status'] = service_status
 
-    return cpu_info
+    return loadavg, service_report
 
 
 def _get_memory_usage():
