@@ -224,18 +224,18 @@ def _get_memory_usage():
             message = 'You have ran out of memory: ' + str(memory_usage)
 
 
+    service_status['status'] = status
+    service_status['message'] = message
 
-    print 'status'
-    print status    
-    print message
+    service_report = {}
+    service_report['service_thresholds'] = memory_thresholds
+    service_report['service_status'] = service_status
 
-    return memory_usage
+    return memory_usage, service_report
 
 
 
 import pprint
-#pprint.pprint( _get_memory_usage() )
-_get_memory_usage()
-
+pprint.pprint( _get_memory_usage() )
 
 
