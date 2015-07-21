@@ -203,14 +203,24 @@ def _get_memory_usage():
     status = 'UNKNOWN'
     
     if(long(memory_usage['swap_used'])>0):
-        print 'CRITICAL'
-    
-    
+        status = 'WARNING - Swap memory is being utilized: ' + str(memory_usage)
+
+
+    if(status=='UNKNOWN'):
+        print 'here'
+        print status    
+
+
+    print 'status'
+    print status    
+
     return memory_usage
 
 
 
 import pprint
-pprint.pprint( _get_memory_usage() )
+#pprint.pprint( _get_memory_usage() )
+_get_memory_usage()
+
 
 
