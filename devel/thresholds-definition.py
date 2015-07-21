@@ -200,27 +200,34 @@ def _get_memory_usage():
     
 
     status = 'UNKNOWN'
+    message = ''
     
     if(long(memory_usage['swap_used'])>0):
-        status = 'WARNING - Swap memory is being utilized: ' + str(memory_usage)
+        status = 'WARNING'
+        message = 'Swap memory is being utilized: ' + str(memory_usage)
 
     if(long(memory_usage['swap_used_percentage'])>90):
-        status = 'CRITICAL - Memory and the swap space is running out: ' + str(memory_usage)
+        status = 'CRITICAL'
+        message = 'Memory and the swap space is running out: ' + str(memory_usage)
 
 
     if(status=='UNKNOWN'):
 
         if(float(memory_usage['memory_used_percentage']) < memory_thresholds['WARNING']['min_value']):
             status = 'OK'
+            message = 'Memory is within limits: ' + str(memory_usage)
         elif(float(memory_usage['memory_used_percentage']) > memory_thresholds['WARNING']['min_value'] and float(memory_usage['memory_used_percentage']) <= memory_thresholds['WARNING']['max_value']):
             status = 'WARNING'
+            message = 'You are running out of memory: ' + str(memory_usage)
         else:
             status = 'CRITICAL'
+            message = 'You have ran out of memory: ' + str(memory_usage)
 
 
 
     print 'status'
     print status    
+    print message
 
     return memory_usage
 
