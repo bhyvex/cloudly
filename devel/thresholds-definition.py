@@ -141,8 +141,8 @@ def _get_memory_usage():
     memory_thresholds = {
         "OK": {},
         "WARNING": {
-            'min_value': 70, # used mem in percentage
-            'max_value': 85, # used mem in percentage
+            'min_value': 80, # mem used in percentage
+            'max_value': 90, # mem used in percentage
             'min_duration_in_seconds': 60,
         },
         "CRITICAL": { # is everything above the warning range
@@ -197,7 +197,8 @@ def _get_memory_usage():
             except:
                 memory_usage['swap_used_percentage'] = 0
 
-    # XXX work any swap usage as CRITICAL
+    
+    # XXX work any swap usage as CRITICAL and from there work the rest of the messages based on ram
     
     return memory_usage
 
