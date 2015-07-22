@@ -154,6 +154,8 @@ def _get_disks_usage():
         
         message += 'disk_free: ' + str(disk_free) + ', disk_used: ' + str(disk_used) + ', disk_total: ' + str(disk_total)
     
+        # XXX work some sort of service_status['status'] = status alternative.....
+    
         print message
     
     
