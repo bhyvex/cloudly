@@ -334,7 +334,6 @@ def _get_memory_usage():
             except:
                 memory_usage['swap_used_percentage'] = 0
 
-    
     status = 'UNKNOWN'
     message = ''
     
