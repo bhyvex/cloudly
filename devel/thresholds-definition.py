@@ -72,6 +72,22 @@ def _get_sys_loadavg():
  
 def _get_disks_usage():
 
+    disks_thresholds = {
+        "OK": {},
+        "WARNING": {
+            'min_value': 90,
+            'max_value': 95,
+            'min_duration_in_seconds': 1,
+        },
+        "CRITICAL": { # is everything above the warning range
+            'min_duration_in_seconds': 1,
+        },
+    }
+    service_status = {
+        'status': '',
+        'service': 'system_disks',
+    }
+
     proc = subprocess.Popen(['df', '-B 1'], stdout=subprocess.PIPE, close_fds=True)
     df = proc.communicate()[0] 
 
@@ -114,10 +130,21 @@ def _get_disks_usage():
             
             disks_usage.append(volume)
     
+
+    for disk in disks_usage:
+    
+        status = 'UNKNOWN'
+
+        print disk[4]
+
+
+    
+    
     return disks_usage
 
 
 import pprint
-pprint.pprint( _get_disks_usage() )
+#pprint.pprint( _get_disks_usage() )
+_get_disks_usage()
 
 
