@@ -133,10 +133,18 @@ def _get_disks_usage():
 
     for disk in disks_usage:
     
+        disk_used = int(disk[4].replace('%',''))
+
         status = 'UNKNOWN'
 
-        print disk[4]
+        if(disk_used < disks_thresholds['WARNING']['min_value']):
+            status = 'OK'
+        elif(disk_used > disks_thresholds['WARNING']['min_value'] and disk_used <= disks_thresholds['WARNING']['max_value']):
+            status = 'WARNING'
+        else:
+            status = 'CRITICAL'
 
+        print status, disk_used
 
     
     
