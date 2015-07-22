@@ -143,7 +143,14 @@ def _get_disks_usage():
         else:
             status = 'CRITICAL'
 
-        print status, disk_used, '-', disks_thresholds['WARNING']['min_value'], disks_thresholds['WARNING']['max_value']
+        message = 'The disk ' + disk[-1:][0]
+        if(status == 'OK'): message = message + ' is within limits: '
+        if(status == 'WARNING' or status == 'CRITICAL'): message = 'Warning - ' + message + ' is running out of space: '
+        
+        message += str(disk)
+    
+        print message
+    
     
     
     return disks_usage
