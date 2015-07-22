@@ -203,7 +203,7 @@ def _get_sys_cpu():
     
     if(float(cpu_usage['cpu_used']) < cpu_thresholds['WARNING']['min_value']):
         status = 'OK'
-    elif(float(cpu_usage['cpu_used']) > cpu_thresholds['WARNING']['min_value'] and float(cpu_usage['cpu_used']) <= cpu_thresholds['WARNING']['max_value']):
+    elif(float(cpu_usage['cpu_used']) >= cpu_thresholds['WARNING']['min_value'] and float(cpu_usage['cpu_used']) <= cpu_thresholds['WARNING']['max_value']):
         status = 'WARNING'
     else:
         status = 'CRITICAL'
@@ -250,7 +250,7 @@ def _get_sys_loadavg():
     
     if(float(loadavg[2]) < loadavg_thresholds['WARNING']['min_value']):
         status = 'OK'
-    elif(float(loadavg[2]) > loadavg_thresholds['WARNING']['min_value'] and float(loadavg[2]) <= loadavg_thresholds['WARNING']['max_value']):
+    elif(float(loadavg[2]) >= loadavg_thresholds['WARNING']['min_value'] and float(loadavg[2]) <= loadavg_thresholds['WARNING']['max_value']):
         status = 'WARNING'
     else:
         status = 'CRITICAL'
@@ -351,7 +351,7 @@ def _get_memory_usage():
         if(float(memory_usage['memory_used_percentage']) < memory_thresholds['WARNING']['min_value']):
             status = 'OK'
             message = 'The memory is within limits: ' + str(memory_usage)
-        elif(float(memory_usage['memory_used_percentage']) > memory_thresholds['WARNING']['min_value'] and float(memory_usage['memory_used_percentage']) <= memory_thresholds['WARNING']['max_value']):
+        elif(float(memory_usage['memory_used_percentage']) >= memory_thresholds['WARNING']['min_value'] and float(memory_usage['memory_used_percentage']) <= memory_thresholds['WARNING']['max_value']):
             status = 'WARNING'
             message = 'The system memory is running out: ' + str(memory_usage)
         else:
