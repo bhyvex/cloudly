@@ -234,8 +234,54 @@ def _get_memory_usage():
     return memory_usage, service_report
 
 
+def _get_disks_usage():
+
+    proc = subprocess.Popen(['df', '-B 1'], stdout=subprocess.PIPE, close_fds=True)
+    df = proc.communicate()[0] 
+
+    try:
+        volumes = df.split('\n')
+        volumes.pop(0)
+        volumes.pop()
+    except: return {"error":True,"error_description":"_get_disks_usage"}
+
+    regexp = re.compile(r'([0-9]+)')
+    previousVolume = None
+    volumeCount = 0
+    disks_usage = []
+    
+    for volume in volumes:
+        
+        volume = volume.split(None, 10)
+        
+        if len(volume) == 1:
+            previousVolume = volume[0]
+            continue
+        
+        if previousVolume != None:
+            volume.insert(0, previousVolume) 
+            previousVolume = None
+        
+        volumeCount = volumeCount + 1
+        
+        if regexp.match(volume[1]) == None:
+            pass
+        
+        else:
+            try:
+                volume[2] = int(volume[2]) # Used
+                volume[3] = int(volume[3]) # Available
+            except IndexError:
+                pass
+            except KeyError:
+                pass
+            
+            disks_usage.append(volume)
+    
+    return disks_usage
+
 
 import pprint
-pprint.pprint( _get_memory_usage() )
+pprint.pprint( _get_disks_usage() )
 
 
