@@ -134,11 +134,16 @@ def _get_disks_usage():
     for disk in disks_usage:
     
         status = 'UNKNOWN'
-        disk_used = int(disk[4].replace('%',''))
 
-        if(disk_used < disks_thresholds['WARNING']['min_value']):
+        mount_point = disk[5]
+        disk_free = disk[3]
+        disk_used = disk[2]
+        disk_total = disk[1]
+        disk_usage = disk[4]
+
+        if(int(disk[4].replace('%','')) < disks_thresholds['WARNING']['min_value']):
             status = 'OK'
-        elif(disk_used >= disks_thresholds['WARNING']['min_value'] and disk_used <= disks_thresholds['WARNING']['max_value']):
+        elif(int(disk[4].replace('%','')) >= disks_thresholds['WARNING']['min_value'] and int(disk[4].replace('%','')) <= disks_thresholds['WARNING']['max_value']):
             status = 'WARNING'
         else:
             status = 'CRITICAL'
@@ -147,7 +152,7 @@ def _get_disks_usage():
         if(status == 'OK'): message = message + ' is within limits: '
         if(status == 'WARNING' or status == 'CRITICAL'): message = 'Warning - ' + message + ' is running out of space: '
         
-        message += str(disk)
+        message += 'disk_free: ' + str(disk_free) + ', disk_used: ' + str(disk_used) + ', disk_total: ' + str(disk_total)
     
         print message
     
