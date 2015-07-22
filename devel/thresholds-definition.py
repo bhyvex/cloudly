@@ -75,8 +75,8 @@ def _get_disks_usage():
     disks_thresholds = {
         "OK": {},
         "WARNING": {
-            'min_value': 90,
-            'max_value': 95,
+            'min_value': 90, # disk used in percentage
+            'max_value': 95, # disk used in percentage
             'min_duration_in_seconds': 1,
         },
         "CRITICAL": { # is everything above the warning range
