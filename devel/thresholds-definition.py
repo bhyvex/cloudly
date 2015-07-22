@@ -143,7 +143,7 @@ def _get_disks_usage():
         else:
             status = 'CRITICAL'
 
-        print status, disks_thresholds['WARNING']['min_value'], disks_thresholds['WARNING']['max_value'], disk_used
+        print status, disk_used, '-', disks_thresholds['WARNING']['min_value'], disks_thresholds['WARNING']['max_value']
     
     
     return disks_usage
