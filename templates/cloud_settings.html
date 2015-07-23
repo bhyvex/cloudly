@@ -9,8 +9,6 @@
 {% endblock %}
 
 {% block page_content %}
-<div id="main" class="col-md-10 col-sm-11 main ">
-
 	<ol class="breadcrumb">
 		<li>Cloud Settings</li>
 	  	<li class="active">Amazon AWS</li>
@@ -95,7 +93,17 @@
 								{% for region in aws_regions %}
 								<div class="checkbox">
 									<label for="checkbox{{forloop.counter}}">
-										<input type="checkbox" id="{{region}}" name="checkboxes" value="{{region}}" {% if region in profile_regions %}checked{% endif %}> <a href="#">{{region}}</a> {{aws_regions|dict_get:region}}
+										<input 
+                                            type="checkbox" 
+                                            id="{{region}}" 
+                                            name="checkboxes" 
+                                            value="{{region}}" 
+                                            {% if region in profile_regions %}
+                                                checked
+                                            {% endif %}
+                                        > 
+                                        <a href="#">{{region}}</a> 
+                                        {{aws_regions|dict_get:region}}
 									</label>
 								</div>
 								{% endfor %}
@@ -109,18 +117,12 @@
 
 
 					</form>
-
 				</div>
 			</div>
 {% endif %}
-
 		</div><!--/col-->
 	</div><!--/row-->
-
 	<!-- end: Content -->
 </div>
-
 </div>
-</div>
-
 {% endblock page_content %}

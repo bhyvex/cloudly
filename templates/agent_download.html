@@ -9,8 +9,6 @@
 {% endblock %}
 
 {% block page_content %}
-<div id="main" class="col-md-10 col-sm-11 main ">
-
 	<ol class="breadcrumb">
 		<li>Add New Server</li>
 	  	<li class="active">Monitor agent</li>
@@ -39,8 +37,7 @@ sudo sh -c "wget {{agent_download_url}} -O /opt/monitoring-agent.py; python2 /op
 </pre>
 				</div>
 			</div>
-
-{% comment %}
+            {% comment %}
 			<div class="row">
 
 				<div class="col-xs-12">
@@ -61,11 +58,8 @@ sudo sh -c "wget {{agent_download_url}} -O /opt/monitoring-agent.py; python2 /op
 
 				</div>
 			</div><!--/row-->
-{% endcomment %}
-				
+            {% endcomment %}
 		<!-- end: Content -->
 		</div>
 	</div><!--/row-->
-</div>
-
 {% endblock page_content %}

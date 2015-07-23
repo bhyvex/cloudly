@@ -38,7 +38,7 @@
 
 </head>
 
-<body>
+<body class="sidebar-minified">
     {% csrf_token %}
     {% block nav-bar %}{% endblock %}
 
@@ -48,7 +48,10 @@
 
             {% block content %}
                 <title>{% block title %}{% endblock title %}</title>
-                {% block page_content %}{% endblock %}
+                <div id="main" class="col-md-10 col-sm-11 main sidebar-minified">
+                    {% block page_content %}
+                    {% endblock %}
+                </div><!--/leave britney alone-->
             {% endblock content %}
         </div><!--/leave britney alone-->
     </div><!--/container-->
