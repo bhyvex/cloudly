@@ -576,7 +576,6 @@ def _get_network_connections():
                     foreign_address_port_resolved = socket.getservbyport(int(foreign_address_port))
                 except: pass
             
-           
             if(state=="LISTEN"):
                 listen_connections.append([state, proto, recvq, sendq, local_address, local_address_port, local_address_port_resolved, foreign_address, foreign_address_port, foreign_address_port_resolved] )
                 #print state, proto, recvq, sendq, local_address, local_address_port, local_address_port_resolved, foreign_address, foreign_address_port, foreign_address_port_resolved

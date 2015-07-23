@@ -104,5 +104,5 @@ def admin(request):
     ip = request.META['REMOTE_ADDR']
     _log_user_activity(profile,"click","/admin/","admin",ip=ip)
     
-    return render_to_response('admin.html', {'users':users,'files':[],'profile':profile,}, context_instance=RequestContext(request))
+    return render_to_response('admin.html', {'users':users,'files':[],'profile':profile,'request':request,}, context_instance=RequestContext(request))
 
