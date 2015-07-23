@@ -59,6 +59,9 @@ function retina(){
 
 /* ---------- Main Menu Open/Close, Min/Full ---------- */
 jQuery(document).ready(function($){
+
+    var win = $(window).width();
+    console.log(win);
 		
 	$('#main-menu-toggle').click(function(){
 		

@@ -7,6 +7,7 @@
 
 {% block extra_css%}
     <link href="/static/admin-assets/css/bootstrap-editable.css" rel="stylesheet">
+    <link href="http://cdn.datatables.net/responsive/1.0.6/css/dataTables.responsive.css" rel="stylesheet">
     <link href="/static/admin-assets/css/server_detail.css" rel="stylesheet">
 {% endblock %}
 
@@ -39,7 +40,7 @@
                 </div>
 
                 <div class="panel-body">
-                    <table id="user" class="table table-bordered table-striped" style="clear: both">
+                    <table id="user" class="table table-bordered responsive table-striped" style="clear: both">
                         <tbody>
                             <tr>
                                 <td width="40%">Name</td>
@@ -322,7 +323,10 @@
                 </div>
 
                 <div class="panel-body">
-                    <table id="network_connections" class="table table-bordered table-striped bootstrap-datatable">
+                    <table 
+                        id="network_connections" 
+                        class="table table-bordered responsive table-striped bootstrap-datatable"
+                    >
                         <thead>
                             <tr>
                                 <th>Proto</th>
@@ -358,7 +362,10 @@
 
                 <div class="panel-body">
                 </table>
-                    <table id="active_network_connections" class="table table-bordered table-striped bootstrap-datatable">
+                    <table 
+                        id="active_network_connections" 
+                        class="table responsive table-bordered table-striped bootstrap-datatable"
+                    >
                         <thead>
                             <tr>
                                 <th>Proto</th>
@@ -521,7 +528,10 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <table id="running_processes_table" class="table table-bordered table-striped bootstrap-datatable">
+                    <table 
+                        id="running_processes_table" 
+                        class="table display no-wrap dataTable dtr-inline responsive table-bordered table-striped bootstrap-datatable"
+                    >
                         <thead>
                             <tr>
                                 <th>PID</th>
@@ -644,5 +654,6 @@
 <script src="/static/js/chart_inbound_traffic.js"></script>
 <script src="/static/js/chart_outbound_traffic.js"></script>
 <script src="/static/js/chart_disks.js"></script>
+<script src="http://cdn.datatables.net/responsive/1.0.6/js/dataTables.responsive.js"></script>
 
 {% endblock extra_js %}

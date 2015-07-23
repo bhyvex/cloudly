@@ -1,5 +1,6 @@
 .main {
     margin-top: 60px;
+    float: right;
 }
 
 .navbar-brand {
@@ -34,7 +35,6 @@ footer {
 @media (min-width: 992px) {
     .main {
         width: 83.333333333%;
-        float: right;
     }
 
     .sidebar {
