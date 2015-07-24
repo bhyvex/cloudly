@@ -131,6 +131,8 @@ def _get_disks_usage():
             disks_usage.append(volume)
     
 
+    overall_status = "UNKNOWN"
+
     for disk in disks_usage:
     
         status = 'UNKNOWN'
@@ -145,8 +147,10 @@ def _get_disks_usage():
             status = 'OK'
         elif(int(disk[4].replace('%','')) >= disks_thresholds['WARNING']['min_value'] and int(disk[4].replace('%','')) <= disks_thresholds['WARNING']['max_value']):
             status = 'WARNING'
+            if(overall_status!="CRITICAL"): overall_status = "WARNING"
         else:
             status = 'CRITICAL'
+            overall_status = "CRITICAL"
 
         message = 'The disk "' + disk[-1:][0] + '"'
         if(status == 'OK'): message = message + ' is within limits: '
@@ -159,6 +163,7 @@ def _get_disks_usage():
         print message
     
     
+    print 'overall status', overall_status
     
     return disks_usage
 
