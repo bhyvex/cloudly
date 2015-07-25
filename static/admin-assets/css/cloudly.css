@@ -17,6 +17,15 @@ footer {
         position: relative;
         top: 50px;
     }
+
+    .sidebar:before {
+        position: absolute;
+        content: '';
+        background: #384042;
+        width: 100%;
+        height: auto;
+        left: 0;
+    }
 }
 
 @media (min-width: 767px) and (max-width: 991px) {
@@ -43,7 +52,7 @@ footer {
         min-width: 210px;
         width: 16.66666667%;
     }
-    
+
     .minified {
         width: 60px;
         min-width: 60px;

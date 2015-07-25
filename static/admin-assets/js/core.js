@@ -233,12 +233,24 @@ function widthFunctions(e) {
     }
 
     if (winWidth < 768) {
+        if ($('#main-menu-min').hasClass('full') === false) {
+            $('#main-menu-min').click();
+        }
+
+        $('#main').outerWidth(winWidth + 'px');
+
         if($('.chat-full')) {
             $('.chat-full').each(function(){
                 $(this).addClass('alt');
             });
         }
     } else {
+        if ($('#main-menu-min').hasClass('full')) {
+            $('#main-menu-min').click();
+        }
+
+        $('#main').css('width', '');
+
         if($('.chat-full')) {
             $('.chat-full').each(function(){
                 $(this).removeClass('alt');
