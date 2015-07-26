@@ -88,7 +88,7 @@ def ping():
             'cpu_usage': cpu_usage['cpu_usage'],
             'cpu_info': cpu_info,
             'cpu_virtualization': cpu_virtualization,
-            'memory_usage': memory_usage,
+            'memory_usage': memory_usage['memory_usage'],
             'disks_usage': disks_usage,
             'last_seen': last_seen,
             'network_connections': network_connections,
@@ -185,8 +185,7 @@ def ping():
         'memory_usage': memory_usage,
         'date_created': datetime.datetime.utcnow(),
     }
-    #memory_usage_ = mongo.memory_usage
-    #memory_usage_.insert( memory_usage_metrics )
+
 
     memory_tsdb_cmd = "put " + \
         uuid.replace(':','-') + ".sys.memory " + \
