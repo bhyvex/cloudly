@@ -142,8 +142,8 @@ def ping():
         'loadavg': loadavg['loadavg'],
         'date_created': datetime.datetime.utcnow(),
     }
-    loadavg = loadavg['loadavg']
     loadavg_service_report = loadavg['service_report']
+    loadavg = loadavg['loadavg']
 
     loadavg_tsdb_cmd = "put " + \
         uuid.replace(':','-') + ".sys.loadavg " + \
