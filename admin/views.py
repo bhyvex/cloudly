@@ -47,7 +47,7 @@ def devel(request):
     
     print request.session.keys()
     
-    return HttpResponse(True)
+    return render_to_response('devel.html', {'request':request,}, context_instance=RequestContext(request))
 
 
 @login_required()
