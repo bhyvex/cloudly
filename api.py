@@ -146,7 +146,7 @@ def ping():
     #loadavg_.insert( loadavg_metrics )
 
     print loadavg['loadavg']
-    print loadavg['status_report']
+    #print loadavg['status_report']
 
     loadavg_tsdb_cmd = "put " + \
         uuid.replace(':','-') + ".sys.loadavg " + \
