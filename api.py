@@ -182,9 +182,11 @@ def ping():
         'secret': secret,
         'agent_version': agent_version,
         'uuid': uuid,
-        'memory_usage': memory_usage,
+        'memory_usage': memory_usage['memory_usage'],
         'date_created': datetime.datetime.utcnow(),
     }
+    memory_usage_service_report = memory_usage['service_report']
+    memory_usage = memory_usage['memory_usage']
 
 
     memory_tsdb_cmd = "put " + \
