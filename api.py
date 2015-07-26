@@ -75,8 +75,7 @@ def ping():
 
     try:
 
-        print 'disks_usage', disks_usage['disk_usage']
-        print 'disks_usage', disks_usage['service_report']
+        print 'disks_usage', disks_usage
 
         server = {
             'secret': secret,
