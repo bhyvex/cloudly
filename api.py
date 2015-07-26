@@ -145,8 +145,12 @@ def ping():
     #loadavg_ = mongo.loadavg
     #loadavg_.insert( loadavg_metrics )
 
-    print loadavg['loadavg']
-    #print loadavg['status_report']
+    try:
+        print loadavg['loadavg']
+        print loadavg['status_report']
+    except:
+        x = "temporary error - all agents need to be updated'
+        return x
 
     loadavg_tsdb_cmd = "put " + \
         uuid.replace(':','-') + ".sys.loadavg " + \
