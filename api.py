@@ -169,9 +169,11 @@ def ping():
     hbase.send(loadavg_tsdb_cmd)
     hbase.close()
 
-
+    print '-' * 100
     print 'loadavg_tsdb_cmd'
     print loadavg_tsdb_cmd
+    print 'loadavg_service_report', loadavg_service_report
+    print '-' * 100
 
 
     memory_usage_metrics = {
