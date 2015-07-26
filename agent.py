@@ -475,6 +475,9 @@ def _get_disks_usage():
             status = 'CRITICAL'
             overall_status = "CRITICAL"
 
+        if(overall_status != 'WARNING' and overall_status != 'CRITICAL'): overall_status = "OK"
+
+
         message = 'The disk "' + disk[-1:][0] + '"'
 
         if(status == 'WARNING' or status == 'CRITICAL'): 
