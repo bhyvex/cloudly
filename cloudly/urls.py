@@ -49,7 +49,7 @@ urlpatterns = patterns('',
     #url(r'^ajax/aws/(?P<instance_id>[\w\-\.]+)/metrics/(?P<graph_type>[\w\-\.]+)/$', 'vms.views.ajax_aws_graphs', name='ajax_aws_graphs'),
 
     # devel stuff
-    #url(r'^devel/$', 'devel.views.devel', name='devel'),
+    url(r'^devel/$', 'admin.views.devel', name='devel'),
 )
 
 

@@ -36,6 +36,12 @@ client = MongoClient('localhost', 27017)
 
 mongo = client.cloudly
 
+
+@login_required()
+def devel(request):
+    return HttpResponse(True)
+
+
 @login_required()
 def user_activity_report(request, user_id):
     
