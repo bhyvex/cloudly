@@ -170,6 +170,10 @@ def ping():
     hbase.close()
 
 
+    print 'loadavg_tsdb_cmd'
+    print loadavg_tsdb_cmd
+
+
     memory_usage_metrics = {
         'secret': secret,
         'agent_version': agent_version,
