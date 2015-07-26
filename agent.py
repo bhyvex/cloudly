@@ -743,6 +743,7 @@ def get_system_metrics( uuid, secret ):
     }
 
     print datetime.datetime.now(), 'Collected system metrics..'
+    print 'disks_usage', disks_usage
 
     return system_metrics_json
 
