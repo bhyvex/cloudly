@@ -712,7 +712,7 @@ def get_system_metrics( uuid, secret ):
     memory_usage['service_report'] = memory_usage_service_report
 
     disks_usage = {}
-    disks_usage_data, disk_usage_service_report = _get_disks_usage()
+    disks_usage_data, disks_usage_service_report = _get_disks_usage()
     disks_usage['disks_usage'] = disks_usage
     disks_usage['service_report'] = disks_usage_service_report
 
