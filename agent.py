@@ -479,8 +479,11 @@ def _get_disks_usage():
 
         if(status == 'WARNING' or status == 'CRITICAL'): 
             message = 'Warning - ' + message + ' is running out of space: '
-            message += 'disk_free: ' + str(disk_free) + ', disk_used: ' + str(disk_used) + ', disk_total: ' + str(disk_total)    
-            messages.append(message)
+        if(status == 'OK'):
+            message += ' is within limits: '
+
+        message += 'disk_free: ' + str(disk_free) + ', disk_used: ' + str(disk_used) + ', disk_total: ' + str(disk_total)    
+        messages.append(message)
     
     
     service_status['status'] = overall_status
@@ -740,7 +743,6 @@ def get_system_metrics( uuid, secret ):
     }
 
     print datetime.datetime.now(), 'Collected system metrics..'
-    print 'debug', disks_usage['service_report']
 
     return system_metrics_json
 
