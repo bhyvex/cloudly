@@ -711,9 +711,10 @@ def get_system_metrics( uuid, secret ):
     memory_usage['memory_usage'] = memory_usage_data
     memory_usage['service_report'] = memory_usage_service_report
 
-    # XXX employ disks_usage
-    disks_usage, disk_usage_service_report = _get_disks_usage()
-
+    disks_usage = {}
+    disks_usage_data, disk_usage_service_report = _get_disks_usage()
+    disks_usage['disks_usage'] = disks_usage
+    disks_usage['service_report'] = disks_usage_service_report
 
     processes = _get_processes()
     networking = _get_networking_stats()
