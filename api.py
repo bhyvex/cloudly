@@ -74,9 +74,6 @@ def ping():
     processes = processes.split('\n')
 
     try:
-
-        print 'disks_usage', disks_usage
-
         server = {
             'secret': secret,
             'agent_version': agent_version,
