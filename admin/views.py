@@ -39,6 +39,14 @@ mongo = client.cloudly
 
 @login_required()
 def devel(request):
+
+    print '-'*1000
+
+    request.session['x'] = True
+    request.session.modified = True
+    
+    print request.session.keys()
+    
     return HttpResponse(True)
 
 
