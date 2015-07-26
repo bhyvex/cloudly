@@ -135,24 +135,15 @@ def ping():
     hbase.close()
     
         
-    try:
-        loadavg_metrics = {
-            'secret': secret,
-            'agent_version': agent_version,
-            'uuid': uuid,
-            'loadavg': loadavg['loadavg'],
-            'date_created': datetime.datetime.utcnow(),
-        }
-        #loadavg_ = mongo.loadavg
-        #loadavg_.insert( loadavg_metrics )
+    loadavg_metrics = {
+        'secret': secret,
+        'agent_version': agent_version,
+        'uuid': uuid,
+        'loadavg': loadavg['loadavg'],
+        'date_created': datetime.datetime.utcnow(),
+    }
+    loadavg_service_report = loadavg['service_report']
 
-        loadavg_service_report = loadavg['service_report']
-        print 'loadavg_service_report', loadavg_service_report
-
-    except:
-        x = "temporary error - all agents need to be updated"
-        print x
-        return x
 
     loadavg_tsdb_cmd = "put " + \
         uuid.replace(':','-') + ".sys.loadavg " + \
