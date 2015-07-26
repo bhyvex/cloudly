@@ -73,25 +73,30 @@ def ping():
     processes = processes.replace('  ',' ')
     processes = processes.split('\n')
 
-    server = {
-        'secret': secret,
-        'agent_version': agent_version,
-        'uuid': uuid,
-        'ip': ip,
-        'ip_remote': ip_remote,
-        'hostname': hostname,
-        'distro': distro,
-        'processes': processes,
-        'loadavg': loadavg['loadavg'],
-        'uptime': uptime,
-        'cpu_usage': cpu_usage,
-        'cpu_info': cpu_info,
-        'cpu_virtualization': cpu_virtualization,
-        'memory_usage': memory_usage,
-        'disks_usage': disks_usage,
-        'last_seen': last_seen,
-        'network_connections': network_connections,
-    }
+    try:
+        server = {
+            'secret': secret,
+            'agent_version': agent_version,
+            'uuid': uuid,
+            'ip': ip,
+            'ip_remote': ip_remote,
+            'hostname': hostname,
+            'distro': distro,
+            'processes': processes,
+            'loadavg': loadavg['loadavg'],
+            'uptime': uptime,
+            'cpu_usage': cpu_usage,
+            'cpu_info': cpu_info,
+            'cpu_virtualization': cpu_virtualization,
+            'memory_usage': memory_usage,
+            'disks_usage': disks_usage,
+            'last_seen': last_seen,
+            'network_connections': network_connections,
+        }
+    except:
+        error = "ERROR - outdated monitor agent!"
+        print error
+        return error
 
     print 'API query from agent version', str(agent_version), uuid, 'IP', ip_remote+'/'+ ip, 'uptime '+uptime
 
@@ -134,20 +139,15 @@ def ping():
     hbase.send(cpu_usage_tsdb_cmd)
     hbase.close()
     
-    try:
-        loadavg_metrics = {
-            'secret': secret,
-            'agent_version': agent_version,
-            'uuid': uuid,
-            'loadavg': loadavg['loadavg'],
-            'date_created': datetime.datetime.utcnow(),
-        }
-        loadavg_service_report = loadavg['service_report']
-        loadavg = loadavg['loadavg']
-    except:
-        error = "ERROR - outdated monitor agent!"
-        print error
-        return error
+    loadavg_metrics = {
+        'secret': secret,
+        'agent_version': agent_version,
+        'uuid': uuid,
+        'loadavg': loadavg['loadavg'],
+        'date_created': datetime.datetime.utcnow(),
+    }
+    loadavg_service_report = loadavg['service_report']
+    loadavg = loadavg['loadavg']
 
     loadavg_tsdb_cmd = "put " + \
         uuid.replace(':','-') + ".sys.loadavg " + \
