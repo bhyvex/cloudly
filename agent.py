@@ -705,9 +705,10 @@ def get_system_metrics( uuid, secret ):
     cpu_usage_data, cpu_usage_service_report = _get_sys_cpu()
     cpu_usage['cpu_usage'] = cpu_usage_data
     cpu_usage['service_report'] = cpu_usage_service_report
-    
-    
+        
+    # XXX employ memory_usage
     memory_usage, memory_usage_service_report = _get_memory_usage()
+    # XXX employ disks_usage
     disks_usage, disk_usage_service_report = _get_disks_usage()
 
     processes = _get_processes()
