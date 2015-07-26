@@ -85,7 +85,7 @@ def ping():
             'processes': processes,
             'loadavg': loadavg['loadavg'],
             'uptime': uptime,
-            'cpu_usage': cpu_usage,
+            'cpu_usage': cpu_usage['cpu_usage'],
             'cpu_info': cpu_info,
             'cpu_virtualization': cpu_virtualization,
             'memory_usage': memory_usage,
