@@ -134,16 +134,20 @@ def ping():
     hbase.send(cpu_usage_tsdb_cmd)
     hbase.close()
     
-        
-    loadavg_metrics = {
-        'secret': secret,
-        'agent_version': agent_version,
-        'uuid': uuid,
-        'loadavg': loadavg['loadavg'],
-        'date_created': datetime.datetime.utcnow(),
-    }
-    loadavg_service_report = loadavg['service_report']
-    loadavg = loadavg['loadavg']
+    try:
+        loadavg_metrics = {
+            'secret': secret,
+            'agent_version': agent_version,
+            'uuid': uuid,
+            'loadavg': loadavg['loadavg'],
+            'date_created': datetime.datetime.utcnow(),
+        }
+        loadavg_service_report = loadavg['service_report']
+        loadavg = loadavg['loadavg']
+    except:
+        error = "ERROR - outdated monitor agent!"
+        print error
+        return error
 
     loadavg_tsdb_cmd = "put " + \
         uuid.replace(':','-') + ".sys.loadavg " + \
