@@ -231,6 +231,8 @@ def ping():
     hbase.send(memory_tsdb_cmd)
     hbase.close()
 
+    print 'debug memory_usage_service_report', memory_usage_service_report
+
 
     networking_metrics = {
         'secret': secret,
