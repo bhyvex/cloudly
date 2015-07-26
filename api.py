@@ -135,17 +135,17 @@ def ping():
     hbase.close()
     
         
-    loadavg_metrics = {
-        'secret': secret,
-        'agent_version': agent_version,
-        'uuid': uuid,
-        'loadavg': loadavg['loadavg'],
-        'date_created': datetime.datetime.utcnow(),
-    }
-    #loadavg_ = mongo.loadavg
-    #loadavg_.insert( loadavg_metrics )
-
     try:
+        loadavg_metrics = {
+            'secret': secret,
+            'agent_version': agent_version,
+            'uuid': uuid,
+            'loadavg': loadavg['loadavg'],
+            'date_created': datetime.datetime.utcnow(),
+        }
+        #loadavg_ = mongo.loadavg
+        #loadavg_.insert( loadavg_metrics )
+
         print loadavg['loadavg']
         print loadavg['status_report']
     except:
