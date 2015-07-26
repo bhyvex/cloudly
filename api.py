@@ -82,7 +82,7 @@ def ping():
         'hostname': hostname,
         'distro': distro,
         'processes': processes,
-        'loadavg': loadavg,
+        'loadavg': loadavg['loadavg'],
         'uptime': uptime,
         'cpu_usage': cpu_usage,
         'cpu_info': cpu_info,
