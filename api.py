@@ -73,9 +73,11 @@ def ping():
     processes = processes.replace('  ',' ')
     processes = processes.split('\n')
 
-    print 'disks_usage', disks_usage
-
     try:
+
+        print 'disks_usage', disks_usage['disk_usage']
+        print 'disks_usage', disks_usage['service_report']
+
         server = {
             'secret': secret,
             'agent_version': agent_version,
