@@ -139,14 +139,14 @@ def ping():
         'secret': secret,
         'agent_version': agent_version,
         'uuid': uuid,
-        'loadavg': loadavg,
+        'loadavg': loadavg['loadavg'],
         'date_created': datetime.datetime.utcnow(),
     }
     #loadavg_ = mongo.loadavg
     #loadavg_.insert( loadavg_metrics )
 
-    print loadavg_metrics['loadavg']
-
+    print loadavg['loadavg']
+    print loadavg['status_report']
 
     loadavg_tsdb_cmd = "put " + \
         uuid.replace(':','-') + ".sys.loadavg " + \
