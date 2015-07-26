@@ -276,9 +276,11 @@ def ping():
         'secret': secret,
         'agent_version': agent_version,
         'uuid': uuid,
-        'disks_usage': disks_usage,
+        'disks_usage': disks_usage['disks_usage'],
         'date_created': datetime.datetime.utcnow(),
     }
+    disks_usage_service_report = disks_usage['service_report']
+    disks_usage = disks_usage['disks_usage']
     
 
     for disk in disks_usage:
