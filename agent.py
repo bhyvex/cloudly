@@ -394,6 +394,22 @@ def _get_ip_address():
 
 def _get_disks_usage():
 
+    disks_thresholds = {
+        "OK": {},
+        "WARNING": {
+            'min_value': 90, # disk used in percentage
+            'max_value': 95, # disk used in percentage
+            'min_duration_in_seconds': 1,
+        },
+        "CRITICAL": { # is everything above the warning range
+            'min_duration_in_seconds': 1,
+        },
+    }
+    service_status = {
+        'status': '',
+        'service': 'system_disks',
+    }
+
     proc = subprocess.Popen(['df', '-B 1'], stdout=subprocess.PIPE, close_fds=True)
     df = proc.communicate()[0] 
 
@@ -436,7 +452,45 @@ def _get_disks_usage():
             
             disks_usage.append(volume)
     
-    return disks_usage
+
+    overall_status = "UNKNOWN"
+    messages = []
+
+    for disk in disks_usage:
+    
+        status = 'UNKNOWN'
+
+        mount_point = disk[5]
+        disk_free = disk[3]
+        disk_used = disk[2]
+        disk_total = disk[1]
+        disk_usage = disk[4]
+
+        if(int(disk[4].replace('%','')) < disks_thresholds['WARNING']['min_value']):
+            status = 'OK'
+        elif(int(disk[4].replace('%','')) >= disks_thresholds['WARNING']['min_value'] and int(disk[4].replace('%','')) <= disks_thresholds['WARNING']['max_value']):
+            status = 'WARNING'
+            if(overall_status!="CRITICAL"): overall_status = "WARNING"
+        else:
+            status = 'CRITICAL'
+            overall_status = "CRITICAL"
+
+        message = 'The disk "' + disk[-1:][0] + '"'
+
+        if(status == 'WARNING' or status == 'CRITICAL'): 
+            message = 'Warning - ' + message + ' is running out of space: '
+            message += 'disk_free: ' + str(disk_free) + ', disk_used: ' + str(disk_used) + ', disk_total: ' + str(disk_total)    
+            messages.append(message)
+    
+    
+    service_status['status'] = overall_status
+    service_status['messages'] = messages
+
+    service_report = {}
+    service_report['service_thresholds'] = disks_thresholds
+    service_report['service_status'] = service_status
+   
+    return disks_usage, service_report
 
 
 def _get_networking_stats():
@@ -645,9 +699,8 @@ def get_system_metrics( uuid, secret ):
     loadavg, loadavg_service_report = _get_sys_loadavg()
     cpu_usage, cpu_usage_service_report = _get_sys_cpu()
     memory_usage, memory_usage_service_report = _get_memory_usage()
-    
-        
-    disks_usage = _get_disks_usage()
+    disks_usage, disk_usage_service_report = _get_disks_usage()
+
     processes = _get_processes()
     networking = _get_networking_stats()
     network_connections = _get_network_connections()
