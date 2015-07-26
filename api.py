@@ -89,7 +89,7 @@ def ping():
             'cpu_info': cpu_info,
             'cpu_virtualization': cpu_virtualization,
             'memory_usage': memory_usage['memory_usage'],
-            'disks_usage': disks_usage,
+            'disks_usage': disks_usage['disks_usage'],
             'last_seen': last_seen,
             'network_connections': network_connections,
         }
@@ -279,8 +279,6 @@ def ping():
         'disks_usage': disks_usage,
         'date_created': datetime.datetime.utcnow(),
     }
-    #disks_usage_ = mongo.disks_usage
-    #disks_usage_.insert( disks_usage_metrics )
     
 
     for disk in disks_usage:
