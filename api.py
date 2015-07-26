@@ -149,8 +149,6 @@ def ping():
         print '-'*100
         print loadavg['loadavg']
         print '-----'
-        print loadavg['status_report']
-        print '-----'
         print server['loadavg']
 
     except:
