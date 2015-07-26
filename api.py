@@ -121,9 +121,11 @@ def ping():
         'secret': secret,
         'agent_version': agent_version,
         'uuid': uuid,
-        'cpu_usage': cpu_usage,
+        'cpu_usage': cpu_usage['cpu_usage'],
         'date_created': datetime.datetime.utcnow(),
     }
+    cpu_usage_service_report = cpu_usage['service_report']
+    cpu_usage = cpu_usage['cpu_usage']
 
     cpu_usage_tsdb_cmd = "put " + \
         uuid.replace(':','-') + ".sys.cpu " + \
