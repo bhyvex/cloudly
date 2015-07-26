@@ -73,6 +73,8 @@ def ping():
     processes = processes.replace('  ',' ')
     processes = processes.split('\n')
 
+    print 'disks_usage', disks_usage
+
     try:
         server = {
             'secret': secret,
