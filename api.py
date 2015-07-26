@@ -150,9 +150,12 @@ def ping():
         print loadavg['loadavg']
         print '-----'
         print loadavg['status_report']
+        print '-----'
+        print server['loadavg']
 
     except:
         x = "temporary error - all agents need to be updated"
+        print x
         return x
 
     loadavg_tsdb_cmd = "put " + \
