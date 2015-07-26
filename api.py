@@ -139,6 +139,9 @@ def ping():
     hbase.send(cpu_usage_tsdb_cmd)
     hbase.close()
     
+    print 'debug cpu_usage_service_report', cpu_usage_service_report
+
+    
     loadavg_metrics = {
         'secret': secret,
         'agent_version': agent_version,
