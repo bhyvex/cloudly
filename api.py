@@ -139,8 +139,6 @@ def ping():
     hbase.send(cpu_usage_tsdb_cmd)
     hbase.close()
     
-    print 'debug cpu_usage_service_report', cpu_usage_service_report
-
     
     loadavg_metrics = {
         'secret': secret,
@@ -176,7 +174,6 @@ def ping():
     hbase.send(loadavg_tsdb_cmd)
     hbase.close()
 
-    print 'debug loadavg_service_report', loadavg_service_report
 
     memory_usage_metrics = {
         'secret': secret,
@@ -187,7 +184,6 @@ def ping():
     }
     memory_usage_service_report = memory_usage['service_report']
     memory_usage = memory_usage['memory_usage']
-
 
     memory_tsdb_cmd = "put " + \
         uuid.replace(':','-') + ".sys.memory " + \
@@ -230,8 +226,6 @@ def ping():
     hbase.connect(("hbase", 4242))
     hbase.send(memory_tsdb_cmd)
     hbase.close()
-
-    print 'debug memory_usage_service_report', memory_usage_service_report
 
 
     networking_metrics = {
@@ -331,6 +325,9 @@ def ping():
         hbase.send(disks_tsdb_cmd)
         hbase.close()
 
+    print 'debug cpu_usage_service_report', cpu_usage_service_report
+    print 'debug loadavg_service_report', loadavg_service_report
+    print 'debug memory_usage_service_report', memory_usage_service_report
 
     return ("thanks", 201)
 
