@@ -146,10 +146,8 @@ def ping():
         #loadavg_ = mongo.loadavg
         #loadavg_.insert( loadavg_metrics )
 
-        print '-'*100
-        print loadavg
-        print '-----'
-        print server['loadavg']
+        loadavg_service_report = loadavg['service_report']
+        print 'loadavg_service_report', loadavg_service_report
 
     except:
         x = "temporary error - all agents need to be updated"
