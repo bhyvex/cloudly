@@ -328,6 +328,7 @@ def ping():
     print 'debug cpu_usage_service_report', cpu_usage_service_report
     print 'debug loadavg_service_report', loadavg_service_report
     print 'debug memory_usage_service_report', memory_usage_service_report
+    print 'debug disks_usage_service_report', disks_usage_service_report
 
     return ("thanks", 201)
 
