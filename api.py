@@ -95,6 +95,7 @@ def ping():
 
     print 'API query from agent version', str(agent_version), uuid, 'IP', ip_remote+'/'+ ip, 'uptime '+uptime
 
+    
     servers = mongo.servers
     server_ = servers.find_one({'secret':secret, 'uuid':uuid,})
 
@@ -143,6 +144,9 @@ def ping():
     }
     #loadavg_ = mongo.loadavg
     #loadavg_.insert( loadavg_metrics )
+
+    print loadavg_metrics['loadavg']
+
 
     loadavg_tsdb_cmd = "put " + \
         uuid.replace(':','-') + ".sys.loadavg " + \

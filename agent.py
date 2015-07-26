@@ -698,7 +698,7 @@ def get_system_metrics( uuid, secret ):
 
     loadavg = {}
     loadavg_data, loadavg_service_report = _get_sys_loadavg()
-    loadavg['data'] = loadavg_data
+    loadavg['loadavg'] = loadavg_data
     loadavg['service_report'] = loadavg_service_report
     
     cpu_usage, cpu_usage_service_report = _get_sys_cpu()
