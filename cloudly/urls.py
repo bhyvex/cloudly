@@ -38,8 +38,8 @@ urlpatterns = patterns('',
     # servers incidents
     url(r'^incidents/$', 'incidents.views.incidents', name='incidents'),
 
-
     # ajax
+    url(r'^ajax/session/update/$', 'vms.views.update_session', name='update_session'),
     url(r'^ajax/cloud/vms/$', 'vms.views.ajax_virtual_machines', name='ajax_virtual_machines'),
     url(r'^ajax/cloud/vms/refresh/$', 'vms.views.ajax_vms_refresh', name='ajax_vms_refresh'),
     url(r'^ajax/cloud/box-template/$', 'vms.views.ajax_virtual_machines_box', name='ajax_virtual_machines_box'),

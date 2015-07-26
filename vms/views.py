@@ -58,8 +58,20 @@ client = MongoClient('localhost', 27017)
 
 mongo = client.cloudly
 
+
 def date_handler(obj):
     return obj.isoformat() if hasattr(obj, 'isoformat') else obj
+
+
+@login_required()
+def update_session(request):
+
+    request.session['x'] = True
+    request.session.modified = True
+    print '-'*1000
+    print request.session.keys()
+
+    return HttpResponse(True)
 
 
 @login_required()
