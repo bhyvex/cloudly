@@ -174,7 +174,6 @@ def ping():
     hbase.close()
 
     print 'debug loadavg_service_report', loadavg_service_report
-    print '-' * 100
 
     memory_usage_metrics = {
         'secret': secret,
