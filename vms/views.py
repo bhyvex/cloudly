@@ -72,7 +72,7 @@ def update_session(request):
     print request.session.keys()
 
     return HttpResponse(True)
-
+    
 
 @login_required()
 def aws_vm_view(request,vm_name):

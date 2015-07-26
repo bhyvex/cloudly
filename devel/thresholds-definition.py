@@ -132,6 +132,7 @@ def _get_disks_usage():
     
 
     overall_status = "UNKNOWN"
+    messages = []
 
     for disk in disks_usage:
     
@@ -153,23 +154,25 @@ def _get_disks_usage():
             overall_status = "CRITICAL"
 
         message = 'The disk "' + disk[-1:][0] + '"'
-        if(status == 'OK'): message = message + ' is within limits: '
-        if(status == 'WARNING' or status == 'CRITICAL'): message = 'Warning - ' + message + ' is running out of space: '
-        
-        message += 'disk_free: ' + str(disk_free) + ', disk_used: ' + str(disk_used) + ', disk_total: ' + str(disk_total)
-    
-        # XXX work some sort of service_status['status'] = status alternative.....
-    
-        print message
+
+        if(status == 'WARNING' or status == 'CRITICAL'): 
+            message = 'Warning - ' + message + ' is running out of space: '
+            message += 'disk_free: ' + str(disk_free) + ', disk_used: ' + str(disk_used) + ', disk_total: ' + str(disk_total)    
+            messages.append(message)
     
     
-    print 'overall status', overall_status
-    
-    return disks_usage
+    service_status['status'] = overall_status
+    service_status['messages'] = messages
+
+    service_report = {}
+    service_report['service_thresholds'] = disks_thresholds
+    service_report['service_status'] = service_status
+   
+    return disks_usage, service_report
+
 
 
 import pprint
-#pprint.pprint( _get_disks_usage() )
-_get_disks_usage()
+pprint.pprint( _get_disks_usage() )
 
 

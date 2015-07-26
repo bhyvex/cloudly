@@ -41,7 +41,6 @@ mongo = client.cloudly
 def devel(request):
 
     print '-'*1000
-
     request.session['x'] = True
     request.session.modified = True
     
