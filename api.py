@@ -147,7 +147,7 @@ def ping():
         #loadavg_.insert( loadavg_metrics )
 
         print '-'*100
-        print loadavg['loadavg']
+        print loadavg
         print '-----'
         print server['loadavg']
 
