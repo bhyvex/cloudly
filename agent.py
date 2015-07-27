@@ -19,7 +19,7 @@ try:
     import json
 except: pass
 
-AGENT_VERSION = "0.1"
+AGENT_VERSION = "0.2"
 
 SECRET = "" # to be injected on download by Cloudly
 if(not SECRET): SECRET = raw_input("Enter your secret: ")
