@@ -337,6 +337,11 @@ def ping():
     #print 'debug memory_usage_service_report', memory_usage_service_report
     #print 'debug disks_usage_service_report', disks_usage_service_report
 
+    if(agent_version != AGENT_VERSION_CURRENT):
+
+        return ("update", 201)
+
+
     return ("thanks", 201)
 
 
