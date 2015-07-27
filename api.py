@@ -17,6 +17,13 @@ client = MongoClient('localhost', 27017)
 
 mongo = client.cloudly
 
+
+for line in open('agent.py','rt').readlines():
+    if('AGENT_VERSION' in line):
+        AGENT_VERSION_CURRENT = line.split('"')[1]
+        break
+
+
 @app.route('/test/', methods = ['GET'])
 def test():
     return jsonify( { 'test': True } )
@@ -61,12 +68,12 @@ def ping():
     cpu_virtualization = data['cpu_virtualization']
     memory_usage = data['memory_usage']
     disks_usage = data['disks_usage']
-    agent_version = data['agent_version']
     last_seen = datetime.datetime.utcnow()
     hostname = data['hostname']
     distro = data['distro']
     networking = data['networking']
     network_connections = data['network_connections']
+    agent_version = data['agent_version']
     
     processes = data['processes']
     processes = processes.replace('\t',' ')
