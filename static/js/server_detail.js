@@ -349,7 +349,7 @@ $(document).ready(function() {
     });
 
     var activeNetworkConnectionsTable = $("#active_network_connections").DataTable({
-        "lengthMenu": [[50, 10, 30, 50, 100, -1], [50, 10, 30, 100, "All"]],
+        "lengthMenu": [[50, 10, 30, 100, -1], [50, 10, 30, 100, "All"]],
         "order": [[ 3, "asc" ]],
         "responsive": true,
         "ajax": {
