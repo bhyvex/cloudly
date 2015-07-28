@@ -100,6 +100,7 @@ function updateServerInfo() {
                 $(".server_uptime").show();
                 $(".server_loadavg").show();
 
+                $(".server_info_hostname").text(data["server_info_hostname"]);
                 $(".server_info_uptime").text(data["server_info_uptime"]);
                 $(".server_info_loadavg").text(loadavgServerInfoValue);
 
