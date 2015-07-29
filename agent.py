@@ -20,7 +20,7 @@ try:
 except: pass
 
 AGENT_VERSION = "0.2"
-AGENT_ALLOWED_SELF_UPDATE = True
+AGENT_ALLOWED_TO_SELF_UPDATE = True
 
 SECRET = "" # to be injected on download by Cloudly
 if(not SECRET): SECRET = raw_input("Enter your secret: ")
