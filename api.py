@@ -103,7 +103,7 @@ def ping():
     except:
         error = "ERROR - outdated monitor agent!"
         print error
-        return error
+        return (error, 401)
 
     print 'API query from agent version', str(agent_version), uuid, 'IP', ip_remote+'/'+ ip, 'uptime '+uptime
 
