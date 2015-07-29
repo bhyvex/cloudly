@@ -72,7 +72,7 @@ def update_session(request):
     print request.session.keys()
 
     return HttpResponse(True)
-    
+
 
 @login_required()
 def aws_vm_view(request,vm_name):
@@ -345,20 +345,20 @@ def ajax_vms_refresh(request):
 
             tsdb = requests.get('http://hbase:4242/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
-            try:           
+            try:
                 tsdb_response = tsdb_response[0]['dps']
             except:
                 tsdb_response = []
-            
+
             c=0
             for i in tsdb_response:
                 cpu_usage_ += str(round(tsdb_response[i],2))
                 cpu_usage_ += ","
                 if(c==60): break
                 c+=1
-                
+
             cpu_usage = cpu_usage_[:-1]
-            
+
             cpu_usage_reversed = ""
             cpu_usage_array_reversed = []
             for i in cpu_usage.split(','): cpu_usage_array_reversed.insert(0,i)
@@ -760,8 +760,8 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
                 process = {
                     'pid': process_pid,
-                    'cpu': process_cpu,
-                    'mem': process_mem,
+                    'cpu': process_cpu+'%',
+                    'mem': process_mem+'%',
                     # 'vsz': process_vsz,
                     # 'rss': process_rss,
                     # 'tty': process_tty,

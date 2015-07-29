@@ -324,8 +324,8 @@
                 </div>
 
                 <div class="panel-body">
-                    <table 
-                        id="network_connections" 
+                    <table
+                        id="network_connections"
                         class="table table-bordered responsive table-striped bootstrap-datatable"
                         width="100%"
                     >
@@ -364,8 +364,8 @@
 
                 <div class="panel-body">
                 </table>
-                    <table 
-                        id="active_network_connections" 
+                    <table
+                        id="active_network_connections"
                         class="table responsive table-bordered table-striped bootstrap-datatable"
                         width="100%"
                     >
@@ -531,8 +531,8 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <table 
-                        id="running_processes_table" 
+                    <table
+                        id="running_processes_table"
                         class="table table-bordered responsive table-striped bootstrap-datatable"
                         width="100%"
                     >
@@ -540,8 +540,8 @@
                             <tr>
                                 <th>PID</th>
                                 <th>User</th>
-                                <th>%CPU</th>
-                                <th>%MEM</th>
+                                <th>CPU</th>
+                                <th>MEM</th>
                                 <th>Process</th>
                                 <th>Command</th>
                             </tr>
@@ -611,7 +611,7 @@
         </div>
     </div><!--/row-->
 
-    <div id="fixed_problems" 
+    <div id="fixed_problems"
         class="row"
         {% if server_status|lower = "offline" %}
             style="display: none;"
