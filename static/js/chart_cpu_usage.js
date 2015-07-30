@@ -112,6 +112,8 @@ $(function () {
                 interval = $(link).attr('data-interval'),   // get interval from data attribute
                 duration = setDuration(interval);           // set duration
 
+            updateSession({'cpu_usage_interval': interval});
+
             $('#cpu_usage_interval a.active').removeClass('active');
             $(link).addClass('active');
 

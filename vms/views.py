@@ -66,10 +66,11 @@ def date_handler(obj):
 @login_required()
 def update_session(request):
 
-    request.session['x'] = True
-    request.session.modified = True
-    print '-'*1000
-    print request.session.keys()
+    for value in request.POST:
+        if(value != 'secret'):
+            request.session[value] = request.POST[value]
+
+    request.session.modified = True                                                                                               
 
     return HttpResponse(True)
 

@@ -1,18 +1,21 @@
 
-var server = $('input[name="hwaddr"]').val(),           // server identifier
-    csrf = $('input[name="csrfmiddlewaretoken"]').val(),// request middlevare secure
+var csrf = $('input[name="csrfmiddlewaretoken"]').val(),// request middlevare secure
     secret = $('input[name="secret"]').val(),           // request authenticate
 
-    addressUpdateSession ='ajax/session/update/';
+    addressUpdateSession = '/ajax/session/update/';
 
 function updateSession(values) {
-    console.log(document.cookie);
+    console.log(Object.prototype.toString.call(values) !== '[object Object]');
+    console.log(jQuery.isEmptyObject(values));
     if (Object.prototype.toString.call(values) !== '[object Object]'
-        || jQuery.isEmptyObject(values) === false
+        && jQuery.isEmptyObject(values) === true
     ) {
         return false;
     }
+    console.log(document.cookie);
+    console.log(values);
 
+    values.secret = secret
     $.ajax({
         "url": addressUpdateSession,
         "type": "POST",
@@ -21,11 +24,7 @@ function updateSession(values) {
             'X-CSRFToken': csrf
         },
         "cache": false,
-        "data": {
-            "server": server,
-            "secret": secret,
-            "values": values
-        },
+        "data": values,
         "success": function(data) {
             console.log(document.cookie);
             return true;

@@ -1,5 +1,6 @@
 
-var interval = '3m',                                    // base interval setting
+var server = $('input[name="hwaddr"]').val(),           // server identifier
+    interval = '3m',                                    // base interval setting
     serverMacAddress = server.replace(/-/g, ":"),       // server mac address
     optionalLength = 55,                                // set optional data lenght globally
 
