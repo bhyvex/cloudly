@@ -103,7 +103,7 @@ def setup_system():
     return True
 
 
-def self_update( uuid, secret ):
+def self_update( secret ):
 
     print 'Running agent-self update..'
 
