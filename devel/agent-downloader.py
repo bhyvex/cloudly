@@ -52,10 +52,10 @@ def self_update( uuid, secret ):
     print 'Setting the agent file permissions.. OK'
     os.chmod(AGENT_PATH,0755)
 
-    print 'Kicking off self update...'
+    print 'Kicking off self update...'    
+    python = sys.executable
+    os.execl(python, python, * sys.argv)
     
-    os.execl(AGENT_PATH, '')
-
     return AGENT_VERSION
     
 
