@@ -20,6 +20,7 @@ except: pass
 AGENT_VERSION = "0.1"
 AGENT_ALLOWED_TO_SELF_UPDATE = True
 API_SERVER = "api.projectcloudly.com:5001"
+AGENT_PATH = "/opt/monitoring-agent.py"
 
 def self_update( uuid, secret ):
 
