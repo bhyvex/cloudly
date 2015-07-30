@@ -19,7 +19,7 @@ except: pass
 
 AGENT_VERSION = "0.1"
 AGENT_ALLOWED_TO_SELF_UPDATE = True
-
+API_SERVER = "api.projectcloudly.com:5001"
 
 def self_update( uuid, secret ):
 
@@ -28,7 +28,17 @@ def self_update( uuid, secret ):
     r1 = conn.getresponse()
     data = r1.read()
 
-    print type(data), len(data)
+    agent_code = ""
+    for line in data.split('\n'):
+        if("SECRET = \"\"" in line):
+            agent_code += "SECRET = \""+secret+"\"\n"
+            continue
+        if("API_SERVER = \"\"" in line):
+            agent_code += "API_SERVER = \""+API_SERVER+"\"\n"
+            continue
+        agent_code += line + "\n"
+
+    print agent_code
 
     return AGENT_VERSION
     
