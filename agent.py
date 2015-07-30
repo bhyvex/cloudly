@@ -21,6 +21,8 @@ except: pass
 
 AGENT_VERSION = "0.2"
 AGENT_ALLOWED_TO_SELF_UPDATE = True
+AGENT_PATH = "/opt/monitoring-agent.py"
+
 
 SECRET = "" # to be injected on download by Cloudly
 if(not SECRET): SECRET = raw_input("Enter your secret: ")
@@ -99,6 +101,43 @@ def setup_system():
                 os.system(installer+" install python-simplejson")       
     
     return True
+
+
+def self_update( uuid, secret ):
+
+    print 'Running agent-self update..'
+
+    conn = httplib.HTTPSConnection("raw.githubusercontent.com")
+    conn.request( "GET", "/jparicka/cloudly/master/agent.py" )
+    r1 = conn.getresponse()
+    data = r1.read()
+    
+    print 'Downloading the new monitoring agent... OK'
+
+    agent_code = ""
+    for line in data.split('\n'):
+        if("SECRET = \"\"" in line):
+            agent_code += "SECRET = \""+secret+"\"\n"
+            continue
+        if("API_SERVER = \"\"" in line):
+            agent_code += "API_SERVER = \""+API_SERVER+"\"\n"
+            continue
+        agent_code += line + "\n"
+
+    print 'Saving the resultant monitoring agent code.. OK'
+
+    f = open(AGENT_PATH, "w")
+    f.write( agent_code )
+    f.close()
+
+    print 'Setting the agent file permissions.. OK'
+    os.chmod(AGENT_PATH,0755)
+
+    print 'Kicking off self update...'    
+    python = sys.executable
+    os.execl(python, python, * sys.argv)
+    
+    return AGENT_VERSION
 
 
 def _get_hostname():
