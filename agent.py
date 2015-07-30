@@ -821,6 +821,8 @@ def main():
         api_response = send_data(SECRET,api_call,system_metrics)
 
         print 'debug api_response', api_response
+        if(api_response=="update"): self_update(SECRET)
+        
         time.sleep(2)
 
     print "ze end."
