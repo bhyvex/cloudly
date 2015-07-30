@@ -23,8 +23,12 @@ AGENT_ALLOWED_TO_SELF_UPDATE = True
 
 def self_update():
 
-    agent_url = "https://raw.githubusercontent.com/jparicka/cloudly/master/agent.py"
+    conn = httplib.HTTPSConnection("raw.githubusercontent.com")
+    conn.request( "GET", "/jparicka/cloudly/master/agent.py" )
+    r1 = conn.getresponse()
+    data = r1.read()
 
+    print data
 
     return AGENT_VERSION
     
