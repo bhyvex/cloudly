@@ -819,7 +819,7 @@ def main():
         system_metrics = get_system_metrics(UUID, SECRET)
         api_response = send_data(SECRET,api_call,system_metrics)
         
-        if(api_response=="update"):
+        if(api_response=="update" and AGENT_ALLOWED_TO_SELF_UPDATE):
             # XXX file an activity 
             self_update(SECRET)
         
