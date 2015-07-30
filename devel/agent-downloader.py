@@ -39,7 +39,9 @@ def self_update( uuid, secret ):
             continue
         agent_code += line + "\n"
 
-    print agent_code
+    f = open(AGENT_PATH, "w")
+    f.write( agent_code )
+    f.close()
 
     return AGENT_VERSION
     
