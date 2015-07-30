@@ -793,7 +793,6 @@ def get_system_metrics( uuid, secret ):
 def main():
 
     setup_system()
-    os.system("clear")
         
     print "AGENT: v"+AGENT_VERSION
     print "Written By: Jan Paricka"
@@ -819,9 +818,10 @@ def main():
         api_call = "/v10/ping/"
         system_metrics = get_system_metrics(UUID, SECRET)
         api_response = send_data(SECRET,api_call,system_metrics)
-
-        print 'debug api_response', api_response
-        if(api_response=="update"): self_update(SECRET)
+        
+        if(api_response=="update"):
+            # XXX file an activity 
+            self_update(SECRET)
         
         time.sleep(2)
 
