@@ -4,16 +4,43 @@ var csrf = $('input[name="csrfmiddlewaretoken"]').val(),// request middlevare se
 
     addressUpdateSession = '/ajax/session/update/';
 
+function createCookie(name, value, days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i=0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+function eraseCookie(name) {
+    createCookie(name,"",-1);
+}
+
 function updateSession(values) {
-    console.log(Object.prototype.toString.call(values) !== '[object Object]');
-    console.log(jQuery.isEmptyObject(values));
     if (Object.prototype.toString.call(values) !== '[object Object]'
         && jQuery.isEmptyObject(values) === true
     ) {
         return false;
     }
+
+    $.each(values, function(key, value) {
+        eraseCookie(key);
+        document.cookie = key + '=' + value;
+    });
     console.log(document.cookie);
-    console.log(values);
 
     values.secret = secret
     $.ajax({

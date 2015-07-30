@@ -72,7 +72,7 @@ def update_session(request):
 
     request.session.modified = True                                                                                               
 
-    return HttpResponse(True)
+    return render_to_response('ajax_null.html', locals())
 
 
 @login_required()

@@ -5,7 +5,16 @@
  * (code standards: http://javascript.crockford.com/code.html)
  */
 
-var cpuUsageInterval = {}  // set interval globally
+var cpuUsageInterval = {};  // set interval globally
+
+if (readCookie('cpu_usage_interval') !== null) {
+    interval = readCookie('cpu_usage_interval');
+
+    $('#cpu_usage_interval a').removeClass('active');
+    $('#cpu_usage_interval')
+        .find('[data-interval="' + interval +'"]')
+        .addClass('active');
+}
 
 /**
  * Call or stop interval update action (via parameter updateChart parameter)
@@ -112,9 +121,11 @@ $(function () {
                 interval = $(link).attr('data-interval'),   // get interval from data attribute
                 duration = setDuration(interval);           // set duration
 
-            updateSession({'cpu_usage_interval': interval});
 
-            $('#cpu_usage_interval a.active').removeClass('active');
+            var values = {'cpu_usage_interval': interval}
+            updateSession(values);
+
+            $('#cpu_usage_interval a').removeClass('active');
             $(link).addClass('active');
 
             updateCpuUsageChart(    // stop last ajax chart update
