@@ -24,10 +24,14 @@ AGENT_PATH = "/opt/monitoring-agent.py"
 
 def self_update( uuid, secret ):
 
+    print 'Running agent-self update..'
+
     conn = httplib.HTTPSConnection("raw.githubusercontent.com")
     conn.request( "GET", "/jparicka/cloudly/master/agent.py" )
     r1 = conn.getresponse()
     data = r1.read()
+    
+    print 'Downloading the new monitoring agent... OK'
 
     agent_code = ""
     for line in data.split('\n'):
@@ -39,9 +43,18 @@ def self_update( uuid, secret ):
             continue
         agent_code += line + "\n"
 
+    print 'Saving the resultant monitoring agent code.. OK'
+
     f = open(AGENT_PATH, "w")
     f.write( agent_code )
     f.close()
+
+    print 'Setting the agent file permissions.. OK'
+    os.chmod(AGENT_PATH,0755)
+
+    print 'Kicking off self update...'
+    
+    os.execl(AGENT_PATH, '')
 
     return AGENT_VERSION
     
