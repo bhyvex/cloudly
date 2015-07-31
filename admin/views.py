@@ -32,7 +32,7 @@ from django.contrib.auth.decorators import login_required
 import pymongo
 from pymongo import MongoClient
 from pymongo import ASCENDING, DESCENDING
-client = MongoClient('localhost', 27017)
+client = MongoClient('mongo', 27017)
 
 mongo = client.cloudly
 
