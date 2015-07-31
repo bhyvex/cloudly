@@ -251,5 +251,6 @@ Screenshots & Live Demo
 
 ###### Demo
 
-Project can be currently seen on https://
+Project can be currently seen on https://projectcloudly.com/demo/
+
 
