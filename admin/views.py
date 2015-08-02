@@ -57,11 +57,6 @@ def user_activity_report(request, user_id):
     if not request.user.is_staff:
         return HttpResponseRedirect("/")
 
-
-    #if not request.user.is_superuser:
-    #    print 'anonymous'
-    #    return HttpResponseRedirect("/")
-    
     print request.user
     
     profile = Profile.objects.get(user=request.user)
