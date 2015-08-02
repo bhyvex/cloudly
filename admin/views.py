@@ -54,6 +54,10 @@ def user_activity_report(request, user_id):
     
     print '-- admin report user activity', user_id
 
+    if not request.user.is_staff:
+        return HttpResponseRedirect("/")
+
+
     #if not request.user.is_superuser:
     #    print 'anonymous'
     #    return HttpResponseRedirect("/")
@@ -98,9 +102,8 @@ def admin(request):
 
     print '--  admin page:'
 
-    #if not request.user.is_superuser:
-    #    print 'anonymous'
-    #    return HttpResponseRedirect("/")
+    if not request.user.is_staff:
+        return HttpResponseRedirect("/")
 
     print request.user
     
