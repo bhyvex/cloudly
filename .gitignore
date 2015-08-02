@@ -1,5 +1,10 @@
+# app settings
 *.pyc
 media/*
 
+# setting file
+cloudly/settings.py
+
+# Vim setting
 Session.vim
 *.swp
