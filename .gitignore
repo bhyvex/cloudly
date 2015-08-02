@@ -3,7 +3,7 @@
 media/*
 
 # setting file
-cloudly/settings.py
+./cloudly/settings.py
 
 # Vim setting
 Session.vim
