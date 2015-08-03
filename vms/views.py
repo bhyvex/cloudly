@@ -895,7 +895,10 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
     if(graph_type=="disks"):
 
-        mount_ponit = request.POST[u'mountPoint']
+        print '*'*1000
+        print request.POST
+
+        mount_ponit = request.POST['mountPoint']
 
         graph_interval = request.POST['interval']
         graphs_mixed_respose = []

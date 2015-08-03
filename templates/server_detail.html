@@ -282,7 +282,6 @@
                         <div id="inbound_traffic"></div>
                     </div>
 
-
                     <div id="outbound_bytes"></div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -505,7 +504,7 @@
                                     {% include "partials/chart_interval.html" %}
                                 </ul>
                             </div>
-                            <div id="{{disk|convert_disk_name}}_chart_id"></div>
+                            <div id="{{disk|convert_disk_name}}"></div>
                         </div>
                     {% endfor %}
                 </div>
@@ -654,7 +653,6 @@
 <script src="/static/js/server_detail.js"></script>
 <script src="/static/js/charts_options.js"></script>
 <script src="/static/js/charts.js"></script>
-<script src="/static/js/chart_disks.js"></script>
 <script src="http://cdn.datatables.net/responsive/1.0.6/js/dataTables.responsive.js"></script>
 
 {% endblock extra_js %}

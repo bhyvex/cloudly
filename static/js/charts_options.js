@@ -4,7 +4,7 @@
 var chartOptions = {
     cpu_usage: {
         chart: {
-            renderTo: 'cpu_usage'
+            renderTo: ''
         },
         title: {
             text: ''
@@ -60,7 +60,7 @@ var chartOptions = {
     },
     loadavg: {
         chart: {
-            renderTo: 'loadavg',
+            renderTo: '',
         },
         title: {
             text: ''
@@ -106,7 +106,7 @@ var chartOptions = {
     },
     mem_usage: {
         chart: {
-            renderTo: 'mem_usage',
+            renderTo: '',
         },
         title: {
             text: ''
@@ -144,7 +144,7 @@ var chartOptions = {
     },
     inbound_traffic: {
         chart: {
-            renderTo: 'inbound_traffic'
+            renderTo: ''
         },
         title: {
             text: ''
@@ -182,7 +182,7 @@ var chartOptions = {
     },
     outbound_traffic: {
         chart: {
-            renderTo: 'outbound_traffic'
+            renderTo: ''
         },
         title: {
             text: ''
@@ -201,8 +201,7 @@ var chartOptions = {
         yAxis: {
             title: {
                 text: 'Outbound'
-            },
-            min: 0
+            }
         },
         tooltip: {
             formatter: function () {
@@ -217,5 +216,42 @@ var chartOptions = {
                 data: []
             }
         ]
+    },
+    disks: {
+        chart: {
+            renderTo: '',
+        },
+        title: {
+            text: ''
+        },
+        xAxis: {
+            type: 'datetime',
+            labels: {
+                formatter: function() {
+                    return Highcharts.dateFormat('%H:%M:%S', this.value * 1000);    // chart need value in milisecond
+                }
+            }
+        },
+        yAxis: {
+            title: {
+                text: 'Disk usage'
+            },
+            labels: {
+                formatter: function () {
+                   return Highcharts.numberFormat((this.value / 1024 / 1000), 0, '.', ',') + ' MB';
+                } 
+            }
+        },
+        tooltip: {
+            formatter: function () {
+                return '<strong>' + Highcharts.numberFormat((this.y/1024/1000), 0, '.', ',') + ' MB '
+                    + 'used</strong><br/>'
+                    + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x*1000);
+            }
+        },
+        series: [{
+            name: 'DISKS',
+            data: []
+        }]
     }
 }

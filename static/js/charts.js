@@ -7,6 +7,7 @@ var Chart = function () {
     return {
         address: '',
         div: '',
+        mountPoint: '',
         intervalName: '',
         options: {
             update: false,
@@ -15,14 +16,12 @@ var Chart = function () {
         },
         chartOptions: {},
         init: function() {
-            console.log('init');
             this.chart = new Highcharts.Chart(this.chartOptions);
             this.displayChart();
             this.changeInterval();
         },
         chart: {},
         ajaxRequestData: function() {
-            console.log('ajaxRequestData');
             var that = this;
             $.ajax({
                 url: this.address,
@@ -35,7 +34,8 @@ var Chart = function () {
                 data: {
                     'server': server,
                     'secret': secret,
-                    'interval': this.options.interval
+                    'interval': this.options.interval,
+                    'mountPoint': this.mountPoint
                 },
                 success: function(data) {
                     if (data !== undefined && data !== null && data[0].length > 0) {
@@ -58,7 +58,6 @@ var Chart = function () {
             });
         },
         interval: function () {
-            console.log('interval');
             var that = this;
             this.intervalName = setInterval(function () {
                 if (that.options.display) {
@@ -67,17 +66,14 @@ var Chart = function () {
             }, that.getDuration());
         },
         clearInterval: function () {
-            console.log('clearInterval');
             window.clearInterval(this.intervalName);
         },
         displayChart: function() {
-            console.log('displayChart');
             this.options.update = false;
             this.ajaxRequestData();
             this.updateChart();
         },
         updateChart: function() {
-            console.log('updateChart');
             this.interval();
         },
         addFirstChartData: function (data) {
@@ -127,22 +123,76 @@ var Chart = function () {
     }
 }
 
+function getDisks() {
+    var disks = $('input[name="available_disks_graphs"]').val();
+
+    disks = disks
+        .replace(']', '')
+        .replace('[', '')
+        .replace(/"/g, '')
+        .split(',');
+
+    var disksObj = {};
+    for (i = 0; i < disks.length; ++i) {
+        var diskDiv = disks[i].replace(/\//g, 'slash');
+        disksObj[disks[i]]  = {
+            div: diskDiv,
+            type: 'disks'
+        }
+    }
+
+    return disksObj;
+}
+
+function mergeObjects(obj1,obj2){
+    var obj3 = {};
+    
+    for (var attrname in obj1) { 
+        obj3[attrname] = obj1[attrname]; 
+    }
+
+    for (var attrname in obj2) { 
+        obj3[attrname] = obj2[attrname]; 
+    }
+
+    return obj3;
+}
 
 $(document).ready(function () {
     var activeCharts = {};
-    var chartsType = [
-        'cpu_usage',
-        'loadavg',
-        'mem_usage',
-        'inbound_traffic',
-        'outbound_traffic'
-    ];
+    var baseChartsType = {
+        cpu_usage: {
+            div: 'cpu_usage',
+            type: 'cpu_usage'
+        },
+        loadavg: {
+            div: 'loadavg',
+            type: 'loadavg'
+        },
+        mem_usage: {
+            div: 'mem_usage',
+            type: 'mem_usage'
+        },
+        inbound_traffic: {
+            div: 'inbound_traffic',
+            type: 'inbound_traffic'
+        },
+        outbound_traffic: {
+            div: 'outbound_traffic',
+            type: 'outbound_traffic'
+        }
+    };
+    var disks = getDisks();
+    var serverCharts = mergeObjects(baseChartsType, disks);
 
-    $.each(chartsType, function(i, chartType) {
-        activeCharts[chartType] = new Chart();
-        activeCharts[chartType]['chartOptions'] = chartOptions[chartType];
-        activeCharts[chartType]['address'] = '/ajax/server/' + server + '/metrics/' + chartType +'/';
-        activeCharts[chartType]['div'] = chartType;
-        activeCharts[chartType].init();
+    $.each(serverCharts, function(chartMp, chartType) {
+        activeCharts[chartType['div']] = new Chart();
+        var chartOpt = chartOptions[chartType.type];
+        chartOpt['chart']['renderTo'] = chartType['div']; 
+        activeCharts[chartType['div']]['div'] = chartType['div'];
+        activeCharts[chartType['div']]['chartOptions'] = chartOpt;
+        activeCharts[chartType['div']]['mountPoint'] = chartMp;
+        activeCharts[chartType['div']]['address'] = '/ajax/server/' + server + '/metrics/' + chartType['type'] + '/';
+        activeCharts[chartType['div']].init();
     });
 });
