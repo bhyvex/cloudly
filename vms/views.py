@@ -70,7 +70,7 @@ def update_session(request):
         if(value != 'secret'):
             request.session[value] = request.POST[value]
 
-    request.session.modified = True                                                                                               
+    request.session.modified = True
 
     return render_to_response('ajax_null.html', locals())
 
@@ -895,7 +895,10 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
     if(graph_type=="disks"):
 
-        mount_ponit = request.POST[u'mountPoint']
+        print '*'*1000
+        print request.POST
+
+        mount_ponit = request.POST['mountPoint']
 
         graph_interval = request.POST['interval']
         graphs_mixed_respose = []
@@ -1010,7 +1013,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         return HttpResponse(graphs_mixed_respose, content_type="application/json")
 
 
-    if(graph_type=="network_input_packets" or graph_type=="network_input_bytes" or graph_type=="network_output_packets" or graph_type=="network_output_bytes"):
+    if(graph_type=="network_input_packets" or graph_type=="inbound_traffic" or graph_type=="network_output_packets" or graph_type=="outbound_traffic"):
 
         params = None
         graph_interval = request.POST['interval']

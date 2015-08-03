@@ -11,15 +11,7 @@ var server = $('input[name="hwaddr"]').val(),           // server identifier
     // dataTable ajax call
     addressProcessesTable = '/ajax/server/' + server + '/metrics/processes/',
     addressNetworkConnectionsTable = '/ajax/server/' + server + '/metrics/network_connections/',
-    addressActiveNetworkConnectionsTable = '/ajax/server/' + server + '/metrics/active_network_connections/',
-
-    // graphs ajax calls
-    addressLoadavg = '/ajax/server/' + server + '/metrics/loadavg/',
-    addressCpuUsage = '/ajax/server/' + server + '/metrics/cpu_usage/',
-    addressMemUsage = '/ajax/server/' + server + '/metrics/mem_usage/',
-    addressOutboundTraffic = '/ajax/server/' + server + '/metrics/network_output_bytes/',
-    addressInboundTraffic = '/ajax/server/' + server + '/metrics/network_input_bytes/',
-    addressDisks = '/ajax/server/' + server + '/metrics/disks/';
+    addressActiveNetworkConnectionsTable = '/ajax/server/' + server + '/metrics/active_network_connections/';
 
 (function($) {
     $.fn.deactivePanel = function() {
@@ -242,7 +234,6 @@ function checkServerName(servername) {
 
 $(document).ready(function() {
     updateServerInfo();
-    $('#diskGraphs').deactivePanel();
     $('#serviceDiscovery').deactivePanel();
     $('#serverActivity').deactivePanel();
     $('#activeNetworkSessions').deactivePanel();
