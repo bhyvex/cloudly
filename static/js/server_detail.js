@@ -17,8 +17,8 @@ var server = $('input[name="hwaddr"]').val(),           // server identifier
     addressLoadavg = '/ajax/server/' + server + '/metrics/loadavg/',
     addressCpuUsage = '/ajax/server/' + server + '/metrics/cpu_usage/',
     addressMemUsage = '/ajax/server/' + server + '/metrics/mem_usage/',
-    addressOutboundTraffic = '/ajax/server/' + server + '/metrics/network_output_bytes/',
-    addressInboundTraffic = '/ajax/server/' + server + '/metrics/network_input_bytes/',
+    addressOutboundTraffic = '/ajax/server/' + server + '/metrics/outbound_traffic/',
+    addressInboundTraffic = '/ajax/server/' + server + '/metrics/inbound_traffic/',
     addressDisks = '/ajax/server/' + server + '/metrics/disks/';
 
 (function($) {
