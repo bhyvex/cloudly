@@ -205,7 +205,6 @@ $(document).ready(function() {
     var processTable = $("#running_processes_table").DataTable({
         "lengthMenu": [[15, 50, 100, -1], [15, 50, 100, "All"]],
         "order": [[ 2, "desc" ]],
-        "responsive": true,
         "ajax": {
             "url": addressProcessesTable,
             "type": "POST",
@@ -230,7 +229,6 @@ $(document).ready(function() {
     var networkConnectionsTable = $("#network_connections").DataTable({
         "lengthMenu": [[10, 30, 50, -1], [10, 30, 50, "All"]],
         "order": [[ 3, "asc" ]],
-        "responsive": true,
         "ajax": {
             "url": addressNetworkConnectionsTable,
             "type": "POST",
@@ -254,7 +252,6 @@ $(document).ready(function() {
     var activeNetworkConnectionsTable = $("#active_network_connections").DataTable({
         "lengthMenu": [[50, 10, 30, 100, -1], [50, 10, 30, 100, "All"]],
         "order": [[ 3, "asc" ]],
-        "responsive": true,
         "ajax": {
             "url": addressActiveNetworkConnectionsTable,
             "type": "POST",
