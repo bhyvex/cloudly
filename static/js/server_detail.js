@@ -1,8 +1,6 @@
 
 var server = $('input[name="hwaddr"]').val(),           // server identifier
-    interval = '3m',                                    // base interval setting
     serverMacAddress = server.replace(/-/g, ":"),       // server mac address
-    optionalLength = 55,                                // set optional data lenght globally
 
     // server info ajax calls
     addressServerInfo = '/ajax/server/' + server + '/metrics/server_info/',
@@ -144,81 +142,6 @@ function updateServerInfo() {
 };
 
 /**
- * Set duration by interval value
- */
-function setDuration(interval) {
-    var duration = '3000';      // base duration value
-    if (interval == '15m') {
-        duration = '15000';
-    } else if (interval == '1h') {
-        duration = '60000';
-    } else if (interval == '1d') {
-        duration = '300000';
-    } else if (interval == '7d') {
-        duration = '1800000';
-    } else if (interval == '30d') {
-        duration = '43200000';
-    } else if (interval == 'at') {
-        duration = '1800000';
-    }
-    return duration;
-}
-
-/**
- * Get new data via ajax call and set it to given serie
- */
-function requestChartData(address, series, interval, updateChart, mountPoint) {
-    $.ajax({
-        url: address,
-        type: 'POST',
-        dataType: 'json',
-        headers: {
-            'X-CSRFToken': csrf
-        },
-        cache: false,
-        data: {
-            'server': server,
-            'secret': secret,
-            'interval': interval,
-            'mountPoint': mountPoint
-        },
-        success: function(data) {
-            if (data !== undefined && data !== null && data[0].length > 0) {
-                for (var i = 0; i < data.length; i++) {
-                    if (updateChart) {
-                        series[i].addPoint(data[i][0], true, true);   // add new point to chart serie
-                    } else {
-                        series[i].setData(addFirstChartData(data[i])) // add data set to chart serie
-                    }
-                }
-            }
-        },
-        error: function(data, textStatus, errorThrown) {
-            console.log('error: ' + textStatus);
-            console.log('error: ' + errorThrown);
-        }
-    });
-}
-
-/**
- * Check, fill and sort given data with global parametrs
- */
-function addFirstChartData(data) {
-    var optionalData = [],          // empty optional data array
-        dataLength = data.length;   // current data lenght
-
-    for (var i = 0; i < (optionalLength - dataLength); i++) {
-        optionalData.push([
-            (data[0][0] - (i + 1) * 3), // set timestamp value
-            null                        // set cpu usage value
-        ]);
-    }
-
-    optionalData = optionalData.concat(data);   // fill data to optional lenght
-    return data.reverse();          // chart need reverted data
-}
-
-/**
  * Check current and given servername, update breadcrumb info and show/hide
  * info with mac address
  */
@@ -242,16 +165,6 @@ $(document).ready(function() {
     if ($("#servername").text().trim() != serverMacAddress) {
         $("#mac-address-tooltip").show();
     }
-
-    var shiftWindow = function() {
-       scrollBy(0, -90);
-    }
-
-    if (location.hash) {
-        shiftWindow();
-    }
-
-    window.addEventListener("hashchange", shiftWindow);
 
     Highcharts.setOptions({ // set global chart options
         global: {
@@ -369,4 +282,3 @@ $(document).ready(function() {
         activeNetworkConnectionsTable.ajax.reload(null, false);
     }, 1000);
 });
-

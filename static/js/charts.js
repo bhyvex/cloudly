@@ -77,7 +77,8 @@ var Chart = function () {
             this.interval();
         },
         addFirstChartData: function (data) {
-            var optionalData = [],
+            var optionalLength = 55,
+                optionalData = [],
                 dataLength = data.length;
 
             for (var i = 0; i < (optionalLength - dataLength); i++) {
@@ -127,17 +128,17 @@ function getDisks() {
     var disks = $('input[name="available_disks_graphs"]').val();
 
     disks = disks
-        .replace(']', '')
-        .replace('[', '')
-        .replace(/"/g, '')
-        .split(',');
+        .replace("]", "")
+        .replace("[", "")
+        .replace(/"/g, "")
+        .split(",");
 
     var disksObj = {};
     for (i = 0; i < disks.length; ++i) {
-        var diskDiv = disks[i].replace(/\//g, 'slash');
+        var diskDiv = disks[i].replace(/\//g, "slash");
         disksObj[disks[i]]  = {
             div: diskDiv,
-            type: 'disks'
+            type: "disks"
         }
     }
 
@@ -161,38 +162,38 @@ function mergeObjects(obj1,obj2){
 $(document).ready(function () {
     var activeCharts = {};
     var baseChartsType = {
-        cpu_usage: {
-            div: 'cpu_usage',
-            type: 'cpu_usage'
+        "cpu_usage": {
+            "div": "cpu_usage",
+            "type": "cpu_usage"
         },
-        loadavg: {
-            div: 'loadavg',
-            type: 'loadavg'
+        "loadavg": {
+            "div": "loadavg",
+            "type": "loadavg"
         },
-        mem_usage: {
-            div: 'mem_usage',
-            type: 'mem_usage'
+        "mem_usage": {
+            "div": "mem_usage",
+            "type": "mem_usage"
         },
-        inbound_traffic: {
-            div: 'inbound_traffic',
-            type: 'inbound_traffic'
+        "inbound_traffic": {
+            "div": "inbound_traffic",
+            "type": "inbound_traffic"
         },
-        outbound_traffic: {
-            div: 'outbound_traffic',
-            type: 'outbound_traffic'
+        "outbound_traffic": {
+            "div": "outbound_traffic",
+            "type": "outbound_traffic"
         }
     };
     var disks = getDisks();
     var serverCharts = mergeObjects(baseChartsType, disks);
 
     $.each(serverCharts, function(chartMp, chartType) {
-        activeCharts[chartType['div']] = new Chart();
+        activeCharts[chartType["div"]] = new Chart();
         var chartOpt = chartOptions[chartType.type];
-        chartOpt['chart']['renderTo'] = chartType['div']; 
-        activeCharts[chartType['div']]['div'] = chartType['div'];
-        activeCharts[chartType['div']]['chartOptions'] = chartOpt;
-        activeCharts[chartType['div']]['mountPoint'] = chartMp;
-        activeCharts[chartType['div']]['address'] = '/ajax/server/' + server + '/metrics/' + chartType['type'] + '/';
-        activeCharts[chartType['div']].init();
+        chartOpt["chart"]["renderTo"] = chartType["div"]; 
+        activeCharts[chartType["div"]]["div"] = chartType["div"];
+        activeCharts[chartType["div"]]["chartOptions"] = chartOpt;
+        activeCharts[chartType["div"]]["mountPoint"] = chartMp;
+        activeCharts[chartType["div"]]["address"] = "/ajax/server/" + server + "/metrics/" + chartType["type"] + "/";
+        activeCharts[chartType["div"]].init();
     });
 });
