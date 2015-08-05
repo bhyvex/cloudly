@@ -270,8 +270,9 @@ $(document).ready(function() {
             { "data": "proto" },
             { "data": "recv-q" },
             { "data": "send-q" },
+            { "data": "local-address" },
             { "data": "foreign-address" },
-            { "data": "local-address" }
+            { "data": "foreign-port" }
         ]
     });
 

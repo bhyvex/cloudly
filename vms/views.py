@@ -833,8 +833,9 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
             connection['proto'] = conn[1]
             connection['recv-q'] = conn[2]
             connection['send-q'] = conn[3]
-            connection['foreign-address'] = conn[4]
             connection['local-address'] = conn[7]
+            connection['foreign-address'] = conn[4]
+            connection['foreign-port'] = conn[5]
 
             active_network_connections_.append(connection)
 
