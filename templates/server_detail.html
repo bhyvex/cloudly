@@ -252,6 +252,44 @@
         </div>
     </div><!--/row-->
 
+    <div id="running_processes"
+        class="row"
+        {% if server_status|lower = "offline" %}
+            style="display: none;"
+        {% endif %}
+        >
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2><i class="fa fa-align-justify"></i><span class="break"></span>Running processes</h2>
+                    <div class="panel-actions">
+                        <a href="table.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+                        <a href="table.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                        <a href="table.html#" class="btn-close"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table
+                        id="running_processes_table"
+                        class="table table-bordered responsive table-striped bootstrap-datatable"
+                        width="100%"
+                    >
+                        <thead>
+                            <tr>
+                                <th>PID</th>
+                                <th>User</th>
+                                <th>CPU</th>
+                                <th>MEM</th>
+                                <th>Process</th>
+                                <th>Command</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div><!--/col-->
+    </div><!--/row-->
+
     <div id="networking"
         class="row"
         {% if server_status|lower = "offline" %}
@@ -500,44 +538,6 @@
 
             </div>
         </div>
-    </div><!--/row-->
-
-    <div id="running_processes"
-        class="row"
-        {% if server_status|lower = "offline" %}
-            style="display: none;"
-        {% endif %}
-        >
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h2><i class="fa fa-align-justify"></i><span class="break"></span>Running processes</h2>
-                    <div class="panel-actions">
-                        <a href="table.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-                        <a href="table.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-                        <a href="table.html#" class="btn-close"><i class="fa fa-times"></i></a>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <table
-                        id="running_processes_table"
-                        class="table table-bordered responsive table-striped bootstrap-datatable"
-                        width="100%"
-                    >
-                        <thead>
-                            <tr>
-                                <th>PID</th>
-                                <th>User</th>
-                                <th>CPU</th>
-                                <th>MEM</th>
-                                <th>Process</th>
-                                <th>Command</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-        </div><!--/col-->
     </div><!--/row-->
 
     <div id="services_discovery"
