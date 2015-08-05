@@ -17,6 +17,8 @@ var Chart = function () {
         chartOptions: {},
         init: function() {
             this.chart = new Highcharts.Chart(this.chartOptions);
+            this.setInterval();
+            this.updateActiveLink();
             this.displayChart();
             this.changeInterval();
         },
@@ -65,6 +67,12 @@ var Chart = function () {
                 }
             }, that.getDuration());
         },
+        setInterval: function() {
+            var sessionInterval = readCookie(this.div);
+            if (sessionInterval !== null) {
+                this.options.interval = sessionInterval;
+            }
+        },
         clearInterval: function () {
             window.clearInterval(this.intervalName);
         },
@@ -108,15 +116,23 @@ var Chart = function () {
                 return '3000';
             }
         },
+        updateActiveLink: function() {
+            $('#' + this.div + '_interval a.active').removeClass('active');
+            var link = $('#' + this.div + '_interval')
+                .find('*[data-interval=' + this.options.interval + ']');
+            link.addClass('active');
+        },
         changeInterval: function() {
             var that = this;
             $('#' + this.div + '_interval a').on('click', function() {
                 var link = this;
                 that.options.interval = $(link).attr('data-interval');
 
-                $('#' + that.div + '_interval a.active').removeClass('active');
-                $(link).addClass('active');
+                var chartSession = {};
+                chartSession[that.div] = that.options.interval;
+                updateSession(chartSession);
 
+                that.updateActiveLink();
                 that.clearInterval();
                 that.displayChart();
             });
@@ -147,13 +163,13 @@ function getDisks() {
 
 function mergeObjects(obj1,obj2){
     var obj3 = {};
-    
-    for (var attrname in obj1) { 
-        obj3[attrname] = obj1[attrname]; 
+
+    for (var attrname in obj1) {
+        obj3[attrname] = obj1[attrname];
     }
 
-    for (var attrname in obj2) { 
-        obj3[attrname] = obj2[attrname]; 
+    for (var attrname in obj2) {
+        obj3[attrname] = obj2[attrname];
     }
 
     return obj3;
@@ -189,7 +205,7 @@ $(document).ready(function () {
     $.each(serverCharts, function(chartMp, chartType) {
         activeCharts[chartType["div"]] = new Chart();
         var chartOpt = chartOptions[chartType.type];
-        chartOpt["chart"]["renderTo"] = chartType["div"]; 
+        chartOpt["chart"]["renderTo"] = chartType["div"];
         activeCharts[chartType["div"]]["div"] = chartType["div"];
         activeCharts[chartType["div"]]["chartOptions"] = chartOpt;
         activeCharts[chartType["div"]]["mountPoint"] = chartMp;
