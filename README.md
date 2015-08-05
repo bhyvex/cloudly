@@ -4,7 +4,7 @@ Cloudly
 Project Cloudly is "The Easiest To Setup" software to Monitor and to control your servers.  It's a first line of defence for your servers and also the ultimate Management Dashboard for your Cloud.
 It saves you money and the energies by taking away most of the usual servers monitoring complexities allowing you to focus more on control and better use of your infrastructure. 
 
-Cloudly can scale to writing millions of data per 'second' on commodity servers with regular spinning hard drives.  This is due and thanks to the technologies it utilises (e.g. OpenTSDB to begin with).
+Cloudly can scale to writing millions of data per 'second' on commodity servers with regular spinning hard drives.  This is due and thanks to the technologies it utilises (e.g. Hadoop/OpenTSDB to begin with).
 
 Cloudly is fully automated and does the servers monitoring for you with close to nothing to setup.
 
