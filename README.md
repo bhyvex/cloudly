@@ -13,7 +13,7 @@ Cloudly is fully automated and does the servers monitoring for you with close to
 Installation Instructions
 -------------------------
 
-In order to run this project in what we call and "Enterprise Mode", please follow the installation instructions below.
+In order to run this project in what we call the "Enterprise Mode", please follow the installation instructions below.
 
 
 ###### Install MySQL server and Python MySQLdb
