@@ -33,9 +33,6 @@ var chartOptions = {
         legend: {
             enabled: false
         },
-        exporting: {
-            enabled: false
-        },
         series: [{
             name: '% CPU used',
             data: [],
@@ -114,6 +111,9 @@ var chartOptions = {
         subtitle: {
             text: ''
         },
+        legend: {
+            enabled: false
+        },
         xAxis: {
             type: 'datetime',
             labels: {
@@ -151,6 +151,9 @@ var chartOptions = {
         },
         subtitle: {
             text: ''
+        },
+        legend: {
+            enabled: false
         },
         xAxis: {
             type: 'datetime',
@@ -190,6 +193,9 @@ var chartOptions = {
         subtitle: {
             text: ''
         },
+        legend: {
+            enabled: false
+        },
         xAxis: {
             type: 'datetime',
             labels: {
@@ -223,6 +229,9 @@ var chartOptions = {
         },
         title: {
             text: ''
+        },
+        legend: {
+            enabled: false
         },
         xAxis: {
             type: 'datetime',
