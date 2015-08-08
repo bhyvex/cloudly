@@ -24,6 +24,13 @@ for line in open('agent.py','rt').readlines():
         break
 
 
+def _file_alert():
+    return False
+
+def _fire_notification():
+    return False
+
+
 @app.route('/test/', methods = ['GET'])
 def test():
     return jsonify( { 'test': True } )
@@ -340,6 +347,7 @@ def ping():
     if(agent_version != AGENT_VERSION_CURRENT):
 
         return ("update", 201)
+
 
 
     return ("thanks", 201)
