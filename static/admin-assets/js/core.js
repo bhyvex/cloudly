@@ -105,9 +105,7 @@ jQuery(document).ready(function($){
                 .addClass('opened');
             $('.sidebar > div > ul > li > a').addClass('open');
 
-            if (sessionStorage) {
-                sessionStorage.sidebarClosed = 'yes';
-            }
+            updateSession({"sidebarClosed":"yes"});
         } else {
             $('body').removeClass('sidebar-minified');
             $('.main').removeClass('sidebar-minified');
@@ -121,20 +119,11 @@ jQuery(document).ready(function($){
                 .addClass('closed');
             $('.sidebar > div > ul > li > a').removeClass('open');
 
-            if (sessionStorage) {
-                sessionStorage.sidebarClosed = undefined;
-            }
+            updateSession({"sidebarClosed":"no"});
         }
 
         if ($('.machines-list').length) $('.machines-list').isotope('layout');
     });
-
-    if ($(window).width() > 767
-        && (sessionStorage.sidebarClosed !== undefined)
-        && $('#main-menu-min').hasClass('full')
-    ) {
-        $('#main-menu-min').click();
-    }
 
     $('#main-menu-toggle').click(function() {
         $('#main-menu-min').click();
@@ -173,11 +162,12 @@ jQuery(document).ready(function($){
         lineWidth: 1
     });
 
-    if (sessionStorage
-        && (sessionStorage.sidebarClosed !== undefined)
-        && $('#main-menu-min').hasClass('full')
-    ) {
-        $('#main-menu-min').click();
+    if (readCookie("sidebarClosed") !== null) {
+        if (readCookie("sidebarClosed") == "yes"
+            && $("#main-menu-min").hasClass("full")
+        ) {
+            $("#main-menu-min").click();
+        }
     }
 });
 
@@ -233,10 +223,6 @@ function widthFunctions(e) {
     }
 
     if (winWidth < 768) {
-        if ($('#main-menu-min').hasClass('full') === false) {
-            $('#main-menu-min').click();
-        }
-
         $('#main').outerWidth(winWidth + 'px');
 
         if($('.chat-full')) {
@@ -245,8 +231,12 @@ function widthFunctions(e) {
             });
         }
     } else {
-        if ($('#main-menu-min').hasClass('full')) {
-            $('#main-menu-min').click();
+        if (readCookie("sidebarClosed") !== null) {
+            if (readCookie("sidebarClosed") == "yes"
+                && $("#main-menu-min").hasClass("full")
+            ) {
+                $("#main-menu-min").click();
+            }
         }
 
         $('#main').css('width', '');
