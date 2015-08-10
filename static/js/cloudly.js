@@ -71,7 +71,7 @@ $(document).ready(function(){
     var elementPosition = $('#second-menu').offset();
 
     $(window).scroll(function() {
-        if ($(window).scrollTop() > (elementPosition.top - 30)) {
+        if ($(window).scrollTop() > (elementPosition.top - 60)) {
             var newWidth = $('#main').width();
             $('#second-menu').removeClass('container-fluid');
             $('#second-menu')
