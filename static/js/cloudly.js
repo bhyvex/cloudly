@@ -68,8 +68,24 @@ function updateSession(values) {
 }
 
 $(document).ready(function(){
-    vmsRequest.initAction();
+    var elementPosition = $('#second-menu').offset();
+    console.log(elementPosition);
 
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > (elementPosition.top - 30)) {
+            var newWidth = $('#main').width();
+            $('#second-menu').removeClass('container-fluid');
+            $('#second-menu')
+                .css('position', 'fixed')
+                .css('top', '60px')
+                .css('width', newWidth);
+        } else {
+            $('#second-menu').addClass('container-fluid');
+            $('#second-menu').css('position','static');
+        }
+    });
+
+    vmsRequest.initAction();
 });
 
 $(function () {

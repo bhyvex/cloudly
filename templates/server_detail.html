@@ -19,10 +19,9 @@
 <input type='hidden' name='hwaddr' value='{{hwaddr_orig}}' />
 <input type='hidden' name='secret' value='{{secret}}' />
 <input type='hidden' name='available_disks_graphs' value='[{% for disk in disks %}"{{disk}}"{% if not forloop.last %},{% endif %}{% endfor %}]' />
-    <ol class="breadcrumb">
-        <li><a href="/">Servers</a></li>
-        <li class="servername active">{{server|dict_get:"name"}}</li>
-    </ol>
+    {% block breadcrumb %}
+        {% include "partials/breadcrumb-server_detail.html" %}
+    {% endblock %}
 
     <div id="server_detail"
         class="row"

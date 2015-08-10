@@ -12,6 +12,53 @@ footer {
     z-index: 100;
 }
 
+#second-menu {
+    z-index: 2;
+    padding: 0 15px;
+    height: 40px;
+    border: none;
+    border: 1px solid #e1e6ef;
+    background: white;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    color: #384042;
+    line-height: 40px;
+    margin: 0 0 30px 0;
+}
+
+#second-menu ul {
+    height: 40px;
+    line-height: 40px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: center;
+}
+
+#second-menu ul li {
+    padding: 0 0.5em;
+    display: inline;
+}
+
+#second-menu ul li a {
+    color: #c0cadd;
+    line-height: 40px;
+    text-decoration: none;
+}
+
+#second-menu ul li a:hover {
+    text-decoration: underline;
+}
+
+#second-menu ul li.active a {
+    color: #167495;
+}
+
+#second-menu ul li.deactive {
+    color: #c0cadd;
+}
+
 @media (max-width: 767px) {
     .sidebar {
         position: relative;

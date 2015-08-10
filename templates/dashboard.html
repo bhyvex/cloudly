@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% load cloud_extras %}
-						
+
 {% block title %}Cloudly | Servers{% endblock %}
 
 {% block nav-bar %}
@@ -9,12 +9,12 @@
 {% endblock %}
 
 {% block page_content %}
-	<ol class="breadcrumb">
-		<li class="active">Servers</li>
-	</ol>
+    {% block breadcrumb %}
+        {% include "partials/breadcrumb-dashboard.html" %}
+    {% endblock %}
 
-	<div class="row">	
-	
+	<div class="row">
+
 		<div class="col-lg-12">
 			<div class="panel-body machines-buttons">
 
@@ -47,13 +47,13 @@
 						<p>Windows</p>
 					</a>
 				</div>
-	
+
 				<div class="col-lg-1 col-md-2 col-xs-6">
 					<a class="quick-button small btn-linux">
 						<p>Linux</p>
 					</a>
 				</div>
-	
+
 				<div class="col-lg-1 col-md-2 col-xs-6">
 					<a class="quick-button small btn-bsd">
 						<p>BSD</p>
