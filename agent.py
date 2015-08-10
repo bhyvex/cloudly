@@ -20,7 +20,7 @@ try:
 except: pass
 
 AGENT_VERSION = "0.2"
-AGENT_ALLOWED_TO_SELF_UPDATE = True
+AGENT_ALLOWED_TO_SELF_UPDATE = False
 AGENT_PATH = "/opt/monitoring-agent.py"
 
 
