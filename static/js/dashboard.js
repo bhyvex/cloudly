@@ -1,6 +1,6 @@
 
 function filterMachines(f) {
-	$('.machines-buttons .quick-button').removeClass('active');
+	$('.machines-buttons .secondmenu-button').removeClass('active');
 	$('.machines-buttons .btn-'+f).addClass('active');
 	if (f === 'all') f = '*';
 	else f = '.'+f;
@@ -126,7 +126,6 @@ var cloudlyVMSmanager  = {
 }
 
 $(document).ready (function() {
-
 	var btns = ['all','critical','offline', 'busy', 'windows', 'linux', 'bsd', 'cloud'];
 	for (var i = 0; i < btns.length; ++i) {
 	    (function(){

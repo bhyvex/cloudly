@@ -1,0 +1,52 @@
+{% load humanize %}
+{% load cloud_extras %}
+
+<div id="second-menu" class="container-fluid">
+    <ul class="navbar-left">
+        <li><a href="/" class="active">Servers</a></li>
+        <li>|</li>
+        <li class="servername deactive">{{server|dict_get:"name"}}</li>
+    </ul>
+    <!--
+    <ul class="navbar-right">
+        <li>
+            <a href="#server_detail" rel="nofollow" title="Server Details"><i class="fa fa-server"></i></a>
+        </li>
+        <li>
+            <a href="#system_metrics" rel="nofollow" title="System metrics">
+                <i class="fa fa-connectdevelop"></i>
+            </a>
+        </li>
+        <li>
+            <a href="#running_processes" rel="nofollow" title="Running processes">
+                <i class="fa fa-align-justify"></i>
+            </a>
+        </li>
+        <li>
+            <a href="#networking" rel="nofollow" title="Networking">
+                <i class="fa fa-globe"></i>
+            </a>
+        </li>
+        <li>
+            <a href="#disks" rel="nofollow" title="Disks">
+                <i class="fa fa-database"></i>
+            </a>
+        </li>
+        <li>
+            <a href="#services_discovery" rel="nofollow" title="Services diskovery">
+                <i class="fa fa-skyatlas"></i>
+            </a>
+        </li>
+        <li>
+            <a href="#server_activity" rel="nofollow" title="Server activity">
+                <i class="fa fa-forumbee"></i>
+            </a>
+        </li>
+        <li>
+            <a href="#fixed_problems" rel="nofollow" title="Fixed problems">
+                <i class="fa fa-bug"></i>
+            </a>
+        </li>
+    </ul>
+    -->
+</div>

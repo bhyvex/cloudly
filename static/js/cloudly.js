@@ -9,9 +9,11 @@ function createCookie(name, value, days) {
         var date = new Date();
         date.setTime(date.getTime()+(days*24*60*60*1000));
         var expires = "; expires="+date.toGMTString();
+    } else {
+        var expires = "";
     }
-    else var expires = "";
-    document.cookie = name+"="+value+expires+"; path=/";
+
+    document.cookie = name + "=" + value + expires + "; path=/";
 }
 
 function readCookie(name) {
@@ -66,6 +68,22 @@ function updateSession(values) {
 }
 
 $(document).ready(function(){
+    var elementPosition = $('#second-menu').offset();
+
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > (elementPosition.top - 30)) {
+            var newWidth = $('#main').width();
+            $('#second-menu').removeClass('container-fluid');
+            $('#second-menu')
+                .css('position', 'fixed')
+                .css('top', '60px')
+                .css('width', newWidth);
+        } else {
+            $('#second-menu').addClass('container-fluid');
+            $('#second-menu').css('position','static');
+        }
+    });
+
     vmsRequest.initAction();
 });
 
