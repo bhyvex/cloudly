@@ -148,10 +148,10 @@ function updateServerInfo() {
 function checkServerName(servername) {
     if (servername == "" || servername == serverMacAddress) {       // show/hide info icon
         $("#mac-address-tooltip").hide();
-        $(".breadcrumb > li.servername").text(serverMacAddress);    // change breadcrumb value
+        $("#second-menu > ul > li.servername").text(serverMacAddress);    // change breadcrumb value
     } else {
         $("#mac-address-tooltip").show();
-        $(".breadcrumb > li.servername").text(servername);          // change breadcrumb value
+        $("#second-menu > ul > li.servername").text(servername);          // change breadcrumb value
     }
 }
 

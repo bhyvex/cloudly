@@ -15,7 +15,8 @@ footer {
 #second-menu {
     z-index: 2;
     padding: 0 15px;
-    height: 40px;
+    min-height: 40px;
+    height: auto;
     border: none;
     border: 1px solid #e1e6ef;
     background: white;
@@ -51,7 +52,7 @@ footer {
     text-decoration: underline;
 }
 
-#second-menu ul li.active a {
+#second-menu ul li a.active {
     color: #167495;
 }
 
@@ -62,6 +63,7 @@ footer {
 @media (max-width: 767px) {
     .sidebar {
         position: relative;
+        z-index: 10;
         top: 50px;
     }
 
@@ -82,6 +84,7 @@ footer {
 
     .sidebar {
         position: fixed;
+        z-index: 10;
         margin-top: 60px;
         min-width: 60px;
         width: 60px;
@@ -95,6 +98,7 @@ footer {
 
     .sidebar {
         position: fixed;
+        z-index: 10;
         margin-top: 60px;
         min-width: 210px;
         width: 16.66666667%;
