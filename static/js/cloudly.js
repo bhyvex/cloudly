@@ -69,7 +69,6 @@ function updateSession(values) {
 
 $(document).ready(function(){
     var elementPosition = $('#second-menu').offset();
-    console.log(elementPosition);
 
     $(window).scroll(function() {
         if ($(window).scrollTop() > (elementPosition.top - 30)) {
