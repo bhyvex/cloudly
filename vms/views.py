@@ -260,7 +260,7 @@ def server_view(request, hwaddr):
         if not disk[5] in disks:
             disks.append(disk[5])
             
-    
+
     try:
         recently_clicked_servers = request.session["recently_clicked_servers"]
     except:
@@ -273,13 +273,11 @@ def server_view(request, hwaddr):
     else:
         pos_to_delete = [i for i,x in enumerate(recently_clicked_servers) if x == hwaddr]
         del recently_clicked_servers[pos_to_delete[0]]
-        recently_clicked_servers.append(hwaddr)
-        
+        recently_clicked_servers.append(hwaddr)        
         
     request.session["recently_clicked_servers"] = recently_clicked_servers
     request.session.modified = True
 
-    
 
     return render_to_response('server_detail.html', {'secret':profile.secret,'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'disks_usage':disks_usage,'disks':disks,'mem_usage':mem_usage,'loadavg':loadavg,'networking':networking,'activity':activity,'recently_clicked_servers':recently_clicked_servers,}, context_instance=RequestContext(request))
 
