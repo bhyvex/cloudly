@@ -259,8 +259,16 @@ def server_view(request, hwaddr):
     for disk in disks_:
         if not disk[5] in disks:
             disks.append(disk[5])
+            
+    
+    try:
+        recently_clicked_servers = request.session[recently_clicked_servers]
+    except:
+        recently_clicked_servers = []
+    
 
-    return render_to_response('server_detail.html', {'secret':profile.secret,'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'disks_usage':disks_usage,'disks':disks,'mem_usage':mem_usage,'loadavg':loadavg,'networking':networking,'activity':activity,}, context_instance=RequestContext(request))
+
+    return render_to_response('server_detail.html', {'secret':profile.secret,'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'disks_usage':disks_usage,'disks':disks,'mem_usage':mem_usage,'loadavg':loadavg,'networking':networking,'activity':activity,'recently_clicked_servers':recently_clicked_servers,}, context_instance=RequestContext(request))
 
 
 @login_required()
