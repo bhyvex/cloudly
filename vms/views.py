@@ -279,7 +279,7 @@ def server_view(request, hwaddr):
     request.session.modified = True
 
 
-    return render_to_response('server_detail.html', {'secret':profile.secret,'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'disks_usage':disks_usage,'disks':disks,'mem_usage':mem_usage,'loadavg':loadavg,'networking':networking,'activity':activity,'recently_clicked_servers':recently_clicked_servers,}, context_instance=RequestContext(request))
+    return render_to_response('server_detail.html', {'secret':profile.secret,'recently_clicked_servers':recently_clicked_servers, 'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'disks_usage':disks_usage,'disks':disks,'mem_usage':mem_usage,'loadavg':loadavg,'networking':networking,'activity':activity,'recently_clicked_servers':recently_clicked_servers,}, context_instance=RequestContext(request))
 
 
 @login_required()
