@@ -291,15 +291,20 @@ def server_view(request, hwaddr):
     SERVICES_COMMON = [
 
         # XXX try to define an extra_tag in each and every one of these....
+
+        # database systems
         {'process':"couchdb", 'tag':"CouchDB", 'description':"JSON based Web database",  'extra_tag':"database"},        
+        {'process':"mongod", 'tag':"MongoDB", 'description':"NoSQL database", 'extra_tag':"database"},
+        {'process':"redis", 'tag':"Redis", 'description':"Redis - Data structure server", 'extra_tag':"database"},
+        {'process':"opentsdb", 'tag':"OpenTSDB", 'description':"Scalable Time Series Database", 'extra_tag':"database"},        
+        {'process':"mysql", 'tag':"MySQLDB", 'description':"Relational Database Management System", 'extra_tag':"database"},        
+        {'process':"postgresql", 'tag':"PostgreSQL", 'description':"Object-relational Database System", 'extra_tag':"database"},
+        {'process':"sqlite", 'tag':"SQLite", 'description':"Simple SQL database engine", 'extra_tag':"database"},        
 
         {'process':"xorg", 'tag':"X11", 'description':"X Window System (X11)"},
-        {'process':"mongod", 'tag':"MongoDB", 'description':"NoSQL database"},
         {'process':"apache", 'tag':"Apache", 'description':"Apache Server"},        
         {'process':"apache2", 'tag':"Apache", 'description':"Apache Server"},        
-        {'process':"mysql", 'tag':"MySQLDB", 'description':"Relational Database Management System"},        
         {'process':"nodejs", 'tag':"Node.js", 'description':"Node.js Platform"},
-        {'process':"opentsdb", 'tag':"OpenTSDB", 'description':"Scalable Time Series Database"},        
         {'process':"joomla", 'tag':"Joomla", 'description':"Content Management System"},
         {'process':"drupal", 'tag':"Drupal 6/7", 'description':"Content Management Framework"},        
         {'process':"ushahidi", 'tag':"Ushahidi", 'description':"Crowdsourcing Crisis Information Platform"},        
@@ -321,7 +326,6 @@ def server_view(request, hwaddr):
         {'process':"icescrum", 'tag':"iceScrum", 'description':"Agile collaborative development platform"},        
         {'process':"jenkins", 'tag':"Jenkins", 'description':"Continuous integration platform"},        
         {'process':"lighttpd", 'tag':"lighttpd", 'description':"Simple web server and loadballancer"},        
-        {'process':"sqlite", 'tag':"SQLite", 'description':"Simple SQL database engine"},        
         {'process':"mambo", 'tag':"Mambo", 'description':"Content Management system"},        
         {'process':"mahara", 'tag':"Mahara", 'description':"Electronic portfolio and social networking"},        
         {'process':"oscommerce", 'tag':"osCommerce", 'description':"Online shop"},        
@@ -368,7 +372,6 @@ def server_view(request, hwaddr):
         {'process':"tendenci", 'tag':"Tendenci", 'description':"Content Management System for Non-Profits"},
         {'process':"observium", 'tag':"Observium", 'description':"Network Management and Monitoring"},
         {'process':"lxc", 'tag':"LXC", 'description':"Lightweight Linux Containers"},
-        {'process':"postgresql", 'tag':"PostgreSQL", 'description':"Object-relational Database System"},
         {'process':"symfony", 'tag':"Symfony", 'description':"PHP Web Framework"},
         {'process':"projectpier", 'tag':"ProjectPier", 'description':"Online Collaboration Tool"},
         {'process':"ejabberd", 'tag':"ejabberd", 'description':"XMPP and Web Chat"},
@@ -379,7 +382,6 @@ def server_view(request, hwaddr):
         {'process':"dokuwiki", 'tag':"DokuWiki", 'description':"Documentation Wiki Platform"},
         {'process':"moinmoin", 'tag':"MoinMoin", 'description':"Wiki Engine"},
         {'process':"roundup", 'tag':"Roundup", 'description':"Issue Tracking System"},
-        {'process':"redis",    'tag':"Redis", 'description':"Redis - Data structure server"},
     ]
     services_discovered = []
 
