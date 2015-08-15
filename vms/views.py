@@ -267,7 +267,7 @@ def server_view(request, hwaddr):
         recently_clicked_servers = []
 
 
-    s_ = {'hwaddr':hwaddr,'link':'/server'+hwaddr.replace(':','-')}
+    s_ = {'hwaddr':hwaddr,'link':'/server/'+hwaddr.replace(':','-')}
 
     if(not s_ in recently_clicked_servers):
 
