@@ -289,14 +289,14 @@ def server_view(request, hwaddr):
 
 
     SERVICES_COMMON = [
-        {'process':"xorg", 'tag':"X11", 'description':""},
-        {'process':"mongod", 'tag':"MongoDB", 'description':""},
-        {'process':"apache", 'tag':"Apache", 'description':""},        
-        {'process':"apache2", 'tag':"Apache", 'description':""},        
+        {'process':"xorg", 'tag':"X11", 'description':"X Window System (X11)"},
+        {'process':"mongod", 'tag':"MongoDB", 'description':"NoSQL database"},
+        {'process':"apache", 'tag':"Apache", 'description':"Apache Server"},        
+        {'process':"apache2", 'tag':"Apache", 'description':"Apache Server"},        
         {'process':"mysql", 'tag':"MySQLDB", 'description':"Relational Database Management System"},        
-        {'process':"nodejs", 'tag':"Node.js", 'description':""},        
-        {'process':"opentsdb", 'tag':"OpenTSDB", 'description':""},        
-        {'process':"joomla", 'tag':"Joomla", 'description':""},        
+        {'process':"nodejs", 'tag':"Node.js", 'description':"Node.js Platform"},
+        {'process':"opentsdb", 'tag':"OpenTSDB", 'description':"Scalable Time Series Database"},        
+        {'process':"joomla", 'tag':"Joomla", 'description':""},
         {'process':"drupal", 'tag':"Drupal 6/7", 'description':""},        
         {'process':"ushahidi", 'tag':"Ushahidi", 'description':""},        
         {'process':"gitlab", 'tag':"GitLab", 'description':""},        
