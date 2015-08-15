@@ -348,9 +348,14 @@ def server_view(request, hwaddr):
         {'process':"typo3", 'tag':"Typo3", 'description':"Enterprise CMS"},        
         {'process':"tomatocart", 'tag':"TomatoCart", 'description':"Shopping cart"},        
         {'process':"zurmo", 'tag':"Zurmo", 'description':"Gamified, Social, Mobile CRM system"},        
-        {'process':"", 'tag':"", 'description':""},        
-        {'process':"", 'tag':"", 'description':""},        
-        {'process':"", 'tag':"", 'description':""},        
+        {'process':"yii", 'tag':"Yii Framework", 'description':"PHP framework"},        
+        {'process':"rails", 'tag':"Ruby on Rails", 'description':"Web Application Framework"},
+        {'process':"wordpress", 'tag':"WordPress", 'description':"Blog Publishing Platform"},        
+        {'process':"redmine", 'tag':"Redmine", 'description':"Integrated SCM & Project Management"},        
+        {'process':"phpmyadmin", 'tag':"phpMyAdmin", 'description':"Handles the administration of MySQL server"},        
+        {'process':"otrs", 'tag':"OTRS", 'description':"Ticket Request System"},        
+        {'process':"mediawiki", 'tag':"MediaWiki", 'description':"Wikipedia's Wiki Engine"},        
+        {'process':"", 'tag':"", 'description':""},
     ]
     services_discovered = []
 
