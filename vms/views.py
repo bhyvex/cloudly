@@ -271,8 +271,8 @@ def server_view(request, hwaddr):
 
         recently_clicked_servers.append(hwaddr)
     else:
-        pos_to_delete = [i for i,x in enumerate(recently_clicked_servers) if x == hwaddr]
-        del recently_clicked_servers[pos_to_delete[0]]
+        server_to_delete = [i for i,x in enumerate(recently_clicked_servers) if x == hwaddr]
+        del recently_clicked_servers[server_to_delete[0]]
         recently_clicked_servers.append(hwaddr)        
         
     request.session["recently_clicked_servers"] = recently_clicked_servers
