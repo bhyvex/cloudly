@@ -273,9 +273,11 @@ def server_view(request, hwaddr):
 
         recently_clicked_servers.append(s_)
     else:
+
         server_to_delete = [i for i,x in enumerate(recently_clicked_servers) if x == s_]
         del recently_clicked_servers[server_to_delete[0]]
         recently_clicked_servers.append(s_)        
+
         
     request.session["recently_clicked_servers"] = recently_clicked_servers
     request.session.modified = True

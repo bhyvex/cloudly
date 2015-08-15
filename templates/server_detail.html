@@ -116,7 +116,14 @@
                             <tr>
                                 <td>Status</td>
                                 <td class="server_info_status">
-                                    {{server_status|lower}}
+                                    {% if server_status|lower == "stopped" %}
+                                    <font color="red">
+                                    {% endif %}
+                                        {{server_status|lower}}
+                                    {% if server_status|lower == "stopped" %}
+                                    </font>
+                                    {% endif %}
+
                                 </td>
                             </tr>
                             <tr class="server_last_seen"
