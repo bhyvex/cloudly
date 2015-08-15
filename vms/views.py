@@ -289,12 +289,14 @@ def server_view(request, hwaddr):
 
 
     SERVICES_COMMON = [
-        {'process_name':"Xorg",      'strict_definition':"Xorg",       'tag':"X11"},
-        {'process_name':"mongod",    'strict_definition':"mongod",     'tag':"MongoDB"},
-        {'process_name':"apache",    'strict_definition':"apache2",    'tag':"Apache"},        
-        {'process_name':"mysqld",    'strict_definition':"mysqld",     'tag':"MySQLDB"},        
-        {'process_name':"nodejs",    'strict_definition':"nodejs",     'tag':"Node.js"},        
-        {'process_name':"",          'strict_definition':"",           'tag':""},        
+        {'process':"Xorg",     'tag':"X11"},
+        {'process':"mongod",   'tag':"MongoDB"},
+        {'process':"apache",   'tag':"Apache"},        
+        {'process':"apache2",  'tag':"Apache"},        
+        {'process':"mysqld",   'tag':"MySQLDB"},        
+        {'process':"nodejs",   'tag':"Node.js"},        
+        {'process':"opentsdb", 'tag':"OpenTSDB"},        
+        {'process':"",         'tag':""},        
 
     ]
     services_discovered = []
