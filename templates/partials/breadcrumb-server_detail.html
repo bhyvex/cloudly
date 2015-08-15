@@ -6,9 +6,17 @@
         <li><a href="/" class="deactive">Servers</a></li>
     </ul>
     <ul class="navbar-right">
-        debug {{recently_clicked_servers}}
-        <li><a href="#" class="deactive">TBD</a></li>
-        <li class="servername active">{{server|dict_get:"name"|upper}}</li>
+        
+        {% for server in recently_clicked_servers %}
+        
+            {% if forloop.last %}
+                <li class="servername active">{{server|dict_get:"name"|upper}}</li>
+            {% else %}
+                <li><a href="{{server|dict_get:"link"}}" class="deactive">{{server|dict_get:"name"|upper}}</a></li>
+            {% endif %}
+        
+        {% endfor %}
+        
     </ul>
     
     <!--
