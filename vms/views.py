@@ -376,6 +376,7 @@ def server_view(request, hwaddr):
         {'process':"dokuwiki", 'tag':"DokuWiki", 'description':"Documentation Wiki Platform"},
         {'process':"moinmoin", 'tag':"MoinMoin", 'description':"Wiki Engine"},
         {'process':"roundup", 'tag':"Roundup", 'description':"Issue Tracking System"},
+        {'process':"redis", 'tag':"Redis", 'description':"Redis - Data structure server"},
     ]
     services_discovered = []
 
