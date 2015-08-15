@@ -290,6 +290,7 @@ def server_view(request, hwaddr):
 
     SERVICES_COMMON = [
 
+        # XXX try to define an extra_tag in each and every one of these....
         {'process':"couchdb", 'tag':"CouchDB", 'description':"JSON based Web database",  'extra_tag':"database"},        
 
         {'process':"xorg", 'tag':"X11", 'description':"X Window System (X11)"},
