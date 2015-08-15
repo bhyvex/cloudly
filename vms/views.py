@@ -297,12 +297,12 @@ def server_view(request, hwaddr):
         {'process':"nodejs",   'tag':"Node.js"},        
         {'process':"opentsdb", 'tag':"OpenTSDB"},        
         {'process':"",         'tag':""},        
-
     ]
     services_discovered = []
 
     # XXX services discovery to search partials within both command and the process!
     # XXX recognise and tag when server is virtual
+
 
     return render_to_response('server_detail.html', {'secret':profile.secret,'recently_clicked_servers':recently_clicked_servers, 'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'disks_usage':disks_usage,'disks':disks,'reduced_disks':reduced_disks,'mem_usage':mem_usage,'loadavg':loadavg,'networking':networking,'activity':activity,'recently_clicked_servers':recently_clicked_servers,}, context_instance=RequestContext(request))
 
