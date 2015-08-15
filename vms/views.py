@@ -267,17 +267,18 @@ def server_view(request, hwaddr):
         recently_clicked_servers = []
 
 
-    if(not hwaddr in recently_clicked_servers):
+    s_ = {'hwaddr':hwaddr,'link':'/server'+hwaddr.replace(':','-')}
 
-        recently_clicked_servers.append(hwaddr)
+    if(not s_ in recently_clicked_servers):
+
+        recently_clicked_servers.append(s_)
     else:
-        server_to_delete = [i for i,x in enumerate(recently_clicked_servers) if x == hwaddr]
+        server_to_delete = [i for i,x in enumerate(recently_clicked_servers) if x == s_]
         del recently_clicked_servers[server_to_delete[0]]
-        recently_clicked_servers.append(hwaddr)        
+        recently_clicked_servers.append(s_)        
         
     request.session["recently_clicked_servers"] = recently_clicked_servers
     request.session.modified = True
-
 
 
     return render_to_response('server_detail.html', {'secret':profile.secret,'recently_clicked_servers':recently_clicked_servers, 'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'disks_usage':disks_usage,'disks':disks,'mem_usage':mem_usage,'loadavg':loadavg,'networking':networking,'activity':activity,'recently_clicked_servers':recently_clicked_servers,}, context_instance=RequestContext(request))
