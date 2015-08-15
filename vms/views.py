@@ -289,9 +289,9 @@ def server_view(request, hwaddr):
 
 
     SERVICES_COMMON = [
-        {'process_name_in_lowercase':"xorg",'tag':"x11"},
-        {'process_name_in_lowercase':"mongod",'tag':"mongo"},
-        
+        {'process_name':"Xorg",      'strict_definition':"Xorg",      'tag':"x11"},
+        {'process_name':"mongod",    'strict_definition':"mongod",    'tag':"mongo"},
+        {'process_name':"apache",    'strict_definition':"apache2",    'tag':"apache"},        
     ]
     services_discovered = []
 
