@@ -262,7 +262,9 @@ def server_view(request, hwaddr):
             
 
     reduced_disks = []
-    # XXX
+    for disk in disks:
+        if(disk[:4]!="/run" and disk[:5]!="/boot" and disk[:4]!="/sys" and disk[:4]!="/dev"): 
+            reduced_disks.append(disk)
 
     try:
         recently_clicked_servers = request.session["recently_clicked_servers"]
