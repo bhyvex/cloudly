@@ -900,7 +900,10 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
             params = params_
 
             tsdb_response = json.loads(tsdb.text)
-            tsdb_response = tsdb_response[0]['dps']
+
+            try:
+                tsdb_response = tsdb_response[0]['dps']
+            except: tsdb_response = []
 
             for i in tsdb_response:
                 graphs_mixed_respose[count].append([int(i),round(float(tsdb_response[i]),2)])
@@ -940,7 +943,10 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         if(params):
             tsdb = requests.get('http://hbase:4242/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
-            tsdb_response = tsdb_response[0]['dps']
+            
+            try:
+                tsdb_response = tsdb_response[0]['dps']
+            except: tsdb_response = []
 
             for i in tsdb_response:
                 graphs_mixed_respose.append([int(i),round(float(tsdb_response[i]),2)])
@@ -977,7 +983,10 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
             tsdb = requests.get('http://hbase:4242/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
-            tsdb_response = tsdb_response[0]['dps']
+            
+            try:
+                tsdb_response = tsdb_response[0]['dps']
+            except: tsdb_response = []
 
             for i in tsdb_response:
                 graphs_mixed_respose.append([int(i),round(float(tsdb_response[i]),2)])
@@ -1018,7 +1027,11 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         if(params):
             tsdb = requests.get('http://hbase:4242/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
-            tsdb_response = tsdb_response[0]['dps']
+            
+            try:
+                tsdb_response = tsdb_response[0]['dps']
+            except:
+                tsdb_response = []
 
             for i in tsdb_response:
                 graphs_mixed_respose.append([int(i),round(float(tsdb_response[i]),2)])
@@ -1067,7 +1080,10 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
             tsdb = requests.get('http://hbase:4242/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
-            tsdb_response = tsdb_response[0]['dps']
+            
+            try:
+                tsdb_response = tsdb_response[0]['dps']
+            except: tsdb_response = []
 
             for i in tsdb_response:
                 graphs_mixed_respose.append([int(i),round(float(tsdb_response[i]),2)])
