@@ -294,13 +294,15 @@ def server_view(request, hwaddr):
         {'process':"apache", 'tag':"Apache", 'description':"Apache Server"},        
         {'process':"apache2", 'tag':"Apache", 'description':"Apache Server"},        
         {'process':"mysql", 'tag':"MySQLDB", 'description':"Relational Database Management System"},        
+        {'process':"couchdb", 'tag':"CouchDB", 'description':"JSON based Web database", extra_tag="database"},        
         {'process':"nodejs", 'tag':"Node.js", 'description':"Node.js Platform"},
         {'process':"opentsdb", 'tag':"OpenTSDB", 'description':"Scalable Time Series Database"},        
         {'process':"joomla", 'tag':"Joomla", 'description':"Content Management System"},
         {'process':"drupal", 'tag':"Drupal 6/7", 'description':"Content Management Framework"},        
         {'process':"ushahidi", 'tag':"Ushahidi", 'description':"Crowdsourcing Crisis Information Platform"},        
         {'process':"gitlab", 'tag':"GitLab", 'description':"Self Hosted Git Management"},        
-        {'process':"couchdb", 'tag':"CouchDB", 'description':"JSON based Web database", extra_tag="database"},        
+        {'process':"svn", 'tag':"svn", 'description':"Issue Tracking System"},
+        {'process':"trac", 'tag':"Trac", 'description':"Integrated SCM & Project Management"},
         {'process':"appengine", 'tag':"AppEngine", 'description':"Google AppEngine"},
         {'process':"elgg", 'tag':"Elgg", 'description':"Social networking engine"},        
         {'process':"concrete", 'tag':"Concrete5", 'description':"Content Management System"},   
@@ -373,9 +375,7 @@ def server_view(request, hwaddr):
         {'process':"mantis", 'tag':"Mantis", 'description':"Bug Tracking System"},
         {'process':"dokuwiki", 'tag':"DokuWiki", 'description':"Documentation Wiki Platform"},
         {'process':"moinmoin", 'tag':"MoinMoin", 'description':"Wiki Engine"},
-        {'process':"trac", 'tag':"Trac", 'description':"Integrated SCM & Project Management"},
         {'process':"roundup", 'tag':"Roundup", 'description':"Issue Tracking System"},
-        {'process':"svn", 'tag':"svn", 'description':"Issue Tracking System"},
     ]
     services_discovered = []
 
