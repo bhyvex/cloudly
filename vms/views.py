@@ -64,14 +64,14 @@ def date_handler(obj):
     return obj.isoformat() if hasattr(obj, 'isoformat') else obj
 
 
-def close_server_tabs(request):
+def close_server_tabs(request, return_path):
     
     request.session["recently_clicked_servers"] = []
     request.session.modified = True
+    return_path = "/" + return_path
     
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+    return HttpResponseRedirect(return_path)
     
-
 
 @login_required()
 def update_session(request):
@@ -228,6 +228,7 @@ def server_view(request, hwaddr):
     hwaddr_orig = hwaddr
     hwaddr = hwaddr.replace('-',':')
     server = mongo.servers.find_one({'secret':profile.secret,'uuid':hwaddr,})
+    server['link'] = '/server/'+hwaddr_orig+'/'
 
     server_status = "Running"
     if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>20):

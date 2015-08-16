@@ -48,7 +48,7 @@ urlpatterns = patterns('',
     #url(r'^ajax/aws/(?P<instance_id>[\w\-\.]+)/metrics/(?P<graph_type>[\w\-\.]+)/$', 'vms.views.ajax_aws_graphs', name='ajax_aws_graphs'),
 
     # specials
-    url(r'^specials/clean/server/tabs/$', 'vms.views.close_server_tabs', name='close_server_tabs'),
+    url(r'^specials/clean/server/tabs/(?P<return_path>.*)/$', 'vms.views.close_server_tabs', name='close_server_tabs'),
 
     # devel stuff
     url(r'^devel/$', 'admin.views.devel', name='devel'),
