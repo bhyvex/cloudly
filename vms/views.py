@@ -59,8 +59,18 @@ client = MongoClient('mongo', 27017)
 mongo = client.cloudly
 
 
+
 def date_handler(obj):
     return obj.isoformat() if hasattr(obj, 'isoformat') else obj
+
+
+def close_server_tabs(request):
+    
+    request.session["recently_clicked_servers"] = []
+    request.session.modified = True
+    
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+    
 
 
 @login_required()
