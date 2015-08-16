@@ -396,10 +396,13 @@ def server_view(request, hwaddr):
     # XXX update the info on the mongo server!
     
     
+    # XXX process the processes only and only when there are no tags being defined on the server already!
     for process in server['processes']:
 
-        # XXX process the processes only and only when there are no tags being defined on the server already!
-        print process
+
+        for service in SERVICES_COMMON:
+            if(service['process'].lower() in process.lower()):
+                print service['tag'] * 1000
 
         # XXX update mongo only assuming that the tags have actually been pre-populated
 
