@@ -211,6 +211,7 @@
                 <div class="panel-body">
                     <p>XXX here goes the datacenter and tags section<br/>XXX tags to be pre-populated with running services</p>
                     
+                    {{server|dict_get:"tags"|dict_get:"services_tags"}}
                     <span class="label label-info">TBD</span>
 
                 </div>

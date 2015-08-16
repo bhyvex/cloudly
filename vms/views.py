@@ -403,8 +403,8 @@ def server_view(request, hwaddr):
     
             for service in SERVICES_COMMON:
                 if(service['process'].lower() in process.lower()):
-                    if(not service in  services_tags):
-                        services_tags.append([ service['tag'],service['description'] ])
+                    if(not [service['tag'],service['description']] in services_tags):
+                        services_tags.append([service['tag'],service['description']])
 
         server['tags'] = {}
         server['tags']['services_tags'] = services_tags
