@@ -391,24 +391,27 @@ def server_view(request, hwaddr):
     ]
     services_discovered = []
 
+
     # XXX services discovery to search partials within both command and the process!
     # XXX recognise and tag the server when it's a virtual machine!!
-    # XXX update the info on the mongo server!
+    # XXX update the info on the mongo server - differenciate service_tags, custom_tags, datacenter_tags....!
     
     
     # XXX process the processes only and only when there are no tags being defined on the server already!
+    services_tags = []
     for process in server['processes']:
-
 
         for service in SERVICES_COMMON:
             if(service['process'].lower() in process.lower()):
-                print service['tag'] * 1000
-
-        # XXX update mongo only assuming that the tags have actually been pre-populated
-
+                if(not service in  services_tags):
+                    services_tags.append(service)
 
 
-    
+    # XXX update mongo only assuming that the tags have actually been pre-populated
+    #print services_tags * 10000
+
+
+
     return render_to_response('server_detail.html', {'secret':profile.secret,'recently_clicked_servers':recently_clicked_servers, 'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'disks_usage':disks_usage,'disks':disks,'reduced_disks':reduced_disks,'mem_usage':mem_usage,'loadavg':loadavg,'networking':networking,'activity':activity,'recently_clicked_servers':recently_clicked_servers,}, context_instance=RequestContext(request))
 
 
