@@ -394,7 +394,7 @@ def server_view(request, hwaddr):
 
     # XXX services discovery to search partials within both command and the process!
     # XXX recognise and tag the server when it's a virtual machine!!
-    # XXX update the info on the mongo server - differenciate service_tags, custom_tags, datacenter_tags....!
+    # XXX update the info on the mongo server - differentiate service_tags, custom_tags, datacenter_tags....!
     
     
     # XXX process the processes only and only when there are no tags being defined on the server already!
