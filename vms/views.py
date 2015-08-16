@@ -300,10 +300,6 @@ def server_view(request, hwaddr):
 
 
     SERVICES_COMMON = [
-
-        # XXX try to define an extra_tag in each and every one of these....
-
-        # database systems
         {'process':"couchdb", 'tag':"CouchDB", 'description':"JSON based Web database",  'extra_tag':"database"},        
         {'process':"mongod", 'tag':"MongoDB", 'description':"NoSQL database", 'extra_tag':"database"},
         {'process':"redis", 'tag':"Redis", 'description':"Redis - Data structure server", 'extra_tag':"database"},
@@ -311,7 +307,6 @@ def server_view(request, hwaddr):
         {'process':"mysql", 'tag':"MySQLDB", 'description':"Relational Database Management System", 'extra_tag':"database"},        
         {'process':"postgresql", 'tag':"PostgreSQL", 'description':"Object-relational Database System", 'extra_tag':"database"},
         {'process':"sqlite", 'tag':"SQLite", 'description':"Simple SQL database engine", 'extra_tag':"database"},        
-
         {'process':"xorg", 'tag':"X11", 'description':"X Window System (X11)"},
         {'process':"apache", 'tag':"Apache", 'description':"Apache Server"},        
         {'process':"apache2", 'tag':"Apache", 'description':"Apache Server"},        
@@ -397,8 +392,8 @@ def server_view(request, hwaddr):
     services_discovered = []
 
     # XXX services discovery to search partials within both command and the process!
-    # XXX recognise and tag when server is virtual
-    # XXX update the info on the mongo server
+    # XXX recognise and tag the server when it's a virtual machine!!
+    # XXX update the info on the mongo server!
 
 
     return render_to_response('server_detail.html', {'secret':profile.secret,'recently_clicked_servers':recently_clicked_servers, 'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'disks_usage':disks_usage,'disks':disks,'reduced_disks':reduced_disks,'mem_usage':mem_usage,'loadavg':loadavg,'networking':networking,'activity':activity,'recently_clicked_servers':recently_clicked_servers,}, context_instance=RequestContext(request))
