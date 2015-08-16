@@ -323,8 +323,9 @@ def server_view(request, hwaddr):
         {'process':"typo3", 'tag':"Typo3", 'description':"Enterprise CMS", 'extra_tag':"CMS"},        
         {'process':"ushahidi", 'tag':"Ushahidi", 'description':"Crowdsourcing Crisis Information Platform"},        
         {'process':"gitlab", 'tag':"GitLab", 'description':"Self Hosted Git Management"},        
-        {'process':"svn", 'tag':"svn", 'description':"Issue Tracking System"},
-        {'process':"trac", 'tag':"Trac", 'description':"Integrated SCM & Project Management"},
+        {'process':"svn", 'tag':"svn", 'description':"Issue Tracking System", 'extra_tag':"CVS"},
+        {'process':"trac", 'tag':"Trac", 'description':"Integrated SCM & Project Management", 'extra_tag':"CVS"},
+        {'process':"roundup", 'tag':"Roundup", 'description':"Issue Tracking System", 'extra_tag':"CVS"},
         {'process':"appengine", 'tag':"AppEngine", 'description':"Google AppEngine"},
         {'process':"elgg", 'tag':"Elgg", 'description':"Social networking engine"},        
         {'process':"collabtive", 'tag':"Collabtive", 'description':"GroupWare"},        
@@ -387,7 +388,6 @@ def server_view(request, hwaddr):
         {'process':"bugzilla", 'tag':"Bugzilla", 'description':"Bug Tracking System"},
         {'process':"moodle", 'tag':"Moodle", 'description':"Course Management System"},
         {'process':"mantis", 'tag':"Mantis", 'description':"Bug Tracking System"},
-        {'process':"roundup", 'tag':"Roundup", 'description':"Issue Tracking System"},
     ]
     services_discovered = []
 
