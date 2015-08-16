@@ -403,7 +403,7 @@ def server_view(request, hwaddr):
             for service in SERVICES_COMMON:
                 if(service['process'].lower() in process.lower()):
                     if(not service in  services_tags):
-                        services_tags.append(service)
+                        services_tags.append([ service['tag'],service['description'] ])
 
         # XXX update the info on the mongo server - differentiate service_tags, custom_tags, datacenter_tags....!
 
