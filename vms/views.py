@@ -394,6 +394,11 @@ def server_view(request, hwaddr):
     # XXX services discovery to search partials within both command and the process!
     # XXX recognise and tag the server when it's a virtual machine!!
     # XXX update the info on the mongo server!
+    
+    
+    for process in server['processes']:
+        # XXX process the processes only and only when there are no tags being defined on the server already!
+        print process
 
 
     return render_to_response('server_detail.html', {'secret':profile.secret,'recently_clicked_servers':recently_clicked_servers, 'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'disks_usage':disks_usage,'disks':disks,'reduced_disks':reduced_disks,'mem_usage':mem_usage,'loadavg':loadavg,'networking':networking,'activity':activity,'recently_clicked_servers':recently_clicked_servers,}, context_instance=RequestContext(request))
