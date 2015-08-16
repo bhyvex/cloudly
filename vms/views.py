@@ -299,7 +299,7 @@ def server_view(request, hwaddr):
 
 
     SERVICES_COMMON = [
-        {'process':"couchdb", 'tag':"CouchDB", 'description':"JSON based Web database",  'extra_tag':"database"},        
+        {'process':"couchdb", 'tag':"CouchDB", 'description':"JSON based Web database", 'extra_tag':"database"},        
         {'process':"mongod", 'tag':"MongoDB", 'description':"NoSQL database", 'extra_tag':"database"},
         {'process':"redis", 'tag':"Redis", 'description':"Redis - Data structure server", 'extra_tag':"database"},
         {'process':"opentsdb", 'tag':"OpenTSDB", 'description':"Scalable Time Series Database", 'extra_tag':"database"},        
@@ -307,8 +307,9 @@ def server_view(request, hwaddr):
         {'process':"postgresql", 'tag':"PostgreSQL", 'description':"Object-relational Database System", 'extra_tag':"database"},
         {'process':"sqlite", 'tag':"SQLite", 'description':"Simple SQL database engine", 'extra_tag':"database"},        
         {'process':"xorg", 'tag':"X11", 'description':"X Window System (X11)"},
-        {'process':"apache", 'tag':"Apache", 'description':"Apache Server"},        
-        {'process':"apache2", 'tag':"Apache", 'description':"Apache Server"},        
+        {'process':"apache", 'tag':"Apache", 'description':"Apache Web Server"},        
+        {'process':"apache2", 'tag':"Apache", 'description':"Apache Web Server"},        
+        {'process':"nginx", 'tag':"NGINX", 'description':"NGINX Web Server"},        
         {'process':"nodejs", 'tag':"Node.js", 'description':"Node.js Platform"},
         {'process':"joomla", 'tag':"Joomla", 'description':"Content Management System"},
         {'process':"drupal", 'tag':"Drupal 6/7", 'description':"Content Management Framework"},        
