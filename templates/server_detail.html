@@ -209,10 +209,10 @@
                 </div>
 
                 <div class="panel-body">
-                    <p>XXX here goes the datacenter and tags section<br/>XXX tags to be pre-populated with running services</p>
-                    
-                    {{server|dict_get:"tags"|dict_get:"services_tags"}}
-                    <span class="label label-info">TBD</span>
+                
+                    {% for tag in server|dict_get:"tags"|dict_get:"services_tags" %}
+                    <span class="label label-info">{{tag|dict_get:0}}</span>
+                    {% endfor %}
 
                 </div>
             </div>
