@@ -386,8 +386,8 @@ def server_view(request, hwaddr):
         {'process':"projectpier", 'tag':"ProjectPier", 'description':"Online Collaboration Tool"},
         {'process':"ejabberd", 'tag':"ejabberd", 'description':"XMPP and Web Chat"},
         {'process':"bugzilla", 'tag':"Bugzilla", 'description':"Bug Tracking System"},
-        {'process':"moodle", 'tag':"Moodle", 'description':"Course Management System"},
         {'process':"mantis", 'tag':"Mantis", 'description':"Bug Tracking System"},
+        {'process':"moodle", 'tag':"Moodle", 'description':"Course Management System"},
     ]
     services_discovered = []
 
