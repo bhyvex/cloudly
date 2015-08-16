@@ -292,9 +292,8 @@ def server_view(request, hwaddr):
 
         server_to_delete = [i for i,x in enumerate(recently_clicked_servers) if x == s_]
         del recently_clicked_servers[server_to_delete[0]]
-        recently_clicked_servers.append(s_)        
+        recently_clicked_servers.append(s_)
 
-        
     request.session["recently_clicked_servers"] = recently_clicked_servers
     request.session.modified = True
 
@@ -392,23 +391,25 @@ def server_view(request, hwaddr):
     services_discovered = []
 
 
-    # XXX services discovery to search partials within both command and the process!
     # XXX recognise and tag the server when it's a virtual machine!!
-    # XXX update the info on the mongo server - differentiate service_tags, custom_tags, datacenter_tags....!
     
+    try:
+        server['tags']
+    except:
+
+        services_tags = []
+        for process in server['processes']:
     
-    # XXX process the processes only and only when there are no tags being defined on the server already!
-    services_tags = []
-    for process in server['processes']:
+            for service in SERVICES_COMMON:
+                if(service['process'].lower() in process.lower()):
+                    if(not service in  services_tags):
+                        services_tags.append(service)
 
-        for service in SERVICES_COMMON:
-            if(service['process'].lower() in process.lower()):
-                if(not service in  services_tags):
-                    services_tags.append(service)
+        # XXX update the info on the mongo server - differentiate service_tags, custom_tags, datacenter_tags....!
 
 
-    # XXX update mongo only assuming that the tags have actually been pre-populated
-    #print services_tags * 10000
+
+    print services_tags
 
 
 
