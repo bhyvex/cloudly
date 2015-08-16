@@ -7,7 +7,9 @@
     </ul>
     <ul class="navbar-right">
         
-        <li><a href="/special/clean/server/tabs">x</a></li>
+        {% if recently_clicked_servers|length > 1 %}
+            <li><a href="/specials/clean/server/tabs">x</a></li>
+        {% endif %}
 
         {% for server in recently_clicked_servers %}
         
