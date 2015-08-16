@@ -590,7 +590,11 @@
                 </div>
 
                 <div class="panel-body">
-                    TBD
+                    <p>
+                    {% for tag in server|dict_get:"tags"|dict_get:"services_tags" %}
+                    <a href="#">{{tag|dict_get:0}}</a> - {{tag|dict_get:1}} <a href="#">enable monitoring</a><br/>
+                    {% endfor %}
+                    </p>
                 </div>
 
             </div>
