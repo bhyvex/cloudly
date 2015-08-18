@@ -58,8 +58,6 @@ client = MongoClient('mongo', 27017)
 
 mongo = client.cloudly
 
-
-
 def date_handler(obj):
     return obj.isoformat() if hasattr(obj, 'isoformat') else obj
 
