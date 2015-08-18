@@ -19,10 +19,11 @@ try:
     import json
 except: pass
 
-AGENT_VERSION = "0.2"
+AGENT_VERSION = "0.3"
 AGENT_ALLOWED_TO_SELF_UPDATE = False
 AGENT_PATH = "/opt/monitoring-agent.py"
 
+REFRESH_INTERVAL = 2 # in seconds
 
 SECRET = "" # to be injected on download by Cloudly
 if(not SECRET): SECRET = raw_input("Enter your secret: ")
@@ -823,7 +824,7 @@ def main():
             # XXX file an activity 
             self_update(SECRET)
         
-        time.sleep(2)
+        time.sleep(REFRESH_INTERVAL)
 
     print "ze end."
 
