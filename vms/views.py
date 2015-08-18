@@ -303,7 +303,7 @@ def server_view(request, hwaddr):
         {'process':"mongod", 'tag':"MongoDB", 'description':"NoSQL database", 'extra_tag':"database"},
         {'process':"redis", 'tag':"Redis", 'description':"Redis - Data structure server", 'extra_tag':"database"},
         {'process':"opentsdb", 'tag':"OpenTSDB", 'description':"Scalable Time Series Database", 'extra_tag':"database"},        
-        {'process':"mysql", 'tag':"MySQLDB", 'description':"Relational Database Management System", 'extra_tag':"database"},        
+        {'process':"mysql", 'tag':"MySQLDB", 'description':"Relational SQL Database", 'extra_tag':"database"},        
         {'process':"postgresql", 'tag':"PostgreSQL", 'description':"Object-relational Database System", 'extra_tag':"database"},
         {'process':"sqlite", 'tag':"SQLite", 'description':"Simple SQL database engine", 'extra_tag':"database"},        
         {'process':"xorg", 'tag':"X11", 'description':"X Window System (X11)"},
