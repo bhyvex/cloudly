@@ -392,8 +392,6 @@ def server_view(request, hwaddr):
     services_discovered = []
 
 
-    # XXX recognise and tag the server when it's a virtual machine!!
-    
     try:
         server['tags']
     except:
@@ -406,11 +404,15 @@ def server_view(request, hwaddr):
                     if(not [service['tag'],service['description']] in services_tags):
                         services_tags.append([service['tag'],service['description']])
 
+    
+        # XXX recognise and tag the server when it's a virtual machine!!
+    
         server['tags'] = {}
         server['tags']['services_tags'] = services_tags
         server['tags']['datacenter_tags'] = []
         server['tags']['custom_tags'] = []
         mongo.servers.update({'secret':server['secret'], 'uuid':server['uuid']}, server)
+        
 
     return render_to_response('server_detail.html', {'secret':profile.secret,'recently_clicked_servers':recently_clicked_servers, 'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'disks_usage':disks_usage,'disks':disks,'reduced_disks':reduced_disks,'mem_usage':mem_usage,'loadavg':loadavg,'networking':networking,'activity':activity,'recently_clicked_servers':recently_clicked_servers,}, context_instance=RequestContext(request))
 
