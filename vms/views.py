@@ -404,11 +404,10 @@ def server_view(request, hwaddr):
                     if(not [service['tag'],service['description']] in services_tags):
                         services_tags.append([service['tag'],service['description']])
 
-    
-        # XXX recognise and tag the server when it's a virtual machine!!
-    
         server['tags'] = {}
         server['tags']['services_tags'] = services_tags
+
+        # XXX recognise and tag the server when it's a virtual machine!!
         server['tags']['datacenter_tags'] = []
         server['tags']['custom_tags'] = []
         
