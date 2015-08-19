@@ -43,7 +43,7 @@ $ apt-get install python-openssl
 </pre>
 
 
-###### Install the MongoDB and it's python connectors
+###### Install the MongoDB and its python connectors
 
 <pre>
 $ apt-get install mongodb
