@@ -214,6 +214,14 @@
                     <span class="label label-info">{{tag|dict_get:0}}</span>
                     {% endfor %}
 
+                    {% for tag in server|dict_get:"tags"|dict_get:"datacenter_tags" %}
+                    <span class="label label-info">{{tag}}</span>
+                    {% endfor %}
+
+                    {% for tag in server|dict_get:"tags"|dict_get:"custom_tags" %}
+                    <span class="label label-info">{{tag}}</span>
+                    {% endfor %}
+
                 </div>
             </div>
         </div>
@@ -669,6 +677,13 @@
             </div>
         </div>
     </div><!--/row-->
+
+    {% comment %}
+    <p>DEBUG<br/>
+        {{server}}
+    </p>
+    {% endcomment %}
+
 
     <div id="running_message"
         class="panel-body"

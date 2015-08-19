@@ -409,10 +409,10 @@ def server_view(request, hwaddr):
         server['tags']['datacenter_tags'] = []
         server['tags']['custom_tags'] = []
         
-        #if(server['cpu_virtualization']):
-        #    server['tags']['datacenter_tags'].append('Metal')
-        #else:
-        #    server['tags']['datacenter_tags'].append('VM')
+        if(server['cpu_virtualization']):
+            server['tags']['datacenter_tags'].append('Metal')
+        else:
+            server['tags']['datacenter_tags'].append('VM')
 
         mongo.servers.update({'secret':server['secret'], 'uuid':server['uuid']}, server)
         
