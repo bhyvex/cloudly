@@ -124,6 +124,10 @@ def ping():
         server['name'] = hostname.replace(':','-')
 
 
+    try:
+        server['tags'] = server_['tags']
+    except: pass
+
     if(server_): 
         server_ = servers.update({'secret':secret, 'uuid':uuid}, server)
     else:

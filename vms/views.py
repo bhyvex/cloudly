@@ -411,6 +411,7 @@ def server_view(request, hwaddr):
         server['tags']['services_tags'] = services_tags
         server['tags']['datacenter_tags'] = []
         server['tags']['custom_tags'] = []
+        
         mongo.servers.update({'secret':server['secret'], 'uuid':server['uuid']}, server)
         
 
