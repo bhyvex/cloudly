@@ -406,11 +406,14 @@ def server_view(request, hwaddr):
 
         server['tags'] = {}
         server['tags']['services_tags'] = services_tags
-
-        # XXX recognise and tag the server when it's a virtual machine!!
         server['tags']['datacenter_tags'] = []
         server['tags']['custom_tags'] = []
         
+        #if(server['cpu_virtualization']):
+        #    server['tags']['datacenter_tags'].append('Metal')
+        #else:
+        #    server['tags']['datacenter_tags'].append('VM')
+
         mongo.servers.update({'secret':server['secret'], 'uuid':server['uuid']}, server)
         
 
