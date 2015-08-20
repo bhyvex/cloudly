@@ -601,7 +601,7 @@
                     <p>
 
                     {% for tag in server|dict_get:"tags"|dict_get:"services_tags" %}
-                        {% if tag != "www" and tag != "database" %}
+                        {% if tag|dict_get:0 != "www" and tag|dict_get:0 != "database" %}
                             <a href="#">{{tag|dict_get:0}}</a> - {{tag|dict_get:1}} <a href="#">enable monitoring</a><br/>
                         {% endif %}
                     {% endfor %}
