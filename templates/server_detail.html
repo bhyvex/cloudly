@@ -94,10 +94,6 @@
                                 <td>{{server|dict_get:"cpu_info"|count_list}}x {{server|dict_get:"cpu_info"|dict_get:"cpu0"|dict_get:"model_name"}}</td>
                             </tr>
                             <tr>
-                                <td>CPU Virtualization</td>
-                                <td>{{server|dict_get:"cpu_virtualization"}}</td>
-                            </tr>
-                            <tr>
                                 <td>Memory Size</td>
                                 <td>{{server|dict_get:"memory_usage"|dict_get:"memory_total"|to_mb|intcomma}} MB</td>
                             </tr>
