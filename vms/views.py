@@ -418,7 +418,7 @@ def server_view(request, hwaddr):
         if(server['cpu_virtualization']):
             server['tags']['datacenter_tags'].append('Metal')
         else:
-            server['tags']['datacenter_tags'].append('VM')
+            pass
 
         mongo.servers.update({'secret':server['secret'], 'uuid':server['uuid']}, server)
         
