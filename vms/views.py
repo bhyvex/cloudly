@@ -404,7 +404,8 @@ def server_view(request, hwaddr):
                     if(not [service['tag'],service['description']] in services_tags):
                         services_tags.append([service['tag'],service['description']])
                         try:
-                            services_tags.append([service['extra_tag'],""])
+                            if(not [service['extra_tag'],""] in services_tags):
+                                services_tags.append([service['extra_tag'],""])
                         except:
                             pass
                         
