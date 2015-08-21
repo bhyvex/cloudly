@@ -7,6 +7,8 @@ urlpatterns = patterns('',
     url(r'^$', 'dashboard.views.home', name='home'),
     url(r'^welcome/$', 'dashboard.views.welcome', name='welcome'),
     url(r'^download/agent/$', 'dashboard.views.download_agent', name='download_agent'),
+    url(r'^investors/$', 'dashboard.views.investors', name='investors'),
+
 
     # userprofile stuff
     url(r'^login/$', 'userprofile.views.auth', name='login'),
