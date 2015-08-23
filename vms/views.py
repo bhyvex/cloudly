@@ -302,7 +302,7 @@ def server_view(request, hwaddr):
         {'process':"redis", 'tag':"Redis", 'description':"Redis - Data structure server", 'extra_tag':"database"},
         {'process':"opentsdb", 'tag':"OpenTSDB", 'description':"Scalable Time Series Database", 'extra_tag':"database"},        
         {'process':"hadoop", 'tag':"Hadoop", 'description':"Big data open-source framework", 'extra_tag':"database"},        
-		# XXX memcached
+        {'process':"memcached", 'tag':"Memcached", 'description':"A distributed memory object caching system", 'extra_tag':"database"},        
         {'process':"mysql", 'tag':"MySQLDB", 'description':"Relational SQL Database", 'extra_tag':"database"},        
         {'process':"postgresql", 'tag':"PostgreSQL", 'description':"Object-relational Database System", 'extra_tag':"database"},
         {'process':"sqlite", 'tag':"SQLite", 'description':"Simple SQL database engine", 'extra_tag':"database"},        
