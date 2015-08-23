@@ -97,14 +97,17 @@ def credits(request):
 
 
 
-@login_required()
 def investors(request):
 
     print '--  investors page:', request.user
     
     ip = request.META['REMOTE_ADDR']
-    profile = userprofile.objects.get(user=request.user)
-    _log_user_activity(profile,"click","/investors/","welcome",ip=ip)
+    try:
+        profile = userprofile.objects.get(user=request.user)
+        _log_user_activity(profile,"click","/investors/","welcome",ip=ip)
+    except:
+        return HttpResponseRedirect("https://github.com/jparicka/cloudly")
+
     
     print request.user
     return render_to_response('investors.html', locals(), context_instance=RequestContext(request))
