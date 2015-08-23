@@ -25,6 +25,17 @@
 				<div class="panel-body">
 
 					<div id="investors-pie-chart"></div>
+					
+					<blockquote>
+                        <p>* Please note that 900 of 1,000 are locked meaning that only the 100 shares are up for public grabs.</p>
+                        <small>Sincerely yours <cite title="">Directors board</cite></small>
+                    </blockquote>
+					
+					<p>
+					<br>
+					<font color="grey">
+					</font>
+					</p>
 
 				</div>
 			</div>
@@ -276,7 +287,7 @@
                 text: 'Common 1,000 investors shares as of {% now "jS F Y" %}'
             },
             tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                pointFormat: '{series.name}: <b>{point.y}</b>'
             },
             plotOptions: {
                 pie: {
@@ -284,7 +295,7 @@
                     cursor: 'pointer',
                     dataLabels: {
                         enabled: true,
-                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        format: '<b>{point.name}</b>: {point.y}',
                         style: {
                             color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                         }
@@ -296,27 +307,22 @@
                 colorByPoint: true,
                 data: [{
                     name: "Unallocated",
-                    y: 70
-                }, {
-                    name: "Zdenek Rada",
-                    y: 10,
+                    y: 27
+                }, {                    
+                    name: "Zdenek R",
+                    y: 30,
                     sliced: true,
                     selected: true
+
                 }, {
-                    name: "Vojtech Halaburt",
+                    name: "Yog Burt",
                     y: 8
                 }, {
-                    name: "Rian",
-                    y: 2
+                    name: "Kopik",
+                    y: 25
                 }, {
-                    name: "Samuel",
-                    y: 2
-                }, {
-                    name: "Rolando",
-                    y: 5
-                }, {
-                    name: "Rick",
-                    y: 3
+                    name: "Stekl",
+                    y: 10
                 }]
             }]
         });
