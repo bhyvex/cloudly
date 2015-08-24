@@ -102,7 +102,7 @@ def credits(request):
     return render_to_response('credits.html', locals(), context_instance=RequestContext(request))
 
 
-
+@login_required()
 def investors(request):
 
     print '--  investors page:', request.user
