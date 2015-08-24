@@ -34,7 +34,13 @@ def home(request):
         
     if not request.user.is_authenticated():
         print '--  web:'
-        return render_to_response('web.html', {'request':request,}, context_instance=RequestContext(request))
+        CLOUDLY_MOTTOS = [
+            "The Power of Now!",
+            "Relax, it’s going to take no time!",
+            "Saves you money and resources!",
+            "Real-time servers monitoring.",
+        ]
+        return render_to_response('web.html', {'request':request,'CLOUDLY_MOTTOS':CLOUDLY_MOTTOS,}, context_instance=RequestContext(request))
 
     print '--  dashboard:'
     print request.user
@@ -60,15 +66,8 @@ def home(request):
         vms_cached_response['last_seen'] = vms_cache.last_seen
         is_updating = vms_cache.is_updating
     except: vms_cached_response = None
-
-    CLOUDLY_MOTTOS = [
-        "The Power of Now!",
-        "Relax, it’s going to take no time to get you up and running.",
-        "Saves you money and resources!",
-        "Real-time servers monitoring.",
-    ]
     
-    return render_to_response('dashboard.html', {'CLOUDLY_MOTTOS':CLOUDLY_MOTTOS,'is_updating':is_updating,'vms_cached_response':vms_cached_response,}, context_instance=RequestContext(request))
+    return render_to_response('dashboard.html', {'is_updating':is_updating,'vms_cached_response':vms_cached_response,}, context_instance=RequestContext(request))
 
 
 @login_required()
