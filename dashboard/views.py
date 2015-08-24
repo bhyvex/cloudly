@@ -61,7 +61,14 @@ def home(request):
         is_updating = vms_cache.is_updating
     except: vms_cached_response = None
 
-    return render_to_response('dashboard.html', {'is_updating':is_updating,'vms_cached_response':vms_cached_response,}, context_instance=RequestContext(request))
+    CLOUDLY_MOTTOS = [
+        "The Power of Now!",
+        "Relax, it’s going to take no time to get you up and running.",
+        "Saves you money and resources!",
+        "Real-time servers monitoring.",
+    ]
+    
+    return render_to_response('dashboard.html', {'CLOUDLY_MOTTOS':CLOUDLY_MOTTOS,'is_updating':is_updating,'vms_cached_response':vms_cached_response,}, context_instance=RequestContext(request))
 
 
 @login_required()
