@@ -33,7 +33,6 @@ TEMPLATE_LOADERS = (
 #       'LOCATION': '/var/run/redis/redis.sock',
 #     },
 #}
-
 #SESSION_ENGINE = 'redis_sessions.session'
 #SESSION_REDIS_UNIX_DOMAIN_SOCKET_PATH = '/var/run/redis/redis.sock'
 
