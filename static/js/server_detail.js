@@ -251,7 +251,7 @@ $(document).ready(function() {
 
     var activeNetworkConnectionsTable = $("#active_network_connections").DataTable({
         "lengthMenu": [[50, 10, 30, 100, -1], [50, 10, 30, 100, "All"]],
-        "order": [[ 3, "asc" ]],
+        "order": [[ 5, "asc" ]],
         "ajax": {
             "url": addressActiveNetworkConnectionsTable,
             "type": "POST",
