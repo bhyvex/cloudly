@@ -63,13 +63,13 @@ def date_handler(obj):
 
 
 def close_server_tabs(request, return_path):
-    
+
     request.session["recently_clicked_servers"] = []
     request.session.modified = True
     return_path = "/" + return_path
-    
+
     return HttpResponseRedirect(return_path)
-    
+
 
 @login_required()
 def update_session(request):
@@ -268,11 +268,11 @@ def server_view(request, hwaddr):
     for disk in disks_:
         if not disk[5] in disks:
             disks.append(disk[5])
-            
+
 
     reduced_disks = []
     for disk in disks:
-        if(disk[:4]!="/run" and disk[:5]!="/boot" and disk[:4]!="/sys" and disk[:4]!="/dev"): 
+        if(disk[:4]!="/run" and disk[:5]!="/boot" and disk[:4]!="/sys" and disk[:4]!="/dev"):
             reduced_disks.append(disk)
 
     try:
@@ -297,82 +297,82 @@ def server_view(request, hwaddr):
 
 
     SERVICES_COMMON = [
-        {'process':"couchdb", 'tag':"CouchDB", 'description':"JSON based Web database", 'extra_tag':"database"},        
+        {'process':"couchdb", 'tag':"CouchDB", 'description':"JSON based Web database", 'extra_tag':"database"},
         {'process':"mongod", 'tag':"MongoDB", 'description':"NoSQL database", 'extra_tag':"database"},
         {'process':"redis", 'tag':"Redis", 'description':"Redis - Data structure server", 'extra_tag':"database"},
-        {'process':"opentsdb", 'tag':"OpenTSDB", 'description':"Scalable Time Series Database", 'extra_tag':"database"},        
-        {'process':"hadoop", 'tag':"Hadoop", 'description':"Big data open-source framework", 'extra_tag':"database"},        
-        {'process':"memcached", 'tag':"Memcached", 'description':"A distributed memory object caching system", 'extra_tag':"database"},        
-        {'process':"mysql", 'tag':"MySQLDB", 'description':"Relational SQL Database", 'extra_tag':"database"},        
+        {'process':"opentsdb", 'tag':"OpenTSDB", 'description':"Scalable Time Series Database", 'extra_tag':"database"},
+        {'process':"hadoop", 'tag':"Hadoop", 'description':"Big data open-source framework", 'extra_tag':"database"},
+        {'process':"memcached", 'tag':"Memcached", 'description':"A distributed memory object caching system", 'extra_tag':"database"},
+        {'process':"mysql", 'tag':"MySQLDB", 'description':"Relational SQL Database", 'extra_tag':"database"},
         {'process':"postgresql", 'tag':"PostgreSQL", 'description':"Object-relational Database System", 'extra_tag':"database"},
-        {'process':"sqlite", 'tag':"SQLite", 'description':"Simple SQL database engine", 'extra_tag':"database"},        
+        {'process':"sqlite", 'tag':"SQLite", 'description':"Simple SQL database engine", 'extra_tag':"database"},
         {'process':"xorg", 'tag':"X11", 'description':"X Window System (X11)"},
-        {'process':"apache", 'tag':"Apache", 'description':"Apache Web Server", 'extra_tag':"www"},        
-        {'process':"apache2", 'tag':"Apache", 'description':"Apache Web Server", 'extra_tag':"www"},        
-        {'process':"nginx", 'tag':"NGINX", 'description':"NGINX Web Server", 'extra_tag':"www"},        
+        {'process':"apache", 'tag':"Apache", 'description':"Apache Web Server", 'extra_tag':"www"},
+        {'process':"apache2", 'tag':"Apache", 'description':"Apache Web Server", 'extra_tag':"www"},
+        {'process':"nginx", 'tag':"NGINX", 'description':"NGINX Web Server", 'extra_tag':"www"},
         {'process':"nodejs", 'tag':"Node.js", 'description':"Node.js Platform", 'extra_tag':"www"},
         {'process':"joomla", 'tag':"Joomla", 'description':"Content Management System", 'extra_tag':"CMS"},
-        {'process':"drupal", 'tag':"Drupal 6/7", 'description':"Content Management Framework", 'extra_tag':"CMS"},        
-        {'process':"concrete", 'tag':"Concrete5", 'description':"Content Management System", 'extra_tag':"CMS"},   
-        {'process':"b2evolution", 'tag':"b2evolution", 'description':"Content management system", 'extra_tag':"CMS"},        
-        {'process':"e107", 'tag':"e107", 'description':"Content Management system", 'extra_tag':"CMS"},      
-        {'process':"mambo", 'tag':"Mambo", 'description':"Content Management system", 'extra_tag':"CMS"},          
-        {'process':"plone", 'tag':"Plone", 'description':"Open Source Content Management System", 'extra_tag':"CMS"},        
-        {'process':"xoops", 'tag':"XOOPS", 'description':"Content Management and Web Application Platform", 'extra_tag':"CMS"},        
+        {'process':"drupal", 'tag':"Drupal 6/7", 'description':"Content Management Framework", 'extra_tag':"CMS"},
+        {'process':"concrete", 'tag':"Concrete5", 'description':"Content Management System", 'extra_tag':"CMS"},
+        {'process':"b2evolution", 'tag':"b2evolution", 'description':"Content management system", 'extra_tag':"CMS"},
+        {'process':"e107", 'tag':"e107", 'description':"Content Management system", 'extra_tag':"CMS"},
+        {'process':"mambo", 'tag':"Mambo", 'description':"Content Management system", 'extra_tag':"CMS"},
+        {'process':"plone", 'tag':"Plone", 'description':"Open Source Content Management System", 'extra_tag':"CMS"},
+        {'process':"xoops", 'tag':"XOOPS", 'description':"Content Management and Web Application Platform", 'extra_tag':"CMS"},
         {'process':"tendenci", 'tag':"Tendenci", 'description':"Content Management System for Non-Profits", 'extra_tag':"CMS"},
-        {'process':"typo3", 'tag':"Typo3", 'description':"Enterprise CMS", 'extra_tag':"CMS"},        
-        {'process':"ushahidi", 'tag':"Ushahidi", 'description':"Crowdsourcing Crisis Information Platform"},        
-        {'process':"gitlab", 'tag':"GitLab", 'description':"Self Hosted Git Management"},        
+        {'process':"typo3", 'tag':"Typo3", 'description':"Enterprise CMS", 'extra_tag':"CMS"},
+        {'process':"ushahidi", 'tag':"Ushahidi", 'description':"Crowdsourcing Crisis Information Platform"},
+        {'process':"gitlab", 'tag':"GitLab", 'description':"Self Hosted Git Management"},
         {'process':"svn", 'tag':"svn", 'description':"Issue Tracking System", 'extra_tag':"CVS"},
         {'process':"trac", 'tag':"Trac", 'description':"Integrated SCM & Project Management", 'extra_tag':"CVS"},
         {'process':"roundup", 'tag':"Roundup", 'description':"Issue Tracking System", 'extra_tag':"CVS"},
         {'process':"appengine", 'tag':"AppEngine", 'description':"Google AppEngine"},
-        {'process':"elgg", 'tag':"Elgg", 'description':"Social networking engine"},        
-        {'process':"collabtive", 'tag':"Collabtive", 'description':"GroupWare"},        
-        {'process':"codeigniter", 'tag':"CodeIgniter", 'description':"Web application framework"},        
-        {'process':"appflower", 'tag':"AppFlower", 'description':"Business Application Framework"},        
-        {'process':"bambooinvoice", 'tag':"BambooInvoice", 'description':"Online Invoicing"},        
-        {'process':"mibew", 'tag':"Mibew", 'description':"Live Support Chat"},        
-        {'process':"canvas", 'tag':"Canvas", 'description':"Learning Management System"},        
-        {'process':"cakephp", 'tag':"CakePHP", 'description':"PHP framework"},        
-        {'process':"icescrum", 'tag':"iceScrum", 'description':"Agile collaborative development platform"},        
-        {'process':"jenkins", 'tag':"Jenkins", 'description':"Continuous integration platform"},        
-        {'process':"lighttpd", 'tag':"lighttpd", 'description':"Simple web server and loadballancer"},        
-        {'process':"mahara", 'tag':"Mahara", 'description':"Electronic portfolio and social networking"},        
-        {'process':"oscommerce", 'tag':"osCommerce", 'description':"Online shop"},        
-        {'process':"limesurvey", 'tag':"LimeSurvey", 'description':"Survey application"},        
-        {'process':"orangehrm", 'tag':"OrangeHRM", 'description':"Human Resources management system"},        
-        {'process':"omeka", 'tag':"Omeka", 'description':"Cultural collections web publishing"},        
-        {'process':"openphoto", 'tag':"OpenPhoto", 'description':"Photos management system"},        
-        {'process':"openldap", 'tag':"OpenLDAP", 'description':"Open Source Directory Services"},        
-        {'process':"piwik", 'tag':"Piwik", 'description':"Real Time Web Analytics"},        
-        {'process':"pligg", 'tag':"Pligg", 'description':"Social publishing CMS platform"},        
-        {'process':"silverstripe", 'tag':"SilverStripe", 'description':"CMS and framework"},        
-        {'process':"punbb", 'tag':"PunBB", 'description':"Forum software"},        
-        {'process':"processmaker", 'tag':"ProcessMaker", 'description':"Workflow & BPM software"},        
-        {'process':"sencha", 'tag':"Sencha", 'description':"Framework for Mobile HTML5 webapps"},        
-        {'process':"osqa", 'tag':"OSQA", 'description':"QA system"},        
-        {'process':"owncloud", 'tag':"ownCloud", 'description':"Sharing files, music, calendar"},        
-        {'process':"phplist", 'tag':"phpList", 'description':"Email campaign management"},        
-        {'process':"web2py", 'tag':"web2py", 'description':"Python framework"},        
-        {'process':"phreedom", 'tag':"Phreedom", 'description':"Enterprise Resource Planning"},        
-        {'process':"tomcat", 'tag':"tomcat", 'description':"Java Servlet and JSP Platform"},        
-        {'process':"tomatocart", 'tag':"TomatoCart", 'description':"Shopping cart"},        
-        {'process':"simpleinvoices", 'tag':"SimpleInvoices", 'description':"Invoicing system in PHP"},        
-        {'process':"simplemachines", 'tag':"SimpleMachines", 'description':"Forum system"},        
-        {'process':"zurmo", 'tag':"Zurmo", 'description':"Gamified, Social, Mobile CRM system"},        
-        {'process':"sugarcrm", 'tag':"SugarCRM", 'description':"Business & Social CRM software"},        
-        {'process':"zurmo", 'tag':"Zurmo", 'description':"Gamified, Social, Mobile CRM system"},        
+        {'process':"elgg", 'tag':"Elgg", 'description':"Social networking engine"},
+        {'process':"collabtive", 'tag':"Collabtive", 'description':"GroupWare"},
+        {'process':"codeigniter", 'tag':"CodeIgniter", 'description':"Web application framework"},
+        {'process':"appflower", 'tag':"AppFlower", 'description':"Business Application Framework"},
+        {'process':"bambooinvoice", 'tag':"BambooInvoice", 'description':"Online Invoicing"},
+        {'process':"mibew", 'tag':"Mibew", 'description':"Live Support Chat"},
+        {'process':"canvas", 'tag':"Canvas", 'description':"Learning Management System"},
+        {'process':"cakephp", 'tag':"CakePHP", 'description':"PHP framework"},
+        {'process':"icescrum", 'tag':"iceScrum", 'description':"Agile collaborative development platform"},
+        {'process':"jenkins", 'tag':"Jenkins", 'description':"Continuous integration platform"},
+        {'process':"lighttpd", 'tag':"lighttpd", 'description':"Simple web server and loadballancer"},
+        {'process':"mahara", 'tag':"Mahara", 'description':"Electronic portfolio and social networking"},
+        {'process':"oscommerce", 'tag':"osCommerce", 'description':"Online shop"},
+        {'process':"limesurvey", 'tag':"LimeSurvey", 'description':"Survey application"},
+        {'process':"orangehrm", 'tag':"OrangeHRM", 'description':"Human Resources management system"},
+        {'process':"omeka", 'tag':"Omeka", 'description':"Cultural collections web publishing"},
+        {'process':"openphoto", 'tag':"OpenPhoto", 'description':"Photos management system"},
+        {'process':"openldap", 'tag':"OpenLDAP", 'description':"Open Source Directory Services"},
+        {'process':"piwik", 'tag':"Piwik", 'description':"Real Time Web Analytics"},
+        {'process':"pligg", 'tag':"Pligg", 'description':"Social publishing CMS platform"},
+        {'process':"silverstripe", 'tag':"SilverStripe", 'description':"CMS and framework"},
+        {'process':"punbb", 'tag':"PunBB", 'description':"Forum software"},
+        {'process':"processmaker", 'tag':"ProcessMaker", 'description':"Workflow & BPM software"},
+        {'process':"sencha", 'tag':"Sencha", 'description':"Framework for Mobile HTML5 webapps"},
+        {'process':"osqa", 'tag':"OSQA", 'description':"QA system"},
+        {'process':"owncloud", 'tag':"ownCloud", 'description':"Sharing files, music, calendar"},
+        {'process':"phplist", 'tag':"phpList", 'description':"Email campaign management"},
+        {'process':"web2py", 'tag':"web2py", 'description':"Python framework"},
+        {'process':"phreedom", 'tag':"Phreedom", 'description':"Enterprise Resource Planning"},
+        {'process':"tomcat", 'tag':"tomcat", 'description':"Java Servlet and JSP Platform"},
+        {'process':"tomatocart", 'tag':"TomatoCart", 'description':"Shopping cart"},
+        {'process':"simpleinvoices", 'tag':"SimpleInvoices", 'description':"Invoicing system in PHP"},
+        {'process':"simplemachines", 'tag':"SimpleMachines", 'description':"Forum system"},
+        {'process':"zurmo", 'tag':"Zurmo", 'description':"Gamified, Social, Mobile CRM system"},
+        {'process':"sugarcrm", 'tag':"SugarCRM", 'description':"Business & Social CRM software"},
+        {'process':"zurmo", 'tag':"Zurmo", 'description':"Gamified, Social, Mobile CRM system"},
         {'process':"vtiger", 'tag':"vTigerCRM", 'description':"Customer Relationship Management"},
-        {'process':"zencart", 'tag':"Zen Cart", 'description':"online store management system"},        
-        {'process':"tomatocart", 'tag':"TomatoCart", 'description':"Shopping cart"},        
-        {'process':"yii", 'tag':"Yii Framework", 'description':"PHP framework"},        
+        {'process':"zencart", 'tag':"Zen Cart", 'description':"online store management system"},
+        {'process':"tomatocart", 'tag':"TomatoCart", 'description':"Shopping cart"},
+        {'process':"yii", 'tag':"Yii Framework", 'description':"PHP framework"},
         {'process':"rails", 'tag':"Ruby on Rails", 'description':"Web Application Framework"},
-        {'process':"wordpress", 'tag':"WordPress", 'description':"Blog Publishing Platform"},        
-        {'process':"redmine", 'tag':"Redmine", 'description':"Integrated SCM & Project Management"},        
-        {'process':"phpmyadmin", 'tag':"phpMyAdmin", 'description':"Handles the administration of MySQL server"},        
-        {'process':"otrs", 'tag':"OTRS", 'description':"Ticket Request System"},        
-        {'process':"mediawiki", 'tag':"MediaWiki", 'description':"Wikipedia's Wiki Engine", 'extra_tag':"Wiki"},        
+        {'process':"wordpress", 'tag':"WordPress", 'description':"Blog Publishing Platform"},
+        {'process':"redmine", 'tag':"Redmine", 'description':"Integrated SCM & Project Management"},
+        {'process':"phpmyadmin", 'tag':"phpMyAdmin", 'description':"Handles the administration of MySQL server"},
+        {'process':"otrs", 'tag':"OTRS", 'description':"Ticket Request System"},
+        {'process':"mediawiki", 'tag':"MediaWiki", 'description':"Wikipedia's Wiki Engine", 'extra_tag':"Wiki"},
         {'process':"twiki", 'tag':"TWiki", 'description':"Enterprise Wiki Platform", 'extra_tag':"Wiki"},
         {'process':"dokuwiki", 'tag':"DokuWiki", 'description':"Documentation Wiki Platform", 'extra_tag':"Wiki"},
         {'process':"moinmoin", 'tag':"MoinMoin", 'description':"Wiki Engine", 'extra_tag':"Wiki"},
@@ -398,7 +398,7 @@ def server_view(request, hwaddr):
 
         services_tags = []
         for process in server['processes']:
-    
+
             for service in SERVICES_COMMON:
                 if(service['process'].lower() in process.lower()):
                     if(not [service['tag'],service['description']] in services_tags):
@@ -408,20 +408,20 @@ def server_view(request, hwaddr):
                                 services_tags.append([service['extra_tag'],""])
                         except:
                             pass
-                        
+
 
         server['tags'] = {}
         server['tags']['services_tags'] = services_tags
         server['tags']['datacenter_tags'] = []
         server['tags']['custom_tags'] = []
-        
+
         if(server['cpu_virtualization']):
             server['tags']['datacenter_tags'].append('Metal')
         else:
             pass
 
         mongo.servers.update({'secret':server['secret'], 'uuid':server['uuid']}, server)
-        
+
 
     return render_to_response('server_detail.html', {'secret':profile.secret,'recently_clicked_servers':recently_clicked_servers, 'hwaddr':hwaddr,'hwaddr_orig':hwaddr_orig,'server':server,'server_status':server_status,'disks_usage':disks_usage,'disks':disks,'reduced_disks':reduced_disks,'mem_usage':mem_usage,'loadavg':loadavg,'networking':networking,'activity':activity,'recently_clicked_servers':recently_clicked_servers,}, context_instance=RequestContext(request))
 
@@ -996,8 +996,8 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
             connection['proto'] = conn[1]
             connection['recv-q'] = conn[2]
             connection['send-q'] = conn[3]
-            connection['local-address'] = conn[7]
-            connection['foreign-address'] = conn[4]
+            connection['foreign-address'] = conn[7]
+            connection['local-address'] = conn[4]
             connection['foreign-port'] = conn[5]
 
             active_network_connections_.append(connection)
@@ -1086,7 +1086,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         if(params):
             tsdb = requests.get('http://hbase:4242/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
-            
+
             try:
                 tsdb_response = tsdb_response[0]['dps']
             except: tsdb_response = []
@@ -1126,7 +1126,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
             tsdb = requests.get('http://hbase:4242/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
-            
+
             try:
                 tsdb_response = tsdb_response[0]['dps']
             except: tsdb_response = []
@@ -1170,7 +1170,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         if(params):
             tsdb = requests.get('http://hbase:4242/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
-            
+
             try:
                 tsdb_response = tsdb_response[0]['dps']
             except:
@@ -1223,7 +1223,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
             tsdb = requests.get('http://hbase:4242/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
-            
+
             try:
                 tsdb_response = tsdb_response[0]['dps']
             except: tsdb_response = []
