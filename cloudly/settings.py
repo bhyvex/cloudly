@@ -12,7 +12,7 @@ ADMINS = (
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True 
+DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['*']
@@ -22,7 +22,7 @@ TEMPLATE_DIRS = (
 )
 
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader', 
+    'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 )
 
@@ -65,8 +65,8 @@ DATABASES = {
         'NAME': 'cloudly',
         'USER': 'root',
         'PASSWORD': '',
-        'HOST': '',                      
-        'PORT': '',                      
+        'HOST': '',
+        'PORT': '',
     }
 }
 

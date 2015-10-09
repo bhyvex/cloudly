@@ -31,7 +31,7 @@ from amazon import ec2_funcs
 from vms.models import Cache
 
 def home(request):
-        
+
     if not request.user.is_authenticated():
         print '--  web:'
         CLOUDLY_MOTTOS = [
@@ -44,19 +44,19 @@ def home(request):
 
     print '--  dashboard:'
     print request.user
-    
+
     user = request.user
     user.last_login = datetime.datetime.now()
     user.save()
-    
+
     profile = userprofile.objects.get(user=request.user)
     secret = profile.secret
-    
+
     ip = request.META['REMOTE_ADDR']
     _log_user_activity(profile,"click","/","home",ip=ip)
-    
+
     is_updating = False
-    
+
     try:
         vms_cache = Cache.objects.get(user=request.user)
         vms_response = vms_cache.vms_response
@@ -66,19 +66,19 @@ def home(request):
         vms_cached_response['last_seen'] = vms_cache.last_seen
         is_updating = vms_cache.is_updating
     except: vms_cached_response = None
-    
-    return render_to_response('dashboard.html', {'is_updating':is_updating,'vms_cached_response':vms_cached_response,}, context_instance=RequestContext(request))
+
+    return render_to_response('dashboard.html', {'request':request,'is_updating':is_updating,'vms_cached_response':vms_cached_response,}, context_instance=RequestContext(request))
 
 
 @login_required()
 def welcome(request):
 
     print '--  welcome page:', request.user
-    
+
     ip = request.META['REMOTE_ADDR']
     profile = userprofile.objects.get(user=request.user)
     _log_user_activity(profile,"click","/welcome/","welcome",ip=ip)
-    
+
     print request.user
     return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
 
@@ -99,14 +99,14 @@ def credits(request):
         return HttpResponseRedirect("https://github.com/jparicka/cloudly")
 
     print request.user
-    return render_to_response('credits.html', locals(), context_instance=RequestContext(request))
+    return render_to_response('credits.html', {'request':request,}, context_instance=RequestContext(request))
 
 
 @login_required()
 def investors(request):
 
     print '--  investors page:', request.user
-    
+
     ip = request.META['REMOTE_ADDR']
     try:
         profile = userprofile.objects.get(user=request.user)
@@ -114,7 +114,7 @@ def investors(request):
     except:
         return HttpResponseRedirect("https://github.com/jparicka/cloudly")
 
-    
+
     print request.user
     return render_to_response('investors.html', locals(), context_instance=RequestContext(request))
 
@@ -134,7 +134,7 @@ def download_agent(request):
         api_server_url = "api.projectcloudly.com:5001"
 
     ip = request.META['REMOTE_ADDR']
-    
+
     try:
         profile = userprofile.objects.get(user=request.user)
     except: pass
@@ -151,7 +151,7 @@ def download_agent(request):
             return HttpResponseForbidden()
 
         _log_user_activity(profile,"download","/download/agent/","download_agent",ip=ip)
-    
+
         agent_code = ""
         for line in open('agent.py'):
             if("SECRET = \"\"" in line):
@@ -161,14 +161,14 @@ def download_agent(request):
                 agent_code += "API_SERVER = \""+api_server_url+"\"\n"
                 continue
             agent_code += line
-            
-        return HttpResponse(agent_code)    
+
+        return HttpResponse(agent_code)
 
     try:
         agent_download_url = server_url + "download/agent?xuuid="+profile.agent_hash
         print 'agent_download_url', agent_download_url
     except:
         return HttpResponseRedirect("https://raw.githubusercontent.com/jparicka/cloudly/master/agent.py")
-        
 
-    return render_to_response('agent_download.html', {'profile':profile,'agent_download_url':agent_download_url,}, context_instance=RequestContext(request))        
+
+    return render_to_response('agent_download.html', {'request': request, 'profile':profile,'agent_download_url':agent_download_url,}, context_instance=RequestContext(request))

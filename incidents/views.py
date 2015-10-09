@@ -40,4 +40,4 @@ def incidents(request):
     user.last_login = datetime.datetime.now()
     user.save()
     
-    return render_to_response('incidents.html', {'profile':profile,}, context_instance=RequestContext(request))
+    return render_to_response('incidents.html', {'request':request, 'profile':profile,}, context_instance=RequestContext(request))

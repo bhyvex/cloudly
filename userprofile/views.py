@@ -53,21 +53,21 @@ def _remove_accents(data):
     return ''.join(x for x in unicodedata.normalize('NFKD', data) if x in string.ascii_letters).lower()
 
 def _log_user_activity(userprofile, activity, link, function="", ip=""):
-    
+
     activity = Activity.objects.create(user=userprofile.user,activity=activity,link=link)
 
-    if(ip): 
+    if(ip):
         activity.ip_addr = ip
         activity.save()
-    
-    if(activity.activity=="click"): 
+
+    if(activity.activity=="click"):
         userprofile.clicks += 1
 
     if(function):
         userprofile.function = function
 
     userprofile.save()
-    
+
     #print '*'*100
     #print 'activity', activity, activity.activity
 
@@ -75,33 +75,33 @@ def _log_user_activity(userprofile, activity, link, function="", ip=""):
 
 
 def _simple_email_validation(email):
-    
-    if('@' and '.' in email): 
-        return True        
+
+    if('@' and '.' in email):
+        return True
     return False
 
 
 def login_as_demo_user(request):
-    
+
     user = User.objects.get(username='demo@demo.com')
     user.set_password('demo')
     user.save()
-    
+
     login(request, authenticate(username='demo@demo.com', password='demo'))
-    
+
     return HttpResponseRedirect("/")
 
 
 def user_logout(request):
-    
+
     print '-- logout'
-    
+
     try:
         logout(request)
     except: pass
-        
+
     print request.user
-    
+
     return HttpResponseRedirect("/goodbye/")
 
 @login_required()
@@ -144,13 +144,13 @@ def register(request):
     err = None
 
     if request.POST:
-        
+
         print request.POST
 
         name = request.POST[u'username']
         email = request.POST[u'email']
         username = email
-        
+
         try:
             if(request.POST['agree']!='on'):
                 err = "must_agree_tos"
@@ -194,9 +194,9 @@ def register(request):
                     secret = (''.join([choice(string.digits) for i in range(3)]) + '-' + \
                         ''.join([choice(string.letters + string.digits) for i in range(4)]) + '-' + \
                         ''.join([choice(string.digits) for i in range(5)])).upper()
-                    
+
                     agent_hash = (''.join([choice(string.letters + string.digits) for i in range(12)]))
-                    
+
                     username = _remove_accents(username)
                     #name = _remove_accents(name)
 
@@ -204,7 +204,7 @@ def register(request):
                     login(request, user)
 
                     request.session['language'] = "us"
-                    
+
                     print 'new user registered'
                     print username
 
@@ -215,15 +215,15 @@ def register(request):
 
 
 def auth(request):
-    
+
     print '-- auth:'
-    
+
     if(request.method == 'POST'):
 
         post = request.POST
-        
+
         print post
-        
+
         try:
             email = request.POST['username']
             passwprd = request.POST['password']
@@ -231,7 +231,7 @@ def auth(request):
             print 'failed login code:1'
             return HttpResponseRedirect("/register")
 
-        
+
         try:
             user = User.objects.get(email=email)
         except:
@@ -244,17 +244,17 @@ def auth(request):
         except:
             print 'failed login code:3'
             return HttpResponseRedirect("/register")
-            
+
         print 'user logged in', user
-        
+
         return HttpResponseRedirect("/")
-        
-    
+
+
     return render_to_response('login.html', {}, context_instance=RequestContext(request))
 
 @login_required()
 def cloud_settings(request):
-    
+
     print '-- cloud settings:'
 
     user = request.user
@@ -265,13 +265,13 @@ def cloud_settings(request):
     user.save()
 
     print request.user
-    
+
     ip = request.META['REMOTE_ADDR']
     _log_user_activity(profile,"click","/cloud/settings/","cloud_settings",ip=ip)
 
     profile_regions = profile.aws_enabled_regions.split(',')
     aws_ec2_verified = profile.aws_ec2_verified
-    
+
     updated_regions = False
     if request.GET:
         updated = request.GET['updated']
@@ -282,13 +282,13 @@ def cloud_settings(request):
 
 @login_required()
 def cloud_settings_update_credentials(request):
-    
+
     user = request.user
     profile = userprofile.objects.get(user=request.user)
     secret = profile.secret
 
     err = None
-    
+
     aws_access_key  = request.POST['aws_access_key']
     aws_secret_key = request.POST['aws_access_secret']
 
@@ -297,13 +297,13 @@ def cloud_settings_update_credentials(request):
         profile.aws_secret_key = aws_secret_key
         profile.save()
     else: err = "Missing AWS Secret"
-        
+
     if(aws_access_key):
         profile.aws_access_key = aws_access_key
         profile.save()
     else: err = "Missing AWS Access Key"
 
-    profile_regions = profile.aws_enabled_regions.split(',')    
+    profile_regions = profile.aws_enabled_regions.split(',')
 
     try:
         ec2conn = boto.ec2.connect_to_region( "us-west-1",
@@ -316,7 +316,7 @@ def cloud_settings_update_credentials(request):
         profile.aws_ec2_verified = False
 
     profile.save()
-    
+
     return render_to_response('cloud_settings.html', {'err':err,'aws_ec2_verified':profile.aws_ec2_verified,'aws_regions':AWS_REGIONS,'profile_regions':profile_regions,'profile':profile,'secret':secret,}, context_instance=RequestContext(request))
 
 
@@ -346,7 +346,7 @@ def change_password(request):
             error = "Passwords do not match."
 
         user = authenticate(username=request.user, password=current_passwd)
-        if(not user): 
+        if(not user):
             error = "Wrong password."
 
         if(not error):
@@ -359,9 +359,9 @@ def change_password(request):
 
 @login_required()
 def cloud_settings_update_regions(request):
-    
+
     enable_regions = request.POST.getlist('checkboxes')
-    
+
     c=0
     enabled_regions = ""
     for region in enable_regions:
@@ -370,7 +370,7 @@ def cloud_settings_update_regions(request):
         else:
             enabled_regions = str(region)
         c+=1
-    
+
     user = request.user
     profile = userprofile.objects.get(user=request.user)
     profile.aws_enabled_regions = enabled_regions
@@ -396,5 +396,5 @@ def account_settings(request):
     ip = request.META['REMOTE_ADDR']
     _log_user_activity(profile,"click","/account/settings/","account_settings",ip=ip)
 
-    return render_to_response('account_settings.html', {'aws_regions':AWS_REGIONS,'user':user,'profile':profile,}, context_instance=RequestContext(request))
+    return render_to_response('account_settings.html', {'request':request, 'aws_regions':AWS_REGIONS,'user':user,'profile':profile,}, context_instance=RequestContext(request))
 
