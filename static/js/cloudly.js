@@ -1,4 +1,3 @@
-
 var csrf = $('input[name="csrfmiddlewaretoken"]').val(),// request middlevare secure
     secret = $('input[name="secret"]').val(),           // request authenticate
 
@@ -67,8 +66,51 @@ function updateSession(values) {
     });
 }
 
-$(document).ready(function(){
+function setSidebarCollapse()
+{
+    var $sidebar = $('.sidebar');
+    if ($sidebar.length > 0) {
+        var isMinified = $sidebar.hasClass('minified');
+        updateSession({'sidebar':isMinified});
+    }
+}
+
+function loadSidebarCollapse() {
+    var $inputSidebar = $('input[name="sidebar"]'),
+        sidebarValue = $inputSidebar.val();
+    $inputSidebar.remove();
+
+    if (sidebarValue == 'false') {
+        updateSession({'sidebar':false});
+        return false;
+    }
+
+    if (sidebarValue == 'true') {
+        var $sidebar = $('.sidebar');
+        if ($sidebar.length > 0) {
+            $('body').addClass('sidebar-minified');
+            $('#main').addClass('sidebar-minified');
+
+            $sidebar.addClass('minified');
+
+            var $mainMenu = $('#main-menu-min');
+            $mainMenu.removeClass('full');
+            $mainMenu.addClass('minified');
+
+            var $i = $mainMenu.find('i');
+            $i.removeClass('fa-angle-double-left');
+            $i.addClass('fa-angle-double-right');
+        }
+    }
+}
+
+$(document).ready(function() {
     var elementPosition = $('#second-menu').offset();
+
+    loadSidebarCollapse();
+    $('#main-menu-min').on('click', function() {
+        setSidebarCollapse();
+    });
 
     $(window).scroll(function() {
         if ($(window).scrollTop() > (elementPosition.top - 60)) {

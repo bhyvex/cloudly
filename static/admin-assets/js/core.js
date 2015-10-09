@@ -105,7 +105,6 @@ jQuery(document).ready(function($){
                 .addClass('opened');
             $('.sidebar > div > ul > li > a').addClass('open');
 
-            updateSession({"sidebarClosed":"yes"});
         } else {
             $('body').removeClass('sidebar-minified');
             $('.main').removeClass('sidebar-minified');
@@ -118,8 +117,6 @@ jQuery(document).ready(function($){
             $('.sidebar > div > ul > li > a > .chevron').removeClass('opened')
                 .addClass('closed');
             $('.sidebar > div > ul > li > a').removeClass('open');
-
-            updateSession({"sidebarClosed":"no"});
         }
 
         if ($('.machines-list').length) $('.machines-list').isotope('layout');
@@ -161,14 +158,6 @@ jQuery(document).ready(function($){
         spotRadius: 2,
         lineWidth: 1
     });
-
-    if (readCookie("sidebarClosed") !== null) {
-        if (readCookie("sidebarClosed") == "yes"
-            && $("#main-menu-min").hasClass("full")
-        ) {
-            $("#main-menu-min").click();
-        }
-    }
 });
 
 jQuery(document).ready(function($){
@@ -231,14 +220,6 @@ function widthFunctions(e) {
             });
         }
     } else {
-        if (readCookie("sidebarClosed") !== null) {
-            if (readCookie("sidebarClosed") == "yes"
-                && $("#main-menu-min").hasClass("full")
-            ) {
-                $("#main-menu-min").click();
-            }
-        }
-
         $('#main').css('width', '');
 
         if($('.chat-full')) {

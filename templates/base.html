@@ -39,6 +39,12 @@
 </head>
 
 <body>
+    <input
+        name="sidebar"
+        value="{{request.session.sidebar}}"
+        type="hidden"
+    />
+
     {% csrf_token %}
     {% block nav-bar %}
     {% endblock %}
