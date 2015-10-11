@@ -75,8 +75,22 @@ def home(request):
     except: vms_cached_response = None
 
     servers = mongo.servers.find({'secret':profile.secret,}).sort('_id',-1);
+    servers_tags = {}
 
-    return render_to_response('dashboard.html', {'request':request,'servers':servers,'is_updating':is_updating,'vms_cached_response':vms_cached_response,}, context_instance=RequestContext(request))
+    for server in servers:
+        try:
+            server['tags']
+        except: break
+
+        for tag_category in server['tags']:
+            if(not servers_tags.has_key(tag_category)):
+                servers_tags[tag_category] = [];
+
+            for inner_tag in server['tags'][tag_category]:
+                if(not inner_tag in servers_tags[tag_category]):
+                    servers_tags[tag_category].append(inner_tag[0])
+
+    return render_to_response('dashboard.html', {'request':request,'servers_tags':servers_tags,'is_updating':is_updating,'vms_cached_response':vms_cached_response,}, context_instance=RequestContext(request))
 
 
 @login_required()

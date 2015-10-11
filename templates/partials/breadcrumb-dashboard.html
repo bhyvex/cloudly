@@ -1,3 +1,5 @@
+{% load cloud_extras %}
+
 <div id="second-menu" class="container-fluid">
     <div class="">
         <ul class="navbar-left">
@@ -31,7 +33,15 @@
                 <a href="#" class="secondmenu-button btn-cloud">Cloud</a>
             </li>
             <li>
-                <a href="#" class="secondmenu-button btn-all-tags">Tags_dropdown</a>
+                <select name="tags" size="1" class="form-control input-sm">
+                    {% for tag_category in servers_tags %}
+                        <optgroup label="{{tag_category}}">
+                            {% for tag in servers_tags|dict_get:tag_category %}
+                                <option name="{{tag}}">{{tag}}</option>
+                            {% endfor %}
+                        </optgroup>
+                    {% endfor %}
+                </select>
             </li>
         </ul>
     </div>

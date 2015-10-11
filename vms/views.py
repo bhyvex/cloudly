@@ -411,12 +411,11 @@ def server_view(request, hwaddr):
 
 
         server['tags'] = {}
-        server['tags']['services_tags'] = services_tags
-        server['tags']['datacenter_tags'] = []
-        server['tags']['custom_tags'] = []
+        server['tags']['tags'] = services_tags
+        server['tags']['datacenters'] = [] 
 
         if(server['cpu_virtualization']):
-            server['tags']['datacenter_tags'].append('Metal')
+            server['tags']['datacenters'].append(['Metal','Physical HW'])
         else:
             pass
 
