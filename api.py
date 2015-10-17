@@ -340,15 +340,17 @@ def ping():
         hbase.send(disks_tsdb_cmd)
         hbase.close()
 
-    print '-'*100
-    print 'debug cpu_usage_service_report', cpu_usage_service_report
-    print '-'*10
-    print 'debug loadavg_service_report', loadavg_service_report
-    print '-'*10
-    print 'debug memory_usage_service_report', memory_usage_service_report
-    print '-'*10
-    print 'debug disks_usage_service_report', disks_usage_service_report
-    print '*'*100
+
+    notifs_to_process = [ \
+        cpu_usage_service_report,
+        loadavg_service_report,
+        memory_usage_service_report,
+        disks_usage_service_report,
+    ]
+
+    for report in notifs_to_process:
+        print report
+        print '-'*100    
 
     if(agent_version != AGENT_VERSION_CURRENT):
 
