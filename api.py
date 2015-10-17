@@ -348,6 +348,7 @@ def ping():
     print 'debug memory_usage_service_report', memory_usage_service_report
     print '-'*10
     print 'debug disks_usage_service_report', disks_usage_service_report
+    print '*'*100
 
     if(agent_version != AGENT_VERSION_CURRENT):
 
