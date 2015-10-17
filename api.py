@@ -341,15 +341,15 @@ def ping():
         hbase.close()
 
 
-    notifs_to_process = [ \
+    service_statuses__to_process = [ \
         cpu_usage_service_report,
         loadavg_service_report,
         memory_usage_service_report,
         disks_usage_service_report,
     ]
 
-    for report in notifs_to_process:
-        print report
+    for service_status_report in service_statuses__to_process:
+        print service_status_report
         print '-'*100    
 
     if(agent_version != AGENT_VERSION_CURRENT):
