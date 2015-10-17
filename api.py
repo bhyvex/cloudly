@@ -351,17 +351,31 @@ def ping():
 
     for status_report in service_statuses__to_process:
         
+        server = uuid
         service_status = status_report['service_status']
         service_thresholds = status_report['service_thresholds']
+        service = service_status['service']
+        status = service_status['status'].upper()        
         
-        print service_status
-        print service_thresholds
-        print '*'*100
+
+        if(status=='OK'):
+            # XXX shit loads of clearing logic goes here
+            pass
+        else:
         
+            print server
+            print service
+            print service_status
+            
+            # XXX consider service_thresholds
+            #print service_thresholds
+            
+            print '*'*100
         
+  
 
     if(agent_version != AGENT_VERSION_CURRENT):
-
+    
         return ("update", 201)
 
 
