@@ -3,6 +3,7 @@
 import os
 import sys
 import socket
+from pprint import pprint
 import time, datetime
 
 from flask import Flask, jsonify, abort
@@ -349,14 +350,19 @@ def ping():
     ]
 
     for status_report in service_statuses__to_process:
-        print status_report
-        print 
-        print '-'*100    
+        
+        service_status = status_report['service_status']
+        service_thresholds = status_report['service_thresholds']
+        
+        print service_status
+        print service_thresholds
+        print '*'*100
+        
+        
 
     if(agent_version != AGENT_VERSION_CURRENT):
 
         return ("update", 201)
-
 
 
     return ("thanks", 201)
