@@ -125,23 +125,6 @@ def credits(request):
     return render_to_response('credits.html', {'request':request,}, context_instance=RequestContext(request))
 
 
-@login_required()
-def investors(request):
-
-    print '--  investors page:', request.user
-
-    ip = request.META['REMOTE_ADDR']
-    try:
-        profile = userprofile.objects.get(user=request.user)
-        _log_user_activity(profile,"click","/investors/","welcome",ip=ip)
-    except:
-        return HttpResponseRedirect("https://github.com/jparicka/cloudly")
-
-
-    print request.user
-    return render_to_response('investors.html', locals(), context_instance=RequestContext(request))
-
-
 
 def download_agent(request):
 
