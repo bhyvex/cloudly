@@ -348,8 +348,9 @@ def ping():
         disks_usage_service_report,
     ]
 
-    for service_status_report in service_statuses__to_process:
-        print service_status_report
+    for status_report in service_statuses__to_process:
+        print status_report
+        print 
         print '-'*100    
 
     if(agent_version != AGENT_VERSION_CURRENT):
