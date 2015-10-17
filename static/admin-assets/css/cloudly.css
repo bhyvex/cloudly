@@ -12,6 +12,18 @@ footer {
     z-index: 100;
 }
 
+select.servers_tags {
+    width: auto;
+    line-height: 40px;
+    margin-left: 5px;
+    padding-left: 8px;
+    border-radius: 0px !important;
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border: none !important;
+    float: right;
+}
+
 #second-menu {
     z-index: 2;
     padding: 0 15px;
