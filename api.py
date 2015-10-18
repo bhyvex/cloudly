@@ -400,9 +400,8 @@ def ping():
 
             if( current_alert_duration > min_alert_duration):
             
-                # XXX first time tolerance......
-                
-                # example stdout:
+                # XXX to make this nadupane, work in the "first time (reset) tolerance"......
+                # example data for the first round:
                 # ** SYSTEM_CPU OK = CRITICAL
                 # ** current_overall_service_status CRITICAL
                 # ** current_alert_duration 660.375542 min_alert_duration 120   <--- should this happened the first time the counter needs to reset!
