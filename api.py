@@ -405,7 +405,7 @@ def ping():
                 # example stdout:
                 # ** SYSTEM_CPU OK = CRITICAL
                 # ** current_overall_service_status CRITICAL
-                # ** current_alert_duration 660.375542 min_alert_duration 120
+                # ** current_alert_duration 660.375542 min_alert_duration 120   <--- should this happened the first time the counter needs to reset!
                 # ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record...
                 # all done. db updated.
                 
