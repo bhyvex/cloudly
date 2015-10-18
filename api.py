@@ -403,11 +403,15 @@ def ping():
 
             print '*****'*200,'DB !!!'
             print 'last_active_service_status', last_active_service_status
+
+
+            min_alert_duration = service_thresholds[current_overall_service_status]['min_duration_in_seconds']
+            current_alert_duration = (datetime.datetime.utcnow()-last_active_service_status['date']).total_seconds()
+            print 'min_alert_duration for', current_overall_service_status, 'is', min_alert_duration
+            print 'current_alert_duration', current_alert_duration
+            
             
             print 'defined_min_duration !!! per particular alert type !!! min_duration_in_seconds !! needs to be recognized per alert!!'
-            
-            print 'service_thresholds', service_thresholds
-
 
             print 'trigger_duration XXX'
 
