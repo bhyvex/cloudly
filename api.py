@@ -387,20 +387,14 @@ def ping():
                 continue
             
             
-            service_thresholds[current_overall_service_status]
             try:
                 min_alert_duration = service_thresholds[current_overall_service_status]['min_duration_in_seconds']
-            except: min_alert_duration = 0
+            except: min_alert_duration = 30
 
             
             current_alert_duration = (datetime.datetime.utcnow()-last_active_service_status['date']).total_seconds()
 
-
-            print 'current_overall_service_status', current_overall_service_status
-            print 'service_thresholds', service_thresholds
-            print service_thresholds[current_overall_service_status]
-            print last_active_service_status['date']
-            
+            print '** current_overall_service_status', current_overall_service_status
             print '** current_alert_duration', current_alert_duration, 'min_alert_duration', min_alert_duration            
 
             
