@@ -390,17 +390,22 @@ def ping():
 
                 print '######'*30, 'old status = new status, doing nothing...'
                 print '*'*170
-                
                 continue
             
             
             min_alert_duration = service_thresholds[current_overall_service_status]['min_duration_in_seconds']
             current_alert_duration = (datetime.datetime.utcnow()-last_active_service_status['date']).total_seconds()
+
+            if( current_alert_duration < min_alert_duration ):
+            
+                print '######'*30, 'update threshold not yet reached, doing nothing...'
+                print '*'*170
+                continue
+
+
             print 'min_alert_duration for', current_overall_service_status, 'is', min_alert_duration
             print 'current_alert_duration', current_alert_duration
 
-            # ak time_diff < threshold tak do nothing
-            
             print 'current_status', current_overall_service_status
             print 'last_active_service_status', last_active_service_status
             
