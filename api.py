@@ -370,16 +370,9 @@ def ping():
 
         # Active Service Statuses
 
-        print '--------------------->'
-        print '	service_thresholds', service_thresholds
-
         last_active_service_status = active_service_statuses.find_one({'server_id':uuid,'service':service})        
         
-        print 'current_status', current_overall_service_status
-        print 'last_active_service_status', last_active_service_status
-
-
-        new_report = {
+        new_active_report = {
             'date':datetime.datetime.utcnow(),
             'server_id':uuid,
             'service':service,
@@ -389,19 +382,23 @@ def ping():
         }
 
         if(not last_active_service_status):
-            active_service_statuses.insert(new_report)
+            active_service_statuses.insert(new_active_report)
 
         else: 
 
-            if( last_active_service_status['current_overall_status'] == 'OK' ):
+            if( last_active_service_status['current_overall_status'] == current_overall_service_status ):
 
-                print '######'*30, 'status is OK, doing nothing...'
+                print '######'*30, 'old status = new status, doing nothing...'
                 print '*'*170
                 
                 continue
             
 
             print '*****'*200,'DB !!!'
+            print 'current_status', current_overall_service_status
+            print 'last_active_service_status', last_active_service_status
+            
+            print 'performing update from',last_active_service_status['current_overall_status'],'to',current_overall_service_status
             print 'last_active_service_status', last_active_service_status
 
 
