@@ -396,12 +396,14 @@ def ping():
 
                 active_service_statuses.find_one({'server_id':uuid,'service':service}, new_active_report)
                 
+                print service, last_active_service_status['current_overall_status'], '=', current_overall_service_status                    
+                print 'updated DB succesfully performed!!!'
                 print '[]'*100
-                print 'updated DB succesfully performed!!'
 
 
             if( current_alert_duration > min_alert_duration):
             
+                print service, 'last', last_active_service_status['current_overall_status'], 'current', current_overall_service_status
                 print service, 'update threshold not yet reached, doing nothing...'
                 print '*'*170
                 continue
