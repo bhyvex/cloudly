@@ -349,10 +349,10 @@ def ping():
         disks_usage_service_report,
     ]
 
+
     active_service_statuses = mongo.active_service_statuses
     historical_service_statuses = mongo.historical_service_statuses
     alertor_queue = mongo.alertor_queue
-
 
     for status_report in service_statuses__to_process:
         
