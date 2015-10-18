@@ -367,19 +367,15 @@ def ping():
         print 'detailed_service_status', detailed_service_status
         
 
-        # Calculating staus duration (which really is (now-first_seen) in seconds)..
+        # Active Service Statuses
 
         print '--------------------->'
         print '	service_thresholds', service_thresholds
         
 
 
-
-
-
-
-        # Active server statuses..
-        # XXX        
+        # XXX Historical Service Statuses
+        # XXX
             
         print '*'*170
   
