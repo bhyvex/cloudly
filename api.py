@@ -401,6 +401,14 @@ def ping():
             if( current_alert_duration > min_alert_duration):
             
                 # XXX first time tolerance......
+                
+                # example stdout:
+                # ** SYSTEM_CPU OK = CRITICAL
+                # ** current_overall_service_status CRITICAL
+                # ** current_alert_duration 660.375542 min_alert_duration 120
+                # ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record...
+                # all done. db updated.
+                
             
                 active_service_statuses.update({'server_id':uuid,'service':service}, new_active_report)
 
