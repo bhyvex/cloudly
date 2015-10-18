@@ -378,6 +378,26 @@ def ping():
         print 'current_status', current_overall_service_status
         print 'last_active_service_status', last_active_service_status
 
+
+        new_report = {
+            'date':datetime.datetime.utcnow(),
+            'server_id':uuid,
+            'service':service,
+            'current_overall_status':current_overall_service_status,
+            'detailed_service_status':detailed_service_status,
+            'alert':0,
+        }
+
+        if(not last_active_service_status):
+            active_service_statuses.insert(new_report)
+
+        else:        
+            print '*****DB last_active_service_status', last_active_service_status
+
+
+
+
+
         # XXX Historical Service Statuses
         # XXX
             
