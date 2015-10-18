@@ -383,7 +383,7 @@ def ping():
         
             if( last_active_service_status['current_overall_status'] == current_overall_service_status ):
 
-                print service, 'old status = new status, doing nothing...'
+                print service, last_active_service_status['current_overall_status'], '=', current_overall_service_status, 'doing nothing...'
                 print '*'*170
                 continue
             
@@ -394,25 +394,25 @@ def ping():
 
             if( current_overall_service_status == 'OK' and last_active_service_status['current_overall_status'] != 'OK'):
 
-                print 'OK acts like reset..'
-                print 'perform update '*100
-                pass
+                active_service_statuses.find_one({'server_id':uuid,'service':service}, new_active_report)
+                
+                print '[]'*100
+                print 'updated DB succesfully performed!!'
 
-            elif( current_alert_duration < min_alert_duration):
+
+            if( current_alert_duration > min_alert_duration):
             
                 print service, 'update threshold not yet reached, doing nothing...'
                 print '*'*170
                 continue
 
 
-
             print 'min_alert_duration for', current_overall_service_status, 'is', min_alert_duration
             print 'current_alert_duration', current_alert_duration
-
             print 'current_status', current_overall_service_status
             print 'last_active_service_status', last_active_service_status
             
-            print 'performing update from',last_active_service_status['current_overall_status'],'to',current_overall_service_status
+            print '**** performing update from',last_active_service_status['current_overall_status'],'to',current_overall_service_status
             print 'last_active_service_status', last_active_service_status
 
 
