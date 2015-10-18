@@ -373,7 +373,6 @@ def ping():
             'service':service,
             'current_overall_status':current_overall_service_status,
             'detailed_service_status':detailed_service_status,
-            'seen':False,
             'alert_level':0,
             'alert_helper':'',
         }
