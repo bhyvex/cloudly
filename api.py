@@ -398,9 +398,6 @@ def ping():
 
             if( current_alert_duration > min_alert_duration):
             
-                # XXX careful about firing up alerts
-                # XXX alerts must be modest - perhaps allow the second equal alert presenc prior firing up alerts?
-                         
                 active_service_statuses.update({'server_id':uuid,'service':service}, new_active_report)
 
                 print '**', service, last_active_service_status['current_overall_status'], '=', current_overall_service_status
