@@ -362,7 +362,6 @@ def ping():
         current_overall_service_status = detailed_service_status['status'].upper()        
         service_thresholds = status_report['service_thresholds']        
 
-        print 'server', server_id
 
         # Active Service Statuses...
         last_active_service_status = active_service_statuses.find_one({'server_id':uuid,'service':service})        
