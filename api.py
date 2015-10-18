@@ -392,7 +392,13 @@ def ping():
             active_service_statuses.insert(new_report)
 
         else: 
-            # conditional update
+
+
+            # if last status is OK .. continue
+            
+            # set the warning based on actual duration vs threshold defined duration            
+            
+            
             print '*****DB last_active_service_status', last_active_service_status
 
 
