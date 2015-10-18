@@ -396,8 +396,11 @@ def ping():
             print '** current_overall_service_status', current_overall_service_status
             print '** current_alert_duration', current_alert_duration, 'min_alert_duration', min_alert_duration            
 
-            
+
+
             if( current_alert_duration > min_alert_duration):
+            
+                # XXX first time tolerance......
             
                 active_service_statuses.update({'server_id':uuid,'service':service}, new_active_report)
 
