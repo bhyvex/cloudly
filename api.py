@@ -358,30 +358,30 @@ def ping():
         
         server_id = uuid
         detailed_service_status = status_report['service_status']
-
         service = detailed_service_status['service'].upper()
         overall_service_status = detailed_service_status['status'].upper()        
         service_thresholds = status_report['service_thresholds']        
 
-        now = datetime.datetime.utcnow()
-         
-
         print 'server_id', server_id
-        print 'last_seen', last_seen
-        print 'service', service
-        print 'overall_status', overall_service_status
+        print 'service', service, 'overall_status', overall_service_status
         print 'detailed_service_status', detailed_service_status
-        print 'service_thresholds', service_thresholds
         
+
         # Calculating staus duration (which really is (now-first_seen) in seconds)..
 
-        status_first_seen = "XXX"
-        status_duration_current = "XXX"
-        print 'status_duration_current', status_duration_current, '(now - first_seen).total_seconds()'
+        print '--------------------->'
+        print '	service_thresholds', service_thresholds
+        
 
 
+
+
+
+
+        # Active server statuses..
+        # XXX        
             
-        print '*'*100
+        print '*'*170
   
 
     if(agent_version != AGENT_VERSION_CURRENT):
