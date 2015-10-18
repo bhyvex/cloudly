@@ -366,23 +366,18 @@ def ping():
         now = datetime.datetime.utcnow()
          
 
-        if(overall_service_status=='OK'):
-            # XXX shit loads of clearing logic goes here, like closing up / recording active warnings...
-            pass
-        else:
-        
-            print 'server_id', server_id
-            print 'last_seen', last_seen
-            print 'service', service
-            print 'overall_status', overall_service_status
-            print 'detailed_service_status', detailed_service_status
+        print 'server_id', server_id
+        print 'last_seen', last_seen
+        print 'service', service
+        print 'overall_status', overall_service_status
+        print 'detailed_service_status', detailed_service_status
 
-            # XXX remember to consider service_thresholds !!!
-            status_duration_current = "XXX"
-            print 'service_thresholds', service_thresholds
-            print 'status_duration_current', status_duration_current, '(now - first_seen).total_seconds()'
+        # XXX remember to consider service_thresholds !!!
+        status_duration_current = "XXX"
+        print 'service_thresholds', service_thresholds
+        print 'status_duration_current', status_duration_current, '(now - first_seen).total_seconds()'
             
-            print '*'*100
+        print '*'*100
   
 
     if(agent_version != AGENT_VERSION_CURRENT):
