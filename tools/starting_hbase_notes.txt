@@ -9,5 +9,5 @@ telnet 0 2181
 
 env COMPRESSION=NONE HBASE_HOME=/opt/hbase-1.0.1.1/ /opt/opentsdb/tools/create_table.sh
 
-/opt/opentsdb/bin/tsdb tsd --port=4242 --staticroot=/opt/opentsdb/static /--cachedir=/tmp --zkquorum=localhost:2181
+/opt/opentsdb/bin/tsdb tsd --auto-metric --staticroot=/opt/opentsdb/static/ --port=4242 --auto-metric --cachedir="/home/hbase/opentsdb-cache/" --zkquorum=localhost:2181
 
