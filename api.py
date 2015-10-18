@@ -373,7 +373,9 @@ def ping():
             'service':service,
             'current_overall_status':current_overall_service_status,
             'detailed_service_status':detailed_service_status,
-            'alert':0,
+            'seen':False,
+            'alert_level':0,
+            'alert_helper':'',
         }
 
         if(not last_active_service_status):
@@ -400,23 +402,18 @@ def ping():
             
             if( current_alert_duration > min_alert_duration):
             
-                print '** updating the record... '*20
-
                 active_service_statuses.update({'server_id':uuid,'service':service}, new_active_report)
-                
-                print 'all done. db updated.'
+                print '** db updated.'*30
                 print '*'*170
+
                 continue
+
             else:
             
                 print 'waiting for the threshold to be reached..'
+                print 'no action to be taken..'
 
 
-            #print 'min_alert_duration for', current_overall_service_status, 'is', min_alert_duration
-            #print 'current_alert_duration', current_alert_duration
-            #print 'current_status', current_overall_service_status
-            #print 'last_active_service_status', last_active_service_status
-            
 
         # XXX Historical Service Statuses
         # XXX
