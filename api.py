@@ -378,7 +378,6 @@ def ping():
 
         if(not last_active_service_status):
             active_service_statuses.insert(new_active_report)
-
         else: 
         
             if( last_active_service_status['current_overall_status'] == current_overall_service_status ):
@@ -388,31 +387,42 @@ def ping():
                 continue
             
             
-            min_alert_duration = service_thresholds[current_overall_service_status]['min_duration_in_seconds']
+            service_thresholds[current_overall_service_status]
+            try:
+                min_alert_duration = service_thresholds[current_overall_service_status]['min_duration_in_seconds']
+            except: min_alert_duration = 0
+
+            
             current_alert_duration = (datetime.datetime.utcnow()-last_active_service_status['date']).total_seconds()
 
 
-            if( current_overall_service_status == 'OK' and last_active_service_status['current_overall_status'] != 'OK'):
+            print 'current_overall_service_status', current_overall_service_status
+            print 'service_thresholds', service_thresholds
+            print service_thresholds[current_overall_service_status]
+            print last_active_service_status['date']
+            
+            print '** current_alert_duration', current_alert_duration, 'min_alert_duration', min_alert_duration            
 
-                active_service_statuses.find_one({'server_id':uuid,'service':service}, new_active_report)
-                
-                print service, last_active_service_status['current_overall_status'], '=', current_overall_service_status                    
-                print 'updated DB succesfully performed!!!'
-                print '[]'*100
-
-
+            
             if( current_alert_duration > min_alert_duration):
             
                 print service, 'last', last_active_service_status['current_overall_status'], 'current', current_overall_service_status
-                print service, 'update threshold not yet reached, doing nothing...'
+
+                print '** updating the record... '*200
+                active_service_statuses.update({'server_id':uuid,'service':service}, new_active_report)
+                
+                print 'all done. db updated.'
                 print '*'*170
                 continue
+            else:
+            
+                print 'waiting for the threshold to be reached..'
 
 
-            print 'min_alert_duration for', current_overall_service_status, 'is', min_alert_duration
-            print 'current_alert_duration', current_alert_duration
-            print 'current_status', current_overall_service_status
-            print 'last_active_service_status', last_active_service_status
+            #print 'min_alert_duration for', current_overall_service_status, 'is', min_alert_duration
+            #print 'current_alert_duration', current_alert_duration
+            #print 'current_status', current_overall_service_status
+            #print 'last_active_service_status', last_active_service_status
             
             print '**** performing update from',last_active_service_status['current_overall_status'],'to',current_overall_service_status
             print 'last_active_service_status', last_active_service_status
