@@ -351,21 +351,24 @@ def ping():
 
     for status_report in service_statuses__to_process:
         
-        server = uuid
-        service_status = status_report['service_status']
+        server_id = uuid
+        detailed_service_status = status_report['service_status']
+
         service_thresholds = status_report['service_thresholds']
-        service = service_status['service']
-        status = service_status['status'].upper()        
+        service = detailed_service_status['service'].upper()
+        overall_service_status = detailed_service_status['status'].upper()        
         
 
-        if(status=='OK'):
+        if(overall_service_status=='OK'):
             # XXX shit loads of clearing logic goes here
             pass
         else:
         
-            print server
-            print service
-            print service_status
+            print 'last_seen', last_seen
+            print 'server_id', server_id
+            print 'service', service
+            print 'status', overall_service_status
+            print 'detailed_service_status', detailed_service_status
             
             # XXX consider service_thresholds
             #print service_thresholds
@@ -389,3 +392,6 @@ if __name__ == '__main__':
         host = "0.0.0.0",
         port = 5001
     )
+
+
+
