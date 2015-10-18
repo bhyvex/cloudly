@@ -398,17 +398,9 @@ def ping():
 
             if( current_alert_duration > min_alert_duration):
             
-                # XXX to make this nadupane, work in the "first time (reset) tolerance"......
-                # Example data for the first round that needs to clear space for the second round (hence full-blown alert trigger):
-                # ** SYSTEM_CPU OK = CRITICAL
-                # ** current_overall_service_status CRITICAL
-                # ** current_alert_duration 660.375542 min_alert_duration 120   <--- should this happened the first time the counter needs to reset!
-                # ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record...
-                # ** all done. db updated.
-                # somehow.... as this would avoid the unecesarry notif peaks..  it's important!
-                # and set the default to say 15 seconds to the proper update .. somehow.
-        
-                new_active_report['alaerm_first_initiated'] = datetime.datetime.utcnow()
+                # XXX careful about firing up alerts
+                # XXX alerts must be modest - perhaps allow the second equal alert presenc prior firing up alerts?
+                         
                 active_service_statuses.update({'server_id':uuid,'service':service}, new_active_report)
 
                 print '**', service, last_active_service_status['current_overall_status'], '=', current_overall_service_status
