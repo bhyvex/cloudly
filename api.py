@@ -362,13 +362,8 @@ def ping():
         current_overall_service_status = detailed_service_status['status'].upper()        
         service_thresholds = status_report['service_thresholds']        
 
-        print 'server_id', server_id
-        print 'service', service
-        print 'current_overall_status', current_overall_service_status
-        print 'detailed_service_status', detailed_service_status
-        
 
-        # Active Service Statuses
+        # Active Service Statuses...
 
         last_active_service_status = active_service_statuses.find_one({'server_id':uuid,'service':service})        
         
@@ -385,10 +380,10 @@ def ping():
             active_service_statuses.insert(new_active_report)
 
         else: 
-
+        
             if( last_active_service_status['current_overall_status'] == current_overall_service_status ):
 
-                print '######'*30, 'old status = new status, doing nothing...'
+                print service, 'old status = new status, doing nothing...'
                 print '*'*170
                 continue
             
@@ -396,11 +391,19 @@ def ping():
             min_alert_duration = service_thresholds[current_overall_service_status]['min_duration_in_seconds']
             current_alert_duration = (datetime.datetime.utcnow()-last_active_service_status['date']).total_seconds()
 
-            if( current_alert_duration < min_alert_duration ):
+
+            if( current_overall_service_status == 'OK' and last_active_service_status['current_overall_status'] != 'OK'):
+
+                print 'OK acts like reset..'
+                print 'perform update '*100
+                pass
+
+            elif( current_alert_duration < min_alert_duration):
             
-                print '######'*30, 'update threshold not yet reached, doing nothing...'
+                print service, 'update threshold not yet reached, doing nothing...'
                 print '*'*170
                 continue
+
 
 
             print 'min_alert_duration for', current_overall_service_status, 'is', min_alert_duration
@@ -425,6 +428,7 @@ def ping():
     
         return ("update", 201)
 
+    print '-'*170
 
     return ("thanks", 201)
 
