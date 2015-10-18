@@ -354,10 +354,9 @@ def ping():
         server_id = uuid
         detailed_service_status = status_report['service_status']
 
-        service_thresholds = status_report['service_thresholds']
         service = detailed_service_status['service'].upper()
         overall_service_status = detailed_service_status['status'].upper()        
-        
+        service_thresholds = status_report['service_thresholds']        
 
         if(overall_service_status=='OK'):
             # XXX shit loads of clearing logic goes here
@@ -374,7 +373,6 @@ def ping():
             #print service_thresholds
             
             print '*'*100
-        
   
 
     if(agent_version != AGENT_VERSION_CURRENT):
