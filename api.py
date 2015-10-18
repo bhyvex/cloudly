@@ -409,6 +409,7 @@ def ping():
                 # somehow.... as this would avoid the unecesarry notif peaks..  it's important!
                 # and set the default to say 15 seconds to the proper update .. somehow.
         
+                new_active_report['last_updated'] = datetime.datetime.utcnow()
                 active_service_statuses.update({'server_id':uuid,'service':service}, new_active_report)
 
                 print '**', service, last_active_service_status['current_overall_status'], '=', current_overall_service_status
