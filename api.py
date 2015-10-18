@@ -366,7 +366,7 @@ def ping():
         status_duration_current = 'xxx'
 
         if(overall_service_status=='OK'):
-            # XXX shit loads of clearing logic goes here
+            # XXX shit loads of clearing logic goes here, like closing up / recording active warnings...
             pass
         else:
         
