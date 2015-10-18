@@ -359,11 +359,12 @@ def ping():
         server_id = uuid
         detailed_service_status = status_report['service_status']
         service = detailed_service_status['service'].upper()
-        overall_service_status = detailed_service_status['status'].upper()        
+        current_overall_service_status = detailed_service_status['status'].upper()        
         service_thresholds = status_report['service_thresholds']        
 
         print 'server_id', server_id
-        print 'service', service, 'overall_status', overall_service_status
+        print 'service', service
+        print 'current_overall_status', current_overall_service_status
         print 'detailed_service_status', detailed_service_status
         
 
@@ -371,8 +372,11 @@ def ping():
 
         print '--------------------->'
         print '	service_thresholds', service_thresholds
-        
 
+        last_active_service_status = active_service_statuses.find_one({'server_id':uuid,'service':service})        
+        
+        print 'current_status', current_overall_service_status
+        print 'last_active_service_status', last_active_service_status
 
         # XXX Historical Service Statuses
         # XXX
