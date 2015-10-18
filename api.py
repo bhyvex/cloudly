@@ -407,6 +407,7 @@ def ping():
                 # ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record... ** updating the record...
                 # ** all done. db updated.
                 # somehow.... as this would avoid the unecesarry notif peaks..  it's important!
+                # and set the default to say 15 seconds to the proper update .. somehow.
         
                 active_service_statuses.update({'server_id':uuid,'service':service}, new_active_report)
 
