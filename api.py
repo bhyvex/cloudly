@@ -409,6 +409,7 @@ def ping():
             print 'service_thresholds', service_thresholds
 
 
+            print 'trigger_duration XXX'
 
             print 'current_duration (now-last_active_service_status.total_seconds > threshold mwah)'
 
