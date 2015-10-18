@@ -393,14 +393,16 @@ def ping():
 
         else: 
 
+            if( last_active_service_status['current_overall_status'] == 'OK' ):
 
-            # if last status is OK .. continue
+                print '######'*30, 'status is OK, doing nothing...'
+                print '*'*170
+                
+                continue
             
-            # set the warning based on actual duration vs threshold defined duration            
-            
-            
-            print '*****DB last_active_service_status', last_active_service_status
-
+            print '*****'*200,'DB !!!'
+            print 'last_active_service_status', last_active_service_status
+            print 'current_duration (now-last_active_service_status.total_seconds > threshold mwah)'
 
 
 
