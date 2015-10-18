@@ -391,7 +391,8 @@ def ping():
         if(not last_active_service_status):
             active_service_statuses.insert(new_report)
 
-        else:        
+        else: 
+            # conditional update
             print '*****DB last_active_service_status', last_active_service_status
 
 
