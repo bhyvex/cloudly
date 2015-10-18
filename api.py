@@ -406,9 +406,9 @@ def ping():
             
             if( current_alert_duration > min_alert_duration):
             
-                print service, 'last', last_active_service_status['current_overall_status'], 'current', current_overall_service_status
-
                 print '** updating the record... '*200
+                print '**** performing update from',last_active_service_status['current_overall_status'],'to',current_overall_service_status
+
                 active_service_statuses.update({'server_id':uuid,'service':service}, new_active_report)
                 
                 print 'all done. db updated.'
@@ -424,11 +424,6 @@ def ping():
             #print 'current_status', current_overall_service_status
             #print 'last_active_service_status', last_active_service_status
             
-            print '**** performing update from',last_active_service_status['current_overall_status'],'to',current_overall_service_status
-            print 'last_active_service_status', last_active_service_status
-
-
-
 
         # XXX Historical Service Statuses
         # XXX
