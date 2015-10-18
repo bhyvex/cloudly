@@ -402,6 +402,8 @@ def ping():
             
             print '*****'*200,'DB !!!'
             print 'last_active_service_status', last_active_service_status
+            
+            print 'defined_min_duration !!! per particular alert type !!! needs to be recognized per alert!!'
             print 'current_duration (now-last_active_service_status.total_seconds > threshold mwah)'
 
 
