@@ -364,7 +364,6 @@ def ping():
 
 
         # Active Service Statuses...
-
         last_active_service_status = active_service_statuses.find_one({'server_id':uuid,'service':service})        
         
         new_active_report = {
@@ -403,21 +402,21 @@ def ping():
             if( current_alert_duration > min_alert_duration):
             
                 active_service_statuses.update({'server_id':uuid,'service':service}, new_active_report)
-                print '** db updated.'*30
-                print '*'*170
+
+                print '**', service, last_active_service_status['current_overall_status'], '=', current_overall_service_status
+                print '** current_overall_service_status', current_overall_service_status
+                print '** current_alert_duration', current_alert_duration, 'min_alert_duration', min_alert_duration            
+                print '** db updated.'*30, '*'*170
 
                 continue
 
             else:
-            
-                print 'waiting for the threshold to be reached..'
-                print 'no action to be taken..'
+                print 'waiting for the threshold to be reached....'
 
 
-
-        # XXX Historical Service Statuses
-        # XXX
-            
+        # Historical Service Statuses
+        # XXX            
+        
         print '*'*170
   
 
