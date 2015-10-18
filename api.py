@@ -383,7 +383,6 @@ def ping():
             if( last_active_service_status['current_overall_status'] == current_overall_service_status ):
 
                 print service, last_active_service_status['current_overall_status'], '=', current_overall_service_status, 'doing nothing...'
-                print '*'*170
                 continue
             
             
@@ -394,14 +393,14 @@ def ping():
             
             current_alert_duration = (datetime.datetime.utcnow()-last_active_service_status['date']).total_seconds()
 
+            print '**', service, last_active_service_status['current_overall_status'], '=', current_overall_service_status
             print '** current_overall_service_status', current_overall_service_status
             print '** current_alert_duration', current_alert_duration, 'min_alert_duration', min_alert_duration            
 
             
             if( current_alert_duration > min_alert_duration):
             
-                print '** updating the record... '*200
-                print '**** performing update from',last_active_service_status['current_overall_status'],'to',current_overall_service_status
+                print '** updating the record... '*20
 
                 active_service_statuses.update({'server_id':uuid,'service':service}, new_active_report)
                 
