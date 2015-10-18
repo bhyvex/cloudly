@@ -396,7 +396,6 @@ def ping():
             print '** current_alert_duration', current_alert_duration, 'min_alert_duration', min_alert_duration            
 
 
-
             if( current_alert_duration > min_alert_duration):
             
                 # XXX to make this nadupane, work in the "first time (reset) tolerance"......
