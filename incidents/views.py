@@ -47,5 +47,10 @@ def incidents(request):
     user = request.user
     user.last_login = datetime.datetime.now()
     user.save()
+
+    notifs_counter = 0
+    active_service_statuses = mongo.active_service_statuses
+    active_service_statuses = active_service_statuses.find({"$and": [{"secret": secret}, {"current_overall_status": {"$ne": "OK"}}]})
+    notifs_counter = active_service_statuses.count()
     
-    return render_to_response('incidents.html', {'request':request, 'profile':profile,}, context_instance=RequestContext(request))
+    return render_to_response('incidents.html', {'request':request, 'notifs_counter':notifs_counter,'active_service_statuses':active_service_statuses, 'profile':profile,}, context_instance=RequestContext(request))

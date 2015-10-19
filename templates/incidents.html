@@ -16,8 +16,9 @@
 			<div class="task-list">
 				<h1>Host &amp; Services Problems</h1>
 
-				XXX here are currently no problems being encountered.
-
+				{% if not notifs_counter %}
+				There are currently no problems being encountered.
+				{% endif %}
 
 
 				<div class="priority high"><span>Critical</span></div>
