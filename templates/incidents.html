@@ -28,8 +28,8 @@
 					<div class="task high">
 						<div class="desc">
 							<div class="title">
-							<a href="#">bitcoin-miner-1
-								len-{{critical_notifs|length}}
+							{{notif|dict_get:"service"}}
+							<a href="#">{{notif|dict_get:"server_id"}}</a>
 							</div>
 							<div>
 								{{notif}}
