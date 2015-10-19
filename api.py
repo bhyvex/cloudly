@@ -368,6 +368,7 @@ def ping():
         
         new_active_report = {
             'date':datetime.datetime.utcnow(),
+            'secret':secret,
             'server_id':uuid,
             'service':service,
             'current_overall_status':current_overall_service_status,
