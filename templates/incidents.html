@@ -21,31 +21,24 @@
 
 				{% else %}
 
-
-				<div class="priority high"><span>Critical</span></div>
-
 				
-				<div class="task high">
-					<div class="desc">
-						<div class="title"><a href="#">bitcoin-miner-1</a></div>
-						<div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
+				{% if critical_notifs %}
+				<div class="priority high"><span>Critical</span></div>
+					{% for notif in critical_notifs %}
+					<div class="task high">
+						<div class="desc">
+							<div class="title"><a href="#">bitcoin-miner-1</a></div>
+							<div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
+						</div>
+						<div class="time">
+							<div class="date">Jun 1, 2012</div>
+							<div> 1 day</div>
+						</div>
 					</div>
-					<div class="time">
-						<div class="date">Jun 1, 2012</div>
-						<div> 1 day</div>
-					</div>
-				</div>
-				<div class="task high">
-					<div class="desc">
-						<div class="title"><a href="#">bitcoin-miner-1</a></div>
-						<div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-					</div>
-					<div class="time">
-						<div class="date">Jun 1, 2012</div>
-						<div> 1 day</div>
-					</div>
-				</div>
-
+					{% endfor %}
+				{% endif %}
+				
+			
 				<div class="priority medium"><span>Warning</span></div>
 
 				<div class="task medium">
