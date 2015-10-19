@@ -35,6 +35,14 @@ def dict_get(h, key):
 		
 	return None
 
+
+@register.filter(name='manual_notifs_count_unfortunately')
+def manual_notifs_count_unfortunately(notifs):
+
+	return "XXX"
+
+
+
 @register.filter(name='convert_disk_name')
 def convert_disk_name(x):
 
