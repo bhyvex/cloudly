@@ -398,8 +398,13 @@ def ping():
             if( current_alert_duration > min_alert_duration):
             
                 active_service_statuses.update({'server_id':uuid,'service':service}, new_active_report)
+
+                # XXX fire up alertor_queue
+
+
             else:
                 print 'waiting for the threshold to be reached....'
+
 
 
         # Historical Service Statuses
