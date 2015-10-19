@@ -18,11 +18,13 @@
 
 				{% if not notifs_counter %}
 				There are currently no problems being encountered.
-				{% endif %}
+
+				{% else %}
 
 
 				<div class="priority high"><span>Critical</span></div>
 
+				
 				<div class="task high">
 					<div class="desc">
 						<div class="title"><a href="#">bitcoin-miner-1</a></div>
@@ -91,6 +93,8 @@
 						<div> 1 day</div>
 					</div>
 				</div>
+
+				{% endif %}
 
 				<div class="clearfix"></div>		
 
