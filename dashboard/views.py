@@ -43,7 +43,7 @@ def home(request):
         print '--  web:'
         CLOUDLY_MOTTOS = [
             "The Power of Now!",
-            "Relax, it’s going to take no time!",
+            "Relax, it's going to take no time!",
             "Saves you money and resources!",
             "Real-time servers monitoring.",
         ]
@@ -90,7 +90,11 @@ def home(request):
                 if(not inner_tag in servers_tags[tag_category]):
                     servers_tags[tag_category].append(inner_tag[0])
 
-    return render_to_response('dashboard.html', {'request':request,'servers_tags':servers_tags,'is_updating':is_updating,'vms_cached_response':vms_cached_response,}, context_instance=RequestContext(request))
+
+    # XXX this needs go on the ajax
+    notifs_counter = 0
+
+    return render_to_response('dashboard.html', {'request':request,'notifs_counter':notifs_counter,'servers_tags':servers_tags,'is_updating':is_updating,'vms_cached_response':vms_cached_response,}, context_instance=RequestContext(request))
 
 
 @login_required()
