@@ -94,7 +94,9 @@ def home(request):
     # XXX this needs go on the ajax
     notifs_counter = 0
     active_service_statuses = mongo.active_service_statuses
-
+    active_service_statuses = active_service_statuses.find({"$and": [{"secret": secret}, {"current_overall_status": {"$ne": "OK"}}]})
+    notifs_counter = active_service_statuses.count()
+    
     return render_to_response('dashboard.html', {'request':request,'notifs_counter':notifs_counter,'servers_tags':servers_tags,'is_updating':is_updating,'vms_cached_response':vms_cached_response,}, context_instance=RequestContext(request))
 
 
