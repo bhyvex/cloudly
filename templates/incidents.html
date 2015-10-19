@@ -49,8 +49,12 @@
 					{% for notif in warning_notifs %}
 					<div class="task medium">
 						<div class="desc">
-							<div class="title"><a href="#">bitcoin-miner-1</a></div>
-							<div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
+							{{notif|dict_get:"service"}}
+							<a href="#">{{notif|dict_get:"server_id"}}</a>
+							</div>
+							<div>
+								{{notif}}
+							</div>
 						</div>
 						<div class="time">
 							<div class="date">Jun 1, 2012</div>
@@ -67,8 +71,12 @@
 					{% for notif in unknown_notifs %}
 					<div class="task high">
 						<div class="desc">
-							<div class="title"><a href="#">bitcoin-miner-1</a></div>
-							<div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
+							{{notif|dict_get:"service"}}
+							<a href="#">{{notif|dict_get:"server_id"}}</a>
+							</div>
+							<div>
+								{{notif}}
+							</div>
 						</div>
 						<div class="time">
 							<div class="date">Jun 1, 2012</div>
