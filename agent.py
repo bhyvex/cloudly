@@ -207,8 +207,8 @@ def _get_sys_cpu():
     cpu_thresholds = {
         "OK": {},
         "WARNING": {
-            'min_value': 95,
-            'max_value': 99,
+            'min_value': 70,
+            'max_value': 90,
             'min_duration_in_seconds': 60,
         },
         "CRITICAL": { # is everything above the warning range
