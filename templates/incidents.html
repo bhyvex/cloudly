@@ -49,56 +49,19 @@
 					{% endfor %}
 				{% endif %}
 				
-
 				
 				
 				{% comment %}				
+				
 				{% if warning_notifs %}
-				<div class="priority medium"><span>Warning</span></div>
-					{% for notif in warning_notifs %}
-					<div class="
-						task high
-						{% if forloop.last %}
-						last
-						{% endif %}
-					">
-
-						<div class="desc">
-							<a href="#">{{notif|dict_get:"server_id"}}</a>
-							{{notif|dict_get:"service"}}
-							<div>
-								{{notif}}
-							</div>
-						</div>
-						<div class="time">
-							<div class="date">Jun 1, 2012</div>
-							<div> 1 day</div>
-						</div>
-					</div>
-					{% endfor %}
 				{% endif %}
-
+				
 				{% if unknown_notifs %}
-				<hr/>
-				<div class="priority high"><span>Unknown</span></div>
-					{% for notif in unknown_notifs %}
-					<div class="task high">
-						<div class="desc">
-							<a href="#">{{notif|dict_get:"server_id"}}</a>
-							{{notif|dict_get:"service"}}
-							</div>
-							<div>
-								{{notif}}
-							</div>
-						</div>
-						<div class="time">
-							<div class="date">Jun 1, 2012</div>
-							<div> 1 day</div>
-						</div>
-					</div>
-					{% endfor %}
 				{% endif %}
+				
 				{% endcomment %}
+
+
 
 				{% endif %}
 
