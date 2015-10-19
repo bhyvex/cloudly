@@ -392,21 +392,12 @@ def ping():
             current_alert_duration = (datetime.datetime.utcnow()-last_active_service_status['date']).total_seconds()
 
             print '**', service, last_active_service_status['current_overall_status'], '--> (currently)', current_overall_service_status
-            print '** current_overall_service_status', current_overall_service_status
             print '** current_alert_duration', current_alert_duration, 'min_alert_duration', min_alert_duration            
 
 
             if( current_alert_duration > min_alert_duration):
             
                 active_service_statuses.update({'server_id':uuid,'service':service}, new_active_report)
-
-                print '**', service, last_active_service_status['current_overall_status'], '=', current_overall_service_status
-                print '** current_overall_service_status', current_overall_service_status
-                print '** current_alert_duration', current_alert_duration, 'min_alert_duration', min_alert_duration            
-                print '** db updated.'*30, '*'*170
-
-                continue
-
             else:
                 print 'waiting for the threshold to be reached....'
 
@@ -420,6 +411,7 @@ def ping():
     if(agent_version != AGENT_VERSION_CURRENT):
     
         return ("update", 201)
+
 
     print '-'*170
 
