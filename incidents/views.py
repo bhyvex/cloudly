@@ -50,7 +50,12 @@ def incidents(request):
 
     notifs_counter = 0
     active_service_statuses = mongo.active_service_statuses
-    active_service_statuses = active_service_statuses.find({"$and": [{"secret": secret}, {"current_overall_status": {"$ne": "OK"}}]})
-    notifs_counter = active_service_statuses.count()
+    active_service_statuses_data = active_service_statuses.find({"$and": [{"secret": secret}, {"current_overall_status": {"$ne": "OK"}}]})
+    notifs_counter = active_service_statuses_data.count()
     
+    unknown_notifs = active_service_statuses.find({"secret":secret,"current_overall_status":"UNKNOWN"})
+    warning_notifs = active_service_statuses.find({"secret":secret,"current_overall_status":"WARNING"})
+    critical_notifs = active_service_statuses.find({"secret":secret,"current_overall_status":"CRITICAL"})
+
+
     return render_to_response('incidents.html', {'request':request, 'notifs_counter':notifs_counter,'active_service_statuses':active_service_statuses, 'profile':profile,}, context_instance=RequestContext(request))
