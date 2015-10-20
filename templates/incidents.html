@@ -22,7 +22,7 @@
                 {% else %}
 
                 
-                {% if critical_notifs %}
+                {% if critical_notifs|manual_notifs_count_unfortunately %}
                 <div class="priority high"><span>Critical</span></div>
                     {% for notif in critical_notifs %}
                     <div class="
@@ -49,13 +49,12 @@
                     {% endfor %}
                 </div>                
                 {% endif %}
-                
+
   
                 {% comment %}                
                 {% if warning_notifs %}
                 XXX !!!!!!!!!!!!! todo                
                 {% endif %}
-                {% comment %}
                 {% if unknown_notifs %}
                 XXX !!!!!!!!!!!!! todo                
                 {% endif %}
@@ -65,7 +64,7 @@
                 {% endif %}
 
                 <div class="clearfix"></div>        
-                    
+
         </div><!--/col-->
                 
         <div class="col-sm-5">
