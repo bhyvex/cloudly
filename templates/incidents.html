@@ -17,53 +17,99 @@
                 <h1>Host &amp; Services Problems</h1>
 
                 {% if not notifs_counter %}
-                There are currently no servers or services problems being encountered.
-
+                    There are currently no servers or services problems being encountered.
                 {% else %}
-
-                
-                {% if critical_notifs|manual_notifs_count_unfortunately %}
-                <div class="priority high"><span>Critical</span></div>
-                    {% for notif in critical_notifs %}
-                    <div class="
-                        task high
-                        {% if forloop.last %}
-                        last
-                        {% endif %}
-                        ">
-                        <div class="desc">
-                            <div class="title">
-                            xxx-manual-count-{{critical_notifs|manual_notifs_count_unfortunately}}
-                            <a href="#">{{notif|dict_get:"server_id"}}</a>
-                            {{notif|dict_get:"service"}}
-                            </div>
-                            <div>
-                                {{notif}}
-                            </div>
+                    {% if critical_notifs|manual_notifs_count_unfortunately %}
+                        <div class="priority high">
+                            <span>Critical</span>
                         </div>
-                        <div class="time">
-                            <div class="date">Jun 1, 2012</div>
-                            <div> 1 day</div>
+                        {% for notif in critical_notifs %}
+                            <div class="
+                                task high
+                                {% if forloop.last %}
+                                last
+                                {% endif %}
+                            ">
+                                <div class="desc">
+                                    <div class="title">
+                                    xxx-manual-count-{{critical_notifs|manual_notifs_count_unfortunately}}
+                                    <a href="#">{{notif|dict_get:"server_id"}}</a>
+                                    {{notif|dict_get:"service"}}
+                                    </div>
+                                    <div>
+                                        {{notif}}
+                                    </div>
+                                </div>
+                                <div class="time">
+                                    <div class="date">Jun 1, 2012</div>
+                                    <div> 1 day</div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <div class="clearfix"></div>        
+                    {% endif %}
+
+                    {% if warning_notifs|manual_notifs_count_unfortunately %}
+                        <div class="priority medium">
+                            <span>Warning</span>
                         </div>
-                    </div>
-                    {% endfor %}
-                </div>                
-                {% endif %}
+                        {% for notif in warning_notifs %}
+                            <div class="
+                                task medium 
+                                {% if forloop.last %}
+                                last
+                                {% endif %}
+                            ">
+                                <div class="desc">
+                                    <div class="title">
+                                    xxx-manual-count-{{warning_notifs|manual_notifs_count_unfortunately}}
+                                    <a href="#">{{notif|dict_get:"server_id"}}</a>
+                                    {{notif|dict_get:"service"}}
+                                    </div>
+                                    <div>
+                                        {{notif}}
+                                    </div>
+                                </div>
+                                <div class="time">
+                                    <div class="date">Jun 1, 2012</div>
+                                    <div> 1 day</div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
 
-  
-                {% comment %}                
-                {% if warning_notifs %}
-                XXX !!!!!!!!!!!!! todo                
-                {% endif %}
-                {% if unknown_notifs %}
-                XXX !!!!!!!!!!!!! todo                
-                {% endif %}
-                {% endcomment %}
+                    {% if unknown_notifs|manual_notifs_count_unfortunately %}
+                        <div class="priority high">
+                            <span>Unknown</span>
+                        </div>
+                        {% for notif in unknown_notifs %}
+                            <div class="
+                                task high
+                                {% if forloop.last %}
+                                last
+                                {% endif %}
+                            ">
+                                <div class="desc">
+                                    <div class="title">
+                                    xxx-manual-count-{{unknown_notifs|manual_notifs_count_unfortunately}}
+                                    <a href="#">{{notif|dict_get:"server_id"}}</a>
+                                    {{notif|dict_get:"service"}}
+                                    </div>
+                                    <div>
+                                        {{notif}}
+                                    </div>
+                                </div>
+                                <div class="time">
+                                    <div class="date">Jun 1, 2012</div>
+                                    <div> 1 day</div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
 
-
+                    <div class="clearfix"></div>        
                 {% endif %}
-
-                <div class="clearfix"></div>        
+			</div>
 
         </div><!--/col-->
                 
