@@ -39,11 +39,7 @@ def dict_get(h, key):
 @register.filter(name='manual_notifs_count_unfortunately')
 def manual_notifs_count_unfortunately(notifs):
 
-	counter = 0
-	for i in notifs:
-		counter += 1
-
-	return counter
+	return notifs.count()
 
 
 
