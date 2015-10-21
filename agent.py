@@ -252,7 +252,7 @@ def _get_sys_cpu():
     message = 'The CPU(s) are '
     if(status == 'OK'): message = message + 'within limits: '
     if(status == 'WARNING' or status == 'CRITICAL'): 
-        message = status + ' - ' + message + 'quite heavily utilized: '
+        message = message + 'quite heavily utilized: '
 
     message += str(cpu_usage)
 
