@@ -285,7 +285,9 @@ def _get_sys_loadavg():
     }
 
     loadavg=subprocess.Popen(['uptime',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
-    loadavg = re.findall(r"(\d+\.\d{2})", loadavg)
+
+    try: loadavg = re.findall(r"(\d+\.\d{2})", loadavg)
+    except: loadavg = re.findall(r"(\d+\,\d{2})", loadavg)
 
     status = 'UNKNOWN'
     
