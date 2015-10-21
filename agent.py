@@ -303,7 +303,6 @@ def _get_sys_loadavg():
 
     for i in loadavg: message += str(i) + ' '
     message = message[:-1] 
-    message += '.'
 
     service_status['status'] = status
     service_status['message'] = message
