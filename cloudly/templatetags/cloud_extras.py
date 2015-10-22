@@ -39,6 +39,20 @@ def dict_get(h, key):
 	return None
 
 
+@register.filter
+def get_notification_age(value):
+    now = datetime.datetime.utcnow()
+    try:
+        difference = now - value
+    except:
+        return value
+
+    if difference <= timedelta(minutes=1):
+        return 'just now'
+    return '%(time)s ago' % {'time': timesince(value).split(', ')[0]}
+
+
+
 @register.filter(name='manual_notifs_count_unfortunately')
 def manual_notifs_count_unfortunately(notifs):
 
