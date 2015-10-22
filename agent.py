@@ -300,7 +300,7 @@ def _get_sys_loadavg():
 
     message = 'The System Load is'
     if(status == 'OK'): message = message + ' within limits: '
-    if(status == 'WARNING'): message = message + ': '
+    if(status == 'WARNING'): message = message + ' quite high: '
     if(status == 'CRITICAL'): message = message + ' ' + status + ': '
 
     for i in loadavg: message += str(i) + ' '
