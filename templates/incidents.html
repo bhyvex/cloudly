@@ -18,6 +18,7 @@
 
                 {% if not notifs_counter %}
                     There are currently no servers or services problems being encountered.
+
                 {% else %}
                     {% if critical_notifs|manual_notifs_count_unfortunately %}
                         <div class="priority high">
@@ -42,7 +43,8 @@
                                 <div class="time">
                                     <div
                                     class="date">{{notif|dict_get:"date"}}</div>
-                                    <div> 1 day</div>
+                                    <div>
+                                    {{notif|dict_get:"date"|timesince}}</div>
                                 </div>
                             </div>
                         {% endfor %}

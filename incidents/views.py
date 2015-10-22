@@ -58,4 +58,4 @@ def incidents(request):
     critical_notifs = active_service_statuses.find({"secret":secret,"current_overall_status":"CRITICAL"})
 
 
-    return render_to_response('incidents.html', {'request':request, 'notifs_counter':notifs_counter,'active_service_statuses':active_service_statuses_data,'unknown_notifs':unknown_notifs,'warning_notifs':warning_notifs,'critical_notifs':critical_notifs,'profile':profile,}, context_instance=RequestContext(request))
+    return render_to_response('incidents.html', {'request':request,'notifs_counter':notifs_counter,'active_service_statuses':active_service_statuses_data,'unknown_notifs':unknown_notifs,'warning_notifs':warning_notifs,'critical_notifs':critical_notifs,'profile':profile,}, context_instance=RequestContext(request))
