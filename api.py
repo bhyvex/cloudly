@@ -400,6 +400,8 @@ def ping():
             
                 active_service_statuses.update({'server_id':uuid,'service':service}, new_active_report)
 
+                # XXX update notification metadata as per github issue #530
+
                 # XXX fire up alertor_queue
 
 
