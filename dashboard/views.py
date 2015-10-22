@@ -48,6 +48,7 @@ def home(request):
             "Real-time servers monitoring.",
             "Real-time and very playful monitoring.",
             "Does the server monitoring for you like no other.",
+            "Cheerful server monitoring.",
         ]
         return render_to_response('web.html', {'request':request,'CLOUDLY_MOTTOS':CLOUDLY_MOTTOS,}, context_instance=RequestContext(request))
 
