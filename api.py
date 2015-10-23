@@ -47,7 +47,7 @@ def activity():
         'uuid': data['uuid'],
         'agent_version': data['agent_version'],
         'activity': data['activity'],
-        'date_created': datetime.datetime.now(),
+        'date_created': datetime.datetime.utcnow(),
     }
     activity_ = mongo.activity
     activity_.insert( activity_log )
@@ -76,7 +76,7 @@ def ping():
     cpu_virtualization = data['cpu_virtualization']
     memory_usage = data['memory_usage']
     disks_usage = data['disks_usage']
-    last_seen = datetime.datetime.now()
+    last_seen = datetime.datetime.utcnow()
     hostname = data['hostname']
     distro = data['distro']
     networking = data['networking']
@@ -140,7 +140,7 @@ def ping():
         'agent_version': agent_version,
         'uuid': uuid,
         'cpu_usage': cpu_usage['cpu_usage'],
-        'date_created': datetime.datetime.now(),
+        'date_created': datetime.datetime.utcnow(),
     }
     cpu_usage_service_report = cpu_usage['service_report']
     cpu_usage = cpu_usage['cpu_usage']
@@ -163,7 +163,7 @@ def ping():
         'agent_version': agent_version,
         'uuid': uuid,
         'loadavg': loadavg['loadavg'],
-        'date_created': datetime.datetime.now(),
+        'date_created': datetime.datetime.utcnow(),
     }
     loadavg_service_report = loadavg['service_report']
     loadavg = loadavg['loadavg']
@@ -198,7 +198,7 @@ def ping():
         'agent_version': agent_version,
         'uuid': uuid,
         'memory_usage': memory_usage['memory_usage'],
-        'date_created': datetime.datetime.now(),
+        'date_created': datetime.datetime.utcnow(),
     }
     memory_usage_service_report = memory_usage['service_report']
     memory_usage = memory_usage['memory_usage']
@@ -254,7 +254,7 @@ def ping():
         'input_accept_bytes': networking['input_accept_bytes'],
         'output_accept_packets': networking['output_accept_packets'],
         'output_accept_bytes': networking['output_accept_bytes'],
-        'date_created': datetime.datetime.now(),
+        'date_created': datetime.datetime.utcnow(),
     }
 
     networking_tsdb_cmd = "put " + \
@@ -293,7 +293,7 @@ def ping():
         'agent_version': agent_version,
         'uuid': uuid,
         'disks_usage': disks_usage['disks_usage'],
-        'date_created': datetime.datetime.now(),
+        'date_created': datetime.datetime.utcnow(),
     }
     disks_usage_service_report = disks_usage['service_report']
     disks_usage = disks_usage['disks_usage']
@@ -367,7 +367,7 @@ def ping():
         last_active_service_status = active_service_statuses.find_one({'server_id':uuid,'service':service})        
         
         new_active_report = {
-            'date':datetime.datetime.now(),
+            'date':datetime.datetime.utcnow(),
             'secret':secret,
             'server_id':uuid,
             'service':service,
@@ -390,7 +390,7 @@ def ping():
             except: min_alert_duration = 30
 
             
-            current_alert_duration = (datetime.datetime.now()-last_active_service_status['date']).total_seconds()
+            current_alert_duration = (datetime.datetime.utcnow()-last_active_service_status['date']).total_seconds()
 
             print '**', service, last_active_service_status['current_overall_status'], '--> (currently)', current_overall_service_status
             print '** current_alert_duration', current_alert_duration, 'min_alert_duration', min_alert_duration            
