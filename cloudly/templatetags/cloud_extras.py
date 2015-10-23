@@ -2,7 +2,8 @@ import re
 import time
 import json
 
-import datetime, timedelta
+import datetime
+from datetime import timedelta
 from django.utils.timesince import timesince
 
 import base64, pickle
