@@ -42,7 +42,7 @@ def dict_get(h, key):
 
 @register.filter
 def get_notification_age(value):
-    now = datetime.datetime.utcnow()
+    now = datetime.datetime.now()
     try:
         difference = now - value
     except:
