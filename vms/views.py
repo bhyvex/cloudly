@@ -866,7 +866,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         if((datetime.datetime.now()-server['last_seen']).total_seconds()>1800):
             server_status = "Offline"
             print '*'*1000
-            print datetime.datetime.now()-server['last_seen']).total_seconds()
+            print (datetime.datetime.now()-server['last_seen']).total_seconds()
 
 
     #activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
