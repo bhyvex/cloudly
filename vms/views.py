@@ -92,7 +92,7 @@ def aws_vm_view(request,vm_name):
 
     user = request.user
     profile = userprofile.objects.get(user=request.user)
-    user.last_login = datetime.datetime.utcnow()
+    user.last_login = datetime.datetime.now()
     user.save()
 
     aws_access_key = profile.aws_access_key
@@ -137,7 +137,7 @@ def aws_vm_view(request,vm_name):
         vms_cache.vms_console_output_cache = console_output
         vms_cache.save()
 
-    end = datetime.datetime.utcnow()
+    end = datetime.datetime.now()
     start = end - datetime.timedelta(minutes=60)
 
     ec2conn = boto.ec2.connect_to_region(ec2_region,aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
@@ -178,7 +178,7 @@ def control_aws_vm(request, vm_name, action):
 
     user = request.user
     profile = userprofile.objects.get(user=request.user)
-    user.last_login = datetime.datetime.utcnow()
+    user.last_login = datetime.datetime.now()
     user.save()
 
     ip = request.META['REMOTE_ADDR']
@@ -229,9 +229,9 @@ def server_view(request, hwaddr):
     server['link'] = '/server/'+hwaddr_orig+'/'
 
     server_status = "Running"
-    if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>20):
+    if((datetime.datetime.now()-server['last_seen']).total_seconds()>20):
         server_status = "Stopped"
-        if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>1800):
+        if((datetime.datetime.now()-server['last_seen']).total_seconds()>1800):
             server_status = "Offline"
 
     try:
@@ -494,9 +494,9 @@ def ajax_vms_refresh(request):
 
             uuid = server['uuid']
 
-            if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>20):
+            if((datetime.datetime.now()-server['last_seen']).total_seconds()>20):
                 instance_metrics['instance']['state']['state'] = "Stopped"
-                if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>1800):
+                if((datetime.datetime.now()-server['last_seen']).total_seconds()>1800):
                     instance_metrics['instance']['state']['state'] = "Offline"
             else:
                 instance_metrics['instance']['state']['state'] = "Running"
@@ -616,7 +616,7 @@ def ajax_vms_refresh(request):
 
 
                     # Here is where you define start - end for the Logs...............
-                    end = datetime.datetime.utcnow()
+                    end = datetime.datetime.now()
                     start = end - datetime.timedelta(minutes=60)
 
                     # This is how you list all possible values on the response....
@@ -633,7 +633,7 @@ def ajax_vms_refresh(request):
 
 
     vms_cache.vms_response = base64.b64encode(pickle.dumps(virtual_machines, pickle.HIGHEST_PROTOCOL))
-    vms_cache.last_seen = timezone.utcnow()
+    vms_cache.last_seen = datetime.datetime.now()
     vms_cache.is_updating = False
     vms_cache.save()
 
@@ -829,7 +829,7 @@ def ajax_aws_graphs(request, instance_id, graph_type="all"):
     reservations = ec2conn.get_all_instances(instance_ids=[instance_id,])
     instance = reservations[0].instances[0]
 
-    end = datetime.datetime.utcnow()
+    end = datetime.datetime.now()
     start = end - datetime.timedelta(days=10)
 
     metric = cloudwatch.list_metrics(dimensions={'InstanceId':instance_id}, metric_name="CPUUtilization")[0]
@@ -861,12 +861,12 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
 
     server_status = "Running"
-    if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>20):
+    if((datetime.datetime.now()-server['last_seen']).total_seconds()>20):
         server_status = "Stopped"
-        if((datetime.datetime.utcnow()-server['last_seen']).total_seconds()>1800):
+        if((datetime.datetime.now()-server['last_seen']).total_seconds()>1800):
             server_status = "Offline"
             print '*'*1000
-            print (datetime.datetime.utcnow()-server['last_seen']).total_seconds()
+            print (datetime.datetime.now()-server['last_seen']).total_seconds()
 
 
     #activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
