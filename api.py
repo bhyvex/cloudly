@@ -6,7 +6,11 @@ import socket
 from pprint import pprint
 import time, datetime
 
+import django
 from django.conf import settings
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cloudly.settings")
+django.setup()
+
 
 from flask import Flask, jsonify, abort
 from flask import render_template, request, url_for

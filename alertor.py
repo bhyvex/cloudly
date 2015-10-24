@@ -7,7 +7,7 @@ import tweepy
 import json
 import django
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ippe.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cloudly.settings")
 django.setup()
 
 from profiles.models import Profile
