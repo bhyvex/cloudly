@@ -26,6 +26,7 @@ from django.contrib.auth.models import User
 from userprofile.models import Profile as userprofile
 from userprofile.views import _log_user_activity
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 from amazon import ec2_funcs
 from vms.models import Cache
@@ -33,8 +34,8 @@ from vms.models import Cache
 import pymongo
 from pymongo import MongoClient
 from pymongo import ASCENDING, DESCENDING
-client = MongoClient('mongo', 27017)
 
+client = MongoClient(settings.MONGO_HOST, settings.MONGO_PORT)
 mongo = client.cloudly
 
 def home(request):
@@ -99,7 +100,7 @@ def home(request):
     active_service_statuses = mongo.active_service_statuses
     active_service_statuses = active_service_statuses.find({"$and": [{"secret": secret}, {"current_overall_status": {"$ne": "OK"}}]})
     notifs_counter = active_service_statuses.count()
-    
+
     return render_to_response('dashboard.html', {'request':request,'notifs_counter':notifs_counter,'servers_tags':servers_tags,'is_updating':is_updating,'vms_cached_response':vms_cached_response,}, context_instance=RequestContext(request))
 
 

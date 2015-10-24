@@ -37,7 +37,7 @@ class Profile(models.Model):
     street_address_2 = models.CharField(max_length=100, blank=True, verbose_name="street_address_2")
     street_address_3 = models.CharField(max_length=100, blank=True, verbose_name="street_address_3")
 
-    email_notfications = models.BooleanField(default=True)
+    email_notifications = models.BooleanField(default=True)
     twitter_notifications = models.BooleanField(default=False)
     
     aws_access_key = models.CharField(max_length=100, blank=True, verbose_name="Access Key", db_index=True)

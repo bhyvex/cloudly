@@ -70,6 +70,9 @@ DATABASES = {
     }
 }
 
+MONGO_HOST = 'localhost'
+MONGO_PORT = 27017
+
 TEMPLATE_DIRS = (
     os.path.abspath(os.path.join(BASE_DIR, 'templates')),
 )
