@@ -14,12 +14,19 @@ register = template.Library()
 from django.contrib.auth.models import User
 from userprofile.models import Profile
 
+from django.conf import settings
+
 import pymongo
 from pymongo import MongoClient
 from pymongo import ASCENDING, DESCENDING
-client = MongoClient('mongo', 27017)
+
+client = MongoClient(settings.MONGO_HOST, settings.MONGO_PORT)
+
+if settings.MONGO_USER:
+    client.cloudly.authenticate(settings.MONGO_USER, settings.MONGO_PASSWORD)
 
 mongo = client.cloudly
+
 from vms.models import Cache
 
 def _seconds_since_epoch(d):
@@ -36,7 +43,7 @@ def dict_get(h, key):
 
 	try: return h[key]
 	except: pass
-		
+
 	return None
 
 
@@ -65,7 +72,7 @@ def manual_notifs_count_unfortunately(notifs):
 @register.filter(name='convert_disk_name')
 def convert_disk_name(x):
 
-    try: 
+    try:
         return x.replace('/','slash')
     except: pass
 
@@ -74,7 +81,7 @@ def convert_disk_name(x):
 
 @register.filter(name="count_list")
 def count_list(x):
-	return len(x)	
+	return len(x)
 
 @register.filter(name="times_hundred")
 def times_hundred(x):
@@ -105,7 +112,7 @@ def shorten_key(key):
 @register.filter(name='shorten_string')
 def shorten_string(x,shorten):
 	return x[:shorten]
-	
+
 @register.filter(name='get_file_extension')
 def get_file_extension(f):
 	return str(f).split('.')[-1:][0]
@@ -141,8 +148,8 @@ def get_tags(package):
 @register.filter(name='to_mb')
 def to_mb(x):
 	return long(x)/1024/1000
-	
-	
+
+
 @register.filter(name="clean_ps_command")
 def clean_ps_command(command):
 
@@ -154,7 +161,7 @@ def clean_ps_command(command):
 
 	if(command[0]==" "):
 		command = command[1:]
-		
+
 	command = command.replace('[','')
 	command = command.replace(']','')
 
@@ -164,11 +171,11 @@ def clean_ps_command(command):
 	command = command.replace('/usr/sbin/','')
 	command = command.replace('/bin/','')
 	command = command.replace('/sbin/','')
-	
+
 	command = command.split(' ')[0]
 	command = re.sub("([a-z|0-9]*)([A-Z][a-zA-Z]*)", "\\1 \\2", command)
 	if(command[0]==" "): command = command[1:]
-	
+
 	command = command.split(' ')[0]
 
 	return command
@@ -184,20 +191,20 @@ def work_single_ps_command(cmd):
 
 @register.filter(name='format_datetime_special')
 def format_datetime_special(date):
-	
+
 	year = date.split('-')[0]
 	month = date.split('-')[1]
 	day = date.split('-')[2].split('T')[0]
 	hour = date.split('-')[2].split('T')[1].split(':')[0]
 	minute = date.split('-')[2].split('T')[1].split(':')[1]
 	second = date.split('-')[2].split('T')[1].split(':')[2]
-	
+
 	return {'year':year, 'month':month, 'day':day, 'hour':hour, 'minute':minute, 'second':second}
 
 
 @register.filter(name='count_user_servers')
 def count_user_servers(user):
-	
+
 	try:
 		vms_cache = Cache.objects.get(user=user)
 		vms_response = vms_cache.vms_response
@@ -211,19 +218,19 @@ def count_user_servers(user):
 
 @register.filter(name='count_user_files')
 def count_user_files(user):
-	
+
 	#users_files_count = Uploaded_Files.objects.filter(user=user).count()
 	users_files_count = 0
-	
+
 	return users_files_count
 
 @register.filter(name='count_user_files_size')
 def count_user_files_size(user):
-	
+
 	total_size = 0
 	#for user_file in Uploaded_Files.objects.filter(user=user):
 	#	total_size += user_file.size
-	
+
 	return total_size
 
 

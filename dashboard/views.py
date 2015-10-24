@@ -26,6 +26,7 @@ from django.contrib.auth.models import User
 from userprofile.models import Profile as userprofile
 from userprofile.views import _log_user_activity
 from django.contrib.auth.decorators import login_required
+
 from django.conf import settings
 
 from amazon import ec2_funcs
@@ -36,6 +37,10 @@ from pymongo import MongoClient
 from pymongo import ASCENDING, DESCENDING
 
 client = MongoClient(settings.MONGO_HOST, settings.MONGO_PORT)
+
+if settings.MONGO_USER:
+    client.cloudly.authenticate(settings.MONGO_USER, settings.MONGO_PASSWORD)
+
 mongo = client.cloudly
 
 def home(request):

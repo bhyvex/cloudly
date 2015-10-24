@@ -43,6 +43,8 @@ from django.template.defaultfilters import filesizeformat, upper
 from django.contrib.humanize.templatetags.humanize import naturalday
 from cloudly.templatetags.cloud_extras import clean_ps_command
 
+from django.conf import settings
+
 from operator import itemgetter, attrgetter, methodcaller
 
 from cloudly.templatetags.cloud_extras import clear_filename, get_file_extension
@@ -54,7 +56,11 @@ from django.db.models.base import ModelState
 import pymongo
 from pymongo import MongoClient
 from pymongo import ASCENDING, DESCENDING
-client = MongoClient('mongo', 27017)
+
+client = MongoClient(settings.MONGO_HOST, settings.MONGO_PORT)
+
+if settings.MONGO_USER:
+    client.cloudly.authenticate(settings.MONGO_USER, settings.MONGO_PASSWORD)
 
 mongo = client.cloudly
 
@@ -410,7 +416,7 @@ def server_view(request, hwaddr):
 
         server['tags'] = {}
         server['tags']['tags'] = services_tags
-        server['tags']['datacenters'] = [] 
+        server['tags']['datacenters'] = []
 
         if(server['cpu_virtualization']):
             server['tags']['datacenters'].append(['Metal','Physical HW'])

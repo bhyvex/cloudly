@@ -6,6 +6,8 @@ import socket
 from pprint import pprint
 import time, datetime
 
+from django.conf import settings
+
 from flask import Flask, jsonify, abort
 from flask import render_template, request, url_for
 
@@ -14,10 +16,13 @@ app = Flask(__name__)
 import pymongo
 from pymongo import MongoClient
 from pymongo import ASCENDING, DESCENDING
-client = MongoClient('mongo', 27017)
+
+client = MongoClient(settings.MONGO_HOST, settings.MONGO_PORT)
+
+if settings.MONGO_USER:
+    client.cloudly.authenticate(settings.MONGO_USER, settings.MONGO_PASSWORD)
 
 mongo = client.cloudly
-
 
 for line in open('agent.py','rt').readlines():
     if('AGENT_VERSION' in line):
@@ -41,7 +46,7 @@ def test():
 def activity():
 
     data = request.json
-    
+
     activity_log = {
         'secret': data['secret'],
         'uuid': data['uuid'],
@@ -57,7 +62,7 @@ def activity():
 
 @app.route('/v10/ping/', methods=['POST'])
 def ping():
-    
+
     data = request.json
 
     if not request.headers.getlist("X-Forwarded-For"):
@@ -82,7 +87,7 @@ def ping():
     networking = data['networking']
     network_connections = data['network_connections']
     agent_version = data['agent_version']
-    
+
     processes = data['processes']
     processes = processes.replace('\t',' ')
     processes = processes.replace('  ',' ')
@@ -115,13 +120,13 @@ def ping():
 
     print 'API query from agent version', str(agent_version), uuid, 'IP', ip_remote+'/'+ ip, 'uptime '+uptime
 
-    
+
     servers = mongo.servers
     server_ = servers.find_one({'secret':secret, 'uuid':uuid,})
 
     try:
         server['name'] = server_['name']
-    except: 
+    except:
         server['name'] = hostname.replace(':','-')
 
 
@@ -129,12 +134,12 @@ def ping():
         server['tags'] = server_['tags']
     except: pass
 
-    if(server_): 
+    if(server_):
         server_ = servers.update({'secret':secret, 'uuid':uuid}, server)
     else:
         servers.insert(server)
 
-    
+
     cpu_usage_metrics = {
         'secret': secret,
         'agent_version': agent_version,
@@ -151,13 +156,13 @@ def ping():
         str(cpu_usage['cpu_used']) + \
         " cpu=0" + \
         "\n"
-    
+
     hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     hbase.connect(("hbase", 4242))
     hbase.send(cpu_usage_tsdb_cmd)
     hbase.close()
-    
-    
+
+
     loadavg_metrics = {
         'secret': secret,
         'agent_version': agent_version,
@@ -239,7 +244,7 @@ def ping():
         str(memory_usage['swap_total']) + \
         " mm=swap_total" + \
         "\n"
-    
+
     hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     hbase.connect(("hbase", 4242))
     hbase.send(memory_tsdb_cmd)
@@ -297,16 +302,16 @@ def ping():
     }
     disks_usage_service_report = disks_usage['service_report']
     disks_usage = disks_usage['disks_usage']
-    
+
 
     for disk in disks_usage:
-    
+
         mount_point = disk[5]
         disk_free = disk[3]
         disk_used = disk[2]
         disk_total = disk[1]
         disk_usage = disk[4]
-        
+
         disks_tsdb_cmd = "put " + \
         uuid.replace(':','-') + ".sys.disks " + \
         str(int(time.time())) + " " + \
@@ -335,7 +340,7 @@ def ping():
         " mount_point=" + mount_point + \
         " mm=disk_usage" + \
         "\n"
-        
+
         hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         hbase.connect(("hbase", 4242))
         hbase.send(disks_tsdb_cmd)
@@ -355,17 +360,17 @@ def ping():
 
 
     for status_report in service_statuses__to_process:
-        
+
         server_id = uuid
         detailed_service_status = status_report['service_status']
         service = detailed_service_status['service'].upper()
-        current_overall_service_status = detailed_service_status['status'].upper()        
-        service_thresholds = status_report['service_thresholds']        
+        current_overall_service_status = detailed_service_status['status'].upper()
+        service_thresholds = status_report['service_thresholds']
 
 
         # Active Service Statuses...
-        last_active_service_status = active_service_statuses.find_one({'server_id':uuid,'service':service})        
-        
+        last_active_service_status = active_service_statuses.find_one({'server_id':uuid,'service':service})
+
         new_active_report = {
             'date':datetime.datetime.now(),
             'secret':secret,
@@ -377,27 +382,27 @@ def ping():
 
         if(not last_active_service_status):
             active_service_statuses.insert(new_active_report)
-        else: 
-        
+        else:
+
             if( last_active_service_status['current_overall_status'] == current_overall_service_status ):
 
                 print service, last_active_service_status['current_overall_status'], '=', current_overall_service_status, 'doing nothing...'
                 continue
-            
-            
+
+
             try:
                 min_alert_duration = service_thresholds[current_overall_service_status]['min_duration_in_seconds']
             except: min_alert_duration = 30
 
-            
+
             current_alert_duration = (datetime.datetime.now()-last_active_service_status['date']).total_seconds()
 
             print '**', service, last_active_service_status['current_overall_status'], '--> (currently)', current_overall_service_status
-            print '** current_alert_duration', current_alert_duration, 'min_alert_duration', min_alert_duration            
+            print '** current_alert_duration', current_alert_duration, 'min_alert_duration', min_alert_duration
 
 
             if( current_alert_duration > min_alert_duration):
-            
+
                 active_service_statuses.update({'server_id':uuid,'service':service}, new_active_report)
 
                 # XXX update notification metadata as per github issue #530
@@ -411,13 +416,13 @@ def ping():
 
 
         # Historical Service Statuses
-        # XXX            
-        
+        # XXX
+
         print '*'*170
-  
+
 
     if(agent_version != AGENT_VERSION_CURRENT):
-    
+
         return ("update", 201)
 
 

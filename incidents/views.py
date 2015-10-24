@@ -24,19 +24,24 @@ from userprofile.models import Profile
 from userprofile.views import _log_user_activity
 from django.contrib.auth.decorators import login_required
 
+from django.conf import settings
+
 import pymongo
 from pymongo import MongoClient
 from pymongo import ASCENDING, DESCENDING
-client = MongoClient('mongo', 27017)
+
+client = MongoClient(settings.MONGO_HOST, settings.MONGO_PORT)
+
+if settings.MONGO_USER:
+    client.cloudly.authenticate(settings.MONGO_USER, settings.MONGO_PASSWORD)
 
 mongo = client.cloudly
 
-
 @login_required()
-def incidents(request):    
+def incidents(request):
 
     print '-- system logs:', request.user
-    
+
     user = request.user
     profile = Profile.objects.get(user=request.user)
     secret = profile.secret
@@ -52,7 +57,7 @@ def incidents(request):
     active_service_statuses = mongo.active_service_statuses
     active_service_statuses_data = active_service_statuses.find({"$and": [{"secret": secret}, {"current_overall_status": {"$ne": "OK"}}]})
     notifs_counter = active_service_statuses_data.count()
-    
+
     unknown_notifs = active_service_statuses.find({"secret":secret,"current_overall_status":"UNKNOWN"})
     warning_notifs = active_service_statuses.find({"secret":secret,"current_overall_status":"WARNING"})
     critical_notifs = active_service_statuses.find({"secret":secret,"current_overall_status":"CRITICAL"})
