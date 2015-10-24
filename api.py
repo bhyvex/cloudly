@@ -11,7 +11,6 @@ from django.conf import settings
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cloudly.settings")
 django.setup()
 
-
 from flask import Flask, jsonify, abort
 from flask import render_template, request, url_for
 
@@ -162,7 +161,7 @@ def ping():
         "\n"
 
     hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    hbase.connect(("hbase", 4242))
+    hbase.connect((settings.TSDB_HOST, settings.TSDB_PORT))
     hbase.send(cpu_usage_tsdb_cmd)
     hbase.close()
 
@@ -197,7 +196,7 @@ def ping():
         "\n"
 
     hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    hbase.connect(("hbase", 4242))
+    hbase.connect((settings.TSDB_HOST, settings.TSDB_PORT))
     hbase.send(loadavg_tsdb_cmd)
     hbase.close()
 
@@ -250,7 +249,7 @@ def ping():
         "\n"
 
     hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    hbase.connect(("hbase", 4242))
+    hbase.connect((settings.TSDB_HOST, settings.TSDB_PORT))
     hbase.send(memory_tsdb_cmd)
     hbase.close()
 
@@ -292,7 +291,7 @@ def ping():
         "\n"
 
     hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    hbase.connect(("hbase", 4242))
+    hbase.connect((settings.TSDB_HOST, settings.TSDB_PORT))
     hbase.send(networking_tsdb_cmd)
     hbase.close()
 
@@ -346,7 +345,7 @@ def ping():
         "\n"
 
         hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        hbase.connect(("hbase", 4242))
+        hbase.connect((settings.TSDB_HOST, settings.TSDB_PORT))
         hbase.send(disks_tsdb_cmd)
         hbase.close()
 

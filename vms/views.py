@@ -510,7 +510,7 @@ def ajax_vms_refresh(request):
             cpu_usage_ = ""
             params = {'start':'2m-ago','m':'sum:' + uuid.replace(':','-') + '.sys.cpu'}
 
-            tsdb = requests.get('http://hbase:4242/api/query',params=params)
+            tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
             try:
                 tsdb_response = tsdb_response[0]['dps']
@@ -1044,7 +1044,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
             params_ = params
             params_['m'] = params['m'] + "{avg="+i+"}"
 
-            tsdb = requests.get('http://hbase:4242/api/query', params=params_)
+            tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
             params = params_
 
             tsdb_response = json.loads(tsdb.text)
@@ -1089,7 +1089,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
 
         if(params):
-            tsdb = requests.get('http://hbase:4242/api/query',params=params)
+            tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
 
             try:
@@ -1129,7 +1129,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
         if(params):
 
-            tsdb = requests.get('http://hbase:4242/api/query',params=params)
+            tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
 
             try:
@@ -1173,7 +1173,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
             params['m'] += "{mm=swap_used}"
 
         if(params):
-            tsdb = requests.get('http://hbase:4242/api/query',params=params)
+            tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
 
             try:
@@ -1226,7 +1226,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
         if(params):
 
-            tsdb = requests.get('http://hbase:4242/api/query',params=params)
+            tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
             tsdb_response = json.loads(tsdb.text)
 
             try:
