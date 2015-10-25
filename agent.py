@@ -396,7 +396,7 @@ def _get_memory_usage():
             message = 'The memory is within limits: ' + str(memory_usage)
         elif(float(memory_usage['memory_used_percentage']) >= memory_thresholds['WARNING']['min_value'] and float(memory_usage['memory_used_percentage']) <= memory_thresholds['WARNING']['max_value']):
             status = 'WARNING'
-            message = 'The system memory is running out: ' + str(memory_usage)
+            message = 'Server memory is running out: ' + str(memory_usage)
         else:
             status = 'CRITICAL'
             message = 'The system has ran out of memory: ' + str(memory_usage)
