@@ -22,11 +22,11 @@
 
 @import "bootstrap-editable.css";
 
-@import url(http://fonts.googleapis.com/css?family=Lato:300);
+@import url(//fonts.googleapis.com/css?family=Lato:300);
 
-@import url(http://fonts.googleapis.com/css?family=Lato:400);
+@import url(//fonts.googleapis.com/css?family=Lato:400);
 
-@import url(http://fonts.googleapis.com/css?family=Kaushan+Script);
+@import url(//fonts.googleapis.com/css?family=Kaushan+Script);
 /*!
 * Author: Łukasz Holeczek
 * Template: cleverAdmin - Bootstrap Admin Template
@@ -5642,7 +5642,7 @@ ul.profile-details li div i {
   padding-right: 15px;
   padding-left: 15px;
   width: 190px;
-  height: 230px;     
+  height: 230px;
 }
 
 @media (max-width: 479px) {
@@ -5727,7 +5727,7 @@ ul.profile-details li div i {
   }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
-  
+
 }
 @media (min-width: 992px) {
   .hidden-xs,
@@ -5738,7 +5738,7 @@ ul.profile-details li div i {
   }
 }
 @media (min-width: 1200px) {
-  
+
 }
 
 .vms-machine {
