@@ -1,0 +1,397 @@
+{% extends "base.html" %}
+
+{% load cloud_extras %}
+{% load tz %}
+
+{% block title %}Cloudly | Host &amp; Services Problems{% endblock %}
+
+{% block nav-bar %}
+    {% include "partials/nav-bar-classic.html" %}
+{% endblock %}
+
+{% block page_content %}
+    <div class="row page-todo">
+
+        <div class="col-sm-7 tasks">
+
+            <div class="task-list">
+                <h1>Host &amp; Services Problems</h1>
+
+                {% if not notifs_counter %}
+                    There are currently no servers or services problems being encountered.
+
+                {% else %}
+                    {% if critical_notifs|manual_notifs_count_unfortunately %}
+                        <div class="priority high">
+                            <span>Critical</span>
+                        </div>
+                        {% for notif in critical_notifs %}
+                            <div class="
+                                task high
+                                {% if forloop.last %}
+                                last
+                                {% endif %}
+                            ">
+                                <div class="desc">
+                                    <div class="title">
+                                    <a href="/server/{{notif|dict_get:"server_id"|replace_dots}}">{{notif|dict_get:"server_id"}}</a>
+                                        {{notif|dict_get:"service"}}
+                                    </div>
+                                    <div>
+                                        {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}
+                                    </div>
+                                </div>
+                                <div class="time">
+                                    <div
+                                    class="date">{{notif|dict_get:"date"}}</div>
+                                    <div>
+									alert duration {{notif|dict_get:"date"|timesince}}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <div class="clearfix"></div>
+                    {% endif %}
+
+                    {% if warning_notifs|manual_notifs_count_unfortunately %}
+                        <div class="priority medium">
+                            <span>Warning</span>
+                        </div>
+                        {% for notif in warning_notifs %}
+                            <div class="
+                                task medium
+                                {% if forloop.last %}
+                                last
+                                {% endif %}
+                            ">
+                                <div class="desc">
+                                    <div class="title">
+									<a href="/server/{{notif|dict_get:"server_id"|replace_dots}}">{{notif|dict_get:"server_id"}}</a>
+                                    {{notif|dict_get:"service"}}
+                                    </div>
+                                    <div>
+                                        {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}
+                                    </div>
+                                </div>
+                                <div class="time">
+                                    <div
+                                    class="date">{{notif|dict_get:"date"}}</div>
+                                    <div>
+                                    alert duration {{notif|dict_get:"date"|timesince}}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if unknown_notifs|manual_notifs_count_unfortunately %}
+                        <div class="priority high">
+                            <span>Unknown</span>
+                        </div>
+                        {% for notif in unknown_notifs %}
+                            <div class="
+                                task high
+                                {% if forloop.last %}
+                                last
+                                {% endif %}
+                            ">
+                                <div class="desc">
+                                    <div class="title">
+									<a href="/server/{{notif|dict_get:"server_id"|replace_dots}}">{{notif|dict_get:"server_id"}}</a>
+                                    {{notif|dict_get:"service"}}
+                                    </div>
+                                    <div>
+                                        {{notif}}
+                                    </div>
+                                </div>
+                                <div class="time">
+                                    <div class="date">{{notif|dict_get:"date"}}</div>
+                                    <div>
+                                    alert duration {{notif|dict_get:"date"|timesince}}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <div class="clearfix"></div>
+                {% endif %}
+			</div>
+		
+		XXX exclude warnings for offline servers<br/>
+		XXX list offline servers here as warning<br/>
+
+        </div><!--/col-->
+
+        <div class="col-sm-5">
+
+            <div class="graph">
+                <h1>Server Events</h1>
+
+                <div class="timeline">
+
+                    <div class="timeslot" style="height: 118px;">
+
+                        <div class="task">
+                            <span>
+                                <span class="type">Memory</span>
+                                <span class="details">
+                                    Memory fixed
+                                </span>
+                                <span>
+                                    time ago
+                                    <span class="remaining">
+                                        3h 38m 15s
+                                    </span>
+                                </span>
+                            </span>
+                            <div class="arrow"></div>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                        <div class="time">
+                            3:43 PM
+                        </div>
+
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="timeslot alt" style="height: 96px;">
+
+                        <div class="task">
+                            <span>
+                                <span class="type">phone call</span>
+                                <span class="details">
+                                    Notification sent to Jan Paricka's email.
+                                </span>
+                                <span>
+                                    remaining time
+                                    <span class="remaining">
+                                        3h 38m 15s
+                                    </span>
+                                </span>
+                            </span>
+                            <div class="arrow"></div>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="time">
+                            3:43 PM
+                        </div>
+
+                    </div>
+
+                    <div class="timeslot" style="height: 96px;">
+
+                        <div class="task">
+                            <span>
+                                <span class="type">mail</span>
+                                <span class="details">
+                                    Memory fucked.
+                                </span>
+                                <span>
+                                    remaining time
+                                    <span class="remaining">
+                                        3h 38m 15s
+                                    </span>
+                                </span>
+                            </span>
+                            <div class="arrow"></div>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <div class="time">
+                            3:43 PM
+                        </div>
+
+                    </div>
+
+                    <div class="timeslot alt" style="height: 96px;">
+
+                        <div class="task">
+                            <span>
+                                <span class="type">deadline</span>
+                                <span class="details">
+                                    Fixed PayPal problems
+                                </span>
+                                <span>
+                                    remaining time
+                                    <span class="remaining">
+                                        3h 38m 15s
+                                    </span>
+                                </span>
+                            </span>
+                            <div class="arrow"></div>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <div class="time">
+                            3:43 PM
+                        </div>
+
+                    </div>
+
+                    <div class="timeslot" style="height: 118px;">
+
+                        <div class="task">
+                            <span>
+                                <span class="type">appointment</span>
+                                <span class="details">
+                                    Jan Paricka
+                                </span>
+                                <span>
+                                    remaining time
+                                    <span class="remaining">
+                                        3h 38m 15s
+                                    </span>
+                                </span>
+                            </span>
+                            <div class="arrow"></div>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                        <div class="time">
+                            3:43 PM
+                        </div>
+
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="timeslot alt" style="height: 96px;">
+
+                        <div class="task">
+                            <span>
+                                <span class="type">skype call</span>
+                                <span class="details">
+                                    Jan Paricka
+                                </span>
+                                <span>
+                                    remaining time
+                                    <span class="remaining">
+                                        3h 38m 15s
+                                    </span>
+                                </span>
+                            </span>
+                            <div class="arrow"></div>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="time">
+                            3:43 PM
+                        </div>
+
+                    </div>
+
+                    <div class="timeslot" style="height: 96px;">
+
+                        <div class="task">
+                            <span>
+                                <span class="type">mail</span>
+                                <span class="details">
+                                    Jan Paricka
+                                </span>
+                                <span>
+                                    remaining time
+                                    <span class="remaining">
+                                        3h 38m 15s
+                                    </span>
+                                </span>
+                            </span>
+                            <div class="arrow"></div>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <div class="time">
+                            3:43 PM
+                        </div>
+
+                    </div>
+
+                    <div class="timeslot alt" style="height: 96px;">
+
+                        <div class="task">
+                            <span>
+                                <span class="type">project deadline</span>
+                                <span class="details">
+                                    Fixed PayPal problems
+                                </span>
+                                <span>
+                                    remaining time
+                                    <span class="remaining">
+                                        3h 38m 15s
+                                    </span>
+                                </span>
+                            </span>
+                            <div class="arrow"></div>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <div class="time">
+                            3:43 PM
+                        </div>
+
+                    </div>
+
+                    <div class="timeslot" style="height: 96px;">
+
+                        <div class="task">
+                            <span>
+                                <span class="type">mail</span>
+                                <span class="details">
+                                    Jan Paricka
+                                </span>
+                                <span>
+                                    remaining time
+                                    <span class="remaining">
+                                        3h 38m 15s
+                                    </span>
+                                </span>
+                            </span>
+                            <div class="arrow"></div>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <div class="time">
+                            3:43 PM
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!--/col-->
+
+    </div>
+
+</div>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>Here settings can be configured...</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+</div>
+{% endblock page_content %}
