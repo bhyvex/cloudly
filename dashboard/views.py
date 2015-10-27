@@ -87,18 +87,14 @@ def home(request):
     servers_tags = {}
 
     for server in servers:
-        try:
-            server['tags']
-        except: break
+        if 'tags' in server:
+            for tag_category in server['tags']:
+                if(not servers_tags.has_key(tag_category)):
+                    servers_tags[tag_category] = [];
 
-        for tag_category in server['tags']:
-            if(not servers_tags.has_key(tag_category)):
-                servers_tags[tag_category] = [];
-
-            for inner_tag in server['tags'][tag_category]:
-                if(not inner_tag in servers_tags[tag_category]):
-                    servers_tags[tag_category].append(inner_tag[0])
-
+                for inner_tag in server['tags'][tag_category]:
+                    if(not inner_tag[0] in servers_tags[tag_category]):
+                        servers_tags[tag_category].append(inner_tag[0])
 
     # XXX this needs go on the ajax
     notifs_counter = 0
