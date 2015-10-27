@@ -2,7 +2,7 @@ Cloudly
 =======
 
 Project Cloudly is "The Easiest To Setup" software to Monitor and to control your servers.  It's a first line of defence for your servers and also the ultimate Management Dashboard for your Cloud.
-It saves you money and the energies by taking away most of the usual servers monitoring complexities allowing you to focus more on control and better use of your infrastructure. 
+It saves you money and the energies by taking away most of the usual servers monitoring complexities allowing you to focus more on control and better use of your infrastructure.
 
 Cloudly can scale to writing millions of data per 'second' on commodity servers with regular spinning hard drives.  This is due and thanks to the technologies it utilises (e.g. Hadoop/OpenTSDB to begin with).
 
@@ -37,7 +37,7 @@ mysql> create database cloudly;
 ###### Install various python modules
 
 <pre>
-$ apt-get install python-dev 
+$ apt-get install python-dev
 $ apt-get install python-django
 $ apt-get install python-openssl
 </pre>
@@ -49,6 +49,7 @@ $ apt-get install python-openssl
 $ apt-get install mongodb
 $ apt-get install python-pip
 $ pip install pymongo
+$ mongoimport --db cloudly --collection services_tags services_tags.json
 </pre>
 
 ..and configure your server to meet your specific requirements.
@@ -200,7 +201,7 @@ http {
             }
         location ~* ^.+\.(jpg|jpeg|gif|png|ico|css|zip|tgz|gz|rar|bz2|doc|xls||pdf|js|counters) {
             access_log   off;
-            expires      30d; 
+            expires      30d;
             }
         location / {
             fastcgi_pass 127.0.0.1:8080;
