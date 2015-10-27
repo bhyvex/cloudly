@@ -404,6 +404,8 @@ def ajax_vms_refresh(request):
             except:
                 instance_metrics["instance"]['tags']['Name'] = server['hostname'].replace('.','-').lower()
 
+            if 'tags' in server:
+                instance_metrics["instance"]['tags']['tags'] = server['tags']
 
             uuid = server['uuid']
 
@@ -632,6 +634,10 @@ def ajax_virtual_machines(request):
             if(vm_state=="Running"):
 
                 isotope_filter_classes = " linux "
+                for tags in vm_cache[vm]["instance"]["tags"]["tags"]:
+                    for tag in vm_cache[vm]["instance"]["tags"]["tags"][tags]:
+                        isotope_filter_classes += str(tag[0]).replace(".","-") + " "
+
 
                 if(data_median<17):
                     color = "lightBlue "
