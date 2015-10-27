@@ -7,45 +7,28 @@
         </ul>
     </div>
     <div class="machines-buttons">
-        <select name="tags" class="servers_tags">
-            <option name="all" type="hidden" value="all">
-            </option>
-            {% for tag_category in servers_tags %}
-                <optgroup label="{{tag_category}}">
-                    {% for tag in servers_tags|dict_get:tag_category %}
-                        <option name="{{tag}}">{{tag}}</option>
-                    {% endfor %}
-                </optgroup>
-            {% endfor %}
-        </select>
-        <ul class="navbar-right">
-            <li>
-                <a href="#" class="secondmenu-button btn-busy">Busy</a>
-            </li>
-            <li>
-                <a href="#" class="secondmenu-button btn-warn">Warning</a>
-            </li>
-            <li>
-                <a href="#" class="secondmenu-button btn-critical">Critical</a>
-            </li>
-            <li>
-                <a href="#" class="secondmenu-button btn-offline">Offline</a>
-            </li>
-            <li>
-                <a href="#" class="secondmenu-button btn-windows">Windows</a>
-            </li>
-            <li>
-                <a href="#" class="secondmenu-button btn-linux">Linux</a>
-            </li>
-            <li>
-                <a href="#" class="secondmenu-button btn-bsd">BSD</a>
-            </li>
-            <li>
-                <a href="#" class="secondmenu-button btn-cloud">Cloud</a>
-            </li>
-            <li>
+        <div class="navbar-right">
+            <a href="#" class="secondmenu-button btn-busy">Busy</a>
+            <a href="#" class="secondmenu-button btn-warn">Warning</a>
+            <a href="#" class="secondmenu-button btn-critical">Critical</a>
+            <a href="#" class="secondmenu-button btn-offline">Offline</a>
+            <a href="#" class="secondmenu-button btn-windows">Windows</a>
+            <a href="#" class="secondmenu-button btn-linux">Linux</a>
+            <a href="#" class="secondmenu-button btn-bsd">BSD</a>
+            <a href="#" class="secondmenu-button btn-cloud">Cloud</a>
             <a href="#" class="secondmenu-button btn-all active">All</a>
-            </li>
-        </ul>
+            <a href="#" class="tag_selector">Choose tag</a>
+            <ul class="tags-box">
+            {% for tag_category in servers_tags %}
+                {% for tag in servers_tags|dict_get:tag_category %}
+                    <li name="{{tag_category}}">
+                        <a href="#" class="secondmenu-button btn-{{tag|replace_dot}}">
+                            {{tag}}
+                        </a>
+                    </li>
+                {% endfor %}
+            {% endfor %}
+            </ul>
+        </div>
     </div>
 </div>

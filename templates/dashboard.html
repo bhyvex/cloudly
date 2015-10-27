@@ -9,6 +9,13 @@
 {% endblock %}
 
 {% block page_content %}
+    <input type='hidden' name='available_servers_tags' value='[
+        {% for tag_category in servers_tags %}
+            {% for tag in servers_tags|dict_get:tag_category %}
+                "{{tag}}",
+            {% endfor %}
+        {% endfor %}"all","warn","critical","offline", "busy", "windows", "linux", "bsd", "cloud"
+    ]' />
     {% block breadcrumb %}
         {% include "partials/breadcrumb-dashboard.html" %}
     {% endblock %}

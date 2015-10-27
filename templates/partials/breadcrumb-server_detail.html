@@ -5,23 +5,20 @@
     <ul class="navbar-left">
         <li><a href="/" class="deactive">Servers</a></li>
     </ul>
-    <ul class="navbar-right">
-        
+    <div class="navbar-right">
         {% if recently_clicked_servers|length > 2 %}
-            <li><a href="/specials/clean/server/tabs{{server|dict_get:"link"}}">x</a></li>
+            <a href="/specials/clean/server/tabs{{server|dict_get:"link"}}">x</a>
         {% endif %}
 
         {% for server in recently_clicked_servers %}
-        
             {% if forloop.last %}
-                <li class="servername active">{{server|dict_get:"name"|upper}}</li>
+                <a class="servername active">{{server|dict_get:"name"}}</a>
             {% else %}
-                <li><a href="{{server|dict_get:"link"}}" class="deactive">{{server|dict_get:"name"|upper}}</a></li>
+                <a href="{{server|dict_get:"link"}}" class="deactive">{{server|dict_get:"name"}}</a>
             {% endif %}
-        
         {% endfor %}
-    </ul>
-    
+    </div>
+
     <!--
     <ul class="navbar-right">
         <li>

@@ -12,19 +12,8 @@ footer {
     z-index: 100;
 }
 
-select.servers_tags {
-    width: auto;
-    line-height: 40px;
-    margin-left: 5px;
-    padding-left: 8px;
-    border-radius: 0px !important;
-    -webkit-border-radius: 0px !important;
-    -moz-border-radius: 0px !important;
-    border: none !important;
-    float: right;
-}
-
 #second-menu {
+    position: relative;
     z-index: 2;
     padding: 0 15px;
     min-height: 40px;
@@ -40,7 +29,7 @@ select.servers_tags {
     margin: 0 0 30px 0;
 }
 
-#second-menu ul {
+#second-menu ul.navbar-left {
     height: 40px;
     line-height: 40px;
     margin: 0;
@@ -49,27 +38,67 @@ select.servers_tags {
     text-align: center;
 }
 
-#second-menu ul li {
+#second-menu ul.navbar-left li {
     padding: 0 0.5em;
     display: inline;
 }
 
-#second-menu ul li a {
+#second-menu ul.navbar-left li a {
     color: #c0cadd;
     line-height: 40px;
     text-decoration: none;
 }
 
-#second-menu ul li a:hover {
+#second-menu ul.navbar-left li a:hover {
     text-decoration: underline;
 }
 
-#second-menu ul li a.active {
+#second-menu ul.navbar-left li a.active {
     color: #167495;
 }
 
-#second-menu ul li.deactive {
+#second-menu ul.navbar-left li.deactive {
     color: #c0cadd;
+}
+
+#second-menu a {
+    padding: 0 0.5em;
+    color: #c0cadd;
+}
+#second-menu a:hover {
+    text-decoration: underline;
+}
+#second-menu a.active {
+    color: #167495;
+}
+#second-menu a.deactive {
+    color: #c0cadd;
+}
+
+.tags-box {
+    display: none;
+    position: absolute;
+    right: 0;
+    z-index: 10;
+    margin: 0;
+    padding: 0 10px;
+    min-width: 150px;
+    width: auto;
+    background: #ffffff;
+    border: 1px solid #e1e6ef;
+    height: auto;
+    text-align: center;
+}
+
+.tags-box > li {
+    width: auto;
+    list-style-type: none;
+    cursor: pointer;
+    line-height: 35px;
+}
+
+.tags-box > li:hover {
+    text-decoration: underline;
 }
 
 @media (max-width: 767px) {
