@@ -59,7 +59,7 @@ $ pip install pymongo
 $ apt-get install git
 $ sudo adduser cloudly
 $ su - cloudly
-$ git clone https://github.com/jparicka/cloudly.git cloudly
+$ git clone https://github.com/ProjectCloudly/cloudly cloudly
 </pre>
 
 ###### Create the ORM database tables

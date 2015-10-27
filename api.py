@@ -22,8 +22,9 @@ from pymongo import ASCENDING, DESCENDING
 
 client = MongoClient(settings.MONGO_HOST, settings.MONGO_PORT)
 
-if settings.MONGO_USER:
+try:
     client.cloudly.authenticate(settings.MONGO_USER, settings.MONGO_PASSWORD)
+except: pass
 
 mongo = client.cloudly
 
