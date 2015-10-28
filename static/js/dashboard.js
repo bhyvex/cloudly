@@ -1,21 +1,8 @@
 
-function filterMachines(f) {
-	$('.machines-buttons .secondmenu-button').removeClass('active');
-	$('.machines-buttons .btn-'+f).addClass('active');
-
-    if (f === 'all') {
-        f = '*';
-    } else {
-        f = '.'+f;
-    }
-
-	$('#machines-loader').isotope( { filter: f } );
-}
-
 var cloudlyVMSmanager  = {
     template: '',
     actualMachines: '',
-    colors : {
+    colors: {
 		'#36a9e1':'lightBlue',
 		'#78cd51':'green',
 		'#333366':'darkGreen',
@@ -25,9 +12,69 @@ var cloudlyVMSmanager  = {
 		'#CBD4E4':'silver',
 		'#e84c8a':'pink',
 		'#000000':'black'
-		},
+    },
+    tagMenuLink: null,
+    tagMenuBox: null,
+    tags: {},
+    createTags: function() {
+        var $this = this,
+            serversTagsInput = $('input[name="available_servers_tags"]'),
+            serversTags = serversTagsInput.val();
+
+        serversTagsInput.remove();
+        serversTags = serversTags
+            .replace("]", "")
+            .replace("[", "")
+            .replace(/"/g, "")
+            .replace(/ /g, "")
+            .replace(/ /g, "")
+            .split(",");
+
+        for (i = 0; i < serversTags.length; i++) {
+            serversTags[i] = serversTags[i]
+                .trim()
+                .replace(/\./g, "-");
+        }
+        this.tags = serversTags;
+        this.tagMenuLink = $('.machines-buttons').find('.tag_selector');
+        this.tagMenuBox = $('.machines-buttons').find('.tags-box');
+
+        this.tagMenuLink.click(function() {
+            $this.tagMenuLink.toggleClass('active');
+            $this.tagMenuBox.slideToggle(200);
+        });
+    },
+    bindClickTagAction: function () {
+        var $this = this;
+
+        var machinesButtons = $('.machines-buttons');
+        for (var i = 0; i < $this.tags.length; ++i) {
+            (function() {
+                var type = $this.tags[i];
+                var btn = machinesButtons.find('.btn-'+type);
+                btn.click(function() {
+                    $this.filterMachines(type);
+                    $this.tagMenuLink.removeClass('active');
+                    $this.tagMenuBox.hide();
+                });
+            })();
+        }
+    },
+    filterMachines: function(f) {
+        $('.machines-buttons .secondmenu-button').removeClass('active');
+        $('.machines-buttons .btn-'+f).addClass('active');
+
+        if (f === 'all') {
+            f = '*';
+        } else {
+            f = '.'+f;
+        }
+
+        $('#machines-loader').isotope( { filter: f } );
+    },
     initAction: function(){
         var $this = this;
+        this.createTags();
         $('#machines-loader').isotope({
             itemSelector: '.vms-machine'
         });
@@ -55,7 +102,7 @@ var cloudlyVMSmanager  = {
                 var jsonData = $.parseJSON(res);
                 $this.checkRemoved(jsonData,actualMachines);
                 $this.parseMachinesData(jsonData);
-
+                $this.bindClickTagAction();
             }
         });
     },
@@ -77,16 +124,18 @@ var cloudlyVMSmanager  = {
         chartStatElement($('#'+vms).find('.chart').html(data.averge));
         $('#'+vms).find('.value').html(data.state);
 
-        var panel = $("#"+vms).find('.panel');
+        $.each(this.colors, function(code,color) {
+            var $machine = $('#' + vms),
+                panel = $machine.find('.panel');
 
-        $.each(this.colors,function(code,color){
-                if(panel.hasClass(color) && panel.attr('class').indexOf(data.vmcolor) === -1){
-                        $(panel).removeClass(color).addClass(data.vmcolor)
-                        //console.log('VM '+vms+' changed color: '+color+' to: '+data.vmcolor+' and actual has class: '+panel.attr('class'));
-                        return;
-                }
+            if(panel.hasClass(color) && panel.attr('class').indexOf(data.vmcolor) === -1) {
+                var newClasses = 'vms-machine col-lg-3 col-md-6 ' + data.vmtitle;
+                $machine.removeClass();
+                $machine.addClass(newClasses);
+                $(panel).removeClass(color).addClass(data.vmcolor)
+                return;
+            }
         });
-
     },
     addVMS: function(vms,data){
         var template = this.template;
@@ -103,8 +152,6 @@ var cloudlyVMSmanager  = {
         var prepend = $('#machines-loader').prepend(template);
         chartStatElement($('#'+vms).find('.chart').html(data.averge));
         prepend.isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' });
-
-
     },
     checkRemoved: function(machines,actualMachines){
         var machineIds = 'testVMS';
@@ -112,14 +159,12 @@ var cloudlyVMSmanager  = {
         $.each(machines,function(vms,value){
             machineIds += vms+',';
         });
-
         $.each(actualMachines,function(index,item){
             var id = $(item).attr('id');
             if(machineIds.indexOf(id) < 0){
                 $container.isotope( 'remove', item ).isotope('layout');
             }
         });
-
     },
     reloadPositions: function(){
             $('#machines-loader').isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' });
@@ -130,44 +175,6 @@ var cloudlyVMSmanager  = {
 }
 
 $(document).ready (function() {
-    var tagMenuLink = $('.machines-buttons').find('.tag_selector'),
-        tagMenuBox = $('.machines-buttons').find('.tags-box'),
-        serversTagsInput = $('input[name="available_servers_tags"]'),
-        serversTags = serversTagsInput.val();
-
-    serversTagsInput.remove();
-    serversTags = serversTags
-        .replace("]", "")
-        .replace("[", "")
-        .replace(/"/g, "")
-        .replace(/ /g, "")
-        .replace(/ /g, "")
-        .split(",");
-
-    for (i = 0; i < serversTags.length; i++) {
-        serversTags[i] = serversTags[i]
-            .trim()
-            .replace(/\./g, "-");
-    }
-
-    tagMenuLink.click(function() {
-        tagMenuLink.toggleClass('active');
-        tagMenuBox.slideToggle(200);
-    });
-
-    var machinesButtons = $('.machines-buttons');
-    for (var i = 0; i < serversTags.length; ++i) {
-        (function() {
-            var type = serversTags[i];
-            var btn = machinesButtons.find('.btn-'+type);
-            btn.click(function() {
-                filterMachines(type);
-                tagMenuLink.removeClass('active');
-                tagMenuBox.hide();
-            });
-	    })();
-	}
-
     cloudlyVMSmanager.initAction();
 });
 
