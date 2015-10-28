@@ -75,7 +75,6 @@ $ cp -f cloudly/settings.py.sample cloudly/settings.py
 ###### Create the ORM database tables
 
 <pre>
-$ cd cloudly
 $ python manage.py syncdb
 </pre>
 
