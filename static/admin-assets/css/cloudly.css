@@ -75,7 +75,7 @@ footer {
     color: #c0cadd;
 }
 
-.tags-box {
+.filter-tags-box {
     display: none;
     position: absolute;
     right: 0;
@@ -90,14 +90,14 @@ footer {
     text-align: center;
 }
 
-.tags-box > li {
+.filter-tags-box > li {
     width: auto;
     list-style-type: none;
     cursor: pointer;
     line-height: 35px;
 }
 
-.tags-box > li:hover {
+.filter-tags-box > li:hover {
     text-decoration: underline;
 }
 

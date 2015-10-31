@@ -15,13 +15,51 @@ var cloudlyVMSmanager  = {
     },
     tagMenuLink: null,
     tagMenuBox: null,
+    dropdownMenuAction: function() {
+        var $this = this;
+
+        this.tagMenuLink = $('.machines-buttons').find('.filter-tag-selector');
+        this.tagMenuBox = $('.machines-buttons').find('.filter-tags-box');
+
+        this.tagMenuLink.click(function() {
+            if ($this.tagMenuLink.hasClass('active') === false) {
+                $this.tagMenuLink.addClass('active');
+            }
+            $this.tagMenuBox.slideToggle(200);
+        });
+    },
     tags: {},
+    filters: {},
+    createFilters: function() {
+        var $this = this,
+            serversFiltersInput = $('input[name="available-filters"]'),
+            serversFilters = serversFiltersInput.val();
+
+        serversFiltersInput.remove();
+
+        serversFilters = serversFilters
+            .replace("]", "")
+            .replace("[", "")
+            .replace(/"/g, "")
+            .replace(/ /g, "")
+            .replace(/ /g, "")
+            .split(",");
+
+        for (i = 0; i < serversFilters.length; i++) {
+            serversFilters[i] = serversFilters[i]
+                .trim()
+                .replace(/\./g, "-");
+        }
+
+        this.filters = serversFilters;
+    },
     createTags: function() {
         var $this = this,
-            serversTagsInput = $('input[name="available_servers_tags"]'),
+            serversTagsInput = $('input[name="available-servers-tags"]'),
             serversTags = serversTagsInput.val();
 
         serversTagsInput.remove();
+
         serversTags = serversTags
             .replace("]", "")
             .replace("[", "")
@@ -30,31 +68,41 @@ var cloudlyVMSmanager  = {
             .replace(/ /g, "")
             .split(",");
 
+        serversTagsArray = []
         for (i = 0; i < serversTags.length; i++) {
-            serversTags[i] = serversTags[i]
+            tagValue = serversTags[i]
                 .trim()
                 .replace(/\./g, "-");
-        }
-        this.tags = serversTags;
-        this.tagMenuLink = $('.machines-buttons').find('.tag_selector');
-        this.tagMenuBox = $('.machines-buttons').find('.tags-box');
 
-        this.tagMenuLink.click(function() {
-            $this.tagMenuLink.toggleClass('active');
-            $this.tagMenuBox.slideToggle(200);
-        });
+            if (tagValue.length > 0) {
+                serversTagsArray.push(tagValue);
+            }
+        }
+
+        this.tags = serversTagsArray;
     },
     bindClickTagAction: function () {
-        var $this = this;
+        var $this = this,
+            allIsotopeFilters = this.filters.concat(this.tags);
 
         var machinesButtons = $('.machines-buttons');
-        for (var i = 0; i < $this.tags.length; ++i) {
+        for (var i = 0; i < allIsotopeFilters.length; ++i) {
             (function() {
-                var type = $this.tags[i];
+                var type = allIsotopeFilters[i];
                 var btn = machinesButtons.find('.btn-'+type);
                 btn.click(function() {
+                    var selectedValue = $(this).attr('data-type');
+
                     $this.filterMachines(type);
-                    $this.tagMenuLink.removeClass('active');
+
+                    if ($this.tags.indexOf(selectedValue) !== -1) {
+                        selectedValue = selectedValue.replace('-', '.');
+                        $this.tagMenuLink.text('Tag: ' + selectedValue);
+                    } else {
+                        $this.tagMenuLink.text('Choose tag');
+                        $this.tagMenuLink.removeClass('active');
+                    }
+
                     $this.tagMenuBox.hide();
                 });
             })();
@@ -74,10 +122,16 @@ var cloudlyVMSmanager  = {
     },
     initAction: function(){
         var $this = this;
+
         this.createTags();
+        this.createFilters();
+        this.dropdownMenuAction();
+        this.bindClickTagAction();
+
         $('#machines-loader').isotope({
             itemSelector: '.vms-machine'
         });
+
         $.ajax({
             type: 'GET',
             url: '/ajax/cloud/box-template/',
@@ -102,7 +156,6 @@ var cloudlyVMSmanager  = {
                 var jsonData = $.parseJSON(res);
                 $this.checkRemoved(jsonData,actualMachines);
                 $this.parseMachinesData(jsonData);
-                $this.bindClickTagAction();
             }
         });
     },
