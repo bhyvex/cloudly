@@ -17,12 +17,15 @@
             <a href="#" class="secondmenu-button btn-bsd">BSD</a>
             <a href="#" class="secondmenu-button btn-cloud">Cloud</a>
             <a href="#" class="secondmenu-button btn-all active">All</a>
-            <a href="#" class="tag_selector">Choose tag</a>
-            <ul class="tags-box">
+            <a href="#" class="filter-tag-selector">Choose tag</a>
+            <ul class="filter-tags-box">
             {% for tag_category in servers_tags %}
                 {% for tag in servers_tags|dict_get:tag_category %}
                     <li name="{{tag_category}}">
-                        <a href="#" class="secondmenu-button btn-{{tag|replace_dot}}">
+                        <a href="#"
+                            data-type="{{tag|replace_dot}}"
+                            class="secondmenu-button btn-{{tag|replace_dot}}"
+                        >
                             {{tag}}
                         </a>
                     </li>

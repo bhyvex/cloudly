@@ -46,23 +46,23 @@ def setup_system():
     if('yum' in proc): installer = proc
 
     if(not installer):
-                    
+
         proc = subprocess.Popen(['which','apt-get'], stdout=subprocess.PIPE, close_fds=True)
         proc = proc.communicate()[0]
         if('apt-get' in proc): installer = proc
 
     if(not installer):
-    
+
         proc = subprocess.Popen(['which','emerge'], stdout=subprocess.PIPE, close_fds=True)
         proc = proc.communicate()[0]
         if('emerge' in proc): installer = proc
-    
+
     if(not installer):
-    
+
         proc = subprocess.Popen(['which','zypper'], stdout=subprocess.PIPE, close_fds=True)
         proc = proc.communicate()[0]
         if('zypper' in proc): installer = proc
-        
+
     installer = installer.replace('\n','')
 
     proc = subprocess.Popen(['which','iptables'], stdout=subprocess.PIPE, close_fds=True)
@@ -80,18 +80,18 @@ def setup_system():
             os.system(installer+" iptables") # there is no install param in emerge
         else:
             os.system(installer+" install iptables")
-    
+
     try:
         import json
         # old versions of python such as python 2.5.1 do not come with json nor they have support for one..
-    except: 
+    except:
         try:
             import simplejson as json
 
         except:
-    
+
             print 'Installing python-simplejson..'
-        
+
             if(not installer):
                 print 'Please install the python-simplejson and re-run the agent.'
                 sys.exit(0)
@@ -99,8 +99,8 @@ def setup_system():
             if("emerge" in installer):
                 os.system(installer+" python-simplejson") # there is no install param in emerge
             else:
-                os.system(installer+" install python-simplejson")       
-    
+                os.system(installer+" install python-simplejson")
+
     return True
 
 
@@ -112,7 +112,7 @@ def self_update( secret ):
     conn.request( "GET", "/jparicka/cloudly/master/agent.py" )
     r1 = conn.getresponse()
     data = r1.read()
-    
+
     print 'Downloading the new monitoring agent... OK'
 
     agent_code = ""
@@ -134,15 +134,15 @@ def self_update( secret ):
     print 'Setting the agent file permissions.. OK'
     os.chmod(AGENT_PATH,0755)
 
-    print 'Kicking off self update...'    
+    print 'Kicking off self update...'
     python = sys.executable
     os.execl(python, python, * sys.argv)
-    
+
     return AGENT_VERSION
 
 
 def _get_hostname():
-    
+
     hostname = subprocess.Popen(["hostname"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
     hostname = hostname.replace("\n","")
     return hostname
@@ -155,7 +155,7 @@ def _get_processes():
 
 
 def _get_sys_uptime():
-    
+
     uptime = subprocess.Popen(['uptime',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
     uptime = re.findall("[ 0-9:]up[ ](.*)[,][ 0-9]+user", uptime)[0]
 
@@ -193,17 +193,17 @@ def _get_sys_cpu_virtualization():
 
     cpuinfo = open('/proc/cpuinfo','rt').readlines()
     for line in cpuinfo:
-        
-        if("vmx" in line): 
+
+        if("vmx" in line):
             virtualization_support = True
-        if("svm" in line): 
+        if("svm" in line):
             virtualization_support = True
-        
+
     return virtualization_support
 
 
 def _get_sys_cpu():
-    
+
     cpu_thresholds = {
         "OK": {},
         "WARNING": {
@@ -224,24 +224,24 @@ def _get_sys_cpu():
 
     c=0
     cpu_total = float(0)
-    
+
     for line in cpu_info.split('\n'):
 
         line = line.replace(' ','')
-        
+
         try:
             cpu_process_usage = float(line)
             cpu_total += cpu_process_usage
         except:
             pass
-    
+
     cpu_usage = {
         'cpu_used':round(cpu_total,2),
         'cpu_free':round(float(100-cpu_total),2)
     }
-    
+
     status = 'UNKNOWN'
-    
+
     if(float(cpu_usage['cpu_used']) < cpu_thresholds['WARNING']['min_value']):
         status = 'OK'
     elif(float(cpu_usage['cpu_used']) >= cpu_thresholds['WARNING']['min_value'] and float(cpu_usage['cpu_used']) <= cpu_thresholds['WARNING']['max_value']):
@@ -250,19 +250,18 @@ def _get_sys_cpu():
         status = 'CRITICAL'
 
     message = 'The CPU(s) are '
-    if(status == 'OK'): message = message + 'within limits: '
-    if(status == 'WARNING' or status == 'CRITICAL'): 
-        message = message + 'quite heavily utilized: '
-
-    message += str(cpu_usage)
+    if(status == 'OK'): message = message + 'within limits'
+    if(status == 'WARNING' or status == 'CRITICAL'):
+        message = message + 'quite heavily utilized'
 
     service_status['status'] = status
     service_status['message'] = message
+    service_status['values'] = cpu_usage
 
     service_report = {}
     service_report['service_thresholds'] = cpu_thresholds
     service_report['service_status'] = service_status
-    
+
     return cpu_usage, service_report
 
 
@@ -290,7 +289,7 @@ def _get_sys_loadavg():
     except: loadavg = re.findall(r"(\d+\,\d{2})", loadavg)
 
     status = 'UNKNOWN'
-    
+
     if(float(loadavg[2]) < loadavg_thresholds['WARNING']['min_value']):
         status = 'OK'
     elif(float(loadavg[2]) >= loadavg_thresholds['WARNING']['min_value'] and float(loadavg[2]) <= loadavg_thresholds['WARNING']['max_value']):
@@ -299,15 +298,19 @@ def _get_sys_loadavg():
         status = 'CRITICAL'
 
     message = 'The System Load is'
-    if(status == 'OK'): message = message + ' within limits: '
-    if(status == 'WARNING'): message = message + ' too high: '
-    if(status == 'CRITICAL'): message = message + ' ' + status + ': '
+    if(status == 'OK'): message = message + ' within limits'
+    if(status == 'WARNING'): message = message + ' too high'
+    if(status == 'CRITICAL'): message = message + ' ' + status
 
-    for i in loadavg: message += str(i) + ' '
-    message = message[:-1] 
+    loadavg_values = []
+    for i in loadavg:
+        loadavg_values.append(i)
+
+    message = message[:-1]
 
     service_status['status'] = status
     service_status['message'] = message
+    service_status['values'] = loadavg_values
 
     service_report = {}
     service_report['service_thresholds'] = loadavg_thresholds
@@ -317,7 +320,7 @@ def _get_sys_loadavg():
 
 
 def _get_memory_usage():
-    
+
     memory_thresholds = {
         "OK": {},
         "WARNING": {
@@ -355,7 +358,7 @@ def _get_memory_usage():
     memory_usage = {
         'memory_total': memory_total,
         'memory_free': memory_free,
-        'memory_used': memory_used,        
+        'memory_used': memory_used,
         'memory_used_percentage': round(float(memory_used)/float(memory_total)*100,2),
         'swap_total': 0,
         'swap_used': 0,
@@ -364,7 +367,7 @@ def _get_memory_usage():
     }
 
     mem_info = subprocess.Popen(['free',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
-    
+
     for line in mem_info.split('\n'):
 
         if('swap' in line.lower()):
@@ -379,31 +382,29 @@ def _get_memory_usage():
 
     status = 'UNKNOWN'
     message = ''
-    
+
     if(long(memory_usage['swap_used'])>0):
         status = 'WARNING'
-        message = 'Swap memory is being utilized: ' + str(memory_usage)
+        message = 'Swap memory is being utilized'
 
     if(long(memory_usage['swap_used_percentage'])>90):
         status = 'CRITICAL'
-        message = 'Memory and the swap space is running out: ' + str(memory_usage)
-
+        message = 'Memory and the swap space is running out'
 
     if(status=='UNKNOWN'):
-
         if(float(memory_usage['memory_used_percentage']) < memory_thresholds['WARNING']['min_value']):
             status = 'OK'
-            message = 'The memory is within limits: ' + str(memory_usage)
+            message = 'The memory is within limits'
         elif(float(memory_usage['memory_used_percentage']) >= memory_thresholds['WARNING']['min_value'] and float(memory_usage['memory_used_percentage']) <= memory_thresholds['WARNING']['max_value']):
             status = 'WARNING'
-            message = 'Server memory is running out: ' + str(memory_usage)
+            message = 'Server memory is running out'
         else:
             status = 'CRITICAL'
-            message = 'The system has ran out of memory: ' + str(memory_usage)
-
+            message = 'The system has ran out of memory'
 
     service_status['status'] = status
     service_status['message'] = message
+    service_status['values'] = memory_usage
 
     service_report = {}
     service_report['service_thresholds'] = memory_thresholds
@@ -411,29 +412,28 @@ def _get_memory_usage():
 
     return memory_usage, service_report
 
-
 def _get_ip_address():
-    
+
     try:
         ifconfig = subprocess.Popen(["/sbin/ifconfig","-a"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
     except:
         ifconfig = subprocess.Popen(["ifconfig","-a"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
-    
+
     ip = re.search( r'inet addr:[^\s]+', ifconfig )
-    
+
     if(not ip):
         ip = re.search( r'inet [^\s]+', ifconfig )
-    
+
     if not platform.system() == 'Darwin':
         ip = ip.group().split(':')[-1]
     else:
         ip = "127.0.0.1"
-        
+
     ip = ip.replace(" ","")
     ip = ip.replace("inet","")
-    
+
     return ip
-    
+
 
 def _get_disks_usage():
 
@@ -454,7 +454,7 @@ def _get_disks_usage():
     }
 
     proc = subprocess.Popen(['df', '-B 1'], stdout=subprocess.PIPE, close_fds=True)
-    df = proc.communicate()[0] 
+    df = proc.communicate()[0]
 
     try:
         volumes = df.split('\n')
@@ -466,24 +466,24 @@ def _get_disks_usage():
     previousVolume = None
     volumeCount = 0
     disks_usage = []
-    
+
     for volume in volumes:
-        
+
         volume = volume.split(None, 10)
-        
+
         if len(volume) == 1:
             previousVolume = volume[0]
             continue
-        
+
         if previousVolume != None:
-            volume.insert(0, previousVolume) 
+            volume.insert(0, previousVolume)
             previousVolume = None
-        
+
         volumeCount = volumeCount + 1
-        
+
         if regexp.match(volume[1]) == None:
             pass
-        
+
         else:
             try:
                 volume[2] = int(volume[2]) # Used
@@ -492,15 +492,16 @@ def _get_disks_usage():
                 pass
             except KeyError:
                 pass
-            
+
             disks_usage.append(volume)
-    
+
 
     overall_status = "UNKNOWN"
     messages = []
+    disks_values = []
 
     for disk in disks_usage:
-    
+
         status = 'UNKNOWN'
 
         mount_point = disk[5]
@@ -520,27 +521,30 @@ def _get_disks_usage():
 
         if(overall_status != 'WARNING' and overall_status != 'CRITICAL'): overall_status = "OK"
 
-
         message = 'The disk "' + disk[-1:][0] + '"'
 
-        if(status == 'WARNING' or status == 'CRITICAL'): 
-            message = 'Warning - ' + message + ' is running out of space: '
+        if(status == 'WARNING' or status == 'CRITICAL'):
+            message = 'Warning - ' + message + ' is running out of space'
         if(status == 'OK'):
-            message += ' is within limits: '
+            message += ' is within limits'
 
-        message += 'disk_free: ' + str(disk_free) + ', disk_used: ' + str(disk_used) + ', disk_total: ' + str(disk_total)    
+        disk_values = {}
+        disk_values['disk_free'] = disk_free
+        disk_values['disk_used'] = disk_used
+        disk_values['disk_total'] = disk_total
+
         messages.append(message)
-    
-    
+        disks_values.append(disk_values)
+
     service_status['status'] = overall_status
     service_status['messages'] = messages
+    service_status['values'] = disks_values
 
     service_report = {}
     service_report['service_thresholds'] = disks_thresholds
     service_report['service_status'] = service_status
-   
-    return disks_usage, service_report
 
+    return disks_usage, service_report
 
 def _get_networking_stats():
 
@@ -548,13 +552,13 @@ def _get_networking_stats():
         proc = subprocess.Popen(['/sbin/iptables','-L','-vxn'], stdout=subprocess.PIPE, close_fds=True)
     except:
         proc = subprocess.Popen(['iptables','-L','-vxn'], stdout=subprocess.PIPE, close_fds=True)
-    
+
     data = proc.communicate()[0]
-    
+
     inbound_text = ""
     outbound_text = ""
     forward_text = ""
-    
+
     psc = 0
     for line in data.split('\n'):
 
@@ -588,11 +592,11 @@ def _get_networking_stats():
 
         c=0
         for line in inbound_text.split('\n'):
-            
+
             if(c>3 and c<len(inbound_text.split('\n'))-1):
                 input_accept_packets += int(line.split(' ')[0])
                 input_accept_bytes += int(line.split(' ')[1])
-                
+
             c+=1
 
     if(input_accept_packets>0): inbound_traffic['input_accept_packets'] = input_accept_packets
@@ -601,7 +605,7 @@ def _get_networking_stats():
     outbound_traffic = {}
 
     for line in outbound_text.split('\n'):
-    
+
         if("OUTPUT" in line):
             output_accept = line.split('policy ACCEPT ')[1]
             output_accept = output_accept.split(' ')
@@ -619,11 +623,11 @@ def _get_networking_stats():
 
         c=0
         for line in outbound_text.split('\n'):
-            
+
             if(c>3 and c<len(outbound_text.split('\n'))-1):
                 output_accept_packets += int(line.split(' ')[0])
                 output_accept_bytes += int(line.split(' ')[1])
-                
+
             c+=1
 
     if(output_accept_packets>0): outbound_traffic['output_accept_packets'] = output_accept_packets
@@ -635,7 +639,7 @@ def _get_networking_stats():
         proc = subprocess.Popen(['/sbin/iptables','-Z'], stdout=subprocess.PIPE, close_fds=True)
     except:
         proc = subprocess.Popen(['iptables','-Z'], stdout=subprocess.PIPE, close_fds=True)
-    
+
     return networking
 
 
@@ -647,11 +651,11 @@ def _get_network_connections():
         netstat = subprocess.Popen(["/usr/sbin/netstat","-atn"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 
     connections = {}
-    listen_connections = []    
+    listen_connections = []
     established_connections = []
 
     for line in netstat.split('\n'):
-    
+
         if("tcp" in line or "udp" in line):
 
             line = re.split(" +", line)
@@ -664,21 +668,21 @@ def _get_network_connections():
             state = line[5]
 
             local_address_port = local_address.split(':')[-1:][0]
-            foreign_address_port = foreign_address.split(':')[-1:][0]            
+            foreign_address_port = foreign_address.split(':')[-1:][0]
 
             local_address_port_resolved = ""
             foreign_address_port_resolved = ""
- 
+
             if(local_address_port!="*"):
                 try:
                     local_address_port_resolved = socket.getservbyport(int(local_address_port))
                 except: pass
-                
+
             if(foreign_address_port!="*"):
                 try:
                     foreign_address_port_resolved = socket.getservbyport(int(foreign_address_port))
                 except: pass
-            
+
             if(state=="LISTEN"):
                 listen_connections.append([state, proto, recvq, sendq, local_address, local_address_port, local_address_port_resolved, foreign_address, foreign_address_port, foreign_address_port_resolved] )
                 #print state, proto, recvq, sendq, local_address, local_address_port, local_address_port_resolved, foreign_address, foreign_address_port, foreign_address_port_resolved
@@ -698,7 +702,7 @@ def _get_distro():
 
     distro = ""
     try:
-        for i in platform.linux_distribution(): 
+        for i in platform.linux_distribution():
             distro += i.title() + " "
         distro = distro[:-1]
     except: distro = "?"
@@ -707,19 +711,19 @@ def _get_distro():
 
 
 def send_data( secret, api_call, data ):
-    
+
     try:
         import json
     except:
         try:
             import simplejson as json
         except: pass
-    
+
     params = urllib.urlencode(data)
     headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
     api_url = "http://"+API_SERVER+api_call
 
-    while True:            
+    while True:
 
         try:
             conn = httplib.HTTPConnection(API_SERVER)
@@ -731,7 +735,7 @@ def send_data( secret, api_call, data ):
         except:
             print 'Connection Error. Retrying in 2 seconds..'
             time.sleep(2)
-    
+
     return response_data
 
 
@@ -749,12 +753,12 @@ def get_system_metrics( uuid, secret ):
     loadavg_data, loadavg_service_report = _get_sys_loadavg()
     loadavg['loadavg'] = loadavg_data
     loadavg['service_report'] = loadavg_service_report
-    
+
     cpu_usage = {}
     cpu_usage_data, cpu_usage_service_report = _get_sys_cpu()
     cpu_usage['cpu_usage'] = cpu_usage_data
     cpu_usage['service_report'] = cpu_usage_service_report
-        
+
     memory_usage = {}
     memory_usage_data, memory_usage_service_report = _get_memory_usage()
     memory_usage['memory_usage'] = memory_usage_data
@@ -768,7 +772,7 @@ def get_system_metrics( uuid, secret ):
     processes = _get_processes()
     networking = _get_networking_stats()
     network_connections = _get_network_connections()
-    
+
     system_metrics_json = {
         'uuid': uuid,
         'ip': ip,
@@ -796,15 +800,15 @@ def get_system_metrics( uuid, secret ):
 def main():
 
     setup_system()
-        
+
     print "AGENT: v"+AGENT_VERSION
     print "Written By: Jan Paricka"
-    
+
     try:
         HWADDR = subprocess.Popen(["/sbin/ifconfig","-a"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
     except:
         HWADDR = subprocess.Popen(["ifconfig","-a"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
-    
+
     UUID = re.search(r'([0-9A-F]{2}[:-]){5}([0-9A-F]{2})', HWADDR, re.I).group()
 
     api_call = "/v10/activity/"
@@ -815,13 +819,13 @@ def main():
         'activity': "Agent v"+AGENT_VERSION+" started."
     }
     send_data(SECRET,api_call,activity)
-    
+
     while True:
-    
+
         api_call = "/v10/ping/"
         system_metrics = get_system_metrics(UUID, SECRET)
         api_response = send_data(SECRET,api_call,system_metrics)
-        
+
         if(api_response=="update" and AGENT_ALLOWED_TO_SELF_UPDATE):
 
             self_update(SECRET)
@@ -835,7 +839,7 @@ def main():
             }
             send_data(SECRET,api_call,activity)
 
-        
+
         time.sleep(REFRESH_INTERVAL)
 
     print "ze end."

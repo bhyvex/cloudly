@@ -166,7 +166,6 @@ def ping():
     hbase.send(cpu_usage_tsdb_cmd)
     hbase.close()
 
-
     loadavg_metrics = {
         'secret': secret,
         'agent_version': agent_version,
@@ -376,7 +375,6 @@ def ping():
         last_active_service_status = active_service_statuses.find_one({'server_id':uuid,'service':service})
 
         new_active_report = {
-            'date':datetime.datetime.now(),
             'secret':secret,
             'server_id':uuid,
             'service':service,
@@ -385,8 +383,13 @@ def ping():
         }
 
         if(not last_active_service_status):
+            new_active_report['date'] = datetime.datetime.now()
             active_service_statuses.insert(new_active_report)
         else:
+            if (not 'date' in last_active_service_status):
+                new_active_report['date'] = datetime.datetime.now()
+
+            active_service_statuses.update({'server_id':uuid,'service':service},{"$set":new_active_report})
 
             if( last_active_service_status['current_overall_status'] == current_overall_service_status ):
 

@@ -1,21 +1,8 @@
 
-function filterMachines(f) {
-	$('.machines-buttons .secondmenu-button').removeClass('active');
-	$('.machines-buttons .btn-'+f).addClass('active');
-
-    if (f === 'all') {
-        f = '*';
-    } else {
-        f = '.'+f;
-    }
-
-	$('#machines-loader').isotope( { filter: f } );
-}
-
 var cloudlyVMSmanager  = {
     template: '',
     actualMachines: '',
-    colors : {
+    colors: {
 		'#36a9e1':'lightBlue',
 		'#78cd51':'green',
 		'#333366':'darkGreen',
@@ -25,12 +12,126 @@ var cloudlyVMSmanager  = {
 		'#CBD4E4':'silver',
 		'#e84c8a':'pink',
 		'#000000':'black'
-		},
+    },
+    tagMenuLink: null,
+    tagMenuBox: null,
+    dropdownMenuAction: function() {
+        var $this = this;
+
+        this.tagMenuLink = $('.machines-buttons').find('.filter-tag-selector');
+        this.tagMenuBox = $('.machines-buttons').find('.filter-tags-box');
+
+        this.tagMenuLink.click(function() {
+            if ($this.tagMenuLink.hasClass('active') === false) {
+                $this.tagMenuLink.addClass('active');
+            }
+            $this.tagMenuBox.slideToggle(200);
+        });
+    },
+    tags: {},
+    filters: {},
+    createFilters: function() {
+        var $this = this,
+            serversFiltersInput = $('input[name="available-filters"]'),
+            serversFilters = serversFiltersInput.val();
+
+        serversFiltersInput.remove();
+
+        serversFilters = serversFilters
+            .replace("]", "")
+            .replace("[", "")
+            .replace(/"/g, "")
+            .replace(/ /g, "")
+            .replace(/ /g, "")
+            .split(",");
+
+        for (i = 0; i < serversFilters.length; i++) {
+            serversFilters[i] = serversFilters[i]
+                .trim()
+                .replace(/\./g, "-");
+        }
+
+        this.filters = serversFilters;
+    },
+    createTags: function() {
+        var $this = this,
+            serversTagsInput = $('input[name="available-servers-tags"]'),
+            serversTags = serversTagsInput.val();
+
+        serversTagsInput.remove();
+
+        serversTags = serversTags
+            .replace("]", "")
+            .replace("[", "")
+            .replace(/"/g, "")
+            .replace(/ /g, "")
+            .replace(/ /g, "")
+            .split(",");
+
+        serversTagsArray = []
+        for (i = 0; i < serversTags.length; i++) {
+            tagValue = serversTags[i]
+                .trim()
+                .replace(/\./g, "-");
+
+            if (tagValue.length > 0) {
+                serversTagsArray.push(tagValue);
+            }
+        }
+
+        this.tags = serversTagsArray;
+    },
+    bindClickTagAction: function () {
+        var $this = this,
+            allIsotopeFilters = this.filters.concat(this.tags);
+
+        var machinesButtons = $('.machines-buttons');
+        for (var i = 0; i < allIsotopeFilters.length; ++i) {
+            (function() {
+                var type = allIsotopeFilters[i];
+                var btn = machinesButtons.find('.btn-'+type);
+                btn.click(function() {
+                    var selectedValue = $(this).attr('data-type');
+
+                    $this.filterMachines(type);
+
+                    if ($this.tags.indexOf(selectedValue) !== -1) {
+                        selectedValue = selectedValue.replace('-', '.');
+                        $this.tagMenuLink.text('Tag: ' + selectedValue);
+                    } else {
+                        $this.tagMenuLink.text('Choose tag');
+                        $this.tagMenuLink.removeClass('active');
+                    }
+
+                    $this.tagMenuBox.hide();
+                });
+            })();
+        }
+    },
+    filterMachines: function(f) {
+        $('.machines-buttons .secondmenu-button').removeClass('active');
+        $('.machines-buttons .btn-'+f).addClass('active');
+
+        if (f === 'all') {
+            f = '*';
+        } else {
+            f = '.'+f;
+        }
+
+        $('#machines-loader').isotope( { filter: f } );
+    },
     initAction: function(){
         var $this = this;
+
+        this.createTags();
+        this.createFilters();
+        this.dropdownMenuAction();
+        this.bindClickTagAction();
+
         $('#machines-loader').isotope({
             itemSelector: '.vms-machine'
         });
+
         $.ajax({
             type: 'GET',
             url: '/ajax/cloud/box-template/',
@@ -55,7 +156,6 @@ var cloudlyVMSmanager  = {
                 var jsonData = $.parseJSON(res);
                 $this.checkRemoved(jsonData,actualMachines);
                 $this.parseMachinesData(jsonData);
-
             }
         });
     },
@@ -77,16 +177,18 @@ var cloudlyVMSmanager  = {
         chartStatElement($('#'+vms).find('.chart').html(data.averge));
         $('#'+vms).find('.value').html(data.state);
 
-        var panel = $("#"+vms).find('.panel');
+        $.each(this.colors, function(code,color) {
+            var $machine = $('#' + vms),
+                panel = $machine.find('.panel');
 
-        $.each(this.colors,function(code,color){
-                if(panel.hasClass(color) && panel.attr('class').indexOf(data.vmcolor) === -1){
-                        $(panel).removeClass(color).addClass(data.vmcolor)
-                        //console.log('VM '+vms+' changed color: '+color+' to: '+data.vmcolor+' and actual has class: '+panel.attr('class'));
-                        return;
-                }
+            if(panel.hasClass(color) && panel.attr('class').indexOf(data.vmcolor) === -1) {
+                var newClasses = 'vms-machine col-lg-3 col-md-6 ' + data.vmtitle;
+                $machine.removeClass();
+                $machine.addClass(newClasses);
+                $(panel).removeClass(color).addClass(data.vmcolor)
+                return;
+            }
         });
-
     },
     addVMS: function(vms,data){
         var template = this.template;
@@ -103,8 +205,6 @@ var cloudlyVMSmanager  = {
         var prepend = $('#machines-loader').prepend(template);
         chartStatElement($('#'+vms).find('.chart').html(data.averge));
         prepend.isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' });
-
-
     },
     checkRemoved: function(machines,actualMachines){
         var machineIds = 'testVMS';
@@ -112,14 +212,12 @@ var cloudlyVMSmanager  = {
         $.each(machines,function(vms,value){
             machineIds += vms+',';
         });
-
         $.each(actualMachines,function(index,item){
             var id = $(item).attr('id');
             if(machineIds.indexOf(id) < 0){
                 $container.isotope( 'remove', item ).isotope('layout');
             }
         });
-
     },
     reloadPositions: function(){
             $('#machines-loader').isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' });
@@ -130,44 +228,6 @@ var cloudlyVMSmanager  = {
 }
 
 $(document).ready (function() {
-    var tagMenuLink = $('.machines-buttons').find('.tag_selector'),
-        tagMenuBox = $('.machines-buttons').find('.tags-box'),
-        serversTagsInput = $('input[name="available_servers_tags"]'),
-        serversTags = serversTagsInput.val();
-
-    serversTagsInput.remove();
-    serversTags = serversTags
-        .replace("]", "")
-        .replace("[", "")
-        .replace(/"/g, "")
-        .replace(/ /g, "")
-        .replace(/ /g, "")
-        .split(",");
-
-    for (i = 0; i < serversTags.length; i++) {
-        serversTags[i] = serversTags[i]
-            .trim()
-            .replace(/\./g, "-");
-    }
-
-    tagMenuLink.click(function() {
-        tagMenuLink.toggleClass('active');
-        tagMenuBox.slideToggle(200);
-    });
-
-    var machinesButtons = $('.machines-buttons');
-    for (var i = 0; i < serversTags.length; ++i) {
-        (function() {
-            var type = serversTags[i];
-            var btn = machinesButtons.find('.btn-'+type);
-            btn.click(function() {
-                filterMachines(type);
-                tagMenuLink.removeClass('active');
-                tagMenuBox.hide();
-            });
-	    })();
-	}
-
     cloudlyVMSmanager.initAction();
 });
 

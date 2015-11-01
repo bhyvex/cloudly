@@ -1,30 +1,9 @@
-# -*- coding: utf-8 -*-
+# content processor functions
 
-import os
-import time
-import pickle
-import logging
-import datetime
-
-from django.shortcuts import render_to_response
-from django.http import HttpResponseRedirect
-from django.template import RequestContext
-
-from django.http import HttpResponseForbidden
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import redirect, render
-
-logger = logging.getLogger(__name__)
-
-import boto.ec2
-import boto.ec2.cloudwatch
+from django.conf import settings
 
 from django.contrib.auth.models import User
 from userprofile.models import Profile
-from userprofile.views import _log_user_activity
-from django.contrib.auth.decorators import login_required
-
-from django.conf import settings
 
 import pymongo
 from pymongo import MongoClient
@@ -37,27 +16,19 @@ if settings.MONGO_USER:
 
 mongo = client.cloudly
 
-@login_required()
-def incidents(request):
-
-    print '-- system logs:', request.user
-
+def incidents_notifs(request):
     user = request.user
     profile = Profile.objects.get(user=request.user)
     secret = profile.secret
-
-    ip = request.META['REMOTE_ADDR']
-    _log_user_activity(profile,"click","/logs/","logs",ip=ip)
-
-    user = request.user
-    user.last_login = datetime.datetime.now()
-    user.save()
 
     servers = mongo.servers.find({'secret':profile.secret},{'uuid':1,'name':1}).sort('_id',-1);
 
     serversNames = {}
     for server in servers:
         serversNames[server['uuid']] = server['name']
+
+    print 100 * 'SERVERS___'
+    print serversNames
 
     notifs_counter = 0
     active_service_statuses = mongo.active_service_statuses
@@ -70,11 +41,15 @@ def incidents(request):
         active_notifs[notifs_type] = []
         notifs = active_service_statuses.find({"secret":secret,"current_overall_status":notifs_type})
         for notif in notifs:
-            notif.update({'name':serversNames[notif['server_id']]})
-            active_notifs[notifs_type].append(notif)
+            newNotif = {}
+            newNotif['name'] = serversNames[notif['server_id']]
+            newNotif['service'] = notif['service']
+            newNotif['date'] = notif['date']
+            active_notifs[notifs_type].append(newNotif)
 
-    return render_to_response(
-        'incidents.html',
-        {'request':request,'profile':profile,'active_notifs':active_notifs},
-        context_instance=RequestContext(request),
-    )
+    return {
+        'notifs_counter':notifs_counter,
+        'active_service_statuses':active_service_statuses_data,
+        'navbar_active_notifs':active_notifs,
+        'notifs_types':notifs_types,
+    }
