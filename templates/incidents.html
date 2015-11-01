@@ -19,105 +19,49 @@
 
                 {% if not notifs_counter %}
                     There are currently no servers or services problems being encountered.
-
                 {% else %}
-                    {% if critical_notifs|manual_notifs_count_unfortunately %}
-                        <div class="priority high">
-                            <span>Critical</span>
-                        </div>
-                        {% for notif in critical_notifs %}
-                            <div class="
-                                task high
-                                {% if forloop.last %}
-                                last
-                                {% endif %}
-                            ">
-                                <div class="desc">
-                                    <div class="title">
-                                    <a href="/server/{{notif|dict_get:"server_id"|replace_dots}}">{{notif|dict_get:"server_id"}}</a>
-                                        {{notif|dict_get:"service"}}
-                                    </div>
-                                    <div>
-                                        {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}
-                                    </div>
-                                </div>
-                                <div class="time">
-                                    <div
-                                    class="date">{{notif|dict_get:"date"}}</div>
-                                    <div>
-									alert duration {{notif|dict_get:"date"|timesince}}
-                                    </div>
-                                </div>
+                    {% for notifs_type in active_notifs %}
+                        {% if active_notifs|dict_get:notifs_type %}
+                            <div class="priority {{notifs_type|lower}}">
+                                <span>{{notifs_type}}</span>
                             </div>
-                        {% endfor %}
+                            {% for notif in active_notifs|dict_get:notifs_type %}
+                                <div class="
+                                    task {{notifs_type|lower}}
+                                    {% if forloop.last %}
+                                        last
+                                    {% endif %}
+                                ">
+                                    <div class="desc">
+                                        <div class="title">
+                                            <a href="/server/{{notif|dict_get:"server_id"|replace_dots}}">
+                                                {{notif|dict_get:"name"}}
+                                            </a>
+                                            {{notif|dict_get:"service"}}
+                                        </div>
+                                        <div>
+                                            {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}
+                                        </div>
+                                    </div>
+                                    <div class="time">
+                                        <div class="date">
+                                            <small>
+                                                {{notif|dict_get:"date"}}
+                                            </small>
+                                        </div>
+                                        <div>
+                                            alert duration {{notif|dict_get:"date"|timesince}}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
                         <div class="clearfix"></div>
-                    {% endif %}
-
-                    {% if warning_notifs|manual_notifs_count_unfortunately %}
-                        <div class="priority medium">
-                            <span>Warning</span>
-                        </div>
-                        {% for notif in warning_notifs %}
-                            <div class="
-                                task medium
-                                {% if forloop.last %}
-                                last
-                                {% endif %}
-                            ">
-                                <div class="desc">
-                                    <div class="title">
-									<a href="/server/{{notif|dict_get:"server_id"|replace_dots}}">{{notif|dict_get:"server_id"}}</a>
-                                    {{notif|dict_get:"service"}}
-                                    </div>
-                                    <div>
-                                        {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}
-                                    </div>
-                                </div>
-                                <div class="time">
-                                    <div
-                                    class="date">{{notif|dict_get:"date"}}</div>
-                                    <div>
-                                    alert duration {{notif|dict_get:"date"|timesince}}
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-
-                    {% if unknown_notifs|manual_notifs_count_unfortunately %}
-                        <div class="priority high">
-                            <span>Unknown</span>
-                        </div>
-                        {% for notif in unknown_notifs %}
-                            <div class="
-                                task high
-                                {% if forloop.last %}
-                                last
-                                {% endif %}
-                            ">
-                                <div class="desc">
-                                    <div class="title">
-									<a href="/server/{{notif|dict_get:"server_id"|replace_dots}}">{{notif|dict_get:"server_id"}}</a>
-                                    {{notif|dict_get:"service"}}
-                                    </div>
-                                    <div>
-                                        {{notif}}
-                                    </div>
-                                </div>
-                                <div class="time">
-                                    <div class="date">{{notif|dict_get:"date"}}</div>
-                                    <div>
-                                    alert duration {{notif|dict_get:"date"|timesince}}
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-
+                    {% endfor %}
                     <div class="clearfix"></div>
                 {% endif %}
 			</div>
-		
+
 		XXX exclude warnings for offline servers<br/>
 		XXX list offline servers here as warning<br/>
 

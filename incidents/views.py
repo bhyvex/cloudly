@@ -58,8 +58,12 @@ def incidents(request):
     active_service_statuses_data = active_service_statuses.find({"$and": [{"secret": secret}, {"current_overall_status": {"$ne": "OK"}}]})
     notifs_counter = active_service_statuses_data.count()
 
-    unknown_notifs = active_service_statuses.find({"secret":secret,"current_overall_status":"UNKNOWN"})
-    warning_notifs = active_service_statuses.find({"secret":secret,"current_overall_status":"WARNING"})
-    critical_notifs = active_service_statuses.find({"secret":secret,"current_overall_status":"CRITICAL"})
+    active_notifs = {}
+    notifs_types = ["CRITICAL","WARNING","UNKNOWN",]
+    for notifs_type in notifs_types:
+        active_notifs[notifs_type] = []
+        notifs = active_service_statuses.find({"secret":secret,"current_overall_status":notifs_type})
+        for notif in notifs:
+            active_notifs[notifs_type].append(notif)
 
-    return render_to_response('incidents.html', {'request':request,'notifs_counter':notifs_counter,'active_service_statuses':active_service_statuses_data,'unknown_notifs':unknown_notifs,'warning_notifs':warning_notifs,'critical_notifs':critical_notifs,'profile':profile,}, context_instance=RequestContext(request))
+    return render_to_response('incidents.html', {'request':request,'notifs_counter':notifs_counter,'active_service_statuses':active_service_statuses_data,'active_notifs':active_notifs,'profile':profile,}, context_instance=RequestContext(request))
