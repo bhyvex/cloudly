@@ -28,7 +28,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     {% if not notifs_counter %}
-                        <li>There are currently no servers or services problems being encountered.</li>
+                        <li><small>There are currently no servers or services problems being encountered.</small></li>
                     {% else %}
                         {% for notifs_type in notifs_types %}
                             {%if active_notifs|dict_get:notifs_type %}
