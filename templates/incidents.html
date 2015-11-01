@@ -20,14 +20,24 @@
                 {% if not notifs_counter %}
                     There are currently no servers or services problems being encountered.
                 {% else %}
-                    {% for notifs_type in active_notifs %}
+                    {% for notifs_type in notifs_types %}
                         {% if active_notifs|dict_get:notifs_type %}
-                            <div class="priority {{notifs_type|lower}}">
+                            <div class="priority
+                                {% if notifs_type == 'WARNING' %}
+                                    medium
+                                {% else %}
+                                    high
+                                {% endif %}
+                            ">
                                 <span>{{notifs_type}}</span>
                             </div>
                             {% for notif in active_notifs|dict_get:notifs_type %}
-                                <div class="
-                                    task {{notifs_type|lower}}
+                                <div class="task
+                                    {% if notifs_type == 'WARNING' %}
+                                        medium
+                                    {% else %}
+                                        high
+                                    {% endif %}
                                     {% if forloop.last %}
                                         last
                                     {% endif %}

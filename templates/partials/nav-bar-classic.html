@@ -30,15 +30,16 @@
                     {% if not notifs_counter %}
                         <li>There are currently no servers or services problems being encountered.</li>
                     {% else %}
-                        {% for notifs_type in active_notifs %}
+                        {% for notifs_type in notifs_types %}
                             {%if active_notifs|dict_get:notifs_type %}
-                                <li class="dropdown-menu-header text-center {{notifs_type|lower}}">
+                                <li class="dropdown-menu-header text-center">
                                     {{notifs_type}}
                                 </li>
                                 {% for notif in active_notifs|dict_get:notifs_type %}
-                                    <li class="high">
+                                    <li>
                                         <a href="/incidents/">
                                             <div class="title">
+                                                {{notif|dict_get:"name"}} |
                                                 {{notif|dict_get:"service"}}
                                             </div>
                                             <small>

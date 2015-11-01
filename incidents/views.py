@@ -53,6 +53,12 @@ def incidents(request):
     user.last_login = datetime.datetime.now()
     user.save()
 
+    servers = mongo.servers.find({'secret':profile.secret},{'uuid':1,'name':1}).sort('_id',-1);
+
+    serversNames = {}
+    for server in servers:
+        serversNames[server['uuid']] = server['name']
+
     notifs_counter = 0
     active_service_statuses = mongo.active_service_statuses
     active_service_statuses_data = active_service_statuses.find({"$and": [{"secret": secret}, {"current_overall_status": {"$ne": "OK"}}]})
@@ -64,6 +70,7 @@ def incidents(request):
         active_notifs[notifs_type] = []
         notifs = active_service_statuses.find({"secret":secret,"current_overall_status":notifs_type})
         for notif in notifs:
+            notif.update({'name':serversNames[notif['server_id']]})
             active_notifs[notifs_type].append(notif)
 
-    return render_to_response('incidents.html', {'request':request,'notifs_counter':notifs_counter,'active_service_statuses':active_service_statuses_data,'active_notifs':active_notifs,'profile':profile,}, context_instance=RequestContext(request))
+    return render_to_response('incidents.html', {'request':request,'notifs_counter':notifs_counter,'active_service_statuses':active_service_statuses_data,'active_notifs':active_notifs,'notifs_types':notifs_types,'profile':profile,}, context_instance=RequestContext(request))
