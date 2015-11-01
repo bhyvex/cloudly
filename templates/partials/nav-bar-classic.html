@@ -40,7 +40,7 @@
                                         <a href="/incidents/">
                                             <div class="title">
                                                 {{notif|dict_get:"name"}} |
-                                                {{notif|dict_get:"service"}}
+                                                {{notif|dict_get:"service"|replace_underscope|title}}
                                             </div>
                                             <small>
                                                 alert duration {{notif|dict_get:"date"|timesince}}

@@ -126,6 +126,10 @@ def replace_dots(text):
 def replace_dot(text):
 	return text.replace('.','-')
 
+@register.filter(name='replace_underscope')
+def replace_dots(text):
+	return text.replace('_',' ')
+
 @register.filter(name='make_float')
 def make_float(value):
 	return float(value)
@@ -137,6 +141,12 @@ def make_json(json_):
 		return json.loads(json_)
 	except: return {}
 
+@register.filter(name='get_service_unity')
+def get_service_unity(service):
+    unity = ''
+    if service == 'SYSTEM_CPU':
+        unity = '%'
+    return unity
 
 @register.filter(name='make_json_sorted')
 def make_json_sorted(json_):

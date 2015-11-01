@@ -44,13 +44,27 @@
                                 ">
                                     <div class="desc">
                                         <div class="title">
-                                            <a href="/server/{{notif|dict_get:"server_id"|replace_dots}}">
+                                            <a href="/server/{{notif|dict_get:"server_id"|replace_dots}}"
+                                                class="btn-xs
+                                                {% if notifs_type == 'WARNING' %}
+                                                    btn-warning
+                                                {% else %}
+                                                    btn-danger
+                                                {% endif %}
+                                            ">
                                                 {{notif|dict_get:"name"}}
-                                            </a>
-                                            {{notif|dict_get:"service"}}
+                                            </a>&nbsp;
+                                            {{notif|dict_get:"service"|replace_underscope}}
                                         </div>
                                         <div>
-                                            {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}
+                                            {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}:<br />
+                                            {% for value in notif|dict_get:"detailed_service_status"|dict_get:"values" %}
+                                                <strong>{{value|replace_underscope}}:&nbsp;</strong>
+                                                {{notif|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:value}}&nbsp;{{notif|dict_get:"service"|get_service_unity}}
+                                                {% if not forloop.last %}
+                                                    <br />
+                                                {% endif %}
+                                            {% endfor %}
                                         </div>
                                     </div>
                                     <div class="time">
