@@ -31,11 +31,11 @@
                         <li><small>There are currently no servers or services problems being encountered.</small></li>
                     {% else %}
                         {% for notifs_type in notifs_types %}
-                            {%if active_notifs|dict_get:notifs_type %}
+                            {%if navbar_active_notifs|dict_get:notifs_type %}
                                 <li class="dropdown-menu-header text-center">
                                     {{notifs_type}}
                                 </li>
-                                {% for notif in active_notifs|dict_get:notifs_type %}
+                                {% for notif in navbar_active_notifs|dict_get:notifs_type %}
                                     <li>
                                         <a href="/incidents/">
                                             <div class="title">
