@@ -17,6 +17,9 @@ if settings.MONGO_USER:
 mongo = client.cloudly
 
 def incidents_notifs(request):
+    if (request.user.is_anonymous()):
+        return {}
+
     user = request.user
     profile = Profile.objects.get(user=request.user)
     secret = profile.secret
@@ -26,9 +29,6 @@ def incidents_notifs(request):
     serversNames = {}
     for server in servers:
         serversNames[server['uuid']] = server['name']
-
-    print 100 * 'SERVERS___'
-    print serversNames
 
     notifs_counter = 0
     active_service_statuses = mongo.active_service_statuses
