@@ -17,7 +17,7 @@ if settings.MONGO_USER:
 mongo = client.cloudly
 
 def incidents_notifs(request):
-    if (request.user.is_anonymous()):
+    if (not request.user.is_authenticated()):
         return {}
 
     user = request.user
