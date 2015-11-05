@@ -31,8 +31,7 @@ var cloudlyVMSmanager  = {
     tags: {},
     filters: {},
     createFilters: function() {
-        var $this = this,
-            serversFiltersInput = $('input[name="available-filters"]'),
+        var serversFiltersInput = $('input[name="available-filters"]'),
             serversFilters = serversFiltersInput.val();
 
         serversFiltersInput.remove();
