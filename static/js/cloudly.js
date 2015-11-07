@@ -4,12 +4,11 @@ var csrf = $('input[name="csrfmiddlewaretoken"]').val(),// request middlevare se
     addressUpdateSession = '/ajax/session/update/';
 
 function createCookie(name, value, days) {
+    var expires = "";
     if (days) {
         var date = new Date();
         date.setTime(date.getTime()+(days*24*60*60*1000));
-        var expires = "; expires="+date.toGMTString();
-    } else {
-        var expires = "";
+        expires = "; expires="+date.toGMTString();
     }
 
     document.cookie = name + "=" + value + expires + "; path=/";
@@ -56,7 +55,7 @@ function updateSession(values) {
         },
         "cache": false,
         "data": values,
-        "success": function(data) {
+        "success": function() {
             return true;
         },
         "error": function(data, textStatus, errorThrown) {
