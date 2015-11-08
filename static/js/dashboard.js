@@ -44,7 +44,7 @@ var cloudlyVMSmanager  = {
             .replace(/ /g, "")
             .split(",");
 
-        for (i = 0; i < serversFilters.length; i++) {
+        for (var i = 0; i < serversFilters.length; i++) {
             serversFilters[i] = serversFilters[i]
                 .trim()
                 .replace(/\./g, "-");
@@ -86,23 +86,25 @@ var cloudlyVMSmanager  = {
 
         var machinesButtons = $('.machines-buttons');
         for (var i = 0; i < allIsotopeFilters.length; ++i) {
-            var type = allIsotopeFilters[i];
-            var btn = machinesButtons.find('.btn-'+type);
-            btn.click(function() {
-                var selectedValue = $(this).attr('data-type');
+            (function(i) {
+                var type = allIsotopeFilters[i];
+                var btn = machinesButtons.find('.btn-'+type);
+                btn.on('click', function() {
+                    var selectedValue = $(this).attr('data-type');
 
-                $this.filterMachines(type);
+                    $this.filterMachines(type);
 
-                if ($this.tags.indexOf(selectedValue) !== -1) {
-                    selectedValue = selectedValue.replace('-', '.');
-                    $this.tagMenuLink.text('Tag: ' + selectedValue);
-                } else {
-                    $this.tagMenuLink.text('Choose tag');
-                    $this.tagMenuLink.removeClass('active');
-                }
+                    if ($this.tags.indexOf(selectedValue) !== -1) {
+                        selectedValue = selectedValue.replace('-', '.');
+                        $this.tagMenuLink.text('Tag: ' + selectedValue);
+                    } else {
+                        $this.tagMenuLink.text('Choose tag');
+                        $this.tagMenuLink.removeClass('active');
+                    }
 
-                $this.tagMenuBox.hide();
-            });
+                    $this.tagMenuBox.hide();
+                });
+            })(i);
         }
     },
     filterMachines: function(f) {
