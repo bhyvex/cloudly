@@ -150,7 +150,7 @@ function getDisks() {
         .split(",");
 
     var disksObj = {};
-    for (i = 0; i < disks.length; ++i) {
+    for (var i = 0; i < disks.length; ++i) {
         var diskDiv = disks[i].replace(/\//g, "slash");
         disksObj[disks[i]]  = {
             div: diskDiv,

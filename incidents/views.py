@@ -75,6 +75,10 @@ def incidents(request):
 
     return render_to_response(
         'incidents.html',
-        {'request':request,'profile':profile,'active_notifs':active_notifs},
+        {
+            'request':request,
+            'profile':profile,
+            'active_notifs':active_notifs
+        },
         context_instance=RequestContext(request),
     )
