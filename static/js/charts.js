@@ -137,8 +137,8 @@ var Chart = function () {
                 that.displayChart();
             });
         }
-    }
-}
+    };
+};
 
 function getDisks() {
     var disks = $('input[name="available_disks_graphs"]').val();
@@ -155,7 +155,7 @@ function getDisks() {
         disksObj[disks[i]]  = {
             div: diskDiv,
             type: "disks"
-        }
+        };
     }
 
     return disksObj;
@@ -189,13 +189,13 @@ $(document).ready(function () {
     var serverCharts = $.extend({}, baseChartsType, disks);
 
     $.each(serverCharts, function(chartMp, chartType) {
-        activeCharts[chartType["div"]] = new Chart();
+        activeCharts[chartType.div] = new Chart();
         var chartOpt = chartOptions[chartType.type];
-        chartOpt["chart"]["renderTo"] = chartType["div"];
-        activeCharts[chartType["div"]]["div"] = chartType["div"];
-        activeCharts[chartType["div"]]["chartOptions"] = chartOpt;
-        activeCharts[chartType["div"]]["mountPoint"] = chartMp;
-        activeCharts[chartType["div"]]["address"] = "/ajax/server/" + server + "/metrics/" + chartType["type"] + "/";
-        activeCharts[chartType["div"]].init();
+        chartOpt.chart.renderTo = chartType.div;
+        activeCharts[chartType.div].div = chartType.div;
+        activeCharts[chartType.div].chartOptions = chartOpt;
+        activeCharts[chartType.div].mountPoint = chartMp;
+        activeCharts[chartType.div].address = "/ajax/server/" + server + "/metrics/" + chartType.type + "/";
+        activeCharts[chartType.div].init();
     });
 });
