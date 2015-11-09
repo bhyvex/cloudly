@@ -82,17 +82,29 @@
                         {% endif %}
                         <div class="clearfix"></div>
                     {% endfor %}
+                    {% if offline_servers %}
+                        <div class="priority medium">
+                            <span>OFFLINE SERVERS</span>
+                        </div>
+                        <div class="task medium last">
+                            <div class="desc">
+                                <div class="title">
+                                    {% for server in offline_servers %}
+                                        <a href="/server/{{server|dict_get:"uuid"|replace_dots}}"
+                                            class="btn-xs btn-warning">
+                                            {{server|dict_get:"name"}}
+                                        </a>&nbsp;
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
                     <div class="clearfix"></div>
                 {% endif %}
 			</div>
-
-		XXX exclude warnings for offline servers<br/>
-		XXX list offline servers here as warning<br/>
-
         </div><!--/col-->
 
         <div class="col-sm-5">
-
             <div class="graph">
                 <h1>Server Events</h1>
 

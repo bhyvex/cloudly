@@ -100,17 +100,17 @@ var Chart = function () {
             return data.reverse();
         },
         getDuration: function() {
-            if (this.options.interval == '15m') {
+            if (this.options.interval === '15m') {
                 return '15000';
-            } else if (this.options.interval == '1h') {
+            } else if (this.options.interval === '1h') {
                 return '60000';
-            } else if (this.options.interval == '1d') {
+            } else if (this.options.interval === '1d') {
                 return '300000';
-            } else if (this.options.interval == '7d') {
+            } else if (this.options.interval === '7d') {
                 return '1800000';
-            } else if (this.options.interval == '30d') {
+            } else if (this.options.interval === '30d') {
                 return '43200000';
-            } else if (this.options.interval == 'at') {
+            } else if (this.options.interval === 'at') {
                 return '1800000';
             } else {
                 return '3000';
@@ -137,8 +137,8 @@ var Chart = function () {
                 that.displayChart();
             });
         }
-    }
-}
+    };
+};
 
 function getDisks() {
     var disks = $('input[name="available_disks_graphs"]').val();
@@ -150,29 +150,15 @@ function getDisks() {
         .split(",");
 
     var disksObj = {};
-    for (i = 0; i < disks.length; ++i) {
+    for (var i = 0; i < disks.length; ++i) {
         var diskDiv = disks[i].replace(/\//g, "slash");
         disksObj[disks[i]]  = {
             div: diskDiv,
             type: "disks"
-        }
+        };
     }
 
     return disksObj;
-}
-
-function mergeObjects(obj1,obj2){
-    var obj3 = {};
-
-    for (var attrname in obj1) {
-        obj3[attrname] = obj1[attrname];
-    }
-
-    for (var attrname in obj2) {
-        obj3[attrname] = obj2[attrname];
-    }
-
-    return obj3;
 }
 
 $(document).ready(function () {
@@ -200,16 +186,16 @@ $(document).ready(function () {
         }
     };
     var disks = getDisks();
-    var serverCharts = mergeObjects(baseChartsType, disks);
+    var serverCharts = $.extend({}, baseChartsType, disks);
 
     $.each(serverCharts, function(chartMp, chartType) {
-        activeCharts[chartType["div"]] = new Chart();
+        activeCharts[chartType.div] = new Chart();
         var chartOpt = chartOptions[chartType.type];
-        chartOpt["chart"]["renderTo"] = chartType["div"];
-        activeCharts[chartType["div"]]["div"] = chartType["div"];
-        activeCharts[chartType["div"]]["chartOptions"] = chartOpt;
-        activeCharts[chartType["div"]]["mountPoint"] = chartMp;
-        activeCharts[chartType["div"]]["address"] = "/ajax/server/" + server + "/metrics/" + chartType["type"] + "/";
-        activeCharts[chartType["div"]].init();
+        chartOpt.chart.renderTo = chartType.div;
+        activeCharts[chartType.div].div = chartType.div;
+        activeCharts[chartType.div].chartOptions = chartOpt;
+        activeCharts[chartType.div].mountPoint = chartMp;
+        activeCharts[chartType.div].address = "/ajax/server/" + server + "/metrics/" + chartType.type + "/";
+        activeCharts[chartType.div].init();
     });
 });

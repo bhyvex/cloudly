@@ -44,7 +44,7 @@ var cloudlyVMSmanager  = {
             .replace(/ /g, "")
             .split(",");
 
-        for (i = 0; i < serversFilters.length; i++) {
+        for (var i = 0; i < serversFilters.length; i++) {
             serversFilters[i] = serversFilters[i]
                 .trim()
                 .replace(/\./g, "-");
@@ -67,9 +67,9 @@ var cloudlyVMSmanager  = {
             .replace(/ /g, "")
             .split(",");
 
-        serversTagsArray = []
-        for (i = 0; i < serversTags.length; i++) {
-            tagValue = serversTags[i]
+        var serversTagsArray = [];
+        for (var i = 0; i < serversTags.length; i++) {
+            var tagValue = serversTags[i]
                 .trim()
                 .replace(/\./g, "-");
 
@@ -80,31 +80,35 @@ var cloudlyVMSmanager  = {
 
         this.tags = serversTagsArray;
     },
-    bindClickTagAction: function () {
+    machinesButtons: {},
+    buttonClick: function(type) {
+        var $this = this,
+            btn = this.machinesButtons.find('.btn-'+type);
+        btn.on('click', function() {
+            var selectedValue = $(this).attr('data-type');
+
+            $this.filterMachines(type);
+
+            if ($this.tags.indexOf(selectedValue) !== -1) {
+                selectedValue = selectedValue.replace('-', '.');
+                $this.tagMenuLink.text('Tag: ' + selectedValue);
+            } else {
+                $this.tagMenuLink.text('Choose tag');
+                $this.tagMenuLink.removeClass('active');
+            }
+
+            $this.tagMenuBox.hide();
+        });
+    },
+    bindClickTagAction: function() {
+        this.machinesButtons = $('.machines-buttons');
+
         var $this = this,
             allIsotopeFilters = this.filters.concat(this.tags);
 
-        var machinesButtons = $('.machines-buttons');
         for (var i = 0; i < allIsotopeFilters.length; ++i) {
-            (function() {
-                var type = allIsotopeFilters[i];
-                var btn = machinesButtons.find('.btn-'+type);
-                btn.click(function() {
-                    var selectedValue = $(this).attr('data-type');
-
-                    $this.filterMachines(type);
-
-                    if ($this.tags.indexOf(selectedValue) !== -1) {
-                        selectedValue = selectedValue.replace('-', '.');
-                        $this.tagMenuLink.text('Tag: ' + selectedValue);
-                    } else {
-                        $this.tagMenuLink.text('Choose tag');
-                        $this.tagMenuLink.removeClass('active');
-                    }
-
-                    $this.tagMenuBox.hide();
-                });
-            })();
+            var type = allIsotopeFilters[i];
+            this.buttonClick(type);
         }
     },
     filterMachines: function(f) {
@@ -184,7 +188,7 @@ var cloudlyVMSmanager  = {
                 var newClasses = 'vms-machine col-lg-3 col-md-6 ' + data.vmtitle;
                 $machine.removeClass();
                 $machine.addClass(newClasses);
-                $(panel).removeClass(color).addClass(data.vmcolor)
+                $(panel).removeClass(color).addClass(data.vmcolor);
                 return;
             }
         });
@@ -224,7 +228,7 @@ var cloudlyVMSmanager  = {
     addBlank: function(){
         this.addVMS('testVMS',{"averge":"0.0,0.0,0.0,0.0","state":"Running"});
     }
-}
+};
 
 $(document).ready (function() {
     cloudlyVMSmanager.initAction();

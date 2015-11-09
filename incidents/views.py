@@ -59,10 +59,7 @@ def incidents(request):
     for server in servers:
         serversNames[server['uuid']] = server['name']
 
-    notifs_counter = 0
     active_service_statuses = mongo.active_service_statuses
-    active_service_statuses_data = active_service_statuses.find({"$and":[{"secret": secret},{"current_overall_status":{"$ne":"OK"}}]})
-    notifs_counter = active_service_statuses_data.count()
 
     active_notifs = {}
     notifs_types = ["CRITICAL","WARNING","UNKNOWN",]
@@ -75,6 +72,10 @@ def incidents(request):
 
     return render_to_response(
         'incidents.html',
-        {'request':request,'profile':profile,'active_notifs':active_notifs},
+        {
+            'request':request,
+            'profile':profile,
+            'active_notifs':active_notifs
+        },
         context_instance=RequestContext(request),
     )

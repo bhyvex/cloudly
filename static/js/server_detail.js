@@ -58,17 +58,17 @@ function updateServerInfo() {
         },
         "success": function(data) {
             var actualServername = $("#servername").text().trim(),
-                serverStatus = data["server_info_status"].toLowerCase();
+                serverStatus = data.server_info_status.toLowerCase();
 
-            if (actualServername != data["name"]) {
-                checkServerName(data["name"]);
-                $("#servername").text(data["name"]);
+            if (actualServername != data.name) {
+                checkServerName(data.name);
+                $("#servername").text(data.name);
             }
 
             $(".server_info_status").text(serverStatus);
-            if (serverStatus != 'offline') {
-                var loadavgProgressBarValue = Math.round((data["loadavg_used"] * 100)),
-                    loadavgServerInfoValue = data["server_info_loadavg"].join();
+            if (serverStatus !== 'offline') {
+                var loadavgProgressBarValue = Math.round((data.loadavg_used * 100)),
+                    loadavgServerInfoValue = data.server_info_loadavg.join();
 
                 loadavgServerInfoValue = loadavgServerInfoValue.replace(/,/g," ");  // replace all coma to space
 
@@ -88,24 +88,24 @@ function updateServerInfo() {
                 $(".server_uptime").show();
                 $(".server_loadavg").show();
 
-                $(".server_info_hostname").text(data["server_info_hostname"]);
-                $(".server_info_uptime").text(data["server_info_uptime"]);
+                $(".server_info_hostname").text(data.server_info_hostname);
+                $(".server_info_uptime").text(data.server_info_uptime);
                 $(".server_info_loadavg").text(loadavgServerInfoValue);
 
                 $(".cpu_usage_progress_bar").updateProgressBar(
-                    data["cpu_used"],
+                    data.cpu_used,
                     "CPU",
                     85,
                     "progress-bar-success"
                 );
                 $(".memory_usage_progress_bar").updateProgressBar(
-                    data["memory_used"],
+                    data.memory_used,
                     "Memory",
                     98,
                     "progress-bar-info"
                 );
                 $(".swap_usage_progress_bar").updateProgressBar(
-                    data["swap_used"],
+                    data.swap_used,
                     "Swap",
                     80,
                     "progress-bar-info"
@@ -139,14 +139,14 @@ function updateServerInfo() {
             console.log("error: " + errorThrown);
         }
     });
-};
+}
 
 /**
  * Check current and given servername, update breadcrumb info and show/hide
  * info with mac address
  */
 function checkServerName(servername) {
-    if (servername == "" || servername == serverMacAddress) {       // show/hide info icon
+    if (servername === "" || servername == serverMacAddress) {       // show/hide info icon
         $("#mac-address-tooltip").hide();
         $("#second-menu > ul > li.servername").text(serverMacAddress);    // change breadcrumb value
     } else {
@@ -175,9 +175,9 @@ $(document).ready(function() {
     $('#servername').editable({
         "params": function (params) {
             var data = {};
-            data["id"] = params.pk;
-            data["server"] = server;
-            data["secret"] = secret;
+            data.id = params.pk;
+            data.server = server;
+            data.secret = secret;
             data[params.name] = params.value.trim();
             return data;
         },
