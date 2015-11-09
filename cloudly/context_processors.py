@@ -1,5 +1,7 @@
 # content processor functions
 
+import datetime
+
 from django.conf import settings
 
 from django.contrib.auth.models import User
@@ -24,16 +26,21 @@ def incidents_notifs(request):
     profile = Profile.objects.get(user=request.user)
     secret = profile.secret
 
-    servers = mongo.servers.find({'secret':profile.secret},{'uuid':1,'name':1}).sort('_id',-1);
+    servers = mongo.servers.find({'secret':profile.secret},{'uuid':1,'name':1,'last_seen':1}).sort('_id',-1);
 
-    serversNames = {}
+    offline_servers = []
+    servers_names = {}
     for server in servers:
-        serversNames[server['uuid']] = server['name']
+        servers_names[server['uuid']] = server['name']
+        if((datetime.datetime.now()-server['last_seen']).total_seconds()>1800):
+            offline_servers.append(server)
 
     notifs_counter = 0
     active_service_statuses = mongo.active_service_statuses
     active_service_statuses_data = active_service_statuses.find({"$and":[{"secret": secret},{"current_overall_status":{"$ne":"OK"}}]})
     notifs_counter = active_service_statuses_data.count()
+    if (len(offline_servers)):
+        notifs_counter+=1
 
     active_notifs = {}
     notifs_types = ["CRITICAL","WARNING","UNKNOWN",]
@@ -41,15 +48,16 @@ def incidents_notifs(request):
         active_notifs[notifs_type] = []
         notifs = active_service_statuses.find({"secret":secret,"current_overall_status":notifs_type})
         for notif in notifs:
-            newNotif = {}
-            newNotif['name'] = serversNames[notif['server_id']]
-            newNotif['service'] = notif['service']
-            newNotif['date'] = notif['date']
-            active_notifs[notifs_type].append(newNotif)
+            new_notif = {}
+            new_notif['name'] = servers_names[notif['server_id']]
+            new_notif['service'] = notif['service']
+            new_notif['date'] = notif['date']
+            active_notifs[notifs_type].append(new_notif)
 
     return {
         'notifs_counter':notifs_counter,
         'active_service_statuses':active_service_statuses_data,
         'navbar_active_notifs':active_notifs,
         'notifs_types':notifs_types,
+        'offline_servers':offline_servers,
     }
