@@ -50,6 +50,22 @@
                                 {% endfor %}
                             {% endif %}
                         {% endfor %}
+                        {% if offline_servers %}
+                            <li class="dropdown-menu-header">
+                            </li>
+                            <li>
+                                <a href="/incidents/">
+                                    <div class="title">
+                                        {{offline_servers|length}}
+                                        {% if offline_servers|length == 1 %}
+                                            offline server
+                                        {% else %}
+                                            offline servers
+                                        {% endif %}
+                                    </div>
+                                </a>
+                            </li>
+                        {% endif %}
                     {% endif %}
                 </ul>
             </li>
