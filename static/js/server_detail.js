@@ -60,7 +60,7 @@ function updateServerInfo() {
             var actualServername = $("#servername").text().trim(),
                 serverStatus = data.server_info_status.toLowerCase();
 
-            if (actualServername != data.name) {
+            if (actualServername !== data.name) {
                 checkServerName(data.name);
                 $("#servername").text(data.name);
             }
@@ -146,7 +146,7 @@ function updateServerInfo() {
  * info with mac address
  */
 function checkServerName(servername) {
-    if (servername === "" || servername == serverMacAddress) {       // show/hide info icon
+    if (servername === "" || servername === serverMacAddress) {       // show/hide info icon
         $("#mac-address-tooltip").hide();
         $("#second-menu > ul > li.servername").text(serverMacAddress);    // change breadcrumb value
     } else {
@@ -162,7 +162,7 @@ $(document).ready(function() {
     $('#activeNetworkSessions').deactivePanel();
 
     $("#mac-address-tooltip").attr("title", "MAC Address: " + serverMacAddress);
-    if ($("#servername").text().trim() != serverMacAddress) {
+    if ($("#servername").text().trim() !== serverMacAddress) {
         $("#mac-address-tooltip").show();
     }
 
@@ -196,7 +196,7 @@ $(document).ready(function() {
         "title": "Enter new server name",
         "success": function(response, newValue) {
             checkServerName(newValue.trim());
-            if (response.status == "error") {
+            if (response.status === "error") {
                 console.log(response.msg); //msg will be shown in editable form
             }
         }
