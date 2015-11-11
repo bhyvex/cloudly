@@ -353,6 +353,46 @@ def server_view(request, hwaddr):
         },
         context_instance=RequestContext(request))
 
+@login_required()
+def ajax_servers_incidents(request):
+    response = {}
+
+    secret = request.POST['secret']
+    servers = mongo.servers.find({'secret':secret},{'uuid':1,'name':1,'last_seen':1}).sort('_id',-1);
+
+    response['offline_servers'] = []
+    servers_names = {}
+    for server in servers:
+        servers_names[server['uuid']] = server['name']
+        if((datetime.datetime.now()-server['last_seen']).total_seconds()>1800):
+            server['_id'] = str(server["_id"])
+            server['last_seen'] = server['last_seen'].strftime("%Y-%m-%d %H:%M:%S")
+            response['offline_servers'].append(server)
+
+    active_service_statuses = mongo.active_service_statuses
+
+    active_notifs = {}
+    notifs_types = ["CRITICAL","WARNING","UNKNOWN",]
+    for notifs_type in notifs_types:
+        response[notifs_type] = []
+        notifs = active_service_statuses.find({"secret":secret,"current_overall_status":notifs_type})
+        for notif in notifs:
+            notif.update({'name':servers_names[notif['server_id']]})
+            notif['_id'] = str(notif['_id'])
+            notif['date'] = notif['date'].strftime("%Y-%m-%d %H:%M:%S")
+            response[notifs_type].append(notif)
+
+    response = str(response)
+    response = response.replace("'",'"')
+    response = response.replace('u"','"')
+
+    print 100 * 'INCIDEN____'
+    print response
+
+    return HttpResponse(
+        response,
+        content_type="application/json"
+    )
 
 @login_required()
 def ajax_update_server_name(request):
@@ -379,7 +419,6 @@ def ajax_update_server_name(request):
     vms_cache.delete()
 
     return HttpResponse(response, content_type="application/json")
-
 
 @login_required()
 def ajax_vms_refresh(request):
@@ -753,7 +792,6 @@ def ajax_aws_graphs(request, instance_id, graph_type="all"):
     if(vm_cache['user_id']!=request.user.id):
         return HttpResponse("access denied")
 
-
     aws_access_key = profile.aws_access_key
     aws_secret_key = profile.aws_secret_key
     aws_ec2_verified = profile.aws_ec2_verified
@@ -773,7 +811,6 @@ def ajax_aws_graphs(request, instance_id, graph_type="all"):
     cpu_utilization_datapoints = metric.query(start, end, 'Average', 'Percent',period=3600)
 
     return HttpResponse("data " + instance_id + "=" + str(instance) + " ** " + graph_type.upper())
-
 
 @login_required()
 def ajax_server_graphs(request, hwaddr, graph_type=""):
