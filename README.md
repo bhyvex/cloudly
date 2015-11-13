@@ -28,14 +28,6 @@ Optionally configure your MySQL server to meet your specific requirements.
 
 As for the user/password, this one needs to match the entries in the cloudly/cloudly/settings.py file.
 
-###### Create the project database
-
-<pre>
-$ mysql -u root -p
-mysql> create database cloudly;
-</pre>
-
-
 ###### Install various python modules and git
 
 <pre>
@@ -45,7 +37,6 @@ $ apt-get install python-django
 $ apt-get install python-openssl
 $ apt-get install python-pip
 </pre>
-
 
 ###### Install the MongoDB and its python connectors
 
@@ -74,7 +65,12 @@ $ cd cloudly
 $ cp -f cloudly/settings.py.sample cloudly/settings.py
 </pre>
 
-###### Create the ORM database tables
+###### Create the ORM database and tables
+
+<pre>
+$ mysql -u root -p
+mysql> create database cloudly;
+</pre>
 
 <pre>
 $ python manage.py syncdb
