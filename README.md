@@ -54,6 +54,7 @@ $ mongoimport --db cloudly --collection services_tags services_tags.json
 $ sudo adduser cloudly
 $ su - cloudly
 $ git clone https://github.com/ProjectCloudly/cloudly cloudly
+$ cd cloudly
 </pre>
 
 ###### Define project settings
@@ -61,7 +62,6 @@ $ git clone https://github.com/ProjectCloudly/cloudly cloudly
 We have prepared an example configuration, just copy it over and modify to meet your specific requirements.
 
 <pre>
-$ cd cloudly
 $ cp -f cloudly/settings.py.sample cloudly/settings.py
 </pre>
 
