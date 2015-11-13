@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block page_content %}
+    <input type='hidden' name='secret' value='{{secret}}' />
     <div class="row page-todo">
 
         <div class="col-sm-7 tasks">
@@ -375,3 +376,9 @@
 
 </div>
 {% endblock page_content %}
+
+{% block extra_js %}
+
+<script src="/static/js/incidents.js"></script>
+
+{% endblock extra_js %}

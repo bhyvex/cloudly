@@ -15,10 +15,9 @@
 {% endblock %}
 
 {% block page_content %}
-
-<input type='hidden' name='hwaddr' value='{{hwaddr_orig}}' />
-<input type='hidden' name='secret' value='{{secret}}' />
-<input type='hidden' name='available_disks_graphs' value='[{% for disk in reduced_disks %}"{{disk}}"{% if not forloop.last %},{% endif %}{% endfor %}]' />
+    <input type='hidden' name='hwaddr' value='{{hwaddr_orig}}' />
+    <input type='hidden' name='secret' value='{{secret}}' />
+    <input type='hidden' name='available_disks_graphs' value='[{% for disk in reduced_disks %}"{{disk}}"{% if not forloop.last %},{% endif %}{% endfor %}]' />
     {% block breadcrumb %}
         {% include "partials/breadcrumb-server_detail.html" %}
     {% endblock %}

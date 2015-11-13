@@ -74,7 +74,7 @@ def incidents(request):
         'incidents.html',
         {
             'request':request,
-            'profile':profile,
+            'secret':profile.secret,
             'active_notifs':active_notifs
         },
         context_instance=RequestContext(request),
