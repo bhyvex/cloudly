@@ -68,7 +68,7 @@ $ cp -f cloudly/settings.py.sample cloudly/settings.py
 ###### Create the ORM database and tables
 
 <pre>
-$ sudo apt-get install python-mysqldb
+$ sudo pip install pymysql
 $ mysql -u root -p
 mysql> create database cloudly;
 </pre>
