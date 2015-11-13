@@ -36,12 +36,14 @@ mysql> create database cloudly;
 </pre>
 
 
-###### Install various python modules
+###### Install various python modules and git
 
 <pre>
+$ apt-get install git
 $ apt-get install python-dev
 $ apt-get install python-django
 $ apt-get install python-openssl
+$ apt-get install python-pip
 </pre>
 
 
@@ -49,7 +51,6 @@ $ apt-get install python-openssl
 
 <pre>
 $ apt-get install mongodb
-$ apt-get install python-pip
 $ pip install pymongo
 $ mongoimport --db cloudly --collection services_tags services_tags.json
 </pre>
@@ -59,7 +60,6 @@ $ mongoimport --db cloudly --collection services_tags services_tags.json
 ###### Download the latest version of the Cloudly Project from github
 
 <pre>
-$ apt-get install git
 $ sudo adduser cloudly
 $ su - cloudly
 $ git clone https://github.com/ProjectCloudly/cloudly cloudly
@@ -99,12 +99,6 @@ $ mysql -u root -p
 mysql> use cloudly;
 mysql> ALTER DATABASE cloudly charset=utf8;
 mysql> ALTER TABLE userprofile_profile CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-</pre>
-
-###### Install Amazon Boto - Python Interface to Amazon Web Services
-
-<pre>
-$ apt-get install python-boto
 </pre>
 
 ###### Run the MongoDB
