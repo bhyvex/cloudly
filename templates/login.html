@@ -11,16 +11,16 @@
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/admin-assets/ico/apple-touch-icon-114-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/admin-assets/ico/apple-touch-icon-72-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="/static/admin-assets/ico/apple-touch-icon-57-precomposed.png">
-	<link rel="shortcut icon" href="/static/admin-assets/ico/favicon.png">
+	<link rel="shortcut icon" type="image/png" href="/static/favicon.ico"/>
 
 	<title>Cloudly | Login</title>
 
 	<!-- Bootstrap core CSS -->
 	<link href="/static/admin-assets/css/bootstrap.min.css" rel="stylesheet">
-	
+
 	<!-- page css files -->
 	<link href="/static/admin-assets/css/font-awesome.min.css" rel="stylesheet">
-	<link href="/static/admin-assets/css/jquery-ui.min.css" rel="stylesheet">	
+	<link href="/static/admin-assets/css/jquery-ui.min.css" rel="stylesheet">
 
 	<!-- Custom styles for this template -->
 	<link href="/static/admin-assets/css/style.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
 		<div id="content" class="col-sm-12 full">
 			<div class="row">
 				<div class="login-box">
-					
+
 					<div class="header">
 						Login to the Cloud
 					</div>
@@ -46,60 +46,60 @@
 					<p>
 						<a class="btn btn-facebook"><span>Login via Facebook</span></a>
 					</p>
-					<p>	
+					<p>
 						<a class="btn btn-twitter"><span>Login via Twitter</span></a>
 					</p>
-					<p>	
-						<a class="btn btn-linkedin"><span>Login via LinkedIn</span></a>	
+					<p>
+						<a class="btn btn-linkedin"><span>Login via LinkedIn</span></a>
 					</p>
-					
+
 					<div class="text-with-hr">
 						<span>or using your registered e-mail address</span>
 					</div>
 {% endcomment %}
-					
+
 					<form action="/login/" method='POST' class='form-validate' id="login">{% csrf_token %}
 						<fieldset class="col-sm-12">
 							<div class="form-group">
 								<div class="controls row">
-									<div class="input-group col-sm-12">	
+									<div class="input-group col-sm-12">
 										<input class="form-control" type="text" placeholder="E-mail" required name="username">
 										<span class="input-group-addon"><i class="fa fa-user"></i></span>
-									</div>	
+									</div>
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 								<div class="controls row">
-									<div class="input-group col-sm-12">	
+									<div class="input-group col-sm-12">
 										<input class="form-control" type="password" placeholder="Password" required name="password">
 										<span class="input-group-addon"><i class="fa fa-key"></i></span>
-									</div>	
+									</div>
 								</div>
 							</div>
 
 							<div class="row">
-							
+
 								<button type="submit" class="btn btn-lg btn-primary col-xs-12">Login</button>
-							
+
 							</div>
-								
-						</fieldset>	
+
+						</fieldset>
 					</form>
-					
+
 					<a class="pull-left" href="#">Forgot Password?</a>
 					<a class="pull-right" href="/register/">Sign Up!</a>
-					
-					<div class="clearfix"></div>				
-						
+
+					<div class="clearfix"></div>
+
 				</div>
 			</div><!--/row-->
-		</div>	
-	</div><!--/row-->		
-	
+		</div>
+	</div><!--/row-->
+
 </div><!--/container-->
-		
-		
+
+
 <!-- start: JavaScript-->
 <!--[if !IE]>-->
 <script src="/static/admin-assets/js/jquery-2.1.0.min.js"></script>
@@ -130,8 +130,8 @@
 <!-- inline scripts related to this page -->
 <script src="/static/admin-assets/js/pages/login.js"></script>
 
-<!-- end: JavaScript-->	
+<!-- end: JavaScript-->
 {% include "google_analytics.html" %}
-		
+
 </body>
 </html>

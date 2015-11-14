@@ -11,16 +11,16 @@
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/admin-assets/ico/apple-touch-icon-114-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/admin-assets/ico/apple-touch-icon-72-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="/static/admin-assets/ico/apple-touch-icon-57-precomposed.png">
-	<link rel="shortcut icon" href="/static/admin-assets/ico/favicon.png">
+	<link rel="shortcut icon" type="image/png" href="/static/favicon.ico"/>
 
 	<title>Cloudly | Registration</title>
 
 	<!-- Bootstrap core CSS -->
 	<link href="/static/admin-assets/css/bootstrap.min.css" rel="stylesheet">
-	
+
 	<!-- page css files -->
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-	<link href="/static/admin-assets/css/jquery-ui.min.css" rel="stylesheet">	
+	<link href="/static/admin-assets/css/jquery-ui.min.css" rel="stylesheet">
 
 	<!-- Custom styles for this template -->
 	<link href="/static/admin-assets/css/style.min.css" rel="stylesheet">
@@ -37,30 +37,30 @@
 	<div class="row">
 		<div id="content" class="col-sm-12 full">
 			<div class="row">
-				
+
 				<div class="login-box">
-					
+
 					<div class="header">
 						Create your account
 					</div>
-					
+
 					<form action="/register/" method='POST' class='form-validate' id="register">{% csrf_token %}
-						
+
 						<fieldset class="col-sm-12">
-							
+
 							{% if err %}
 							<div class="alert alert-danger">
 								<button type="button" class="close" data-dismiss="alert">×</button>
 								<strong>{{err}}</strong> {{err}}
 							</div>
 							{% endif %}
-							
+
 							<div class="form-group">
 								<label class="control-label" for="username">Name</label>
 								<div class="controls row">
 									<div class="input-group col-sm-12">
 										<input type="text" class="form-control" required name="username">
-									</div>	
+									</div>
 								</div>
 							</div>
 
@@ -69,42 +69,42 @@
 								<div class="controls row">
 									<div class="input-group col-sm-12">
 										<input type="text" class="form-control" required name="email">
-									</div>	
+									</div>
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 								<label class="control-label" for="password">Password</label>
 								<div class="controls row">
 									<div class="input-group col-sm-12">
 										<input type="password" class="form-control" required name="password1">
-									</div>	
+									</div>
 								</div>
 							</div>
 
 							<div class="confirm">
 								<input type="checkbox" name="agree"/>
 								<label for="agree">I agree to <a href="#">Term of Use</a></label>
-							</div>	
+							</div>
 
-							
+
 							<div class="row">
 
 								<button type="submit" class="btn btn-primary btn-lg col-xs-12">Create Account!</button>
-							
-							</div>
-							
-						</fieldset>	
 
-					</form>			
+							</div>
+
+						</fieldset>
+
+					</form>
 
 				</div>
 			</div><!--/row-->
-	
-		</div>	
-		
-	</div><!--/row-->		
-	
+
+		</div>
+
+	</div><!--/row-->
+
 </div><!--/container-->
 
 
@@ -140,6 +140,6 @@
 
 <!-- end: JavaScript-->
 {% include "google_analytics.html" %}
-	
+
 </body>
 </html>
