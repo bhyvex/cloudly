@@ -38,16 +38,6 @@ $ apt-get install python-openssl
 $ apt-get install python-pip
 </pre>
 
-###### Install the MongoDB and its python connectors
-
-<pre>
-$ apt-get install mongodb
-$ pip install pymongo
-$ mongoimport --db cloudly --collection services_tags services_tags.json
-</pre>
-
-..and configure your server to meet your specific requirements.
-
 ###### Download the latest version of the Cloudly Project from github
 
 <pre>
@@ -64,6 +54,16 @@ We have prepared an example configuration, just copy it over and modify to meet 
 <pre>
 $ cp -f cloudly/settings.py.sample cloudly/settings.py
 </pre>
+
+###### Install the MongoDB and its python connectors
+
+<pre>
+$ apt-get install mongodb
+$ pip install pymongo
+$ mongoimport --db cloudly --collection services_tags services_tags.json
+</pre>
+
+..and configure your server to meet your specific requirements.
 
 ###### Create the ORM database and tables
 
@@ -254,5 +254,3 @@ Screenshots & Live Demo
 ###### Demo
 
 Project can be currently seen on https://projectcloudly.cz/demo
-
-
