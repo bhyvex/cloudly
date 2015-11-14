@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% load cloud_extras %}
-						
+
 {% block title %}Cloudly | Download Monitor Agent{% endblock %}
 
 {% block nav-bar %}
@@ -15,9 +15,9 @@
 	</ol>
 
 	<div class="row">
-								
+
 		<div class="col-xs-12">
-		
+
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h2><i class="fa fa-user-secret"></i>Install The Cloud Monitor Agent</h2>
@@ -37,14 +37,14 @@ sudo sh -c "wget --no-check-certificate {{agent_download_url}} -O /opt/monitorin
 </pre>
 				</div>
 			</div>
-            {% comment %}
+
 			<div class="row">
 
 				<div class="col-xs-12">
-				
+
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h2><i class="fa fa-picture-o"></i>System Requirements</h2>
+							<h2><i class="fa fa-picture-o"></i>Alternative Installation Methods</h2>
 							<div class="panel-actions">
 								<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
 								<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
@@ -52,14 +52,13 @@ sudo sh -c "wget --no-check-certificate {{agent_download_url}} -O /opt/monitorin
 							</div>
 						</div>
 						<div class="panel-body">
-							<p>XXX any linux will do.  We've tested our monitor agent on ..list..</p>
+							<p>XXX TBD pip, rpm, copying over script to many machines..</p>
 						</div>
 					</div>
 
 				</div>
 			</div><!--/row-->
-            {% endcomment %}
 		<!-- end: Content -->
-		</div>
+
 	</div><!--/row-->
 {% endblock page_content %}
