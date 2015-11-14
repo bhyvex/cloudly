@@ -51,7 +51,10 @@ def incidents_notifs(request):
             new_notif = {}
             new_notif['name'] = servers_names[notif['server_id']]
             new_notif['service'] = notif['service']
-            new_notif['date'] = notif['date']
+            try:
+                new_notif['date'] = notif['date']
+            expect: new_notif['date'] = None
+
             active_notifs[notifs_type].append(new_notif)
 
     return {
