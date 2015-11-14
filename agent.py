@@ -109,7 +109,7 @@ def self_update( secret ):
     print 'Running agent-self update..'
 
     conn = httplib.HTTPSConnection("raw.githubusercontent.com")
-    conn.request( "GET", "/jparicka/cloudly/master/agent.py" )
+    conn.request( "GET", "/ProjectCloudly/cloudly/master/agent.py" )
     r1 = conn.getresponse()
     data = r1.read()
 
