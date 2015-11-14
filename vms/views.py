@@ -691,10 +691,12 @@ def ajax_virtual_machines(request):
             if(vm_state=="Running"):
 
                 isotope_filter_classes = " linux "
-                for tags in vm_cache[vm]["instance"]["tags"]["tags"]:
-                    for tag in vm_cache[vm]["instance"]["tags"]["tags"][tags]:
-                        isotope_filter_classes += str(tag[0]).replace(".","-") + " "
 
+                try:
+                    for tags in vm_cache[vm]["instance"]["tags"]["tags"]:
+                        for tag in vm_cache[vm]["instance"]["tags"]["tags"][tags]:
+                            isotope_filter_classes += str(tag[0]).replace(".","-") + " "
+                except: pass
 
                 if(data_median<17):
                     color = "lightBlue "
