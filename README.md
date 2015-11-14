@@ -108,6 +108,16 @@ $ mongod
 
 ..and configure your server to meet your specific requirements.
 
+###### Install npm, bower and dependencies
+
+<pre>
+$ sudo apt-get install nodejs
+$ nodejs install npm
+$ sudo npm install bower -g
+$ npm install
+$ bower install
+</pre>
+
 ###### Run the development server
 
 At this point you should be able to run the administration dashboard (Django App):
