@@ -1,0 +1,27 @@
+{
+  "name": "projectcloudly",
+  "description": "Server monitoring system",
+  "main": "index.js",
+  "authors": [
+    "Jan Paricka",
+    "Ondrej Kopal"
+  ],
+  "license": "BSD-2-Clause",
+  "keywords": [
+    "monitoring",
+    "server",
+    "cloudly"
+  ],
+  "homepage": "https://github.com/ProjectCloudly/cloudly",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -8,3 +8,9 @@ cloudly/settings.py
 # Vim setting
 Session.vim
 *.swp
+
+# node
+node_modules
+
+# bower
+bower_components

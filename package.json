@@ -1,0 +1,22 @@
+{
+  "name": "projectcloudly",
+  "version": "0.0.0",
+  "description": "Server monitoring system",
+  "main": "index.js",
+  "author": "Jan Paricka, Ondrej Kopal",
+  "dependencies": {
+    "bower": "~1.6.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ProjectCloudly/cloudly.git"
+  },
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/ProjectCloudly/cloudly/issues"
+  }
+}
