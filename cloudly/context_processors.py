@@ -29,11 +29,14 @@ def incidents_notifs(request):
     servers = mongo.servers.find({'secret':profile.secret},{'uuid':1,'name':1,'last_seen':1}).sort('_id',-1);
 
     offline_servers = []
+    offline_servers_count = 0
     servers_names = {}
+
     for server in servers:
         servers_names[server['uuid']] = server['name']
         if((datetime.datetime.now()-server['last_seen']).total_seconds()>1800):
             offline_servers.append(server)
+            offline_servers_count += 1
 
     notifs_counter = 0
     active_service_statuses = mongo.active_service_statuses
@@ -54,6 +57,8 @@ def incidents_notifs(request):
             except: new_notif['date'] = None
 
             active_notifs[notifs_type].append(new_notif)
+
+    notifs_counter = notifs_counter - offline_servers_count
 
     return {
         'notifs_counter':notifs_counter,
