@@ -53,7 +53,7 @@ def incidents_notifs(request):
             new_notif['service'] = notif['service']
             try:
                 new_notif['date'] = notif['date']
-            expect: new_notif['date'] = None
+            except: new_notif['date'] = None
 
             active_notifs[notifs_type].append(new_notif)
 
