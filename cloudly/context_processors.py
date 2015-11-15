@@ -39,8 +39,6 @@ def incidents_notifs(request):
     active_service_statuses = mongo.active_service_statuses
     active_service_statuses_data = active_service_statuses.find({"$and":[{"secret": secret},{"current_overall_status":{"$ne":"OK"}}]})
     notifs_counter = active_service_statuses_data.count()
-    if (len(offline_servers)):
-        notifs_counter+=1
 
     active_notifs = {}
     notifs_types = ["CRITICAL","WARNING","UNKNOWN",]
