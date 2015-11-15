@@ -1,5 +1,5 @@
-Installation Instructions
--------------------------
+Mongo Installation Instructions
+-------------------------------
 
 ###### Install the MongoDB and its python connectors
 
