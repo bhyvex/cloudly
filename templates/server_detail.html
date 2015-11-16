@@ -589,25 +589,30 @@
                 </div>
 
                 <div class="panel-body">
-                    <p>
+                  {% comment %}
+                      <p>
+                      {% for tag in server|dict_get:"tags"|dict_get:"services_tags" %}
+                          {% if tag|dict_get:0 != "www" and tag|dict_get:0 != "database" %}
+                              <a href="#">{{tag|dict_get:0}}</a> - {{tag|dict_get:1}} <a href="#">enable monitoring</a><br/>
+                          {% endif %}
+                      {% endfor %}
 
-                    {% for tag in server|dict_get:"tags"|dict_get:"services_tags" %}
-                        {% if tag|dict_get:0 != "www" and tag|dict_get:0 != "database" %}
-                            <a href="#">{{tag|dict_get:0}}</a> - {{tag|dict_get:1}} <a href="#">enable monitoring</a><br/>
-                        {% endif %}
-                    {% endfor %}
+                      {% for tag in server|dict_get:"tags"|dict_get:"datacenter_tags" %}
+                          {% if tag != "VM" and tag != "Metal" %}
+                              <a href="#">{{tag|dict_get:0}}</a> - {{tag|dict_get:1}} <a href="#">enable monitoring</a><br/>
+                          {% endif %}
+                      {% endfor %}
 
-                    {% for tag in server|dict_get:"tags"|dict_get:"datacenter_tags" %}
-                        {% if tag != "VM" and tag != "Metal" %}
-                            <a href="#">{{tag|dict_get:0}}</a> - {{tag|dict_get:1}} <a href="#">enable monitoring</a><br/>
-                        {% endif %}
-                    {% endfor %}
+                      {% for tag in server|dict_get:"tags"|dict_get:"custom_tags" %}
+                      <a href="#">{{tag|dict_get:0}}</a> - {{tag|dict_get:1}} <a href="#">enable monitoring</a><br/>
+                      {% endfor %}
+                      </p>
+                  {% endcomment %}
 
-                    {% for tag in server|dict_get:"tags"|dict_get:"custom_tags" %}
-                    <a href="#">{{tag|dict_get:0}}</a> - {{tag|dict_get:1}} <a href="#">enable monitoring</a><br/>
-                    {% endfor %}
+                  <p>
+                    XXX
+                  </p>
 
-                    </p>
                 </div>
 
             </div>
