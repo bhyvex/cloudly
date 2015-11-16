@@ -74,12 +74,11 @@ if __name__ == "__main__":
             send_mail( \
                 subject = 'Subject here',
                 message = alert_message,
-                html_message = 'Here is the message.',
+                html_message = alert_html_message,
                 from_email = 'alertor@projectcloudly.org',
                 recipient_list = [user_email],
                 fail_silently=True
                 )
-
 
             twitter_api.update_status('hello python central!')
 
