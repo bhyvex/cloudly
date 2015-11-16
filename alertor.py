@@ -76,6 +76,7 @@ if __name__ == "__main__":
 
             #twitter_api.update_status('@jparicka '+alert_subject)
 
+            # XXX move up twitter credentials onto the settings....
 
         time.sleep(0.1)
         print 'waiting for the q..'
