@@ -638,10 +638,28 @@
                 </div>
 
                 <div class="panel-body">
-                {% for event in historical_service_statuses %}
-                {{event}}
-                <hr/>
-                {% endfor %}
+
+                  <table style="width:100%">
+                    <tr>
+                      <th>date</th>
+                      <th>server_id</th>
+                      <th>status</th>
+                      <th>service</th>
+                      <th>message</th>
+                      <th>values</th>
+                    </tr>
+                    {% for event in historical_service_statuses %}
+                    <tr>
+                      <td>xxx</td>
+                      <td>{{event|dict_get:"server_id"}}</td>
+                      <td>{{event|dict_get:"detailed_service_status"|dict_get:"status"}}</td>
+                      <td>{{event|dict_get:"service"}}</td>
+                      <td>{{event|dict_get:"detailed_service_status"|dict_get:"message"}}</td>
+                      <td>{{event|dict_get:"detailed_service_status"|dict_get:"values"}}</td>
+                    </tr>
+                    {% endfor %}
+                  </table>
+
                 </div>
 
             </div>
