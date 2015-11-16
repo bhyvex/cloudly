@@ -42,17 +42,22 @@ if __name__ == "__main__":
 
     print "alertor started"
 
-    alert = alertor_queue.find_one_and_delete({})
+    while True:
 
-    if(alert):
+        alert = alertor_queue.find_one_and_delete({})
 
-        alert_subject = alert['server_id'] + ' ' + alert['service'] + ' ' + alert['current_overall_status']
-        alert_message = alert['detailed_service_status']['message'] + ':\n'
-        alert_message += dumps(alert)
+        if(alert):
 
-        user = Profile.objects.get(secret=alert["secret"])
-        user_email = user.user.email
+            alert_subject = alert['server_id'] + ' ' + alert['service'] + ' ' + alert['current_overall_status']
+            alert_message = alert['detailed_service_status']['message'] + ':\n'
+            alert_message += dumps(alert)
 
-        send_mail(alert_subject,alert_message,'alertor@projectcloudly.org',[user_email,], fail_silently=False)
+            user = Profile.objects.get(secret=alert["secret"])
+            user_email = user.user.email
 
-    print 'all done.'
+            send_mail(alert_subject,alert_message,'alertor@projectcloudly.org',[user_email,], fail_silently=False)
+
+        time.sleep(0.1)
+        print 'waiting for the q..'
+
+    print 'ze end.'
