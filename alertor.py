@@ -51,11 +51,26 @@ if __name__ == "__main__":
             alert_subject = alert['server_id'] + ' ' + alert['service'] + ' ' + alert['current_overall_status']
             alert_message = alert['detailed_service_status']['message'] + ':\n'
             alert_message += dumps(alert)
+            alert_html_message = "<html><body>"+alert_message+"</body></html>"
 
             user = Profile.objects.get(secret=alert["secret"])
             user_email = user.user.email
 
-            send_mail(alert_subject,alert_message,'alertor@projectcloudly.org',[user_email,], fail_silently=True)
+            #subject = alert_subject,
+            #html_message = alert_html_message,
+            #from_email = 'alertor@projectcloudly.org',
+            #recipient_list = [user_email,],
+            #fail_silently=True
+
+            send_mail( \
+                subject = 'Subject here',
+                message = alert_message,
+                html_message = 'Here is the message.',
+                from_email = 'alertor@projectcloudly.org',
+                recipient_list = [user_email],
+                fail_silently=True
+                )
+
 
         time.sleep(0.1)
         print 'waiting for the q..'
