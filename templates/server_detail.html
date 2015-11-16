@@ -638,7 +638,10 @@
                 </div>
 
                 <div class="panel-body">
-                XXX {{historical_service_statuses}}
+                {% for event in historical_service_statuses %}
+                {{event}}
+                <hr/>
+                {% endfor %}
                 </div>
 
             </div>
