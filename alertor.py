@@ -50,6 +50,9 @@ if __name__ == "__main__":
         alert_message = alert['detailed_service_status']['message'] + ':\n'
         alert_message += dumps(alert)
 
-        send_mail(alert_subject,alert_message,'alertor@projectcloudly.org',['to@example.com'], fail_silently=False)
+        user = Profile.objects.get(secret=alert["secret"])
+        user_email = user.user.email
+
+        send_mail(alert_subject,alert_message,'alertor@projectcloudly.org',[user_email,], fail_silently=False)
 
     print 'all done.'
