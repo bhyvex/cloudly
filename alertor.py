@@ -1,5 +1,5 @@
-# -*- coding: utf-8
 #!/usr/bin/env python
+# -*- coding: utf-8
 
 import os
 import time
@@ -72,6 +72,7 @@ if __name__ == "__main__":
             #twitter_api.update_status('@jparicka '+alert_subject)
 
             # XXX move up twitter credentials onto the settings....
+            # XXX file an activity on behalf of the server agent....
 
         time.sleep(0.1)
         print 'alertor: waiting for the q..'
