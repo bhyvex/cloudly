@@ -4,17 +4,21 @@
 import os
 import time
 import tweepy
-import json
 import django
+
+import json
+from bson.objectid import ObjectId
+from bson.json_util import dumps
 
 import django
 from django.conf import settings
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cloudly.settings")
 django.setup()
 
+from pprint import pprint
+
 from userprofile.models import Profile
 from django.contrib.auth.models import User
-
 
 import pymongo
 from pymongo import MongoClient
@@ -28,9 +32,20 @@ except: pass
 
 mongo = client.cloudly
 
+active_service_statuses = mongo.active_service_statuses
+historical_service_statuses = mongo.historical_service_statuses
+alertor_queue = mongo.alertor_queue
+
 
 if __name__ == "__main__":
 
     print "alertor started"
 
-    print '.'
+    alert = alertor_queue.find_one_and_delete({})
+    alert_subject = alert['server_id'] + ' ' + alert['service'] + ' ' + alert['current_overall_status']
+    alert_message = alert['detailed_service_status']['message'] + ':\n'
+    alert_message += dumps(alert)
+
+    print alert_subject
+    print '-'
+    print alert_message
