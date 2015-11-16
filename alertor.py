@@ -55,7 +55,7 @@ if __name__ == "__main__":
             user = Profile.objects.get(secret=alert["secret"])
             user_email = user.user.email
 
-            send_mail(alert_subject,alert_message,'alertor@projectcloudly.org',[user_email,], fail_silently=False)
+            send_mail(alert_subject,alert_message,'alertor@projectcloudly.org',[user_email,], fail_silently=True)
 
         time.sleep(0.1)
         print 'waiting for the q..'
