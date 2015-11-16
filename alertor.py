@@ -79,6 +79,6 @@ if __name__ == "__main__":
             # XXX move up twitter credentials onto the settings....
 
         time.sleep(0.1)
-        print 'waiting for the q..'
+        print 'alertor: waiting for the q..'
 
     print 'ze end.'
