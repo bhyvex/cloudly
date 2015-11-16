@@ -179,11 +179,11 @@ def register(request):
 
             passwd = password1
 
-            try:
-                User.objects.create_user(username, email, passwd)
-            except:
-                err = "duplicate_username"
-                print err
+            #try:
+            User.objects.create_user(username, email, passwd)
+            #except:
+            #    err = "duplicate_username"
+            #    print err
 
             if not err:
 
@@ -397,4 +397,3 @@ def account_settings(request):
     _log_user_activity(profile,"click","/account/settings/","account_settings",ip=ip)
 
     return render_to_response('account_settings.html', {'request':request, 'aws_regions':AWS_REGIONS,'user':user,'profile':profile,}, context_instance=RequestContext(request))
-
