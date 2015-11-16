@@ -57,11 +57,15 @@
                             <tr>
                                 <td>IP Address</td>
                                 <td>
+                                    {% if server|dict_get:"ip" != "127.0.0.1" %}
                                     <a href="http://www.infosniper.net/index.php?ip_address={{server|dict_get:"ip"}}&map_source=1&overview_map=1&lang=1&map_type=1&zoom_level=7"
                                         target="_blank"
                                     >
                                         {{server|dict_get:"ip"}}
                                     </a>
+                                    {% else %}
+                                        {{server|dict_get:"ip"}}
+                                    {% endif %}
                                 </td>
                             </tr>
 
