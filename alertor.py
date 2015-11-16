@@ -19,6 +19,7 @@ from pprint import pprint
 
 from userprofile.models import Profile
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 
 import pymongo
 from pymongo import MongoClient
@@ -42,10 +43,13 @@ if __name__ == "__main__":
     print "alertor started"
 
     alert = alertor_queue.find_one_and_delete({})
-    alert_subject = alert['server_id'] + ' ' + alert['service'] + ' ' + alert['current_overall_status']
-    alert_message = alert['detailed_service_status']['message'] + ':\n'
-    alert_message += dumps(alert)
 
-    print alert_subject
-    print '-'
-    print alert_message
+    if(alert):
+
+        alert_subject = alert['server_id'] + ' ' + alert['service'] + ' ' + alert['current_overall_status']
+        alert_message = alert['detailed_service_status']['message'] + ':\n'
+        alert_message += dumps(alert)
+
+        send_mail(alert_subject,alert_message,'alertor@projectcloudly.org',['to@example.com'], fail_silently=False)
+
+    print 'all done.'
