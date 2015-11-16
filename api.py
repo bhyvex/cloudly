@@ -411,19 +411,13 @@ def ping():
             if( current_alert_duration > min_alert_duration):
 
                 active_service_statuses.update({'server_id':uuid,'service':service}, new_active_report)
-
-                # XXX fire up alertor_queue
-
+                historical_service_statuses.insert(new_active_report)
+                alertor_queue.insert(new_active_report)
 
             else:
                 print 'waiting for the threshold to be reached....'
 
-
-
-        # Historical Service Statuses
-        # XXX
-
-        print '*'*170
+        print '*'*100
 
 
     if(agent_version != AGENT_VERSION_CURRENT):
@@ -431,7 +425,7 @@ def ping():
         return ("update", 201)
 
 
-    print '-'*170
+    print '- all done','-'*100
 
     return ("thanks", 201)
 
