@@ -281,6 +281,10 @@ def server_view(request, hwaddr):
         if(disk[:4]!="/run" and disk[:5]!="/boot" and disk[:4]!="/sys" and disk[:4]!="/dev"):
             reduced_disks.append(disk)
 
+    historical_service_statuses = mongo.historical_service_statuses
+    historical_service_statuses = historical_service_statuses.find({'secret':profile.secret,'server_id':server['uuid']})
+
+
     try:
         recently_clicked_servers = request.session["recently_clicked_servers"]
     except:
@@ -349,6 +353,7 @@ def server_view(request, hwaddr):
             'mem_usage':mem_usage,
             'loadavg':loadavg,
             'networking':networking,
+            'historical_service_statuses':historical_service_statuses,
             'activity':activity,
         },
         context_instance=RequestContext(request))
