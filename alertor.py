@@ -65,12 +65,6 @@ if __name__ == "__main__":
             user = Profile.objects.get(secret=alert["secret"])
             user_email = user.user.email
 
-            #subject = alert_subject,
-            #html_message = alert_html_message,
-            #from_email = 'alertor@projectcloudly.org',
-            #recipient_list = [user_email,],
-            #fail_silently=True
-
             send_mail( \
                 subject = alert_subject,
                 message = alert_message,
@@ -80,7 +74,7 @@ if __name__ == "__main__":
                 fail_silently=True
                 )
 
-            twitter_api.update_status('@jparicka '+alert_subject)
+            #twitter_api.update_status('@jparicka '+alert_subject)
 
 
         time.sleep(0.1)
