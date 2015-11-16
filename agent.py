@@ -19,7 +19,7 @@ try:
     import json
 except: pass
 
-AGENT_VERSION = "0.3"
+AGENT_VERSION = "0.4"
 AGENT_ALLOWED_TO_SELF_UPDATE = False
 AGENT_PATH = "/opt/monitoring-agent.py"
 
