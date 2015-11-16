@@ -37,11 +37,6 @@ active_service_statuses = mongo.active_service_statuses
 historical_service_statuses = mongo.historical_service_statuses
 alertor_queue = mongo.alertor_queue
 
-TWITTER_KEY = ""
-TWITTER_SECRET = ""
-TWITTER_ACCESS_TOKEN = ""
-TWITTER_ACCESS_TOKEN_SECRET = ""
-
 auth = tweepy.OAuthHandler(TWITTER_KEY, TWITTER_SECRET)
 auth.set_access_token(TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET)
 twitter_api = tweepy.API(auth)
