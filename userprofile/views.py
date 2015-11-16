@@ -179,11 +179,11 @@ def register(request):
 
             passwd = password1
 
-            #try:
-            User.objects.create_user(username, email, passwd)
-            #except:
-            #    err = "duplicate_username"
-            #    print err
+            try:
+                User.objects.create_user(username, email, passwd, last_login=datetime.datetime.now())
+            except:
+                err = "duplicate_username"
+                print err
 
             if not err:
 
