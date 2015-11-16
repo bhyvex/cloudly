@@ -7,6 +7,8 @@ import tweepy
 import json
 import django
 
+import django
+from django.conf import settings
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cloudly.settings")
 django.setup()
 
@@ -28,4 +30,7 @@ mongo = client.cloudly
 
 
 if __name__ == "__main__":
-    print "hello world from alertor"
+
+    print "alertor started"
+
+    print '.'
