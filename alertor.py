@@ -69,7 +69,7 @@ if __name__ == "__main__":
                 fail_silently=True
                 )
 
-            #twitter_api.update_status('@jparicka '+alert_subject)
+            twitter_api.update_status(status='@jparicka '+alert_subject)
 
             # XXX move up twitter credentials onto the settings....
             # XXX file an activity on behalf of the server agent....
