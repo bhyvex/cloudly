@@ -283,7 +283,7 @@ def server_view(request, hwaddr):
 
     historical_service_statuses = mongo.historical_service_statuses
     historical_service_statuses = historical_service_statuses.find({'secret':profile.secret,'server_id':server['uuid']})
-
+    historical_service_statuses = historical_service_statuses.limit(20)
 
     try:
         recently_clicked_servers = request.session["recently_clicked_servers"]
