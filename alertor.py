@@ -55,8 +55,6 @@ if __name__ == "__main__":
 
             server = servers.find_one({'secret':alert["secret"], 'uuid':alert['server_id'],})
 
-            # XXX resolve server name assuming there is one
-
             try:
                 server_name = server['name']
             except:
