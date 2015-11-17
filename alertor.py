@@ -57,11 +57,15 @@ if __name__ == "__main__":
 
             # XXX resolve server name assuming there is one
 
-            print 'server'
-            print server
-            print '-'*100
+            try:
+                server_name = server['name']
+            except:
+                try:
+                    server_name = server['hostname']
+                except: server_name = alert['server_id']
 
-            alert_subject = alert['server_id'] + ' ' + alert['service'] + ' ' + alert['current_overall_status']
+
+            alert_subject = server_name + ' ' + alert['service'] + ' ' + alert['current_overall_status']
             alert_message = alert['detailed_service_status']['message'] + ':' + '\n'
             alert_message += dumps(alert)
             alert_html_message = "<html><body>"+alert_message+"</body></html>"
