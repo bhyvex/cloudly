@@ -62,7 +62,7 @@ if __name__ == "__main__":
             print '-'*100
 
             alert_subject = alert['server_id'] + ' ' + alert['service'] + ' ' + alert['current_overall_status']
-            alert_message = alert['detailed_service_status']['message'] + ':\n'
+            alert_message = alert['detailed_service_status']['message'] + ':' + '\n'
             alert_message += dumps(alert)
             alert_html_message = "<html><body>"+alert_message+"</body></html>"
 
