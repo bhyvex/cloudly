@@ -33,7 +33,7 @@ except: pass
 
 mongo = client.cloudly
 
-active_service_statuses = mongo.active_service_statuses
+servers = mongo.servers
 historical_service_statuses = mongo.historical_service_statuses
 alertor_queue = mongo.alertor_queue
 
@@ -51,6 +51,8 @@ if __name__ == "__main__":
         alert = alertor_queue.find_one_and_delete({})
 
         if(alert):
+
+            server = servers.find_one({'secret':alert["secret"], 'uuid':alert['server_id'],})active_service_statuses = mongo.active_service_statuses
 
             # XXX resolve server name assuming there is one
 
