@@ -62,7 +62,6 @@ if __name__ == "__main__":
                     server_name = server['hostname']
                 except: server_name = alert['server_id']
 
-
             alert_subject = server_name + ' ' + alert['service'] + ' ' + alert['current_overall_status']
             alert_message = alert['detailed_service_status']['message'] + ':' + '\n'
             alert_message += dumps(alert)
