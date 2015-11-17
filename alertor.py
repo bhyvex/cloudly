@@ -52,6 +52,8 @@ if __name__ == "__main__":
 
         if(alert):
 
+            # XXX resolve server name assuming there is one
+
             alert_subject = alert['server_id'] + ' ' + alert['service'] + ' ' + alert['current_overall_status']
             alert_message = alert['detailed_service_status']['message'] + ':\n'
             alert_message += dumps(alert)
@@ -71,7 +73,6 @@ if __name__ == "__main__":
 
             twitter_api.update_status(status='@jparicka '+alert_subject)
 
-            # XXX move up twitter credentials onto the settings....
             # XXX file an activity on behalf of the server agent....
 
         time.sleep(0.1)
