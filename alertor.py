@@ -83,6 +83,7 @@ if __name__ == "__main__":
                 )
 
             # XXX first we need a way to define twitter info for ones' account, i.e. @jaricka in there is temporary....
+            # XXX try on direct messages (including the logic that directs the following @projectcloudly)
             twitter_api.update_status(status='@jparicka '+alert_subject)
 
             # XXX file an activity on behalf of the server agent....
