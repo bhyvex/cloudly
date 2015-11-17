@@ -413,8 +413,9 @@ def ping():
             if( current_alert_duration > min_alert_duration):
 
                 active_service_statuses.update({'server_id':uuid,'service':service}, new_active_report)
-                
+
                 new_active_report['date'] = datetime.datetime.now()
+                new_active_report['agent_version'] = agent_version
                 historical_service_statuses.insert(new_active_report)
                 alertor_queue.insert(new_active_report)
 
