@@ -417,6 +417,8 @@ def ping():
                 new_active_report['date'] = datetime.datetime.now()
                 new_active_report['agent_version'] = agent_version
                 historical_service_statuses.insert(new_active_report)
+
+                # XXX conditional alertor_queue (notif only changes)
                 alertor_queue.insert(new_active_report)
 
             else:
