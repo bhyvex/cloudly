@@ -44,12 +44,11 @@ auth.set_access_token(settings.TWITTER_ACCESS_TOKEN, settings.TWITTER_ACCESS_TOK
 twitter_api = tweepy.API(auth)
 
 
-def _file_activity():
+def _file_activity( data ):
 
     activity_log = {
         'secret': data['secret'],
         'uuid': data['uuid'],
-        'agent_version': data['agent_version'],
         'activity': data['activity'],
         'date_created': datetime.datetime.now(),
     }
