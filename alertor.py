@@ -93,9 +93,10 @@ if __name__ == "__main__":
             recipient_list = [user_email],
             fail_silently=True
             )
+        # XXX file an activity on behalf of the server agent....
 
         # XXX first we need a way to define twitter info for ones' account, i.e. @jaricka in there is temporary....
-        twitter_api.update_status(status='@jparicka '+alert_subject)
+        #twitter_api.update_status(status='@jparicka '+alert_subject)
 
         # XXX file an activity on behalf of the server agent....
 
