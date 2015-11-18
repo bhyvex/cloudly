@@ -58,7 +58,8 @@
                                             {{notif|dict_get:"service"|replace_underscope}}
                                         </div>
                                         <div>
-                                            {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}:<br />
+                                            <strong>{{notif|dict_get:"detailed_service_status"|dict_get:"message"}}:</strong>
+                                            <br />
                                             {% comment %}
                                                 {% for value in notif|dict_get:"detailed_service_status"|dict_get:"values" %}
                                                     <strong>{{value|replace_underscope}}:&nbsp;</strong>
