@@ -44,6 +44,7 @@ auth = tweepy.OAuthHandler(settings.TWITTER_KEY, settings.TWITTER_SECRET)
 auth.set_access_token(settings.TWITTER_ACCESS_TOKEN, settings.TWITTER_ACCESS_TOKEN_SECRET)
 twitter_api = tweepy.API(auth)
 
+FORCE_TWEETS_FOR_TESTING = False
 
 def _file_activity( activity_data ):
 
@@ -111,7 +112,7 @@ if __name__ == "__main__":
         }
         _file_activity( activity_data )
 
-        if(not settings.DEBUG):
+        if(not settings.DEBUG or FORCE_TWEETS_FOR_TESTING):
 
             # XXX we need a way to define twitter info for ones' account, i.e. @jaricka in there is temporary....
 
