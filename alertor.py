@@ -49,7 +49,7 @@ def _file_activity( activity_data ):
     activity_log = {
         'secret': activity_data['secret'],
         'server_id': activity_data['server_id'],
-        'activity_type': activity_data['activity'],
+        'activity_type': activity_data['activity_type'],
         'data': activity_data['data'],
         'date_created': datetime.datetime.now(),
     }
@@ -108,7 +108,7 @@ if __name__ == "__main__":
                 "recipient_list": [user_email],
             },
         }
-
+        _file_activity( activity_data )
 
         if(not settings.DEBUG):
             # XXX we need a way to define twitter info for ones' account, i.e. @jaricka in there is temporary....
