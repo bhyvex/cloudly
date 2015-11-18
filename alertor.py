@@ -124,7 +124,8 @@ if __name__ == "__main__":
             _file_activity( activity_data )
 
 
-    time.sleep(0.1)
+    # XXX use this time to identify offline servers and send out notifs.....
     print 'alertor: waiting for the alert to process..'
+    time.sleep(0.1)
 
     #print 'ze end.'
