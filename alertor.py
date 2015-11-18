@@ -44,12 +44,12 @@ auth.set_access_token(settings.TWITTER_ACCESS_TOKEN, settings.TWITTER_ACCESS_TOK
 twitter_api = tweepy.API(auth)
 
 
-def _file_activity( data ):
+def _file_activity( activity_data ):
 
     activity_log = {
-        'secret': data['secret'],
-        'uuid': data['uuid'],
-        'activity': data['activity'],
+        'secret': activity_data['secret'],
+        'uuid': activity_data['uuid'],
+        'activity': activity_data['activity'],
         'date_created': datetime.datetime.now(),
     }
     activity_ = mongo.activity
