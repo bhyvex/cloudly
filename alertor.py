@@ -48,7 +48,7 @@ def _file_activity( activity_data ):
 
     activity_log = {
         'secret': activity_data['secret'],
-        'server_uuid': activity_data['server_uuid'],
+        'server_id': activity_data['server_id'],
         'activity': activity_data['activity'],
         'data': activity_data['data']
         'date_created': datetime.datetime.now(),
