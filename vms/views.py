@@ -282,7 +282,8 @@ def server_view(request, hwaddr):
             reduced_disks.append(disk)
 
     historical_service_statuses = mongo.historical_service_statuses
-    historical_service_statuses = historical_service_statuses.find({'secret':profile.secret,'server_id':server['uuid']}).sort("_id",pymongo.ASCENDING)
+    historical_service_statuses = historical_service_statuses.find({'secret':profile.secret,'server_id':server['uuid']})
+    historical_service_statuses = historical_service_statuses.sort("_id",pymongo.DESCENDING)
     historical_service_statuses = historical_service_statuses.limit(20)
 
     try:
