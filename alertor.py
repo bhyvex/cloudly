@@ -97,15 +97,15 @@ if __name__ == "__main__":
             fail_silently=True
             )
         activity_data = {
-            'secret': secret,
+            'secret': user_secret,
             'server_id': server_id,
             'activity_type': 'EMAIL_SENT',
             'data': {
-                subject = alert_subject,
-                message = alert_message,
-                html_message = alert_html_message,
-                from_email = 'alertor@projectcloudly.org',
-                recipient_list = [user_email],
+                "subject": alert_subject,
+                "message": alert_message,
+                "html_message": alert_html_message,
+                "from_email": 'alertor@projectcloudly.org',
+                "recipient_list": [user_email],
             },
         }
 
