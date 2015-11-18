@@ -50,7 +50,7 @@ def _file_activity( activity_data ):
         'secret': activity_data['secret'],
         'server_id': activity_data['server_id'],
         'activity_type': activity_data['activity'],
-        'data': activity_data['data']
+        'data': activity_data['data'],
         'date_created': datetime.datetime.now(),
     }
     activity_ = mongo.activity
