@@ -48,8 +48,9 @@ def _file_activity( activity_data ):
 
     activity_log = {
         'secret': activity_data['secret'],
-        'uuid': activity_data['uuid'],
+        'server_uuid': activity_data['server_uuid'],
         'activity': activity_data['activity'],
+        'data': activity_data['data']
         'date_created': datetime.datetime.now(),
     }
     activity_ = mongo.activity
@@ -84,6 +85,7 @@ if __name__ == "__main__":
 
         user = Profile.objects.get(secret=alert["secret"])
         user_email = user.user.email
+        user_secret = user.secret
 
         send_mail( \
             subject = alert_subject,
