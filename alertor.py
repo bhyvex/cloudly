@@ -124,6 +124,6 @@ if __name__ == "__main__":
 
 
     time.sleep(0.1)
-    print 'alertor: waiting for the q..'
+    print 'alertor: waiting for the alert to process..'
 
     #print 'ze end.'
