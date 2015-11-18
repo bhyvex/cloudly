@@ -21,6 +21,8 @@ from userprofile.models import Profile
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 
+from api import activity as file_activity
+
 import pymongo
 from pymongo import MongoClient
 from pymongo import ASCENDING, DESCENDING
