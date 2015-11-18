@@ -112,9 +112,15 @@ if __name__ == "__main__":
         _file_activity( activity_data )
 
         if(not settings.DEBUG):
+
             # XXX we need a way to define twitter info for ones' account, i.e. @jaricka in there is temporary....
+
             twitter_api.update_status(status='@jparicka '+alert_subject)
-            # XXX file an activity on behalf of the server agent....
+            activity_data = {
+                'activity_type': 'TWEET_SENT',
+                'data': { 'tweet': alert_subject },
+            }
+            _file_activity( activity_data )
 
 
     time.sleep(0.1)
