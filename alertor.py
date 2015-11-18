@@ -49,44 +49,44 @@ if __name__ == "__main__":
 
     print "alertor started"
 
-    while True:
+    #while True:
 
-        alert = alertor_queue.find_one_and_delete({})
+    alert = alertor_queue.find_one_and_delete({})
 
-        if(alert):
+    if(alert):
 
-            server = servers.find_one({'secret':alert["secret"], 'uuid':alert['server_id'],})
+        server = servers.find_one({'secret':alert["secret"], 'uuid':alert['server_id'],})
 
+        try:
+            server_name = server['name']
+        except:
             try:
-                server_name = server['name']
-            except:
-                try:
-                    server_name = server['hostname']
-                except: server_name = alert['server_id']
+                server_name = server['hostname']
+            except: server_name = alert['server_id']
 
-            alert_subject = server_name + ' ' + alert['service'] + ' ' + alert['current_overall_status']
-            alert_message = alert['detailed_service_status']['message'] + ':' + '\n'
-            alert_message += dumps(alert)
-            alert_html_message = "<html><body>"+alert_message+"</body></html>"
+        alert_subject = server_name + ' ' + alert['service'] + ' ' + alert['current_overall_status']
+        alert_message = alert['detailed_service_status']['message'] + ':' + '\n'
+        alert_message += dumps(alert)
+        alert_html_message = "<html><body>"+alert_message+"</body></html>"
 
-            user = Profile.objects.get(secret=alert["secret"])
-            user_email = user.user.email
+        user = Profile.objects.get(secret=alert["secret"])
+        user_email = user.user.email
 
-            send_mail( \
-                subject = alert_subject,
-                message = alert_message,
-                html_message = alert_html_message,
-                from_email = 'alertor@projectcloudly.org',
-                recipient_list = [user_email],
-                fail_silently=True
-                )
+        send_mail( \
+            subject = alert_subject,
+            message = alert_message,
+            html_message = alert_html_message,
+            from_email = 'alertor@projectcloudly.org',
+            recipient_list = [user_email],
+            fail_silently=True
+            )
 
-            # XXX first we need a way to define twitter info for ones' account, i.e. @jaricka in there is temporary....
-            twitter_api.update_status(status='@jparicka '+alert_subject)
+        # XXX first we need a way to define twitter info for ones' account, i.e. @jaricka in there is temporary....
+        twitter_api.update_status(status='@jparicka '+alert_subject)
 
-            # XXX file an activity on behalf of the server agent....
+        # XXX file an activity on behalf of the server agent....
 
-        time.sleep(0.1)
-        print 'alertor: waiting for the q..'
+    time.sleep(0.1)
+    print 'alertor: waiting for the q..'
 
-    print 'ze end.'
+    #print 'ze end.'
