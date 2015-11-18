@@ -21,7 +21,6 @@ from userprofile.models import Profile
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 
-from api import activity as file_activity
 
 import pymongo
 from pymongo import MongoClient
@@ -43,6 +42,21 @@ alertor_queue = mongo.alertor_queue
 auth = tweepy.OAuthHandler(settings.TWITTER_KEY, settings.TWITTER_SECRET)
 auth.set_access_token(settings.TWITTER_ACCESS_TOKEN, settings.TWITTER_ACCESS_TOKEN_SECRET)
 twitter_api = tweepy.API(auth)
+
+
+def _file_activity():
+
+    activity_log = {
+        'secret': data['secret'],
+        'uuid': data['uuid'],
+        'agent_version': data['agent_version'],
+        'activity': data['activity'],
+        'date_created': datetime.datetime.now(),
+    }
+    activity_ = mongo.activity
+    activity_.insert( activity_log )
+
+    return True
 
 
 if __name__ == "__main__":
