@@ -49,7 +49,7 @@ def _file_activity( activity_data ):
     activity_log = {
         'secret': activity_data['secret'],
         'server_id': activity_data['server_id'],
-        'activity': activity_data['activity'],
+        'activity_type': activity_data['activity'],
         'data': activity_data['data']
         'date_created': datetime.datetime.now(),
     }
@@ -85,7 +85,8 @@ if __name__ == "__main__":
 
         user = Profile.objects.get(secret=alert["secret"])
         user_email = user.user.email
-        user_secret = user.secret
+        user_secret = alert['secret']
+        server_id = server_name
 
         send_mail( \
             subject = alert_subject,
@@ -95,7 +96,19 @@ if __name__ == "__main__":
             recipient_list = [user_email],
             fail_silently=True
             )
-        # XXX file an activity on behalf of the server agent....
+        activity_data = {
+            'secret': secret,
+            'server_id': server_id,
+            'activity_type': 'EMAIL_SENT',
+            'data': {
+                subject = alert_subject,
+                message = alert_message,
+                html_message = alert_html_message,
+                from_email = 'alertor@projectcloudly.org',
+                recipient_list = [user_email],
+            },
+        }
+
 
         if(not settings.DEBUG):
             # XXX we need a way to define twitter info for ones' account, i.e. @jaricka in there is temporary....
