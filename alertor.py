@@ -127,7 +127,7 @@ if __name__ == "__main__":
 
         # XXX use this time to identify offline servers and send out notifs.....
 
-        print 'alertor: waiting for the alerts q..'
+        print 'alertor: waiting for a workload..'
         if(settings.DEBUG): time.sleep(1)
         time.sleep(0.1)
 
