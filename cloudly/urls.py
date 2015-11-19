@@ -40,7 +40,7 @@ urlpatterns = patterns('',
     url(r'^incidents/$', 'incidents.views.incidents', name='incidents'),
 
     # servers logs
-    # XXX
+    url(r'^logs/$', 'incidents.views.logs', name='logs'),
 
     # ajax
     url(r'^ajax/session/update/$', 'vms.views.update_session', name='update_session'),

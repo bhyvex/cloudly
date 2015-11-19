@@ -79,3 +79,8 @@ def incidents(request):
         },
         context_instance=RequestContext(request),
     )
+
+@login_required
+def logs(request):
+    return HttpResponse("working on this currently")
+    
