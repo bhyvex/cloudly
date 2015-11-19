@@ -127,11 +127,11 @@ if __name__ == "__main__":
 
 
         print 'looking up offline servers..'
-        offline_servers_ = servers.find({"last_seen": {"$lte":datetime.datetime.now()-datetime.timedelta(seconds=OFFLINE_SERVER_THRESHOLD)}})
+        offline_servers = servers.find({"last_seen": {"$lte":datetime.datetime.now()-datetime.timedelta(seconds=OFFLINE_SERVER_THRESHOLD)}})
 
-        if(offline_servers_):
+        if(offline_servers):
 
-            print 'offline_servers', offline_servers_.count()
+            print 'offline_servers', offline_servers.count()
             print 'XXX send out notifs, work the offline_servers schema....'
             print 'XXX work offline_servers schema / logic for tracking server offline/online emails..'
             print 'XXX file an activity on when the server is registered as gone offline..'
