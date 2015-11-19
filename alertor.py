@@ -36,9 +36,9 @@ except: pass
 mongo = client.cloudly
 
 servers = mongo.servers
-offline_servers = mongo.offline_servers
-active_service_statuses = mongo.active_service_statuses
-historical_service_statuses = mongo.historical_service_statuses
+servers_active_availibility = mongo.servers_active_availibility
+servers_historical_availibility = mongo.servers_historical_availibility
+
 alertor_queue = mongo.alertor_queue
 
 auth = tweepy.OAuthHandler(settings.TWITTER_KEY, settings.TWITTER_SECRET)
