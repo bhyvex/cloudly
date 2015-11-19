@@ -138,7 +138,7 @@ if __name__ == "__main__":
             print 'XXX remember to work the historical servers availibility'
 
 
-        print 'alertor: waiting for more workload..'
+        print 'alertor: waiting for workload..'
         if(settings.DEBUG): time.sleep(1)
         time.sleep(0.1)
 
