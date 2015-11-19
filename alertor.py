@@ -133,10 +133,12 @@ if __name__ == "__main__":
 
             print 'offline_servers', offline_servers.count()
             print 'XXX work offline_servers schema / logic for tracking server offline/online emails..'
-            print 'XXX file an activity on when the server is registered as gone offline..'
+            print 'XXX file an activity on when the server is registered and has gone offline..'
             print 'XXX remember to work the historical servers availibility'
             print 'XXX send out actual notifs'
-            print 'XXX loop through active offline servers to update their statuses'
+
+        # XXX
+        print 'XXX loop through active offline servers to update check their statuses'
 
         print 'alertor: waiting for the workload..'
         if(settings.DEBUG): time.sleep(1)
