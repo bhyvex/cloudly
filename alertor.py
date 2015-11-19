@@ -125,15 +125,16 @@ if __name__ == "__main__":
                 _file_activity( activity_data )
 
 
-        # XXX use this time to identify offline servers and send out notifs.....
-        # XXX work in time delta and search for $lte...
+        print 'looking up offline servers..'
+        offline_servers_ = servers.find({"last_seen": {"$lte":datetime.datetime.now()-datetime.timedelta(seconds=OFFLINE_SERVER_THRESHOLD)}})
 
-        print 'looking up offline servers.'
-        offline_servers = servers.find({"last_seen": {"$lte":datetime.datetime.now()-datetime.timedelta(seconds=OFFLINE_SERVER_THRESHOLD)}})
+        if(offline_servers_):
 
-        
+            print 'offline_servers', offline_servers.count()
+            print 'XXX send out notifs, work the offline_servers schema....'
 
-        print 'alertor: waiting for a workload..'
+
+        print 'alertor: waiting for more workload..'
         if(settings.DEBUG): time.sleep(1)
         time.sleep(0.1)
 
