@@ -65,67 +65,70 @@ if __name__ == "__main__":
 
     print "alertor started"
 
-    #while True:
+    while True:
 
-    alert = alertor_queue.find_one_and_delete({})
+        alert = alertor_queue.find_one_and_delete({})
 
-    if(alert):
+        if(alert):
 
-        server = servers.find_one({'secret':alert["secret"], 'uuid':alert['server_id'],})
+            server = servers.find_one({'secret':alert["secret"], 'uuid':alert['server_id'],})
 
-        try:
-            server_name = server['name']
-        except:
             try:
-                server_name = server['hostname']
-            except: server_name = alert['server_id']
+                server_name = server['name']
+            except:
+                try:
+                    server_name = server['hostname']
+                except: server_name = alert['server_id']
 
-        alert_subject = server_name + ' ' + alert['service'] + ' ' + alert['current_overall_status']
-        alert_message = alert['detailed_service_status']['message'] + ':' + '\n'
-        alert_message += dumps(alert)
-        alert_html_message = "<html><body>"+alert_message+"</body></html>"
+            alert_subject = server_name + ' ' + alert['service'] + ' ' + alert['current_overall_status']
+            alert_message = alert['detailed_service_status']['message'] + ':' + '\n'
+            alert_message += dumps(alert)
+            alert_html_message = "<html><body>"+alert_message+"</body></html>"
 
-        user = Profile.objects.get(secret=alert["secret"])
-        user_email = user.user.email
-        user_secret = alert['secret']
-        server_id = server_name
+            user = Profile.objects.get(secret=alert["secret"])
+            user_email = user.user.email
+            user_secret = alert['secret']
+            server_id = server_name
 
-        send_mail( \
-            subject = alert_subject,
-            message = alert_message,
-            html_message = alert_html_message,
-            from_email = 'alertor@projectcloudly.org',
-            recipient_list = [user_email],
-            fail_silently=True
-            )
-        activity_data = {
-            'secret': user_secret,
-            'server_id': server_id,
-            'activity_type': 'EMAIL_SENT',
-            'data': {
-                "subject": alert_subject,
-                "message": alert_message,
-                "html_message": alert_html_message,
-                "from_email": 'alertor@projectcloudly.org',
-                "recipient_list": [user_email],
-            },
-        }
-        _file_activity( activity_data )
-
-        if(not settings.DEBUG or FORCE_TWEETS_FOR_TESTING):
-
-            # XXX we need a way to define twitter info for ones' account, i.e. @jaricka in there is temporary....
-
-            twitter_api.update_status(status='@jparicka '+alert_subject)
+            send_mail( \
+                subject = alert_subject,
+                message = alert_message,
+                html_message = alert_html_message,
+                from_email = 'alertor@projectcloudly.org',
+                recipient_list = [user_email],
+                fail_silently=True
+                )
             activity_data = {
-                'activity_type': 'TWEET_SENT',
-                'data': { 'tweet': alert_subject },
+                'secret': user_secret,
+                'server_id': server_id,
+                'activity_type': 'EMAIL_SENT',
+                'data': {
+                    "subject": alert_subject,
+                    "message": alert_message,
+                    "html_message": alert_html_message,
+                    "from_email": 'alertor@projectcloudly.org',
+                    "recipient_list": [user_email],
+                },
             }
             _file_activity( activity_data )
 
+            if(not settings.DEBUG or FORCE_TWEETS_FOR_TESTING):
 
-    # XXX use this time to identify offline servers and send out notifs.....
-    print 'alertor: waiting for a new alert to process..'
-    time.sleep(0.1)
+                # XXX we need a way to define twitter info for ones' account, i.e. @jaricka in there is temporary....
 
-    #print 'ze end.'
+                twitter_api.update_status(status='@jparicka '+alert_subject)
+                activity_data = {
+                    'activity_type': 'TWEET_SENT',
+                    'data': { 'tweet': alert_subject },
+                }
+                _file_activity( activity_data )
+
+
+        # XXX use this time to identify offline servers and send out notifs.....
+
+        print 'alertor: waiting for an alert to process..'
+        if(settings.DEBUG): time.sleep(1)
+        time.sleep(0.1)
+
+
+    print 'ze end.'
