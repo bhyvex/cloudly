@@ -133,6 +133,7 @@ if __name__ == "__main__":
 
             print 'offline_servers', offline_servers_.count()
             print 'XXX send out notifs, work the offline_servers schema....'
+            print 'XXX work offline_servers schema / logic for tracking server offline/online emails..'
 
 
         print 'alertor: waiting for more workload..'
