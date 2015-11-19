@@ -136,6 +136,7 @@ if __name__ == "__main__":
             print 'XXX file an activity on when the server is registered as gone offline..'
             print 'XXX remember to work the historical servers availibility'
             print 'XXX send out actual notifs'
+            print 'XXX loop through active offline servers to update their statuses'
 
         print 'alertor: waiting for the workload..'
         if(settings.DEBUG): time.sleep(1)
