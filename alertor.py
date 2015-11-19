@@ -126,6 +126,10 @@ if __name__ == "__main__":
 
 
         # XXX use this time to identify offline servers and send out notifs.....
+        # XXX work in time delta and search for $lte...
+        print 'looking up offline servers'
+        print servers.find_one()['last_seen']
+
 
         print 'alertor: waiting for a workload..'
         if(settings.DEBUG): time.sleep(1)
