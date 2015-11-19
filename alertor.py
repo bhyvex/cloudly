@@ -125,7 +125,7 @@ if __name__ == "__main__":
 
 
     # XXX use this time to identify offline servers and send out notifs.....
-    print 'alertor: waiting for the alert to process..'
+    print 'alertor: waiting for a new alert to process..'
     time.sleep(0.1)
 
     #print 'ze end.'
