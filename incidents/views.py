@@ -40,14 +40,14 @@ mongo = client.cloudly
 @login_required()
 def incidents(request):
 
-    print '-- system logs:', request.user
+    print '-- incidents:', request.user
 
     user = request.user
     profile = Profile.objects.get(user=request.user)
     secret = profile.secret
 
     ip = request.META['REMOTE_ADDR']
-    _log_user_activity(profile,"click","/logs/","logs",ip=ip)
+    _log_user_activity(profile,"click","/incidents/","incidents",ip=ip)
 
     user = request.user
     user.last_login = datetime.datetime.now()
@@ -82,5 +82,26 @@ def incidents(request):
 
 @login_required
 def logs(request):
-    return HttpResponse("working on this currently")
-    
+
+    print '-- system logs:', request.user
+
+    user = request.user
+    profile = Profile.objects.get(user=request.user)
+    secret = profile.secret
+
+    ip = request.META['REMOTE_ADDR']
+    _log_user_activity(profile,"click","/logs/","logs",ip=ip)
+
+    user = request.user
+    user.last_login = datetime.datetime.now()
+    user.save()
+
+
+    return render_to_response(
+        'logs.html',
+        {
+            'request':request,
+            'secret':profile.secret,
+        },
+        context_instance=RequestContext(request),
+    )
