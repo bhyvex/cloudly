@@ -36,6 +36,7 @@ except: pass
 mongo = client.cloudly
 
 servers = mongo.servers
+offline_servers = mongo.offline_servers
 active_service_statuses = mongo.active_service_statuses
 historical_service_statuses = mongo.historical_service_statuses
 alertor_queue = mongo.alertor_queue
@@ -130,7 +131,7 @@ if __name__ == "__main__":
 
         if(offline_servers_):
 
-            print 'offline_servers', offline_servers.count()
+            print 'offline_servers', offline_servers_.count()
             print 'XXX send out notifs, work the offline_servers schema....'
 
 
