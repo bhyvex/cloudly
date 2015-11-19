@@ -44,6 +44,7 @@ auth = tweepy.OAuthHandler(settings.TWITTER_KEY, settings.TWITTER_SECRET)
 auth.set_access_token(settings.TWITTER_ACCESS_TOKEN, settings.TWITTER_ACCESS_TOKEN_SECRET)
 twitter_api = tweepy.API(auth)
 
+OFFLINE_SERVER_THRESHOLD = 300
 FORCE_TWEETS_FOR_TESTING = False
 
 def _file_activity( activity_data ):
@@ -126,7 +127,7 @@ if __name__ == "__main__":
 
         # XXX use this time to identify offline servers and send out notifs.....
 
-        print 'alertor: waiting for an alert to process..'
+        print 'alertor: waiting for the alerts q..'
         if(settings.DEBUG): time.sleep(1)
         time.sleep(0.1)
 
