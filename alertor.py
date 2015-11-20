@@ -92,6 +92,7 @@ if __name__ == "__main__":
             user_secret = alert['secret']
             server_id = server_name
 
+            # XXX consider obsessive chasing profile settings here
             send_mail( \
                 subject = alert_subject,
                 message = alert_message,
@@ -118,6 +119,7 @@ if __name__ == "__main__":
 
                 # XXX we need a way to define twitter info for ones' account, i.e. @jaricka in there is temporary....
 
+                # XXX consider obsessive chasing profile settings here
                 twitter_api.update_status(status='@jparicka '+alert_subject)
                 activity_data = {
                     'activity_type': 'TWEET_SENT',
