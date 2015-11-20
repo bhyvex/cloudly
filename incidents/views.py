@@ -96,7 +96,7 @@ def logs(request):
     user.last_login = datetime.datetime.now()
     user.save()
 
-    servers = mongo.servers.find_one({'secret':secret,})
+    servers = mongo.servers.find({'secret':secret,})
 
     return render_to_response(
         'logs.html',
