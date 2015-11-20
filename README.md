@@ -18,16 +18,6 @@ Installation Instructions
 In order to run this project in what we call the "Enterprise Mode", please follow the installation instructions below.
 
 
-###### Install MySQL server and Python MySQLdb
-
-<pre>
-$ apt-get install mysql-server python-mysqldb
-</pre>
-
-Optionally configure your MySQL server to meet your specific requirements.
-
-As for the user/password, this one needs to match the entries in the cloudly/cloudly/settings.py file.
-
 ###### Install various python modules and git
 
 <pre>
@@ -65,6 +55,16 @@ $ mongoimport --db cloudly --collection services_tags services_tags.json
 
 ..and configure your server to meet your specific requirements.
 
+###### Install MySQL server and Python MySQLdb
+
+<pre>
+$ apt-get install mysql-server python-mysqldb
+</pre>
+
+Optionally configure your MySQL server to meet your specific requirements.
+
+As for the user/password, this one needs to match the entries in the cloudly/cloudly/settings.py file.
+
 ###### Create the ORM database and tables
 
 <pre>
@@ -89,7 +89,7 @@ Would you like to create one now? (yes/no): no
 Answer "no" to this question.
 
 
-###### Enable Unicode on the database
+###### Enable Unicode on the SQL database
 
 <pre>
 $ mysql -u root -p
