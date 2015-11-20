@@ -71,9 +71,7 @@ As for the user/password, this one needs to match the entries in the cloudly/clo
 $ sudo pip install pymysql
 $ mysql -u root -p
 mysql> create database cloudly;
-</pre>
-
-<pre>
+mysql> exit;
 $ python manage.py syncdb
 </pre>
 
