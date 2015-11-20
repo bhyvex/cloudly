@@ -144,6 +144,10 @@ DB Backends
 
 Cloudly runs off of Hadoop and is powered by the OpenTSBD.  Please refer to the official OpenTSDB documentation for installation instructions - http://opentsdb.net/docs/build/html/installation.html
 
+..and that's that!  :)
+
+Enjoy!
+
 
 Screenshots & Live Demo
 -----------------------
@@ -151,11 +155,6 @@ Screenshots & Live Demo
 ![alt screen0](https://raw.githubusercontent.com/jparicka/cloudly/master/static/screenshots/screenshot0.png)
 
 ![alt screen1](https://raw.githubusercontent.com/jparicka/cloudly/master/static/screenshots/screenshot1.png)
-
-..and that's that!  :)
-
-Enjoy!
-
 
 ###### Demo
 
