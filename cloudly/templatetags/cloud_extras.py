@@ -63,7 +63,9 @@ def get_notification_age(value):
 
 @register.filter
 def get_historical_events(server_uuid):
+    
     return "XXX working on this currently"
+
 
 @register.filter(name='manual_notifs_count_unfortunately')
 def manual_notifs_count_unfortunately(notifs):
