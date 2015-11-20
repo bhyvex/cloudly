@@ -92,15 +92,18 @@
 
 
                     {% if offline_servers %}
-                        <div class="priority medium">
+
+                        <hr/>
+
+                        <div class="priority offline">
                             <span>OFFLINE SERVERS</span>
                         </div>
-                        <div class="task medium last">
+                        <div class="task offline last">
                             <div class="desc">
                                 <div class="title">
                                     {% for server in offline_servers %}
                                         <a href="/server/{{server|dict_get:"uuid"|replace_dots}}"
-                                            class="btn-xs btn-warning">
+                                            class="btn-xs btn-grey">
                                             {{server|dict_get:"name"}}
                                         </a>&nbsp;
                                     {% endfor %}
@@ -110,6 +113,8 @@
                     {% endif %}
                     <div class="clearfix"></div>
                 {% endif %}
+
+
 
 			      </div>
         </div><!--/col-->
