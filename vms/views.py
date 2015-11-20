@@ -392,9 +392,6 @@ def ajax_servers_incidents(request):
     response = response.replace("'",'"')
     response = response.replace('u"','"')
 
-    print 100 * 'INCIDEN____'
-    print response
-
     return HttpResponse(
         response,
         content_type="application/json"
