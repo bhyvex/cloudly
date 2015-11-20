@@ -28,7 +28,11 @@
       					</div>
       				</div>
       				<div class="panel-body">
-                <p>hello world<br/></p>
+                <p>
+                  {{server|dict_get:"name"}} {{server|dict_get:"tags"}}
+                  <hr/>
+                  {{server|dict_get:"uuid"|get_historical_events}}
+                </p>
       				</div>
       			</div>
           </div>
