@@ -51,7 +51,9 @@
                 <p>
                   {{server|dict_get:"name"}} {{server|dict_get:"tags"}}
                   <hr/>
-                  {{server|dict_get:"uuid"|get_historical_events}}
+                  {% for event in server|dict_get:"uuid"|get_historical_events %}
+                  {{event}}
+                  {% endfor %}
                 </p>
       				</div>
       			</div>

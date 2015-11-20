@@ -620,16 +620,42 @@
     </div><!--/row-->
 
 
-    <div id="fixed_problems"
+    <div id="current_problems"
         class="row"
         {% if server_status|lower = "offline" %}
             style="display: none;"
         {% endif %}
         >
         <div class="col-xs-12">
-            <div id="fixedProblems" class="panel panel-default">
+            <div id="currentProblems" class="panel panel-default">
                 <div class="panel-heading">
-                    <h2><i class="fa fa-fire-extinguisher"></i>Problems Encountered</h2>
+                    <h2><i class="fa fa-bug"></i>Current Issues</h2>
+                    <div class="panel-actions">
+                        <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+                        <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                        <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                XXX
+                </div>
+
+            </div>
+        </div>
+    </div><!--/row-->
+
+
+    <div id="recent_problems"
+        class="row"
+        {% if server_status|lower = "offline" %}
+            style="display: none;"
+        {% endif %}
+        >
+        <div class="col-xs-12">
+            <div id="recentProblems" class="panel panel-default">
+                <div class="panel-heading">
+                    <h2><i class="fa fa-fire-extinguisher"></i>Recent Problems</h2>
                     <div class="panel-actions">
                         <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
                         <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
@@ -664,31 +690,6 @@
         </div>
     </div><!--/row-->
 
-
-    <div id="current_problems"
-        class="row"
-        {% if server_status|lower = "offline" %}
-            style="display: none;"
-        {% endif %}
-        >
-        <div class="col-xs-12">
-            <div id="currentProblems" class="panel panel-default">
-                <div class="panel-heading">
-                    <h2><i class="fa fa-bug"></i>Current Issues</h2>
-                    <div class="panel-actions">
-                        <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-                        <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-                        <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-                    </div>
-                </div>
-
-                <div class="panel-body">
-                XXX
-                </div>
-
-            </div>
-        </div>
-    </div><!--/row-->
 
 
     {% comment %}
