@@ -96,12 +96,14 @@ def logs(request):
     user.last_login = datetime.datetime.now()
     user.save()
 
+    servers = mongo.servers.find_one({'secret':secret,})
 
     return render_to_response(
         'logs.html',
         {
             'request':request,
             'secret':profile.secret,
+            'servers':servers,
         },
         context_instance=RequestContext(request),
     )

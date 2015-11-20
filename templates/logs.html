@@ -16,22 +16,29 @@
 	<div class="row">
 
 
-		<div class="col-xs-12">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h2><i class="fa fa-server"></i>XXX</h2>
-					<div class="panel-actions">
-						<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-					</div>
-				</div>
+    {% for server in servers %}
+      		<div class="col-xs-12">
+      			<div class="panel panel-default">
+      				<div class="panel-heading">
+      					<h2><i class="fa fa-server"></i>{{server|dict_get:"name"}}</h2>
+      					<div class="panel-actions">
+      						<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+      						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+      						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+      					</div>
+      				</div>
 
-				<div class="panel-body">
-          <p>hello world<br/>XXX icon</p>
-				</div>
-			</div>
-		</div><!--/container-->
+      				<div class="panel-body">
+                <p>hello world<br/></p>
+      				</div>
+      			</div>
+      		</div><!--/container-->
+    {% endfor %}
+
+
+    {% if not servers %}
+    <p>There are no system logs as yet. Please add some servers first..</p>
+    {% endif %}
 
 
 	</div><!--/row-->
