@@ -98,6 +98,8 @@ mysql> ALTER DATABASE cloudly charset=utf8;
 mysql> ALTER TABLE userprofile_profile CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
 </pre>
 
+* please note that the MySQL is used only to store users' profiles and/or users' sessions.
+
 ###### Run the MongoDB
 
 <pre>
