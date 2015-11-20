@@ -62,9 +62,14 @@ def get_notification_age(value):
 
 
 @register.filter
-def get_historical_events(server_uuid):
-    
-    return "XXX working on this currently"
+def get_historical_events(server_id):
+
+    historical_service_statuses = mongo.historical_service_statuses
+    historical_service_statuses = historical_service_statuses.find({'server_id':server_id,})
+    historical_service_statuses = historical_service_statuses.sort("_id",pymongo.DESCENDING)
+    historical_service_statuses = historical_service_statuses.limit(20)
+
+    return historical_service_statuses
 
 
 @register.filter(name='manual_notifs_count_unfortunately')
