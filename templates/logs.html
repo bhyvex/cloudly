@@ -27,23 +27,20 @@
       						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
       					</div>
       				</div>
-
       				<div class="panel-body">
                 <p>hello world<br/></p>
       				</div>
       			</div>
-      		</div><!--/container-->
+          </div>
     {% endfor %}
 
 
     {% if not servers %}
-    <p>There are no system logs. Please add some servers first..</p>
+    <p>There are no system logs. Please add some servers first.</p>
     {% endif %}
 
-
-	</div><!--/row-->
-</div><!--/col-->
-</div>
+  </div><!--/col-->
+  
 {% endblock page_content %}
 
 {% block extra_js %}
