@@ -53,9 +53,9 @@ def activity():
 
     activity_log = {
         'secret': data['secret'],
-        'uuid': data['uuid'],
-        'agent_version': data['agent_version'],
-        'activity': data['activity'],
+        'server_id': data['uuid'],
+        'activity_type': data['activity_type'],
+        'data': data['data'],
         'date_created': datetime.datetime.now(),
     }
     activity_ = mongo.activity
