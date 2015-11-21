@@ -63,7 +63,8 @@
       				</div>
       				<div class="panel-body">
                 <p>
-                  {{server|dict_get:"name"}} {{server|dict_get:"tags"}}
+                  {{server|dict_get:"name"}}
+                  {% if server|dict_get:"tags" %} {{server|dict_get:"tags"}} {% endif %}
                   <hr/>
                   <table style="width:100%">
                     <tr>
