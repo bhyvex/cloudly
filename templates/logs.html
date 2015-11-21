@@ -28,7 +28,9 @@
         </div>
         <div class="panel-body">
           <p>
-            XXX
+            {% for activity in activities %}
+              {{activity}}<br/>
+            {% endfor %}
           </p>
         </div>
       </div>

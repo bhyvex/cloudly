@@ -97,7 +97,7 @@ def logs(request):
     user.save()
 
     servers = mongo.servers.find({'secret':secret,})
-    activities = mongo.activity.find({'secret':secret,})
+    activities = mongo.activity.find({'secret':secret,}).sort("_id",pymongo.DESCENDING)
 
     return render_to_response(
         'logs.html',
