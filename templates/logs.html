@@ -68,6 +68,7 @@
                   <table style="width:100%">
                     <tr>
                       <th>date</th>
+                      <th>time ago</th>
                       <th>status</th>
                       <th>service</th>
                       <th>message</th>
@@ -76,6 +77,7 @@
                   {% for event in server|dict_get:"uuid"|get_historical_events %}
                           <tr>
                             <td>{{event|dict_get:"date"}}</td>
+                            <td>xxx</td>
                             <td>{{event|dict_get:"detailed_service_status"|dict_get:"status"}}</td>
                             <td>{{event|dict_get:"service"}}</td>
                             <td>{{event|dict_get:"detailed_service_status"|dict_get:"message"}}</td>
