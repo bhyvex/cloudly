@@ -332,7 +332,7 @@ def server_view(request, hwaddr):
         server['tags']['datacenters'] = []
 
         if(server['cpu_virtualization']):
-            server['tags']['datacenters'].append(['Metal','Physical HW'])
+            server['tags']['datacenters'].append(['Metal','Physical Office HW'])
         else:
             pass
 
