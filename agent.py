@@ -842,8 +842,6 @@ def main():
 
         if(api_response=="update" and AGENT_ALLOWED_TO_SELF_UPDATE):
 
-            self_update(SECRET)
-
             api_call = "/v10/activity/"
             activity = {
                 'secret': SECRET,
@@ -855,6 +853,7 @@ def main():
                     }
                 }
             send_data(SECRET,api_call,activity)
+            self_update(SECRET)
 
 
         time.sleep(REFRESH_INTERVAL)
