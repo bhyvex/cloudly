@@ -28,8 +28,27 @@
         </div>
         <div class="panel-body">
           <p>
+
+
+            <table style="width:100%">
+              <tr>
+                <th>date</th>
+                <th>x</th>
+                <th>y</th>
+                <th>z</th>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+              </tr>
+            </table>
+
+
+
             {% for activity in activities %}
-              {{activity}}<br/>
+              {{activity|safe}}<br/>
             {% endfor %}
           </p>
         </div>
