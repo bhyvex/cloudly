@@ -847,10 +847,13 @@ def main():
             api_call = "/v10/activity/"
             activity = {
                 'secret': SECRET,
-                'agent_version': AGENT_VERSION,
-                'uuid': UUID,
-                'activity': "Agent self-updated to version "+AGENT_VERSION+"."
-            }
+                'server_id': UUID,
+                'activity_type': "AGENT_UPDATED",
+                'data': {
+                    "agent_version": AGENT_VERSION,
+                    "message": "Agent self-updated to version "+AGENT_VERSION+".",
+                    }
+                }
             send_data(SECRET,api_call,activity)
 
 
