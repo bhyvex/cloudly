@@ -40,7 +40,7 @@
                     <td>{{activity|dict_get:"date_created"}}</td>
                     <td>{{activity|dict_get:"activity_type"}}</td>
                     <td>{{activity|dict_get:"server_id"}}</td>
-                    <td>{{activity|dict_get:"data"}}</td>
+                    <td>{{activity|dict_get:"data"|truncatechars:133}}</td>
                   </tr>
                 {% endfor %}
             </table>
