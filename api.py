@@ -53,7 +53,7 @@ def activity():
 
     activity_log = {
         'secret': data['secret'],
-        'server_id': data['uuid'],
+        'server_id': data['server_id'],
         'activity_type': data['activity_type'],
         'data': data['data'],
         'date_created': datetime.datetime.now(),
