@@ -33,23 +33,20 @@
             <table style="width:100%">
               <tr>
                 <th>date</th>
-                <th>x</th>
-                <th>y</th>
-                <th>z</th>
+                <th>activity_type</th>
+                <th>server</th>
+                <th>data</th>
               </tr>
-              <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-              </tr>
+                {% for activity in activities %}
+                  <tr>
+                    <td>{{activity|dict_get:"date_created"}}</td>
+                    <td>{{activity|dict_get:"activity_type"}}</td>
+                    <td>{{activity|dict_get:"server_id"}}</td>
+                    <td>{{activity|dict_get:"data"}}</td>
+                  </tr>
+                {% endfor %}
             </table>
 
-
-
-            {% for activity in activities %}
-              {{activity|safe}}<br/>
-            {% endfor %}
           </p>
         </div>
       </div>
