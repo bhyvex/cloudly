@@ -63,12 +63,22 @@
       				</div>
       				<div class="panel-body">
                 <p>
-                  {{server|dict_get:"name"}}
                   {% if server|dict_get:"tags" %}
+                  {% if element|dict_get:"tags" != None  and element|dict_get:"datacenters" != None %}
                       <br/>
-                      {{server|dict_get:"tags"}}
+                      {% for element in server|dict_get:"tags" %}
+                          {% if element|dict_get:"tags" %}
+                            [{{element|dict_get:"tags"}}]<br/>
+                          {% endif %}
+                          {% if element|dict_get:"datacenters" %}
+                            datacenters: {{element|dict_get:"datacenters"}}<br/>
+                          {% endif %}
+                        {% endfor %}
+                      <hr/>
                   {% endif %}
-                  <hr/>
+                  {% endif %}
+
+
                   <table style="width:100%">
                     <tr>
                       <th>status</th>
