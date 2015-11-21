@@ -97,7 +97,10 @@ def logs(request):
     user.save()
 
     servers = mongo.servers.find({'secret':secret,})
+    # XXX limit activities to 30 on the logs view
     activities = mongo.activity.find({'secret':secret,}).sort("_id",pymongo.DESCENDING)
+
+    # XXX limit servers incidents list to 20 on the template tags
 
     return render_to_response(
         'logs.html',
