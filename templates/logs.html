@@ -72,7 +72,7 @@
                       <th>status</th>
                       <th>service</th>
                       <th>message</th>
-                      <th>{{values||truncatechars:125}}</th>
+                      <th>{{values|truncatechars:125}}</th>
                     </tr>
                   {% for event in server|dict_get:"uuid"|get_historical_events %}
                           <tr>
