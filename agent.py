@@ -825,10 +825,13 @@ def main():
     api_call = "/v10/activity/"
     activity = {
         'secret': SECRET,
-        'agent_version': AGENT_VERSION,
-        'uuid': UUID,
-        'activity': "Agent v"+AGENT_VERSION+" started."
-    }
+        'server_id': UUID,
+        'activity_type': "AGENT_STARTED",
+        'data': {
+            "agent_version": AGENT_VERSION,
+            "message": "Agent v"+AGENT_VERSION+" started.",
+            }
+        }
     send_data(SECRET,api_call,activity)
 
     while True:
