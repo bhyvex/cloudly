@@ -155,8 +155,6 @@ Screenshots & Live Demo
 
 ![alt screen0](https://raw.githubusercontent.com/jparicka/cloudly/master/static/screenshots/screenshot0.png)
 
-![alt screen1](https://raw.githubusercontent.com/jparicka/cloudly/master/static/screenshots/screenshot1.png)
-
 ###### Demo
 
 Project can be currently seen on https://projectcloudly.org/demo
