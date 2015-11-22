@@ -3,6 +3,9 @@ Cloudly
 
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/da6052b0ab774f03ac5fe999bea91da5)](https://www.codacy.com/app/koon/cloudly)
 
+* amount of [Gratipay](http://gratipay.com) donations per week: `tips | $2/week`
+
+
 Project Cloudly is "The Easiest To Setup" software to Monitor and to control your servers.  It's a first line of defence for your servers and also the ultimate Management Dashboard for your Cloud.
 It saves you money and the energies by taking away most of the usual servers monitoring complexities allowing you to focus more on control and better use of your infrastructure.
 
