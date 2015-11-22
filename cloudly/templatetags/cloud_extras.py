@@ -72,7 +72,8 @@ def get_historical_events(server_id):
     return historical_service_statuses
 
 @register.filter
-def get_server_status
+def get_server_status(server):
+
     return "XXX working on this currently"
 
 
