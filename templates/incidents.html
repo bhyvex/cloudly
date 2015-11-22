@@ -53,10 +53,10 @@
                                                     btn-danger
                                                 {% endif %}
                                             ">
-                                                {{notif|dict_get:"name"}}
+                                            {{notif|dict_get:"service"|replace_underscope}}
                                             </a>&nbsp;
                                             <small>
-                                              {{notif|dict_get:"service"|replace_underscope}}
+                                              {{notif|dict_get:"name"}}
                                             </small>
                                         </div>
                                         <div>
