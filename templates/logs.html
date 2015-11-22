@@ -56,9 +56,9 @@
       				<div class="panel-heading">
       					<h2>
                   <i class="fa fa-server"></i>
+                  ({{server|dict_get:"uuid"|get_server_status}})
                   {{server|dict_get:"name"}}
                   <a href="#">{{server|dict_get:"uuid"}}</a>
-                  XXX check for server status (online/stopped/offline)
                 </h2>
       					<div class="panel-actions">
       						<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>

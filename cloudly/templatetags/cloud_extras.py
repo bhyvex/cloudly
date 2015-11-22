@@ -47,7 +47,7 @@ def dict_get(h, key):
 	return None
 
 
-@register.filter
+@register.filter(name='get_notification_age')
 def get_notification_age(value):
 
     now = datetime.datetime.now()
@@ -61,7 +61,7 @@ def get_notification_age(value):
     return '%(time)s ago' % {'time': timesince(value).split(', ')[0]}
 
 
-@register.filter
+@register.filter(name="get_historical_events")
 def get_historical_events(server_id):
 
     historical_service_statuses = mongo.historical_service_statuses
@@ -71,7 +71,7 @@ def get_historical_events(server_id):
 
     return historical_service_statuses
 
-@register.filter
+@register.filter(name="get_server_status")
 def get_server_status(server):
 
     if((datetime.datetime.now()-server['last_seen']).total_seconds()>300):
