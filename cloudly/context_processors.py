@@ -58,8 +58,12 @@ def incidents_notifs(request):
 
             active_notifs[notifs_type].append(new_notif)
 
-    if not notifs_counter:
-         notifs_counter = offline_servers_count
+
+    notifs_counter = notifs_counter - offline_servers_count
+
+    if(not notifs_counter):
+        notifs_counter = offline_servers_count
+
 
     return {
         'notifs_counter':notifs_counter,
