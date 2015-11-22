@@ -58,6 +58,7 @@
                   <i class="fa fa-server"></i>
                   <a href="#">{{server|dict_get:"uuid"}}</a>
                   {{server|dict_get:"name"}}
+                  XXX check for server status (online/stopped/offline)
                 </h2>
       					<div class="panel-actions">
       						<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
@@ -68,8 +69,6 @@
       				<div class="panel-body">
                 <p>
                   {{server|dict_get:"tags"}}
-                  <br/>
-                  XXX check for server status (online/stopped/offline)
                   <hr/>
                   <table style="width:100%">
                     <tr>
