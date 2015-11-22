@@ -68,13 +68,13 @@
       				</div>
       				<div class="panel-body">
                 <p>
+                  XXX offline_since<br/>
                   {{server|dict_get:"tags"}}
                   <hr/>
                   <table style="width:100%">
                     <tr>
                       <th>status</th>
                       <th>time since</th>
-                      <th>offline since</th>
                       <th>date</th>
                       <th>service</th>
                       <th>message</th>
@@ -84,7 +84,6 @@
                           <tr>
                             <td>{{event|dict_get:"detailed_service_status"|dict_get:"status"}}</td>
                             <td>{{event|dict_get:"date"|timesince}} ago</td>
-                            <td>xxx</td>
                             <td>{{event|dict_get:"date"}}</td>
                             <td>{{event|dict_get:"service"}}</td>
                             <td>{{event|dict_get:"detailed_service_status"|dict_get:"message"}}</td>
