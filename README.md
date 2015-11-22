@@ -58,25 +58,20 @@ $ mongoimport --db cloudly --collection services_tags services_tags.json
 
 ..and configure your server to meet your specific requirements.
 
-###### Install MySQL server and Python MySQLdb
+###### Install MySQL server and Create the ORM database and tables
 
 <pre>
 $ apt-get install mysql-server python-mysqldb
-</pre>
-
-Optionally configure your MySQL server to meet your specific requirements.
-
-As for the user/password, this one needs to match the entries in the cloudly/cloudly/settings.py file.
-
-###### Create the ORM database and tables
-
-<pre>
 $ sudo pip install pymysql
 $ mysql -u root -p
 mysql> create database cloudly;
 mysql> exit;
 $ python manage.py syncdb
 </pre>
+
+Optionally configure your MySQL server to meet your specific requirements.
+
+As for the user/password, this one needs to match the entries in the cloudly/cloudly/settings.py file.
 
 If you get an error saying "Access denied for user 'root'@'localhost" then you'd need to edit the cloudly/settings.py and setup the DB section accordingly to your present DB settings.
 
