@@ -74,7 +74,13 @@ def get_historical_events(server_id):
 @register.filter
 def get_server_status(server):
 
-    return "XXX working on this currently"
+    if((datetime.datetime.now()-server['last_seen']).total_seconds()>300):
+        return "offline"
+
+    if((datetime.datetime.now()-server['last_seen']).total_seconds()>20):
+        return "stopped"
+
+    return "online"
 
 
 @register.filter(name='manual_notifs_count_unfortunately')
