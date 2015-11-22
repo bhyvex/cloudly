@@ -30,16 +30,16 @@
           <p>
             <table style="width:100%">
               <tr>
+                <th>server</th>
                 <th>acivity</th>
                 <th>date</th>
-                <th>server</th>
                 <th>data</th>
               </tr>
                 {% for activity in activities %}
                   <tr>
+                    <td>{{activity|dict_get:"server_id"}}</td>
                     <td>{{activity|dict_get:"activity_type"}}</td>
                     <td>{{activity|dict_get:"date_created"}}</td>
-                    <td>{{activity|dict_get:"server_id"}}</td>
                     <td>{{activity|dict_get:"data"|truncatechars:83}}</td>
                   </tr>
                 {% endfor %}
