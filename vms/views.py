@@ -471,7 +471,7 @@ def ajax_vms_refresh(request):
 
             if((datetime.datetime.now()-server['last_seen']).total_seconds()>20):
                 instance_metrics['instance']['state']['state'] = "Stopped"
-                if((datetime.datetime.now()-server['last_seen']).total_seconds()>1800):
+                if((datetime.datetime.now()-server['last_seen']).total_seconds()>300):
                     instance_metrics['instance']['state']['state'] = "Offline"
             else:
                 instance_metrics['instance']['state']['state'] = "Running"
