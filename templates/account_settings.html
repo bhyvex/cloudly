@@ -39,26 +39,28 @@
 						Password: <a href="/account/password">change password</a>
 						{% endif %}
                         <hr/>
-						Twitter: 
+						Twitter:
 						{% if not profile.twitter %}
                         <a href="#">n/a</a>
 						{% else %}
 						{{profile.twitter}}
 						{% endif %}
 						<br/>
-						
-						Mobile: 
+
+						Mobile:
 						{% if not profile.mobile %}
 						<a href="#">n/a</a>
 						{% else %}
 						{{profile.mobile}}
 						{% endif %}
 						<br/>
-						
+
 						<hr/>
 						Email notifications: Off<br/>
+            SMS notifications: Off<br/>
 						Twitter notifications: Off<br/>
 						Mobile notifications: Off<br/>
+            Frantic Phone Calls: Off<br/>
 					</p>
 
 				</div>
