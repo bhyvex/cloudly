@@ -34,7 +34,7 @@ def incidents_notifs(request):
 
     for server in servers:
         servers_names[server['uuid']] = server['name']
-        if((datetime.datetime.now()-server['last_seen']).total_seconds()>1800):
+        if((datetime.datetime.now()-server['last_seen']).total_seconds()>300):
             offline_servers.append(server)
             offline_servers_count += 1
 
