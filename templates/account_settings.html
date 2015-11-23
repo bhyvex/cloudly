@@ -28,8 +28,6 @@
 				</div>
 
 				<div class="panel-body">
-
-
 					<p>
 						Name: {{profile.name}}<br/>
 						E-mail: {{user.email}}<br/>
@@ -53,9 +51,8 @@
 						{% else %}
 						{{profile.mobile}}
 						{% endif %}
-						<br/>
-
 						<hr/>
+
 						Email notifications: Off<br/>
             SMS notifications: Off<br/>
 						Twitter notifications: Off<br/>
@@ -69,6 +66,7 @@
 
 
 		<div class="col-xs-12">
+
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h2><i class="fa fa-exclamation-triangle"></i>Monitoring and Alerting Settings</h2>
@@ -80,10 +78,8 @@
 				</div>
 
 				<div class="panel-body">
-
-
 					<p>
-                        Active Checks: Enabled<br/>
+            Active Checks: Enabled<br/>
 						Passive Checks: Enabled<br/>
 						Standard Deviation: Enabled<br/>
 						Heuristic Analysis: Enabled<br/>
@@ -93,15 +89,13 @@
             - Obsessive Alerting: Off<br/>
             - Phone Call Alerts: Off<br/>
             - Frantic Phone Calls: Off<br/>
-            <hr/>
-            Submissive Alertor: On<br/>
-            
 					</p>
-
 				</div>
+
 			</div>
 		</div><!--/container-->
-	</div><!--/row-->
+
+  </div><!--/row-->
 </div><!--/col-->
 </div>
 {% endblock page_content %}
