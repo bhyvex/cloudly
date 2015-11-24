@@ -3,6 +3,7 @@
 import os
 import time
 import logging
+import random
 import string
 import requests
 import unicodedata
@@ -773,6 +774,8 @@ def ajax_virtual_machines(request):
 
     ajax_vms_response = ajax_vms_response.replace(",}","}")
     if(not vm_cache): ajax_vms_response = {}
+
+    print '-'*random.randint(5,40)
 
     return render_to_response('ajax_virtual_machines.html', {'user':user,'ajax_vms_response':ajax_vms_response,'vms_cached_response':vm_cache,}, context_instance=RequestContext(request))
 
