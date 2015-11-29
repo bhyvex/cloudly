@@ -53,9 +53,9 @@ def activity():
 
     activity_log = {
         'secret': data['secret'],
-        'uuid': data['uuid'],
-        'agent_version': data['agent_version'],
-        'activity': data['activity'],
+        'server_id': data['server_id'],
+        'activity_type': data['activity_type'],
+        'data': data['data'],
         'date_created': datetime.datetime.now(),
     }
     activity_ = mongo.activity
@@ -383,8 +383,10 @@ def ping():
         }
 
         if(not last_active_service_status):
+
             new_active_report['date'] = datetime.datetime.now()
             active_service_statuses.insert(new_active_report)
+
         else:
             if (not 'date' in last_active_service_status):
                 new_active_report['date'] = datetime.datetime.now()
@@ -412,20 +414,15 @@ def ping():
 
                 active_service_statuses.update({'server_id':uuid,'service':service}, new_active_report)
 
-                # XXX update notification metadata as per github issue #530
-
-                # XXX fire up alertor_queue
-
+                new_active_report['date'] = datetime.datetime.now()
+                new_active_report['agent_version'] = agent_version
+                historical_service_statuses.insert(new_active_report)
+                alertor_queue.insert(new_active_report)
 
             else:
                 print 'waiting for the threshold to be reached....'
 
-
-
-        # Historical Service Statuses
-        # XXX
-
-        print '*'*170
+        print '*'*100
 
 
     if(agent_version != AGENT_VERSION_CURRENT):
@@ -433,7 +430,7 @@ def ping():
         return ("update", 201)
 
 
-    print '-'*170
+    print '- all done','-'*100
 
     return ("thanks", 201)
 
@@ -445,9 +442,3 @@ if __name__ == '__main__':
         host = "0.0.0.0",
         port = 5001
     )
-
-
-
-
-
-

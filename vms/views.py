@@ -3,6 +3,7 @@
 import os
 import time
 import logging
+import random
 import string
 import requests
 import unicodedata
@@ -281,6 +282,11 @@ def server_view(request, hwaddr):
         if(disk[:4]!="/run" and disk[:5]!="/boot" and disk[:4]!="/sys" and disk[:4]!="/dev"):
             reduced_disks.append(disk)
 
+    historical_service_statuses = mongo.historical_service_statuses
+    historical_service_statuses = historical_service_statuses.find({'secret':profile.secret,'server_id':server['uuid']})
+    historical_service_statuses = historical_service_statuses.sort("_id",pymongo.DESCENDING)
+    historical_service_statuses = historical_service_statuses.limit(20)
+
     try:
         recently_clicked_servers = request.session["recently_clicked_servers"]
     except:
@@ -327,7 +333,7 @@ def server_view(request, hwaddr):
         server['tags']['datacenters'] = []
 
         if(server['cpu_virtualization']):
-            server['tags']['datacenters'].append(['Metal','Physical HW'])
+            server['tags']['datacenters'].append(['Metal','Physical Office HW'])
         else:
             pass
 
@@ -349,6 +355,7 @@ def server_view(request, hwaddr):
             'mem_usage':mem_usage,
             'loadavg':loadavg,
             'networking':networking,
+            'historical_service_statuses':historical_service_statuses,
             'activity':activity,
         },
         context_instance=RequestContext(request))
@@ -385,9 +392,6 @@ def ajax_servers_incidents(request):
     response = str(response)
     response = response.replace("'",'"')
     response = response.replace('u"','"')
-
-    print 100 * 'INCIDEN____'
-    print response
 
     return HttpResponse(
         response,
@@ -468,7 +472,7 @@ def ajax_vms_refresh(request):
 
             if((datetime.datetime.now()-server['last_seen']).total_seconds()>20):
                 instance_metrics['instance']['state']['state'] = "Stopped"
-                if((datetime.datetime.now()-server['last_seen']).total_seconds()>1800):
+                if((datetime.datetime.now()-server['last_seen']).total_seconds()>300):
                     instance_metrics['instance']['state']['state'] = "Offline"
             else:
                 instance_metrics['instance']['state']['state'] = "Running"
@@ -770,6 +774,8 @@ def ajax_virtual_machines(request):
 
     ajax_vms_response = ajax_vms_response.replace(",}","}")
     if(not vm_cache): ajax_vms_response = {}
+
+    print '-'*random.randint(5,40)
 
     return render_to_response('ajax_virtual_machines.html', {'user':user,'ajax_vms_response':ajax_vms_response,'vms_cached_response':vm_cache,}, context_instance=RequestContext(request))
 

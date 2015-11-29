@@ -47,7 +47,7 @@ def dict_get(h, key):
 	return None
 
 
-@register.filter
+@register.filter(name='get_notification_age')
 def get_notification_age(value):
 
     now = datetime.datetime.now()
@@ -60,6 +60,27 @@ def get_notification_age(value):
         return 'just now'
     return '%(time)s ago' % {'time': timesince(value).split(', ')[0]}
 
+
+@register.filter(name="get_historical_events")
+def get_historical_events(server_id):
+
+    historical_service_statuses = mongo.historical_service_statuses
+    historical_service_statuses = historical_service_statuses.find({'server_id':server_id,})
+    historical_service_statuses = historical_service_statuses.sort("_id",pymongo.DESCENDING)
+    historical_service_statuses = historical_service_statuses.limit(20)
+
+    return historical_service_statuses
+
+@register.filter(name="get_server_status")
+def get_server_status(server):
+
+    if((datetime.datetime.now()-server['last_seen']).total_seconds()>300):
+        return "offline"
+
+    if((datetime.datetime.now()-server['last_seen']).total_seconds()>20):
+        return "stopped"
+
+    return "online"
 
 
 @register.filter(name='manual_notifs_count_unfortunately')

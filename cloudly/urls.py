@@ -15,10 +15,10 @@ urlpatterns = patterns('',
     url(r'^logout/$', 'userprofile.views.user_logout', name='logout'),
     url(r'^account/settings/$', 'userprofile.views.account_settings', name='account_settings'),
     url(r'^account/password/$', 'userprofile.views.change_password', name='change_password'),
-    url(r'^cloud/settings/$', 'userprofile.views.cloud_settings', name='cloud_settings'),
-    url(r'^cloud/settings/reset/$', 'userprofile.views.reset_cloud_settings', name='reset_cloud_settings'),
-    url(r'^cloud/settings/regions/update/$', 'userprofile.views.cloud_settings_update_regions', name='cloud_settings_update_regions'),
-    url(r'^cloud/settings/credentials/update/$', 'userprofile.views.cloud_settings_update_credentials', name='cloud_settings_update_credentials'),
+    #url(r'^cloud/settings/$', 'userprofile.views.cloud_settings', name='cloud_settings'),
+    #url(r'^cloud/settings/reset/$', 'userprofile.views.reset_cloud_settings', name='reset_cloud_settings'),
+    #url(r'^cloud/settings/regions/update/$', 'userprofile.views.cloud_settings_update_regions', name='cloud_settings_update_regions'),
+    #url(r'^cloud/settings/credentials/update/$', 'userprofile.views.cloud_settings_update_credentials', name='cloud_settings_update_credentials'),
     url(r'^demo/$', 'userprofile.views.login_as_demo_user', name='demo'),
     url(r'^goodbye/$', 'userprofile.views.goodbye', name='goodbye'),
 
@@ -39,6 +39,9 @@ urlpatterns = patterns('',
     # servers incidents
     url(r'^incidents/$', 'incidents.views.incidents', name='incidents'),
 
+    # servers logs
+    url(r'^logs/$', 'incidents.views.logs', name='logs'),
+
     # ajax
     url(r'^ajax/session/update/$', 'vms.views.update_session', name='update_session'),
     url(r'^ajax/cloud/vms/$', 'vms.views.ajax_virtual_machines', name='ajax_virtual_machines'),
@@ -51,9 +54,6 @@ urlpatterns = patterns('',
 
     # specials
     url(r'^specials/clean/server/tabs/(?P<return_path>.*)/$', 'vms.views.close_server_tabs', name='close_server_tabs'),
-
-    # devel stuff
-    url(r'^devel/$', 'admin.views.devel', name='devel'),
 )
 
 

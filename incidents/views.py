@@ -40,14 +40,14 @@ mongo = client.cloudly
 @login_required()
 def incidents(request):
 
-    print '-- system logs:', request.user
+    print '-- incidents:', request.user
 
     user = request.user
     profile = Profile.objects.get(user=request.user)
     secret = profile.secret
 
     ip = request.META['REMOTE_ADDR']
-    _log_user_activity(profile,"click","/logs/","logs",ip=ip)
+    _log_user_activity(profile,"click","/incidents/","incidents",ip=ip)
 
     user = request.user
     user.last_login = datetime.datetime.now()
@@ -76,6 +76,39 @@ def incidents(request):
             'request':request,
             'secret':profile.secret,
             'active_notifs':active_notifs
+        },
+        context_instance=RequestContext(request),
+    )
+
+@login_required
+def logs(request):
+
+    print '-- system logs:', request.user
+
+    user = request.user
+    profile = Profile.objects.get(user=request.user)
+    secret = profile.secret
+
+    ip = request.META['REMOTE_ADDR']
+    _log_user_activity(profile,"click","/logs/","logs",ip=ip)
+
+    user = request.user
+    user.last_login = datetime.datetime.now()
+    user.save()
+
+    servers = mongo.servers.find({'secret':secret,})
+    activities = mongo.activity.find({'secret':secret,}).sort("_id",pymongo.DESCENDING)
+    activities = activities.limit(100)
+
+    # XXX limit servers incidents list to 20 on the template tags
+
+    return render_to_response(
+        'logs.html',
+        {
+            'request':request,
+            'secret':profile.secret,
+            'servers':servers,
+            'activities':activities,
         },
         context_instance=RequestContext(request),
     )

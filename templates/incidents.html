@@ -53,19 +53,27 @@
                                                     btn-danger
                                                 {% endif %}
                                             ">
-                                                {{notif|dict_get:"name"}}
-                                            </a>&nbsp;
                                             {{notif|dict_get:"service"|replace_underscope}}
+                                            </a>&nbsp;
+                                            <small>
+                                              <font color="black">	
+                                              {{notif|dict_get:"name"}}
+                                              </font>
+                                            </small>
                                         </div>
                                         <div>
-                                            {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}:<br />
-                                            {% for value in notif|dict_get:"detailed_service_status"|dict_get:"values" %}
-                                                <strong>{{value|replace_underscope}}:&nbsp;</strong>
-                                                {{notif|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:value}}&nbsp;{{notif|dict_get:"service"|get_service_unity}}
-                                                {% if not forloop.last %}
-                                                    <br />
-                                                {% endif %}
-                                            {% endfor %}
+                                            <strong>{{notif|dict_get:"detailed_service_status"|dict_get:"message"}}:</strong>
+                                            <br />
+                                                    {% comment %}
+                                                        {% for value in notif|dict_get:"detailed_service_status"|dict_get:"values" %}
+                                                            <strong>{{value|replace_underscope}}:&nbsp;</strong>
+                                                            {{notif|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:value}}&nbsp;{{notif|dict_get:"service"|get_service_unity}}
+                                                            {% if not forloop.last %}
+                                                                <br />
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                      {% endcomment %}
+                                              {{notif|dict_get:"detailed_service_status"}}
                                         </div>
                                     </div>
                                     <div class="time">
@@ -75,7 +83,7 @@
                                             </small>
                                         </div>
                                         <div>
-                                            alert duration {{notif|dict_get:"date"|timesince}}
+                                            Alert duration: {{notif|dict_get:"date"|timesince}}
                                         </div>
                                     </div>
                                 </div>
@@ -83,16 +91,21 @@
                         {% endif %}
                         <div class="clearfix"></div>
                     {% endfor %}
+
+
                     {% if offline_servers %}
-                        <div class="priority medium">
+
+                        <hr/>
+
+                        <div class="priority offline">
                             <span>OFFLINE SERVERS</span>
                         </div>
-                        <div class="task medium last">
+                        <div class="task offline last">
                             <div class="desc">
                                 <div class="title">
                                     {% for server in offline_servers %}
                                         <a href="/server/{{server|dict_get:"uuid"|replace_dots}}"
-                                            class="btn-xs btn-warning">
+                                            class="btn-xs btn-grey">
                                             {{server|dict_get:"name"}}
                                         </a>&nbsp;
                                     {% endfor %}
@@ -102,12 +115,15 @@
                     {% endif %}
                     <div class="clearfix"></div>
                 {% endif %}
-			</div>
+
+
+
+			      </div>
         </div><!--/col-->
 
         <div class="col-sm-5">
             <div class="graph">
-                <h1>Server Events</h1>
+                <h1>XXX server|title Events</h1>
 
                 <div class="timeline">
 

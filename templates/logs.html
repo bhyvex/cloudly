@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% load cloud_extras %}
+
+{% block title %}Cloudly | System Logs{% endblock %}
+
+{% block nav-bar %}
+    {% include "partials/nav-bar-classic.html" %}
+{% endblock %}
+
+{% block page_content %}
+	<ol class="breadcrumb">
+	  	<li class="active">System Logs</li>
+	</ol>
+
+	<div class="row">
+
+
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2><i class="fa fa-send-o"></i>Cloudly (Activities) Report</h2>
+          <div class="panel-actions">
+            <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+            <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+            <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+          </div>
+        </div>
+        <div class="panel-body">
+          <p>
+            <table style="width:100%">
+              <tr>
+                <th>acivity</th>
+                <th>date</th>
+                <th>server</th>
+                <th>data</th>
+              </tr>
+                {% for activity in activities %}
+                  <tr>
+                    <td>{{activity|dict_get:"activity_type"}}</td>
+                    <td>{{activity|dict_get:"date_created"}}</td>
+                    <td>{{activity|dict_get:"server_id"}}</td>
+                    <td>{{activity|dict_get:"data"|truncatechars:83}}</td>
+                  </tr>
+                {% endfor %}
+            </table>
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    {% for server in servers %}
+      		<div class="col-xs-12">
+      			<div class="panel panel-default">
+      				<div class="panel-heading">
+      					<h2>
+                  <i class="fa fa-server"></i>
+                  {{server|get_server_status}}
+                  <a href="/server/{{server|dict_get:"uuid"|replace_dots}}">{{server|dict_get:"name"}}</a>
+                  <small>{{server|dict_get:"uuid"}}</small>
+                </h2>
+      					<div class="panel-actions">
+      						<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+      						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+      						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+      					</div>
+      				</div>
+      				<div class="panel-body">
+                <p>
+                  XXX offline_since<br/>
+                  {{server|dict_get:"tags"}}
+                  <hr/>
+                  <table style="width:100%">
+                    <tr>
+                      <th>status</th>
+                      <th>service</th>
+                      <th>time since</th>
+                      <th>date</th>
+                      <th>message</th>
+                      <th>data</th>
+                    </tr>
+                  {% for event in server|dict_get:"uuid"|get_historical_events %}
+                          <tr>
+                            <td>{{event|dict_get:"detailed_service_status"|dict_get:"status"}}</td>
+                            <td>{{event|dict_get:"service"}}</td>
+                            <td>{{event|dict_get:"date"|timesince}} ago</td>
+                            <td>{{event|dict_get:"date"}}</td>
+                            <td>{{event|dict_get:"detailed_service_status"|dict_get:"message"}}</td>
+                            <td>{{event|dict_get:"detailed_service_status"|dict_get:"values"|truncatechars:20}}</td>
+                          </tr>
+                  {% endfor %}
+                  </table>
+                </p>
+      				</div>
+      			</div>
+          </div>
+    {% endfor %}
+
+
+    {% if not servers %}
+    <p>There are no system logs. Please <a href="/download/agent/">add</a> some servers first.</p>
+    {% endif %}
+
+  </div><!--/col-->
+
+{% endblock page_content %}
+
+{% block extra_js %}
+    <script src="/static/admin-assets/js/bootstrap-editable.min.js"></script>
+{% endblock %}

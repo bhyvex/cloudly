@@ -17,6 +17,12 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+TWITTER_KEY = ""
+TWITTER_SECRET = ""
+TWITTER_ACCESS_TOKEN = ""
+TWITTER_ACCESS_TOKEN_SECRET = ""
+
+
 TEMPLATE_DIRS = (
     os.path.abspath(os.path.join(BASE_DIR, '..', 'templates')),
 )

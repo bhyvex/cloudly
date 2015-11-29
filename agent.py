@@ -19,7 +19,7 @@ try:
     import json
 except: pass
 
-AGENT_VERSION = "0.3"
+AGENT_VERSION = "0.5"
 AGENT_ALLOWED_TO_SELF_UPDATE = False
 AGENT_PATH = "/opt/monitoring-agent.py"
 
@@ -825,10 +825,13 @@ def main():
     api_call = "/v10/activity/"
     activity = {
         'secret': SECRET,
-        'agent_version': AGENT_VERSION,
-        'uuid': UUID,
-        'activity': "Agent v"+AGENT_VERSION+" started."
-    }
+        'server_id': UUID,
+        'activity_type': "AGENT_STARTED",
+        'data': {
+            "agent_version": AGENT_VERSION,
+            "message": "Agent v"+AGENT_VERSION+" started.",
+            }
+        }
     send_data(SECRET,api_call,activity)
 
     while True:
@@ -839,16 +842,18 @@ def main():
 
         if(api_response=="update" and AGENT_ALLOWED_TO_SELF_UPDATE):
 
-            self_update(SECRET)
-
             api_call = "/v10/activity/"
             activity = {
                 'secret': SECRET,
-                'agent_version': AGENT_VERSION,
-                'uuid': UUID,
-                'activity': "Agent self-updated to version "+AGENT_VERSION+"."
-            }
+                'server_id': UUID,
+                'activity_type': "AGENT_UPDATED",
+                'data': {
+                    "agent_version": AGENT_VERSION,
+                    "message": "Agent self-updated.",
+                    }
+                }
             send_data(SECRET,api_call,activity)
+            self_update(SECRET)
 
 
         time.sleep(REFRESH_INTERVAL)
