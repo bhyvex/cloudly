@@ -51,17 +51,26 @@ def activity():
 
     data = request.json
 
-    activity_log = {
-        'secret': data['secret'],
-        'server_id': data['server_id'],
-        'activity_type': data['activity_type'],
-        'data': data['data'],
-        'date_created': datetime.datetime.now(),
-    }
-    activity_ = mongo.activity
-    activity_.insert( activity_log )
+    try:
+        activity_log = {
+            'secret': data['secret'],
+            'server_id': data['server_id'],
+            'activity_type': data['activity_type'],
+            'data': data['data'],
+            'date_created': datetime.datetime.now(),
+        }
+        activity_ = mongo.activity
+        activity_.insert( activity_log )
 
-    return jsonify( { 'test': True } )
+    except:
+
+        print '*'*100
+        print 'client error - outdated activity log'
+        print data
+
+        return ("update", 201)
+
+    return jsonify( { 'activity': True } )
 
 
 @app.route('/v10/ping/', methods=['POST'])
