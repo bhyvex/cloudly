@@ -63,11 +63,6 @@ def activity():
         activity_.insert( activity_log )
 
     except:
-
-        print '*'*100
-        print 'client error - outdated activity log'
-        print data
-
         return ("update", 201)
 
     return jsonify( { 'activity': True } )
