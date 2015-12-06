@@ -740,11 +740,8 @@ def ajax_virtual_machines(request):
 
                 active_service_statuses = mongo.active_service_statuses
                 notifs = active_service_statuses.find({"$and":[{"secret": profile.secret,"server_id":vm_cache[vm]['id']},{"current_overall_status":{"$ne":"OK"}}]})
+                print notifs.count()
 
-                for notif in notifs:
-                    print notif
-
-                print notifs
                 print '='*100
 
 
