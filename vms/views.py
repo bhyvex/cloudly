@@ -767,6 +767,8 @@ def ajax_virtual_machines(request):
 
             ajax_vms_response += "\"vmname\":\""
             ajax_vms_response += instance_name
+
+            # XXX work in warnings counter here
             ajax_vms_response += "\","
 
             ajax_vms_response += "\"vmtitle\":\""
