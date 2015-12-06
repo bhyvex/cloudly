@@ -741,7 +741,8 @@ def ajax_virtual_machines(request):
 
                 if(notifs_count):
                     isotope_filter_classes += " warning"
-                    color = "pink "
+                    if(not data_median>70):
+                        color = "pink "
 
 
             if(vm_state=="Stopping"):
