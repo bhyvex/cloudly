@@ -735,6 +735,13 @@ def ajax_virtual_machines(request):
                     if data_median>85:
                         vm_state = "Hot hot hot!"
 
+
+                # XXX check for the active alerts here..
+                print '#'*100
+                print '='*100
+
+
+
             if(vm_state=="Stopping"):
                 color = "pink "
             if(vm_state=="Pending"):

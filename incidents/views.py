@@ -70,6 +70,7 @@ def incidents(request):
             notif.update({'name':serversNames[notif['server_id']]})
             active_notifs[notifs_type].append(notif)
 
+
     return render_to_response(
         'incidents.html',
         {
@@ -79,6 +80,7 @@ def incidents(request):
         },
         context_instance=RequestContext(request),
     )
+
 
 @login_required
 def logs(request):
