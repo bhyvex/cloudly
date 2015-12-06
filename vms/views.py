@@ -353,6 +353,12 @@ def server_view(request, hwaddr):
 
         mongo.servers.update({'secret':server['secret'], 'uuid':server['uuid']}, server)
 
+
+    active_service_statuses = mongo.active_service_statuses
+    notifs = active_service_statuses.find({"$and":[{"secret": profile.secret,"server_id":server['uuid']},{"current_overall_status":{"$ne":"OK"}}]})
+    server_notifs_count = notifs.count()
+
+
     return render_to_response(
         'server_detail.html',
         {
@@ -371,8 +377,11 @@ def server_view(request, hwaddr):
             'networking':networking,
             'historical_service_statuses':historical_service_statuses,
             'activity':activity,
+            'server_notifs_count':server_notifs_count,
+            'active_service_statuses':active_service_statuses,
         },
         context_instance=RequestContext(request))
+
 
 @login_required()
 def ajax_servers_incidents(request):
