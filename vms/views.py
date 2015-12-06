@@ -439,6 +439,7 @@ def ajax_update_server_name(request):
 
     return HttpResponse(response, content_type="application/json")
 
+
 @login_required()
 def ajax_vms_refresh(request):
 
@@ -792,7 +793,14 @@ def ajax_virtual_machines(request):
 
     print '-'*random.randint(5,40)
 
-    return render_to_response('ajax_virtual_machines.html', {'user':user,'ajax_vms_response':ajax_vms_response,'vms_cached_response':vm_cache,}, context_instance=RequestContext(request))
+    return render_to_response(
+        'ajax_virtual_machines.html',
+        {
+            'user':user,
+            'ajax_vms_response':ajax_vms_response,
+            'vms_cached_response':vm_cache,
+        },
+        context_instance=RequestContext(request))
 
 
 @login_required()
