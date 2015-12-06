@@ -708,6 +708,10 @@ def ajax_virtual_machines(request):
             server_mac_address = vm_cache[vm]['id']
             server_mac_address = str(server_mac_address).replace(':','-')
 
+            active_service_statuses = mongo.active_service_statuses
+            notifs = active_service_statuses.find({"$and":[{"secret": profile.secret,"server_id":vm_cache[vm]['id']},{"current_overall_status":{"$ne":"OK"}}]})
+            notifs_count = notifs.count()
+
             if(vm_state=="Running"):
 
                 isotope_filter_classes = " linux "
@@ -734,11 +738,6 @@ def ajax_virtual_machines(request):
                     color = "red "
                     if data_median>85:
                         vm_state = "Hot hot hot!"
-
-
-                active_service_statuses = mongo.active_service_statuses
-                notifs = active_service_statuses.find({"$and":[{"secret": profile.secret,"server_id":vm_cache[vm]['id']},{"current_overall_status":{"$ne":"OK"}}]})
-                notifs_count = notifs.count()
 
                 if(notifs_count):
                     isotope_filter_classes += " warning"
@@ -769,6 +768,7 @@ def ajax_virtual_machines(request):
             ajax_vms_response += instance_name
 
             # XXX work in warnings counter here
+
             ajax_vms_response += "\","
 
             ajax_vms_response += "\"vmtitle\":\""
