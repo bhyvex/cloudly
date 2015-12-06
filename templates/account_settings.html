@@ -36,8 +36,9 @@
 						Password: <a href="/account/password">change password</a>
 						{% endif %}
                         <hr/>
-						E-mail: {{user.email}}<br/>
-						
+						Jabber: <a href="#">n/a</a>
+						<br/>
+
 						Twitter:
 						{% if not profile.twitter %}
                         <a href="#">n/a</a>
@@ -46,9 +47,8 @@
 						{% endif %}
 						<br/>
 
-						Jabber: <a href="#">n/a</a>
-						<br/>
-
+						E-mail: {{user.email}}<br/>
+						
 						Mobile:
 						{% if not profile.mobile %}
 						<a href="#">n/a</a>
@@ -81,9 +81,9 @@
 						Heuristic Analysis: Enabled<br/>
 						Flap Detection: Enabled<br/>
 						<hr/>
-						Email notifications: on <b>off</b> obsessive<br/>
+						Jabber notifications: on <b>off</b> obsessive<br/>
 						Twitter notifications: on <b>off</b> obsessive<br/>
-						Mobile notifications: on <b>off</b> obsessive<br/>
+						Email notifications: on <b>off</b> obsessive<br/>
 						SMS notifications: on <b>off</b> obsessive<br/>
 						<hr/>
             Notifications Summary: Off <small>hourly | daily | every monday | tuesday | .. sunday</small><br/>
