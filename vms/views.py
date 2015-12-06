@@ -380,6 +380,7 @@ def ajax_servers_incidents(request):
 
     active_notifs = {}
     notifs_types = ["CRITICAL","WARNING","UNKNOWN",]
+
     for notifs_type in notifs_types:
         response[notifs_type] = []
         notifs = active_service_statuses.find({"secret":secret,"current_overall_status":notifs_type})
