@@ -735,11 +735,17 @@ def ajax_virtual_machines(request):
                     if data_median>85:
                         vm_state = "Hot hot hot!"
 
-
                 # XXX check for the active alerts here..
                 print '#'*100
-                print '='*100
 
+                active_service_statuses = mongo.active_service_statuses
+                notifs = active_service_statuses.find({"$and":[{"secret": profile.secret,"server_id":vm_cache[vm]['id']},{"current_overall_status":{"$ne":"OK"}}]})
+
+                for notif in notifs:
+                    print notif
+
+                print notifs
+                print '='*100
 
 
             if(vm_state=="Stopping"):
