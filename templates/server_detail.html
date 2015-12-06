@@ -220,6 +220,7 @@
     </div><!--/row-->
 
 
+    {% comment %}
     <div id="system_statuses"
         class="row"
         {% if server_status|lower = "offline" %}
@@ -258,7 +259,7 @@
     					</div>
         </div>
     </div>
-
+    {% endcomment %}
 
     <div id="system_metrics"
         class="row"
