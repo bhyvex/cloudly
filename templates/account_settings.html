@@ -36,15 +36,15 @@
 						Password: <a href="/account/password">change password</a>
 						{% endif %}
                         <hr/>
-						Jabber: <a href="#">n/a</a>
-						<br/>
-
 						Twitter:
 						{% if not profile.twitter %}
                         <a href="#">n/a</a>
 						{% else %}
 						{{profile.twitter}}
 						{% endif %}
+						<br/>
+
+						Jabber: <a href="#">n/a</a>
 						<br/>
 
 						E-mail: {{user.email}}<br/>
@@ -81,8 +81,8 @@
 						Heuristic Analysis: Enabled<br/>
 						Flap Detection: Enabled<br/>
 						<hr/>
-						Jabber notifications: on <b>off</b> obsessive<br/>
 						Twitter notifications: on <b>off</b> obsessive<br/>
+						Jabber notifications: on <b>off</b> obsessive<br/>
 						Email notifications: on <b>off</b> obsessive<br/>
 						SMS notifications: on <b>off</b> obsessive<br/>
 						<hr/>
