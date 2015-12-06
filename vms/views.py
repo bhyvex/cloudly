@@ -115,7 +115,8 @@ def aws_vm_view(request,vm_name):
     try:
         vm_cache = pickle.loads(vm_cache)[vm_name]
     except:
-        return HttpResponse("XXX " + vm_name)
+        return HttpResponse(vm_name)
+
 
     ec2_region = vm_cache['instance']['region']['name']
 
@@ -175,7 +176,20 @@ def aws_vm_view(request,vm_name):
     disk_readbytes_datapoints = json.dumps(disk_readbytes_datapoints,default=date_handler)
     disk_writebytes_datapoints = json.dumps(disk_writebytes_datapoints,default=date_handler)
 
-    return render_to_response('aws_vm.html', {'vm_name':vm_name,'vm_cache':vm_cache,'console_output':console_output,'networkin_datapoints':networkin_datapoints,'networkout_datapoints':networkout_datapoints,'disk_readops_datapoints':disk_readops_datapoints,'disk_writeops_datapoints':disk_writeops_datapoints,'disk_readbytes_datapoints':disk_readbytes_datapoints,'disk_writebytes_datapoints':disk_writebytes_datapoints,}, context_instance=RequestContext(request))
+    return render_to_response(
+        'aws_vm.html',
+        {
+            'vm_name':vm_name,
+            'vm_cache':vm_cache,
+            'console_output':console_output,
+            'networkin_datapoints':networkin_datapoints,
+            'networkout_datapoints':networkout_datapoints,
+            'disk_readops_datapoints':disk_readops_datapoints,
+            'disk_writeops_datapoints':disk_writeops_datapoints,
+            'disk_readbytes_datapoints':disk_readbytes_datapoints,
+            'disk_writebytes_datapoints':disk_writebytes_datapoints,
+        },
+        context_instance=RequestContext(request))
 
 
 @login_required()
