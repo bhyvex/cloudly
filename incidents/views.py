@@ -37,6 +37,7 @@ if settings.MONGO_USER:
 
 mongo = client.cloudly
 
+
 @login_required()
 def incidents(request):
 
