@@ -30,13 +30,14 @@
 				<div class="panel-body">
 					<p>
 						Name: {{profile.name}}<br/>
-						E-mail: {{user.email}}<br/>
 						Agent Secret: {{profile.secret}}<br/>
 
 						{% if user.username != "demo@demo.com" %}
 						Password: <a href="/account/password">change password</a>
 						{% endif %}
                         <hr/>
+						E-mail: {{user.email}}<br/>
+						
 						Twitter:
 						{% if not profile.twitter %}
                         <a href="#">n/a</a>
