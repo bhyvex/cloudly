@@ -71,7 +71,7 @@ def incidents(request):
             notif.update({'name':serversNames[notif['server_id']]})
 
             server = mongo.servers.find_one({'uuid':notif['server_id'],})
-            if((datetime.datetime.now()-server['last_seen']).total_seconds()<300):
+            if((datetime.datetime.now()-server['last_seen']).total_seconds()<20):
                 active_notifs[notifs_type].append(notif)
 
 

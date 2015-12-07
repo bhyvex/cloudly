@@ -34,7 +34,7 @@ def incidents_notifs(request):
 
     for server in servers:
         servers_names[server['uuid']] = server['name']
-        if((datetime.datetime.now()-server['last_seen']).total_seconds()>300):
+        if((datetime.datetime.now()-server['last_seen']).total_seconds()>20):
             offline_servers.append(server)
             offline_servers_count += 1
 
@@ -60,7 +60,7 @@ def incidents_notifs(request):
             except: new_notif['date'] = None
 
             server = mongo.servers.find_one({'uuid':notif['server_id'],})
-            if((datetime.datetime.now()-server['last_seen']).total_seconds()<300):
+            if((datetime.datetime.now()-server['last_seen']).total_seconds()<20):
                 active_notifs[notifs_type].append(new_notif)
                 notifs_counter += 1
 
