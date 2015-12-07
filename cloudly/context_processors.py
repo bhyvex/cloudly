@@ -65,8 +65,7 @@ def incidents_notifs(request):
                 notifs_counter += 1
 
 
-    if(not notifs_counter):
-        notifs_counter = offline_servers_count
+    notifs_counter += offline_servers_count
 
 
     return {
