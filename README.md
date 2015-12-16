@@ -50,7 +50,7 @@ $ cp -f cloudly/settings.py.sample cloudly/settings.py
 <pre>
 $ apt-get install mongodb
 $ pip install pymongo
-$ mongoimport --db cloudly --collection services_tags services_tags.json
+$ mongoimport --db cloudly --collection services_tags data/services_tags.json
 </pre>
 
 ..and configure your server to meet your specific requirements.

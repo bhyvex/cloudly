@@ -37,8 +37,9 @@
                                 </li>
                                 {% for notif in navbar_active_notifs|dict_get:notifs_type %}
                                     <li>
-                                        <a href="/incidents/">
+                                        <a href="#">
                                             <div class="title">
+                                              {{notif}}
                                                 {{notif|dict_get:"name"}} |
                                                 {{notif|dict_get:"service"|replace_underscope|title}}
                                             </div>

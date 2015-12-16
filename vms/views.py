@@ -115,7 +115,8 @@ def aws_vm_view(request,vm_name):
     try:
         vm_cache = pickle.loads(vm_cache)[vm_name]
     except:
-        return HttpResponse("XXX " + vm_name)
+        return HttpResponse(vm_name)
+
 
     ec2_region = vm_cache['instance']['region']['name']
 
@@ -175,7 +176,20 @@ def aws_vm_view(request,vm_name):
     disk_readbytes_datapoints = json.dumps(disk_readbytes_datapoints,default=date_handler)
     disk_writebytes_datapoints = json.dumps(disk_writebytes_datapoints,default=date_handler)
 
-    return render_to_response('aws_vm.html', {'vm_name':vm_name,'vm_cache':vm_cache,'console_output':console_output,'networkin_datapoints':networkin_datapoints,'networkout_datapoints':networkout_datapoints,'disk_readops_datapoints':disk_readops_datapoints,'disk_writeops_datapoints':disk_writeops_datapoints,'disk_readbytes_datapoints':disk_readbytes_datapoints,'disk_writebytes_datapoints':disk_writebytes_datapoints,}, context_instance=RequestContext(request))
+    return render_to_response(
+        'aws_vm.html',
+        {
+            'vm_name':vm_name,
+            'vm_cache':vm_cache,
+            'console_output':console_output,
+            'networkin_datapoints':networkin_datapoints,
+            'networkout_datapoints':networkout_datapoints,
+            'disk_readops_datapoints':disk_readops_datapoints,
+            'disk_writeops_datapoints':disk_writeops_datapoints,
+            'disk_readbytes_datapoints':disk_readbytes_datapoints,
+            'disk_writebytes_datapoints':disk_writebytes_datapoints,
+        },
+        context_instance=RequestContext(request))
 
 
 @login_required()
@@ -339,6 +353,12 @@ def server_view(request, hwaddr):
 
         mongo.servers.update({'secret':server['secret'], 'uuid':server['uuid']}, server)
 
+
+    active_service_statuses = mongo.active_service_statuses
+    notifs = active_service_statuses.find({"$and":[{"secret": profile.secret,"server_id":server['uuid']},{"current_overall_status":{"$ne":"OK"}}]})
+    server_notifs_count = notifs.count()
+
+
     return render_to_response(
         'server_detail.html',
         {
@@ -357,8 +377,11 @@ def server_view(request, hwaddr):
             'networking':networking,
             'historical_service_statuses':historical_service_statuses,
             'activity':activity,
+            'server_notifs_count':server_notifs_count,
+            'active_service_statuses':active_service_statuses,
         },
         context_instance=RequestContext(request))
+
 
 @login_required()
 def ajax_servers_incidents(request):
@@ -380,6 +403,7 @@ def ajax_servers_incidents(request):
 
     active_notifs = {}
     notifs_types = ["CRITICAL","WARNING","UNKNOWN",]
+
     for notifs_type in notifs_types:
         response[notifs_type] = []
         notifs = active_service_statuses.find({"secret":secret,"current_overall_status":notifs_type})
@@ -423,6 +447,7 @@ def ajax_update_server_name(request):
     vms_cache.delete()
 
     return HttpResponse(response, content_type="application/json")
+
 
 @login_required()
 def ajax_vms_refresh(request):
@@ -692,6 +717,10 @@ def ajax_virtual_machines(request):
             server_mac_address = vm_cache[vm]['id']
             server_mac_address = str(server_mac_address).replace(':','-')
 
+            active_service_statuses = mongo.active_service_statuses
+            notifs = active_service_statuses.find({"$and":[{"secret": profile.secret,"server_id":vm_cache[vm]['id']},{"current_overall_status":{"$ne":"OK"}}]})
+            notifs_count = notifs.count()
+
             if(vm_state=="Running"):
 
                 isotope_filter_classes = " linux "
@@ -719,6 +748,12 @@ def ajax_virtual_machines(request):
                     if data_median>85:
                         vm_state = "Hot hot hot!"
 
+                if(notifs_count):
+                    isotope_filter_classes += " warning"
+                    if(not data_median>70):
+                        color = "pink "
+
+
             if(vm_state=="Stopping"):
                 color = "pink "
             if(vm_state=="Pending"):
@@ -741,6 +776,8 @@ def ajax_virtual_machines(request):
 
             ajax_vms_response += "\"vmname\":\""
             ajax_vms_response += instance_name
+            if(notifs_count and vm_state=="Running"): ajax_vms_response += " <b>" + str(notifs_count) + "</b>"
+
             ajax_vms_response += "\","
 
             ajax_vms_response += "\"vmtitle\":\""
@@ -777,7 +814,14 @@ def ajax_virtual_machines(request):
 
     print '-'*random.randint(5,40)
 
-    return render_to_response('ajax_virtual_machines.html', {'user':user,'ajax_vms_response':ajax_vms_response,'vms_cached_response':vm_cache,}, context_instance=RequestContext(request))
+    return render_to_response(
+        'ajax_virtual_machines.html',
+        {
+            'user':user,
+            'ajax_vms_response':ajax_vms_response,
+            'vms_cached_response':vm_cache,
+        },
+        context_instance=RequestContext(request))
 
 
 @login_required()

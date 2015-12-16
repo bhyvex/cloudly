@@ -51,17 +51,21 @@ def activity():
 
     data = request.json
 
-    activity_log = {
-        'secret': data['secret'],
-        'server_id': data['server_id'],
-        'activity_type': data['activity_type'],
-        'data': data['data'],
-        'date_created': datetime.datetime.now(),
-    }
-    activity_ = mongo.activity
-    activity_.insert( activity_log )
+    try:
+        activity_log = {
+            'secret': data['secret'],
+            'server_id': data['server_id'],
+            'activity_type': data['activity_type'],
+            'data': data['data'],
+            'date_created': datetime.datetime.now(),
+        }
+        activity_ = mongo.activity
+        activity_.insert( activity_log )
 
-    return jsonify( { 'test': True } )
+    except:
+        return ("update", 201)
+
+    return jsonify( { 'activity': True } )
 
 
 @app.route('/v10/ping/', methods=['POST'])
