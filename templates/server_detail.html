@@ -240,34 +240,25 @@
         						<div class="panel-body alerts">
 
                       {% if is_outdated_agent_version %}
-                      <div class="alert alert-info">
+                        <div class="alert alert-info">
         								<button type="button" class="close" data-dismiss="alert">×</button>
           								<strong>Heads up!</strong> There's an outdated monitor agent running on this server.
           							</div>
                       {% endif %}
 
-
-                      {{notifs}}
-
-
-
-        							<div class="alert alert-danger">
-        								<button type="button" class="close" data-dismiss="alert">×</button>
-        								<strong>Oh snap!</strong> Change a few things up and try submitting again.
-        							</div>
-                      <div class="alert alert-warning">
-        								<button type="button" class="close" data-dismiss="alert">×</button>
-        								<h4 class="alert-heading">Warning!</h4>
-        								<p>Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
-        							</div>
-                      <div class="alert alert-info">
-        								<button type="button" class="close" data-dismiss="alert">×</button>
-        								<strong>Heads up!</strong> This alert needs your attention, but it's not super important.
-        							</div>
-
-                      <p>XXX</p>
-
-                      here
+                      {% for alert in notifs %}
+                          {% if alert|dict_get:"current_overall_status" == "WARNING" %}
+                              <div class="alert alert-warning">
+                								<button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>Warning!</strong> {{alert|dict_get:"detailed_service_status"|dict_get:"message"}}.
+                							</div>
+                          {% else %}
+                              <div class="alert alert-danger">
+                								<button type="button" class="close" data-dismiss="alert">×</button>
+                								<strong>Oh snap!</strong> {{alert|dict_get:"detailed_service_status"|dict_get:"message"}}.
+                							</div>
+                          {% endif %}
+                      {% endfor %}
 
         						</div>
         					</div>
