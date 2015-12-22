@@ -217,6 +217,8 @@ def auth(request):
 
     print '-- auth:'
 
+    err = None
+
     if(request.method == 'POST'):
 
         post = request.POST
@@ -228,28 +230,31 @@ def auth(request):
             passwprd = request.POST['password']
         except:
             print 'failed login code:1'
-            return HttpResponseRedirect("/register")
+            err = True
+            #return HttpResponseRedirect("/register")
 
 
         try:
             user = User.objects.get(email=email)
         except:
             print 'failed login code:2'
-            return HttpResponseRedirect("/register")
+            err = True
+            #return HttpResponseRedirect("/register")
 
         try:
             user = authenticate(username=user.username, password=passwprd)
             login(request, user)
         except:
             print 'failed login code:3'
-            return HttpResponseRedirect("/register")
+            err = True
+            #return HttpResponseRedirect("/register")
 
-        print 'user logged in', user
+        if(not err):
+            print 'user logged in', user
+            return HttpResponseRedirect("/")
 
-        return HttpResponseRedirect("/")
 
-
-    return render_to_response('login.html', {}, context_instance=RequestContext(request))
+    return render_to_response('login.html', {'err':err,}, context_instance=RequestContext(request))
 
 @login_required()
 def cloud_settings(request):
