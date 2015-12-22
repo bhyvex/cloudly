@@ -22,8 +22,7 @@ from userprofile.models import Activity
 from userprofile.models import Profile as userprofile
 
 from django.contrib.auth import authenticate
-from django.contrib.auth import login
-from django.contrib.auth import logout
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 
 import boto.ec2
