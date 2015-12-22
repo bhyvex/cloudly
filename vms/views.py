@@ -252,7 +252,7 @@ def server_view(request, hwaddr):
     server_status = "Running"
     if((datetime.datetime.now()-server['last_seen']).total_seconds()>20):
         server_status = "Stopped"
-        if((datetime.datetime.now()-server['last_seen']).total_seconds()>1800):
+        if((datetime.datetime.now()-server['last_seen']).total_seconds()>300):
             server_status = "Offline"
 
     try:
@@ -394,7 +394,7 @@ def ajax_servers_incidents(request):
     servers_names = {}
     for server in servers:
         servers_names[server['uuid']] = server['name']
-        if((datetime.datetime.now()-server['last_seen']).total_seconds()>1800):
+        if((datetime.datetime.now()-server['last_seen']).total_seconds()>300):
             server['_id'] = str(server["_id"])
             server['last_seen'] = server['last_seen'].strftime("%Y-%m-%d %H:%M:%S")
             response['offline_servers'].append(server)
@@ -889,7 +889,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
     server_status = "Running"
     if((datetime.datetime.now()-server['last_seen']).total_seconds()>20):
         server_status = "Stopped"
-        if((datetime.datetime.now()-server['last_seen']).total_seconds()>1800):
+        if((datetime.datetime.now()-server['last_seen']).total_seconds()>300):
             server_status = "Offline"
             print '*'*1000
             print (datetime.datetime.now()-server['last_seen']).total_seconds()
