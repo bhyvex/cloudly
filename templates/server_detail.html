@@ -239,12 +239,16 @@
         						</div>
         						<div class="panel-body alerts">
 
-                      {% if outdated_agent_version %}
+                      {% if is_outdated_agent_version %}
                       <div class="alert alert-info">
         								<button type="button" class="close" data-dismiss="alert">×</button>
           								<strong>Heads up!</strong> There's an outdated monitor agent running on this server.
           							</div>
                       {% endif %}
+
+
+                      {{notifs}}
+
 
 
         							<div class="alert alert-danger">

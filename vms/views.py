@@ -363,9 +363,9 @@ def server_view(request, hwaddr):
             AGENT_VERSION_CURRENT = line.split('"')[1]
             break
 
-    outdated_agent_version = False
+    is_outdated_agent_version = False
     if(server['agent_version'] != AGENT_VERSION_CURRENT):
-        outdated_agent_version = True
+        is_outdated_agent_version = True
 
     return render_to_response(
         'server_detail.html',
@@ -386,8 +386,8 @@ def server_view(request, hwaddr):
             'historical_service_statuses':historical_service_statuses,
             'activity':activity,
             'server_notifs_count':server_notifs_count,
-            'active_service_statuses':active_service_statuses,
-            'outdated_agent_version' :outdated_agent_version,
+            'is_outdated_agent_version':is_outdated_agent_version,
+            'notifs':notifs,
         },
         context_instance=RequestContext(request))
 
