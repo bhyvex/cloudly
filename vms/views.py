@@ -367,6 +367,7 @@ def server_view(request, hwaddr):
     if(server['agent_version'] != AGENT_VERSION_CURRENT):
         is_outdated_agent_version = True
 
+
     return render_to_response(
         'server_detail.html',
         {
