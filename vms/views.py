@@ -358,6 +358,14 @@ def server_view(request, hwaddr):
     notifs = active_service_statuses.find({"$and":[{"secret": profile.secret,"server_id":server['uuid']},{"current_overall_status":{"$ne":"OK"}}]})
     server_notifs_count = notifs.count()
 
+    for line in open('agent.py','rt').readlines():
+        if('AGENT_VERSION' in line):
+            AGENT_VERSION_CURRENT = line.split('"')[1]
+            break
+
+    outdated_agent_version = False
+    if(server['agent_version'] != AGENT_VERSION_CURRENT):
+        outdated_agent_version = True
 
     return render_to_response(
         'server_detail.html',
@@ -379,6 +387,7 @@ def server_view(request, hwaddr):
             'activity':activity,
             'server_notifs_count':server_notifs_count,
             'active_service_statuses':active_service_statuses,
+            'outdated_agent_version' :outdated_agent_version,
         },
         context_instance=RequestContext(request))
 
