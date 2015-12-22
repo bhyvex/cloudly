@@ -206,13 +206,11 @@
                 </div>
 
                 <div class="panel-body">
-
                     {% for tag in server|dict_get:"tags"|dict_get:"tags" %}
-                    <span class="label label-info">{{tag}}</span>
+                      <span class="label label-info">{{tag|dict_get:0}}</span>
                     {% endfor %}
-
                     {% for tag in server|dict_get:"tags"|dict_get:"datacenters" %}
-                    <span class="label label-info">{{tag}}</span>
+                      <span class="label label-info">{{tag|dict_get:0}}</span>
                     {% endfor %}
                 </div>
             </div>
