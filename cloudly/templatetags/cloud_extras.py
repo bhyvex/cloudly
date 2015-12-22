@@ -82,6 +82,11 @@ def get_server_status(server):
 
     return "online"
 
+@register.filter(name='get_offline_seconds')
+def get_offline_seconds(server):
+
+    return int((datetime.datetime.now()-server['last_seen']).total_seconds())
+
 
 @register.filter(name='manual_notifs_count_unfortunately')
 def manual_notifs_count_unfortunately(notifs):
