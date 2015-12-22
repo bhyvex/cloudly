@@ -239,13 +239,6 @@
         						</div>
         						<div class="panel-body alerts">
 
-                      {% if is_outdated_agent_version %}
-                        <div class="alert alert-info">
-        								<button type="button" class="close" data-dismiss="alert">×</button>
-          								<strong>Heads up!</strong> There's an outdated monitor agent running on this server.
-          							</div>
-                      {% endif %}
-
                       {% for alert in notifs %}
                           {% if alert|dict_get:"current_overall_status" == "WARNING" %}
                               <div class="alert alert-warning">
@@ -259,6 +252,13 @@
                 							</div>
                           {% endif %}
                       {% endfor %}
+
+                      {% if is_outdated_agent_version %}
+                        <div class="alert alert-info">
+        								<button type="button" class="close" data-dismiss="alert">×</button>
+          								<strong>Heads up!</strong> There's an outdated monitor agent running on this server.
+          							</div>
+                      {% endif %}
 
         						</div>
         					</div>
