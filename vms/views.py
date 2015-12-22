@@ -891,7 +891,8 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         server_status = "Stopped"
         if((datetime.datetime.now()-server['last_seen']).total_seconds()>300):
             server_status = "Offline"
-            print '*'*1000
+            print '*'*100
+            print 'server is offline'
             print (datetime.datetime.now()-server['last_seen']).total_seconds()
 
 
