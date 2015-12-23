@@ -700,8 +700,6 @@ def _get_network_connections():
     connections['established'] = established_connections
     connections['description'] = "Active Internet Connections (including servers)"
 
-    print 'debug established connections', connections['established']
-
     return connections
 
 
