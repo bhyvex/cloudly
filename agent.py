@@ -318,8 +318,6 @@ def _get_sys_loadavg():
     for i in loadavg:
         loadavg_values.append(i)
 
-    message = message[:-1]
-
     service_status['status'] = status
     service_status['message'] = message
     service_status['values'] = loadavg_values
