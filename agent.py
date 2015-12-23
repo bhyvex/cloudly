@@ -729,6 +729,7 @@ def send_data( secret, api_call, data ):
 
     while True:
 
+        print datetime.datetime.now(), 'Querying API server ' + API_SERVER + ' ..'
         try:
             conn = httplib.HTTPConnection(API_SERVER)
             conn.request("POST", api_call, json.dumps(data), headers)
@@ -796,7 +797,7 @@ def get_system_metrics( uuid, secret ):
         'agent_version': AGENT_VERSION,
     }
 
-    print datetime.datetime.now(), 'Collected system metrics..'
+    print datetime.datetime.now(), 'Successfully collected system metrics..'
 
     return system_metrics_json
 
