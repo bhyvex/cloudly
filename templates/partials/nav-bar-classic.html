@@ -39,9 +39,9 @@
                                     <li>
                                         <a href="#">
                                             <div class="title">
-                                              {{notif}}
                                                 {{notif|dict_get:"name"}} |
                                                 {{notif|dict_get:"service"|replace_underscope|title}}
+                                                {{notif}}
                                             </div>
                                             <small>
                                                 alert duration {{notif|dict_get:"date"|timesince}}
