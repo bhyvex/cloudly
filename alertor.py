@@ -142,7 +142,7 @@ if __name__ == "__main__":
         # XXX
         print 'XXX loop through active offline servers to update check their statuses'
 
-        print 'alertor: waiting for the workload..'
+        print 'alertor: waiting for new alerts..'
         if(settings.DEBUG): time.sleep(1)
         time.sleep(0.1)
 

@@ -19,7 +19,7 @@ try:
     import json
 except: pass
 
-AGENT_VERSION = "0.5"
+AGENT_VERSION = "0.6"
 AGENT_ALLOWED_TO_SELF_UPDATE = False
 AGENT_PATH = "/opt/monitoring-agent.py"
 
@@ -31,6 +31,7 @@ if(not SECRET): SECRET = raw_input("Enter your secret: ")
 API_SERVER = "" # to be injected on download by Cloudly
 if(not API_SERVER): API_SERVER = "127.0.0.1:5001"
 
+os.environ["LANG"] = "POSIX"
 
 if(not getpass.getuser()=="root"):
     print "You must be root to run this script."
@@ -317,8 +318,6 @@ def _get_sys_loadavg():
     for i in loadavg:
         loadavg_values.append(i)
 
-    message = message[:-1]
-
     service_status['status'] = status
     service_status['message'] = message
     service_status['values'] = loadavg_values
@@ -583,6 +582,8 @@ def _get_networking_stats():
         if(len(line)==0): psc += 1
 
     inbound_traffic = {}
+    input_accept_packets = 0
+    input_accept_bytes = 0
 
     for line in inbound_text.split('\n'):
 
@@ -592,12 +593,6 @@ def _get_networking_stats():
             input_accept_packets = input_accept[0]
             input_accept_bytes = input_accept[2]
             break
-
-    inbound_traffic['input_accept_packets'] = input_accept_packets
-    inbound_traffic['input_accept_bytes'] = input_accept_bytes
-
-    input_accept_packets = 0
-    input_accept_bytes = 0
 
     if(len(inbound_text.split('\n'))>3):
 
@@ -613,7 +608,10 @@ def _get_networking_stats():
     if(input_accept_packets>0): inbound_traffic['input_accept_packets'] = input_accept_packets
     if(input_accept_bytes>0): inbound_traffic['input_accept_bytes'] = input_accept_bytes
 
+
     outbound_traffic = {}
+    output_accept_packets = 0
+    output_accept_bytes = 0
 
     for line in outbound_text.split('\n'):
 
@@ -623,12 +621,6 @@ def _get_networking_stats():
             output_accept_packets = output_accept[0]
             output_accept_bytes = output_accept[2]
             break
-
-    outbound_traffic['output_accept_packets'] = output_accept_packets
-    outbound_traffic['output_accept_bytes'] = output_accept_bytes
-
-    output_accept_packets = 0
-    output_accept_bytes = 0
 
     if(len(outbound_text.split('\n'))>3):
 
@@ -736,6 +728,7 @@ def send_data( secret, api_call, data ):
 
     while True:
 
+        print datetime.datetime.now(), 'Querying API server ' + API_SERVER + ' ..'
         try:
             conn = httplib.HTTPConnection(API_SERVER)
             conn.request("POST", api_call, json.dumps(data), headers)
@@ -803,7 +796,7 @@ def get_system_metrics( uuid, secret ):
         'agent_version': AGENT_VERSION,
     }
 
-    print datetime.datetime.now(), 'Collected system metrics..'
+    print datetime.datetime.now(), 'Successfully collected system metrics..'
 
     return system_metrics_json
 
@@ -854,6 +847,25 @@ def main():
                 }
             send_data(SECRET,api_call,activity)
             self_update(SECRET)
+
+
+        if(api_response=="stop"):
+
+            api_call = "/v10/activity/"
+            activity = {
+                'secret': SECRET,
+                'server_id': UUID,
+                'activity_type': "AGENT_STOPPED",
+                'data': {
+                    "agent_version": AGENT_VERSION,
+                    "message": "API issued stop command. Agent stopped.",
+                    }
+                }
+            send_data(SECRET,api_call,activity)
+            self_update(SECRET)
+
+            print "API issued stop command. Exiting.."
+            sys.exit(0)
 
 
         time.sleep(REFRESH_INTERVAL)

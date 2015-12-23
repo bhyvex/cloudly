@@ -68,9 +68,16 @@
       				</div>
       				<div class="panel-body">
                 <p>
-                  XXX offline_since<br/>
-                  {{server|dict_get:"tags"}}
-                  <hr/>
+
+                  {% if server|get_server_status == "offline" %}
+                    <small>Last seen {{server|get_offline_seconds}} seconds ago</small>
+                    <br/>
+                    Server has gone offline on {{server|dict_get:"last_seen"}}
+                    <br/>
+                    {{server|dict_get:"tags"}}
+                    <hr/>
+                  {% endif %}
+
                   <table style="width:100%">
                     <tr>
                       <th>status</th>
@@ -91,7 +98,9 @@
                           </tr>
                   {% endfor %}
                   </table>
+
                 </p>
+
       				</div>
       			</div>
           </div>

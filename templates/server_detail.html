@@ -134,6 +134,7 @@
             </div>
         </div>
 
+
         <div id="current_load"
             class="col-xs-5"
             {% if server_status|lower = "offline" %}
@@ -205,13 +206,11 @@
                 </div>
 
                 <div class="panel-body">
-
                     {% for tag in server|dict_get:"tags"|dict_get:"tags" %}
-                    <span class="label label-info">{{tag|dict_get:0}}</span>
+                      <span class="label label-info">{{tag|dict_get:0}}</span>
                     {% endfor %}
-
                     {% for tag in server|dict_get:"tags"|dict_get:"datacenters" %}
-                    <span class="label label-info">{{tag|dict_get:0}}</span>
+                      <span class="label label-info">{{tag|dict_get:0}}</span>
                     {% endfor %}
                 </div>
             </div>
@@ -219,10 +218,51 @@
     </div><!--/row-->
 
 
+    {% if server_notifs_count %}
+        <div id="system_statuses"
+            class="row"
+            {% if server_status|lower = "offline" %}
+                style="display: none;"
+            {% endif %}
+            >
+            <div class="col-xs-12">
+        					<div class="panel panel-default">
+        						<div class="panel-heading">
+        							<h2><i class="fa fa-bullhorn"></i><span class="break"></span>Alerts</h2>
+        							<div class="panel-actions">
+        								<a href="ui-elements.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+        								<a href="ui-elements.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+        								<a href="ui-elements.html#" class="btn-close"><i class="fa fa-times"></i></a>
+        							</div>
+        						</div>
+        						<div class="panel-body alerts">
 
+                      {% for alert in notifs %}
+                          {% if alert|dict_get:"current_overall_status" == "WARNING" %}
+                              <div class="alert alert-warning">
+                								<button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>Warning!</strong> {{alert|dict_get:"detailed_service_status"|dict_get:"message"}}.
+                							</div>
+                          {% else %}
+                              <div class="alert alert-danger">
+                								<button type="button" class="close" data-dismiss="alert">×</button>
+                								<strong>Oh snap!</strong> {{alert|dict_get:"detailed_service_status"|dict_get:"message"}}.
+                							</div>
+                          {% endif %}
+                      {% endfor %}
 
+                      {% if is_outdated_agent_version %}
+                        <div class="alert alert-info">
+        								<button type="button" class="close" data-dismiss="alert">×</button>
+          								<strong>Heads up!</strong> There's an outdated monitor agent running on this server.
+          							</div>
+                      {% endif %}
 
-
+        						</div>
+        					</div>
+            </div>
+        </div>
+    {% endif %}
 
 
     <div id="system_metrics"
@@ -643,6 +683,7 @@
                     <tr>
                       <th>status</th>
                       <th>service</th>
+                      <th>time since</th>
                       <th>date</th>
                       <th>message</th>
                       <th>values</th>
@@ -651,6 +692,7 @@
                     <tr>
                       <td>{{event|dict_get:"detailed_service_status"|dict_get:"status"}}</td>
                       <td>{{event|dict_get:"service"}}</td>
+                      <td>{{event|dict_get:"date"|timesince}} ago</td>
                       <td>{{event|dict_get:"date"}}</td>
                       <td>{{event|dict_get:"detailed_service_status"|dict_get:"message"}}</td>
                       <td>{{event|dict_get:"detailed_service_status"|dict_get:"values"}}</td>

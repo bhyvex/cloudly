@@ -22,8 +22,7 @@ from userprofile.models import Activity
 from userprofile.models import Profile as userprofile
 
 from django.contrib.auth import authenticate
-from django.contrib.auth import login
-from django.contrib.auth import logout
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 
 import boto.ec2
@@ -42,7 +41,7 @@ AWS_REGIONS = {
     "ap-southeast-1":"Asia Pacific (Singapore) Region",
     "ap-southeast-2":"Asia Pacific (Sydney) Region",
     "eu-west-1":"EU (Ireland) Region",
-    #"eu-central-1":"EU (Frankfurt) Region",
+    "eu-central-1":"EU (Frankfurt) Region",
     "sa-east-1":"South America (Sao Paulo) Region",
     "us-east-1":"US East (Northern Virginia) Region",
     "us-west-1":"US West (Northern California) Region",
@@ -218,6 +217,8 @@ def auth(request):
 
     print '-- auth:'
 
+    err = None
+
     if(request.method == 'POST'):
 
         post = request.POST
@@ -229,28 +230,31 @@ def auth(request):
             passwprd = request.POST['password']
         except:
             print 'failed login code:1'
-            return HttpResponseRedirect("/register")
+            err = True
+            #return HttpResponseRedirect("/register")
 
 
         try:
             user = User.objects.get(email=email)
         except:
             print 'failed login code:2'
-            return HttpResponseRedirect("/register")
+            err = True
+            #return HttpResponseRedirect("/register")
 
         try:
             user = authenticate(username=user.username, password=passwprd)
             login(request, user)
         except:
             print 'failed login code:3'
-            return HttpResponseRedirect("/register")
+            err = True
+            #return HttpResponseRedirect("/register")
 
-        print 'user logged in', user
+        if(not err):
+            print 'user logged in', user
+            return HttpResponseRedirect("/")
 
-        return HttpResponseRedirect("/")
 
-
-    return render_to_response('login.html', {}, context_instance=RequestContext(request))
+    return render_to_response('login.html', {'err':err,}, context_instance=RequestContext(request))
 
 @login_required()
 def cloud_settings(request):
