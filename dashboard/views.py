@@ -53,6 +53,8 @@ def home(request):
             "Saves you money and resources!",
             "Real-time servers monitoring.",
             "Real-time and very playful monitoring.",
+            "Playful Servers Monitoring.",
+            "Playfil Servers Dashboard.",
             "Does the server monitoring for you like no other.",
             "Cheerful Servers Monitoring.",
             "Old School Servers Monitoring.",
@@ -61,6 +63,10 @@ def home(request):
             "The Coolest Monitoring Out There!",
             "The Coolest Real-time Monitoring.",
             "The Ultimate Dashboard for Your Servers.",
+            "The Ultimate Servers Monitoring.",
+            "The Ultimate Servers and Devices Monitoring.",
+            "The Ultimate Servers Dashboard.",
+            "The Ultimate Real-time Servers Monitoring.",
         ]
         return render_to_response('web.html', {'request':request,'CLOUDLY_MOTTOS':CLOUDLY_MOTTOS,}, context_instance=RequestContext(request))
 
