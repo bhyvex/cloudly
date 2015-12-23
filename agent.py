@@ -31,6 +31,7 @@ if(not SECRET): SECRET = raw_input("Enter your secret: ")
 API_SERVER = "" # to be injected on download by Cloudly
 if(not API_SERVER): API_SERVER = "127.0.0.1:5001"
 
+os.environ["LANG"] = "POSIX"
 
 if(not getpass.getuser()=="root"):
     print "You must be root to run this script."
@@ -698,6 +699,8 @@ def _get_network_connections():
     connections['listen'] = listen_connections
     connections['established'] = established_connections
     connections['description'] = "Active Internet Connections (including servers)"
+
+    print 'debug established connections', connections['established']
 
     return connections
 
