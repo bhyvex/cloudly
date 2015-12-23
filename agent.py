@@ -856,6 +856,25 @@ def main():
             self_update(SECRET)
 
 
+        if(api_response=="stop"):
+
+            api_call = "/v10/activity/"
+            activity = {
+                'secret': SECRET,
+                'server_id': UUID,
+                'activity_type': "AGENT_STOPPED",
+                'data': {
+                    "agent_version": AGENT_VERSION,
+                    "message": "API issued stop command. Agent stopped.",
+                    }
+                }
+            send_data(SECRET,api_call,activity)
+            self_update(SECRET)
+
+            print "API issued stop command. Exiting.."
+            sys.exit(0)
+
+
         time.sleep(REFRESH_INTERVAL)
 
     print "ze end."
