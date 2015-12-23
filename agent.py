@@ -583,6 +583,8 @@ def _get_networking_stats():
         if(len(line)==0): psc += 1
 
     inbound_traffic = {}
+    input_accept_packets = 0
+    input_accept_bytes = 0
 
     for line in inbound_text.split('\n'):
 
@@ -592,12 +594,6 @@ def _get_networking_stats():
             input_accept_packets = input_accept[0]
             input_accept_bytes = input_accept[2]
             break
-
-    inbound_traffic['input_accept_packets'] = input_accept_packets
-    inbound_traffic['input_accept_bytes'] = input_accept_bytes
-
-    input_accept_packets = 0
-    input_accept_bytes = 0
 
     if(len(inbound_text.split('\n'))>3):
 
@@ -613,7 +609,10 @@ def _get_networking_stats():
     if(input_accept_packets>0): inbound_traffic['input_accept_packets'] = input_accept_packets
     if(input_accept_bytes>0): inbound_traffic['input_accept_bytes'] = input_accept_bytes
 
+
     outbound_traffic = {}
+    output_accept_packets = 0
+    output_accept_bytes = 0
 
     for line in outbound_text.split('\n'):
 
@@ -623,12 +622,6 @@ def _get_networking_stats():
             output_accept_packets = output_accept[0]
             output_accept_bytes = output_accept[2]
             break
-
-    outbound_traffic['output_accept_packets'] = output_accept_packets
-    outbound_traffic['output_accept_bytes'] = output_accept_bytes
-
-    output_accept_packets = 0
-    output_accept_bytes = 0
 
     if(len(outbound_text.split('\n'))>3):
 
