@@ -169,7 +169,7 @@ def make_json(json_):
 
 @register.filter(name='get_service_unity')
 def get_service_unity(service):
-    unity = ''
+    unity = ""
     if service == 'SYSTEM_CPU':
         unity = '%'
     return unity
