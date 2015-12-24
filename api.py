@@ -161,7 +161,7 @@ def ping():
     cpu_usage_tsdb_cmd = "put " + \
         uuid.replace(':','-') + ".sys.cpu " + \
         str(int(time.time())) + " " + \
-        str(cpu_usage['CPU_used']) + \
+        str(cpu_usage['cpu_used']) + \
         " cpu=0" + \
         "\n"
 

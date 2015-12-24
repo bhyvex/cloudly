@@ -237,15 +237,15 @@ def _get_sys_cpu():
             pass
 
     cpu_usage = {
-        'CPU_used':round(cpu_total,2),
-        'CPU_free':round(float(100-cpu_total),2)
+        'cpu_used':round(cpu_total,2),
+        'cpu_free':round(float(100-cpu_total),2)
     }
 
     status = 'UNKNOWN'
 
-    if(float(cpu_usage['CPU_used']) < cpu_thresholds['WARNING']['min_value']):
+    if(float(cpu_usage['cpu_used']) < cpu_thresholds['WARNING']['min_value']):
         status = 'OK'
-    elif(float(cpu_usage['CPU_used']) >= cpu_thresholds['WARNING']['min_value'] and float(cpu_usage['CPU_used']) <= cpu_thresholds['WARNING']['max_value']):
+    elif(float(cpu_usage['cpu_used']) >= cpu_thresholds['WARNING']['min_value'] and float(cpu_usage['cpu_used']) <= cpu_thresholds['WARNING']['max_value']):
         status = 'WARNING'
     else:
         status = 'CRITICAL'
