@@ -314,9 +314,15 @@ def _get_sys_loadavg():
     if(status == 'WARNING'): message = message + ' too high'
     if(status == 'CRITICAL'): message = message + ' ' + status
 
-    loadavg_values = []
-    for i in loadavg:
-        loadavg_values.append(i)
+    #loadavg_values = []
+    #for i in loadavg:
+    #    loadavg_values.append(i)
+
+    loadavg_values = {
+        "1-min":loadavg[0],
+        "5-min":loadavg[1],
+        "15-min":loadavg[2],
+    }
 
     service_status['status'] = status
     service_status['message'] = message
