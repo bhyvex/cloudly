@@ -19,7 +19,7 @@ try:
     import json
 except: pass
 
-AGENT_VERSION = "0.7.1"
+AGENT_VERSION = "0.7.2"
 AGENT_ALLOWED_TO_SELF_UPDATE = False
 AGENT_PATH = "/opt/monitoring-agent.py"
 
@@ -123,6 +123,9 @@ def self_update( secret ):
             continue
         if("API_SERVER = \"\"" in line):
             agent_code += "API_SERVER = \""+API_SERVER+"\"\n"
+            continue
+        if("AGENT_ALLOWED_TO_SELF_UPDATE = \"\"" in line):
+            agent_code += "AGENT_ALLOWED_TO_SELF_UPDATE = True\n"
             continue
         agent_code += line + "\n"
 
