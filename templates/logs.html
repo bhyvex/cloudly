@@ -42,7 +42,7 @@
                     <td>{{activity|dict_get:"date_created"|timesince}} ago</td>
                     <td>{{activity|dict_get:"date_created"}}</td>
                     <td>{{activity|dict_get:"server_id"}}</td>
-                    <td>{{activity|dict_get:"data"|truncatechars:83}}</td>
+                    <td>{{activity|dict_get:"data"|truncatechars:200}}</td>
                   </tr>
                 {% endfor %}
             </table>
