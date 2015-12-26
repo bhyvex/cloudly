@@ -511,9 +511,17 @@ def _get_disks_usage():
             disks_usage.append(volume)
 
 
+    disks_usage_  = []
+    for disk in disks_usage:
+        if(disk[0]=="udev" or disk[0]=="rmpfs" or disk[0]=="cgmfs" or disk[0]=="tmpfs"):
+            continue
+        disks_usage_.append(disk)
+    disks_usage = disks_usage_
+
     overall_status = "UNKNOWN"
     messages = []
     disks_values = []
+
 
     for disk in disks_usage:
 
