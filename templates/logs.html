@@ -76,7 +76,9 @@
                       <br/>
                       Server has gone offline on {{server|dict_get:"last_seen"}}
                       <br/>
-                      {{server|dict_get:"tags"}}
+                      {% for tag in server|dict_get:"tags" %}
+                        {{tag}}<br/>
+                      {% endfor %}
                   {% endif %}
 
                   {% if server|get_server_status != "offline" %}
