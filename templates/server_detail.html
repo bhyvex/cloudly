@@ -659,11 +659,52 @@
         </div>
     </div><!--/row-->
 
-    <p>Activities<br/>
-        <hr/>
-        XXX activity (there are things like emails sent etc...)
-        XXX limit to 5 in the table...
-    </p>
+
+
+
+
+
+
+
+
+    <div id="services_discovery"
+        class="row"
+        {% if server_status|lower = "offline" %}
+            style="display: none;"
+        {% endif %}
+        >
+        <div class="col-xs-12">
+            <div id="recentActivities" class="panel panel-default">
+                <div class="panel-heading">
+                    <h2><i class="fa fa-skyatlas"></i>Activities</h2>
+                    <div class="panel-actions">
+                        <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+                        <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                        <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                  <p>
+                    XXX limit to 5
+                    XXX on/off/obsessive and exclusion options
+                  </p>
+
+                </div>
+
+            </div>
+        </div>
+    </div><!--/row-->
+
+
+
+
+
+
+
+
+
+
 
 
     <div id="recent_problems"
