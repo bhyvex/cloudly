@@ -106,7 +106,6 @@ def logs(request):
     activities = mongo.activity.find({'secret':secret,}).sort("_id",pymongo.DESCENDING)
     activities = activities.limit(10)
 
-
     return render_to_response(
         'logs.html',
         {
