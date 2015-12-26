@@ -146,7 +146,7 @@ def credits(request):
         profile = userprofile.objects.get(user=request.user)
         _log_user_activity(profile,"click","/credits/","credits",ip=ip)
     except:
-        return HttpResponseRedirect("https://github.com/jparicka/cloudly")
+        return HttpResponseRedirect("/")
 
     print request.user
     return render_to_response('credits.html', {'request':request,}, context_instance=RequestContext(request))
@@ -201,7 +201,7 @@ def download_agent(request):
         agent_download_url = server_url + "download/agent?xuuid="+profile.agent_hash
         print 'agent_download_url', agent_download_url
     except:
-        return HttpResponseRedirect("https://raw.githubusercontent.com/jparicka/cloudly/master/agent.py")
+        return HttpResponseRedirect("https://raw.githubusercontent.com/ProjectCloudly/Cloudly/master/agent.py")
 
 
     return render_to_response('agent_download.html', {'request': request, 'profile':profile,'agent_download_url':agent_download_url,}, context_instance=RequestContext(request))
