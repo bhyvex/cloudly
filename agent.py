@@ -19,8 +19,8 @@ try:
     import json
 except: pass
 
-AGENT_VERSION = "0.7.2"
-AGENT_ALLOWED_TO_SELF_UPDATE = False
+AGENT_VERSION = "0.7.3"
+AGENT_ALLOWED_TO_SELFUPDATE = False
 AGENT_PATH = "/opt/monitoring-agent.py"
 
 REFRESH_INTERVAL = 2 # in seconds
