@@ -145,7 +145,7 @@ Enjoy!
 Screenshots & Live Demo
 -----------------------
 
-![alt screen0](https://raw.githubusercontent.com/jparicka/cloudly/master/static/screenshots/screenshot0.png)
+![alt screen0](https://raw.githubusercontent.com/ProjectCloudly/Cloudly/master/static/screenshots/screenshot0.png)
 
 ###### Demo
 
