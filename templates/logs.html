@@ -78,7 +78,7 @@
                       <br/>
                       Datacenters:
                         {% for tag in server|dict_get:"tags"|dict_get:"datacenters" %}
-                          {{tag|dict_get:0}}{% if not forloop.last %},{% endif %}
+                          {{tag|dict_get:0}} - {{tag|dict_get:1}}{% if not forloop.last %};{% endif %}
                         {% endfor %}
                         <br/>
 
