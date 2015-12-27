@@ -49,6 +49,13 @@
 						Jabber: <a href="#">n/a</a>
 						<br/>
 
+            Skype:
+						{% if not profile.skype %}
+						<a href="#">n/a</a>
+						{% else %}
+						{{profile.skype}}
+						{% endif %}
+
 						Mobile:
 						{% if not profile.mobile %}
 						<a href="#">n/a</a>
@@ -56,13 +63,6 @@
 						{{profile.mobile}}
 						{% endif %}
             <br/>
-
-            Skype:
-						{% if not profile.skype %}
-						<a href="#">n/a</a>
-						{% else %}
-						{{profile.skype}}
-						{% endif %}
 
 					</p>
 
