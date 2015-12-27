@@ -427,7 +427,7 @@ def ping():
 
                 new_active_report['date'] = datetime.datetime.now()
                 new_active_report['agent_version'] = agent_version
-                new_active_report['type'] = "event"
+                new_active_report['type'] = "status"
                 historical_service_statuses.insert(new_active_report)
                 alertor_queue.insert(new_active_report)
 

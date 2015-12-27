@@ -65,7 +65,7 @@ def get_notification_age(value):
 def get_historical_events(server_id):
 
     historical_service_statuses = mongo.historical_service_statuses
-    historical_service_statuses = historical_service_statuses.find({'server_id':server_id,})
+    historical_service_statuses = historical_service_statuses.find({'server_id':server_id,'type':'status',})
     historical_service_statuses = historical_service_statuses.sort("_id",pymongo.DESCENDING)
     historical_service_statuses = historical_service_statuses.limit(20)
 
