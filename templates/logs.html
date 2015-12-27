@@ -96,7 +96,7 @@
                   {% endif %}
 
                   {% if server|get_server_status != "offline" %}
-                        {% if server|dict_get:"uuid"|get_historical_events %}
+                        {% if server|dict_get:"uuid"|get_historical_events|count %}
                               <table style="width:100%">
                                 <tr>
                                   <th>status</th>
