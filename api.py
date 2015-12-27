@@ -62,6 +62,10 @@ def activity():
         activity_ = mongo.activity
         activity_.insert( activity_log )
 
+        activity_log["type"] = "activity"
+        historical_service_statuses = mongo.historical_service_statuses
+        historical_service_statuses.insert(activity_log)
+        
     except:
         return ("update", 201)
 
