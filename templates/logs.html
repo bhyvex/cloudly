@@ -116,7 +116,7 @@
                                 {% endfor %}
                               </table>
                         {% else %}
-                              The server is steady.
+                              {{server|dict_get:"name"|title}} is running steadily.
                         {% endif %}
                   {% endif %}
                 </p>
