@@ -78,23 +78,14 @@
                       <br/>
                       Datacenters:
                         {% for tag in server|dict_get:"tags"|dict_get:"datacenters" %}
-                          {{tag|dict_get:0}}
-                          ({{tag|dict_get:1}})
-                          <br/>
+                          {{tag|dict_get:0}}{% if not forloop.last %},{% endif %}
                         {% endfor %}
-                        {% if not forloop.first and not forloop.last %}
-                        ,
-                        {% endif %}
+                        <br/>
 
                       Tags:
                         {% for tag in server|dict_get:"tags"|dict_get:"tags" %}
-                          {{tag|dict_get:0}}
-                          ({{tag|dict_get:1}})
-                          <br/>
+                          {{tag|dict_get:0}}{% if not forloop.last %},{% endif %}
                         {% endfor %}
-                        {% if not forloop.first and not forloop.last %}
-                        ,
-                        {% endif %}
 
                       {% if not server|dict_get:"tags"|dict_get:"tags" %}
                         there are none defined for this server..
