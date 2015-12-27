@@ -258,6 +258,11 @@
           							</div>
                       {% endif %}
 
+                      <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>Ooops!</strong> XXX There is 1 zombie process on this server.
+                      </div>
+
         						</div>
         					</div>
             </div>
@@ -659,6 +664,34 @@
         </div>
     </div><!--/row-->
 
+    <div id="recent_server_activities"
+        class="row"
+        {% if server_status|lower = "offline" %}
+            style="display: none;"
+        {% endif %}
+        >
+        <div class="col-xs-12">
+            <div id="recentActivities" class="panel panel-default">
+                <div class="panel-heading">
+                    <h2><i class="fa fa-cab"></i>Activities</h2>
+                    <div class="panel-actions">
+                        <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+                        <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                        <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                  <p>
+                    XXX limit to 5<br/>
+                    XXX add in notifications field with on/off/obsessive option for each..<br/>
+                  </p>
+
+                </div>
+
+            </div>
+        </div>
+    </div><!--/row-->
 
     <div id="recent_problems"
         class="row"
@@ -685,7 +718,6 @@
                       <th>service</th>
                       <th>time since</th>
                       <th>date</th>
-                      <th>message</th>
                       <th>values</th>
                     </tr>
                     {% for event in historical_service_statuses %}
@@ -694,28 +726,17 @@
                       <td>{{event|dict_get:"service"}}</td>
                       <td>{{event|dict_get:"date"|timesince}} ago</td>
                       <td>{{event|dict_get:"date"}}</td>
-                      <td>{{event|dict_get:"detailed_service_status"|dict_get:"message"}}</td>
                       <td>{{event|dict_get:"detailed_service_status"|dict_get:"values"}}</td>
                     </tr>
                     {% endfor %}
                   </table>
                   <br/>
-                  <small>* obsessive monitoring</small>
+                  <small>* obsessive monitoring on/off</small>
                 </div>
 
              </div>
         </div>
     </div><!--/row-->
-
-
-
-    {% comment %}
-    <p>DEBUG<br/>
-        {{server}}
-        <hr/>
-        XXX activity (there are things like emails sent etc...)
-    </p>
-    {% endcomment %}
 
 
     <div id="running_message"

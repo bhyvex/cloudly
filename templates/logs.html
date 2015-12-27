@@ -31,6 +31,7 @@
             <table style="width:100%">
               <tr>
                 <th>acivity</th>
+                <th>time since</th>
                 <th>date</th>
                 <th>server</th>
                 <th>data</th>
@@ -38,9 +39,10 @@
                 {% for activity in activities %}
                   <tr>
                     <td>{{activity|dict_get:"activity_type"}}</td>
+                    <td>{{activity|dict_get:"date_created"|timesince}} ago</td>
                     <td>{{activity|dict_get:"date_created"}}</td>
                     <td>{{activity|dict_get:"server_id"}}</td>
-                    <td>{{activity|dict_get:"data"|truncatechars:83}}</td>
+                    <td>{{activity|dict_get:"data"|truncatechars:65}}</td>
                   </tr>
                 {% endfor %}
             </table>
@@ -70,37 +72,54 @@
                 <p>
 
                   {% if server|get_server_status == "offline" %}
-                    <small>Last seen {{server|get_offline_seconds}} seconds ago</small>
-                    <br/>
-                    Server has gone offline on {{server|dict_get:"last_seen"}}
-                    <br/>
-                    {{server|dict_get:"tags"}}
-                    <hr/>
+                      <small>Last seen {{server|get_offline_seconds}} seconds ago</small>
+                      <br/>
+                      Server has gone offline (!!) on {{server|dict_get:"last_seen"}}; which was exactly {{server|dict_get:"last_seen"|timesince}} ago.
+                      <br/>
+                      Datacenters:
+                        {% for tag in server|dict_get:"tags"|dict_get:"datacenters" %}
+                          {{tag|dict_get:0}} - {{tag|dict_get:1}}{% if not forloop.last %};{% endif %}
+                        {% endfor %}
+                        <br/>
+
+                      Tags:
+                        {% for tag in server|dict_get:"tags"|dict_get:"tags" %}
+                          {{tag|dict_get:0}}{% if not forloop.last %},{% endif %}
+                        {% endfor %}
+
+                      {% if not server|dict_get:"tags"|dict_get:"tags" %}
+                        there are none defined for this server..
+                      {% endif %}
+
+                      <hr/>
+
                   {% endif %}
 
-                  <table style="width:100%">
-                    <tr>
-                      <th>status</th>
-                      <th>service</th>
-                      <th>time since</th>
-                      <th>date</th>
-                      <th>message</th>
-                      <th>data</th>
-                    </tr>
-                  {% for event in server|dict_get:"uuid"|get_historical_events %}
-                          <tr>
-                            <td>{{event|dict_get:"detailed_service_status"|dict_get:"status"}}</td>
-                            <td>{{event|dict_get:"service"}}</td>
-                            <td>{{event|dict_get:"date"|timesince}} ago</td>
-                            <td>{{event|dict_get:"date"}}</td>
-                            <td>{{event|dict_get:"detailed_service_status"|dict_get:"message"}}</td>
-                            <td>{{event|dict_get:"detailed_service_status"|dict_get:"values"|truncatechars:20}}</td>
-                          </tr>
-                  {% endfor %}
-                  </table>
-
+                  {% if server|get_server_status != "offline" %}
+                        {% if server|dict_get:"uuid"|get_historical_events|length %}
+                              <table style="width:100%">
+                                <tr>
+                                  <th>status</th>
+                                  <th>service</th>
+                                  <th>time since</th>
+                                  <th>date</th>
+                                  <th>values</th>
+                                </tr>
+                                {% for event in server|dict_get:"uuid"|get_historical_events %}
+                                        <tr>
+                                          <td>{{event|dict_get:"detailed_service_status"|dict_get:"status"}}</td>
+                                          <td>{{event|dict_get:"service"}}</td>
+                                          <td>{{event|dict_get:"date"|timesince}} ago</td>
+                                          <td>{{event|dict_get:"date"}}</td>
+                                          <td>{{event|dict_get:"detailed_service_status"|dict_get:"values"|truncatechars:65}}</td>
+                                        </tr>
+                                {% endfor %}
+                              </table>
+                        {% else %}
+                              {{server|dict_get:"name"|title}} is running steadily.
+                        {% endif %}
+                  {% endif %}
                 </p>
-
       				</div>
       			</div>
           </div>

@@ -35,8 +35,9 @@
 
 						{% if user.username != "demo@demo.com" %}
 						Password: <a href="/account/password">change password</a>
+            <br/>
 						{% endif %}
-                        <hr/>
+            <br/>
 						Twitter:
 						{% if not profile.twitter %}
                         <a href="#">n/a</a>
@@ -48,12 +49,21 @@
 						Jabber: <a href="#">n/a</a>
 						<br/>
 
+            Skype:
+						{% if not profile.skype %}
+						<a href="#">n/a</a>
+						{% else %}
+						{{profile.skype}}
+						{% endif %}
+            <br/>
+
 						Mobile:
 						{% if not profile.mobile %}
 						<a href="#">n/a</a>
 						{% else %}
 						{{profile.mobile}}
 						{% endif %}
+
 					</p>
 
 				</div>
@@ -79,14 +89,11 @@
 						Standard Deviation: Enabled<br/>
 						Heuristic Analysis: Enabled<br/>
 						Flap Detection: Enabled<br/>
-						<hr/>
-						Email notifications: on <b>off</b> obsessive<br/>
-						Twitter notifications: on <b>off</b> obsessive<br/>
-						Jabber notifications: on <b>off</b> obsessive<br/>
-						SMS notifications: on <b>off</b> obsessive<br/>
-						<hr/>
-            Notifications Summary: Off <small>hourly | daily | every monday | tuesday | .. sunday</small><br/>
-            Custom Notifications Escalation: Off<br/>
+						<br/>
+						Email notifications: <b>on</b> off<br/>
+						Twitter notifications: on <b>off</b><br/>
+						Jabber notifications: on <b>off</b><br/>
+						SMS notifications: on <b>off</b><br/>
 					</p>
 				</div>
 
