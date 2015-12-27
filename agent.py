@@ -855,7 +855,7 @@ def main():
                 'activity_type': "AGENT_UPDATED",
                 'data': {
                     "agent_version": AGENT_VERSION,
-                    "message": "Agent self-updated.",
+                    "message": "Agent self-updated to the latest version.",
                     }
                 }
             send_data(SECRET,api_call,activity)
