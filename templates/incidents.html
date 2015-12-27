@@ -16,7 +16,7 @@
         <div class="col-sm-7 tasks">
 
             <div class="task-list">
-                <h1>Host &amp; Services Problems</h1>
+                <h1>XXX Host &amp; Services Problems</h1>
 
                 {% if not notifs_counter %}
                     There are currently no servers or services problems being encountered.
@@ -56,7 +56,7 @@
                                             {{notif|dict_get:"service"|replace_underscope}}
                                             </a>&nbsp;
                                             <small>
-                                              <font color="black">	
+                                              <font color="black">
                                               {{notif|dict_get:"name"}}
                                               </font>
                                             </small>
@@ -64,16 +64,11 @@
                                         <div>
                                             <strong>{{notif|dict_get:"detailed_service_status"|dict_get:"message"}}:</strong>
                                             <br />
-                                                    {% comment %}
-                                                        {% for value in notif|dict_get:"detailed_service_status"|dict_get:"values" %}
-                                                            <strong>{{value|replace_underscope}}:&nbsp;</strong>
-                                                            {{notif|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:value}}&nbsp;{{notif|dict_get:"service"|get_service_unity}}
-                                                            {% if not forloop.last %}
-                                                                <br />
-                                                            {% endif %}
-                                                        {% endfor %}
-                                                      {% endcomment %}
-                                              {{notif|dict_get:"detailed_service_status"}}
+                                            {% for value in notif|dict_get:"detailed_service_status"|dict_get:"values" %}
+                                                {{value|replace_underscope|title}}:
+                                                {{notif|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:value}}{{notif|dict_get:"service"|get_service_unity}}{% if not forloop.last %},{% endif %}
+                                            {% endfor %}
+
                                         </div>
                                     </div>
                                     <div class="time">

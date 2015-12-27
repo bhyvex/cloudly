@@ -252,7 +252,7 @@ def server_view(request, hwaddr):
     server_status = "Running"
     if((datetime.datetime.now()-server['last_seen']).total_seconds()>20):
         server_status = "Stopped"
-        if((datetime.datetime.now()-server['last_seen']).total_seconds()>1800):
+        if((datetime.datetime.now()-server['last_seen']).total_seconds()>300):
             server_status = "Offline"
 
     try:
@@ -297,7 +297,7 @@ def server_view(request, hwaddr):
             reduced_disks.append(disk)
 
     historical_service_statuses = mongo.historical_service_statuses
-    historical_service_statuses = historical_service_statuses.find({'secret':profile.secret,'server_id':server['uuid']})
+    historical_service_statuses = historical_service_statuses.find({'secret':profile.secret,'server_id':server['uuid'],'type':'status',})
     historical_service_statuses = historical_service_statuses.sort("_id",pymongo.DESCENDING)
     historical_service_statuses = historical_service_statuses.limit(20)
 
@@ -358,6 +358,15 @@ def server_view(request, hwaddr):
     notifs = active_service_statuses.find({"$and":[{"secret": profile.secret,"server_id":server['uuid']},{"current_overall_status":{"$ne":"OK"}}]})
     server_notifs_count = notifs.count()
 
+    for line in open('agent.py','rt').readlines():
+        if('AGENT_VERSION' in line):
+            AGENT_VERSION_CURRENT = line.split('"')[1]
+            break
+
+    is_outdated_agent_version = False
+    if(server['agent_version'] != AGENT_VERSION_CURRENT):
+        is_outdated_agent_version = True
+
 
     return render_to_response(
         'server_detail.html',
@@ -378,7 +387,8 @@ def server_view(request, hwaddr):
             'historical_service_statuses':historical_service_statuses,
             'activity':activity,
             'server_notifs_count':server_notifs_count,
-            'active_service_statuses':active_service_statuses,
+            'is_outdated_agent_version':is_outdated_agent_version,
+            'notifs':notifs,
         },
         context_instance=RequestContext(request))
 
@@ -394,7 +404,7 @@ def ajax_servers_incidents(request):
     servers_names = {}
     for server in servers:
         servers_names[server['uuid']] = server['name']
-        if((datetime.datetime.now()-server['last_seen']).total_seconds()>1800):
+        if((datetime.datetime.now()-server['last_seen']).total_seconds()>300):
             server['_id'] = str(server["_id"])
             server['last_seen'] = server['last_seen'].strftime("%Y-%m-%d %H:%M:%S")
             response['offline_servers'].append(server)
@@ -889,9 +899,10 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
     server_status = "Running"
     if((datetime.datetime.now()-server['last_seen']).total_seconds()>20):
         server_status = "Stopped"
-        if((datetime.datetime.now()-server['last_seen']).total_seconds()>1800):
+        if((datetime.datetime.now()-server['last_seen']).total_seconds()>300):
             server_status = "Offline"
-            print '*'*1000
+            print '*'*100
+            print 'server is offline'
             print (datetime.datetime.now()-server['last_seen']).total_seconds()
 
 

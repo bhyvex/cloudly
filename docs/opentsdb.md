@@ -1,3 +1,17 @@
 ###### Install OpenTSDB
 
 Cloudly runs off of Hadoop and is powered by the OpenTSBD.  Please refer to the official OpenTSDB documentation for installation the instructions - http://opentsdb.net/docs/build/html/installation.html
+
+###### XXX Notes
+
+<pre>
+export JAVA_HOME=/usr
+
+/opt/hbase-1.0.1.1/bin/start-hbase.sh
+
+telnet 0 2181
+
+env COMPRESSION=NONE HBASE_HOME=/opt/hbase-1.0.1.1/ /opt/opentsdb/tools/create_table.sh
+
+/opt/opentsdb/bin/tsdb tsd --auto-metric --staticroot=/opt/opentsdb/static/ --port=4242 --auto-metric --cachedir="/home/hbase/opentsdb-cache/" --zkquorum=localhost:2181
+</pre>

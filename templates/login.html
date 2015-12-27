@@ -60,6 +60,15 @@
 
 					<form action="/login/" method='POST' class='form-validate' id="login">{% csrf_token %}
 						<fieldset class="col-sm-12">
+
+							{% if err %}
+								<div class="alert alert-danger">
+									<button type="button" class="close" data-dismiss="alert">×</button>
+									The username and/or password is incorrect.
+								</div>
+							{% endif %}
+
+
 							<div class="form-group">
 								<div class="controls row">
 									<div class="input-group col-sm-12">
@@ -87,7 +96,9 @@
 						</fieldset>
 					</form>
 
+					{% comment %}
 					<a class="pull-left" href="#">Forgot Password?</a>
+					{% endcomment %}
 					<a class="pull-right" href="/register/">Sign Up!</a>
 
 					<div class="clearfix"></div>

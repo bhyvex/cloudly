@@ -65,7 +65,7 @@ def get_notification_age(value):
 def get_historical_events(server_id):
 
     historical_service_statuses = mongo.historical_service_statuses
-    historical_service_statuses = historical_service_statuses.find({'server_id':server_id,})
+    historical_service_statuses = historical_service_statuses.find({'server_id':server_id,'type':'status',})
     historical_service_statuses = historical_service_statuses.sort("_id",pymongo.DESCENDING)
     historical_service_statuses = historical_service_statuses.limit(20)
 
@@ -81,6 +81,11 @@ def get_server_status(server):
         return "stopped"
 
     return "online"
+
+@register.filter(name='get_offline_seconds')
+def get_offline_seconds(server):
+
+    return int((datetime.datetime.now()-server['last_seen']).total_seconds())
 
 
 @register.filter(name='manual_notifs_count_unfortunately')
@@ -164,7 +169,7 @@ def make_json(json_):
 
 @register.filter(name='get_service_unity')
 def get_service_unity(service):
-    unity = ''
+    unity = ""
     if service == 'SYSTEM_CPU':
         unity = '%'
     return unity

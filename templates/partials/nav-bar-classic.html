@@ -39,9 +39,9 @@
                                     <li>
                                         <a href="#">
                                             <div class="title">
-                                              {{notif}}
                                                 {{notif|dict_get:"name"}} |
                                                 {{notif|dict_get:"service"|replace_underscope|title}}
+                                                {{notif}}
                                             </div>
                                             <small>
                                                 alert duration {{notif|dict_get:"date"|timesince}}
@@ -72,7 +72,7 @@
                 </ul>
             </li>
 
-            <li><a href="/account/settings/"><i class="fa fa-cog"></i></a></li>
+            <li><a href="#this_really_is_sound_mute_button"><i class="fa fa-fire-extinguisher"></i></a></li>
             <li><a href="/logout/"><i class="fa fa-power-off"></i></a></li>
         </ul>
 

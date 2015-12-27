@@ -19,8 +19,8 @@ try:
     import json
 except: pass
 
-AGENT_VERSION = "0.5"
-AGENT_ALLOWED_TO_SELF_UPDATE = False
+AGENT_VERSION = "0.7.4"
+AGENT_ALLOWED_TO_SELFUPDATE = False
 AGENT_PATH = "/opt/monitoring-agent.py"
 
 REFRESH_INTERVAL = 2 # in seconds
@@ -31,6 +31,7 @@ if(not SECRET): SECRET = raw_input("Enter your secret: ")
 API_SERVER = "" # to be injected on download by Cloudly
 if(not API_SERVER): API_SERVER = "127.0.0.1:5001"
 
+os.environ["LANG"] = "POSIX"
 
 if(not getpass.getuser()=="root"):
     print "You must be root to run this script."
@@ -122,6 +123,9 @@ def self_update( secret ):
             continue
         if("API_SERVER = \"\"" in line):
             agent_code += "API_SERVER = \""+API_SERVER+"\"\n"
+            continue
+        if("AGENT_ALLOWED_TO_SELF_UPDATE = \"\"" in line):
+            agent_code += "AGENT_ALLOWED_TO_SELF_UPDATE = True\n"
             continue
         agent_code += line + "\n"
 
@@ -313,11 +317,11 @@ def _get_sys_loadavg():
     if(status == 'WARNING'): message = message + ' too high'
     if(status == 'CRITICAL'): message = message + ' ' + status
 
-    loadavg_values = []
-    for i in loadavg:
-        loadavg_values.append(i)
-
-    message = message[:-1]
+    loadavg_values = {
+        "1-min":loadavg[0],
+        "5-min":loadavg[1],
+        "15-min":loadavg[2],
+    }
 
     service_status['status'] = status
     service_status['message'] = message
@@ -507,9 +511,17 @@ def _get_disks_usage():
             disks_usage.append(volume)
 
 
+    disks_usage_  = []
+    for disk in disks_usage:
+        if(disk[0]=="udev" or disk[0]=="rmpfs" or disk[0]=="cgmfs" or disk[0]=="tmpfs"):
+            continue
+        disks_usage_.append(disk)
+    disks_usage = disks_usage_
+
     overall_status = "UNKNOWN"
     messages = []
     disks_values = []
+
 
     for disk in disks_usage:
 
@@ -583,6 +595,8 @@ def _get_networking_stats():
         if(len(line)==0): psc += 1
 
     inbound_traffic = {}
+    input_accept_packets = 0
+    input_accept_bytes = 0
 
     for line in inbound_text.split('\n'):
 
@@ -592,12 +606,6 @@ def _get_networking_stats():
             input_accept_packets = input_accept[0]
             input_accept_bytes = input_accept[2]
             break
-
-    inbound_traffic['input_accept_packets'] = input_accept_packets
-    inbound_traffic['input_accept_bytes'] = input_accept_bytes
-
-    input_accept_packets = 0
-    input_accept_bytes = 0
 
     if(len(inbound_text.split('\n'))>3):
 
@@ -613,7 +621,10 @@ def _get_networking_stats():
     if(input_accept_packets>0): inbound_traffic['input_accept_packets'] = input_accept_packets
     if(input_accept_bytes>0): inbound_traffic['input_accept_bytes'] = input_accept_bytes
 
+
     outbound_traffic = {}
+    output_accept_packets = 0
+    output_accept_bytes = 0
 
     for line in outbound_text.split('\n'):
 
@@ -623,12 +634,6 @@ def _get_networking_stats():
             output_accept_packets = output_accept[0]
             output_accept_bytes = output_accept[2]
             break
-
-    outbound_traffic['output_accept_packets'] = output_accept_packets
-    outbound_traffic['output_accept_bytes'] = output_accept_bytes
-
-    output_accept_packets = 0
-    output_accept_bytes = 0
 
     if(len(outbound_text.split('\n'))>3):
 
@@ -736,6 +741,7 @@ def send_data( secret, api_call, data ):
 
     while True:
 
+        print datetime.datetime.now(), 'Querying API server ' + API_SERVER + ' ..'
         try:
             conn = httplib.HTTPConnection(API_SERVER)
             conn.request("POST", api_call, json.dumps(data), headers)
@@ -803,7 +809,7 @@ def get_system_metrics( uuid, secret ):
         'agent_version': AGENT_VERSION,
     }
 
-    print datetime.datetime.now(), 'Collected system metrics..'
+    print datetime.datetime.now(), 'Successfully collected system metrics..'
 
     return system_metrics_json
 
@@ -840,7 +846,7 @@ def main():
         system_metrics = get_system_metrics(UUID, SECRET)
         api_response = send_data(SECRET,api_call,system_metrics)
 
-        if(api_response=="update" and AGENT_ALLOWED_TO_SELF_UPDATE):
+        if(api_response=="update" and AGENT_ALLOWED_TO_SELFUPDATE):
 
             api_call = "/v10/activity/"
             activity = {
@@ -849,11 +855,30 @@ def main():
                 'activity_type': "AGENT_UPDATED",
                 'data': {
                     "agent_version": AGENT_VERSION,
-                    "message": "Agent self-updated.",
+                    "message": "Agent self-updated to the latest version.",
                     }
                 }
             send_data(SECRET,api_call,activity)
             self_update(SECRET)
+
+
+        if(api_response=="stop"):
+
+            api_call = "/v10/activity/"
+            activity = {
+                'secret': SECRET,
+                'server_id': UUID,
+                'activity_type': "AGENT_STOPPED",
+                'data': {
+                    "agent_version": AGENT_VERSION,
+                    "message": "API issued stop command. Agent stopped.",
+                    }
+                }
+            send_data(SECRET,api_call,activity)
+            self_update(SECRET)
+
+            print "API issued stop command. Exiting.."
+            sys.exit(0)
 
 
         time.sleep(REFRESH_INTERVAL)
