@@ -55,6 +55,14 @@
 						{% else %}
 						{{profile.mobile}}
 						{% endif %}
+
+            Skype:
+						{% if not profile.skype %}
+						<a href="#">n/a</a>
+						{% else %}
+						{{profile.skype}}
+						{% endif %}
+
 					</p>
 
 				</div>
