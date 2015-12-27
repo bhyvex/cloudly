@@ -149,4 +149,4 @@ Screenshots & Live Demo
 
 ###### Demo
 
-Project can be currently seen on https://projectcloudly.org/demo
+This project can be currently seen on https://projectcloudly.org/demo
