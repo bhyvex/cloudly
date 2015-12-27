@@ -96,7 +96,7 @@
                   {% endif %}
 
                   {% if server|get_server_status != "offline" %}
-                        {% server|dict_get:"uuid"|get_historical_events %}
+                        {% if server|dict_get:"uuid"|get_historical_events %}
                               <table style="width:100%">
                                 <tr>
                                   <th>status</th>
@@ -116,7 +116,7 @@
                                 {% endfor %}
                               </table>
                         {% else %}
-                        This server seems steady.
+                              This server seems steady.
                         {% endif %}
                   {% endif %}
                 </p>
