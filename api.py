@@ -65,7 +65,7 @@ def activity():
         activity_log["type"] = "activity"
         historical_service_statuses = mongo.historical_service_statuses
         historical_service_statuses.insert(activity_log)
-        
+
     except:
         return ("update", 201)
 
@@ -412,7 +412,10 @@ def ping():
             except: min_alert_duration = 30
 
 
-            current_alert_duration = (datetime.datetime.now()-last_active_service_status['date']).total_seconds()
+            try:
+                current_alert_duration = (datetime.datetime.now()-last_active_service_status['date']).total_seconds()
+            except:
+                current_alert_duration = 0
 
             print '**', service, last_active_service_status['current_overall_status'], '--> (currently)', current_overall_service_status
             print '** current_alert_duration', current_alert_duration, 'min_alert_duration', min_alert_duration
