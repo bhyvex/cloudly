@@ -395,6 +395,7 @@ def ping():
 
             new_active_report['date'] = datetime.datetime.now()
             active_service_statuses.insert(new_active_report)
+            historical_service_statuses.insert(new_active_report)
 
         else:
             if (not 'date' in last_active_service_status):
