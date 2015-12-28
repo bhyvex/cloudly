@@ -96,28 +96,25 @@
                   {% endif %}
 
                   {% if server|get_server_status != "offline" %}
-                        {% if server|dict_get:"uuid"|get_historical_events|length %}
-                              <table style="width:100%">
-                                <tr>
-                                  <th>status</th>
-                                  <th>service</th>
-                                  <th>time since</th>
-                                  <th>date</th>
-                                  <th>values</th>
-                                </tr>
-                                {% for event in server|dict_get:"uuid"|get_historical_events %}
-                                        <tr>
-                                          <td>{{event|dict_get:"detailed_service_status"|dict_get:"status"}}</td>
-                                          <td>{{event|dict_get:"service"}}</td>
-                                          <td>{{event|dict_get:"date"|timesince}} ago</td>
-                                          <td>{{event|dict_get:"date"}}</td>
-                                          <td>{{event|dict_get:"detailed_service_status"|dict_get:"values"|truncatechars:65}}</td>
-                                        </tr>
-                                {% endfor %}
-                              </table>
-                        {% else %}
-                              {{server|dict_get:"name"|title}} is running steadily.
-                        {% endif %}
+                        <table style="width:100%">
+                          <tr>
+                            <th>status</th>
+                            <th>service</th>
+                            <th>time since</th>
+                            <th>date</th>
+                            <th>values</th>
+                          </tr>
+                          {% for event in server|dict_get:"uuid"|get_historical_events %}
+                                  <tr>
+                                    <td>{{event|dict_get:"detailed_service_status"|dict_get:"status"}}</td>
+                                    <td>{{event|dict_get:"service"}}</td>
+                                    <td>{{event|dict_get:"date"|timesince}} ago</td>
+                                    <td>{{event|dict_get:"date"}}</td>
+                                    <td>{{event|dict_get:"detailed_service_status"|dict_get:"values"|truncatechars:65}}</td>
+                                  </tr>
+                          {% endfor %}
+                        </table>
+                        XXX if no events {{server|dict_get:"name"|title}} is running steadily.
                   {% endif %}
                 </p>
       				</div>
