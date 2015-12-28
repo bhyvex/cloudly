@@ -745,7 +745,7 @@
             style="display: none;"
         {% endif %}
         >
-        Server agent has gone offline.
+        Server agent has gone offline {{server|dict_get:"last_seen"|timesince}} ago.
     </div>
 {% endblock page_content %}
 
