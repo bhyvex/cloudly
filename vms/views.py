@@ -763,7 +763,6 @@ def ajax_virtual_machines(request):
                     if(not data_median>70):
                         color = "pink "
 
-
             if(vm_state=="Stopping"):
                 color = "pink "
             if(vm_state=="Pending"):
