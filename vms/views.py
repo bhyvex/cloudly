@@ -785,7 +785,8 @@ def ajax_virtual_machines(request):
 
             ajax_vms_response += "\"vmname\":\""
             ajax_vms_response += instance_name
-            if(notifs_count and vm_state=="Running"): ajax_vms_response += " <b>" + str(notifs_count) + "</b>"
+            if(notifs_count and vm_state=="Running"):
+                ajax_vms_response += " <b>" + str(notifs_count) + "</b>"
 
             ajax_vms_response += "\","
 
