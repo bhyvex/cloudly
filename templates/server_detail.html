@@ -685,8 +685,30 @@
 
                 <div class="panel-body">
                   <p>
-                    XXX limit to 5<br/>
+
                     XXX add in notifications field with on/off/obsessive option for each..<br/>
+
+                    XXX working on this currently<br/>
+
+
+                    <table style="width:100%">
+                      <tr>
+                        <th>type</th>
+                        <th>timesince</th>
+                        <th>date</th>
+                        <th>data</th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                      {% for activity in activities %}
+                      <tr>
+                        <td>{{activity|dict_get:"activity_type"}}</td>
+                        <td>{{activity|dict_get:"date"|timesince}} ago</td>
+                        <td>{{activity|dict_get:"date_created"}}</td>
+                        <td>{{activity|dict_get:"data"}}</td>
+                      </tr>
+                      {% endfor %}
+                    </table>
 
                   </p>
                 </div>
