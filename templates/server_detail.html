@@ -693,8 +693,8 @@
 
                     <table style="width:100%">
                       <tr>
-                        <th>timesince</th>
                         <th>type</th>
+                        <th>timesince</th>
                         <th>date</th>
                         <th>data</th>
                         <th></th>
@@ -702,8 +702,8 @@
                       </tr>
                       {% for event in activity %}
                       <tr>
-                        <td>{{event|dict_get:"date_created"|timesince}} ago</td>
                         <td>{{event|dict_get:"activity_type"}}</td>
+                        <td>{{event|dict_get:"date_created"|timesince}} ago</td>
                         <td>{{event|dict_get:"date_created"}}</td>
                         <td>{{event|dict_get:"data"}}</td>
                       </tr>
