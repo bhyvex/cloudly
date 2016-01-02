@@ -72,10 +72,10 @@
                 <p>
 
                   {% if server|get_server_status == "offline" %}
-                      <small>Last seen {{server|get_offline_seconds}} seconds ago</small>
+
+                      The server agent has gone offline {{server|dict_get:"last_seen"|timesince}} ago.
                       <br/>
-                      Server agent has gone offline {{server|dict_get:"last_seen"|timesince}} ago.
-                      <br/>
+
                       Datacenters:
                         {% for tag in server|dict_get:"tags"|dict_get:"datacenters" %}
                           {{tag|dict_get:0}} - {{tag|dict_get:1}}{% if not forloop.last %};{% endif %}
