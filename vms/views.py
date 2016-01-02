@@ -281,8 +281,6 @@ def server_view(request, hwaddr):
     #for i in loadavg: loadavg_.append(i)
     loadavg = loadavg_
 
-    activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
-
     disks = []
     disks_ = server[u'disks_usage']
 
@@ -296,10 +294,16 @@ def server_view(request, hwaddr):
         if(disk[:4]!="/run" and disk[:5]!="/boot" and disk[:4]!="/sys" and disk[:4]!="/dev"):
             reduced_disks.append(disk)
 
+
+    activity = historical_service_statuses.find({'secret':profile.secret,'server_id':server['uuid'],'type':'activity',})
+    activity = historical_service_statuses.sort("_id",pymongo.DESCENDING)
+    activity = historical_service_statuses.limit(20)
+
     historical_service_statuses = mongo.historical_service_statuses
     historical_service_statuses = historical_service_statuses.find({'secret':profile.secret,'server_id':server['uuid'],'type':'status',})
     historical_service_statuses = historical_service_statuses.sort("_id",pymongo.DESCENDING)
     historical_service_statuses = historical_service_statuses.limit(20)
+
 
     try:
         recently_clicked_servers = request.session["recently_clicked_servers"]
