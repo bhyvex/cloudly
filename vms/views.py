@@ -300,10 +300,10 @@ def server_view(request, hwaddr):
     historical_service_statuses = historical_service_statuses.sort("_id",pymongo.DESCENDING)
     historical_service_statuses = historical_service_statuses.limit(20)
 
-    activity = historical_service_statuses.find({'secret':profile.secret,'server_id':server['uuid'],'type':'activity',})
-    activity = historical_service_statuses.sort("_id",pymongo.DESCENDING)
-    activity = historical_service_statuses.limit(5)
-
+    activity = mongo.historical_service_statuses
+    activity = activity.find({'secret':profile.secret,'server_id':server['uuid'],'type':'activity',})
+    activity = activity.sort("_id",pymongo.DESCENDING)
+    activity = activity.limit(5)
 
     try:
         recently_clicked_servers = request.session["recently_clicked_servers"]
