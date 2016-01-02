@@ -90,7 +90,6 @@ if __name__ == "__main__":
             user = Profile.objects.get(secret=alert["secret"])
             user_email = user.user.email
             user_secret = alert['secret']
-            server_id = server_name
 
             # XXX consider obsessive chasing profile settings here
             send_mail( \
