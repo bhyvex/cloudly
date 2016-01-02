@@ -700,12 +700,12 @@
                         <th></th>
                         <th></th>
                       </tr>
-                      {% for activity in activities %}
+                      {% for event in activity %}
                       <tr>
-                        <td>{{activity|dict_get:"activity_type"}}</td>
-                        <td>{{activity|dict_get:"date"|timesince}} ago</td>
-                        <td>{{activity|dict_get:"date_created"}}</td>
-                        <td>{{activity|dict_get:"data"}}</td>
+                        <td>{{event|dict_get:"activity_type"}}</td>
+                        <td>{{event|dict_get:"date"|timesince}} ago</td>
+                        <td>{{event|dict_get:"date_created"}}</td>
+                        <td>{{event|dict_get:"data"}}</td>
                       </tr>
                       {% endfor %}
                     </table>
