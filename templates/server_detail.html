@@ -703,7 +703,7 @@
                       {% for event in activity %}
                       <tr>
                         <td>{{event|dict_get:"activity_type"}}</td>
-                        <td>{{event|dict_get:"date"|timesince}} ago</td>
+                        <td>{{event|dict_get:"date_created"|timesince}} ago</td>
                         <td>{{event|dict_get:"date_created"}}</td>
                         <td>{{event|dict_get:"data"}}</td>
                       </tr>
