@@ -304,6 +304,8 @@ def server_view(request, hwaddr):
     activity = activity.find({'secret':profile.secret,'server_id':server['uuid'],'type':'activity',})
     activity = activity.sort("_id",pymongo.DESCENDING)
 
+
+    # XXX this sucks, improve it!
     activity_cummulative_types = []
 
     for event in activity:
