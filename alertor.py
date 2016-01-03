@@ -78,6 +78,7 @@ if __name__ == "__main__":
         if(alert):
 
             server = servers.find_one({'secret':alert["secret"], 'uuid':alert['server_id'],})
+            server_id = server['server_id']
 
             try:
                 server_name = server['name']
