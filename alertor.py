@@ -60,6 +60,8 @@ def _file_activity( activity_data ):
     activity_ = mongo.activity
     activity_.insert( activity_log )
 
+    # XXX file historical activity
+
     return True
 
 
