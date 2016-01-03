@@ -309,8 +309,8 @@ def server_view(request, hwaddr):
 
     for event in activity:
         if not event['type'] in activity_cummulative_types:
-            activity_cummulative_types.add(event['type'])
-     
+            activity_cummulative_types.append(event['type'])
+
 
     try:
         recently_clicked_servers = request.session["recently_clicked_servers"]
