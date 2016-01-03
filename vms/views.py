@@ -401,6 +401,7 @@ def server_view(request, hwaddr):
             'networking':networking,
             'historical_service_statuses':historical_service_statuses,
             'activity':activity,
+            'activity_cummulative_types':activity_cummulative_types,
             'server_notifs_count':server_notifs_count,
             'is_outdated_agent_version':is_outdated_agent_version,
             'notifs':notifs,
