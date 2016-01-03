@@ -306,6 +306,10 @@ def server_view(request, hwaddr):
     activity = activity.limit(5)
 
     activity_cummulative_types = []
+
+    for event in activity:
+        if not event['type'] in activity_cummulative_types:
+            activity_cummulative_types.add(event['type'])
      
 
     try:
