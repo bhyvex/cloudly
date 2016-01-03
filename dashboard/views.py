@@ -130,7 +130,12 @@ def welcome(request):
     _log_user_activity(profile,"click","/welcome/","welcome",ip=ip)
 
     print request.user
-    return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
+
+    return render_to_response(
+        'welcome.html',
+        locals(),
+        context_instance=RequestContext(request)
+    )
 
 
 
