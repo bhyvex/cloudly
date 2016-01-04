@@ -306,7 +306,7 @@ def server_view(request, hwaddr):
     historical_service_statuses = mongo.historical_service_statuses
     historical_service_statuses = historical_service_statuses.find({'secret':profile.secret,'server_id':server['uuid'],'type':'status',})
     historical_service_statuses = historical_service_statuses.sort("_id",pymongo.DESCENDING)
-    historical_service_statuses = historical_service_statuses.limit(20)
+    historical_service_statuses = historical_service_statuses.limit(40)
 
 
     activity = mongo.historical_service_statuses
