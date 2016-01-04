@@ -946,7 +946,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         processes_ = []
         processes = server['processes']
 
-
         c=0
         for line in processes:
 
@@ -973,6 +972,10 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
 
                 process_name = clean_ps_command(process_command[0])
 
+                process_command = ' '.join(str(x) for x in process_command).replace("[", "").replace("]","")
+                process_command = process_name.replace('"',"'").replace("u'","'")
+
+
                 process = {
                     'pid': process_pid,
                     'cpu': process_cpu+'%',
@@ -983,7 +986,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
                     # 'stat': process_stat,
                     # 'start_time': process_start_time,
                     'process': process_name,
-                    'command': ' '.join(str(x) for x in process_command).replace("[", "").replace("]","")
+                    'command': process_command,
                 }
 
 
