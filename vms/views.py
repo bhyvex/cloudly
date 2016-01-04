@@ -297,16 +297,21 @@ def server_view(request, hwaddr):
 
     historical_service_statuses = mongo.historical_service_statuses
     historical_service_statuses = historical_service_statuses.find({'secret':profile.secret,'server_id':server['uuid'],'type':'status',})
+
+    activity_cummulative_types = []
+    for event in historical_service_statuses:
+        if not event["service"] in activity_cummulative_types:
+            activity_cummulative_types.append(event["service"])
+
+    historical_service_statuses = mongo.historical_service_statuses
+    historical_service_statuses = historical_service_statuses.find({'secret':profile.secret,'server_id':server['uuid'],'type':'status',})
     historical_service_statuses = historical_service_statuses.sort("_id",pymongo.DESCENDING)
     historical_service_statuses = historical_service_statuses.limit(20)
+
 
     activity = mongo.historical_service_statuses
     activity = activity.find({'secret':profile.secret,'server_id':server['uuid'],'type':'activity',})
     activity = activity.sort("_id",pymongo.DESCENDING)
-
-
-    # XXX
-    activity_cummulative_types = []
 
 
     try:
