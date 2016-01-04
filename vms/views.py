@@ -969,11 +969,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
                 process_stat = line[7]
                 process_start_time = line[8]+'-'+line[9]
                 process_command = line[10:]
-
                 process_name = clean_ps_command(process_command[0])
-
-                process_command = ' '.join(str(x) for x in process_command).replace("[", "").replace("]","")
-                process_command = process_command.replace('"',"'").replace("u'","'")
 
 
                 process = {
@@ -986,8 +982,9 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
                     # 'stat': process_stat,
                     # 'start_time': process_start_time,
                     'process': process_name,
-                    'command': process_command,
+                    'command': ' '.join(str(x) for x in process_command).replace("[", "").replace("]",""),
                 }
+
 
 
                 process['user'] = '<span class=\\"label label-success\\">'
