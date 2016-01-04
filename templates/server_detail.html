@@ -705,16 +705,18 @@
                     </table>
 
                     <hr/>
-                    <h4>Recognised Alert Types</h4>
+                    <h4>Alerting Settings</h4>
 
-                    <table style="width:100%">
+                    <table style="width:50%">
                       <tr>
-                        <th>type</th>
-                        <th>alerting</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                       </tr>
                       {% for activity_type in activity_cummulative_types %}
                         <tr>
                           <td>{{activity_type}}</td>
+                          <td>twitter email sms</td>
                           <td>on | off | obsessive</td>
                         </tr>
                       {% endfor %}
