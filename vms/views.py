@@ -305,16 +305,13 @@ def server_view(request, hwaddr):
     activity = activity.sort("_id",pymongo.DESCENDING)
 
 
-    # XXX this sucks, improve it!
+    activity_ = []
     activity_cummulative_types = []
-    #for event in activity:
-    #    if not event['type'] in activity_cummulative_types:
-    #        activity_cummulative_types.append(event['type'])
-    #
-    ## this is an old mongo issue that it empties the stash upon reading it
-    #activity = mongo.historical_service_statuses
-    #activity = activity.find({'secret':profile.secret,'server_id':server['uuid'],'type':'activity',})
-    #activity = activity.sort("_id",pymongo.DESCENDING)
+    for event in activity:
+        if not event['activity_type'] in activity_cummulative_types:
+            activity_cummulative_types.append(event['activity_type'])
+        activity_.append(event)
+    activity = activity_
 
 
     try:
