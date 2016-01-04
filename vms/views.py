@@ -973,7 +973,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
                 process_name = clean_ps_command(process_command[0])
 
                 process_command = ' '.join(str(x) for x in process_command).replace("[", "").replace("]","")
-                process_command = process_name.replace('"',"'").replace("u'","'")
+                process_command = process_command.replace('"',"'").replace("u'","'")
 
 
                 process = {
