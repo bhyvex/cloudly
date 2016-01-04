@@ -974,8 +974,6 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
                 process_command = ' '.join(str(x) for x in process_command).replace("[", "").replace("]","")
                 process_command = process_command.replace('"',"").replace("'",'')
 
-                print process_command
-
 
                 process = {
                     'pid': process_pid,
