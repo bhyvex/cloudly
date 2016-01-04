@@ -707,14 +707,19 @@
                     <hr/>
                     <h4>Recognised Alert Types</h4>
 
-                    {% for activity_type in activity_cummulative_types %}
-                        {{activity_type}}<br/>
-                    {% endfor %}
+                    <table style="width:100%">
+                      <tr>
+                        <th>type</th>
+                        <th>alerting</th>
+                      </tr>
+                      {% for activity_type in activity_cummulative_types %}
+                        <tr>
+                          <td>{{activity_type}}</td>
+                          <td>on | off | obsessive</td>
+                        </tr>
+                      {% endfor %}
+                    </table>
 
-                    <br/>
-                    XXX add in notifications field with on/off/obsessive option for each..<br/>
-
-                    <br/>
                   </p>
                 </div>
 
