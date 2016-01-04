@@ -305,14 +305,8 @@ def server_view(request, hwaddr):
     activity = activity.sort("_id",pymongo.DESCENDING)
 
 
-    activity_ = []
     activity_cummulative_types = []
-    for event in activity:
-        if not event['activity_type'] in activity_cummulative_types:
-            activity_cummulative_types.append(event['activity_type'])
-        activity_.append(event)
-    activity = activity_
-
+    
 
     try:
         recently_clicked_servers = request.session["recently_clicked_servers"]
