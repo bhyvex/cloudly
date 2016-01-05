@@ -49,6 +49,7 @@ def home(request):
         print '--  web:'
         CLOUDLY_MOTTOS = [
             "The Power of Now!",
+            "Details Matters!",
             "Relax, it's going to take no time!",
             "Saves you money and resources!",
             "Real-time servers monitoring.",
