@@ -157,6 +157,8 @@ def credits(request):
     except:
         return HttpResponseRedirect("/")
 
+    STARGAZERS_URL = "https://api.github.comimport urllib2/repos/ProjectCloudly/Cloudly/stargazers"
+
     print request.user
     return render_to_response('credits.html', {'request':request,}, context_instance=RequestContext(request))
 
