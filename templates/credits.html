@@ -108,10 +108,12 @@
 					</div>
 				</div>
 				<div class="panel-body">
+              {% comment %}
               {% for stargazer in stargazer %}
                 <a href="{{stargazer|dict_get:"url"}}" target="_blank">
                  <img src="{{stargazer|dict_get:"avatar_url"}}" width="25">
               {% endfor %}
+              {% endcomment %}
 				</div>
 			</div>
 		</div><!--/col-->
