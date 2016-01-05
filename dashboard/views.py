@@ -68,6 +68,7 @@ def home(request):
             "The Ultimate Servers Dashboard.",
             "The Ultimate Real-time Servers Monitoring.",
             "Dreamlike Servers Monitoring.",
+            "OpenTSDB Powered Servers Monitoring.",
         ]
         return render_to_response('web.html', {'request':request,'CLOUDLY_MOTTOS':CLOUDLY_MOTTOS,}, context_instance=RequestContext(request))
 
