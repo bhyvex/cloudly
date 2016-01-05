@@ -163,10 +163,6 @@ def credits(request):
     stargazers = stargazers.read()
 
     # XXX load up list somehow
-    stargazers_fake_json = "{"
-    stargazers_fake_json += stargazers[-1:1]
-    stargazers_fake_json += "}"
-    stargazers = stargazers_fake_json
 
     print request.user
 
