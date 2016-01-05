@@ -7,6 +7,7 @@ import logging
 import datetime
 import base64, pickle
 
+import urllib2
 from pprint import pprint
 
 from django.shortcuts import render_to_response
