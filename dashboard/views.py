@@ -72,7 +72,8 @@ def home(request):
             "Dreamlike Servers Monitoring.",
             "OpenTSDB Powered Servers Monitoring.",
             "Monitor Anything and Everything.",
-            "Monitoring in the snap of a finger."
+            "Monitoring in the snap of a finger.",
+            "An Open Work Monitoring Cloud",
         ]
         return render_to_response('web.html', {'request':request,'CLOUDLY_MOTTOS':CLOUDLY_MOTTOS,}, context_instance=RequestContext(request))
 
