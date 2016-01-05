@@ -55,7 +55,7 @@ def home(request):
             "Real-time playful monitoring.",
             "Playful Servers Monitoring.",
             "Playful Servers Dashboard.",
-            "Does the server monitoring for you like no other.",
+            "Does the server monitoring for you.",
             "Cheerful Servers Monitoring.",
             "Old School Servers Monitoring.",
             "Keeps a watchfull eye on your servers.",
