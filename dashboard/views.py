@@ -74,6 +74,8 @@ def home(request):
             "Monitor Anything and Everything.",
             "Monitoring in the snap of a finger.",
             "An Open Work Monitoring Cloud",
+            "Servers And Apps Monitoring",
+            "Servers, Devices and Apps Monitoring",
         ]
         return render_to_response('web.html', {'request':request,'CLOUDLY_MOTTOS':CLOUDLY_MOTTOS,}, context_instance=RequestContext(request))
 
