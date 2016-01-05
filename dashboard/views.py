@@ -52,7 +52,7 @@ def home(request):
             "Relax, it's going to take no time!",
             "Saves you money and resources!",
             "Real-time servers monitoring.",
-            "Real-time and very playful monitoring.",
+            "Real-time playful monitoring.",
             "Playful Servers Monitoring.",
             "Playful Servers Dashboard.",
             "Does the server monitoring for you like no other.",
