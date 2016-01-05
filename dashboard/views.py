@@ -159,8 +159,8 @@ def credits(request):
 
     STARGAZERS_URL = "https://api.github.comimport urllib2/repos/ProjectCloudly/Cloudly/stargazers"
 
-    stargazers = response = urllib2.urlopen(STARGAZERS_URL)
-    stargazers = stargazers.read()
+    #stargazers = response = urllib2.urlopen(STARGAZERS_URL)
+    #stargazers = stargazers.read()
 
     print request.user
     return render_to_response('credits.html', {'request':request,'stargazers':stargazers,}, context_instance=RequestContext(request))
