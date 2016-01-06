@@ -73,9 +73,9 @@ def home(request):
             "OpenTSDB Powered Servers Monitoring.",
             "Monitor Anything and Everything.",
             "Monitoring in the snap of a finger.",
-            "An Open Work Monitoring Cloud",
-            "Servers And Apps Monitoring",
-            "Servers, Devices and Apps Monitoring",
+            "An Open Work Monitoring Cloud.",
+            "Servers And Apps Monitoring.",
+            "Servers, Devices and Apps Monitoring.",
             "Hadoop Powered Servers Monitoring.",
             "Hadoop &amp; OpenTSDB Powered Servers Monitoring.",
         ]
