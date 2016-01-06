@@ -58,7 +58,7 @@ def home(request):
             "Playful Servers Monitoring.",
             "Playful Servers Dashboard.",
             "Does the server monitoring for you.",
-            "Cheerful Servers Monitoring.",
+            "Cheerful Posix Servers Monitoring.",
             "Old School Servers Monitoring.",
             "Keeps a watchfull eye on your servers.",
             "The Coolest Servers Monitoring Out There!",
