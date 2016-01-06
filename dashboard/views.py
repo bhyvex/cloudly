@@ -166,9 +166,7 @@ def credits(request):
     STARGAZERS_URL = "https://api.github.com/repos/ProjectCloudly/Cloudly/stargazers"
 
     stargazers = response = urllib2.urlopen(STARGAZERS_URL)
-    stargazers = stargazers.read()
-
-    # XXX load up list somehow
+    stargazers = json.load(stargazers)
 
     print request.user
 
