@@ -76,6 +76,8 @@ def home(request):
             "An Open Work Monitoring Cloud",
             "Servers And Apps Monitoring",
             "Servers, Devices and Apps Monitoring",
+            "Hadoop Powered Servers Monitoring.",
+            "Hadoop &amp; OpenTSDB Powered Servers Monitoring.",
         ]
         return render_to_response('web.html', {'request':request,'CLOUDLY_MOTTOS':CLOUDLY_MOTTOS,}, context_instance=RequestContext(request))
 
