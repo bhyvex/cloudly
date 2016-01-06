@@ -771,7 +771,7 @@ def ajax_virtual_machines(request):
                     if data_median>85:
                         vm_state = "Hot hot hot!"
 
-                if(notifs_count):
+                if(notifs_count>1):
                     isotope_filter_classes += " warning"
                     if(data_median<85):
                         color = "pink "
