@@ -298,14 +298,10 @@ def server_view(request, hwaddr):
     historical_service_statuses = mongo.historical_service_statuses
     historical_service_statuses = historical_service_statuses.find({'secret':profile.secret,'server_id':server['uuid'],'type':'status',})
 
-    count = 0
     activity_cummulative_types = []
     for event in historical_service_statuses:
         if not event["service"] in activity_cummulative_types:
             activity_cummulative_types.append(event["service"])
-            count += 1
-        if(count==5):
-            break
 
     historical_service_statuses = mongo.historical_service_statuses
     historical_service_statuses = historical_service_statuses.find({'secret':profile.secret,'server_id':server['uuid'],'type':'status',})
