@@ -684,7 +684,7 @@
                 </div>
 
                 <div class="panel-body">
-                  <p>
+
                     <table style="width:100%">
                       <tr>
                         <th>type</th>
@@ -704,25 +704,6 @@
                       {% endfor %}
                     </table>
 
-                    <hr/>
-                    <h4>Alerting Settings</h4>
-
-                    <table style="width:50%">
-                      <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                      </tr>
-                      {% for activity_type in activity_cummulative_types %}
-                        <tr>
-                          <td>{{activity_type}}</td>
-                          <td>twitter_off email_on sms_off</td>
-                          <td>on | off | obsessive | ignore</td>
-                        </tr>
-                      {% endfor %}
-                    </table>
-
-                  </p>
                 </div>
 
             </div>
@@ -771,17 +752,45 @@
     </div><!--/row-->
 
 
+    <div id="alertingSettings"
+        class="row"
+        {% if server_status|lower = "offline" %}
+            style="display: none;"
+        {% endif %}
+        >
+        <div class="col-xs-12">
+            <div id="alertingSettings" class="panel panel-default">
+                <div class="panel-heading">
+                    <h2><i class="fa fa-cab"></i>Alerting Settings</h2>
+                    <div class="panel-actions">
+                        <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+                        <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                        <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
 
+                <div class="panel-body">
 
+                    <table style="width:50%">
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                      {% for activity_type in activity_cummulative_types %}
+                        <tr>
+                          <td>{{activity_type}}</td>
+                          <td>twitter_off email_on sms_off</td>
+                          <td>on | off | obsessive | ignore</td>
+                        </tr>
+                      {% endfor %}
+                    </table>
 
+                </div>
 
-
-
-
-
-
-
-
+            </div>
+        </div>
+    </div><!--/row-->
 
 
     <div id="running_message"
