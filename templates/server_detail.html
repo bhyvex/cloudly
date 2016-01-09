@@ -785,7 +785,7 @@
                       <td>{{event|dict_get:"service"}}</td>
                       <td>{{event|dict_get:"date"|timesince}} ago</td>
                       <td>{{event|dict_get:"date"}}</td>
-                      <td>{{event|dict_get:"detailed_service_status"|dict_get:"values"|truncatechars:70}}</td>
+                      <td>{{event|dict_get:"detailed_service_status"|dict_get:"values"|truncatechars:50}}..</td>
                     </tr>
                     {% endfor %}
                   </table>
