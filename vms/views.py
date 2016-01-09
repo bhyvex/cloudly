@@ -469,9 +469,6 @@ def ajax_update_server_name(request):
     vms_cache = Cache.objects.get(user=request.user)
     vms_cache.delete()
 
-    request.session["recently_clicked_servers"] = []
-    request.session.modified = True
-
 
     return HttpResponse(response, content_type="application/json")
 
