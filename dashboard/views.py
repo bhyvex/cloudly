@@ -123,7 +123,6 @@ def home(request):
                     if(not inner_tag[0] in servers_tags[tag_category]):
                         servers_tags[tag_category].append(inner_tag[0])
 
-    #XXX populate title "Your Servers Heartbeat Visualised"
 
     return render_to_response(
         'dashboard.html',
