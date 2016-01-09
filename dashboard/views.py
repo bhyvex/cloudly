@@ -54,6 +54,8 @@ def home(request):
             "The only Servers Monitoring that does the Heartbeats!",
             "Your Servers Heartbeat Visualised.",
             "Magical Servers Monitoring.",
+            "Monitoring Solution for your Servers.",
+            "Admins and DevOps love it!",
             "Relax, it's going to take no time!",
             "Saves you money and resources!",
             "Real-time servers monitoring.",
