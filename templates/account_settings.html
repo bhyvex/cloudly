@@ -44,21 +44,12 @@
 						{% else %}
 						{{profile.twitter}}
 						{% endif %}
-            tw_alerting_on <font color="grey">tw_alerting_off tw_alerting_obsessive tw_alerting_critical_only</font>
+            alerting_on <font color="grey">off obsessive critical_only</font>
 						<br/>
 
 						Jabber: <a href="#">n/a</a>
-            jabber_alerting_on <font color="grey">jabber_alerting_off jabber_alerting_obsessive jabber_alerting_critical_only</font>
+            alerting_on <font color="grey">off obsessive critical_only</font>
 						<br/>
-
-            Skype:
-						{% if not profile.skype %}
-						<a href="#">n/a</a>
-						{% else %}
-						{{profile.skype}}
-						{% endif %}
-            skype_alerting_on <font color="grey">skype_alerting_off skype_alerting_obsessive skype_alerting_critical_only</font>
-            <br/>
 
 						Mobile:
 						{% if not profile.mobile %}
