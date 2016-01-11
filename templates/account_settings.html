@@ -30,7 +30,6 @@
 				<div class="panel-body">
 					<p>
 						Name: {{profile.name}}<br/>
-						E-mail: {{user.email}}<br/>
 						Agent Secret: {{profile.secret}}<br/>
 
 						{% if user.username != "demo@demo.com" %}
@@ -38,17 +37,22 @@
             <br/>
 						{% endif %}
             <br/>
+
+            E-mail: {{user.email}}<br/>
+            <strong>alerts_on</strong> <font color="grey">informative | <b>obsessive</b> | critical_only</font>
+						<br/>
+
 						Twitter:
 						{% if not profile.twitter %}
                         <a href="#">n/a</a>
 						{% else %}
 						{{profile.twitter}}
 						{% endif %}
-            alerts_off <font color="grey">informative | obsessive | critical_only</font>
+            <strong>alerts_off</strong> <font color="grey">informative | obsessive | critical_only</font>
 						<br/>
 
 						Jabber: <a href="#">n/a</a>
-            alerts_off <font color="grey">informative | obsessive | critical_only</font>
+            <strong>alerts_off</strong> <font color="grey">informative | obsessive | critical_only</font>
 						<br/>
 
 						Mobile:
