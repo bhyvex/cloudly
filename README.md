@@ -63,7 +63,7 @@ $ sudo pip install pymysql
 $ mysql -u root -p
 mysql> create database cloudly;
 mysql> exit;
-$ python manage.py syncdb
+$ python manage.py migrate --run-syncdb
 </pre>
 
 Optionally configure your MySQL server to meet your specific requirements.
