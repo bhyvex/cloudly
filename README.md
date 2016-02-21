@@ -71,15 +71,6 @@ As for the user/password, this one needs to match the entries in the cloudly/clo
 
 If you get an error saying "Access denied for user 'root'@'localhost" then you'd need to edit the cloudly/settings.py and setup the DB section accordingly to your present DB settings.
 
-Assuming this operation succeded, Django will ask you the following:
-
-<pre>
-You just installed Django's auth system, which means you don't have any superusers defined.
-Would you like to create one now? (yes/no): no
-</pre>
-
-Answer "no" to this question.
-
 
 ###### Enable Unicode on the SQL database
 
