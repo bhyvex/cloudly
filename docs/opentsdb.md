@@ -1,8 +1,12 @@
 ###### Install OpenTSDB
 
-Cloudly runs off of Hadoop and is powered by the OpenTSBD.  Please refer to the official OpenTSDB documentation for installation the instructions - http://opentsdb.net/docs/build/html/installation.html
+First, you need to setup HBase.  If you are brand new to HBase and/or OpenTSDB we recommend you test with a stand-alone instance as this is the easiest to get up and running.
+
+
 
 ###### Devel Notes
+
+Cloudly runs off of Hadoop and is powered by the OpenTSBD.  Please refer to the official OpenTSDB documentation for installation the instructions - http://opentsdb.net/docs/build/html/installation.html
 
 <pre>
 export JAVA_HOME=/usr
