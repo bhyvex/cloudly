@@ -23,8 +23,8 @@ In order to run this project in what we call the "Enterprise Mode", please follo
 <pre>
 $ apt-get install git
 $ apt-get install python-dev
-$ apt-get install python-django
 $ apt-get install python-pip
+$ pip install -U Django
 </pre>
 
 ###### Download the latest version of the Cloudly Project from github
