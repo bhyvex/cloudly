@@ -83,15 +83,6 @@ mysql> ALTER TABLE userprofile_profile CONVERT TO CHARACTER SET utf8 COLLATE utf
 
 * please note that the MySQL is used only to store users profiles and sessions information.
 
-###### Run the MongoDB
-
-<pre>
-$ sudo mkdir /data
-$ sudo mkdir /data/db
-$ mongod
-</pre>
-
-..and configure your server to meet your specific requirements.
 
 ###### Run the development server
 
