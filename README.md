@@ -24,7 +24,6 @@ In order to run this project in what we call the "Enterprise Mode", please follo
 $ apt-get install git
 $ apt-get install python-dev
 $ apt-get install python-django
-$ apt-get install python-openssl
 $ apt-get install python-pip
 </pre>
 
@@ -59,7 +58,7 @@ $ mongoimport --db cloudly --collection services_tags data/services_tags.json
 
 <pre>
 $ apt-get install mysql-server python-mysqldb
-$ sudo pip install pymysql
+$ pip install pymysql
 $ mysql -u root -p
 mysql> create database cloudly;
 mysql> exit;
