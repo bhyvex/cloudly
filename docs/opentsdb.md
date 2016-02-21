@@ -1,4 +1,4 @@
-###### Install HBase + Hadoop + Zookeeper + OpenTSDB
+###### HBase + Hadoop + Zookeeper + OpenTSDB
 
 Cloudly runs off of Hadoop and is powered by the OpenTSBD.  
 
