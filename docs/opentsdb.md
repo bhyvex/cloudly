@@ -117,7 +117,7 @@ Finally, start the OpenTSDB like so:
 /opt/opentsdb/bin/tsdb tsd --auto-metric --staticroot=/opt/opentsdb/static/ --port=4242 --auto-metric --cachedir="/home/zookeeper/opentsdb-cache/" --zkquorum=localhost:2181
 </pre>
 
-Installation includes an init script at /etc/init.d/opentsdb that can start, stop and restart OpenTSDB. Simply call service opentsdb start to start the tsd and service opentsdb stop to gracefully shutdown
+Installation includes an init script at /etc/init.d/opentsdb that can start, stop and restart OpenTSDB. Simply call service opentsdb start to start the tsd and service opentsdb stop to gracefully shutdown.
 
 At this point you have the OpenTSDB up and running. You can access the TSD's web interface through http://127.0.0.1:4242 (if it's running on your local machine).
 
