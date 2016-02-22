@@ -122,4 +122,8 @@ Installation includes an init script at /etc/init.d/opentsdb that can start, sto
 At this point you have the OpenTSDB up and running. You can access the TSD's web interface through http://127.0.0.1:4242 (if it's running on your local machine).
 
 
-And that's that!  :)
+Please also do refer to the official OpenTSDB documentation - http://opentsdb.net/docs/build/html/installation.html
+
+..and that's that! :)
+
+Enjoy!
