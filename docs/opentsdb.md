@@ -11,7 +11,8 @@ This guide describes the setup of a standalone HBase instance running against th
 HBase requires that a JDK be installed.
 
 <pre>
-$ apt-get install openjdk-6-jdk
+$ apt-get install openjdk-7-jdk
+$ apt-get install openjdk-7-jre
 </pre>
 
 Choose a download site from this list of Apache Download Mirrors http://www.apache.org/dyn/closer.cgi/hbase/ and choose the file for Hadoop 2, which will be called something like hbase-0.98.13-hadoop2-bin.tar.gz).
@@ -45,6 +46,21 @@ Example hbase-site.xml for Standalone HBase:
     <value>/home/zookeeper/zookeeper</value>
   </property>
 </configuration>
+</pre>
+
+You do not need to create the HBase data directory. HBase will do this for you. If you create the directory, HBase will attempt to do a migration, which is not what you want.
+
+
+The bin/start-hbase.sh script is provided as a convenient way to start HBase. Issue the command, and if all goes well, a message is logged to standard output showing that HBase started successfully.
+
+<pre>
+$ bin/start-hbase.sh
+</pre>
+
+To test that this worked, connect to your running instance of HBase using the hbase shell command, located in the bin/ directory of your HBase install.
+
+<pre>
+$ bin/hbase shell
 </pre>
 
 
