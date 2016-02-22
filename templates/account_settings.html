@@ -30,32 +30,29 @@
 				<div class="panel-body">
 					<p>
 						Name: {{profile.name}}<br/>
-						E-mail: {{user.email}}<br/>
 						Agent Secret: {{profile.secret}}<br/>
 
 						{% if user.username != "demo@demo.com" %}
 						Password: <a href="/account/password">change password</a>
             <br/>
 						{% endif %}
-            <br/>
+
+            E-mail: {{user.email}}
+            alerts_on <font color="grey">default (informative) | <b>obsessive</b> | critical_only</font>
+						<br/>
+
 						Twitter:
 						{% if not profile.twitter %}
-                        <a href="#">n/a</a>
+            <a href="#">n/a</a>
 						{% else %}
 						{{profile.twitter}}
 						{% endif %}
+            alerts_off <font color="grey">default (informative) | obsessive | critical_only</font>
 						<br/>
 
 						Jabber: <a href="#">n/a</a>
+            alerts_off <font color="grey">default (informative) | obsessive | critical_only</font>
 						<br/>
-
-            Skype:
-						{% if not profile.skype %}
-						<a href="#">n/a</a>
-						{% else %}
-						{{profile.skype}}
-						{% endif %}
-            <br/>
 
 						Mobile:
 						{% if not profile.mobile %}
@@ -63,6 +60,7 @@
 						{% else %}
 						{{profile.mobile}}
 						{% endif %}
+            <a href="#">enable_sms_notifs__buy_credit</a>
 
 					</p>
 
@@ -84,16 +82,11 @@
 
 				<div class="panel-body">
 					<p>
-            Active Checks: Enabled<br/>
-						Passive Checks: Enabled<br/>
-						Standard Deviation: Enabled<br/>
-						Heuristic Analysis: Enabled<br/>
-						Flap Detection: Enabled<br/>
-						<br/>
-						Email notifications: <b>on</b> off<br/>
-						Twitter notifications: on <b>off</b><br/>
-						Jabber notifications: on <b>off</b><br/>
-						SMS notifications: on <b>off</b><br/>
+            Active Checks: Enabled <font color="grey">Disabled</font><br/>
+						Passive Checks: Enabled <font color="grey">Disabled</font><br/>
+						Standard Deviation: Enabled <font color="grey">Disabled</font><br/>
+						Heuristic Analysis: Enabled <font color="grey">Disabled</font><br/>
+						Flap Detection: Enabled <font color="grey">Disabled</font><br/>
 					</p>
 				</div>
 

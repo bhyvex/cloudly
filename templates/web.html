@@ -1,7 +1,9 @@
 {% load cloud_extras %}
 <html>
+
 <link rel="shortcut icon" type="image/png" href="/static/favicon.ico"/>
 <head>
+<title>Your Servers Heartbeat Visualised</title>
 </head>
 <body bgcolor="white">
 
@@ -13,7 +15,7 @@
 
     <p>
     <h2>ProjectCloudly - Smart, Smarter, the Smartest</h2>
-    <h4>{{CLOUDLY_MOTTOS|random}}</h4>
+    <h4>{{CLOUDLY_MOTTOS|random|safe}}</h4>
     <hr/>
 	<a href="/demo/">Demo</a>
 
@@ -24,6 +26,7 @@
 	<a href="/register/">Sign-Up</a>
 
 	<hr/>
+	<h5>Get your servers into shape! 100% free for Open Source.</h5>
 	<hr/>
 
     <b>ProjectCloudly is an enterprise grade Real-time IT Infrastructure and Applications Monitoring platform developed under the Open Source model.</b>
@@ -110,16 +113,15 @@
 
 	<p>
 	<b>Follow Us</b><br/>
-	<a href="https://github.com/ProjectCloudly">GitHub badge</a><br/>
-	<a href="#">Codacy badge</a><br/>
-	<a href="#">Facebook badge</a><br/>
+	<a href="https://github.com/ProjectCloudly" target="_blank">GitHub badge</a><br/>
+	<a href="https://www.codacy.com/app/cloudly/cloudly/dashboard" target="_blank">Codacy badge</a><br/>
 	<a href="#">Twitter badge</a><br/>
 
 	</p>
 
 
 	<hr/>
-	&copy;2015 Jan Paricka
+	&copy;2016 Jan Paricka
 
 </center>
 

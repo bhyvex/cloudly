@@ -385,6 +385,7 @@ def ping():
         new_active_report = {
             'secret':secret,
             'server_id':uuid,
+            'type':"status",
             'service':service,
             'current_overall_status':current_overall_service_status,
             'detailed_service_status':detailed_service_status,
@@ -394,6 +395,7 @@ def ping():
 
             new_active_report['date'] = datetime.datetime.now()
             active_service_statuses.insert(new_active_report)
+            #historical_service_statuses.insert(new_active_report)
 
         else:
             if (not 'date' in last_active_service_status):
@@ -427,7 +429,6 @@ def ping():
 
                 new_active_report['date'] = datetime.datetime.now()
                 new_active_report['agent_version'] = agent_version
-                new_active_report['type'] = "status"
                 historical_service_statuses.insert(new_active_report)
                 alertor_queue.insert(new_active_report)
 

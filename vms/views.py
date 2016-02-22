@@ -281,8 +281,6 @@ def server_view(request, hwaddr):
     #for i in loadavg: loadavg_.append(i)
     loadavg = loadavg_
 
-    activity = mongo.activity.find({'uuid':uuid,}).sort('_id',-1).limit(3)
-
     disks = []
     disks_ = server[u'disks_usage']
 
@@ -296,10 +294,24 @@ def server_view(request, hwaddr):
         if(disk[:4]!="/run" and disk[:5]!="/boot" and disk[:4]!="/sys" and disk[:4]!="/dev"):
             reduced_disks.append(disk)
 
+
+    historical_service_statuses = mongo.historical_service_statuses
+    historical_service_statuses = historical_service_statuses.find({'secret':profile.secret,'server_id':server['uuid'],'type':'status',})
+
+    activity_cummulative_types = []
+    for event in historical_service_statuses:
+        if not event["service"] in activity_cummulative_types:
+            activity_cummulative_types.append(event["service"])
+
     historical_service_statuses = mongo.historical_service_statuses
     historical_service_statuses = historical_service_statuses.find({'secret':profile.secret,'server_id':server['uuid'],'type':'status',})
     historical_service_statuses = historical_service_statuses.sort("_id",pymongo.DESCENDING)
-    historical_service_statuses = historical_service_statuses.limit(20)
+    historical_service_statuses = historical_service_statuses.limit(10)
+
+    activity = mongo.historical_service_statuses
+    activity = activity.find({'secret':profile.secret,'server_id':server['uuid'],'type':'activity',})
+    activity = activity.sort("_id",pymongo.DESCENDING)
+    activity = activity.limit(5)
 
     try:
         recently_clicked_servers = request.session["recently_clicked_servers"]
@@ -386,6 +398,7 @@ def server_view(request, hwaddr):
             'networking':networking,
             'historical_service_statuses':historical_service_statuses,
             'activity':activity,
+            'activity_cummulative_types':activity_cummulative_types,
             'server_notifs_count':server_notifs_count,
             'is_outdated_agent_version':is_outdated_agent_version,
             'notifs':notifs,
@@ -455,6 +468,7 @@ def ajax_update_server_name(request):
 
     vms_cache = Cache.objects.get(user=request.user)
     vms_cache.delete()
+
 
     return HttpResponse(response, content_type="application/json")
 
@@ -759,10 +773,9 @@ def ajax_virtual_machines(request):
                         vm_state = "Hot hot hot!"
 
                 if(notifs_count):
-                    isotope_filter_classes += " warning"
-                    if(not data_median>70):
-                        color = "pink "
-
+                    isotope_filter_classes += " warn"
+                if(data_median<85 and notifs_count>2):
+                    color = "pink "
 
             if(vm_state=="Stopping"):
                 color = "pink "
@@ -786,7 +799,8 @@ def ajax_virtual_machines(request):
 
             ajax_vms_response += "\"vmname\":\""
             ajax_vms_response += instance_name
-            if(notifs_count and vm_state=="Running"): ajax_vms_response += " <b>" + str(notifs_count) + "</b>"
+            if(notifs_count and vm_state=="Running"):
+                ajax_vms_response += " <b>" + str(notifs_count) + "</b>"
 
             ajax_vms_response += "\","
 
@@ -954,9 +968,12 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
                 process_tty = line[6]
                 process_stat = line[7]
                 process_start_time = line[8]+'-'+line[9]
-                process_command = line[10:]
 
+                process_command = line[10:]
                 process_name = clean_ps_command(process_command[0])
+                process_command = ' '.join(str(x) for x in process_command).replace("[", "").replace("]","")
+                process_command = process_command.replace('"',"").replace("'",'')
+
 
                 process = {
                     'pid': process_pid,
@@ -968,8 +985,10 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
                     # 'stat': process_stat,
                     # 'start_time': process_start_time,
                     'process': process_name,
-                    'command': ' '.join(str(x) for x in process_command).replace("[", "").replace("]","")
+                    'command': process_command,
                 }
+
+
 
                 process['user'] = '<span class=\\"label label-success\\">'
                 if int(float(process_cpu)) > 50:
@@ -988,6 +1007,7 @@ def ajax_server_graphs(request, hwaddr, graph_type=""):
         processes['data'] = processes_
 
         processes = str(processes).replace(" u'"," '").replace("[u'","['").replace("'",'"').replace("\\\\", "\\")
+
 
         return HttpResponse(processes, content_type="application/json")
 

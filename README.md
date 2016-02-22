@@ -23,9 +23,9 @@ In order to run this project in what we call the "Enterprise Mode", please follo
 <pre>
 $ apt-get install git
 $ apt-get install python-dev
-$ apt-get install python-django
-$ apt-get install python-openssl
 $ apt-get install python-pip
+$ apt-get install python-boto
+$ pip install -U Django
 </pre>
 
 ###### Download the latest version of the Cloudly Project from github
@@ -59,11 +59,11 @@ $ mongoimport --db cloudly --collection services_tags data/services_tags.json
 
 <pre>
 $ apt-get install mysql-server python-mysqldb
-$ sudo pip install pymysql
+$ pip install pymysql
 $ mysql -u root -p
 mysql> create database cloudly;
 mysql> exit;
-$ python manage.py syncdb
+$ python manage.py migrate --run-syncdb
 </pre>
 
 Optionally configure your MySQL server to meet your specific requirements.
@@ -71,15 +71,6 @@ Optionally configure your MySQL server to meet your specific requirements.
 As for the user/password, this one needs to match the entries in the cloudly/cloudly/settings.py file.
 
 If you get an error saying "Access denied for user 'root'@'localhost" then you'd need to edit the cloudly/settings.py and setup the DB section accordingly to your present DB settings.
-
-Assuming this operation succeded, Django will ask you the following:
-
-<pre>
-You just installed Django's auth system, which means you don't have any superusers defined.
-Would you like to create one now? (yes/no): no
-</pre>
-
-Answer "no" to this question.
 
 
 ###### Enable Unicode on the SQL database
@@ -93,15 +84,6 @@ mysql> ALTER TABLE userprofile_profile CONVERT TO CHARACTER SET utf8 COLLATE utf
 
 * please note that the MySQL is used only to store users profiles and sessions information.
 
-###### Run the MongoDB
-
-<pre>
-$ sudo mkdir /data
-$ sudo mkdir /data/db
-$ mongod
-</pre>
-
-..and configure your server to meet your specific requirements.
 
 ###### Run the development server
 
@@ -135,9 +117,9 @@ DB Backends
 
 ###### Install OpenTSDB
 
-Cloudly runs off of Hadoop and is powered by the OpenTSBD.  Please refer to the official OpenTSDB documentation for installation instructions - http://opentsdb.net/docs/build/html/installation.html
+Cloudly runs off of Hadoop and is powered by the OpenTSBD. Please refer to the official OpenTSDB documentation for installation instructions - http://opentsdb.net/docs/build/html/installation.html
 
-..and that's that!  :)
+..and that's that! :)
 
 Enjoy!
 

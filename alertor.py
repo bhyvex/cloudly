@@ -60,6 +60,10 @@ def _file_activity( activity_data ):
     activity_ = mongo.activity
     activity_.insert( activity_log )
 
+    activity_log["type"] = "activity"
+    historical_service_statuses = mongo.historical_service_statuses
+    historical_service_statuses.insert(activity_log)
+
     return True
 
 
@@ -74,6 +78,7 @@ if __name__ == "__main__":
         if(alert):
 
             server = servers.find_one({'secret':alert["secret"], 'uuid':alert['server_id'],})
+            server_id = server['uuid']
 
             try:
                 server_name = server['name']
@@ -90,7 +95,6 @@ if __name__ == "__main__":
             user = Profile.objects.get(secret=alert["secret"])
             user_email = user.user.email
             user_secret = alert['secret']
-            server_id = server_name
 
             # XXX consider obsessive chasing profile settings here
             send_mail( \

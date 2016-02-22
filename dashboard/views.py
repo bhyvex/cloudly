@@ -7,6 +7,7 @@ import logging
 import datetime
 import base64, pickle
 
+import urllib2, json
 from pprint import pprint
 
 from django.shortcuts import render_to_response
@@ -49,14 +50,21 @@ def home(request):
         print '--  web:'
         CLOUDLY_MOTTOS = [
             "The Power of Now!",
+            "Details Matters!",
+            "Get your servers into shape! 100% free for Open Source.",
+            "The only Servers Monitoring that does the Heartbeats!",
+            "Your Servers Heartbeat Visualised.",
+            "Magical Servers Monitoring.",
+            "Monitoring Solution for your Servers.",
+            "Admins and DevOps love it!",
             "Relax, it's going to take no time!",
             "Saves you money and resources!",
             "Real-time servers monitoring.",
-            "Real-time and very playful monitoring.",
+            "Real-time playful monitoring.",
             "Playful Servers Monitoring.",
             "Playful Servers Dashboard.",
-            "Does the server monitoring for you like no other.",
-            "Cheerful Servers Monitoring.",
+            "Does the server monitoring for you.",
+            "Cheerful Posix Servers Monitoring.",
             "Old School Servers Monitoring.",
             "Keeps a watchfull eye on your servers.",
             "The Coolest Servers Monitoring Out There!",
@@ -67,7 +75,16 @@ def home(request):
             "The Ultimate Servers and Devices Monitoring.",
             "The Ultimate Servers Dashboard.",
             "The Ultimate Real-time Servers Monitoring.",
-            "Dreamlike Servers Monitoring",
+            "Dreamlike Servers Monitoring.",
+            "OpenTSDB Powered Servers Monitoring.",
+            "Monitor Anything and Everything.",
+            "Monitoring in the snap of a finger.",
+            "An Open Work Monitoring Cloud.",
+            "Servers And Apps Monitoring.",
+            "Servers, Devices and Apps Monitoring.",
+            "Hadoop Powered Servers Monitoring.",
+            "Hadoop &amp; OpenTSDB Powered Servers Monitoring.",
+            "The first line of defence for your servers.",
         ]
         return render_to_response('web.html', {'request':request,'CLOUDLY_MOTTOS':CLOUDLY_MOTTOS,}, context_instance=RequestContext(request))
 
@@ -109,6 +126,7 @@ def home(request):
                     if(not inner_tag[0] in servers_tags[tag_category]):
                         servers_tags[tag_category].append(inner_tag[0])
 
+
     return render_to_response(
         'dashboard.html',
         {
@@ -130,7 +148,12 @@ def welcome(request):
     _log_user_activity(profile,"click","/welcome/","welcome",ip=ip)
 
     print request.user
-    return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
+
+    return render_to_response(
+        'welcome.html',
+        locals(),
+        context_instance=RequestContext(request)
+    )
 
 
 
@@ -148,7 +171,9 @@ def credits(request):
     except:
         return HttpResponseRedirect("/")
 
+
     print request.user
+
     return render_to_response('credits.html', {'request':request,}, context_instance=RequestContext(request))
 
 

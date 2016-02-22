@@ -72,10 +72,9 @@
                 <p>
 
                   {% if server|get_server_status == "offline" %}
-                      <small>Last seen {{server|get_offline_seconds}} seconds ago</small>
-                      <br/>
-                      Server has gone offline (!!) on {{server|dict_get:"last_seen"}}; which was exactly {{server|dict_get:"last_seen"|timesince}} ago.
-                      <br/>
+
+                      <font color="red">This server has gone offline {{server|dict_get:"last_seen"|timesince}} ago.</font><br/>
+
                       Datacenters:
                         {% for tag in server|dict_get:"tags"|dict_get:"datacenters" %}
                           {{tag|dict_get:0}} - {{tag|dict_get:1}}{% if not forloop.last %};{% endif %}
@@ -95,30 +94,34 @@
 
                   {% endif %}
 
-                  {% if server|get_server_status != "offline" %}
-                        {% if server|dict_get:"uuid"|get_historical_events|length %}
-                              <table style="width:100%">
-                                <tr>
-                                  <th>status</th>
-                                  <th>service</th>
-                                  <th>time since</th>
-                                  <th>date</th>
-                                  <th>values</th>
-                                </tr>
-                                {% for event in server|dict_get:"uuid"|get_historical_events %}
-                                        <tr>
-                                          <td>{{event|dict_get:"detailed_service_status"|dict_get:"status"}}</td>
-                                          <td>{{event|dict_get:"service"}}</td>
-                                          <td>{{event|dict_get:"date"|timesince}} ago</td>
-                                          <td>{{event|dict_get:"date"}}</td>
-                                          <td>{{event|dict_get:"detailed_service_status"|dict_get:"values"|truncatechars:65}}</td>
-                                        </tr>
-                                {% endfor %}
-                              </table>
-                        {% else %}
-                              {{server|dict_get:"name"|title}} is running steadily.
-                        {% endif %}
+                  {% if server|get_server_status == "offline" %}
+                    <b>Recent problems:</b>
+                    <br/>
+                    <br/>
                   {% endif %}
+
+                  <table style="width:100%">
+                    <tr>
+                      <th>status</th>
+                      <th>service</th>
+                      <th>time since</th>
+                      <th>date</th>
+                      <th>values</th>
+                    </tr>
+                    {% for event in server|dict_get:"uuid"|get_historical_events %}
+                            <tr>
+                              <td>{{event|dict_get:"detailed_service_status"|dict_get:"status"}}</td>
+                              <td>{{event|dict_get:"service"}}</td>
+                              <td>{{event|dict_get:"date"|timesince}} ago</td>
+                              <td>{{event|dict_get:"date"}}</td>
+                              <td>{{event|dict_get:"detailed_service_status"|dict_get:"values"|truncatechars:65}}</td>
+                            </tr>
+                    {% endfor %}
+                  </table>
+                  {% comment %}
+                  <br/>
+                  XXX if no events and no offline {{server|dict_get:"name"|title}} is running steadily.
+                  {% endcomment %}
                 </p>
       				</div>
       			</div>
