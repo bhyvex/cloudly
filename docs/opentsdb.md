@@ -16,6 +16,12 @@ $ apt-get install openjdk-6-jdk
 
 Choose a download site from this list of Apache Download Mirrors http://www.apache.org/dyn/closer.cgi/hbase/ and choose the file for Hadoop 2, which will be called something like hbase-0.98.13-hadoop2-bin.tar.gz).
 
+Extract the downloaded file, and change to the newly-created directory.
+
+<pre>
+$ tar xzvf hbase-<?eval ${project.version}?>-bin.tar.gz
+$ cd hbase-<?eval ${project.version}?>/
+</pre>
 
 
 ###### Devel Notes
