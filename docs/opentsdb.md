@@ -34,8 +34,7 @@ $ export JAVA_HOME=/usr
 Edit conf/hbase-site.xml, which is the main HBase configuration file. At this time, you only need to specify the directory on the local filesystem where HBase and ZooKeeper write data.
 
 Example hbase-site.xml for Standalone HBase:
-
-<code>
+```
 <configuration>
   <property>
     <name>hbase.rootdir</name>
@@ -46,7 +45,8 @@ Example hbase-site.xml for Standalone HBase:
     <value>/home/zookeeper/zookeeper</value>
   </property>
 </configuration>
-</code>
+</pre>
+```
 
 You do not need to create the HBase data directory. HBase will do this for you. If you create the directory, HBase will attempt to do a migration, which is not what you want.
 
