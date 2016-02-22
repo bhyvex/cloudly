@@ -79,12 +79,46 @@ Connection closed by foreign host.
 
 If you can't connect to Zookeeper, check IPs and name resolution. HBase can be finicky.
 
+###### Install OpenTSDB
+
+First off, install packages required for the OpenTSDB compilation:
+
+<pre>
+$ apt-get install autoconf
+$ apt-get install gnuplot
+</pre>
+
+Download the latest version using git clone command or download a release from the site or Github. Then just run the build.sh script.
+
+<pre>
+$ git clone git://github.com/OpenTSDB/opentsdb.git opentsdb-install
+$ cd opentsdb
+$ ./build.sh
+$ cd build
+$ make install
+</pre>
+
+If compilation was successfuly, you should have a tsdb jar file in ./build along with a tsdb script. You can now execute command-line tool by invoking ./build/tsdb or you can run make install to install OpenTSDB on your system.
+
+
+This is the first time that you are running OpenTSDB with your HBase instance, therefore you'd first need to create the necessary HBase tables.
+
+<pre>
+$ cd /usr/local/share/opentsdb
+$ env COMPRESSION=NONE HBASE_HOME=/opt/hbase-1.1.3/ /opt/opentsdb/tools/create_table.sh
+</pre>
+
+The COMPRESSION value is either NONE, LZO, GZIP or SNAPPY. This will create four tables: tsdb, tsdb-uid, tsdb-tree and tsdb-meta.
+
+
+
+Installation includes an init script at /etc/init.d/opentsdb that can start, stop and restart OpenTSDB. Simply call service opentsdb start to start the tsd and service opentsdb stop to gracefully shutdown
+
+
 
 
 
 ###### Devel Notes
-
-Cloudly runs off of Hadoop and is powered by the OpenTSBD.  Please refer to the official OpenTSDB documentation for installation the instructions - http://opentsdb.net/docs/build/html/installation.html
 
 <pre>
 export JAVA_HOME=/usr
