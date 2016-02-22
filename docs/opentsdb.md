@@ -98,7 +98,7 @@ $ cd build
 $ make install
 </pre>
 
-If compilation was successfuly, you should have a tsdb jar file in ./build along with a tsdb script. You can now execute command-line tool by invoking ./build/tsdb or you can run make install to install OpenTSDB on your system.
+If compilation was successfull, you should have a tsdb jar file in ./build along with a tsdb script. You can now execute command-line tool by invoking ./build/tsdb or you can run make install to install OpenTSDB on your system.
 
 
 This is the first time that you are running OpenTSDB with your HBase instance, therefore you'd first need to create the necessary HBase tables.
