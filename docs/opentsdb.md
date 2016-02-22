@@ -19,10 +19,10 @@ Choose a download site from this list of Apache Download Mirrors http://www.apac
 
 Extract the downloaded file, and change to the newly-created directory.
 
-<pre>
+```
 $ tar xzvf hbase-<?eval ${project.version}?>-bin.tar.gz
 $ cd hbase-<?eval ${project.version}?>/
-</pre>
+```
 
 For HBase 0.98.5 and later, you are required to set the JAVA_HOME environment variable before starting HBase.
 
