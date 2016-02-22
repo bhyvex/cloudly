@@ -23,6 +23,32 @@ $ tar xzvf hbase-<?eval ${project.version}?>-bin.tar.gz
 $ cd hbase-<?eval ${project.version}?>/
 </pre>
 
+For HBase 0.98.5 and later, you are required to set the JAVA_HOME environment variable before starting HBase.
+
+<pre>
+$ export JAVA_HOME=/usr
+</pre>
+
+
+Edit conf/hbase-site.xml, which is the main HBase configuration file. At this time, you only need to specify the directory on the local filesystem where HBase and ZooKeeper write data.
+
+Example hbase-site.xml for Standalone HBase:
+
+<pre>
+<configuration>
+  <property>
+    <name>hbase.rootdir</name>
+    <value>file:///home/zookeeper/hbase</value>
+  </property>
+  <property>
+    <name>hbase.zookeeper.property.dataDir</name>
+    <value>/home/zookeeper/zookeeper</value>
+  </property>
+</configuration>
+</pre>
+
+
+
 
 ###### Devel Notes
 
