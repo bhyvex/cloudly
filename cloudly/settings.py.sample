@@ -4,8 +4,10 @@
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+ENTERPRISE_MODE = True
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'your_very_secret_key_Jan_Paricka'
+SECRET_KEY = 'your_very_own_12kj3hk12jh3213213-secret_key_Jan_Paricka'
 ADMINS = (
     ('Jan Paricka', 'jparicka@gmail.com'),
 )
@@ -13,7 +15,6 @@ ADMINS = (
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 TEMPLATE_DEBUG = True
-ENTERPRISE_MODE = True
 
 ALLOWED_HOSTS = ['*']
 
