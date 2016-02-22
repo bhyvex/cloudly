@@ -114,7 +114,7 @@ The COMPRESSION value is either NONE, LZO, GZIP or SNAPPY. This will create four
 Finally, start the OpenTSDB like so:
 
 <pre>
-/opt/opentsdb/bin/tsdb tsd --auto-metric --staticroot=/opt/opentsdb/static/ --port=4242 --auto-metric --cachedir="/home/hbase/opentsdb-cache/" --zkquorum=localhost:2181
+/opt/opentsdb/bin/tsdb tsd --auto-metric --staticroot=/opt/opentsdb/static/ --port=4242 --auto-metric --cachedir="/home/zookeeper/opentsdb-cache/" --zkquorum=localhost:2181
 </pre>
 
 Installation includes an init script at /etc/init.d/opentsdb that can start, stop and restart OpenTSDB. Simply call service opentsdb start to start the tsd and service opentsdb stop to gracefully shutdown
