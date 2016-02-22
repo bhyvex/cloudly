@@ -1,3 +1,5 @@
+/* exported $this */
+/* exported value */
 
 var cloudlyVMSmanager  = {
     template: '',
@@ -233,4 +235,3 @@ var cloudlyVMSmanager  = {
 $(document).ready (function() {
     cloudlyVMSmanager.initAction();
 });
-

@@ -1,6 +1,9 @@
 /**
  * Set chart base options by type
  */
+
+/* exported chartOptions */
+
 var chartOptions = {
     cpu_usage: {
         chart: {
@@ -248,7 +251,7 @@ var chartOptions = {
             labels: {
                 formatter: function () {
                    return Highcharts.numberFormat((this.value / 1024 / 1000), 0, '.', ',') + ' MB';
-                } 
+                }
             }
         },
         tooltip: {

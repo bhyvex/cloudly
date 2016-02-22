@@ -1,3 +1,5 @@
+/* exported readCookie */
+
 var csrf = $('input[name="csrfmiddlewaretoken"]').val(),// request middlevare secure
     secret = $('input[name="secret"]').val(),           // request authenticate
 
