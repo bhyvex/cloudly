@@ -6,10 +6,15 @@ First, you need to setup HBase.  If you are brand new to HBase and/or OpenTSDB w
 
 ###### Install HBase
 
-This guide describes the setup of a standalone HBase instance running against the local filesystem. This is not an appropriate configuration for a production instance of HBase, but will allow you to experiment with HBase.
+This guide describes the setup of a standalone HBase instance running against the local filesystem. This is not an appropriate configuration for a production instance of HBase, but will allow you to get up and running.
 
+HBase requires that a JDK be installed.
 
+<pre>
+$ apt-get install openjdk-6-jdk
+</pre>
 
+Choose a download site from this list of Apache Download Mirrors http://www.apache.org/dyn/closer.cgi/hbase/ and choose the file for Hadoop 2, which will be called something like hbase-0.98.13-hadoop2-bin.tar.gz).
 
 
 
