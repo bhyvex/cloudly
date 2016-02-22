@@ -60,8 +60,24 @@ $ bin/start-hbase.sh
 To test that this worked, connect to your running instance of HBase using the hbase shell command, located in the bin/ directory of your HBase install.
 
 <pre>
-$ bin/hbase shell
+$ telnet localhost 2181
+Trying 127.0.0.1...
+Connected to myhost.
+Escape character is '^]'.
+stats
+Zookeeper version: 3.4.3-cdh4.0.1--1, built on 06/28/2012 23:59 GMT
+Clients:
+Latency min/avg/max: 0/0/677
+Received: 4684478
+Sent: 4687034
+Outstanding: 0
+Zxid: 0xb00187dd0
+Mode: leader
+Node count: 127182
+Connection closed by foreign host.
 </pre>
+
+If you can't connect to Zookeeper, check IPs and name resolution. HBase can be finicky.
 
 
 
