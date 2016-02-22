@@ -111,23 +111,15 @@ $ env COMPRESSION=NONE HBASE_HOME=/opt/hbase-1.1.3/ /opt/opentsdb/tools/create_t
 The COMPRESSION value is either NONE, LZO, GZIP or SNAPPY. This will create four tables: tsdb, tsdb-uid, tsdb-tree and tsdb-meta.
 
 
+Finally, start the OpenTSDB like so:
+
+<pre>
+/opt/opentsdb/bin/tsdb tsd --auto-metric --staticroot=/opt/opentsdb/static/ --port=4242 --auto-metric --cachedir="/home/hbase/opentsdb-cache/" --zkquorum=localhost:2181
+</pre>
 
 Installation includes an init script at /etc/init.d/opentsdb that can start, stop and restart OpenTSDB. Simply call service opentsdb start to start the tsd and service opentsdb stop to gracefully shutdown
 
+At this point you have the OpenTSDB up and running. You can access the TSD's web interface through http://127.0.0.1:4242 (if it's running on your local machine).
 
 
-
-
-###### Devel Notes
-
-<pre>
-export JAVA_HOME=/usr
-
-/opt/hbase-1.0.1.1/bin/start-hbase.sh
-
-telnet 0 2181
-
-env COMPRESSION=NONE HBASE_HOME=/opt/hbase-1.0.1.1/ /opt/opentsdb/tools/create_table.sh
-
-/opt/opentsdb/bin/tsdb tsd --auto-metric --staticroot=/opt/opentsdb/static/ --port=4242 --auto-metric --cachedir="/home/hbase/opentsdb-cache/" --zkquorum=localhost:2181
-</pre>
+And that's that!  :)
