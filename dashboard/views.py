@@ -51,6 +51,7 @@ def home(request):
         CLOUDLY_MOTTOS = [
             "The Power of Now!",
             "Details Matters!",
+            "Bulletproof monitoring out of the box.",
             "Get your servers into shape! 100% free for Open Source.",
             "The only Servers Monitoring that does the Heartbeats!",
             "Your Servers Heartbeat Visualised.",
