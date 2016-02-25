@@ -45,7 +45,6 @@ Example hbase-site.xml for Standalone HBase:
     <value>/home/zookeeper/zookeeper</value>
   </property>
 </configuration>
-</pre>
 ```
 
 You do not need to create the HBase data directory. HBase will do this for you. If you create the directory, HBase will attempt to do a migration, which is not what you want.
