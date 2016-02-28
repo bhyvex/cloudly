@@ -33,17 +33,34 @@
             <br/>
 						Agent Secret: {{profile.secret}}
             <br/>
+            E-mail: {{user.email}}
             <br/>
-
-						{% if user.username != "demo@demo.com" %}
-						Password: <a href="/account/password">change password</a>
-            <br/>
+            {% if user.username != "demo@demo.com" %}
+						<a href="/account/password">change password</a>
 						{% endif %}
+					</p>
 
+				</div>
+			</div>
+		</div><!--/container-->
+
+		<div class="col-xs-12">
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2><i class="fa fa-exclamation-triangle"></i>Alerting Settings</h2>
+					<div class="panel-actions">
+						<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+					</div>
+				</div>
+
+				<div class="panel-body">
+					<p>
             E-mail: {{user.email}}
             alerts_on <font color="grey">default (informative) | <b>obsessive</b> | critical_only</font>
-						<br/>
-
+            <br/>
 						Twitter:
 						{% if not profile.twitter %}
             <a href="#">n/a</a>
@@ -64,18 +81,17 @@
 						{{profile.mobile}}
 						{% endif %}
             <a href="#">enable_sms_notifs__buy_credit</a>
-
 					</p>
-
 				</div>
+
 			</div>
 		</div><!--/container-->
 
-		<div class="col-xs-12">
+    <div class="col-xs-12">
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h2><i class="fa fa-exclamation-triangle"></i>Monitoring and Alerting Settings</h2>
+					<h2><i class="fa fa-exclamation-triangle"></i>Monitoring Settings</h2>
 					<div class="panel-actions">
 						<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
 						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
@@ -95,6 +111,7 @@
 
 			</div>
 		</div><!--/container-->
+
 
   </div><!--/row-->
 </div><!--/col-->
