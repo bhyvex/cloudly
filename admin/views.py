@@ -89,7 +89,6 @@ def user_activity_report(request, user_id):
 
     servers = mongo.servers.find({'secret':user_profile.secret,}).sort('_id',-1)
 
-    import datetime
     user = request.user
     user.last_login = datetime.datetime.now()
     user.save()
