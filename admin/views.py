@@ -110,7 +110,6 @@ def admin(request):
     users = Profile.objects.all().order_by('-last_seen')
     profile = Profile.objects.get(user=request.user)
 
-    import datetime
     user = request.user
     user.last_login = datetime.datetime.now()
     user.save()
@@ -121,4 +120,3 @@ def admin(request):
     _log_user_activity(profile,"click","/admin/","admin",ip=ip)
 
     return render_to_response('admin.html', {'users':users,'files':[],'profile':profile,'request':request,}, context_instance=RequestContext(request))
-
