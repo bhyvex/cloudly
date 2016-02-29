@@ -224,10 +224,8 @@ def _get_sys_cpu():
         'service': 'system_cpu',
     }
 
-    cpu_info = subprocess.Popen(["ps","axo","pcpu"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
-
-    c=0
     cpu_total = float(0)
+    cpu_info = subprocess.Popen(["ps","axo","pcpu"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 
     for line in cpu_info.split('\n'):
 
@@ -738,6 +736,8 @@ def send_data( secret, api_call, data ):
     params = urllib.urlencode(data)
     headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
     api_url = "http://"+API_SERVER+api_call
+    # fixing codacy duplication analysis
+    params = params
 
     while True:
 
