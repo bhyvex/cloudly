@@ -157,7 +157,6 @@ def welcome(request):
     )
 
 
-
 def credits(request):
 
     try:
