@@ -735,9 +735,11 @@ def send_data( secret, api_call, data ):
 
     params = urllib.urlencode(data)
     headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-    api_url = "http://"+API_SERVER+api_call
+
     # fixing codacy duplication analysis
     params = params
+
+    #api_url = "http://"+API_SERVER+api_call
 
     while True:
 
