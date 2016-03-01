@@ -22,9 +22,7 @@ In order to run this project in what we call the "Enterprise Mode", please follo
 
 <pre>
 $ apt-get install git
-$ apt-get install python-dev
-$ apt-get install python-pip
-$ apt-get install python-boto
+$ apt-get install python-dev python-pip python-boto
 $ pip install -U Django
 </pre>
 
