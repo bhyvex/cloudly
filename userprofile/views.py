@@ -10,7 +10,6 @@ import string, pickle
 from random import choice
 
 from django.shortcuts import render_to_response
-from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 
