@@ -39,7 +39,6 @@ def aws_test(request):
 
     print 'AWS IMs metrics', metrics
 
-    import datetime
     user = request.user
     user.last_login = datetime.datetime.now()
     user.save()
