@@ -11,7 +11,6 @@ import urllib2, json
 from pprint import pprint
 
 from django.shortcuts import render_to_response
-from django.http import HttpResponseRedirect
 from django.template import RequestContext
 
 from django.http import HttpResponseForbidden
