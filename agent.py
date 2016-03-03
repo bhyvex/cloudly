@@ -529,7 +529,7 @@ def _get_disks_usage():
         disk_free = disk[3]
         disk_used = disk[2]
         disk_total = disk[1]
-        disk_usage = disk[4]
+        #disk_usage = disk[4]
 
         if(int(disk[4].replace('%','')) < disks_thresholds['WARNING']['min_value']):
             status = 'OK'

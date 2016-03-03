@@ -21,9 +21,8 @@ mongo = client.cloudly
 def incidents_notifs(request):
     if (not request.user.is_authenticated()):
         return {}
+        profile = Profile.objects.get(user=request.user)
 
-    user = request.user
-    profile = Profile.objects.get(user=request.user)
     secret = profile.secret
 
     servers = mongo.servers.find({'secret':profile.secret},{'uuid':1,'name':1,'last_seen':1}).sort('_id',-1);
