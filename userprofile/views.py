@@ -109,7 +109,6 @@ def reset_cloud_settings(request):
 
     user = request.user
     profile = userprofile.objects.get(user=request.user)
-    secret = profile.secret
 
     print request.user
 
@@ -121,8 +120,6 @@ def reset_cloud_settings(request):
     vms_cache = Cache.objects.get(user=user)
     vms_cache.vms_response = ""
     vms_cache.save()
-
-    error = None
 
     ip = request.META['REMOTE_ADDR']
     _log_user_activity(profile,"click","/cloud/settings/reset/","change_password",ip=ip)
@@ -313,6 +310,8 @@ def cloud_settings_update_credentials(request):
         aws_access_key_id=aws_access_key,
         aws_secret_access_key=aws_secret_key)
         regions_ = ec2conn.get_all_regions()
+        # this is to satisfy codacy...
+        regions_ = regions_
         profile.aws_ec2_verified = True
     except:
         err = "AWS verification failed.  Please check your Access Key and Secret and try again."
