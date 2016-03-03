@@ -525,11 +525,11 @@ def _get_disks_usage():
 
         status = 'UNKNOWN'
 
-        mount_point = disk[5]
-        disk_free = disk[3]
-        disk_used = disk[2]
         disk_total = disk[1]
+        disk_used = disk[2]
+        disk_free = disk[3]
         #disk_usage = disk[4]
+        #mount_point = disk[5]
 
         if(int(disk[4].replace('%','')) < disks_thresholds['WARNING']['min_value']):
             status = 'OK'
