@@ -96,8 +96,13 @@ def home(request):
     user.last_login = datetime.datetime.now()
     user.save()
 
+    secret = profile.secret
+    profile = userprofile.objects.get(user=request.user)
+
     ip = request.META['REMOTE_ADDR']
-    _log_user_activity(profile,"click","/","home",ip=ip)
+    try:
+        _log_user_activity(profile,"click","/","home",ip=ip)
+    except: pass
 
     is_updating = False
 
@@ -123,9 +128,6 @@ def home(request):
                 for inner_tag in server['tags'][tag_category]:
                     if(not inner_tag[0] in servers_tags[tag_category]):
                         servers_tags[tag_category].append(inner_tag[0])
-
-    secret = profile.secret
-    profile = userprofile.objects.get(user=request.user)
 
     return render_to_response(
         'dashboard.html',
