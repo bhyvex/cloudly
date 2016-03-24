@@ -96,8 +96,8 @@ def home(request):
     user.last_login = datetime.datetime.now()
     user.save()
 
-    secret = profile.secret
     profile = userprofile.objects.get(user=request.user)
+    secret = profile.secret
 
     ip = request.META['REMOTE_ADDR']
     try:
