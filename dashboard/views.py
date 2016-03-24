@@ -132,7 +132,6 @@ def home(request):
     return render_to_response(
         'dashboard.html',
         {
-            'request':request,
             'servers_tags':servers_tags,
             'is_updating':is_updating,
             'vms_cached_response':vms_cached_response,
