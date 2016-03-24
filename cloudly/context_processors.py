@@ -19,9 +19,11 @@ if settings.MONGO_USER:
 mongo = client.cloudly
 
 def incidents_notifs(request):
+    
+    profile = Profile.objects.get(user=request.user)
+
     if (not request.user.is_authenticated()):
         return {}
-        profile = Profile.objects.get(user=request.user)
 
     secret = profile.secret
 
