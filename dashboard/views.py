@@ -87,7 +87,7 @@ def home(request):
             "Hadoop &amp; OpenTSDB Powered Servers Monitoring.",
             "The first line of defence for your servers.",
         ]
-        return render_to_response('web.html', {'request':request,'CLOUDLY_MOTTOS':CLOUDLY_MOTTOS,}, context_instance=RequestContext(request))
+        return render_to_response('web.html', {'CLOUDLY_MOTTOS':CLOUDLY_MOTTOS,},)
 
     print '--  dashboard:'
     print request.user

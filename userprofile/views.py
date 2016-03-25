@@ -129,7 +129,7 @@ def reset_cloud_settings(request):
 
 def goodbye(request):
 
-    return render_to_response('goodbye.html', {'request':request,}, context_instance=RequestContext(request))
+    return render_to_response('goodbye.html', {},)
 
 
 def register(request):
