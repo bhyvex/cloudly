@@ -206,7 +206,7 @@ def register(request):
                     return HttpResponseRedirect("/welcome/")
 
 
-    return render_to_response('register.html', {'err':err,}, context_instance=RequestContext(request))
+    return render_to_response('register.html', {'err':err,}, )
 
 
 def auth(request):
