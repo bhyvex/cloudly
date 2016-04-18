@@ -104,7 +104,7 @@ This is the first time that you are running OpenTSDB with your HBase instance, t
 
 <pre>
 $ cd /usr/local/share/opentsdb
-$ env COMPRESSION=NONE HBASE_HOME=/opt/hbase-1.1.3/ /opt/opentsdb/tools/create_table.sh
+$ env COMPRESSION=NONE HBASE_HOME=/opt/hbase-1.1.4/ /opt/opentsdb/tools/create_table.sh
 </pre>
 
 The COMPRESSION value is either NONE, LZO, GZIP or SNAPPY. This will create four tables: tsdb, tsdb-uid, tsdb-tree and tsdb-meta.
