@@ -31,7 +31,7 @@ $ pip install -U Django
 <pre>
 $ sudo adduser cloudly
 $ su - cloudly
-$ git clone https://github.com/ProjectCloudly/cloudly cloudly
+$ git clone https://github.com/jparicka/cloudly.git cloudly
 $ cd cloudly
 </pre>
 
