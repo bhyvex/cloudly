@@ -129,4 +129,4 @@ Screenshots & Live Demo
 
 ###### Demo
 
-This project can be currently seen on https://projectcloudly.org/demo
+This project can be currently seen on http://jparicka.tk:8001/demo
