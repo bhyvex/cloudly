@@ -213,7 +213,7 @@ def auth(request):
 
     print '-- auth:'
 
-    err = None
+    err = False 
 
     if(request.method == 'POST'):
 
@@ -250,7 +250,8 @@ def auth(request):
             return HttpResponseRedirect("/")
 
 
-    return render_to_response('login.html', {'err':err,}, context_instance=RequestContext(request))
+    return render_to_response('login.html',{'err':err},)
+
 
 @login_required()
 def cloud_settings(request):
