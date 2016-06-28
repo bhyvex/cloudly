@@ -56,33 +56,48 @@
 					</div>
 				</div>
 
+
+
+
 				<div class="panel-body">
 					<p>
-            E-mail: {{user.email}}
-            alerts_off <font color="grey">default (informative) | obsessive | critical_only</font>
-            <br/>
+            <div class="panel-body">
+              <button type="button" class="btn btn-link btn-sm">Email</button>
+							<button type="button" class="btn btn-success">Informative</button>
+							<button type="button" class="btn btn-default" disabled="disabled">Obsessive</button>
+							<button type="button" class="btn btn-default" disabled="disabled">Critical Only</button>
+							<button type="button" class="btn btn-default" disabled="disabled">OFF</button>
+  					</div>
 
-						Twitter:
-						{% if not profile.twitter %}
-            <a href="#">n/a</a>
-						{% else %}
-						{{profile.twitter}}
-						{% endif %}
-            alerts_off <font color="grey">default (informative) | obsessive | critical_only</font>
-						<br/>
+            <div class="panel-body">
+              <button type="button" class="btn btn-link btn-sm">Twitter</button>
+							<button type="button" class="btn btn-success">Informative</button>
+							<button type="button" class="btn btn-default" disabled="disabled">Obsessive</button>
+							<button type="button" class="btn btn-default" disabled="disabled">Critical Only</button>
+							<button type="button" class="btn btn-default" disabled="disabled">OFF</button>
+              {% comment %}
+              <br/>
+              <img src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png"></img>
+              <br/>
+              {% endcomment %}
+  					</div>
 
-						Jabber: <a href="#">n/a</a>
-            alerts_off <font color="grey">default (informative) | obsessive | critical_only</font>
-						<br/>
 
-						Mobile:
-						{% if not profile.mobile %}
-						<a href="#">n/a</a>
-						{% else %}
-						{{profile.mobile}}
-						{% endif %}
-            <a href="#">enable_sms_notifs__buy_credit</a>
-					</p>
+            <div class="panel-body">
+              <button type="button" class="btn btn-link btn-sm">Jabber</button>
+							<button type="button" class="btn btn-default">Informative</button>
+							<button type="button" class="btn btn-success">Obsessive</button>
+							<button type="button" class="btn btn-default" disabled="disabled">Critical Only</button>
+							<button type="button" class="btn btn-default" disabled="disabled">OFF</button>
+  					</div>
+
+            <div class="panel-body">
+              <button type="button" class="btn btn-link btn-sm">SMS</button>
+              <button type="button" class="btn btn-primary">Buy SMS Credit</button>
+            </div>
+
+  				</p>
+
 				</div>
 
 			</div>
