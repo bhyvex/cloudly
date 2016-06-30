@@ -94,7 +94,7 @@
                     <td>{{activity|dict_get:"date_created"|timesince}} ago</td>
                     <td>{{activity|dict_get:"date_created"}}</td>
                     <td>{{activity|dict_get:"server_id"}}</td>
-                    <td>{{activity|dict_get:"data"|truncatechars:65}}</td>
+                    <td>{{activity|dict_get:"data"|dict_get:"message"}}</td>
                   </tr>
                 {% endfor %}
             </table>
@@ -126,12 +126,6 @@
                   {% if server|get_server_status == "offline" %}
 
                       <font color="red">This server has gone offline {{server|dict_get:"last_seen"|timesince}} ago.</font><br/>
-
-                      Datacenters:
-                        {% for tag in server|dict_get:"tags"|dict_get:"datacenters" %}
-                          {{tag|dict_get:0}} - {{tag|dict_get:1}}{% if not forloop.last %};{% endif %}
-                        {% endfor %}
-                        <br/>
 
                       Tags:
                         {% for tag in server|dict_get:"tags"|dict_get:"tags" %}
@@ -166,7 +160,11 @@
                               <td>{{event|dict_get:"service"}}</td>
                               <td>{{event|dict_get:"date"|timesince}} ago</td>
                               <td>{{event|dict_get:"date"}}</td>
-                              <td>{{event|dict_get:"detailed_service_status"|dict_get:"values"|truncatechars:65}}</td>
+                              <td>
+                                {% for e in event|dict_get:"detailed_service_status"|dict_get:"values" %}
+                                  {{e}}: {{event|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:e}}{% if not forloop.last %};&nbsp;&nbsp;{% endif %}
+                                {% endfor %}
+                              </td>
                             </tr>
                     {% endfor %}
                   </table>
