@@ -157,7 +157,9 @@
                               <th>values</th>
                             </tr>
                     {% else %}
-                            This server is running steadily.
+                            {% server|dict_get:"uuid"|get_historical_events %}
+                                This server is running steadily.
+                            {% endif %}
                     {% endif %}
 
                     {% for event in server|dict_get:"uuid"|get_historical_events %}
