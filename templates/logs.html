@@ -127,7 +127,13 @@
       						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
       					</div>
       				</div>
-      				<div class="panel-body" style="background-color:#ff8566;">
+
+              {% if server|get_server_status == "offline" %}
+      				    <div class="panel-body" style="background-color:#ff8566;">
+              {% else %}
+                  <div class="panel-body">
+              {% endif %}
+
                 <p>
 
                   {% if server|get_server_status == "offline" %}
