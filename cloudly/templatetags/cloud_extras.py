@@ -189,6 +189,10 @@ def get_tags(package):
 def to_mb(x):
 	return long(x)/1024/1000
 
+@register.filter(name='capitalize')
+def capitalize(s):
+	return s.upper()
+
 
 @register.filter(name="clean_ps_command")
 def clean_ps_command(command):
