@@ -111,7 +111,7 @@
       					<h2>
                   <i class="fa fa-server"></i>
                   {% if not server|get_server_status == "online" %}
-                    ({{server|get_server_status}})
+                      <font color="red">({{server|get_server_status}})</font>
                   {% endif %}
 
                   <a href="/server/{{server|dict_get:"uuid"|replace_dots}}">{{server|dict_get:"name"}}</a>
@@ -187,7 +187,8 @@
 
                   {% if server|get_server_status == "offline" %}
                     <br/>
-                    <font color="red">* this server has gone offline {{server|dict_get:"last_seen"|timesince}} ago.</font><br/>
+                    <font color="red">* this server has gone offline {{server|dict_get:"last_seen"|timesince}} ago.</font>
+                    <br/>
                   {% endif %}
 
                 </p>
