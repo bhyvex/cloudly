@@ -129,7 +129,7 @@
 
                       Tags:
                         {% for tag in server|dict_get:"tags"|dict_get:"tags" %}
-                          {{tag|dict_get:0|capitalize}}{% if not forloop.last %},{% endif %}
+                          {{tag|dict_get:0}}{% if not forloop.last %},{% endif %}
                         {% endfor %}
 
                       {% if not server|dict_get:"tags"|dict_get:"tags" %}
@@ -162,7 +162,11 @@
                               <td>{{event|dict_get:"date"}}</td>
                               <td>
                                 {% for e in event|dict_get:"detailed_service_status"|dict_get:"values" %}
-                                  {{e}}: {{event|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:e}}{% if not forloop.last %};&nbsp;&nbsp;{% endif %}
+                                  {% if not "min" %}
+                                    {{e|capitalize}}: {{event|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:e}}{% if not forloop.last %};&nbsp;&nbsp;{% endif %}
+                                  {% else %}
+                                    {{e}}: {{event|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:e}}{% if not forloop.last %};&nbsp;&nbsp;{% endif %}
+                                  {% endif %}
                                 {% endfor %}
                               </td>
                             </tr>
