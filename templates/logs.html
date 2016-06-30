@@ -148,19 +148,18 @@
                   {% endif %}
 
                   <table style="width:100%">
-                    {% if event in server|dict_get:"uuid"|get_historical_events %}
-                            <tr>
-                              <th>status</th>
-                              <th>service</th>
-                              <th>time since</th>
-                              <th>date</th>
-                              <th>values</th>
-                            </tr>
-                    {% else %}
-                            {% if server|dict_get:"uuid"|get_historical_events|length %}
-                                This server is running steadily.
-                            {% endif %}
-                    {% endif %}
+                        {% if server|dict_get:"uuid"|get_historical_events|dict_get:0 %}
+                        <tr>
+                          <th>status</th>
+                          <th>service</th>
+                          <th>time since</th>
+                          <th>date</th>
+                          <th>values</th>
+                        </tr>
+                        {% else %}
+                            This server is running steadily.
+                        {% endif %}
+
 
                     {% for event in server|dict_get:"uuid"|get_historical_events %}
                             <tr>
