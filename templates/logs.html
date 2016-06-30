@@ -157,7 +157,7 @@
                               <th>values</th>
                             </tr>
                     {% else %}
-                            {% if server|dict_get:"uuid"|get_historical_events %}
+                            {% if server|dict_get:"uuid"|get_historical_events|length %}
                                 This server is running steadily.
                             {% endif %}
                     {% endif %}
