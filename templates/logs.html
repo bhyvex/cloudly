@@ -147,13 +147,17 @@
                   {% endif %}
 
                   <table style="width:100%">
-                    <tr>
-                      <th>status</th>
-                      <th>service</th>
-                      <th>time since</th>
-                      <th>date</th>
-                      <th>values</th>
-                    </tr>
+                    {% if event in server|dict_get:"uuid"|get_historical_events %}
+                            <tr>
+                              <th>status</th>
+                              <th>service</th>
+                              <th>time since</th>
+                              <th>date</th>
+                              <th>values</th>
+                            </tr>
+                    {% else %}
+                            n/a
+                    {% endif %}
                     {% for event in server|dict_get:"uuid"|get_historical_events %}
                             <tr>
                               <td>{{event|dict_get:"detailed_service_status"|dict_get:"status"}}</td>
