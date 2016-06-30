@@ -110,7 +110,10 @@
       				<div class="panel-heading">
       					<h2>
                   <i class="fa fa-server"></i>
+                  {% if not server|get_server_status == "online" %}
                   ({{server|get_server_status}})
+                  {% endif %}
+
                   <a href="/server/{{server|dict_get:"uuid"|replace_dots}}">{{server|dict_get:"name"}}</a>
                   <small>{{server|dict_get:"uuid"}}</small>
                 </h2>
