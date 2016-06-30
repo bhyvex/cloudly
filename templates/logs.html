@@ -107,7 +107,7 @@
     {% for server in servers %}
       		<div class="col-xs-12">
       			<div class="panel panel-default">
-      				<div class="panel-heading">
+      				<div class="panel-heading" style="background-color:red;">
       					<h2>
                   <i class="fa fa-server"></i>
                   {% if not server|get_server_status == "online" %}
@@ -123,7 +123,7 @@
       						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
       					</div>
       				</div>
-      				<div class="panel-body">
+      				<div class="panel-body" style="background-color:red;">
                 <p>
 
                   {% if server|get_server_status == "offline" %}
@@ -146,7 +146,7 @@
                     <br/>
                   {% endif %}
 
-                  <table style="width:100%">
+                  <table style="width:100%;">
                         {% if server|dict_get:"uuid"|get_historical_events|dict_get:0 %}
                         <tr>
                           <th>status</th>
