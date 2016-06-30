@@ -111,7 +111,7 @@
       					<h2>
                   <i class="fa fa-server"></i>
                   {% if not server|get_server_status == "online" %}
-                  ({{server|get_server_status}})
+                    ({{server|get_server_status}})
                   {% endif %}
 
                   <a href="/server/{{server|dict_get:"uuid"|replace_dots}}">{{server|dict_get:"name"}}</a>
@@ -127,8 +127,6 @@
                 <p>
 
                   {% if server|get_server_status == "offline" %}
-
-                      <font color="red">This server has gone offline {{server|dict_get:"last_seen"|timesince}} ago.</font><br/>
 
                       Tags:
                         {% for tag in server|dict_get:"tags"|dict_get:"tags" %}
@@ -161,6 +159,7 @@
                     {% else %}
                             This server is running steadily.
                     {% endif %}
+
                     {% for event in server|dict_get:"uuid"|get_historical_events %}
                             <tr>
                               <td>{{event|dict_get:"detailed_service_status"|dict_get:"status"}}</td>
@@ -184,10 +183,12 @@
                             </tr>
                     {% endfor %}
                   </table>
-                  {% comment %}
-                  <br/>
-                  XXX if no events and no offline {{server|dict_get:"name"|title}} is running steadily.
-                  {% endcomment %}
+
+                  {% if server|get_server_status == "offline" %}
+                    <br/>
+                    <font color="red">* this server has gone offline {{server|dict_get:"last_seen"|timesince}} ago.</font><br/>
+                  {% endif %}
+
                 </p>
       				</div>
       			</div>
