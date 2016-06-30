@@ -187,7 +187,9 @@ def temp(request):
     ip = request.META['REMOTE_ADDR']
     print request.user
 
-    return render_to_response('temp.html', {'request':request,}, context_instance=RequestContext(request))
+    x = [1,2,3,4]
+
+    return render_to_response('temp.html', {'request':request,'x':x,}, context_instance=RequestContext(request))
 
 
 

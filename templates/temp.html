@@ -40,19 +40,20 @@
                   <table style="width:100%">
                     <tr>
                       <th></th>
-                      <th>email</th>
-                      <th>twitter</th>
+                      <th>E-mail</th>
+                      <th>Twitter</th>
                       <th>SMS</th>
-                      <th></th>
+                      <th>Alerting</th>
                     </tr>
 
 
                     <form class="form-horizontal">
                       <div class="form-group">
                         <div class="controls row">
-                          <tr>
 
-                            <td>ACTIVITY_TYPE_1</td>
+                          {% for i in x %}
+                          <tr>
+                            <td><font size=2>ACTIVITY_TYPE_1</font></td>
 
                               <form class="form-horizontal">
                                 <div class="form-group">
@@ -94,15 +95,15 @@
                                       </div>
                                     </td>
 
-                                  </div>
-                                  </div>
-                              </form>
-                          </tr>
+                                </tr>
+                                {% endfor %}
+                              </div>
+                            </div>
+                          </form>
 
-
-      									</div>
-            			  	</div>
-            				</form>
+    									</div>
+          			  	</div>
+          				</form>
 
 
                   </table>
