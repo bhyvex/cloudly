@@ -162,11 +162,11 @@
                               <td>{{event|dict_get:"date"}}</td>
                               <td>
                                 {% if event|dict_get:"service" = "SYSTEM_MEMORY" %}
-                                        MEM used:
+                                        mem_used:
                                         {{event|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:'memory_used'}};
-                                        MEM free:
+                                        mem_free:
                                         {{event|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:'memory_free'}};
-                                        SWAP used:
+                                        swap_used:
                                         {{event|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:'swap_used'}};
                                 {% else %}
                                     {% for e in event|dict_get:"detailed_service_status"|dict_get:"values" %}
