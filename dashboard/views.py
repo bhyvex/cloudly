@@ -177,6 +177,19 @@ def credits(request):
     return render_to_response('credits.html', {'request':request,}, context_instance=RequestContext(request))
 
 
+def temp(request):
+
+    try:
+        print '--  temp page:', request.user
+    except:
+        print '--  temp page: anonymous'
+
+    ip = request.META['REMOTE_ADDR']
+    print request.user
+
+    return render_to_response('temp.html', {'request':request,}, context_instance=RequestContext(request))
+
+
 
 def download_agent(request):
 

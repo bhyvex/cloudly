@@ -3,18 +3,13 @@
 {% load humanize %}
 {% load cloud_extras %}
 
-{% block title %}Cloudly | Credits{% endblock %}
+{% block title %}Cloudly | Testing{% endblock %}
 
 {% block nav-bar %}
     {% include "partials/nav-bar-classic.html" %}
 {% endblock %}
 
 {% block page_content %}
-	<ol class="breadcrumb">
-		<li class="">Credits</li>
-		<li class="active">The Team</li>
-	</ol>
-
 
 	<div class="page-header">
 	<h1>Say hello! <small>
@@ -22,11 +17,70 @@
 	</div>
 
 
+  <div id="alertingSettings"
+      class="row"
+      {% if server_status|lower = "offline" %}
+          style="display: none;"
+      {% endif %}
+      >
+      <div class="col-xs-12">
+          <div id="alertingSettings" class="panel panel-default">
+              <div class="panel-heading">
+                  <h2><i class="fa fa-envelope-o"></i>Alerting Settings</h2>
+                  <div class="panel-actions">
+                      <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+                      <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                      <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                  </div>
+              </div>
+
+              <div class="panel-body">
+
+                <p>
+                  <table style="width:100%">
+                    <tr>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+
+
+
+                      <tr>
+                        <td>ACTIVITY_TYPE_1</td>
+                        <td>email_on twitter_off sms_off</td>
+                        <td>informative_alerting | obsessive_alerting | warning_ignore_all | critical_messages_only</td>
+                      </tr>
+
+                      <tr>
+                        <td>ACTIVITY_TYPE_2</td>
+                        <td>email_on twitter_off sms_off</td>
+                        <td>informative_alerting | obsessive_alerting | warning_ignore_all | critical_messages_only</td>
+                      </tr>
+
+                      <tr>
+                        <td>ACTIVITY_TYPE_3</td>
+                        <td>email_on twitter_off sms_off</td>
+                        <td>informative_alerting | obsessive_alerting | warning_ignore_all | critical_messages_only</td>
+                      </tr>
+
+
+
+                  </table>
+                  <small>* auto-complets based on the recognized server incidents..</small>
+                </p>
+              </div>
+
+          </div>
+      </div>
+  </div><!--/row-->
+
+
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h2><i class="fa fa-bug"></i><span class="break"></span>Hello</h2>
+					<h2><i class="fa fa-bug"></i><span class="break"></span>Test</h2>
 					<div class="panel-actions">
 						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
 						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
