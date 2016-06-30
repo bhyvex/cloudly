@@ -132,18 +132,17 @@
                         {% for tag in server|dict_get:"tags"|dict_get:"tags" %}
                           {{tag|dict_get:0}}{% if not forloop.last %},{% endif %}
                         {% endfor %}
-
                       {% if not server|dict_get:"tags"|dict_get:"tags" %}
                         there are none defined for this server..
                       {% endif %}
 
-                      <hr/>
+                      <br/>
+                      <br/>
 
                   {% endif %}
 
                   {% if server|get_server_status == "offline" %}
                     <b>Past problems:</b>
-                    <br/>
                     <br/>
                   {% endif %}
 
