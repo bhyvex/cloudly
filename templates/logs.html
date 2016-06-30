@@ -161,13 +161,13 @@
                               <td>{{event|dict_get:"date"|timesince}} ago</td>
                               <td>{{event|dict_get:"date"}}</td>
                               <td>
-                                {% for e in event|dict_get:"detailed_service_status"|dict_get:"values" %}
-                                  {% if not "min" %}
-                                    {{e|capitalize}}: {{event|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:e}}{% if not forloop.last %};&nbsp;&nbsp;{% endif %}
-                                  {% else %}
-                                    {{e}}: {{event|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:e}}{% if not forloop.last %};&nbsp;&nbsp;{% endif %}
-                                  {% endif %}
-                                {% endfor %}
+                                {% if event|dict_get:"service" = "SYSTEM_MEMORY"%}
+                                        XXX MEMORY
+                                {% else %}
+                                    {% for e in event|dict_get:"detailed_service_status"|dict_get:"values" %}
+                                        {{e}}: {{event|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:e}}{% if not forloop.last %};&nbsp;&nbsp;{% endif %}
+                                    {% endfor %}
+                                {% endif %}
                               </td>
                             </tr>
                     {% endfor %}
