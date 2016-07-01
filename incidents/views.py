@@ -129,8 +129,9 @@ def logs(request):
 
     # XXX test for offline servers
     offline_servers = []
-
-
+    for server in mongo.servers.find({"secret":profile.secret,}):
+        if((datetime.datetime.now()-server['last_seen']).total_seconds()>300):
+            offline_servers.append(server)
 
     return render_to_response(
         'logs.html',

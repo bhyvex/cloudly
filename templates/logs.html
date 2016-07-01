@@ -31,30 +31,22 @@
             active_notifs {{active_notifs}}
           </p>
 
-          <p>
-            XXX display offline servers as well!
-          </p>
-
 					<div class="todo">
 						<ul class="todo-list ui-sortable">
 							<li>
 							</li>
-							<li>
-								<span class="todo-actions">
-									<a href="widgets.html#"><i class="fa fa-check"></i></a>
-								</span>
-								<span class="desc">New frontend layout exploded</span>
-								<span class="label label-danger">since today</span>
-								<a class="remove" href="widgets.html#"><i class="fa fa-times"></i></a>
-							</li>
-							<li>
-								<span class="todo-actions">
-									<a href="widgets.html#"><i class="fa fa-check"></i></a>
-								</span>
-								<span class="desc">Server1 exploded</span>
-								<span class="label label-warning">since yesterday</span>
-								<a class="remove" href="widgets.html#"><i class="fa fa-times"></i></a>
-							</li>
+
+              {% for server in offline_servers %}
+    							<li>
+    								<span class="todo-actions">
+    									<a href="#"><i class="fa fa-exclamation-circle"></i></a>
+    								</span>
+    								<span class="desc">{{server|dict_get:"name"}} has gone offline!</span>
+    								<span class="label label-danger">{{server|dict_get:"last_seen"|timesince}} ago</span>
+    								<a class="remove" href="widgets.html#"><i class="fa fa-times"></i></a>
+    							</li>
+              {% endfor %}
+
 						</ul>
 					</div>
 				</div>
