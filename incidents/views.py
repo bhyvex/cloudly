@@ -103,12 +103,12 @@ def logs(request):
 
     servers = mongo.servers.find({'secret':secret,})
     activities = mongo.activity.find({'secret':secret,}).sort("_id",pymongo.DESCENDING)
-    activities = activities.limit(10)
+    activities = activities.limit(20)
 
-    servers = mongo.servers.find({'secret':profile.secret},{'uuid':1,'name':1}).sort('_id',-1);
+    servers_ = mongo.servers.find({'secret':profile.secret},{'uuid':1,'name':1}).sort('_id',-1);
 
     serversNames = {}
-    for server in servers:
+    for server in servers_:
         serversNames[server['uuid']] = server['name']
 
     active_service_statuses = mongo.active_service_statuses
@@ -125,6 +125,8 @@ def logs(request):
             if((datetime.datetime.now()-server['last_seen']).total_seconds()<20):
                 active_notifs[notifs_type].append(notif)
 
+    print 'servers', servers
+
     return render_to_response(
         'logs.html',
         {
@@ -132,7 +134,7 @@ def logs(request):
             'secret':profile.secret,
             'servers':servers,
             'activities':activities,
-            'active_notifs':active_notifs
+#            'active_notifs':active_notifs
         },
         context_instance=RequestContext(request),
     )
