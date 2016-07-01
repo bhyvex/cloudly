@@ -134,7 +134,7 @@ def logs(request):
             'secret':profile.secret,
             'servers':servers,
             'activities':activities,
-#            'active_notifs':active_notifs
+            'active_notifs':active_notifs
         },
         context_instance=RequestContext(request),
     )

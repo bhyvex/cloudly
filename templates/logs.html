@@ -31,6 +31,10 @@
             active_notifs {{active_notifs}}
           </p>
 
+          <p>
+            XXX display offline servers as well!
+          </p>
+
 					<div class="todo">
 						<ul class="todo-list ui-sortable">
 							<li>
@@ -103,19 +107,19 @@
               {% else %}
                   <div class="panel-heading">
               {% endif %}
-      					<h2>
+
+                <h2>
                   <i class="fa fa-server"></i>
                   {% if not server|get_server_status == "online" %}
                         <font color="white">({{server|get_server_status}})</font>
                         <a href="/server/{{server|dict_get:"uuid"|replace_dots}}"><font color="white">{{server|dict_get:"name"}}</font></a>
                         <small>{{server|dict_get:"uuid"}}</small>
-
                   {% else %}
                       <a href="/server/{{server|dict_get:"uuid"|replace_dots}}">{{server|dict_get:"name"}}</a>
                       <small>{{server|dict_get:"uuid"}}</small>
                   {% endif %}
-
                 </h2>
+
       					<div class="panel-actions">
       						<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
       						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
