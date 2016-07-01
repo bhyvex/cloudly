@@ -102,7 +102,7 @@
     {% for server in servers %}
       		<div class="col-xs-12">
       			<div class="panel panel-default">
-              {% if server|get_server_status == "offline" %}
+              {% if server|get_server_status != "online" %}
       				    <div class="panel-heading" style="background-color:#ff5c33;">
               {% else %}
                   <div class="panel-heading">
