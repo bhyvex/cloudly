@@ -686,24 +686,60 @@
                 </div>
 
                 <div class="panel-body">
+                  <form class="form-horizontal">
+                      <div class="controls row">
+                              {% for activity_type in activity_cummulative_types %}
+                              <form class="form-horizontal">
+                              <tr>
+                                <td><font size=2>{{activity_type}}</font></td>
 
-                  <p>
-                    <table style="width:100%">
-                      <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                      </tr>
-                      {% for activity_type in activity_cummulative_types %}
-                        <tr>
-                          <td>{{activity_type}}</td>
-                          <td>email_on twitter_off sms_off</td>
-                          <td>informative_alerting | obsessive_alerting | warning_ignore_all | critical_messages_only</td>
-                        </tr>
-                      {% endfor %}
-                    </table>
-                    <small>* auto-complets based on the recognized server incidents..</small>
-                  </p>
+                                      <td>
+                                      <div class="col-md-1 col-sm-3 col-xs-4">
+                                          <label class="switch switch-warning">
+                                            <input type="checkbox" class="switch-input" checked="">
+                                            <span class="switch-label" data-on="On" data-off="Off"></span>
+                                            <span class="switch-handle"></span>
+                                          </label>
+                                      </div>
+                                     </td>
+
+                                      <td>
+                                      <div class="col-md-1 col-sm-3 col-xs-4">
+                                        <label class="switch switch-primary">
+                                            <input type="checkbox" class="switch-input" checked="">
+                                            <span class="switch-label" data-on="On" data-off="Off"></span>
+                                            <span class="switch-handle"></span>
+                                          </label>
+                                      </div>
+                                      </td>
+
+                                      <td>
+                                        <div class="col-md-1 col-sm-3 col-xs-4">
+                                            <label class="switch switch-success">
+                                              <input type="checkbox" class="switch-input">
+                                              <span class="switch-label" data-on="On" data-off="Off"></span>
+                                              <span class="switch-handle"></span>
+                                            </label>
+                                        </div>
+                                        </td>
+
+                                        <td>
+                                          <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <span class="label label-success">Informative</span>
+                                            <span class="label label-default">Obsessive</span>
+                                            <span class="label label-default">Critical Only</span>
+                                            <span class="label label-default">OFF</span>
+                                            {% comment %}
+                                            <span class="label label-danger">OFF</span>
+                                            {% endcomment %}
+                                          </div>
+                                        </td>
+
+                                    </tr>
+                                  </form>
+                              {% endfor %}
+                          </p>
+                    </div>
                 </div>
 
             </div>
