@@ -115,7 +115,9 @@ def logs(request):
 
     active_notifs = {}
     notifs_types = ["CRITICAL","WARNING","UNKNOWN",]
+
     for notifs_type in notifs_types:
+
         active_notifs[notifs_type] = []
         notifs = active_service_statuses.find({"secret":secret,"current_overall_status":notifs_type})
         for notif in notifs:
@@ -125,7 +127,10 @@ def logs(request):
             if((datetime.datetime.now()-server['last_seen']).total_seconds()<20):
                 active_notifs[notifs_type].append(notif)
 
-    print 'servers', servers
+    # XXX test for offline servers
+    offline_servers = []
+
+
 
     return render_to_response(
         'logs.html',
@@ -133,6 +138,7 @@ def logs(request):
             'request':request,
             'secret':profile.secret,
             'servers':servers,
+            'offline_servers':offline_servers,
             'activities':activities,
             'active_notifs':active_notifs
         },
