@@ -36,17 +36,19 @@
 
                   {% if active_notifs %}
     							<li>
-                      {% for notif in active_notifs|dict_get:"CRITICAL" %}
-                          <span class="todo-actions">
-                            <a href="#"><i class="fa fa-exclamation-circle"></i></a>
-                          </span>
-                          <span class="desc">
-                            {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}
-                            on the server
-                            "{{notif|dict_get:"name"}}"!
-                          </span>
-                          <span class="label label-warning">Since {{notif|dict_get:"date"|timesince}} ago</span>
-                          <a class="remove" href="widgets.html#"><i class="fa fa-times"></i></a>
+                      {% for notifications in active_notifs|dict_get:"CRITICAL" %}
+                        {% for notif in notifications %}
+                            <span class="todo-actions">
+                              <a href="#"><i class="fa fa-exclamation-circle"></i></a>
+                            </span>
+                            <span class="desc">
+                              {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}
+                              on the server
+                              "{{notif|dict_get:"name"}}"!
+                            </span>
+                            <span class="label label-warning">Since {{notif|dict_get:"date"|timesince}} ago</span>
+                            <a class="remove" href="widgets.html#"><i class="fa fa-times"></i></a>
+                        {% endfor %}
                       {% endfor %}
 
                       {% for notif in active_notifs|dict_get:"WARNING" %}
