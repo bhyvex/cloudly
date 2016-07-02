@@ -33,9 +33,9 @@
 
     					<div class="todo">
     						<ul class="todo-list ui-sortable">
+
                   {% if active_notifs %}
     							<li>
-
                       {% for notif in active_notifs|dict_get:"CRITICAL" %}
                           <span class="todo-actions">
                             <a href="#"><i class="fa fa-exclamation-circle"></i></a>
