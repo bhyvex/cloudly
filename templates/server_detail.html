@@ -851,7 +851,9 @@
             style="display: none;"
         {% endif %}
         >
+        <font color="red">
         The server agent has gone offline {{server|dict_get:"last_seen"|timesince}} ago at the {{server|dict_get:"last_seen"}}
+        </font>
     </div>
 
 </div><!--/row-->
