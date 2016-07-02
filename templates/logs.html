@@ -15,46 +15,6 @@
 
 	<div class="row">
 
-  <div class="col-lg-12 col-md-12 col-sm-12">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h2><i class="fa fa-exclamation-triangle"></i>Servers Incidents</h2>
-					<div class="panel-actions">
-						<a href="widgets.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-						<a href="widgets.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-						<a href="widgets.html#" class="btn-close"><i class="fa fa-times"></i></a>
-					</div>
-				</div>
-				<div class="panel-body">
-
-          <p>
-            XXX active_notifs {{active_notifs}}
-          </p>
-
-					<div class="todo">
-						<ul class="todo-list ui-sortable">
-							<li>
-							</li>
-
-              {% for server in offline_servers %}
-    							<li>
-    								<span class="todo-actions">
-    									<a href="#"><i class="fa fa-exclamation-circle"></i></a>
-    								</span>
-    								<span class="desc">{{server|dict_get:"name"}} has gone offline!</span>
-    								<span class="label label-danger">{{server|dict_get:"last_seen"|timesince}} ago</span>
-    								<a class="remove" href="widgets.html#"><i class="fa fa-times"></i></a>
-    							</li>
-              {% endfor %}
-
-						</ul>
-					</div>
-				</div>
-
-			</div>
-		</div>
-
-
     <div class="col-xs-12">
       <div class="panel panel-default">
         <div class="panel-heading">

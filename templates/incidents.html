@@ -10,363 +10,197 @@
 {% endblock %}
 
 {% block page_content %}
-    <input type='hidden' name='secret' value='{{secret}}' />
-    <div class="row page-todo">
 
-        <div class="col-sm-7 tasks">
+<ol class="breadcrumb">
+    <li class="active">Servers Incidents</li>
+</ol>
 
-            <div class="task-list">
-                <h1>Host &amp; Services Problems</h1>
-
-                {% if not notifs_counter %}
-                    There are currently no servers or services problems being encountered.
-                {% else %}
-                    {% for notifs_type in notifs_types %}
-                        {% if active_notifs|dict_get:notifs_type %}
-                            <div class="priority
-                                {% if notifs_type == 'WARNING' %}
-                                    medium
-                                {% else %}
-                                    high
-                                {% endif %}
-                            ">
-                                <span>{{notifs_type}}</span>
-                            </div>
-                            {% for notif in active_notifs|dict_get:notifs_type %}
-                                <div class="task
-                                    {% if notifs_type == 'WARNING' %}
-                                        medium
-                                    {% else %}
-                                        high
-                                    {% endif %}
-                                    {% if forloop.last %}
-                                        last
-                                    {% endif %}
-                                ">
-                                    <div class="desc">
-                                        <div class="title">
-                                            <a href="/server/{{notif|dict_get:"server_id"|replace_dots}}"
-                                                class="btn-xs
-                                                {% if notifs_type == 'WARNING' %}
-                                                    btn-warning
-                                                {% else %}
-                                                    btn-danger
-                                                {% endif %}
-                                            ">
-                                            {{notif|dict_get:"service"|replace_underscope}}
-                                            </a>&nbsp;
-                                            <small>
-                                              <font color="black">
-                                              {{notif|dict_get:"name"}}
-                                              </font>
-                                            </small>
-                                        </div>
-                                        <div>
-                                            <strong>{{notif|dict_get:"detailed_service_status"|dict_get:"message"}}:</strong>
-                                            <br />
-                                            {% for value in notif|dict_get:"detailed_service_status"|dict_get:"values" %}
-                                                {{value|replace_underscope|title}}:
-                                                {{notif|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:value}}{{notif|dict_get:"service"|get_service_unity}}{% if not forloop.last %},{% endif %}
-                                            {% endfor %}
-
-                                        </div>
-                                    </div>
-                                    <div class="time">
-                                        <div class="date">
-                                            <small>
-                                                {{notif|dict_get:"date"}}
-                                            </small>
-                                        </div>
-                                        <div>
-                                            Alert duration: {{notif|dict_get:"date"|timesince}}
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        {% endif %}
-                        <div class="clearfix"></div>
-                    {% endfor %}
+	<div class="row">
 
 
-                    {% if offline_servers %}
+      <div class="col-lg-12 col-md-12 col-sm-12">
+    			<div class="panel panel-default">
+    				<div class="panel-heading">
+    					<h2><i class="fa fa-exclamation-triangle"></i>Servers Incidents</h2>
+    					<div class="panel-actions">
+    						<a href="widgets.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+    						<a href="widgets.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+    						<a href="widgets.html#" class="btn-close"><i class="fa fa-times"></i></a>
+    					</div>
+    				</div>
+    				<div class="panel-body">
 
-                        <hr/>
+              <p>
+                XXX active_notifs {{active_notifs}}
+              </p>
 
-                        <div class="priority offline">
-                            <span>OFFLINE SERVERS</span>
-                        </div>
-                        <div class="task offline last">
-                            <div class="desc">
-                                <div class="title">
-                                    {% for server in offline_servers %}
-                                        <a href="/server/{{server|dict_get:"uuid"|replace_dots}}"
-                                            class="btn-xs btn-grey">
-                                            {{server|dict_get:"name"}}
-                                        </a>&nbsp;
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
-                    <div class="clearfix"></div>
-                {% endif %}
+    					<div class="todo">
+    						<ul class="todo-list ui-sortable">
+    							<li>
+    							</li>
 
-			      </div>
-        </div><!--/col-->
+                  {% for server in offline_servers %}
+        							<li>
+        								<span class="todo-actions">
+        									<a href="#"><i class="fa fa-exclamation-circle"></i></a>
+        								</span>
+        								<span class="desc">{{server|dict_get:"name"}} has gone offline!</span>
+        								<span class="label label-danger">{{server|dict_get:"last_seen"|timesince}} ago</span>
+        								<a class="remove" href="widgets.html#"><i class="fa fa-times"></i></a>
+        							</li>
+                  {% endfor %}
 
-        <div class="col-sm-5">
-            <div class="graph">
-                <h1>XXX server|title Events</h1>
+    						</ul>
+    					</div>
+    				</div>
 
-                <div class="timeline">
+    			</div>
+    		</div>
 
-                    <div class="timeslot" style="height: 118px;">
 
-                        <div class="task">
-                            <span>
-                                <span class="type">Memory</span>
-                                <span class="details">
-                                    Memory fixed
-                                </span>
-                                <span>
-                                    time ago
-                                    <span class="remaining">
-                                        3h 38m 15s
-                                    </span>
-                                </span>
-                            </span>
-                            <div class="arrow"></div>
-                        </div>
-                        <div class="icon">
-                            <i class="fa fa-map-marker"></i>
-                        </div>
-                        <div class="time">
-                            3:43 PM
-                        </div>
 
-                    </div>
-
-                    <div class="clearfix"></div>
-
-                    <div class="timeslot alt" style="height: 96px;">
-
-                        <div class="task">
-                            <span>
-                                <span class="type">phone call</span>
-                                <span class="details">
-                                    Notification sent to Jan Paricka's email.
-                                </span>
-                                <span>
-                                    remaining time
-                                    <span class="remaining">
-                                        3h 38m 15s
-                                    </span>
-                                </span>
-                            </span>
-                            <div class="arrow"></div>
-                        </div>
-                        <div class="icon">
-                            <i class="fa fa-phone"></i>
-                        </div>
-                        <div class="time">
-                            3:43 PM
-                        </div>
-
-                    </div>
-
-                    <div class="timeslot" style="height: 96px;">
-
-                        <div class="task">
-                            <span>
-                                <span class="type">mail</span>
-                                <span class="details">
-                                    Memory fucked.
-                                </span>
-                                <span>
-                                    remaining time
-                                    <span class="remaining">
-                                        3h 38m 15s
-                                    </span>
-                                </span>
-                            </span>
-                            <div class="arrow"></div>
-                        </div>
-                        <div class="icon">
-                            <i class="fa fa-envelope"></i>
-                        </div>
-                        <div class="time">
-                            3:43 PM
-                        </div>
-
-                    </div>
-
-                    <div class="timeslot alt" style="height: 96px;">
-
-                        <div class="task">
-                            <span>
-                                <span class="type">deadline</span>
-                                <span class="details">
-                                    Fixed PayPal problems
-                                </span>
-                                <span>
-                                    remaining time
-                                    <span class="remaining">
-                                        3h 38m 15s
-                                    </span>
-                                </span>
-                            </span>
-                            <div class="arrow"></div>
-                        </div>
-                        <div class="icon">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-                        <div class="time">
-                            3:43 PM
-                        </div>
-
-                    </div>
-
-                    <div class="timeslot" style="height: 118px;">
-
-                        <div class="task">
-                            <span>
-                                <span class="type">appointment</span>
-                                <span class="details">
-                                    Jan Paricka
-                                </span>
-                                <span>
-                                    remaining time
-                                    <span class="remaining">
-                                        3h 38m 15s
-                                    </span>
-                                </span>
-                            </span>
-                            <div class="arrow"></div>
-                        </div>
-                        <div class="icon">
-                            <i class="fa fa-map-marker"></i>
-                        </div>
-                        <div class="time">
-                            3:43 PM
-                        </div>
-
-                    </div>
-
-                    <div class="clearfix"></div>
-
-                    <div class="timeslot alt" style="height: 96px;">
-
-                        <div class="task">
-                            <span>
-                                <span class="type">skype call</span>
-                                <span class="details">
-                                    Jan Paricka
-                                </span>
-                                <span>
-                                    remaining time
-                                    <span class="remaining">
-                                        3h 38m 15s
-                                    </span>
-                                </span>
-                            </span>
-                            <div class="arrow"></div>
-                        </div>
-                        <div class="icon">
-                            <i class="fa fa-phone"></i>
-                        </div>
-                        <div class="time">
-                            3:43 PM
-                        </div>
-
-                    </div>
-
-                    <div class="timeslot" style="height: 96px;">
-
-                        <div class="task">
-                            <span>
-                                <span class="type">mail</span>
-                                <span class="details">
-                                    Jan Paricka
-                                </span>
-                                <span>
-                                    remaining time
-                                    <span class="remaining">
-                                        3h 38m 15s
-                                    </span>
-                                </span>
-                            </span>
-                            <div class="arrow"></div>
-                        </div>
-                        <div class="icon">
-                            <i class="fa fa-envelope"></i>
-                        </div>
-                        <div class="time">
-                            3:43 PM
-                        </div>
-
-                    </div>
-
-                    <div class="timeslot alt" style="height: 96px;">
-
-                        <div class="task">
-                            <span>
-                                <span class="type">project deadline</span>
-                                <span class="details">
-                                    Fixed PayPal problems
-                                </span>
-                                <span>
-                                    remaining time
-                                    <span class="remaining">
-                                        3h 38m 15s
-                                    </span>
-                                </span>
-                            </span>
-                            <div class="arrow"></div>
-                        </div>
-                        <div class="icon">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-                        <div class="time">
-                            3:43 PM
-                        </div>
-
-                    </div>
-
-                    <div class="timeslot" style="height: 96px;">
-
-                        <div class="task">
-                            <span>
-                                <span class="type">mail</span>
-                                <span class="details">
-                                    Jan Paricka
-                                </span>
-                                <span>
-                                    remaining time
-                                    <span class="remaining">
-                                        3h 38m 15s
-                                    </span>
-                                </span>
-                            </span>
-                            <div class="arrow"></div>
-                        </div>
-                        <div class="icon">
-                            <i class="fa fa-envelope"></i>
-                        </div>
-                        <div class="time">
-                            3:43 PM
-                        </div>
-                    </div>
+            <div class="col-xs-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h2><i class="fa fa-send-o"></i>Activities Report</h2>
+                  <div class="panel-actions">
+                    <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+                    <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                    <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                  </div>
                 </div>
+                <div class="panel-body">
+                  <p>
+                    <table style="width:100%">
+                      <tr>
+                        <th>acivity</th>
+                        <th>time since</th>
+                        <th>date</th>
+                        <th>server</th>
+                        <th>data</th>
+                      </tr>
+                        {% for activity in activities %}
+                          <tr>
+                            <td>{{activity|dict_get:"activity_type"}}</td>
+                            <td>{{activity|dict_get:"date_created"|timesince}} ago</td>
+                            <td>{{activity|dict_get:"date_created"}}</td>
+                            <td>{{activity|dict_get:"server_id"}}</td>
+                            <td>{{activity|dict_get:"data"|dict_get:"message"}}</td>
+                          </tr>
+                        {% endfor %}
+                    </table>
+                  </p>
+                </div>
+              </div>
             </div>
 
-        </div><!--/col-->
 
-    </div>
+            {% for server in servers %}
+              		<div class="col-xs-12">
+              			<div class="panel panel-default">
+                      {% if server|get_server_status != "online" %}
+              				    <div class="panel-heading" style="background-color:#ff5c33;">
+                      {% else %}
+                          <div class="panel-heading">
+                      {% endif %}
 
-</div>
+                        <h2>
+                          <i class="fa fa-server"></i>
+                          {% if not server|get_server_status == "online" %}
+                                <font color="white">({{server|get_server_status}})</font>
+                                <a href="/server/{{server|dict_get:"uuid"|replace_dots}}"><font color="white">{{server|dict_get:"name"}}</font></a>
+                                <small>{{server|dict_get:"uuid"}}</small>
+                          {% else %}
+                              <a href="/server/{{server|dict_get:"uuid"|replace_dots}}">{{server|dict_get:"name"}}</a>
+                              <small>{{server|dict_get:"uuid"}}</small>
+                          {% endif %}
+                        </h2>
+
+              					<div class="panel-actions">
+              						<a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+              						<a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+              						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+              					</div>
+              				</div>
+
+                      {% if server|get_server_status == "offline" %}
+              				    <div class="panel-body" style="background-color:#ff8566;">
+                      {% else %}
+                          <div class="panel-body">
+                      {% endif %}
+
+                        <p>
+
+                          {% if server|get_server_status == "offline" %}
+
+                              Tags:
+                                {% for tag in server|dict_get:"tags"|dict_get:"tags" %}
+                                  {{tag|dict_get:0}}{% if not forloop.last %},{% endif %}
+                                {% endfor %}
+                              {% if not server|dict_get:"tags"|dict_get:"tags" %}
+                                there are none defined for this server..
+                              {% endif %}
+
+                              <br/>
+                              <br/>
+
+                          {% endif %}
+
+                          {% if server|get_server_status == "offline" %}
+                            <b>Past problems:</b>
+                            <br/>
+                          {% endif %}
+
+                          <table style="width:100%;">
+                                {% if server|dict_get:"uuid"|get_historical_events|dict_get:0 %}
+                                <tr>
+                                  <th>status</th>
+                                  <th>service</th>
+                                  <th>time since</th>
+                                  <th>date</th>
+                                  <th>values</th>
+                                </tr>
+                                {% else %}
+                                    This server is running steadily.
+                                {% endif %}
 
 
-</div>
+                            {% for event in server|dict_get:"uuid"|get_historical_events %}
+                                    <tr>
+                                      <td>{{event|dict_get:"detailed_service_status"|dict_get:"status"}}</td>
+                                      <td>{{event|dict_get:"service"}}</td>
+                                      <td>{{event|dict_get:"date"|timesince}} ago</td>
+                                      <td>{{event|dict_get:"date"}}</td>
+                                      <td>
+                                        {% if event|dict_get:"service" = "SYSTEM_MEMORY" %}
+                                                mem_used:
+                                                {{event|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:'memory_used'}};
+                                                mem_free:
+                                                {{event|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:'memory_free'}};
+                                                swap_used:
+                                                {{event|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:'swap_used'}};
+                                        {% else %}
+                                            {% for e in event|dict_get:"detailed_service_status"|dict_get:"values" %}
+                                                {{e}}: {{event|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:e}}{% if not forloop.last %};&nbsp;&nbsp;{% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                      </td>
+                                    </tr>
+                            {% endfor %}
+                          </table>
+
+                          {% if server|get_server_status == "offline" %}
+                            <br/>
+                            <font color="white">* this server has gone offline {{server|dict_get:"last_seen"|timesince}} ago.</font>
+                            <br/>
+                          {% endif %}
+
+                        </p>
+              				</div>
+              			</div>
+                  </div>
+            {% endfor %}
+
 {% endblock page_content %}
 
 {% block extra_js %}
