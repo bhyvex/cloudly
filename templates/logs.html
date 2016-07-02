@@ -13,6 +13,8 @@
 	  	<li class="active">System Logs</li>
 	</ol>
 
+{% if servers|length != 0 %}
+
 	<div class="row">
 
     <div class="col-xs-12">
@@ -157,10 +159,9 @@
           </div>
     {% endfor %}
 
-
-    {% if not servers %}
-    <p>There are no system logs. Please <a href="/download/agent/">add</a> some servers first.</p>
-    {% endif %}
+{% else %}
+  <p>There are no system logs. Please <a href="/download/agent/">add</a> some servers first.</p>
+{% endif %}
 
   </div><!--/col-->
 
