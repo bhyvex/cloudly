@@ -827,13 +827,13 @@
                       <th>Values</th>
                     </tr>
                     {% for event in historical_service_statuses %}
-                    <tr>
-                      <td>{{event|dict_get:"detailed_service_status"|dict_get:"status"}}</td>
-                      <td>{{event|dict_get:"service"}}</td>
-                      <td>{{event|dict_get:"date"|timesince}} ago</td>
-                      <td>{{event|dict_get:"date"}}</td>
-                      <td>{{event|dict_get:"detailed_service_status"|dict_get:"values"}}</td>
-                    </tr>
+                        <tr>
+                          <td>{{event|dict_get:"detailed_service_status"|dict_get:"status"}}</td>
+                          <td>{{event|dict_get:"service"}}</td>
+                          <td>{{event|dict_get:"date"|timesince}} ago</td>
+                          <td>{{event|dict_get:"date"}}</td>
+                          <td>{{event|dict_get:"detailed_service_status"|dict_get:"values"}}</td>
+                        </tr>
                     {% endfor %}
                   </table>
                 </div>
