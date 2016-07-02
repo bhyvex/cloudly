@@ -216,10 +216,7 @@ def register(request):
                     return HttpResponseRedirect("/welcome/")
 
 
-    token = _get_or_create_csrf_token(request)
-
     return render_to_response('register.html', {'err':err,}, context_instance=RequestContext(request) )
-    #return render_to_response('register.html', {'err':err,'token':token,}, )
 
 
 def auth(request):
