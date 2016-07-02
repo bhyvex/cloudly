@@ -48,8 +48,18 @@
                             </span>
                             <span class="label label-warning">Since {{notif|dict_get:"date"|timesince}} ago</span>
                             <a class="remove" href="widgets.html#"><i class="fa fa-times"></i></a>
-                            <br/>
                         {% endfor %}
+
+                        <span class="todo-actions">
+                          <a href="#"><i class="fa fa-exclamation-circle"></i></a>
+                        </span>
+                        <span class="desc">
+                          test
+                        </span>
+                        <span class="label label-warning">test since</span>
+                        <a class="remove" href="widgets.html#"><i class="fa fa-times"></i></a>
+
+
                       {% endfor %}
 
                       {% for notif in active_notifs|dict_get:"WARNING" %}
