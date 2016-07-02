@@ -777,10 +777,6 @@
   	</div><!--/row-->
 
 
-  </div><!--/row-->
-
-
-
     <div id="recent_server_activities"
         class="row"
         {% if server_status|lower = "offline" %}
@@ -877,6 +873,9 @@
         >
         The server agent has gone offline {{server|dict_get:"last_seen"|timesince}} ago at the {{server|dict_get:"last_seen"}}
     </div>
+
+</div><!--/row-->
+
 {% endblock page_content %}
 
 {% block extra_js %}
