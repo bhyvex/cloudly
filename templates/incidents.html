@@ -35,9 +35,9 @@
     						<ul class="todo-list ui-sortable">
 
                   {% if active_notifs %}
+    							<li>
                       {% for notifications in active_notifs|dict_get:"CRITICAL" %}
                         {% for notif in notifications %}
-                        <li>
                             <span class="todo-actions">
                               <a href="#"><i class="fa fa-exclamation-circle"></i></a>
                             </span>
@@ -48,7 +48,7 @@
                             </span>
                             <span class="label label-warning">Since {{notif|dict_get:"date"|timesince}} ago</span>
                             <a class="remove" href="widgets.html#"><i class="fa fa-times"></i></a>
-                          </li>
+                            <br/>
                         {% endfor %}
                       {% endfor %}
 
@@ -78,6 +78,7 @@
                           <a class="remove" href="widgets.html#"><i class="fa fa-times"></i></a>
                       {% endfor %}
 
+                  </li>
                   {% endif %}
 
                   {% for server in offline_servers %}
