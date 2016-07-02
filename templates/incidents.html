@@ -28,29 +28,35 @@
     						<a href="widgets.html#" class="btn-close"><i class="fa fa-times"></i></a>
     					</div>
     				</div>
-    				<div class="panel-body">
 
-              <p>
-                XXX active_notifs {{active_notifs}}
-                <br/>
-              </p>
+    				<div class="panel-body">
 
     					<div class="todo">
     						<ul class="todo-list ui-sortable">
     							<li>
-    							</li>
 
-                  {% for notif in active_notifs|dict_get:"CRITICAL" %}
-                      xxx<br/>
-                  {% endfor %}
+                      {% for notif in active_notifs|dict_get:"CRITICAL" %}
+                          xxx
+                      {% endfor %}
 
-                  {% for notif in active_notifs|dict_get:"WARNING" %}
-                      {{notif}}
-                  {% endfor %}
+                      {% for notif in active_notifs|dict_get:"WARNING" %}
+                          <span class="todo-actions">
+          									<a href="#"><i class="fa fa-exclamation-circle"></i></a>
+          								</span>
+                          <span class="desc">
+                            {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}
+                            on the server
+                            {{notif|dict_get:"name"}}!
+                          </span>
+          								<span class="label label-danger">Since {{notif|dict_get:"date"|timesince}} ago</span>
+          								<a class="remove" href="widgets.html#"><i class="fa fa-times"></i></a>
+                      {% endfor %}
 
-                  {% for notif in active_notifs|dict_get:"UNKNOWN" %}
-                      xxx<br/>
-                  {% endfor %}
+                      {% for notif in active_notifs|dict_get:"UNKNOWN" %}
+                          xxx
+                      {% endfor %}
+
+                  </li>
 
 
                   {% for server in offline_servers %}
