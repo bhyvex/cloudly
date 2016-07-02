@@ -35,11 +35,28 @@
 					<div class="todo">
 						<ul class="todo-list ui-sortable">
 
-          		<li>
+              {% if active_notifs %}
+                  {% for notif in active_notifs|dict_get:notif|dict_get:"CRITICAL" %}
+                      {{notif}}
+                  {% endfor %}
+              {% endif %}
+              {% if active_notifs %}
+                  {% for notif in active_notifs|dict_get:notif|dict_get:"WARNING" %}
+                      {{notif}}
+                  {% endfor %}
+              {% endif %}
+              {% if active_notifs %}
+                  {% for notif in active_notifs|dict_get:notif|dict_get:"UNKNOWN" %}
+                      {{notif}}
+                  {% endfor %}
+              {% endif %}
+
+
+              <li>
 								<span class="todo-actions">
 									<a href="index.html#"><i class="fa fa-check"></i></a>
 								</span>
-								<span class="desc">Windows Phone 8 App</span>
+								<span class="desc">{{active_notifs}}</span>
 								<span class="label label-danger">today</span>
 								<a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
 							</li>
@@ -59,6 +76,7 @@
 								<span class="label label-info">this month</span>
 								<a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
 							</li>
+
 
           	</ul>
           </div>
