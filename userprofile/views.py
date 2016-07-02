@@ -23,6 +23,7 @@ from userprofile.models import Profile as userprofile
 from django.contrib.auth import authenticate
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+from django.middleware import csrf
 
 import boto.ec2
 import boto.ec2.cloudwatch
@@ -49,6 +50,15 @@ AWS_REGIONS = {
 
 def _remove_accents(data):
     return ''.join(x for x in unicodedata.normalize('NFKD', data) if x in string.ascii_letters).lower()
+
+def _get_or_create_csrf_token(request):
+    token = request.META.get('CSRF_COOKIE', None)
+    if token is None:
+        token = csrf._get_new_csrf_key()
+        request.META['CSRF_COOKIE'] = token
+    request.META['CSRF_COOKIE_USED'] = True
+    token = "<input type='hidden' name='csrf_token' value='%s'" % (token)
+    return token
 
 def _log_user_activity(userprofile, activity, link, function="", ip=""):
 
@@ -206,14 +216,17 @@ def register(request):
                     return HttpResponseRedirect("/welcome/")
 
 
-    return render_to_response('register.html', {'err':err,}, )
+    token = _get_or_create_csrf_token(request)
+
+    return render_to_response('register.html', {'err':err,}, context_instance=RequestContext(request) )
+    #return render_to_response('register.html', {'err':err,'token':token,}, )
 
 
 def auth(request):
 
     print '-- auth:'
 
-    err = False 
+    err = False
 
     if(request.method == 'POST'):
 
