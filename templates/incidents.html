@@ -15,121 +15,100 @@
     <li class="active">Servers Incidents</li>
 </ol>
 
+
 {% if servers %}
+
 	<div class="row">
+    <div class="col-lg-12 col-md-8">
 
-      <div class="col-lg-12 col-md-12 col-sm-12">
-    			<div class="panel panel-default">
-    				<div class="panel-heading">
-    					<h2><i class="fa fa-exclamation-triangle"></i>Servers Incidents</h2>
-    					<div class="panel-actions">
-    						<a href="widgets.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-    						<a href="widgets.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-    						<a href="widgets.html#" class="btn-close"><i class="fa fa-times"></i></a>
-    					</div>
-    				</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2><i class="fa fa-check"></i>Servers Incidents</h2>
+					<div class="panel-actions">
+						<a href="index.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+						<a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+						<a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
+					</div>
+				</div>
+				<div class="panel-body">
 
-    				<div class="panel-body">
+					<div class="todo">
+						<ul class="todo-list ui-sortable">
 
-    					<div class="todo">
-    						<ul class="todo-list ui-sortable">
+          		<li>
+								<span class="todo-actions">
+									<a href="index.html#"><i class="fa fa-check"></i></a>
+								</span>
+								<span class="desc">Windows Phone 8 App</span>
+								<span class="label label-danger">today</span>
+								<a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
+							</li>
+							<li>
+								<span class="todo-actions">
+									<a href="index.html#"><i class="fa fa-check"></i></a>
+								</span>
+								<span class="desc">New frontend layout</span>
+								<span class="label label-danger">today</span>
+								<a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
+							</li>
+							<li>
+								<span class="todo-actions">
+									<a href="index.html#"><i class="fa fa-check"></i></a>
+								</span>
+								<span class="desc">Hire developers</span>
+								<span class="label label-warning">tommorow</span>
+								<a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
+							</li>
+							<li>
+								<span class="todo-actions">
+									<a href="index.html#"><i class="fa fa-check"></i></a>
+								</span>
+								<span class="desc">Windows Phone 8 App</span>
+								<span class="label label-warning">tommorow</span>
+								<a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
+							</li>
+							<li>
+								<span class="todo-actions">
+									<a href="index.html#"><i class="fa fa-check"></i></a>
+								</span>
+								<span class="desc">New frontend layout</span>
+								<span class="label label-success">this week</span>
+								<a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
+							</li>
+							<li>
+								<span class="todo-actions">
+									<a href="index.html#"><i class="fa fa-check"></i></a>
+								</span>
+								<span class="desc">Hire developers</span>
+								<span class="label label-success">this week</span>
+								<a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
+							</li>
+							<li>
+								<span class="todo-actions">
+									<a href="index.html#"><i class="fa fa-check"></i></a>
+								</span>
+								<span class="desc">New frontend layout</span>
+								<span class="label label-info">this month</span>
+								<a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
+							</li>
+							<li>
+								<span class="todo-actions">
+									<a href="index.html#"><i class="fa fa-check"></i></a>
+								</span>
+								<span class="desc">Hire developers</span>
+								<span class="label label-info">this month</span>
+								<a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
+							</li>
 
-                  {% if active_notifs %}
-    							<li>
-                      {% for notifications in active_notifs|dict_get:"CRITICAL" %}
-                        {% for notif in notifications %}
-                            <span class="todo-actions">
-                              <a href="#"><i class="fa fa-exclamation-circle"></i></a>
-                            </span>
-                            <span class="desc">
-                              {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}
-                              on the server
-                              "{{notif|dict_get:"name"}}"!
-                            </span>
-                            <span class="label label-warning">Since {{notif|dict_get:"date"|timesince}} ago</span>
-                            <a class="remove" href="widgets.html#"><i class="fa fa-times"></i></a>
-                        {% endfor %}
+          	</ul>
+          </div>
 
-                      {% endfor %}
+				</div>
+			</div>
 
+	</div>
+</div>
 
-
-                      <span class="todo-actions">
-                        <a href="#"><i class="fa fa-exclamation-circle"></i></a>
-                      </span>
-                      <span class="desc">
-                        test
-                      </span>
-                      <span class="label label-warning">test since</span>
-                      <a class="remove" href="widgets.html#"><i class="fa fa-times"></i></a>
-                      <span class="todo-actions">
-                        <a href="#"><i class="fa fa-exclamation-circle"></i></a>
-                      </span>
-                      <span class="desc">
-                        test
-                      </span>
-                      <span class="label label-warning">test since</span>
-                      <a class="remove" href="widgets.html#"><i class="fa fa-times"></i></a>
-                      <span class="todo-actions">
-                        <a href="#"><i class="fa fa-exclamation-circle"></i></a>
-                      </span>
-                      <span class="desc">
-                        test
-                      </span>
-                      <span class="label label-warning">test since</span>
-                      <a class="remove" href="widgets.html#"><i class="fa fa-times"></i></a>
-
-
-
-
-                      {% for notif in active_notifs|dict_get:"WARNING" %}
-                          <span class="todo-actions">
-          									<a href="#"><i class="fa fa-exclamation-circle"></i></a>
-          								</span>
-                          <span class="desc">
-                            {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}
-                            on the server
-                            {{notif|dict_get:"name"}}!
-                          </span>
-          								<span class="label label-warning">Since {{notif|dict_get:"date"|timesince}} ago</span>
-          								<a class="remove" href="widgets.html#"><i class="fa fa-times"></i></a>
-                      {% endfor %}
-
-                      {% for notif in active_notifs|dict_get:"UNKNOWN" %}
-                          <span class="todo-actions">
-                            <a href="#"><i class="fa fa-exclamation-circle"></i></a>
-                          </span>
-                          <span class="desc">
-                            {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}
-                            on the server
-                            {{notif|dict_get:"name"}}!
-                          </span>
-                          <span class="label label-danger">Since {{notif|dict_get:"date"|timesince}} ago</span>
-                          <a class="remove" href="widgets.html#"><i class="fa fa-times"></i></a>
-                      {% endfor %}
-
-                  </li>
-                  {% endif %}
-
-                  {% for server in offline_servers %}
-        							<li>
-        								<span class="todo-actions">
-        									<a href="#"><i class="fa fa-exclamation-circle"></i></a>
-        								</span>
-        								<span class="desc">{{server|dict_get:"name"}} has gone offline!</span>
-        								<span class="label label-danger">{{server|dict_get:"last_seen"|timesince}} ago</span>
-        								<a class="remove" href="widgets.html#"><i class="fa fa-times"></i></a>
-        							</li>
-                  {% endfor %}
-
-    						</ul>
-    					</div>
-
-
-    				</div>
-
-    			</div>
-    		</div>
 {% else %}
 
     <p>

@@ -134,3 +134,69 @@
 
 
 {% endblock page_content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+here
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% if active_notifs %}
+    {% for notifications in active_notifs|dict_get:"CRITICAL" %}
+      {% for notif in notifications %}
+        <li>
+          <span class="desc">
+            {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}
+            on the server
+            "{{notif|dict_get:"name"}}"!
+          </span>
+          <span class="label label-warning">Since {{notif|dict_get:"date"|timesince}} ago</span>
+          <a class="remove" href="widgets.html#"><i class="fa fa-times"></i></a>
+        </li>
+      {% endfor %}
+    {% endfor %}
+
+    {% for notif in active_notifs|dict_get:"WARNING" %}
+    {% endfor %}
+
+    {% for notif in active_notifs|dict_get:"UNKNOWN" %}
+    {% endfor %}
+
+{% endif %}
