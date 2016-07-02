@@ -74,11 +74,16 @@ def incidents(request):
                 active_notifs[notifs_type].append(notif)
 
 
+    servers = []
+    for server in mongo.servers.find({"secret":profile.secret,}):
+        servers.append(server)
+
     return render_to_response(
         'incidents.html',
         {
             'request':request,
             'secret':profile.secret,
+            'servers': servers,
             'active_notifs':active_notifs
         },
         context_instance=RequestContext(request),
@@ -132,6 +137,10 @@ def logs(request):
     for server in mongo.servers.find({"secret":profile.secret,}):
         if((datetime.datetime.now()-server['last_seen']).total_seconds()>300):
             offline_servers.append(server)
+
+    servers = []
+    for server in mongo.servers.find({"secret":profile.secret,}):
+        servers.append(server)
 
     return render_to_response(
         'logs.html',
