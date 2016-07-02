@@ -136,7 +136,7 @@
                                     mem_free:
                                     {{event|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:'memory_free'}};
                                     swap_used:
-                                    {{event|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:'swap_used'}};
+                                    {{event|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:'swap_used'}}
                                 {% else %}
                                     {% for e in event|dict_get:"detailed_service_status"|dict_get:"values" %}
                                         {{e}}: {{event|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:e}}{% if not forloop.last %};&nbsp;&nbsp;{% endif %}
