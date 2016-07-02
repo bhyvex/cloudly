@@ -778,12 +778,10 @@
 
                 <div class="panel-body">
 
-<p>XXX "lasts 2 weeks" wording onto active alerts</p>
-
                     <table style="width:100%">
                       <tr>
                         <th>type</th>
-                        <th>timesince</th>
+                        <th>time since</th>
                         <th>date</th>
                         <th>data</th>
                         <th></th>
@@ -794,7 +792,7 @@
                         <td>{{event|dict_get:"activity_type"}}</td>
                         <td>{{event|dict_get:"date_created"|timesince}} ago</td>
                         <td>{{event|dict_get:"date_created"}}</td>
-                        <td>{{event|dict_get:"data"|truncatechars:70}}</td>
+                        <td>{{event|dict_get:"data"|dict_get:"message"}}</td>
                       </tr>
                       {% endfor %}
                     </table>
