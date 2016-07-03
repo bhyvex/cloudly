@@ -238,6 +238,7 @@
         						<div class="panel-body alerts">
 
                       {% for alert in notifs %}
+                        {% if alert|dict_get:"detailed_service_status"|dict_get:"message" %}
                           {% if alert|dict_get:"current_overall_status" == "WARNING" %}
                               <div class="alert alert-warning">
                 								<button type="button" class="close" data-dismiss="alert">×</button>
@@ -249,6 +250,7 @@
                 								<strong>Oh snap!</strong> {{alert|dict_get:"detailed_service_status"|dict_get:"message"}}.
                 							</div>
                           {% endif %}
+                        {% endif %}
                       {% endfor %}
 
                       {% if is_outdated_agent_version %}
