@@ -43,50 +43,61 @@ if settings.MONGO_USER:
 
 mongo = client.cloudly
 
+
+    CLOUDLY_MOTTOS = [
+        "The Power of Now!",
+        "Details Matters!",
+        "Bulletproof monitoring out of the box.",
+        "Save time and effort with our simple, reliable server monitoring.",
+        "Get your servers into shape! 100% free for Open Source.",
+        "The only Servers Monitoring that does the Heartbeats!",
+        "Your Servers Heartbeat Visualised.",
+        "Magical Servers Monitoring.",
+        "Monitoring Solution for your Servers.",
+        "Admins and DevOps love it!",
+        "Relax, it's going to take no time!",
+        "Saves you money and resources!",
+        "Real-time servers monitoring.",
+        "Real-time playful monitoring.",
+        "Playful Servers Monitoring.",
+        "Playful Servers Dashboard.",
+        "Does the server monitoring for you.",
+        "Cheerful Posix Servers Monitoring.",
+        "Old School Servers Monitoring.",
+        "Keeps a watchfull eye on your servers.",
+        "The Coolest Servers Monitoring Out There!",
+        "The Coolest Monitoring Out There!",
+        "The Coolest Real-time Monitoring.",
+        "The Ultimate Servers Monitoring.",
+        "The Ultimate Dashboard for Your Servers.",
+        "OpenTSDB Powered Servers Monitoring.",
+        "The Ultimate Servers and Devices Monitoring.",
+        "The Ultimate Servers Dashboard.",
+        "The Ultimate Real-time Servers Monitoring.",
+        "Dreamlike Servers Monitoring.",
+        "Monitor Anything and Everything.",
+        "Monitoring in the snap of a finger.",
+        "An Open Work Monitoring Cloud.",
+        "Servers And Apps Monitoring.",
+        "Servers, Devices and Apps Monitoring.",
+        "Hadoop Powered Servers Monitoring.",
+        "Hadoop &amp; OpenTSDB Powered Servers Monitoring.",
+        "The first line of defence for your servers.",
+    ]
+
+
+
+def web_new_1(request):
+
+    print '--  web:'
+
+    return render_to_response('web1.html', {'CLOUDLY_MOTTOS':CLOUDLY_MOTTOS,},)
+
+
 def home(request):
 
     if not request.user.is_authenticated():
         print '--  web:'
-        CLOUDLY_MOTTOS = [
-            "The Power of Now!",
-            "Details Matters!",
-            "Bulletproof monitoring out of the box.",
-            "Save time and effort with our simple, reliable server monitoring.",
-            "Get your servers into shape! 100% free for Open Source.",
-            "The only Servers Monitoring that does the Heartbeats!",
-            "Your Servers Heartbeat Visualised.",
-            "Magical Servers Monitoring.",
-            "Monitoring Solution for your Servers.",
-            "Admins and DevOps love it!",
-            "Relax, it's going to take no time!",
-            "Saves you money and resources!",
-            "Real-time servers monitoring.",
-            "Real-time playful monitoring.",
-            "Playful Servers Monitoring.",
-            "Playful Servers Dashboard.",
-            "Does the server monitoring for you.",
-            "Cheerful Posix Servers Monitoring.",
-            "Old School Servers Monitoring.",
-            "Keeps a watchfull eye on your servers.",
-            "The Coolest Servers Monitoring Out There!",
-            "The Coolest Monitoring Out There!",
-            "The Coolest Real-time Monitoring.",
-            "The Ultimate Dashboard for Your Servers.",
-            "The Ultimate Servers Monitoring.",
-            "The Ultimate Servers and Devices Monitoring.",
-            "The Ultimate Servers Dashboard.",
-            "The Ultimate Real-time Servers Monitoring.",
-            "Dreamlike Servers Monitoring.",
-            "OpenTSDB Powered Servers Monitoring.",
-            "Monitor Anything and Everything.",
-            "Monitoring in the snap of a finger.",
-            "An Open Work Monitoring Cloud.",
-            "Servers And Apps Monitoring.",
-            "Servers, Devices and Apps Monitoring.",
-            "Hadoop Powered Servers Monitoring.",
-            "Hadoop &amp; OpenTSDB Powered Servers Monitoring.",
-            "The first line of defence for your servers.",
-        ]
         return render_to_response('web.html', {'CLOUDLY_MOTTOS':CLOUDLY_MOTTOS,},)
 
     print '--  dashboard:'
