@@ -38,6 +38,8 @@
                 {% for notifs in active_notifs %}
                     {% for notif in active_notifs|dict_get:notifs %}
 
+                        {{notif}}<br/>
+
                         {% if notifs == "WARNING" %}
                             <li>
               								<span class="todo-actions">
@@ -82,7 +84,6 @@
                         {% endif %}
 
 
-                        {{notifs}}
                         {% if notifs == "CRITICAL" %}
                           xxx critical
                         {% endif %}
