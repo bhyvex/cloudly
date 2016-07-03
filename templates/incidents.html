@@ -56,9 +56,7 @@
                                     <br/>
                                     Info:
                                     {% for value in notif|dict_get:"detailed_service_status"|dict_get:"values" %}
-                                      <font color="grey">{{value}}: {{notif|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:value}}
-                                      {% if not forloop.last %}, {% endif %}
-                                      </font>
+                                      <font color="grey">{{value}}: {{notif|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:value}}{% if not forloop.last %}, {% endif %}</font>
                                     {% endfor %}
                                   {% else %}
                                     Warning - {{notif|dict_get:"detailed_service_status"|dict_get:"message"}} on
@@ -66,9 +64,7 @@
                                     <br/>
                                     Info:
                                     {% for value in notif|dict_get:"detailed_service_status"|dict_get:"values" %}
-                                      <font color="grey">{{value}}: {{notif|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:value}}
-                                        {% if not forloop.last %}, {% endif %}
-                                      </font>
+                                      <font color="grey">{{value}}: {{notif|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:value}}{% if not forloop.last %}, {% endif %}</font>
                                     {% endfor %}
 
                                   {% endif %}
