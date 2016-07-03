@@ -23,7 +23,7 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h2><i class="fa fa-check"></i>Servers Incidents</h2>
+					<h2><i class="fa fa-exclamation-triangle"></i>Servers Incidents</h2>
 					<div class="panel-actions">
 						<a href="index.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
 						<a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
@@ -35,27 +35,48 @@
 					<div class="todo">
 						<ul class="todo-list ui-sortable">
 
+                {% for notifs in active_notifs %}
+                    {% for notif in active_notifs|dict_get:notifs %}
+
+                        {% if notifs == "CRITICAL" %}
+                        {% endif %}
+
+                        {% if notifs == "WARNING" %}
+                            <li>
+              								<span class="todo-actions">
+              									<a href="index.html#"><i class="fa fa-exclamation"></i></a>
+              								</span>
+              								<span class="desc">
+                                  WARNING - {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}
+                                  <br/>
+                                  <u>{{notif|dict_get:"name"}}</u><br/>
+                                  {{notif|dict_get:"detailed_service_status"}}
+                              </span>
+              								<span class="label label-warning">Started XXX ago</span>
+              								<a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
+              							</li>
+                        {% endif %}
+
+                        {% if notifs == "UNKNOWN" %}
+                        {% endif %}
+
+                    {% endfor %}
+                {% endfor %}
+
+
               <li>
 								<span class="todo-actions">
-									<a href="index.html#"><i class="fa fa-check"></i></a>
+									<a href="index.html#"><i class="fa fa-exclamation-circle"></i></a>
 								</span>
-								<span class="desc">{{active_notifs}}</span>
+								<span class="desc">DANGER</span>
 								<span class="label label-danger">started today</span>
 								<a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
 							</li>
 							<li>
 								<span class="todo-actions">
-									<a href="index.html#"><i class="fa fa-check"></i></a>
+									<a href="index.html#"><i class="fa fa-exclamation-circle"></i></a>
 								</span>
-								<span class="desc">Hire developers</span>
-								<span class="label label-warning">tommorow</span>
-								<a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
-							</li>
-							<li>
-								<span class="todo-actions">
-									<a href="index.html#"><i class="fa fa-check"></i></a>
-								</span>
-								<span class="desc">New frontend layout</span>
+								<span class="desc">zzz</span>
 								<span class="label label-info">this month</span>
 								<a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
 							</li>
