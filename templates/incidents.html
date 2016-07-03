@@ -128,6 +128,46 @@
 
 
                         {% if notifs == "UNKNOWN" %}
+                        <li>
+                          <span class="todo-actions">
+                            <a href="index.html#"><i class="fa fa-exclamation"></i></a>
+                          </span>
+                          <span class="desc">
+
+                              {% if not notif|dict_get:"detailed_service_status"|dict_get:"message" %}
+
+                                UNKNOWN Warning - Disks space is running out on
+                                <u>{{notif|dict_get:"name"}}</u>!
+                                <br/>
+                                Info:
+                                <font color="grey">
+                                  {% for m in notif|dict_get:"detailed_service_status"|dict_get:"messages" %}
+                                    {{m|replace_warning}}.
+                                    <br/>
+                                  {% endfor %}
+                                </font>
+
+                              {% else %}
+
+                                UNKNOWN Warning - {{notif|dict_get:"detailed_service_status"|dict_get:"message"}} on
+                                <u>{{notif|dict_get:"name"}}</u>!
+                                <br/>
+                                Info:
+                                {% for value in notif|dict_get:"detailed_service_status"|dict_get:"values" %}
+                                  <font color="grey">
+                                    {{value}}: {{notif|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:value}}
+                                    <br/>
+                                  </font>
+                                {% endfor %}
+
+
+                              {% endif %}
+
+                          </span>
+                          <span class="label label-info">Lasts {{notif|dict_get:"date"|timesince}}</span>
+                          <a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
+                          <br/>
+                        </li>
                         {% endif %}
 
                     {% endfor %}
@@ -138,7 +178,7 @@
 									<a href="index.html#"><i class="fa fa-exclamation-circle"></i></a>
 								</span>
 								<span class="desc">XXX offline servers</span>
-								<span class="label label-info">this month</span>
+								<span class="label label-danger">this month</span>
 								<a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
 							</li>
 
