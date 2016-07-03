@@ -60,7 +60,7 @@
                                   {% endif %}
 
                               </span>
-              								<span class="label label-warning">Started XXX ago</span>
+              								<span class="label label-warning">Since {{notif|dict_get:"date"|timesince}} ago</span>
               								<a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
               							</li>
                         {% endif %}
