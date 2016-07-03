@@ -39,6 +39,25 @@
 
                     {% for notif in active_notifs|dict_get:notifs %}
 
+                        {% if offline_servers %}
+                        {% for server in offline_servers %}
+              							<li>
+              								<span class="todo-actions">
+              									<a href="index.html#"><i class="fa fa-exclamation-circle"></i></a>
+              								</span>
+              								<span class="desc">
+                                  Server <u>{{server|dict_get:"name"}}</u> has gone offline or stopped working.
+                                  <br/>
+                                  The server was last seen on {{server|dict_get:"last_seen"}}..
+                              </span>
+
+              								<span class="label label-danger">{{server|dict_get:"last_seen"|timesince}} ago</span>
+              								<a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
+              							</li>
+                        {% endfor %}
+                        {% endif %}
+
+
                         {% if notifs == "WARNING" %}
                             <li>
               								<span class="todo-actions">
@@ -172,23 +191,6 @@
 
                     {% endfor %}
                 {% endfor %}
-
-              {% for server in offline_servers %}
-    							<li>
-    								<span class="todo-actions">
-    									<a href="index.html#"><i class="fa fa-exclamation-circle"></i></a>
-    								</span>
-    								<span class="desc">
-                        Server <u>{{server|dict_get:"name"}}</u> has gone offline or stopped working.
-                        <br/>
-                        The server was last seen on {{server|dict_get:"last_seen"}}..
-                    </span>
-
-    								<span class="label label-danger">{{server|dict_get:"last_seen"|timesince}} ago</span>
-    								<a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
-    							</li>
-
-              {% endfor %}
 
           	</ul>
           </div>
