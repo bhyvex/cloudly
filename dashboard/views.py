@@ -205,9 +205,9 @@ def temp(request):
 def support(request):
 
     try:
-        print '--  temp page:', request.user
+        print '-- support:', request.user
     except:
-        print '--  temp page: anonymous'
+        print '-- support:'
 
     ip = request.META['REMOTE_ADDR']
     print request.user
