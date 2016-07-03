@@ -56,7 +56,7 @@ urlpatterns = patterns('',
     url(r'^specials/clean/server/tabs/(?P<return_path>.*)/$', 'vms.views.close_server_tabs', name='close_server_tabs'),
 
     # devel / temp stuff
-    url(r'^web/1/$', 'web_new_1.views.temp', name='web_new_1'),    
+    url(r'^web/1/$', 'dashboard.views.temp', name='web_new_1'),    
     url(r'^temp/$', 'dashboard.views.temp', name='temp'),
     url(r'^support/$', 'dashboard.views.support', name='support'),
 )
