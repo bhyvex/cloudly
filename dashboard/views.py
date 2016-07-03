@@ -77,12 +77,12 @@ CLOUDLY_MOTTOS = [
     "Dreamlike Servers Monitoring.",
     "Monitor Anything and Everything.",
     "Monitoring in the snap of a finger.",
-    "An Open Work Monitoring Cloud.",
-    "Servers And Apps Monitoring.",
+    "Servers, And Apps Monitoring.",
     "Servers, Devices and Apps Monitoring.",
     "Hadoop Powered Servers Monitoring.",
     "Hadoop &amp; OpenTSDB Powered Servers Monitoring.",
     "The first line of defence for your servers.",
+    "A free, open-source, cross-platform servers monitoring.",
 ]
 
 
