@@ -70,6 +70,7 @@
                                     Warning - Disks space is running out on
                                     <u>{{notif|dict_get:"name"}}</u>!
                                     <br/>
+                                    <br/>
                                     Info:
                                     <font color="grey">
                                       {% for m in notif|dict_get:"detailed_service_status"|dict_get:"messages" %}
@@ -82,6 +83,7 @@
 
                                     Warning - {{notif|dict_get:"detailed_service_status"|dict_get:"message"}} on
                                     <u>{{notif|dict_get:"name"}}</u>!
+                                    <br/>
                                     <br/>
                                     Info:
                                     {% for value in notif|dict_get:"detailed_service_status"|dict_get:"values" %}
@@ -114,6 +116,7 @@
                                 Critical Warning - Disks space is running out on
                                 <u>{{notif|dict_get:"name"}}</u>!
                                 <br/>
+                                <br/>
                                 Info:
                                 <font color="grey">
                                   {% for m in notif|dict_get:"detailed_service_status"|dict_get:"messages" %}
@@ -126,6 +129,7 @@
 
                                 Critical Warning - {{notif|dict_get:"detailed_service_status"|dict_get:"message"}} on
                                 <u>{{notif|dict_get:"name"}}</u>!
+                                <br/>
                                 <br/>
                                 Info:
                                 {% for value in notif|dict_get:"detailed_service_status"|dict_get:"values" %}
@@ -158,6 +162,7 @@
                                 UNKNOWN Warning - Disks space is running out on
                                 <u>{{notif|dict_get:"name"}}</u>!
                                 <br/>
+                                <br/>
                                 Info:
                                 <font color="grey">
                                   {% for m in notif|dict_get:"detailed_service_status"|dict_get:"messages" %}
@@ -170,6 +175,7 @@
 
                                 UNKNOWN Warning - {{notif|dict_get:"detailed_service_status"|dict_get:"message"}} on
                                 <u>{{notif|dict_get:"name"}}</u>!
+                                <br/>
                                 <br/>
                                 Info:
                                 {% for value in notif|dict_get:"detailed_service_status"|dict_get:"values" %}
