@@ -3,6 +3,7 @@
 import os
 import time
 import socket
+import random
 import logging
 import datetime
 import base64, pickle
@@ -90,7 +91,9 @@ def web_new_1(request):
 
     print '--  web:'
 
-    return render_to_response('web1.html', {'CLOUDLY_MOTTOS':CLOUDLY_MOTTOS,},)
+    random_motto = CLOUDLY_MOTTOS[ random.randint(0,len(CLOUDLY_MOTTOS)-1) ]
+
+    return render_to_response('web1.html', {'random_motto':random_motto,},)
 
 
 def home(request):
