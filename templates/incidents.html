@@ -49,16 +49,22 @@
               								<span class="desc">
 
                                   {% if not notif|dict_get:"detailed_service_status"|dict_get:"message" %}
-                                    {{notif|dict_get:"detailed_service_status"}}
-                                    <hr/>
+
                                     Warning - Disks space is running out on
                                     <u>{{notif|dict_get:"name"}}</u>!
                                     <br/>
-                                    Info:
-                                    {% for value in notif|dict_get:"detailed_service_status"|dict_get:"values" %}
-                                      <font color="grey">{{value}}: {{notif|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:value}}{% if not forloop.last %}, {% endif %}</font>
-                                    {% endfor %}
+
+                                    <font color="grey">
+                                      {% for m in notif|dict_get:"detailed_service_status"|dict_get:"messages" %}
+                                        {{m}}.
+                                        <br/>
+                                      {% endfor %}
+
+                                    </font>
+
                                   {% else %}
+
+
                                     Warning - {{notif|dict_get:"detailed_service_status"|dict_get:"message"}} on
                                     <u>{{notif|dict_get:"name"}}</u>!
                                     <br/>
@@ -66,6 +72,7 @@
                                     {% for value in notif|dict_get:"detailed_service_status"|dict_get:"values" %}
                                       <font color="grey">{{value}}: {{notif|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:value}}{% if not forloop.last %}, {% endif %}</font>
                                     {% endfor %}
+
 
                                   {% endif %}
 

@@ -156,6 +156,11 @@ def replace_dot(text):
 def replace_underscope(text):
 	return text.replace('_',' ')
 
+@register.filter(name='replace_underscope')
+def replace(str1,str2):
+	return text.replace(str1,str2)
+
+
 @register.filter(name='make_float')
 def make_float(value):
 	return float(value)
