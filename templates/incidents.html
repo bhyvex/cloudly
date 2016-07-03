@@ -54,9 +54,10 @@
                                     <u>{{notif|dict_get:"name"}}</u>!
                                     <br/>
 
+                                    Info:
                                     <font color="grey">
                                       {% for m in notif|dict_get:"detailed_service_status"|dict_get:"messages" %}
-                                        {{m}}.
+                                        {{m|replace_warning}}.
                                         <br/>
                                       {% endfor %}
 
@@ -79,6 +80,7 @@
                               </span>
               								<span class="label label-warning">Since {{notif|dict_get:"date"|timesince}} ago</span>
               								<a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
+                              <br/>
               							</li>
                         {% endif %}
 
