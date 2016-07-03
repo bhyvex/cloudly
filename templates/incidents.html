@@ -38,6 +38,9 @@
                 {% for notifs in active_notifs %}
                     {% for notif in active_notifs|dict_get:notifs %}
 
+                        {% if notifs == "CRITICAL" %}
+                        {% endif %}
+
                         {% if notifs == "WARNING" %}
                             <li>
               								<span class="todo-actions">
@@ -86,57 +89,6 @@
 
                     {% endfor %}
                 {% endfor %}
-
-
-
-                {% if notifs == "CRITICAL" %}
-                    <li>
-                      <span class="todo-actions">
-                        <a href="index.html#"><i class="fa fa-exclamation"></i></a>
-                      </span>
-                      <span class="desc">
-
-                          {% if not notif|dict_get:"detailed_service_status"|dict_get:"message" %}
-
-                            Critical warning - Disks space is running out on
-                            <u>{{notif|dict_get:"name"}}</u>!
-                            <br/>
-                            Info:
-                            <font color="grey">
-                              {% for m in notif|dict_get:"detailed_service_status"|dict_get:"messages" %}
-                                {{m|replace_warning}}.
-                                <br/>
-                              {% endfor %}
-                            </font>
-
-                          {% else %}
-
-                            Critical warning - {{notif|dict_get:"detailed_service_status"|dict_get:"message"}} on
-                            <u>{{notif|dict_get:"name"}}</u>!
-                            <br/>
-                            Info:
-                            {% for value in notif|dict_get:"detailed_service_status"|dict_get:"values" %}
-                              <font color="grey">
-                                {{value}}: {{notif|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:value}}
-                                <br/>
-                              </font>
-                            {% endfor %}
-
-
-                          {% endif %}
-
-                      </span>
-                      <span class="label label-danger">Lasts {{notif|dict_get:"date"|timesince}}</span>
-                      <a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
-                      <br/>
-                    </li>
-                {% endif %}
-
-                {% if notifs == "UNKNOWN" %}
-                {% endif %}
-
-            {% endfor %}
-        {% endfor %}
 
 
               <li>
