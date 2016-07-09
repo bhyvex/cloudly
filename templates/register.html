@@ -51,37 +51,44 @@
 						{% csrf_token %}
 
 						<fieldset class="col-sm-12">
+
+							{% if err %}
+							<div class="alert alert-danger">
+								<button type="button" class="close" data-dismiss="alert">×</button>
+								<strong>{{err}}</strong> {{err}}
+							</div>
+							{% endif %}
+
 							<div class="form-group">
-							  	<label class="control-label" for="url">Your URL</label>
-							  	<div class="controls row">
+								<label class="control-label" for="username">Name</label>
+								<div class="controls row">
 									<div class="input-group col-sm-12">
-										<input type="text" class="form-control" id="url"/>
-										<span class="input-group-addon">.brix.io</span>
+										<input type="text" class="form-control" required name="username">
 									</div>
-							  	</div>
+								</div>
 							</div>
 
 							<div class="form-group">
-							  	<label class="control-label" for="username">Username</label>
-							  	<div class="controls row">
+								<label class="control-label" for="username">E-mail</label>
+								<div class="controls row">
 									<div class="input-group col-sm-12">
-										<input type="text" class="form-control" id="username"/>
+										<input type="text" class="form-control" required name="email">
 									</div>
-							  	</div>
+								</div>
 							</div>
 
 							<div class="form-group">
-							  	<label class="control-label" for="password">Password</label>
-							  	<div class="controls row">
+								<label class="control-label" for="password">Password</label>
+								<div class="controls row">
 									<div class="input-group col-sm-12">
-										<input type="password" class="form-control" id="password"/>
+										<input type="password" class="form-control" required name="password1">
 									</div>
-							  	</div>
+								</div>
 							</div>
 
 							<div class="confirm">
 								<input type="checkbox" name="agree"/>
-								<label for="agree">I agree to <a href="page-register.html#">Term of Use</a></label>
+								<label for="agree">I agree to <a href="#">Term of Use</a></label>
 							</div>
 
 
@@ -92,18 +99,16 @@
 							</div>
 
 							<div class="text-with-hr">
-								<span>or use your facebook account</span>
+								<span>or use your twitter account</span>
 							</div>
 
 						</fieldset>
 
 					</form>
 
-
 					<p>
 						<a class="btn btn-twitter"><span>Register via Twitter</span></a>
 					</p>
-
 
 				</div>
 			</div><!--/row-->
