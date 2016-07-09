@@ -42,21 +42,14 @@
 					<div class="header">
 						Login to the Cloud
 					</div>
-{% comment %}
-					<p>
-						<a class="btn btn-facebook"><span>Login via Facebook</span></a>
-					</p>
+
 					<p>
 						<a class="btn btn-twitter"><span>Login via Twitter</span></a>
-					</p>
-					<p>
-						<a class="btn btn-linkedin"><span>Login via LinkedIn</span></a>
 					</p>
 
 					<div class="text-with-hr">
 						<span>or using your registered e-mail address</span>
 					</div>
-{% endcomment %}
 
 					<form action="/login/" method='POST' class='form-validate' id="login">{% csrf_token %}
 						<fieldset class="col-sm-12">
