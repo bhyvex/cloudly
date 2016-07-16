@@ -67,8 +67,10 @@
 
                                   {% if not notif|dict_get:"detailed_service_status"|dict_get:"message" %}
 
-                                    Warning - Disks space is running out on
-                                    <u>{{notif|dict_get:"name"}}</u>!
+                                    <u>{{notif|dict_get:"name"}}</u>
+                                    <br/>
+                                    <br/>
+                                    {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}!
                                     <br/>
                                     <br/>
                                     Info:
@@ -81,8 +83,9 @@
 
                                   {% else %}
 
-                                    Warning -
+                                    Warning on
                                     <u>{{notif|dict_get:"name"}}</u>
+                                    <br/>
                                     <br/>
                                     {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}!
                                     <br/>
