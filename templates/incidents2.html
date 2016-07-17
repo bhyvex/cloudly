@@ -1,0 +1,232 @@
+{% extends "base.html" %}
+
+{% load cloud_extras %}
+{% load tz %}
+
+{% block title %}Monkeytor | Host &amp; Services Problems{% endblock %}
+
+{% block nav-bar %}
+    {% include "partials/nav-bar-classic.html" %}
+{% endblock %}
+
+{% block page_content %}
+
+<ol class="breadcrumb">
+    <li class="active">Servers Incidents</li>
+</ol>
+
+
+{% if servers %}
+
+	<div class="row">
+    <div class="col-lg-12 col-md-8">
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2><i class="fa fa-exclamation-triangle"></i>Servers Incidents</h2>
+					<div class="panel-actions">
+						<a href="index.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+						<a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+						<a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
+					</div>
+				</div>
+				<div class="panel-body">
+
+					<div class="todo">
+						<ul class="todo-list ui-sortable">
+
+              {% if offline_servers %}
+              {% for server in offline_servers %}
+                  <li>
+                    <span class="todo-actions">
+                      <a href="index.html#"><i class="fa fa-exclamation-circle"></i></a>
+                    </span>
+                    <span class="desc">
+                        Server <u>{{server|dict_get:"name"}}</u> has gone offline or stopped working.
+                        <br/>
+                        The server was last seen on {{server|dict_get:"last_seen"}}..
+                    </span>
+
+                    <span class="label label-danger">{{server|dict_get:"last_seen"|timesince}} ago</span>
+                    <a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
+                  </li>
+              {% endfor %}
+              {% endif %}
+
+                {% for notifs in active_notifs %}
+
+                    {% for notif in active_notifs|dict_get:notifs %}
+
+
+                        {% if notifs == "WARNING" %}
+                            <li>
+              								<span class="todo-actions">
+              									<a href="index.html#"><i class="fa fa-exclamation"></i></a>
+              								</span>
+              								<span class="desc">
+
+                                  {% if not notif|dict_get:"detailed_service_status"|dict_get:"message" %}
+
+                                    <u>{{notif|dict_get:"name"}}</u>
+                                    <br/>
+                                    <br/>
+                                    {% if notif|dict_get:"detailed_service_status"|dict_get:"message" %}
+                                      {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}!
+                                      <br/>
+                                      <br/>
+                                      Info:
+                                    {% endif %}
+                                    <font color="grey">
+                                      {% for m in notif|dict_get:"detailed_service_status"|dict_get:"messages" %}
+                                        {{m|replace_warning}}.
+                                        <br/>
+                                      {% endfor %}
+                                    </font>
+
+                                  {% else %}
+
+                                    Warning on
+                                    <u>{{notif|dict_get:"name"}}</u>
+                                    <br/>
+                                    <br/>
+                                    {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}!
+                                    <br/>
+                                    <br/>
+                                    Info:
+                                    {% for value in notif|dict_get:"detailed_service_status"|dict_get:"values" %}
+                                      <font color="grey">
+                                        {{value}}: {{notif|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:value}}
+                                        <br/>
+                                      </font>
+                                    {% endfor %}
+
+
+                                  {% endif %}
+
+                              </span>
+              								<span class="label label-warning">Lasts {{notif|dict_get:"date"|timesince}}</span>
+              								<a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
+                              <br/>
+              							</li>
+                        {% endif %}
+
+
+                        {% if notifs == "CRITICAL" %}
+                        <li>
+                          <span class="todo-actions">
+                            <a href="index.html#"><i class="fa fa-exclamation"></i></a>
+                          </span>
+                          <span class="desc">
+
+                              {% if not notif|dict_get:"detailed_service_status"|dict_get:"message" %}
+
+                                Critical Warning - Disks space is running out on
+                                <u>{{notif|dict_get:"name"}}</u>!
+                                <br/>
+                                <br/>
+                                Info:
+                                <font color="grey">
+                                  {% for m in notif|dict_get:"detailed_service_status"|dict_get:"messages" %}
+                                    {{m|replace_warning}}.
+                                    <br/>
+                                  {% endfor %}
+                                </font>
+
+                              {% else %}
+
+                                Critical Warning - {{notif|dict_get:"detailed_service_status"|dict_get:"message"}} on
+                                <u>{{notif|dict_get:"name"}}</u>!
+                                <br/>
+                                <br/>
+                                Info:
+                                {% for value in notif|dict_get:"detailed_service_status"|dict_get:"values" %}
+                                  <font color="grey">
+                                    {{value}}: {{notif|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:value}}
+                                    <br/>
+                                  </font>
+                                {% endfor %}
+
+
+                              {% endif %}
+
+                          </span>
+                          <span class="label label-danger">Lasts {{notif|dict_get:"date"|timesince}}</span>
+                          <a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
+                          <br/>
+                        </li>
+                        {% endif %}
+
+
+                        {% if notifs == "UNKNOWN" %}
+                        <li>
+                          <span class="todo-actions">
+                            <a href="index.html#"><i class="fa fa-exclamation"></i></a>
+                          </span>
+                          <span class="desc">
+
+                              {% if not notif|dict_get:"detailed_service_status"|dict_get:"message" %}
+
+                                UNKNOWN Warning - Disks space is running out on
+                                <u>{{notif|dict_get:"name"}}</u>!
+                                <br/>
+                                <br/>
+                                Info:
+                                <font color="grey">
+                                  {% for m in notif|dict_get:"detailed_service_status"|dict_get:"messages" %}
+                                    {{m|replace_warning}}.
+                                    <br/>
+                                  {% endfor %}
+                                </font>
+
+                              {% else %}
+
+                                UNKNOWN Warning - {{notif|dict_get:"detailed_service_status"|dict_get:"message"}} on
+                                <u>{{notif|dict_get:"name"}}</u>!
+                                <br/>
+                                <br/>
+                                Info:
+                                {% for value in notif|dict_get:"detailed_service_status"|dict_get:"values" %}
+                                  <font color="grey">
+                                    {{value}}: {{notif|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:value}}
+                                    <br/>
+                                  </font>
+                                {% endfor %}
+
+
+                              {% endif %}
+
+                          </span>
+                          <span class="label label-info">Lasts {{notif|dict_get:"date"|timesince}}</span>
+                          <a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
+                          <br/>
+                        </li>
+                        {% endif %}
+
+                    {% endfor %}
+                {% endfor %}
+
+          	</ul>
+          </div>
+
+				</div>
+			</div>
+
+	</div>
+</div>
+
+{% else %}
+
+    <p>
+      Currently there are no servers being installed.
+      Please <a href="/download/agent/">add</a> one.
+    </p>
+
+{% endif %}
+
+{% endblock page_content %}
+
+{% block extra_js %}
+
+<script src="/static/js/incidents.js"></script>
+
+{% endblock extra_js %}
