@@ -65,10 +65,18 @@ urlpatterns = patterns('',
 
 
 urlpatterns += patterns('',
+
+    # static and media files
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': settings.STATIC_ROOT,
     }),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': settings.MEDIA_ROOT, 'show_indexes': False,
     }),
+
+    # First leg of the authentication journey...
+    url(r'^twitter/login/?$', "profiles.views.begin_twitter_auth", name="twitter_login"),
+    url(r'^logout/$', 'profiles.views.logout', name='logout'),
+    url(r'^thanks/$', 'profiles.views.thanks', name='thanks'),
+
 )
