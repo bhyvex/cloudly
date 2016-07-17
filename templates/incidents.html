@@ -70,10 +70,12 @@
                                     <u>{{notif|dict_get:"name"}}</u>
                                     <br/>
                                     <br/>
-                                    {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}!
-                                    <br/>
-                                    <br/>
-                                    Info:
+                                    {% if notif|dict_get:"detailed_service_status"|dict_get:"message" %}
+                                      {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}!
+                                      <br/>
+                                      <br/>
+                                      Info:
+                                    {% endif %}
                                     <font color="grey">
                                       {% for m in notif|dict_get:"detailed_service_status"|dict_get:"messages" %}
                                         {{m|replace_warning}}.
