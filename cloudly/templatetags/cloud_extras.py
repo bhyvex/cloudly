@@ -88,8 +88,12 @@ def get_offline_seconds(server):
     return int((datetime.datetime.now()-server['last_seen']).total_seconds())
 
 
+
 @register.filter(name='get_server_id_from_name')
-def get_offline_seconds(get_server_id_from_name):
+def get_offline_seconds(get_server_id_from_name, secret):
+
+    # XXX look up server by name and secret
+    # XXX return server_id
 
     return "working on this currently"
 
