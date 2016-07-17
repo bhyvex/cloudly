@@ -278,5 +278,5 @@ $(document).ready(function() {
         processTable.ajax.reload(null, false);
         networkConnectionsTable.ajax.reload(null, false);
         activeNetworkConnectionsTable.ajax.reload(null, false);
-    }, 1000);
+    }, 5000);
 });
