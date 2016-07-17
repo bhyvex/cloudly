@@ -114,7 +114,7 @@ def home(request):
         print '--  web:'
         random_motto = CLOUDLY_MOTTOS[ random.randint(0,len(CLOUDLY_MOTTOS)-1) ]
         return render_to_response(
-            'web2.html',
+            'current-web.html',
             {'random_motto':random_motto,}
         )
 
