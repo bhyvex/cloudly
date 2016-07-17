@@ -462,7 +462,7 @@ def thanks(request, redirect_url=settings.LOGIN_REDIRECT_URL):
         user = User.objects.create_user(authorized_tokens['screen_name'], "n/a", authorized_tokens['oauth_token_secret'])
         profile = userprofile()
         profile.user = user
-        profile.agent_hash = agent_hash
+        profile.secret = agent_hash
         profile.oauth_token = authorized_tokens['oauth_token']
         profile.oauth_secret = authorized_tokens['oauth_token_secret']
         profile.save()
