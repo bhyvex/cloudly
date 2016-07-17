@@ -35,7 +35,7 @@
             <br/>
             E-mail: {{user.email}}
             <br/>
-            {% if user.username != "demo@demo.com" %}
+            {% if user.username != "demo@demo.com" and not profile.oauth_token %}
 						<a href="/account/password">change password</a>
 						{% endif %}
 					</p>
