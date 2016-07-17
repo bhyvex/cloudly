@@ -65,16 +65,120 @@
 
 
         {% if notifs == "WARNING" %}
+              <div class="row">
+                <div class="col-lg-12 col-md-8">
+
+            			<div class="panel panel-default">
+            				<div class="panel-heading">
+            					<h2><i class="fa fa-exclamation-triangle"></i>{{notif|dict_get:"name"}} warning!</h2>
+            					<div class="panel-actions">
+            						<a href="index.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+            						<a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+            						<a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
+            					</div>
+            				</div>
+            				<div class="panel-body">
+
+                      <li>
+                        <span class="todo-actions">
+                          <a href="index.html#"><i class="fa fa-exclamation"></i></a>
+                        </span>
+                        <span class="desc">
+
+                            {% if not notif|dict_get:"detailed_service_status"|dict_get:"message" %}
+
+                              <u>{{notif|dict_get:"name"}}</u>
+                              <br/>
+                              <br/>
+                              {% if notif|dict_get:"detailed_service_status"|dict_get:"message" %}
+                                {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}!
+                                <br/>
+                                <br/>
+                                Info:
+                              {% endif %}
+                              <font color="grey">
+                                {% for m in notif|dict_get:"detailed_service_status"|dict_get:"messages" %}
+                                  {{m|replace_warning}}.
+                                  <br/>
+                                {% endfor %}
+                              </font>
+
+                            {% else %}
+
+                              {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}!
+                              <br/>
+                              <br/>
+                              Info:
+                              {% for value in notif|dict_get:"detailed_service_status"|dict_get:"values" %}
+                                <font color="grey">
+                                  {{value}}: {{notif|dict_get:"detailed_service_status"|dict_get:"values"|dict_get:value}}
+                                  <br/>
+                                </font>
+                              {% endfor %}
+
+
+                            {% endif %}
+
+                        </span>
+                        <span class="label label-warning">Lasts {{notif|dict_get:"date"|timesince}}</span>
+                        <a class="remove" href="index.html#"><i class="fa fa-times"></i></a>
+                        <br/>
+                      </li>
+
+
+
+            				</div>
+            			</div>
+            	</div>
+            </div>
         {% endif %}
 
 
         {% if notifs == "CRITICAL" %}
-        XXX 
+          <div class="row">
+            <div class="col-lg-12 col-md-8">
+
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h2><i class="fa fa-exclamation-triangle"></i>{{server|dict_get:"name"}} has gone offline or stopped working.</h2>
+                  <div class="panel-actions">
+                    <a href="index.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+                    <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                    <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
+                  </div>
+                </div>
+                <div class="panel-body">
+
+
+
+                </div>
+              </div>
+          </div>
+        </div>
         {% endif %}
 
 
         {% if notifs == "UNKNOWN" %}
-        XXX
+          <div class="row">
+            <div class="col-lg-12 col-md-8">
+
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h2><i class="fa fa-exclamation-triangle"></i>{{server|dict_get:"name"}} has gone offline or stopped working.</h2>
+                  <div class="panel-actions">
+                    <a href="index.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+                    <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                    <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
+                  </div>
+                </div>
+                <div class="panel-body">
+
+
+
+                </div>
+              </div>
+          </div>
+        </div>
         {% endif %}
 
     {% endfor %}
