@@ -35,6 +35,8 @@ logger = logging.getLogger(__name__)
 
 from django.core.mail import send_mail
 
+from twython import Twython
+
 
 AWS_REGIONS = {
     "ap-northeast-1":"Asia Pacific (Tokyo) Region",
@@ -410,3 +412,67 @@ def account_settings(request):
     _log_user_activity(profile,"click","/account/settings/","account_settings",ip=ip)
 
     return render_to_response('account_settings.html', {'request':request, 'aws_regions':AWS_REGIONS,'user':user,'profile':profile,}, context_instance=RequestContext(request))
+
+
+
+def begin_twitter_auth(request):
+
+    # Instantiate Twython with the first leg of our trip.
+    twitter = Twython(settings.TWITTER_KEY, settings.TWITTER_SECRET)
+
+    # Request an authorization url to send the user to...
+    callback_url = request.build_absolute_uri(reverse('profiles.views.thanks'))
+    auth_props = twitter.get_authentication_tokens(callback_url)
+
+    # Then send them over there, durh.
+    request.session['request_token'] = auth_props
+
+    request.session['next_url'] = request.GET.get('next',None)
+
+    return HttpResponseRedirect(auth_props['auth_url'])
+
+
+def thanks(request, redirect_url=settings.LOGIN_REDIRECT_URL):
+
+    # Now that we've got the magic tokens back from Twitter, we need to exchange
+    # for permanent ones and store them...
+    oauth_token = request.session['request_token']['oauth_token']
+    oauth_token_secret = request.session['request_token']['oauth_token_secret']
+    twitter = Twython(settings.TWITTER_KEY, settings.TWITTER_SECRET,
+                      oauth_token, oauth_token_secret)
+
+    # Retrieve the tokens we want...
+    authorized_tokens = twitter.get_authorized_tokens(request.GET['oauth_verifier'])
+
+    # If they already exist, grab them, login and redirect to a page displaying stuff.
+    try:
+        user = User.objects.get(username=authorized_tokens['screen_name'])
+
+    except User.DoesNotExist:
+
+        # We mock a creation here; no email, password is just the token, etc.
+        user = User.objects.create_user(authorized_tokens['screen_name'], "fjdsfn@jfndjfn.com", authorized_tokens['oauth_token_secret'])
+        profile = Profile()
+        profile.user = user
+        profile.oauth_token = authorized_tokens['oauth_token']
+        profile.oauth_secret = authorized_tokens['oauth_token_secret']
+        profile.save()
+
+
+    user = authenticate(
+        username=authorized_tokens['screen_name'],
+        password=authorized_tokens['oauth_token_secret']
+    )
+    login(request, user)
+    redirect_url = request.session.get('next_url', redirect_url)
+
+    return HttpResponseRedirect("/")
+
+def user_timeline(request):
+
+    user = request.user.profile
+    twitter = Twython(settings.TWITTER_KEY, settings.TWITTER_SECRET,
+                      user.oauth_token, user.oauth_secret)
+    user_tweets = twitter.get_home_timeline()
+
+    return render_to_response('tweets.html', {'tweets': user_tweets})

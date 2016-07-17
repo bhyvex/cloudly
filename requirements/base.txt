@@ -3,3 +3,4 @@ boto
 pymongo
 mysql-python
 flask
+twython
