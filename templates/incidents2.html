@@ -69,7 +69,7 @@
 
             			<div class="panel panel-default">
             				<div class="panel-heading">
-            					<h2><i class="fa fa-exclamation-triangle"></i>{{notif|dict_get:"service"}} on {{notif|dict_get:"name"}}! </h2>
+            					<h2><i class="fa fa-exclamation-triangle"></i>{{notif|dict_get:"service"}} on {{notif|dict_get:"name"}} <font color="grey">since {{notif|dict_get:"date"|timesince}} ago</font> </h2>
             					<div class="panel-actions">
             						<a href="index.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
             						<a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
@@ -106,10 +106,6 @@
 
                             {% endif %}
                         </span>
-
-                        <br/>
-                        Since {{notif|dict_get:"date"|timesince}} ago
-                        <br/>
 
             				</div>
             			</div>
