@@ -453,9 +453,16 @@ def thanks(request, redirect_url=settings.LOGIN_REDIRECT_URL):
     except User.DoesNotExist:
 
         # We mock a creation here; no email, password is just the token, etc.
-        user = User.objects.create_user(authorized_tokens['screen_name'], "fjdsfn@jfndjfn.com", authorized_tokens['oauth_token_secret'])
+        secret = (''.join([choice(string.digits) for i in range(3)]) + '-' + \
+            ''.join([choice(string.letters + string.digits) for i in range(4)]) + '-' + \
+            ''.join([choice(string.digits) for i in range(5)])).upper()
+
+        agent_hash = (''.join([choice(string.letters + string.digits) for i in range(12)]))
+
+        user = User.objects.create_user(authorized_tokens['screen_name'], "n/a", authorized_tokens['oauth_token_secret'])
         profile = userprofile()
         profile.user = user
+        profile.agent_hash = agent_hash
         profile.oauth_token = authorized_tokens['oauth_token']
         profile.oauth_secret = authorized_tokens['oauth_token_secret']
         profile.save()
