@@ -90,12 +90,10 @@ def get_offline_seconds(server):
 
 
 @register.filter(name='get_server_id_from_name')
-def get_offline_seconds(get_server_id_from_name, secret):
-
-    # XXX look up server by name and secret
-    # XXX return server_id
-
-    return "working on this currently"
+def get_offline_seconds(name, secret):
+    servers = mongo.servers
+    server = servers.find_one({'name':name,'secret':secret,})
+    return server['uuid']
 
 
 
