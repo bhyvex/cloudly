@@ -2,7 +2,7 @@
 
 {% load cloud_extras %}
 
-{% block title %}Cloudly | Cloud Settings{% endblock %}
+{% block title %}Monkeytor | Cloud Settings{% endblock %}
 
 {% block nav-bar %}
     {% include "partials/nav-bar-classic.html" %}
@@ -93,16 +93,16 @@
 								{% for region in aws_regions %}
 								<div class="checkbox">
 									<label for="checkbox{{forloop.counter}}">
-										<input 
-                                            type="checkbox" 
-                                            id="{{region}}" 
-                                            name="checkboxes" 
-                                            value="{{region}}" 
+										<input
+                                            type="checkbox"
+                                            id="{{region}}"
+                                            name="checkboxes"
+                                            value="{{region}}"
                                             {% if region in profile_regions %}
                                                 checked
                                             {% endif %}
-                                        > 
-                                        <a href="#">{{region}}</a> 
+                                        >
+                                        <a href="#">{{region}}</a>
                                         {{aws_regions|dict_get:region}}
 									</label>
 								</div>
