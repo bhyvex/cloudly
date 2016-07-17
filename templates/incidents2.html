@@ -17,7 +17,6 @@
 
 
 {% if servers %}
-
 {% if offline_servers %}
 {% for server in offline_servers %}
 
@@ -58,17 +57,38 @@
 	</div>
 </div>
 {% endfor %}
+
 {% endif %}
-
-
 {% else %}
 
     <p>
       Currently there are no servers being installed.
       Please <a href="/download/agent/">add</a> one.
     </p>
-
 {% endif %}
+
+
+
+
+{% if offline_servers %}
+{% for server in offline_servers %}
+
+	<div class="row">
+    <div class="col-lg-12 col-md-8">
+
+
+	  </div>
+  </div>
+
+{% endfor %}
+{% endif %}
+
+
+
+
+
+
+
 
 {% endblock page_content %}
 
