@@ -83,9 +83,6 @@
                           <br/>
 
                             {% if not notif|dict_get:"detailed_service_status"|dict_get:"message" %}
-                              <u>{{notif|dict_get:"name"}}</u>
-                              <br/>
-                              <br/>
                               {% if notif|dict_get:"detailed_service_status"|dict_get:"message" %}
                                 {{notif|dict_get:"detailed_service_status"|dict_get:"message"}}!
                                 <br/>
