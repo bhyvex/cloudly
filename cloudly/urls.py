@@ -75,8 +75,7 @@ urlpatterns += patterns('',
     }),
 
     # First leg of the authentication journey...
-    url(r'^twitter/login/?$', "profiles.views.begin_twitter_auth", name="twitter_login"),
-    url(r'^logout/$', 'profiles.views.logout', name='logout'),
-    url(r'^thanks/$', 'profiles.views.thanks', name='thanks'),
+    url(r'^twitter/login/?$', "userprofile.views.begin_twitter_auth", name="twitter_login"),
+    url(r'^thanks/$', 'userprofile.views.thanks', name='thanks'),
 
 )
