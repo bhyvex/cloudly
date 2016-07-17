@@ -2,8 +2,8 @@
 
 {% load humanize %}
 {% load cloud_extras %}
-						
-{% block title %}Cloudly | User {{u|title}} Report{% endblock %}
+
+{% block title %}Monkeytor | User {{u|title}} Report{% endblock %}
 
 {% block nav-bar %}
     {% include "partials/nav-bar-classic.html" %}
@@ -14,7 +14,7 @@
 	  	<li><a href="/admin/">Admin</a></li>
 	  	<li class="active"></li> Report for user <b>"{{user_profile.name}}"</b> <u>{{user_profile.user.email}}</u>
 	</ol>
-	
+
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="panel panel-default">
@@ -43,7 +43,7 @@
 								<th>architecture</th>
 								<th>hypervisor</th>
 							</tr>
-						</thead>   
+						</thead>
 						<tbody>
 							{% for i in vms_cached_response %}
 							<tr>
@@ -100,10 +100,10 @@
 								<th>uuid</th>
 								<th>IP_remote</th>
 								<th>IP</th>
-								<th>uptime</th>                                          
+								<th>uptime</th>
 								<th>last_seen</th>
 							</tr>
-						</thead>   
+						</thead>
 						<tbody>
 							{% for server in servers %}
 							<tr>
@@ -113,7 +113,7 @@
 								<td>
 									<a href="http://www.infosniper.net/index.php?ip_address={{server|dict_get:"ip"}}&map_source=1&overview_map=1&lang=1&map_type=1&zoom_level=7" target="_blank">
 									{{server|dict_get:"ip_remote"}}
-									</a>	
+									</a>
 								</td>
 								<td>
 									<a href="http://www.infosniper.net/index.php?ip_address={{server|dict_get:"ip"}}&map_source=1&overview_map=1&lang=1&map_type=1&zoom_level=7" target="_blank">
@@ -129,8 +129,8 @@
 				</div>
 			</div>
 		</div>
-	
-	
+
+
 		<div class="col-xs-4">
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -141,8 +141,8 @@
 						<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
 					</div>
 				</div>
-				
-				<div class="panel-body">						
+
+				<div class="panel-body">
 					<table class="table table-bordered">
 						<thead>
 							<tr>
@@ -150,9 +150,9 @@
 								<th>When</th>
 								<th>Link</th>
 							</tr>
-						</thead>   
+						</thead>
 						<tbody>
-							{% for a in user_activity_clicks %} 
+							{% for a in user_activity_clicks %}
 							<tr>
 								<td><font size=2><a href="http://www.infosniper.net/index.php?ip_address={{a.ip_addr}}&map_source=1&overview_map=1&lang=1&map_type=1&zoom_level=7" target="_blank">{{a.ip_addr}}</a></font></td>
 								<td><font size=2>{{a.date_created|naturaltime}}</font></td>
@@ -162,7 +162,7 @@
 						</tbody>
 					</table>
 				</div>
-				
+
 			</div>
 		</div>
 
@@ -183,10 +183,10 @@
 								<th>Date</th>
 								<th>Activity</th>
 								<th>Meta</th>
-								<th>Function</th>                                          
+								<th>Function</th>
 								<th>Link</th>
 							</tr>
-						</thead>   
+						</thead>
 						<tbody>
 							{% for a in user_activity_other %}
 							<tr>
@@ -197,7 +197,7 @@
 								<td>{{a.activity}}<td>
 								{% endif %}
 								<td>{{a.meta}}</td>
-								<td>{{a.function}}</td>                                       
+								<td>{{a.function}}</td>
 								<td>{{a.link}}</td>
 							</tr>
 							{% endfor %}
@@ -224,9 +224,9 @@
 								<th>Date created</th>
 								<th>Size</th>
 								<th>Filename</th>
-								<th>Type</th>                                          
+								<th>Type</th>
 							</tr>
-						</thead>   
+						</thead>
 						<tbody>
 							{% for f in user_files %}
 							<tr>
@@ -235,7 +235,7 @@
 								<td>{{f.file.file|clear_filename}}</td>
 								<td>
 									<span class="label label-success">{{f.file_type|upper}}</span>
-								</td>                                       
+								</td>
 							</tr>
 							{% endfor %}
 						</tbody>

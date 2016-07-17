@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% load cloud_extras %}
-						
-{% block title %}Cloudly | EC2 Virtual Machine {{vm_name|upper}}{% endblock %}
+
+{% block title %}Monkeytor | EC2 Virtual Machine {{vm_name|upper}}{% endblock %}
 
 {% block nav-bar %}
     {% include "partials/nav-bar-classic.html" %}
@@ -29,14 +29,14 @@
 				<div class="panel-body">
 
 					<div class="panel-body col-md-6">
-					
+
 						<table id="user" class="table table-bordered table-striped" style="clear: both">
-							<tbody> 
-								<tr>		 
+							<tbody>
+								<tr>
 									<td width="30%">Name</td>
 									<td width="70%"><a href="#" id="servername">{{vm_cache|dict_get:"instance"|dict_get:"id"}}</a></td>
 								</tr>
-								<tr>		 
+								<tr>
 									<td>IP Address</td>
 									<td>
 									{% if vm_cache|dict_get:"instance"|dict_get:"ip_address" %}
@@ -46,28 +46,28 @@
 									{% endif %}
 									</td>
 								</tr>
-								
+
 								{% if vm_cache|dict_get:"instance"|dict_get:"dns_name" %}
 								<tr>
 									<td>DNS Name</td>
 									<td><a href="http://{{vm_cache|dict_get:"instance"|dict_get:"dns_name"}}" target="_blank">http://{{vm_cache|dict_get:"instance"|dict_get:"dns_name"}}</a></td>
 								</tr>
 								{% endif %}
-								
-								<tr>		 
+
+								<tr>
 									<td>Region</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"region"|dict_get:"name"}}</td>
 								</tr>
-								<tr>		 
+								<tr>
 									<td>AWS Image ID</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"image_id"}}</td>
 								</tr>
 							</tbody>
-						</table>	
+						</table>
 
 						<table id="user" class="table table-bordered table-striped" style="clear: both">
-							<tbody> 
-								<tr>		 
+							<tbody>
+								<tr>
 									<td>Security Groups</td>
 									<td>
 									{% for group in vm_cache|dict_get:"instance"|dict_get:"groups" %}
@@ -76,26 +76,26 @@
 									{% endfor %}
 									{% endfor %}
 									</td>
-								</tr>					  
-								<tr>		 
+								</tr>
+								<tr>
 									<td width="30%">Key Name</td>
 									<td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"key_name"}}</td>
-								</tr>					  
+								</tr>
 							</tbody>
-						</table>	
+						</table>
 
 
 						<table id="user" class="table table-bordered table-striped" style="clear: both">
-							<tbody> 
-								<tr>	  
+							<tbody>
+								<tr>
 									<td width="30%">Tags</td>
 									<td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"tags"}}</td>
 								</tr>
-								<tr>		 
+								<tr>
 									<td width="30%">Launch Time</td>
 									<td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"launch_time"}}</td>
-								</tr>	 
-								<tr>		 
+								</tr>
+								<tr>
 									<td>State</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"state"|dict_get:"state"|title}}</td>
 								</tr>
@@ -109,52 +109,52 @@
 						</table>
 
 					</div>
-					<div class="panel-body col-md-6">							
-							
+					<div class="panel-body col-md-6">
+
 						<table id="user" class="table table-bordered table-striped" style="clear: both">
-							<tbody> 
-								<tr>		 
+							<tbody>
+								<tr>
 									<td width="30%">Instance Type</td>
 									<td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"instance_type"}}</td>
-								</tr> 
-								<tr>		 
+								</tr>
+								<tr>
 									<td>Architecture</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"architecture"}}</td>
-								</tr> 
-								<tr>		 
+								</tr>
+								<tr>
 									<td>Virtualization Type</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"virtualization_type"}}</td>
 								</tr>
-								<tr>		 
+								<tr>
 									<td>Hypervisor</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"hypervisor"}}</td>
-								</tr>					
+								</tr>
 
-								<tr>		 
+								<tr>
 									<td>Persistent</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"persistent"}}</td>
-								</tr>  
+								</tr>
 							</tbody>
-						</table>	
+						</table>
 
 						<table id="user" class="table table-bordered table-striped" style="clear: both">
-							<tbody> 
-								<tr>		 
+							<tbody>
+								<tr>
 									<td width="30%">Root Device Name</td>
 									<td width="70%">{{vm_cache|dict_get:"instance"|dict_get:"root_device_name"}}</td>
-								</tr>					  
-								<tr>		 
+								</tr>
+								<tr>
 									<td>Root Device Type</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"root_device_type"}}</td>
-								</tr>					  
-								<tr>		 
+								</tr>
+								<tr>
 									<td>Block Device Mapping</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:""}}</td>
-								</tr>					  
-								<tr>		 
+								</tr>
+								<tr>
 									<td>Ramdisk</td>
 									<td>{{vm_cache|dict_get:"instance"|dict_get:"ramdisk"}}</td>
-								</tr>					  
+								</tr>
 							</tbody>
 						</table>
 					</div>
@@ -177,14 +177,14 @@
 					</div>
 				</div>
 				<div class="panel-body">
-			   
+
 					<div id="cpu_utilization_datapoints"></div>
-					
+
 				</div>
 			</div>
 		</div>
 	</div><!--/row -->
-	
+
 
 
 	<div class="row">
@@ -199,11 +199,11 @@
 					</div>
 				</div>
 				<div class="panel-body">
-			   
+
 					<div id="networkin_datapoints"></div>
 					<br />
 					<div id="networkout_datapoints"></div>
-					
+
 				</div>
 			</div>
 		</div>
@@ -222,7 +222,7 @@
 					</div>
 				</div>
 				<div class="panel-body">
-			   
+
 					<div id="disk_readops_datapoints"></div>
 					<br />
 					<div id="disk_readops_datapoints"></div>
@@ -232,13 +232,13 @@
 					<div id="disk_readbytes_datapoints"></div>
 					<br />
 					<div id="disk_writebytes_datapoints"></div>
-					
+
 				</div>
 			</div>
 		</div>
 	</div><!--/row -->
-	
-	
+
+
 {% endif %}
 
 	<div class="row">
@@ -257,8 +257,8 @@
 <pre>
 Console output:
 {{console_output}}
-</pre>	
-						
+</pre>
+
 				</div>
 			</div>
 		</div><!--/col-->
@@ -293,8 +293,8 @@ Console output:
 				<a href="#"></a>
 				<a href="#"></a>
 			{% endif %}
-		</div>	
-	</div><!--/row-->	
+		</div>
+	</div><!--/row-->
 </div><!-- end: Content -->
 <div class="modal fade" id="myModal">
 	<div class="modal-dialog">
@@ -322,7 +322,7 @@ Console output:
 
 <script type="text/javascript">
 	<!--
-	
+
 	$(function () {
 		$('#cpu_utilization_datapoints').highcharts({
 			chart: {
@@ -350,7 +350,7 @@ Console output:
 				},
 				min: 0
 			},
-			
+
 
 			series: [{
 				name: 'Average',
@@ -367,7 +367,7 @@ Console output:
 		]
 		});
 	});
-	
+
 
 	$(function () {
 		$('#networkin_datapoints').highcharts({
@@ -396,20 +396,20 @@ Console output:
 				},
 				min: 0
 			},
-			
+
 
 			series: [{
 				name: 'networkin_datapoints',
 				data: [
 					{% for value in networkin_datapoints|make_json_sorted %}
-						[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"|substract_one}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"hour"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"minute"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"second"}}), {{value|dict_get:"Average"}}],						
+						[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"|substract_one}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"hour"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"minute"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"second"}}), {{value|dict_get:"Average"}}],
 					{% endfor %}
 				]
 			}
 		]
 		});
 	});
-	
+
 
 	$(function () {
 		$('#networkout_datapoints').highcharts({
@@ -438,13 +438,13 @@ Console output:
 				},
 				min: 0
 			},
-			
+
 
 			series: [{
 				name: 'networkout_datapoints',
 				data: [
 					{% for value in networkout_datapoints|make_json_sorted %}
-						[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"|substract_one}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"hour"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"minute"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"second"}}), {{value|dict_get:"Average"}}],						
+						[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"|substract_one}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"hour"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"minute"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"second"}}), {{value|dict_get:"Average"}}],
 					{% endfor %}
 				]
 			}
@@ -479,20 +479,20 @@ Console output:
 				},
 				min: 0
 			},
-			
+
 
 			series: [{
 				name: 'disk_readops_datapoints',
 				data: [
 					{% for value in disk_readops_datapoints|make_json_sorted %}
-						[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"|substract_one}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"hour"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"minute"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"second"}}), {{value|dict_get:"Average"}}],						
+						[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"|substract_one}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"hour"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"minute"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"second"}}), {{value|dict_get:"Average"}}],
 					{% endfor %}
 				]
 			}
 		]
 		});
 	});
-	
+
 
 	$(function () {
 		$('#disk_writeops_datapoints').highcharts({
@@ -521,12 +521,12 @@ Console output:
 				},
 				min: 0
 			},
-			
+
 			series: [{
 				name: 'disk_writeops_datapoints',
 				data: [
 					{% for value in disk_writeops_datapoints|make_json_sorted %}
-						[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"|substract_one}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"hour"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"minute"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"second"}}), {{value|dict_get:"Average"}}],						
+						[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"|substract_one}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"hour"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"minute"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"second"}}), {{value|dict_get:"Average"}}],
 					{% endfor %}
 				]
 			}
@@ -561,12 +561,12 @@ Console output:
 				},
 				min: 0
 			},
-			
+
 			series: [{
 				name: 'disk_readbytes_datapoints',
 				data: [
 					{% for value in disk_readbytes_datapoints|make_json_sorted %}
-						[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"|substract_one}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"hour"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"minute"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"second"}}), {{value|dict_get:"Average"}}],						
+						[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"|substract_one}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"hour"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"minute"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"second"}}), {{value|dict_get:"Average"}}],
 					{% endfor %}
 				]
 			}
@@ -601,19 +601,19 @@ Console output:
 				},
 				min: 0
 			},
-			
+
 			series: [{
 				name: 'disk_writebytes_datapoints',
 				data: [
 					{% for value in disk_writebytes_datapoints|make_json_sorted %}
-						[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"|substract_one}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"hour"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"minute"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"second"}}), {{value|dict_get:"Average"}}],						
+						[Date.UTC({{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"year"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"month"|substract_one}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"day"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"hour"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"minute"}}, {{value|dict_get:"Timestamp"|format_datetime_special|dict_get:"second"}}), {{value|dict_get:"Average"}}],
 					{% endfor %}
 				]
 			}
 		]
 		});
 	});
-	
+
 	//-->
 </script>
 {% endblock extra_js %}
