@@ -423,7 +423,7 @@ def begin_twitter_auth(request):
     twitter = Twython(settings.TWITTER_KEY, settings.TWITTER_SECRET)
 
     # Request an authorization url to send the user to...
-    callback_url = request.build_absolute_uri(reverse('profiles.views.thanks'))
+    callback_url = request.build_absolute_uri("/thanks/")
     auth_props = twitter.get_authentication_tokens(callback_url)
 
     # Then send them over there, durh.
@@ -454,7 +454,7 @@ def thanks(request, redirect_url=settings.LOGIN_REDIRECT_URL):
 
         # We mock a creation here; no email, password is just the token, etc.
         user = User.objects.create_user(authorized_tokens['screen_name'], "fjdsfn@jfndjfn.com", authorized_tokens['oauth_token_secret'])
-        profile = Profile()
+        profile = userprofile()
         profile.user = user
         profile.oauth_token = authorized_tokens['oauth_token']
         profile.oauth_secret = authorized_tokens['oauth_token_secret']
