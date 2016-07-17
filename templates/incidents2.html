@@ -55,8 +55,34 @@
 	</div>
 </div>
 {% endfor %}
-
 {% endif %}
+
+
+
+{% for notifs in active_notifs %}
+
+    {% for notif in active_notifs|dict_get:notifs %}
+
+
+        {% if notifs == "WARNING" %}
+        {% endif %}
+
+
+        {% if notifs == "CRITICAL" %}
+        XXX 
+        {% endif %}
+
+
+        {% if notifs == "UNKNOWN" %}
+        XXX
+        {% endif %}
+
+    {% endfor %}
+
+{% endfor %}
+
+
+
 
 {% else %}
 
