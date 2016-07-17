@@ -33,7 +33,7 @@
 					<br/>
 					<br/>
 <pre>
-sudo sh -c "wget --no-check-certificate {{agent_download_url}} -O /opt/monitoring-agent.py; python2 /opt/monitoring-agent.py"
+sudo sh -c "wget --no-check-certificate {{agent_download_url}} -O /opt/monitoring-agent.py; python2 /opt/monitoring-agent.py 1> /dev/null &"
 </pre>
 				</div>
 			</div>
