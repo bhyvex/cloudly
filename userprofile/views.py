@@ -32,6 +32,8 @@ from amazon import s3_funcs_shortcuts
 from vms.models import Cache
 
 logger = logging.getLogger(__name__)
+from django.conf import settings
+
 
 from django.core.mail import send_mail
 
