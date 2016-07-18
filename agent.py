@@ -789,9 +789,9 @@ def get_system_metrics( uuid, secret ):
     disks_usage['service_report'] = disks_usage_service_report
 
     try: networking = _get_networking_stats()
-    except: pass
+    except: networking = {}
     try: network_connections = _get_network_connections()
-    except: pass
+    except: network_connections
 
     processes = _get_processes()
 
