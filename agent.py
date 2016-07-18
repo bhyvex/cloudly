@@ -788,9 +788,13 @@ def get_system_metrics( uuid, secret ):
     disks_usage['disks_usage'] = disks_usage_data
     disks_usage['service_report'] = disks_usage_service_report
 
+    try: networking = _get_networking_stats()
+    except: pass
+    try: network_connections = _get_network_connections()
+    except: pass
+
     processes = _get_processes()
-    networking = _get_networking_stats()
-    network_connections = _get_network_connections()
+
 
     system_metrics_json = {
         'uuid': uuid,
