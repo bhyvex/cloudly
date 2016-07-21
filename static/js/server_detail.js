@@ -163,7 +163,9 @@ $(document).ready(function() {
     $('#networkingGraphs').deactivePanel();
     $('#diskGraphs').deactivePanel();
     $('#networkSessions').deactivePanel();
+    $('#alertingSettings').deactivePanel();
     
+
     $("#mac-address-tooltip").attr("title", "MAC Address: " + serverMacAddress);
     if ($("#servername").text().trim() !== serverMacAddress) {
         $("#mac-address-tooltip").show();
