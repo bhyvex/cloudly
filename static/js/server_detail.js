@@ -161,6 +161,7 @@ $(document).ready(function() {
     $('#serverActivity').deactivePanel();
     $('#activeNetworkSessions').deactivePanel();
     $('#networkingGraphs').deactivePanel();
+    $('#diskGraphs').deactivePanel();
 
     $("#mac-address-tooltip").attr("title", "MAC Address: " + serverMacAddress);
     if ($("#servername").text().trim() !== serverMacAddress) {
