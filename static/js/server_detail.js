@@ -159,13 +159,13 @@ $(document).ready(function() {
     updateServerInfo();
     $('#serviceDiscovery').deactivePanel();
     $('#serverActivity').deactivePanel();
-    $('#activeNetworkSessions').deactivePanel();
+    /*
     $('#networkingGraphs').deactivePanel();
     $('#diskGraphs').deactivePanel();
     $('#networkSessions').deactivePanel();
     $('#alertingSettings').deactivePanel();
     $('#recentActivities').deactivePanel();
-
+    */
 
     $("#mac-address-tooltip").attr("title", "MAC Address: " + serverMacAddress);
     if ($("#servername").text().trim() !== serverMacAddress) {
