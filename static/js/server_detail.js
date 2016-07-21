@@ -159,6 +159,7 @@ $(document).ready(function() {
     updateServerInfo();
     $('#serviceDiscovery').deactivePanel();
     $('#serverActivity').deactivePanel();
+    $('#activeNetworkSessions').deactivePanel();
     /*
     $('#networkingGraphs').deactivePanel();
     $('#diskGraphs').deactivePanel();
