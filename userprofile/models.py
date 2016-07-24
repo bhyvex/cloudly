@@ -40,7 +40,7 @@ class Profile(models.Model):
     email_notifications = models.CharField(max_length=10, default="informative")
     twitter_notifications = models.CharField(max_length=10, default="off")
     jabber_notifications = models.CharField(max_length=10, default="off")
-    sms_notifications = models.CharField(max_length=10, default="")
+    sms_notifications = models.CharField(max_length=100, default="")
 
     active_checks = models.BooleanField(default=True)
     passive_checks = models.BooleanField(default=True)
