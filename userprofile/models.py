@@ -37,8 +37,11 @@ class Profile(models.Model):
     street_address_2 = models.CharField(max_length=100, blank=True, verbose_name="street_address_2")
     street_address_3 = models.CharField(max_length=100, blank=True, verbose_name="street_address_3")
 
-    email_notifications = models.BooleanField(default=True)
-    twitter_notifications = models.BooleanField(default=False)
+    email_notifications = models.CharField(max_length=10, default="informative")
+    twitter_notifications = models.CharField(max_length=10, default="off")
+    jabber_notifications = models.CharField(max_length=10, default="off")
+    sms_notifications = models.CharField(max_length=10, default="")
+
 
     aws_access_key = models.CharField(max_length=100, blank=True, verbose_name="Access Key", db_index=True)
     aws_secret_key = models.CharField(max_length=100, blank=True, verbose_name="Secret Key", db_index=True)
