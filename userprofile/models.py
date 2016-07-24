@@ -42,6 +42,10 @@ class Profile(models.Model):
     jabber_notifications = models.CharField(max_length=10, default="off")
     sms_notifications = models.CharField(max_length=10, default="")
 
+    active_checks = models.BooleanField(default=True)
+    passive_checks = models.BooleanField(default=True)
+    heuristic_analysis = models.BooleanField(default=True)
+    flap_detection = models.BooleanField(default=False)
 
     aws_access_key = models.CharField(max_length=100, blank=True, verbose_name="Access Key", db_index=True)
     aws_secret_key = models.CharField(max_length=100, blank=True, verbose_name="Secret Key", db_index=True)
