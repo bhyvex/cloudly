@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load humanize %}
 {% load cloud_extras %}
 {% load tz %}
 
@@ -14,7 +15,6 @@
 <ol class="breadcrumb">
     <li class="active">Servers Incidents</li>
 </ol>
-
 
 
 {% if servers %}

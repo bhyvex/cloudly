@@ -130,7 +130,7 @@ def ping():
         print error
         return (error, 401)
 
-    print 'API query from agent version', str(agent_version), uuid, 'IP', ip_remote+'/'+ ip, 'uptime '+uptime
+    print 'API query from agent version', secret,   str(agent_version), uuid, 'IP', ip_remote+'/'+ ip, 'uptime '+uptime
 
 
     servers = mongo.servers
