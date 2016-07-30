@@ -28,7 +28,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     {% if not notifs_counter %}
-                        <li><small>There are currently no servers or services problems being encountered.</small></li>
+                        <li><small>0 notifications</small></li>
                     {% else %}
                         {% for notifs_type in notifs_types %}
                             {%if navbar_active_notifs|dict_get:notifs_type %}
