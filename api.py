@@ -300,12 +300,13 @@ def ping():
             str(networking['output_accept_bytes']) + \
             " mm=output_accept_bytes" + \
             "\n"
-    except: pass
 
-    hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    hbase.connect((settings.TSDB_HOST, settings.TSDB_PORT))
-    hbase.send(networking_tsdb_cmd)
-    hbase.close()
+        hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        hbase.connect((settings.TSDB_HOST, settings.TSDB_PORT))
+        hbase.send(networking_tsdb_cmd)
+        hbase.close()
+
+    except: pass
 
 
     disks_usage_metrics = {
