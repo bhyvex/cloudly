@@ -262,43 +262,45 @@ def ping():
     hbase.close()
 
 
-    networking_metrics = {
-        'secret': secret,
-        'agent_version': agent_version,
-        'uuid': uuid,
-        'input_accept_packets': networking['input_accept_packets'],
-        'input_accept_bytes': networking['input_accept_bytes'],
-        'output_accept_packets': networking['output_accept_packets'],
-        'output_accept_bytes': networking['output_accept_bytes'],
-        'date_created': datetime.datetime.now(),
-    }
-    # fixing codacy analysis issue
-    networking_metrics = networking_metrics
+    try:
+        networking_metrics = {
+            'secret': secret,
+            'agent_version': agent_version,
+            'uuid': uuid,
+            'input_accept_packets': networking['input_accept_packets'],
+            'input_accept_bytes': networking['input_accept_bytes'],
+            'output_accept_packets': networking['output_accept_packets'],
+            'output_accept_bytes': networking['output_accept_bytes'],
+            'date_created': datetime.datetime.now(),
+        }
+        # fixing codacy analysis issue
+        networking_metrics = networking_metrics
 
-    networking_tsdb_cmd = "put " + \
-        uuid.replace(':','-') + ".sys.network " + \
-        str(int(time.time())) + " " + \
-        str(networking['input_accept_packets']) + \
-        " mm=input_accept_packets" + \
-        "\n"
-    networking_tsdb_cmd += "put " + \
-        uuid.replace(':','-') + ".sys.network " + \
-        str(int(time.time())) + " " + \
-        str(networking['input_accept_bytes']) + \
-        " mm=input_accept_bytes" + \
-        "\n"
-    networking_tsdb_cmd += "put " + \
-        uuid.replace(':','-') + ".sys.network " + \
-        str(int(time.time())) + " " + \
-        str(networking['output_accept_packets']) + \
-        " mm=output_accept_packets" + \
-        "\n"
-    networking_tsdb_cmd += "put " + \
-        uuid.replace(':','-') + ".sys.network " + \
-        str(int(time.time())) + " " + \
-        str(networking['output_accept_bytes']) + \
-        " mm=output_accept_bytes" + \
-        "\n"
+        networking_tsdb_cmd = "put " + \
+            uuid.replace(':','-') + ".sys.network " + \
+            str(int(time.time())) + " " + \
+            str(networking['input_accept_packets']) + \
+            " mm=input_accept_packets" + \
+            "\n"
+        networking_tsdb_cmd += "put " + \
+            uuid.replace(':','-') + ".sys.network " + \
+            str(int(time.time())) + " " + \
+            str(networking['input_accept_bytes']) + \
+            " mm=input_accept_bytes" + \
+            "\n"
+        networking_tsdb_cmd += "put " + \
+            uuid.replace(':','-') + ".sys.network " + \
+            str(int(time.time())) + " " + \
+            str(networking['output_accept_packets']) + \
+            " mm=output_accept_packets" + \
+            "\n"
+        networking_tsdb_cmd += "put " + \
+            uuid.replace(':','-') + ".sys.network " + \
+            str(int(time.time())) + " " + \
+            str(networking['output_accept_bytes']) + \
+            " mm=output_accept_bytes" + \
+            "\n"
+    except: pass
 
     hbase = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     hbase.connect((settings.TSDB_HOST, settings.TSDB_PORT))
