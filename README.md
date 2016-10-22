@@ -129,4 +129,4 @@ Screenshots & Live Demo
 
 ###### Demo
 
-This project can be currently seen on http://monkeytor.tk/demo
+This project can be currently seen on http://projectcloudly.tk/demo
