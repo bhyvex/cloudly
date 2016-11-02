@@ -47,7 +47,6 @@ mongo = client.cloudly
 CLOUDLY_MOTTOS = [
     "The Power of Now!",
     "Details Matters!",
-    "Where is my monkey!",
     "Smart, Smarter, the Smartest",
     "Bulletproof monitoring out of the box.",
     "Save time and effort with our simple, reliable server monitoring.",
@@ -85,6 +84,7 @@ CLOUDLY_MOTTOS = [
     "Hadoop &amp; OpenTSDB Powered Servers Monitoring.",
     "The first line of defence for your servers.",
     "A free, open-source, cross-platform servers monitoring.",
+    "Your servers visualized.",
 ]
 
 
