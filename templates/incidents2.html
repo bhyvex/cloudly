@@ -67,7 +67,7 @@
 
             			<div class="panel panel-default">
             				<div class="panel-heading">
-                                <h2><i class="fa fa-exclamation-triangle"></i><a href="/server/{{notif|dict_get:"name"|get_server_id_from_name:secret|replace_dots}}">Server {{notif|dict_get:"name"|upper}}</a> suffers from {{notif|dict_get:"service"}} <font color="grey">(durartion {{notif|dict_get:"date"|timesince}})</font> </h2>
+                                <h2><i class="fa fa-exclamation-triangle"></i><a href="/server/{{notif|dict_get:"name"|get_server_id_from_name:secret|replace_dots}}">Server {{notif|dict_get:"name"|upper}}</a> suffers on {{notif|dict_get:"service"}} <font color="grey">(durartion {{notif|dict_get:"date"|timesince}})</font> </h2>
             					<div class="panel-actions">
             						<a href="index.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
             						<a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
