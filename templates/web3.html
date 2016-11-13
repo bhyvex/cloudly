@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Project Cloudly - Simple Servers Monitoring</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/web2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/static/web2/css/one-page-wonder.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="https://github.com/jparicka/cloudly" target="_blank">cloudly-v.0.98</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/login/">Login</a>
+                    </li>
+                    <li>
+                        <a href="/register/">Sign up</a>
+                    </li>
+                    <li>
+                        <a href="/demo/">Demo</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Full Width Image Header -->
+    <header class="header-image">
+        <div class="headline">
+            <div class="container">
+                <h1>Project Cloudly</h1>
+                <h2>{{random_motto|safe}}</h2>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <hr class="featurette-divider">
+
+        <!-- First Featurette -->
+        <div class="featurette" id="about">
+            <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">
+            <h2 class="featurette-heading">Get your servers into shape!
+                <span class="text-muted">100% free and open-sourced.</span>
+            </h2>
+            <p class="lead">
+              Project Cloudly is an enterprise grade Real-time IT Infrastructure and Applications Monitoring platform developed under the Open Source model.
+              <br/><br/>
+              Cloudly is 100% Free and Open Source software, with no license fees, software subscriptions or "special" versions.
+              <br/><br/>
+              Feel free to checkout our code at the <a href="https://github.com/jparicka/cloudly" target="_blank">GitHub</a>.
+            </p>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- Second Featurette -->
+        <div class="featurette" id="services">
+            <img class="featurette-image img-circle img-responsive pull-left" src="http://placehold.it/500x500">
+            <h2 class="featurette-heading">Easy to install!
+                <span class="text-muted">It takes less than 5 seconds to get you up and monitoring.</span>
+            </h2>
+            <p class="lead">
+              Automatic agent installation for any Unix like system (or Linux); and alternative installer scripts/packages that works in any environment.
+              <br/>
+              <br/>
+              The installation literally takes 5 seconds as it requires only a single copy &amp; paste at your server terminal prompt.
+            </p>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- Third Featurette -->
+        <div class="featurette" id="contact">
+            <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">
+            <h2 class="featurette-heading">Smart Alerting.
+                <span class="text-muted">Get to know about problems before they appear.</span>
+            </h2>
+            <p class="lead">
+              <br/>
+              Advanced server monitoring alerts.
+              <br/>
+              <br/>
+              Get notified of problems before they affect your customers - email, SMS, push notification, web hooks with integrated escalation management.
+            </p>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- Fourth Featurette -->
+        <div class="featurette" id="contact">
+            <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">
+            <h2 class="featurette-heading">Graph your infrastructure.
+                <span class="text-muted">Performance anomalies detection.</span>
+            </h2>
+            <p class="lead">
+              Investigate alerts with your own real-time graphs dashboards across servers and a multiple data centres.
+Stack, filter and summarise all your data, kept for 30 days or forever so you can plan and spot trends.
+
+            </p>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- Fifth Featurette -->
+        <div class="featurette" id="contact">
+            <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">
+            <h2 class="featurette-heading">NAGIOS compatible.
+                <span class="text-muted">Works out of the box with Nagios Plugins.</span>
+            </h2>
+            <p class="lead">
+              While Cloudly is useful “out of the box”, it is designed to be highly customizable and work with the industry standard Nagios Plugins to create an unique and integrated servers monitoring solution.
+              It does so fully automatically with very little or no interaction with the terminal prompt.
+            </p>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- Sixth Featurette -->
+        <div class="featurette" id="contact">
+            <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">
+            <h2 class="featurette-heading">Control your data.
+                <br/>
+                <span class="text-muted">Hosted on your server.</span>
+            </h2>
+            <p class="lead">
+              You are fully in control of your data. You decide where your Dashboards are going to be hosted. We support you to install your Dashboard platform on your own server infrastructure or in your preferred data center.
+            </p>
+        </div>
+
+        <hr class="featurette-divider">
+
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>
+                      Copyright &copy; Jan Paricka 2016
+                      <br/>
+                      GitHub: <a href="https://github.com/jparicka/cloudly" target="_blank">https://github.com/jparicka/cloudly</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="/static/web2/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/web2/js/bootstrap.min.js"></script>
+
+    {% include "google_analytics.html" %}
+
+</body>
+
+</html>
