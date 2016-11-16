@@ -105,7 +105,13 @@ def web_new_3(request):
 
     print '--  web 3:'
     random_motto = CLOUDLY_MOTTOS[ random.randint(0,len(CLOUDLY_MOTTOS)-1) ]
-    return render_to_response('web.html', {'random_motto':random_motto,},)
+    return render_to_response('web3.html', {'random_motto':random_motto,},)
+
+def web_new_4(request):
+
+    print '--  web 4:'
+    random_motto = CLOUDLY_MOTTOS[ random.randint(0,len(CLOUDLY_MOTTOS)-1) ]
+    return render_to_response('web4.html', {'random_motto':random_motto,},)
 
 
 def home(request):
