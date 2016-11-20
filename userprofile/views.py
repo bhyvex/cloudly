@@ -114,7 +114,7 @@ def user_logout(request):
 
     print request.user
 
-    return HttpResponseRedirect("/goodbye/")
+    return HttpResponseRedirect("/")
 
 @login_required()
 def reset_cloud_settings(request):
