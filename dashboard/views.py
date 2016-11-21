@@ -155,6 +155,18 @@ def welcome(request):
         context_instance=RequestContext(request)
     )
 
+def about(request):
+
+    try:
+        print '-- about:', request.user
+    except:
+        print '-- about:'
+
+    ip = request.META['REMOTE_ADDR']
+    print request.user
+
+    return render_to_response('about.html', {'request':request,}, context_instance=RequestContext(request))
+
 
 def credits(request):
 
