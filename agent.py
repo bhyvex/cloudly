@@ -71,11 +71,11 @@ def setup_system():
 
     if(not 'iptables' in proc):
 
-        print 'Installing iptables..'
-
-        if(not installer):
+        if(not installer and platform.system() != "Darwin"):
             print 'Please install the iptables and re-run the agent.'
             sys.exit(0)
+
+        print 'Installing iptables..'
 
         if("emerge" in installer):
             os.system(installer+" iptables") # there is no install param in emerge
