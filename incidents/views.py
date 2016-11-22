@@ -108,7 +108,7 @@ def logs(request):
 
     servers = mongo.servers.find({'secret':secret,})
     activities = mongo.activity.find({'secret':secret,}).sort("_id",pymongo.DESCENDING)
-    activities = activities.limit(30)
+    activities = activities.limit(300)
 
     servers_ = mongo.servers.find({'secret':profile.secret},{'uuid':1,'name':1}).sort('_id',-1);
 
