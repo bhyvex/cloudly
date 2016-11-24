@@ -129,4 +129,4 @@ Screenshots & Live Demo
 
 ###### Demo
 
-This project can be currently seen on http://cloudly247.tk/demo
+This project can be currently seen on http://cloudly247.com/demo
