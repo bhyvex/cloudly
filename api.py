@@ -208,6 +208,9 @@ def ping():
     hbase.close()
 
 
+    if(not memory_usage['memory_usage']):
+		memory_usage['memory_usage'] = 0
+
     memory_usage_metrics = {
         'secret': secret,
         'agent_version': agent_version,
