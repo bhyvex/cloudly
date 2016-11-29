@@ -155,7 +155,7 @@ def _get_hostname():
 
 def _get_processes():
 
-    processes = subprocess.Popen(["ps","a","u","x"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+    processes = subprocess.Popen(["ps","aux"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
     return processes
 
 
