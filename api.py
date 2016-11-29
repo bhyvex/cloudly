@@ -95,7 +95,7 @@ def ping():
     if(data['memory_usage']):
     	memory_usage = data['memory_usage']
     else:
-        memory_usage = 0
+        memory_usage = ""
 
     disks_usage = data['disks_usage']
     last_seen = datetime.datetime.now()
