@@ -863,7 +863,17 @@ def get_system_metrics( uuid, secret ):
         network_connections = _get_network_connections()
     except: network_connections
 
-    processes = _get_processes()
+    if( platform.system() == "Darwin" ):
+
+        print "XXX TODO processes"
+
+        processes = {}
+
+        pass
+
+    else:
+
+    	processes = _get_processes()
 
 
     system_metrics_json = {
