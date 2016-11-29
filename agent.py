@@ -174,8 +174,40 @@ def _get_sys_cpu_info():
 
     if( platform.system() == "Darwin" ):
 
-		print 'XXX TODO'
-		return {'error':'xxx todo'}
+        sysctl_cpu = subprocess.Popen(['sysctl',"-n", "machdep.cpu.brand_string",], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+
+
+        example_data = {
+			'cpu0': {
+				'cpu_family': '6',
+				'bogomips': '4800.17',
+				'apicid': '0',
+				'fpu_exception': 'yes',
+				'stepping': '2',
+				'cache_alignment': '64',
+				'microcode': '0x25',
+				'physical_id': '0',
+				'clflush_size': '64',
+				'initial_apicid': '0',
+				'cpu_cores': '1',
+				'fpu': 'yes',
+				'cpu_MHz': '2400.088',
+				'siblings': '1',
+				'address_sizes': '46 bits physical, 48 bits virtual',
+				'vendor_id': 'GenuineIntel',
+				'wp': 'yes',
+				'core_id': '0',
+				'model_name': 'Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz',
+ 				'cpuid_level': '13',
+				'flags': 'fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology eagerfpu pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm xsaveopt fsgsbase bmi1 avx2 smep bmi2 erms invpcid',
+				'cache_size': '30720 KB',
+				'model': '63',
+				'processor': '0'
+			}
+		}
+
+        print 'XXX TODO', sysctl_cpu
+        return {'error':'xxx todo'}
 
     else:
 
