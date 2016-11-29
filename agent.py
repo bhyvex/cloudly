@@ -841,7 +841,15 @@ def get_system_metrics( uuid, secret ):
         memory_usage['memory_usage'] = memory_usage_data
         memory_usage['service_report'] = memory_usage_service_report
 
-        disks_usage = {}
+    disks_usage = {}
+
+    if( platform.system() == "Darwin" ):
+
+        print "XXX TODO disks_usage"
+        pass
+
+    else:
+
         disks_usage_data, disks_usage_service_report = _get_disks_usage()
         disks_usage['disks_usage'] = disks_usage_data
         disks_usage['service_report'] = disks_usage_service_report
