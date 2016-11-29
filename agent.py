@@ -829,14 +829,23 @@ def get_system_metrics( uuid, secret ):
     cpu_usage['service_report'] = cpu_usage_service_report
 
     memory_usage = {}
-    memory_usage_data, memory_usage_service_report = _get_memory_usage()
-    memory_usage['memory_usage'] = memory_usage_data
-    memory_usage['service_report'] = memory_usage_service_report
 
-    disks_usage = {}
-    disks_usage_data, disks_usage_service_report = _get_disks_usage()
-    disks_usage['disks_usage'] = disks_usage_data
-    disks_usage['service_report'] = disks_usage_service_report
+    if( platform.system() == "Darwin" ):
+
+        print "XXX TODO memory_usage"
+        pass
+
+    else:
+
+        memory_usage_data, memory_usage_service_report = _get_memory_usage()
+        memory_usage['memory_usage'] = memory_usage_data
+        memory_usage['service_report'] = memory_usage_service_report
+
+        disks_usage = {}
+        disks_usage_data, disks_usage_service_report = _get_disks_usage()
+        disks_usage['disks_usage'] = disks_usage_data
+        disks_usage['service_report'] = disks_usage_service_report
+
 
     try:
         networking = _get_networking_stats()
