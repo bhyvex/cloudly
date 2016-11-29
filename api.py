@@ -214,7 +214,8 @@ def ping():
 
 
     if(not memory_usage['memory_usage']):
-		memory_usage['memory_usage'] = 0
+		#memory_usage['memory_usage'] =
+        pass
 
     memory_usage_metrics = {
         'secret': secret,
