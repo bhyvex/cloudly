@@ -172,22 +172,30 @@ def _get_sys_cpu_info():
     cpu = 0
     cpu_info = {}
 
-    for line in open('/proc/cpuinfo').readlines():
+    if( platform.system() == "Darwin" ):
 
-        element = re.findall(r"^(.+)\s+[:][ ](.*)$", line)
+		print 'XXX TODO'
+		return {'error':'xxx todo'}
 
-        if(element):
+    else:
 
-            key = element[0][0].replace('\t','').replace(' ','_')
-            value = element[0][1]
+	    for line in open('/proc/cpuinfo').readlines():
 
-            try:
-                cpu_info['cpu'+str(cpu)][key] = value
-            except:
-                cpu_info['cpu'+str(cpu)] = {}
-                cpu_info['cpu'+str(cpu)][key] = value
+	        element = re.findall(r"^(.+)\s+[:][ ](.*)$", line)
 
-        if(len(line)==1): cpu += 1
+	        if(element):
+
+	            key = element[0][0].replace('\t','').replace(' ','_')
+	            value = element[0][1]
+
+	            try:
+	                cpu_info['cpu'+str(cpu)][key] = value
+	            except:
+	                cpu_info['cpu'+str(cpu)] = {}
+	                cpu_info['cpu'+str(cpu)][key] = value
+
+	        if(len(line)==1): cpu += 1
+
 
     return cpu_info
 
