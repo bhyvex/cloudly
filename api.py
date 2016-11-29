@@ -105,8 +105,7 @@ def ping():
     processes = processes.replace('  ',' ')
     processes = processes.split('\n')
 
-    try:
-        server = {
+    server = {
             'secret': secret,
             'agent_version': agent_version,
             'uuid': uuid,
@@ -124,11 +123,11 @@ def ping():
             'disks_usage': disks_usage['disks_usage'],
             'last_seen': last_seen,
             'network_connections': network_connections,
-        }
-    except:
-        error = "ERROR - outdated monitor agent!"
-        print error
-        return (error, 401)
+       }
+    #except:
+    #    error = "ERROR - outdated monitor agent!"
+    #    print error
+    #    return (error, 401)
 
     print 'API query from agent version', secret,   str(agent_version), uuid, 'IP', ip_remote+'/'+ ip, 'uptime '+uptime
 
