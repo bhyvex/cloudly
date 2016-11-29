@@ -177,7 +177,7 @@ def _get_sys_cpu_info():
         sysctl_cpu = subprocess.Popen(['sysctl',"-n", "machdep.cpu.brand_string",], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 
         example_data = {
-			'cpu0': {
+            'cpu0': {
 				'cpu_family': '6',
 				'bogomips': '4800.17',
 				'apicid': '0',
@@ -202,14 +202,14 @@ def _get_sys_cpu_info():
 				'cache_size': '30720 KB',
 				'model': '63',
 				'processor': '0'
-			}
-		}
+           }
+        }
 
-		cpu_info = {
-			'cpu0': {
-				'model_name': sysctl_cpu,
-			}
-		}
+        cpu_info = {
+            'cpu0': {
+                'model_name': sysctl_cpu,
+            }
+        }
 
 
     else:
@@ -239,13 +239,19 @@ def _get_sys_cpu_virtualization():
 
     virtualization_support = False
 
-    cpuinfo = open('/proc/cpuinfo','rt').readlines()
-    for line in cpuinfo:
+    if( not platform.system() == "Darwin" ):
 
-        if("vmx" in line):
-            virtualization_support = True
-        if("svm" in line):
-            virtualization_support = True
+	    cpuinfo = open('/proc/cpuinfo','rt').readlines()
+	    for line in cpuinfo:
+
+	        if("vmx" in line):
+	            virtualization_support = True
+	        if("svm" in line):
+	            virtualization_support = True
+
+    else:
+	            virtualization_support = True
+
 
     return virtualization_support
 
