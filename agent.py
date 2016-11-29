@@ -176,7 +176,6 @@ def _get_sys_cpu_info():
 
         sysctl_cpu = subprocess.Popen(['sysctl',"-n", "machdep.cpu.brand_string",], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 
-
         example_data = {
 			'cpu0': {
 				'cpu_family': '6',
@@ -206,8 +205,12 @@ def _get_sys_cpu_info():
 			}
 		}
 
-        print 'XXX TODO', sysctl_cpu
-        return {'error':'xxx todo'}
+		cpu_info = {
+			'cpu0': {
+				'model_name': sysctl_cpu,
+			}
+		}
+
 
     else:
 
