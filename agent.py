@@ -867,7 +867,7 @@ def get_system_metrics( uuid, secret ):
 
         print "XXX TODO processes"
 
-        processes = ""
+        processes = {}
 
         pass
 
