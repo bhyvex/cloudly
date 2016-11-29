@@ -91,7 +91,12 @@ def ping():
     cpu_usage = data['cpu_usage']
     cpu_info = data['cpu_info']
     cpu_virtualization = data['cpu_virtualization']
-    memory_usage = data['memory_usage']
+
+    if(data['memory_usage']):
+    	memory_usage = data['memory_usage']
+    else:
+        memory_usage = 0
+
     disks_usage = data['disks_usage']
     last_seen = datetime.datetime.now()
     hostname = data['hostname']
