@@ -69,9 +69,10 @@ def setup_system():
     proc = subprocess.Popen(['which','iptables'], stdout=subprocess.PIPE, close_fds=True)
     proc = proc.communicate()[0]
 
-    if(not 'iptables' in proc):
 
-        if(not installer and platform.system() != "Darwin"):
+    if(not 'iptables' in proc and platform.system() != "Darwin"):
+
+        if(not installer):
             print 'Please install the iptables and re-run the agent.'
             sys.exit(0)
 
@@ -570,7 +571,7 @@ def _get_disks_usage():
 def _get_networking_stats():
 
     try:
-        proc = subprocess.Popen(['/sbin/iptables','-L','-vxn'], stdout=subprocess.PIPE, close_fds=True)
+        proc = subprocess.Popen(['/sbin/','-L','-vxn'], stdout=subprocess.PIPE, close_fds=True)
     except:
         proc = subprocess.Popen(['iptables','-L','-vxn'], stdout=subprocess.PIPE, close_fds=True)
 
