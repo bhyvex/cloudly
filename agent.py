@@ -538,12 +538,39 @@ def _get_disks_usage():
 
     if( platform.system() == "Darwin" ):
 
-        print "XXX TODO disks_usage"
-        df = """Filesystem    512-blocks      Used Available Capacity  iused    ifree %iused  Mounted on
-/dev/disk1     234573824 149932856  84128968    65% 18805605 10516121   64%   /
-devfs                407       407         0   100%      704        0  100%   /dev
-map -hosts             0         0         0   100%        0        0  100%   /net
-map auto_home          0         0         0   100%        0        0  100%   /home"""
+        disks_usage = []
+        ps = subprocess.Popen(['df',], stdout=subprocess.PIPE).communicate()[0]
+
+        first = True
+        for line in ps.split('\n'):
+
+            if(first or not line):
+                first = False
+                continue
+
+            if("udev" in line or "rmpfs" in line or "cgmfs" in line or "tmpfs" in line or "map" in line or "devfs" in line):
+                continue
+
+            disk = []
+            disks_usage.append(disk)
+
+            regexp = re.findall(r'(\b[^\s]+\b)', line)
+
+            partition = "/"+regexp[0]
+            disk_total = regexp[1]
+            disk_used = regexp[2]
+            disk_free = regexp[3]
+            disk_usage = regexp[:-1]
+            mount_point = "/"
+
+            disk.append(partition)
+            disk.append(disk_total)
+            disk.append(disk_used)
+            disk.append(disk_free)
+            disk.append(disk_usage)
+            disk.append(mount_point)
+
+            break
 
     else:
 
@@ -598,7 +625,7 @@ map auto_home          0         0         0   100%        0        0  100%   /h
             disks_usage_.append(disk)
         disks_usage = disks_usage_
 
-    print 'disks_usage', disks_usage
+
 
     overall_status = "UNKNOWN"
     messages = []
