@@ -403,20 +403,56 @@ def _get_memory_usage():
     memory_free = ""
     memory_total = ""
 
-    memory_info = subprocess.Popen(["cat","/proc/meminfo"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 
-    for element in memory_info.split('\n'):
-        if("MemTotal" in element): memory_total = element
-        if("MemFree" in element): memory_free = element
+    if platform.system() == 'Darwin':
 
-    try:
-        memory_total = long(memory_total.split(' ')[-2:-1][0]) * 1024
-        memory_free = long(memory_free.split(' ')[-2:-1][0]) * 1024
-        memory_used = long(memory_total-memory_free)
-    except:
-        memory_total = -1
-        memory_free = -1
-        memory_used = -1
+        ps = subprocess.Popen(['ps', '-caxm', '-orss,comm'], stdout=subprocess.PIPE).communicate()[0]
+        vm = subprocess.Popen(['vm_stat'], stdout=subprocess.PIPE).communicate()[0]
+
+        processLines = ps.split('\n')
+        sep = re.compile('[\s]+')
+        rssTotal = 0 # kB
+        for row in range(1,len(processLines)):
+            rowText = processLines[row].strip()
+            rowElements = sep.split(rowText)
+            try:
+                rss = float(rowElements[0]) * 1024
+            except:
+                rss = 0
+            rssTotal += rss
+
+        vmLines = vm.split('\n')
+        sep = re.compile(':[\s]+')
+        vmStats = {}
+        for row in range(1,len(vmLines)-2):
+            rowText = vmLines[row].strip()
+            rowElements = sep.split(rowText)
+            vmStats[(rowElements[0])] = int(rowElements[1].strip('\.')) * 4096
+
+        print 'Wired Memory:\t\t%d MB' % ( vmStats["Pages wired down"]/1024/1024 )
+        print 'Active Memory:\t\t%d MB' % ( vmStats["Pages active"]/1024/1024 )
+        print 'Inactive Memory:\t%d MB' % ( vmStats["Pages inactive"]/1024/1024 )
+        print 'Free Memory:\t\t%d MB' % ( vmStats["Pages free"]/1024/1024 )
+        print 'Real Mem Total (ps):\t%.3f MB' % ( rssTotal/1024/1024 )
+
+
+
+    else:
+
+        memory_info = subprocess.Popen(["cat","/proc/meminfo"], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+
+        for element in memory_info.split('\n'):
+            if("MemTotal" in element): memory_total = element
+            if("MemFree" in element): memory_free = element
+
+        try:
+            memory_total = long(memory_total.split(' ')[-2:-1][0]) * 1024
+            memory_free = long(memory_free.split(' ')[-2:-1][0]) * 1024
+            memory_used = long(memory_total-memory_free)
+        except:
+            memory_total = -1
+            memory_free = -1
+            memory_used = -1
 
     memory_usage = {
         'memory_total': memory_total,
@@ -829,17 +865,9 @@ def get_system_metrics( uuid, secret ):
     cpu_usage['service_report'] = cpu_usage_service_report
 
     memory_usage = {}
-
-    if( platform.system() == "Darwin" ):
-
-        print "XXX TODO memory_usage"
-        pass
-
-    else:
-
-        memory_usage_data, memory_usage_service_report = _get_memory_usage()
-        memory_usage['memory_usage'] = memory_usage_data
-        memory_usage['service_report'] = memory_usage_service_report
+    memory_usage_data, memory_usage_service_report = _get_memory_usage()
+    memory_usage['memory_usage'] = memory_usage_data
+    memory_usage['service_report'] = memory_usage_service_report
 
     disks_usage = {}
 
