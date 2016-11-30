@@ -539,7 +539,7 @@ def _get_disks_usage():
     if( platform.system() == "Darwin" ):
 
         print "XXX TODO disks_usage"
-        df = ""
+        df = "/dev/disk1     234573824 149930832  84130992    65% 18805352 10516374   64%   /"
 
     else:
 
