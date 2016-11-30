@@ -557,9 +557,9 @@ def _get_disks_usage():
             regexp = re.findall(r'(\b[^\s]+\b)', line)
 
             partition = "/"+regexp[0]
-            disk_total = regexp[1]
-            disk_used = regexp[2]
-            disk_free = regexp[3]
+            disk_total = int(regexp[1])*512
+            disk_used = int(regexp[2])*512
+            disk_free = int(regexp[3])*512
             disk_usage = regexp[len(regexp)-1]
             mount_point = "/"
 
