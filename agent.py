@@ -406,6 +406,8 @@ def _get_memory_usage():
 
     if platform.system() == 'Darwin':
 
+        print '*'*1000
+
         ps = subprocess.Popen(['ps', '-caxm', '-orss,comm'], stdout=subprocess.PIPE).communicate()[0]
         vm = subprocess.Popen(['vm_stat'], stdout=subprocess.PIPE).communicate()[0]
 
