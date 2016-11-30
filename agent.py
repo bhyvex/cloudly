@@ -539,7 +539,11 @@ def _get_disks_usage():
     if( platform.system() == "Darwin" ):
 
         print "XXX TODO disks_usage"
-        df = "/dev/disk1     234573824 149930832  84130992    65% 18805352 10516374   64%   /"
+        df = """Filesystem    512-blocks      Used Available Capacity  iused    ifree %iused  Mounted on
+/dev/disk1     234573824 149932856  84128968    65% 18805605 10516121   64%   /
+devfs                407       407         0   100%      704        0  100%   /dev
+map -hosts             0         0         0   100%        0        0  100%   /net
+map auto_home          0         0         0   100%        0        0  100%   /home"""
 
     else:
 
