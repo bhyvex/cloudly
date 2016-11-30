@@ -446,7 +446,7 @@ def _get_memory_usage():
     }
 
 
-    if platform.system() == 'Darwin':
+    if not platform.system() == 'Darwin':
 
         mem_info = subprocess.Popen(['free',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 
