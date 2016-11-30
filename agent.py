@@ -445,19 +445,23 @@ def _get_memory_usage():
         'swap_used_percentage': 0,
     }
 
-    mem_info = subprocess.Popen(['free',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
 
-    for line in mem_info.split('\n'):
+    if platform.system() == 'Darwin':
 
-        if('swap' in line.lower()):
-            mem_info = re.findall("(\d+)", line)
-            memory_usage['swap_total'] = long(mem_info[0]) * 1024
-            memory_usage['swap_used'] = long(mem_info[1]) * 1024
-            memory_usage['swap_free'] = long(mem_info[2]) * 1024
-            try:
-                memory_usage['swap_used_percentage'] = round(float(mem_info[1])/float(mem_info[0])*100,2)
-            except:
-                memory_usage['swap_used_percentage'] = 0
+        mem_info = subprocess.Popen(['free',], stdout=subprocess.PIPE, close_fds=True).communicate()[0]
+
+        for line in mem_info.split('\n'):
+
+            if('swap' in line.lower()):
+                mem_info = re.findall("(\d+)", line)
+                memory_usage['swap_total'] = long(mem_info[0]) * 1024
+                memory_usage['swap_used'] = long(mem_info[1]) * 1024
+                memory_usage['swap_free'] = long(mem_info[2]) * 1024
+                try:
+                    memory_usage['swap_used_percentage'] = round(float(mem_info[1])/float(mem_info[0])*100,2)
+                except:
+                    memory_usage['swap_used_percentage'] = 0
+
 
     status = 'UNKNOWN'
     message = ''
