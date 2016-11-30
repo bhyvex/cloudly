@@ -536,8 +536,16 @@ def _get_disks_usage():
         'service': 'system_disks',
     }
 
-    proc = subprocess.Popen(['df', '-B 1'], stdout=subprocess.PIPE, close_fds=True)
-    df = proc.communicate()[0]
+    if( platform.system() == "Darwin" ):
+
+        print "XXX TODO disks_usage"
+        df = ""
+
+    else:
+
+        proc = subprocess.Popen(['df', '-B 1'], stdout=subprocess.PIPE, close_fds=True)
+        df = proc.communicate()[0]
+
 
     try:
         volumes = df.split('\n')
@@ -854,19 +862,9 @@ def get_system_metrics( uuid, secret ):
     memory_usage['service_report'] = memory_usage_service_report
 
     disks_usage = {}
-
-    if( platform.system() == "Darwin" ):
-
-        disks_usage['disks_usage'] = []
-
-        print "XXX TODO disks_usage"
-        pass
-
-    else:
-
-        disks_usage_data, disks_usage_service_report = _get_disks_usage()
-        disks_usage['disks_usage'] = disks_usage_data
-        disks_usage['service_report'] = disks_usage_service_report
+    disks_usage_data, disks_usage_service_report = _get_disks_usage()
+    disks_usage['disks_usage'] = disks_usage_data
+    disks_usage['service_report'] = disks_usage_service_report
 
 
     try:
