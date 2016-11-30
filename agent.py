@@ -536,7 +536,8 @@ def _get_disks_usage():
         'service': 'system_disks',
     }
 
-    proc = subprocess.Popen(['df', '-B 1'], stdout=subprocess.PIPE, close_fds=True)
+    #proc = subprocess.Popen(['df', '-B 1'], stdout=subprocess.PIPE, close_fds=True)
+    proc = subprocess.Popen(['df'], stdout=subprocess.PIPE, close_fds=True)
     df = proc.communicate()[0]
 
     try:
