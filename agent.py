@@ -551,52 +551,54 @@ map auto_home          0         0         0   100%        0        0  100%   /h
         df = proc.communicate()[0]
 
 
-    try:
-        volumes = df.split('\n')
-        volumes.pop(0)
-        volumes.pop()
-    except: return {"error":True,"error_description":"_get_disks_usage"}
+        try:
+            volumes = df.split('\n')
+            volumes.pop(0)
+            volumes.pop()
+        except: return {"error":True,"error_description":"_get_disks_usage"}
 
-    regexp = re.compile(r'([0-9]+)')
-    previousVolume = None
-    volumeCount = 0
-    disks_usage = []
+        regexp = re.compile(r'([0-9]+)')
+        previousVolume = None
+        volumeCount = 0
+        disks_usage = []
 
-    for volume in volumes:
+        for volume in volumes:
 
-        volume = volume.split(None, 10)
+            volume = volume.split(None, 10)
 
-        if len(volume) == 1:
-            previousVolume = volume[0]
-            continue
+            if len(volume) == 1:
+                previousVolume = volume[0]
+                continue
 
-        if previousVolume != None:
-            volume.insert(0, previousVolume)
-            previousVolume = None
+            if previousVolume != None:
+                volume.insert(0, previousVolume)
+                previousVolume = None
 
-        volumeCount = volumeCount + 1
+            volumeCount = volumeCount + 1
 
-        if regexp.match(volume[1]) == None:
-            pass
-
-        else:
-            try:
-                volume[2] = int(volume[2]) # Used
-                volume[3] = int(volume[3]) # Available
-            except IndexError:
-                pass
-            except KeyError:
+            if regexp.match(volume[1]) == None:
                 pass
 
-            disks_usage.append(volume)
+            else:
+                try:
+                    volume[2] = int(volume[2]) # Used
+                    volume[3] = int(volume[3]) # Available
+                except IndexError:
+                    pass
+                except KeyError:
+                    pass
+
+                disks_usage.append(volume)
 
 
-    disks_usage_  = []
-    for disk in disks_usage:
-        if(disk[0]=="udev" or disk[0]=="rmpfs" or disk[0]=="cgmfs" or disk[0]=="tmpfs"):
-            continue
-        disks_usage_.append(disk)
-    disks_usage = disks_usage_
+        disks_usage_  = []
+        for disk in disks_usage:
+            if(disk[0]=="udev" or disk[0]=="rmpfs" or disk[0]=="cgmfs" or disk[0]=="tmpfs"):
+                continue
+            disks_usage_.append(disk)
+        disks_usage = disks_usage_
+
+    print 'disks_usage', disks_usage
 
     overall_status = "UNKNOWN"
     messages = []
