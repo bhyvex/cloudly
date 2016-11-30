@@ -560,7 +560,7 @@ def _get_disks_usage():
             disk_total = regexp[1]
             disk_used = regexp[2]
             disk_free = regexp[3]
-            disk_usage = regexp[:-1]
+            disk_usage = regexp[len(regexp)-1]
             mount_point = "/"
 
             disk.append(partition)
