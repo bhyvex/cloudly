@@ -264,7 +264,7 @@ def auth(request):
             return HttpResponseRedirect("/")
 
 
-    return render_to_response('login.html',{'err':err},)
+    return render_to_response('login.html',{'err':err},context_instance=RequestContext(request))
 
 
 @login_required()
