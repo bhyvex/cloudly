@@ -464,6 +464,7 @@ def thanks(request, redirect_url=settings.LOGIN_REDIRECT_URL):
         profile = userprofile()
         profile.user = user
         profile.name = authorized_tokens['screen_name']
+        profile.secret = secret
         profile.agent_hash = agent_hash
         profile.oauth_token = authorized_tokens['oauth_token']
         profile.oauth_secret = authorized_tokens['oauth_token_secret']
