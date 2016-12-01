@@ -1,3 +1,6 @@
+{% load cloud_extras %}
+{% load tz %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,6 +55,9 @@
 					</div>
 
 					<form action="/login/" method='POST' class='form-validate' id="login">{% csrf_token %}
+
+                        {% csrf_token %}
+
 						<fieldset class="col-sm-12">
 
 							{% if err %}
