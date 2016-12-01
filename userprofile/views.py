@@ -116,6 +116,7 @@ def user_logout(request):
 
     return HttpResponseRedirect("/goodbye/")
 
+
 @login_required()
 def reset_cloud_settings(request):
 
@@ -477,6 +478,7 @@ def thanks(request, redirect_url=settings.LOGIN_REDIRECT_URL):
     redirect_url = request.session.get('next_url', redirect_url)
 
     return HttpResponseRedirect("/")
+
 
 def user_timeline(request):
 
