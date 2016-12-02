@@ -642,9 +642,6 @@ def _get_disks_usage():
         disk_usage = disk[4]
         mount_point = disk[5]
 
-        print 'debug --'
-        print disk_total, disk_used, disk_free, disk_usage, mount_point
-
 
         if(int(disk[4].replace('%','')) < disks_thresholds['WARNING']['min_value']):
             status = 'OK'
