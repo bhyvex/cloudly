@@ -265,10 +265,8 @@ def server_view(request, hwaddr):
     #for i in disks_usage: disks_usage_.append(i)
     disks_usage = disks_usage_
 
-    networking_ = []
-    #networking = mongo.networking.find({'uuid':uuid,}).sort('_id',-1).limit(60)
-    #for i in networking: networking_.append(i)
-    networking = networking_
+    networking = False
+    # XXX test if there are any data on the networking
 
     mem_usage_ = []
     #mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
