@@ -379,6 +379,11 @@ def server_view(request, hwaddr):
         is_outdated_agent_version = True
 
 
+    print 'debug'
+    print '*'*1000
+    print 'networking', networking
+
+
     return render_to_response(
         'server_detail.html',
         {
