@@ -1315,6 +1315,9 @@ def test(request):
 
     print '--  devel test:'
 
+    notifs = active_service_statuses.find({"$and":[{"secret": profile.secret,"server_id":server['uuid']},{"current_overall_status":{"$ne":"OK"}}]})
+    server_notifs_count = notifs.count()
+
 
     return render_to_response( 'test.html',
         {
