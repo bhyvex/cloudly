@@ -266,7 +266,18 @@ def server_view(request, hwaddr):
     disks_usage = disks_usage_
 
     networking = False
-    # XXX test if there are any data on the networking
+
+    params = {'start':'3m-ago','m':'avg:3s-avg:' + hwaddr + '.sys.network'}
+    graphs_mixed_respose = []
+    params['m'] += "{mm=input_accept_packets}"
+
+    tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
+    tsdb_response = json.loads(tsdb.text)
+
+    try:
+        tsdb_response = tsdb_response[0]['dps']
+        networking = True
+    except: tsdb_response = []
 
     mem_usage_ = []
     #mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
@@ -375,11 +386,6 @@ def server_view(request, hwaddr):
     is_outdated_agent_version = False
     if(server['agent_version'] != AGENT_VERSION_CURRENT):
         is_outdated_agent_version = True
-
-
-    print 'debug'
-    print '*'*1000
-    print 'networking', networking
 
 
     return render_to_response(
