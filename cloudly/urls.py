@@ -63,6 +63,7 @@ urlpatterns = patterns('',
     url(r'^web/4/$', 'dashboard.views.web_new_3', name='web_new_4'),
     #url(r'^temp/$', 'dashboard.views.temp', name='temp'),
     url(r'^support/$', 'dashboard.views.support', name='support'),
+    url(r'^test/$', 'vms.views.test', name='test'),
 )
 
 
