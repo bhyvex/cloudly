@@ -620,56 +620,7 @@
         </div>
     </div><!--/row-->
 
-    <div id="services_discovery"
-        class="row"
-        {% if server_status|lower = "offline" %}
-            style="display: none;"
-        {% endif %}
-        >
-        <div class="col-xs-12">
-            <div id="serviceDiscovery" class="panel panel-default">
-                <div class="panel-heading">
-                    <h2><i class="fa fa-skyatlas"></i>Services Discovery</h2>
-                    <div class="panel-actions">
-                        <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-                        <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-                        <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
-                    </div>
-                </div>
-
-                <div class="panel-body">
-                  {% comment %}
-                      <p>
-                      {% for tag in server|dict_get:"tags"|dict_get:"services_tags" %}
-                          {% if tag|dict_get:0 != "www" and tag|dict_get:0 != "database" %}
-                              <a href="#">{{tag|dict_get:0}}</a> - {{tag|dict_get:1}} <a href="#">enable monitoring</a><br/>
-                          {% endif %}
-                      {% endfor %}
-
-                      {% for tag in server|dict_get:"tags"|dict_get:"datacenter_tags" %}
-                          {% if tag != "VM" and tag != "Metal" %}
-                              <a href="#">{{tag|dict_get:0}}</a> - {{tag|dict_get:1}} <a href="#">enable monitoring</a><br/>
-                          {% endif %}
-                      {% endfor %}
-
-                      {% for tag in server|dict_get:"tags"|dict_get:"custom_tags" %}
-                      <a href="#">{{tag|dict_get:0}}</a> - {{tag|dict_get:1}} <a href="#">enable monitoring</a><br/>
-                      {% endfor %}
-                      </p>
-                  {% endcomment %}
-
-                  <p>
-                    Coming soon..
-                  </p>
-
-                </div>
-
-            </div>
-        </div>
-    </div><!--/row-->
-
-
-
+{% comment %}
     <div id="alertingSettings"
         class="row"
         {% if server_status|lower = "offline" %}
@@ -756,6 +707,9 @@
                 </div>
             </div>
         </div>
+
+    {% endcomment %}
+
 
 
     <div id="recent_server_activities"
