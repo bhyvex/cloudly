@@ -1314,4 +1314,9 @@ def ajax_virtual_machines_box(request):
 def test(request):
 
     print '--  devel test:'
-    return render_to_response('test.html', {'test':True,},context_instance=RequestContext(request))
+
+
+    return render_to_response( 'test.html',
+        {
+            'test':True,
+        },context_instance=RequestContext(request))
