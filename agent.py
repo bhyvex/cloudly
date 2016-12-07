@@ -411,8 +411,17 @@ def _get_memory_usage():
         for line in ps.split('\n'):
             if('PhysMem' in line):
 
-                memory_used = int(line.split(' ')[1].replace('M',''))*1024*1000
-                memory_free = int(line.split(' ')[-2].replace('M',''))*1024*1000
+                if('M' in line.split(' ')[1]):
+                    memory_used = int(line.split(' ')[1].replace('M',''))*1024*1000
+                if('K' in line.split(' ')[1]):
+                    memory_used = int(line.split(' ')[1].replace('K',''))*1024
+
+                if('M' in line.split(' ')[1]):
+                    memory_free = int(line.split(' ')[-2].replace('M',''))*1024*1000
+                if('K' in line.split(' ')[1]):
+                    memory_free = int(line.split(' ')[-2].replace('K',''))*1024
+
+
                 memory_total = memory_used + memory_free
 
 
