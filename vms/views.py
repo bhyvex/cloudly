@@ -1312,7 +1312,7 @@ def test(request):
 
     print '--  devel test:'
 
-    params = {'start':'3m-ago','m':'avg:3s-avg:06-2e-9d-cf-83-5b.sys.network'}
+    params = {'start':'3m-ago','m':'avg:3s-avg:20-c9-d0-87-8c-5f.sys.network'}
     params['m'] += "{mm=input_accept_packets}"
     tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
     sys_network = json.loads(tsdb.text)
