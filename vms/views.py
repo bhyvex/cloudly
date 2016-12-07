@@ -406,6 +406,7 @@ def server_view(request, hwaddr):
             'reduced_disks':reduced_disks,
             'mem_usage':mem_usage,
             'loadavg':loadavg,
+            'disks':disks,
             'networking':networking,
             'historical_service_statuses':historical_service_statuses,
             'activity':activity,
