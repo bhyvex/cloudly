@@ -1314,13 +1314,18 @@ def test(request):
 
     params = {'start':'3m-ago','m':'avg:3s-avg:06-2e-9d-cf-83-5b.sys.network'}
     params['m'] += "{mm=input_accept_packets}"
-
     tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
-    tsdb_response = json.loads(tsdb.text)
+    sys_network = json.loads(tsdb.text)
+
+    params = {'start':'3m-ago','m':'avg:3s-avg:06-2e-9d-cf-83-5b.sys.disks'}
+    params['m'] += "{mm=input_accept_packets}"
+    tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
+    disks = json.loads(tsdb.text)
 
 
     return render_to_response( 'test.html',
         {
             'test':True,
-            'tsdb_response':tsdb_response,
+            'sys_network':sys_network,
+            'disks':disks,
         },context_instance=RequestContext(request))
