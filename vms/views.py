@@ -267,7 +267,7 @@ def server_view(request, hwaddr):
 
     networking = False
 
-    params = {'start':'3m-ago','m':'avg:3s-avg:' + hwaddr + '.sys.network'}
+    params = {'start':'3m-ago','m':'avg:3s-avg:' + hwaddr.replace(':','-') + '.sys.network'}
     params['m'] += "{mm=input_accept_packets}"
 
     tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
