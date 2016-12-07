@@ -370,46 +370,48 @@
         </div><!--/col-->
     </div><!--/row-->
 
-    <div id="networking"
-        class="row"
-        {% if server_status|lower = "offline" %}
-            style="display: none;"
-        {% endif %}
-        >
-        <div class="col-xs-12">
-            <div id="networkingGraphs" class="panel panel-default">
-                <div class="panel-heading">
-                    <h2><i class="fa fa-globe"></i>Networking</h2>
-                    <div class="panel-actions">
-                        <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-                        <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-                        <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+    {% if networking %}
+        <div id="networking"
+            class="row"
+            {% if server_status|lower = "offline" %}
+                style="display: none;"
+            {% endif %}
+            >
+            <div class="col-xs-12">
+                <div id="networkingGraphs" class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2><i class="fa fa-globe"></i>Networking</h2>
+                        <div class="panel-actions">
+                            <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+                            <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                            <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="panel-body">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Inbound Traffic
-                            <ul id="inbound_traffic_interval" class="nav nav-tabs nav-interval">
-                                {% include "partials/chart_interval.html" %}
-                            </ul>
+                    <div class="panel-body">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Inbound Traffic
+                                <ul id="inbound_traffic_interval" class="nav nav-tabs nav-interval">
+                                    {% include "partials/chart_interval.html" %}
+                                </ul>
+                            </div>
+                            <div id="inbound_traffic"></div>
                         </div>
-                        <div id="inbound_traffic"></div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Outbound Traffic
-                            <ul id="outbound_traffic_interval" class="nav nav-tabs nav-interval">
-                                {% include "partials/chart_interval.html" %}
-                            </ul>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Outbound Traffic
+                                <ul id="outbound_traffic_interval" class="nav nav-tabs nav-interval">
+                                    {% include "partials/chart_interval.html" %}
+                                </ul>
+                            </div>
+                            <div id="outbound_traffic"></div>
                         </div>
-                        <div id="outbound_traffic"></div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div><!--/row-->
+        </div><!--/row-->
+    {% endif %}
 
     <div id="network_sessions"
         class="row"
