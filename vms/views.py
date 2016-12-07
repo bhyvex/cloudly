@@ -263,9 +263,9 @@ def server_view(request, hwaddr):
     networking = False
 
     params = {'start':'3m-ago','m':'avg:3s-avg:' + hwaddr.replace(':','-') + '.sys.network'}
-    params['m'] += "{mm=input_accept_packets}"
     tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
     tsdb_response = json.loads(tsdb.text)
+
     if(not "error" in tsdb_response and tsdb_response): networking = tsdb_response
 
 
@@ -274,6 +274,7 @@ def server_view(request, hwaddr):
     params = {'start':'3m-ago','m':'avg:3s-avg:' + hwaddr.replace(':','-') + '.sys.disks'}
     tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
     tsdb_response = json.loads(tsdb.text)
+
     if(not "error" in tsdb_response and tsdb_response): disks = tsdb_response
 
 
