@@ -260,16 +260,13 @@ def server_view(request, hwaddr):
         return HttpResponse("access denied")
 
 
-
     networking = False
 
     params = {'start':'3m-ago','m':'avg:3s-avg:' + hwaddr.replace(':','-') + '.sys.network'}
     params['m'] += "{mm=input_accept_packets}"
     tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
     tsdb_response = json.loads(tsdb.text)
-
-    if(not "error" in tsdb_response and tsdb_response):
-        networking = True
+    if(not "error" in tsdb_response and tsdb_response): networking = tsdb_response
 
 
     disks = False
@@ -277,13 +274,7 @@ def server_view(request, hwaddr):
     params = {'start':'3m-ago','m':'avg:3s-avg:' + hwaddr.replace(':','-') + '.sys.disks'}
     tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
     tsdb_response = json.loads(tsdb.text)
-
-    if(not "error" in tsdb_response and tsdb_response):
-        disks = True
-
-    print '*'*1500
-    print 'disks', disks
-    print 'tsdb_response', tsdb_response
+    if(not "error" in tsdb_response and tsdb_response): disks = tsdb_response
 
 
     mem_usage_ = []
