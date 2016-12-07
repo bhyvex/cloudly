@@ -493,7 +493,6 @@
         </div>
     </div><!--/row-->
 
-    {% if disks %}
         <div id="disks"
             class="row"
             {% if server_status|lower = "offline" %}
@@ -564,6 +563,7 @@
 
                     <hr/>
 
+                    {% comment %}
                         <b>disks_usage graphs debug</b>
                         <br/>
                         {% for disks_metrics in disks_usage %}
@@ -579,13 +579,14 @@
                             {% endfor %}
                             <hr/>
                         {% endfor %}
+                    {% endcomment %}
 
                     </div>
 
                 </div>
             </div>
         </div><!--/row-->
-    {% endif %}
+
 
     <div id="disk_graphs"
         class="row"
@@ -616,6 +617,9 @@
                             <div id="{{disk|convert_disk_name}}"></div>
                         </div>
                     {% endfor %}
+
+                    <br/>
+                    debug {{disks}}
                 </div>
 
             </div>
