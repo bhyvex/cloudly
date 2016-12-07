@@ -493,99 +493,101 @@
         </div>
     </div><!--/row-->
 
-    <div id="disks"
-        class="row"
-        {% if server_status|lower = "offline" %}
-            style="display: none;"
-        {% endif %}
-        >
-        <div class="col-xs-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h2><i class="fa fa-database"></i>Disks</h2>
-                    <div class="panel-actions">
-                        <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
-                        <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-                        <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+    {% if disks %}
+        <div id="disks"
+            class="row"
+            {% if server_status|lower = "offline" %}
+                style="display: none;"
+            {% endif %}
+            >
+            <div class="col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2><i class="fa fa-database"></i>Disks</h2>
+                        <div class="panel-actions">
+                            <a href="#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+                            <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                            <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="panel-body">
+                    <div class="panel-body">
 
-                    <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Filesystem</th>
-                            <th>Size</th>
-                            <th>Used</th>
-                            <th>Avail</th>
-                            <th>Usage</th>
-                            <th>Mounted on</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for disk in server|dict_get:"disks_usage" %}
-                        <tr>
-                            <td>
-                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}<font color="red">{% endif %}
-                                    {{disk|dict_get:0}}
-                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}</font>{% endif %}
-                            </td>
-                            <td>
-                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}<font color="red">{% endif %}
-                                    {{disk|dict_get:1|filesizeformat}}
-                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}</font>{% endif %}
-                            </td>
-                            <td>
-                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}<font color="red">{% endif %}
-                                    {{disk|dict_get:2|filesizeformat}}
-                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}</font>{% endif %}
-                            </td>
-                            <td>
-                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}<font color="red">{% endif %}
-                                    {{disk|dict_get:3|filesizeformat}}
-                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}</font>{% endif %}
-                            </td>
-                            <td>
-                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}<font color="red">{% endif %}
-                                    {{disk|dict_get:4}}
-                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}</font>{% endif %}
-                            </td>
-                            <td>
-                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}<font color="red">{% endif %}
-                                    {{disk|dict_get:5}}
-                                {% if disk|dict_get:4|clean_percentage|make_float > 89 %}</font>{% endif %}
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                    </table>
+                        <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Filesystem</th>
+                                <th>Size</th>
+                                <th>Used</th>
+                                <th>Avail</th>
+                                <th>Usage</th>
+                                <th>Mounted on</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for disk in server|dict_get:"disks_usage" %}
+                            <tr>
+                                <td>
+                                    {% if disk|dict_get:4|clean_percentage|make_float > 89 %}<font color="red">{% endif %}
+                                        {{disk|dict_get:0}}
+                                    {% if disk|dict_get:4|clean_percentage|make_float > 89 %}</font>{% endif %}
+                                </td>
+                                <td>
+                                    {% if disk|dict_get:4|clean_percentage|make_float > 89 %}<font color="red">{% endif %}
+                                        {{disk|dict_get:1|filesizeformat}}
+                                    {% if disk|dict_get:4|clean_percentage|make_float > 89 %}</font>{% endif %}
+                                </td>
+                                <td>
+                                    {% if disk|dict_get:4|clean_percentage|make_float > 89 %}<font color="red">{% endif %}
+                                        {{disk|dict_get:2|filesizeformat}}
+                                    {% if disk|dict_get:4|clean_percentage|make_float > 89 %}</font>{% endif %}
+                                </td>
+                                <td>
+                                    {% if disk|dict_get:4|clean_percentage|make_float > 89 %}<font color="red">{% endif %}
+                                        {{disk|dict_get:3|filesizeformat}}
+                                    {% if disk|dict_get:4|clean_percentage|make_float > 89 %}</font>{% endif %}
+                                </td>
+                                <td>
+                                    {% if disk|dict_get:4|clean_percentage|make_float > 89 %}<font color="red">{% endif %}
+                                        {{disk|dict_get:4}}
+                                    {% if disk|dict_get:4|clean_percentage|make_float > 89 %}</font>{% endif %}
+                                </td>
+                                <td>
+                                    {% if disk|dict_get:4|clean_percentage|make_float > 89 %}<font color="red">{% endif %}
+                                        {{disk|dict_get:5}}
+                                    {% if disk|dict_get:4|clean_percentage|make_float > 89 %}</font>{% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        </table>
 
-                <hr/>
+                    <hr/>
 
-                {% comment %}
-                    <b>disks_usage graphs debug</b>
-                    <br/>
-                    {% for disks_metrics in disks_usage %}
-                        {{disks_metrics|pprint}}
+                    {% comment %}
+                        <b>disks_usage graphs debug</b>
                         <br/>
-                    {% endfor %}
-                    <b>tmp js graph construct</b>
-                    {% for disk in server|dict_get:"disks_usage" %}
-                        id = disk_graph_{{forloop.counter}}</br>
-                        particular_disk_data {{disk|dict_get:0}}<br/>
                         {% for disks_metrics in disks_usage %}
-                            [Date.UTC({{disks_metrics.date_created|date:"Y"}}, {{disks_metrics.date_created|date:"n"|substract_one}}, {{disks_metrics.date_created|date:"j"}}, {{disks_metrics.date_created|date:"H"}}, {{disks_metrics.date_created|date:"i"}}, {{disks_metrics.date_created|date:"s"}}), {{disks_metrics|dict_get:"disks_usage"|dict_get:forloop.parentloop.counter0|dict_get:4}} ],
+                            {{disks_metrics|pprint}}
+                            <br/>
                         {% endfor %}
-                        <hr/>
-                    {% endfor %}
-                {% endcomment %}
+                        <b>tmp js graph construct</b>
+                        {% for disk in server|dict_get:"disks_usage" %}
+                            id = disk_graph_{{forloop.counter}}</br>
+                            particular_disk_data {{disk|dict_get:0}}<br/>
+                            {% for disks_metrics in disks_usage %}
+                                [Date.UTC({{disks_metrics.date_created|date:"Y"}}, {{disks_metrics.date_created|date:"n"|substract_one}}, {{disks_metrics.date_created|date:"j"}}, {{disks_metrics.date_created|date:"H"}}, {{disks_metrics.date_created|date:"i"}}, {{disks_metrics.date_created|date:"s"}}), {{disks_metrics|dict_get:"disks_usage"|dict_get:forloop.parentloop.counter0|dict_get:4}} ],
+                            {% endfor %}
+                            <hr/>
+                        {% endfor %}
+                    {% endcomment %}
+
+                    </div>
 
                 </div>
-
             </div>
-        </div>
-    </div><!--/row-->
+        </div><!--/row-->
+    {% endif %}
 
     <div id="disk_graphs"
         class="row"
