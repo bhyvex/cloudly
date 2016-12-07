@@ -268,7 +268,6 @@ def server_view(request, hwaddr):
     networking = False
 
     params = {'start':'3m-ago','m':'avg:3s-avg:' + hwaddr + '.sys.network'}
-    graphs_mixed_respose = []
     params['m'] += "{mm=input_accept_packets}"
 
     tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
@@ -276,6 +275,7 @@ def server_view(request, hwaddr):
 
     print '*'*1500
     print tsdb_response
+    print 'prams', params
 
     try:
         tsdb_response = tsdb_response
