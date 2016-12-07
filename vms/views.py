@@ -1312,14 +1312,6 @@ def test(request):
 
     print '--  devel test:'
 
-    notifs = active_service_statuses.find({"$and":[{"secret": profile.secret,"server_id":server['uuid']},{"current_overall_status":{"$ne":"OK"}}]})
-    server_notifs_count = notifs.count()
-
-    historical_service_statuses = mongo.historical_service_statuses
-    historical_service_statuses = historical_service_statuses.find({'server_id':server_id,'type':'status',})
-    historical_service_statuses = historical_service_statuses.sort("_id",pymongo.DESCENDING)
-    historical_service_statuses = historical_service_statuses.limit(50)
-
 
     return render_to_response( 'test.html',
         {
