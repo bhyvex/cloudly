@@ -281,6 +281,10 @@ def server_view(request, hwaddr):
     if(not "error" in tsdb_response and tsdb_response):
         disks = True
 
+    print '*'*1500
+    print 'disks', disks
+    print 'tsdb_response', tsdb_response
+
 
     mem_usage_ = []
     #mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
