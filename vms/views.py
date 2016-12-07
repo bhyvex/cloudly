@@ -274,6 +274,8 @@ def server_view(request, hwaddr):
     tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
     tsdb_response = json.loads(tsdb.text)
 
+    print '*'*1000
+    print 'tsdb_response', tsdb_response
     try:
         tsdb_response = tsdb_response[0]
         networking = True
