@@ -1312,8 +1312,15 @@ def test(request):
 
     print '--  devel test:'
 
+    params = {'start':'3m-ago','m':'avg:3s-avg:06-2e-9d-cf-83-5b.sys.network'}
+    params['m'] += "{mm=input_accept_packets}"
+
+    tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
+    tsdb_response = json.loads(tsdb.text)
+
 
     return render_to_response( 'test.html',
         {
             'test':True,
+            'tsdb_response':tsdb_response,
         },context_instance=RequestContext(request))
