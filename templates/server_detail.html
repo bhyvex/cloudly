@@ -370,6 +370,7 @@
         </div><!--/col-->
     </div><!--/row-->
 
+    {% if networking %}
         <div id="networking"
             class="row"
             {% if server_status|lower = "offline" %}
@@ -410,6 +411,7 @@
                 </div>
             </div>
         </div><!--/row-->
+    {% endif %}
 
     <div id="network_sessions"
         class="row"

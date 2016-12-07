@@ -273,14 +273,8 @@ def server_view(request, hwaddr):
     tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
     tsdb_response = json.loads(tsdb.text)
 
-    print '*'*1500
-    print tsdb_response
-    print 'prams', params
-
-    try:
-        tsdb_response = tsdb_response
+    if(not "error" in tsdb_response):
         networking = True
-    except: tsdb_response = []
 
     mem_usage_ = []
     #mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
