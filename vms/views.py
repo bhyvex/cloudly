@@ -275,10 +275,10 @@ def server_view(request, hwaddr):
     tsdb_response = json.loads(tsdb.text)
 
     print '*'*1500
-    print tsdb_response[0]
+    print tsdb_response
 
     try:
-        tsdb_response = tsdb_response[0]
+        tsdb_response = tsdb_response
         networking = True
     except: tsdb_response = []
 
