@@ -914,7 +914,7 @@ def get_system_metrics( uuid, secret ):
 
     try:
         network_connections = _get_network_connections()
-    except: network_connections
+    except: network_connections = {}
 
     processes = _get_processes()
 
