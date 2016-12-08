@@ -1314,17 +1314,17 @@ def test(request):
 
     print '--  devel test:'
 
-    params = {'start':'10m-ago','m':'avg:3s-avg:30-65-ec-7c-c0-e2.sys.network'}
-    tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
-    sys_network = json.loads(tsdb.text)
+    #params = {'start':'10m-ago','m':'avg:3s-avg:30-65-ec-7c-c0-e2.sys.network'}
+    #tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
+    #sys_network = json.loads(tsdb.text)
 
-    params = {'start':'10m-ago','m':'avg:3s-avg:30-65-ec-7c-c0-e2.sys.disks'}
-    tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
-    disks = json.loads(tsdb.text)
+    #params = {'start':'10m-ago','m':'avg:3s-avg:30-65-ec-7c-c0-e2.sys.disks'}
+    #tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
+    #disks = json.loads(tsdb.text)
 
     return render_to_response( 'test.html',
         {
             'test':True,
-            'sys_network':sys_network,
-            'disks':disks,
+#            'sys_network':sys_network,
+#            'disks':disks,
         },context_instance=RequestContext(request))
