@@ -1322,7 +1322,6 @@ def test(request):
     tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
     disks = json.loads(tsdb.text)
 
-
     return render_to_response( 'test.html',
         {
             'test':True,
