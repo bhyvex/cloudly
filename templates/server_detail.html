@@ -370,6 +370,7 @@
         </div><!--/col-->
     </div><!--/row-->
 
+    {% if networking_graph__enable %}
         <div id="networking"
             class="row"
             {% if server_status|lower = "offline" %}
@@ -405,12 +406,12 @@
                                 </ul>
                             </div>
                             <div id="outbound_traffic"></div>
-                            debug {{networking_graph__enable}}
                         </div>
                     </div>
                 </div>
             </div>
         </div><!--/row-->
+        {% endif %}
 
     <div id="network_sessions"
         class="row"
