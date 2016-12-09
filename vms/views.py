@@ -1325,6 +1325,6 @@ def test(request):
     return render_to_response( 'test.html',
         {
             'test':True,
-#            'sys_network':sys_network,
+            'sys_network':sys_network,
 #            'disks':disks,
         },context_instance=RequestContext(request))
