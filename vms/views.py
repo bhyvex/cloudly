@@ -260,13 +260,13 @@ def server_view(request, hwaddr):
         return HttpResponse("access denied")
 
 
-    networking = False
+    networking_graph__enable = False
 
     params = {'start':'3m-ago','m':'avg:3s-avg:' + hwaddr.replace(':','-') + '.sys.network'}
     tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
     tsdb_response = json.loads(tsdb.text)
 
-    if(not "error" in tsdb_response and tsdb_response): networking = tsdb_response
+    if(not "error" in tsdb_response and tsdb_response): networking_graph__enable = tsdb_response
 
 
     mem_usage_ = []
@@ -393,7 +393,7 @@ def server_view(request, hwaddr):
             'mem_usage':mem_usage,
             'loadavg':loadavg,
             'disks':disks,
-            'networking':networking,
+            'networking_graph__enable':networking_graph__enable,
             'historical_service_statuses':historical_service_statuses,
             'activity':activity,
             'activity_cummulative_types':activity_cummulative_types,
