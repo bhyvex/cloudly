@@ -110,6 +110,22 @@ $ env COMPRESSION=NONE HBASE_HOME=/opt/hbase-1.1.4/ /opt/opentsdb/tools/create_t
 The COMPRESSION value is either NONE, LZO, GZIP or SNAPPY. This will create four tables: tsdb, tsdb-uid, tsdb-tree and tsdb-meta.
 
 
+Use the following opentsdb configuration:
+
+<pre>
+tsd.network.bind = 0.0.0.0
+tsd.network.port = 4242
+tsd.core.auto_create_metrics = true
+tsd.storage.fix_duplicates = true
+tsd.http.staticroot = /usr/share/opentsdb/static/
+tsd.http.cachedir = /tmp/opentsdb
+tsd.storage.enable_compaction = true
+tsd.storage.flush_interval = 1000
+tsd.storage.hbase.data_table = tsdb
+tsd.storage.hbase.uid_table = tsdb-uid
+</pre>
+
+
 Finally, start the OpenTSDB like so:
 
 <pre>
