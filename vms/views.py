@@ -1314,7 +1314,7 @@ def test(request):
 
     print '--  devel test:'
 
-    params = {'start':'10m-ago','m':'avg:3s-avg:02-00-00-8e-9d-16.sys.network'}
+    params = {'start':'10m-ago','m':'avg:3s-avg:20-c9-d0-87-8c-5f.sys.network'}
     tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
     sys_network = json.loads(tsdb.text)
 
