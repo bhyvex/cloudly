@@ -269,15 +269,6 @@ def server_view(request, hwaddr):
     if(not "error" in tsdb_response and tsdb_response): networking = tsdb_response
 
 
-    disks = False
-
-    params = {'start':'3m-ago','m':'avg:3s-avg:' + hwaddr.replace(':','-') + '.sys.disks'}
-    tsdb = requests.get('http://'+settings.TSDB_HOST+':'+str(settings.TSDB_PORT)+'/api/query',params=params)
-    tsdb_response = json.loads(tsdb.text)
-
-    if(not "error" in tsdb_response and tsdb_response): disks = tsdb_response
-
-
     mem_usage_ = []
     #mem_usage = mongo.memory_usage.find({'uuid':uuid,}).sort('_id',-1).limit(60)
     #for i in mem_usage: mem_usage_.append(i)
