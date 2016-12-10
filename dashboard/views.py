@@ -221,7 +221,7 @@ def download_agent(request):
     print '-- download agent:'
 
     server_url = request.build_absolute_uri('/')
-    api_server_url = server_url
+    api_server_url = 'api.'+server_url
     api_server_url = api_server_url.replace('http://','').replace('https://','')
     api_server_url = api_server_url.split(':')[0].replace('/','')
     api_server_url = api_server_url + ":5001"
