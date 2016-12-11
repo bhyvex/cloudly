@@ -233,8 +233,6 @@ def download_agent(request):
         profile = userprofile.objects.get(user=request.user)
     except: pass
 
-    print 'server_url', server_url
-    print 'api_server_url', api_server_url
 
     if(request.GET):
 
