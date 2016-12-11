@@ -55,25 +55,25 @@ CLOUDLY_MOTTOS = [
 
 def web_new_1(request):
 
-    print '--  web 1:'
+    print '--  web:'
     random_motto = CLOUDLY_MOTTOS[ random.randint(0,len(CLOUDLY_MOTTOS)-1) ]
     return render_to_response('web1.html', {'random_motto':random_motto,},)
 
 def web_new_2(request):
 
-    print '--  web 2:'
+    print '--  web:'
     random_motto = CLOUDLY_MOTTOS[ random.randint(0,len(CLOUDLY_MOTTOS)-1) ]
     return render_to_response('web2.html', {'random_motto':random_motto,},)
 
 def web_new_3(request):
 
-    print '--  web 3:'
+    print '--  web:'
     random_motto = CLOUDLY_MOTTOS[ random.randint(0,len(CLOUDLY_MOTTOS)-1) ]
     return render_to_response('web3.html', {'random_motto':random_motto,},)
 
 def web_new_4(request):
 
-    print '--  web 4:'
+    print '--  web:'
     random_motto = CLOUDLY_MOTTOS[ random.randint(0,len(CLOUDLY_MOTTOS)-1) ]
     return render_to_response('web4.html', {'random_motto':random_motto,},)
 
@@ -220,15 +220,13 @@ def download_agent(request):
 
     print '-- download agent:'
 
-    server_url = request.build_absolute_uri('/')
-    api_server_url = server_url
-    api_server_url = api_server_url.replace('http://','').replace('https://','')
-    api_server_url = api_server_url.split(':')[0].replace('/','')
-    api_server_url = 'api.'+api_server_url + ":5001"
+    #server_url = request.build_absolute_uri('/')
+    #api_server_url = server_url
+    #api_server_url = api_server_url.replace('http://','').replace('https://','')
+    #api_server_url = api_server_url.split(':')[0].replace('/','')
+    #api_server_url = 'api.'+api_server_url + ":5001"
 
-    if('projectcloudly.com' in api_server_url):
-        api_server_url = "api.projectcloudly.com:5001"
-
+    api_server_url = 'api.cloudly247.com:5001'
     ip = request.META['REMOTE_ADDR']
 
     try:
