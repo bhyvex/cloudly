@@ -220,19 +220,23 @@ def download_agent(request):
 
     print '-- download agent:'
 
-    #server_url = request.build_absolute_uri('/')
+    server_url = request.build_absolute_uri('/')
+    server_url = server_url.replace('www.','')
+
     #api_server_url = server_url
     #api_server_url = api_server_url.replace('http://','').replace('https://','')
     #api_server_url = api_server_url.split(':')[0].replace('/','')
     #api_server_url = 'api.'+api_server_url + ":5001"
 
-    api_server_url = 'api.cloudly247.com:5001'
+    api_server_url = 'api.cloudl247.com:5001'
+
     ip = request.META['REMOTE_ADDR']
 
     try:
         profile = userprofile.objects.get(user=request.user)
     except: pass
 
+    print 'api_server_url', api_server_url
 
     if(request.GET):
 
