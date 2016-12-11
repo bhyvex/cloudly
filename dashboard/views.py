@@ -228,7 +228,7 @@ def download_agent(request):
     #api_server_url = api_server_url.split(':')[0].replace('/','')
     #api_server_url = 'api.'+api_server_url + ":5001"
 
-    api_server_url = 'api.cloudl247.com:5001'
+    api_server_url = 'api.cloudly247.com:5001'
 
     ip = request.META['REMOTE_ADDR']
 
