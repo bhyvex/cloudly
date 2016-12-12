@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     #url(r'^cloud/settings/credentials/update/$', 'userprofile.views.cloud_settings_update_credentials', name='cloud_settings_update_credentials'),
 
     url(r'^demo/$', 'userprofile.views.login_as_demo_user', name='demo'),
+    # temp
     url(r'^kamil/$', 'userprofile.views.login_as_demo_user', name='demo'),
 
     url(r'^goodbye/$', 'userprofile.views.goodbye', name='goodbye'),
