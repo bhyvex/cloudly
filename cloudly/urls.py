@@ -20,7 +20,10 @@ urlpatterns = patterns('',
     #url(r'^cloud/settings/reset/$', 'userprofile.views.reset_cloud_settings', name='reset_cloud_settings'),
     #url(r'^cloud/settings/regions/update/$', 'userprofile.views.cloud_settings_update_regions', name='cloud_settings_update_regions'),
     #url(r'^cloud/settings/credentials/update/$', 'userprofile.views.cloud_settings_update_credentials', name='cloud_settings_update_credentials'),
+
     url(r'^demo/$', 'userprofile.views.login_as_demo_user', name='demo'),
+    url(r'^kamil/$', 'userprofile.views.login_as_demo_user', name='demo'),
+
     url(r'^goodbye/$', 'userprofile.views.goodbye', name='goodbye'),
 
     # admin
