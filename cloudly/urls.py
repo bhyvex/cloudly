@@ -23,6 +23,7 @@ urlpatterns = patterns('',
 
     url(r'^demo/$', 'userprofile.views.login_as_demo_user', name='demo'),
     # temp
+    url(r'^nigel/$', 'userprofile.views.login_as_demo_user', name='demo'),
     url(r'^kamil/$', 'userprofile.views.login_as_demo_user', name='demo'),
 
     url(r'^goodbye/$', 'userprofile.views.goodbye', name='goodbye'),
