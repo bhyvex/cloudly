@@ -331,12 +331,6 @@ def ping():
         disk_total = disk[1]
         disk_usage = disk[4]
 
-        print 'mount_point', mount_point
-        print 'disk_free', disk_free
-        print 'disk_used', disk_used
-        print 'disk_total', disk_total
-        print 'disk_usage', disk_usage
-
         disks_tsdb_cmd = "put " + \
         uuid.replace(':','-') + ".sys.disks " + \
         str(int(time.time())) + " " + \
