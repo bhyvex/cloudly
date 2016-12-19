@@ -684,6 +684,9 @@ def _get_disks_usage():
     service_report['service_thresholds'] = disks_thresholds
     service_report['service_status'] = service_status
 
+    print 'debugging disks'
+    print disks_usage
+
     return disks_usage, service_report
 
 def _get_networking_stats():
