@@ -574,7 +574,7 @@ def _get_disks_usage():
             disk.append(disk_total)
             disk.append(disk_used)
             disk.append(disk_free)
-            disk.append(disk_usage)
+            disk.append(str(disk_usage)+"%")
             disk.append(mount_point)
 
             break
