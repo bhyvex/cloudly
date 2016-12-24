@@ -80,9 +80,6 @@ def _log_user_activity(userprofile, activity, link, function="", ip=""):
 
     userprofile.save()
 
-    #print '*'*100
-    #print 'activity', activity, activity.activity
-
     return activity
 
 
@@ -167,7 +164,6 @@ def register(request):
         except: err = "must_agree_tos"
 
         password1 = request.POST[u'password1']
-        #password2 = request.POST[u'password2']
         password2 = password1
 
         print username
@@ -208,7 +204,6 @@ def register(request):
                     agent_hash = (''.join([choice(string.letters + string.digits) for i in range(12)]))
 
                     username = _remove_accents(username)
-                    #name = _remove_accents(name)
 
                     userprofile.objects.get_or_create(user=user,secret=secret,name=name,agent_hash=agent_hash,language="EN")
                     login(request, user)
